@@ -56,6 +56,10 @@
             "$type": "color",
             "$value": "{amanita.300}"
         },
+        "icon-weakest": {
+            "$type": "color",
+            "$value": "{amanita.100}"
+        },
         "surface": {
             "$type": "color",
             "$value": "{amanita.200}"

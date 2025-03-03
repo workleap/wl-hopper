@@ -241,6 +241,7 @@ export const SemanticTokens = {
     "--hop-danger-icon-weak": "var(--hop-amanita-300)",
     "--hop-danger-icon-weak-hover": "var(--hop-amanita-500)",
     "--hop-danger-icon-weak-press": "var(--hop-amanita-600)",
+    "--hop-danger-icon-weakest": "var(--hop-amanita-75)",
     "--hop-danger-surface": "var(--hop-amanita-25)",
     "--hop-danger-surface-selected": "var(--hop-amanita-50)",
     "--hop-danger-surface-disabled": "var(--hop-amanita-100)",
