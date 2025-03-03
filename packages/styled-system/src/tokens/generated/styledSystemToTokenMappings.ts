@@ -477,6 +477,7 @@ export const IconColors = {
     "danger-weak": "danger-icon-weak",
     "danger-weak-hover": "danger-icon-weak-hover",
     "danger-weak-press": "danger-icon-weak-press",
+    "danger-weakest": "danger-icon-weakest",
     "neutral-active": "neutral-icon-active",
     "neutral-weak-active": "neutral-icon-weak-active",
     "neutral": "neutral-icon",

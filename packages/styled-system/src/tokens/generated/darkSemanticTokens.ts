@@ -24,6 +24,7 @@ export const DarkSemanticTokens = {
     "--hop-danger-icon-weak": "var(--hop-amanita-100)",
     "--hop-danger-icon-weak-hover": "var(--hop-amanita-200)",
     "--hop-danger-icon-weak-press": "var(--hop-amanita-300)",
+    "--hop-danger-icon-weakest": "var(--hop-amanita-100)",
     "--hop-danger-surface": "var(--hop-amanita-200)",
     "--hop-danger-surface-selected": "var(--hop-amanita-800)",
     "--hop-danger-surface-disabled": "var(--hop-amanita-600)",
