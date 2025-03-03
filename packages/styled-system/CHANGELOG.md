@@ -1,5 +1,17 @@
 # @hopper-ui/styled-system
 
+## 2.5.3
+
+### Patch Changes
+
+- 41b0468: Modified the following tokens:
+
+  **Added**
+
+  | Token                     | Category                |
+  | ------------------------- | ----------------------- |
+  | --hop-danger-icon-weakest | Semantic token - colors |
+
 ## 2.5.2
 
 ### Patch Changes

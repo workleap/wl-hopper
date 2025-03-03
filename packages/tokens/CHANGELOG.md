@@ -1,5 +1,17 @@
 # @hopper-ui/tokens
 
+## 4.4.3
+
+### Patch Changes
+
+- 41b0468: Modified the following tokens:
+
+  **Added**
+
+  | Token                     | Category                |
+  | ------------------------- | ----------------------- |
+  | --hop-danger-icon-weakest | Semantic token - colors |
+
 ## 4.4.2
 
 ### Patch Changes
