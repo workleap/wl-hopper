@@ -10,7 +10,7 @@
         },
         "border-press": {
             "$type": "color",
-            "$value": "{amanita.300}"
+            "$value": "{amanita.400}"
         },
         "border-strong": {
             "$type": "color",
@@ -22,7 +22,7 @@
         },
         "icon-selected": {
             "$type": "color",
-            "$value": "{amanita.300}"
+            "$value": "{amanita.100}"
         },
         "icon-disabled": {
             "$type": "color",
