@@ -6,7 +6,7 @@
         },
         "border-selected": {
             "$type": "color",
-            "$value": "{amanita.300}"
+            "$value": "{amanita.400}"
         },
         "border-strong": {
             "$type": "color",
@@ -14,7 +14,7 @@
         },
         "border-press": {
             "$type": "color",
-            "$value": "{amanita.600}"
+            "$value": "{amanita.300}"
         },
         "icon": {
             "$type": "color",
@@ -46,7 +46,7 @@
         },
         "icon-weak": {
             "$type": "color",
-            "$value": "{amanita.300}"
+            "$value": "{amanita.400}"
         },
         "icon-weak-hover": {
             "$type": "color",
