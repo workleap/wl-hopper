@@ -1,5 +1,17 @@
 # @hopper-ui/tokens
 
+## 4.4.4
+
+### Patch Changes
+
+- | 37a2b22:                     | Token                   | Category    | New Value |
+  | ---------------------------- | ----------------------- | ----------- | --------- |
+  | --hop-danger-border-press    | Semantic dark - colors  | amanita-400 |
+  | --hop-danger-icon-selected   | Semantic dark - colors  | amanita-100 |
+  | --hop-danger-border-selected | Semantic light - colors | amanita-400 |
+  | --hop-danger-border-press    | Semantic light - colors | amanita-300 |
+  | --hop-danger-icon-weak       | Semantic light - colors | amanita-400 |
+
 ## 4.4.3
 
 ### Patch Changes
