@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.4.12
+
+### Patch Changes
+
+- 2864ac4: Expose ToggleArrow in @hopper-ui/components
+
 ## 1.4.11
 
 ### Patch Changes
