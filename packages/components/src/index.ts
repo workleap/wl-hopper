@@ -29,6 +29,7 @@ export * from "./Select/index.ts";
 export * from "./Spinner/index.ts";
 export * from "./switch/index.ts";
 export * from "./tag/index.ts";
+export * from "./ToggleArrow/index.ts";
 export * from "./typography/Heading/index.ts";
 export * from "./typography/Label/index.ts";
 export * from "./typography/OverlineText/index.ts";
