@@ -1,6 +1,6 @@
 "use client";
 
-import { navigation, type NavItem } from "@/configs/navigation";
+import type { NavItem } from "@/configs/navigation";
 import { FeatureFlagContext } from "@/context/feature/FeatureFlagProvider.tsx";
 import clsx from "clsx";
 import Link from "next/link";
@@ -22,9 +22,7 @@ const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
         const { path, label, status } = item;
         const pathShortened = path.split("/")[1].trim();
 
-        const styledSystemPath = navigation.find(navItem => navItem.label === "Styled System")?.path;
-
-        const isActive = pathShortened === firstPathLevel && firstPathLevel !== "" && path !== styledSystemPath;
+        const isActive = pathShortened === firstPathLevel && firstPathLevel !== "";
 
         return (
             <li key={label}
