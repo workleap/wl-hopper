@@ -29,6 +29,7 @@ export * from "./Select/index.ts";
 export * from "./Spinner/index.ts";
 export * from "./switch/index.ts";
 export * from "./tag/index.ts";
+export * from "./ToggleArrow/index.ts";
 export * from "./typography/Heading/index.ts";
 export * from "./typography/Label/index.ts";
 export * from "./typography/OverlineText/index.ts";
@@ -38,21 +39,36 @@ export * from "./utils/index.ts";
 export * from "@hopper-ui/styled-system";
 export { filterDOMProps, useId } from "@react-aria/utils";
 export { useAsyncList } from "@react-stately/data";
-export type { RouterOptions } from "@react-types/shared";
-export {
-    useFilter
-} from "react-aria";
-export type { Orientation, Placement } from "react-aria";
+export type {
+    Alignment, AriaLabelingProps,
+    AriaValidationProps, AsyncLoadable, BaseEvent, CollectionBase, CollectionChildren, CollectionElement,
+    CollectionStateBase, Direction, DirectoryDropItem, DisabledBehavior, DOMAttributes, DOMProps, DOMRef,
+    DOMRefValue, DragDropEvent, DragEndEvent, DraggableCollectionEndEvent,
+    DraggableCollectionMoveEvent, DraggableCollectionProps, DraggableCollectionStartEvent, DragItem,
+    DragMoveEvent, DragPreviewRenderer, DragStartEvent, DragTypes, DropActivateEvent, DropEnterEvent,
+    DropEvent, DropExitEvent, DropItem, DropMoveEvent, DropOperation, DroppableCollectionActivateEvent,
+    DroppableCollectionBaseProps, DroppableCollectionDropEvent, DroppableCollectionEnterEvent,
+    DroppableCollectionExitEvent, DroppableCollectionInsertDropEvent, DroppableCollectionMoveEvent,
+    DroppableCollectionOnItemDropEvent, DroppableCollectionProps, DroppableCollectionReorderEvent,
+    DroppableCollectionRootDropEvent, DroppableCollectionUtilityOptions, DropPosition,
+    DropTarget, DropTargetDelegate, Expandable, FileDropItem, FocusableDOMProps, FocusableElement, FocusableProps,
+    FocusableRef, FocusableRefValue, FocusEvents, FocusStrategy, forwardRefType, GroupDOMAttributes, HoverEvent, HoverEvents, Href, InputBase, InputDOMProps, ItemDropTarget, ItemElement,
+    ItemRenderer, Key, KeyboardDelegate, KeyboardEvent, KeyboardEvents, LabelableProps,
+    LabelPosition, LayoutDelegate, LinkDOMProps, LoadingState, LongPressEvent, MoveEndEvent, MoveEvent,
+    MoveEvents, MoveMoveEvent, MoveStartEvent, MultipleSelection, NecessityIndicator, Node, Orientation,
+    PointerType, PressEvent, PressEvents, RangeInputBase, RangeValue, Rect, RefObject, Removable, RootDropTarget, RouterConfig, RouterOptions, ScrollEvent,
+    ScrollEvents, SectionElement, Selection, SelectionBehavior, SelectionMode, SingleSelection, Size, Sortable,
+    SortDescriptor, SortDirection, TextDropItem, TextInputBase, TextInputDOMEvents, TextInputDOMProps, Validation, ValidationError,
+    ValidationErrors, ValidationFunction, ValidationResult, ValidationState, ValueBase
+} from "@react-types/shared";
+export { useFilter, type Placement } from "react-aria";
 export {
     Collection,
     DEFAULT_SLOT,
     useContextProps,
     useLocale,
     useSlottedContext,
-    type ContextValue,
-    type Key,
-    type Selection,
-    type ValidationResult
+    type ContextValue
 } from "react-aria-components";
 
 import "./index.css";
