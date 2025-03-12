@@ -1,0 +1,16 @@
+.hop-TabLine {
+    --hop-TabLine-position: absolute;
+    --hop-TabLine-inset-block-end: 0;
+    --hop-TabLine-block-size: 0.125rem;
+    --hop-TabLine-background: var(--hop-neutral-border-selected);
+    --hop-TabLine-transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
+
+    position: var(--hop-TabLine-position);
+    inset-block-end: var(--hop-TabLine-inset-block-end);
+
+    block-size: var(--hop-TabLine-block-size);
+
+    background: var(--hop-TabLine-background);
+
+    transition: var(--hop-TabLine-transition);
+}

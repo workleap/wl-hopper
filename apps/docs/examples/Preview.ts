@@ -305,18 +305,6 @@ export const Previews: Record<string, Preview> = {
     "layout/docs/grid": {
         component: lazy(() => import("@/../../packages/components/src/layout/docs/grid.tsx"))
     },
-    "HopperProvider/docs/responsive-styles/introduction": {
-        component: lazy(() => import("@/../../packages/components/src/HopperProvider/docs/responsive-styles/introduction.tsx"))
-    },
-    "HopperProvider/docs/responsive-styles/mobile-first-do-not": {
-        component: lazy(() => import("@/../../packages/components/src/HopperProvider/docs/responsive-styles/mobile-first-do-not.tsx"))
-    },
-    "HopperProvider/docs/responsive-styles/mobile-first-do": {
-        component: lazy(() => import("@/../../packages/components/src/HopperProvider/docs/responsive-styles/mobile-first-do.tsx"))
-    },
-    "HopperProvider/docs/responsive-styles/useResponsiveValue": {
-        component: lazy(() => import("@/../../packages/components/src/HopperProvider/docs/responsive-styles/useResponsiveValue.tsx"))
-    },
     "Avatar/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Avatar/docs/preview.tsx"))
     },
@@ -994,6 +982,39 @@ export const Previews: Record<string, Preview> = {
     },
     "Link/docs/image": {
         component: lazy(() => import("@/../../packages/components/src/Link/docs/image.tsx"))
+    },
+    "Tabs/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/preview.tsx"))
+    },
+    "Tabs/docs/size": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/size.tsx"))
+    },
+    "Tabs/docs/icon": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/icon.tsx"))
+    },
+    "Tabs/docs/lozenge": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/lozenge.tsx"))
+    },
+    "Tabs/docs/badge": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/badge.tsx"))
+    },
+    "Tabs/docs/dynamic": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/dynamic.tsx"))
+    },
+    "Tabs/docs/manual": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/manual.tsx"))
+    },
+    "Tabs/docs/in-card": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/in-card.tsx"))
+    },
+    "Tabs/docs/heading": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/heading.tsx"))
+    },
+    "Tabs/docs/fluid": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/fluid.tsx"))
+    },
+    "Tabs/docs/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/controlled.tsx"))
     },
     "Modal/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Modal/docs/preview.tsx"))

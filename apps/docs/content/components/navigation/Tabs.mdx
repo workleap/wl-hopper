@@ -1,0 +1,105 @@
+---
+title: Tabs
+description: Tabs are used to organize content by grouping similar information on the same page.
+category: "navigation"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tabs/src/Tabs.tsx
+---
+
+<Example src="Tabs/docs/preview" isOpen />
+
+## Anatomy
+
+A `Tab` uses the following components:
+
+<ComposedComponents components={["Icon", "Badge", "Text", "Tag"] }/>
+
+## Usage
+
+### Sizes
+
+Tabs can vary in size.
+
+<Example src="Tabs/docs/size" />
+
+### Icon
+
+A tab can contain an icon.
+
+<Example src="Tabs/docs/icon" />
+
+### Lozenge
+
+A tab can contain a lozenge.
+
+<Example src="Tabs/docs/lozenge" />
+
+### Badge
+
+A tab can contain a badge.
+
+<Example src="Tabs/docs/badge" />
+
+### Dynamic Tabs
+
+Tabs items can be rendered dynamically.
+
+<Example src="Tabs/docs/dynamic" />
+
+### Manually Activated Tabs
+
+By default, tabs are activated automatically. This means when you use the arrow keys to change tabs, the tab is activated and focused.
+
+```
+The content of a tab should ideally be preloaded. However, if switching to a tab panel causes a network request and possibly a page refresh, there might be some notable latency and this might affect the experience for keyboard and screen reader users.
+```
+
+In this scenario, you should use a manually activated tab, which moves focus without activating the tabs. With the focus on a specific tab, users can activate a tab by pressing Space or Enter.
+
+<Example src="Tabs/docs/manual" />
+
+### In card
+
+A tabs component can be rendered as an in-card variant.
+
+<Example src="Tabs/docs/in-card" />
+
+### Heading
+
+A tabs component can be rendered as a heading variant.
+
+<Example src="Tabs/docs/heading" />
+
+### Fluid
+
+A tabs component can split the width of its container equally between its tabs.
+
+<Example src="Tabs/docs/fluid" />
+
+### Controlled
+
+The selectedKey state can be handled in a controlled mode.
+
+<Example src="Tabs/docs/controlled" />
+
+## Props
+
+### Tabs
+
+<PropTable component="Tabs" />
+
+### TabList
+
+<PropTable component="TabList" />
+
+### Tab
+
+<PropTable component="Tab" />
+
+### TabPanel
+
+<PropTable component="TabPanel" />
+
+## Migration Notes
+
+<MigrateGuide src="Tabs/docs/migration-notes" />
