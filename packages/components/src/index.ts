@@ -39,7 +39,7 @@ export * from "./utils/index.ts";
 export * from "@hopper-ui/styled-system";
 export { filterDOMProps, useId } from "@react-aria/utils";
 export { useAsyncList } from "@react-stately/data";
-export type { RouterOptions } from "@react-types/shared";
+export type { KeyboardEvent, RouterOptions } from "@react-types/shared";
 export {
     useFilter
 } from "react-aria";
