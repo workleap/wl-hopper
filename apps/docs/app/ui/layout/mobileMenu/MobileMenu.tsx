@@ -75,7 +75,9 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
         const { path, label, status } = item;
         const pathShortened = path.split("/")[1].trim();
 
-        const isActive = pathShortened === firstPathLevel && firstPathLevel !== "";
+        const styledSystemPath = navigation.find(navItem => navItem.label === "Styled System")?.path;
+
+        const isActive = pathShortened === firstPathLevel && firstPathLevel !== "" && path !== styledSystemPath;
 
         return (
             <li key={label}>
