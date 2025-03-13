@@ -73,14 +73,14 @@ let indexContent = inlinedSvgs.map(file => {
 indexContent += `export { ${inlinedSvgs.map(file => file.name).join(", ")} }\n`;
 
 indexContent += Object.entries(groupedSvgs).map(([group, icons]) => {
-    return `export const ${group} = {${IconSizes.map(size => `${size}: ${icons[size]}`).join(", ")}};\n`;
+    return `export const ${group} = {${IconSizes.map(size => `${size}: ${icons[size]}`).join(", ")}, displayName: "${group}" };\n`;
 }).join("");
 
 fs.writeFileSync(path.resolve(IconsInlineDistDirectory, "index.js"), indexContent);
 
 
 // types barrel file
-let indexDeclarationFileContent = `export type IconObject = Record<${IconSizes.map(s => `"${s}"`).join(" | ")}, string>;\n`;
+let indexDeclarationFileContent = `export type IconObject = Record<${IconSizes.map(s => `"${s}"`).join(" | ")} | "displayName", string>;\n`;
 indexDeclarationFileContent += inlinedSvgs.map(file => {
     const name = file.name;
 
