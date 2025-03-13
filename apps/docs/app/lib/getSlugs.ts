@@ -1,7 +1,13 @@
-import { allComponents, allGettingStarteds, allIcons, allTokens } from "@/.contentlayer/generated";
+import { allComponents, allGettingStarteds, allIcons, allStyledSystems, allTokens } from "@/.contentlayer/generated";
 
 export function getGettingStartedSlugs() {
     return allGettingStarteds.map(({ section, slug }) => ({
+        slug: [section, slug]
+    }));
+}
+
+export function getStyledSystemSlugs() {
+    return allStyledSystems.map(({ section, slug }) => ({
         slug: [section, slug]
     }));
 }

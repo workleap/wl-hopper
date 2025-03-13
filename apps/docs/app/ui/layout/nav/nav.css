@@ -7,6 +7,7 @@
     display: none;
     font-size: var(--hd-nav-font-size);
     line-height: var(--hd-nav-line-height);
+    overflow-x: auto;
 }
 
 @media screen and (width >= 52.25rem) {
@@ -28,6 +29,7 @@
 }
 
 .hd-nav__link {
+    text-wrap: nowrap;
     padding-inline: var(--hd-space-2);
     padding-block: var(--hd-space-1);
 }
