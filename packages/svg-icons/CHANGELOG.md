@@ -1,5 +1,11 @@
 # @hopper-ui/svg-icons
 
+## 2.18.0
+
+### Minor Changes
+
+- 588409e: Added the display name to all inline icons
+
 ## 2.17.0
 
 ### Minor Changes
