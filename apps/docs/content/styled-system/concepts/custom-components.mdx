@@ -1,0 +1,27 @@
+---
+title: Custom Components
+description: Using Hopper style props on custom components.
+order: 4
+---
+
+Sometimes, you may find yourself needing to build a component that doesn't exist in Hopper, but this component would benefit from using Hopper's style props.
+
+There are 2 ways to build a custom component with Hopper style properties, as seen below:
+
+### HTML Element
+
+Instead of using a native HTML element to create your component, you can use one of the Hopper HTML Element components. This way, you can simply forward the style props to the component.
+
+This is an example using a `Div`, but you can use any of the HTML Element components.
+
+<CodeOnlyExample src="HopperProvider/docs/styling/custom-component-html" />
+
+### useStyledSystem
+
+If you need to build a more complex component, you can use the `useStyledSystem` function. This function allows you to create a custom component with Hopper style props.
+
+The `useStyledSystem` function returns a `stylingProps` object containing a resulting style object and a className. You can then spread the `stylingProps` object on your component, or merge them with your existing className and style properties.
+
+We don't automatically merge the `className` and `style` props because most of the className and style props in Hopper also accept a function.
+
+<CodeOnlyExample src="HopperProvider/docs/styling/custom-component-useStyledSystem" />
