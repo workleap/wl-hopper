@@ -1,10 +1,8 @@
 ---
-title: Styling
+title: Style Props
 description: This page describes how styling works in Hopper, including how to customize spacing, sizing, and positioning, and how to create your own custom components using Hopper styles.
-order: 2
+order: 1
 ---
-
-## Introduction
 
 Hopper components are designed to be consistent across all Workleap applications. They include built-in styling that has been considered carefully, and extensively tested. In general, customizing Hopper is discouraged, but most components do offer control over layout and other aspects. In addition, you can use Hopper's tokens to ensure your application conforms to design requirements, and is adaptive across color schemes.
 
@@ -59,40 +57,6 @@ Since the following user action pseudo-classes are often used, some style props 
 ]} />
 <br />
 Not all style props support user action pseudo-classes. Find out which props support user action pseudo-classes in the ["Properties List"](#properties-list) section.
-
-## HTML Elements
-
-You might wonder how to use Hopper style props on your HTML elements?
-
-Hopper provides a set of HTML element components already configured with Hopper styled system. You should choose these components over native HTML elements.
-
-`<A>`, `<Address>`, `<Article>`, `<Aside>`, `<HtmlButton>`, `<Div>`, `<HtmlFooter>`, `<HtmlHeader>`, `<Img>`, `<Input>`, `<List>`, `<Main>`, `<Nav>`, `<Section>`, `<Span>`, `<Table>`
-
-For text elements, prefer a `<Text>` or `<Paragraph>` component rather than `<Span>` or a `<Div>`.
-
-## Custom components
-
-Sometimes, you may find yourself needing to build a component that doesn't exist in Hopper, but this component would benefit from using Hopper's style props.
-
-There are 2 ways to build a custom component with Hopper style properties, as seen below:
-
-### HTML Element
-
-Instead of using a native HTML element to create your component, you can use one of the Hopper HTML Element components. This way, you can simply forward the style props to the component.
-
-This is an example using a `Div`, but you can use any of the HTML Element components.
-
-<CodeOnlyExample src="HopperProvider/docs/styling/custom-component-html" />
-
-### useStyledSystem
-
-If you need to build a more complex component, you can use the `useStyledSystem` function. This function allows you to create a custom component with Hopper style props.
-
-The `useStyledSystem` function returns a `stylingProps` object containing a resulting style object and a className. You can then spread the `stylingProps` object on your component, or merge them with your existing className and style properties.
-
-We don't automatically merge the `className` and `style` props because most of the className and style props in Hopper also accept a function.
-
-<CodeOnlyExample src="HopperProvider/docs/styling/custom-component-useStyledSystem" />
 
 ## Properties List
 

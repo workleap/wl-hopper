@@ -29,7 +29,7 @@ const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
                 className={clsx("hd-nav__list-item", isActive && "hd-nav__list-item--active", (!featureFlags.alpha && status !== "ready") && "hd-nav__link--disabled")}
             >
                 <Link href={path} className="hd-nav__link">
-                    {label} {label === "Components" && <span className="hd-nav__link-tag">Preview</span>}
+                    {label}
                 </Link>
             </li>
         );

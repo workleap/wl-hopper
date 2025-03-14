@@ -1,0 +1,22 @@
+---
+title: HTML Elements
+description: Using Hopper style props on HTML elements.
+order: 3
+---
+
+Hopper provides a set of HTML element components already configured with Hopper styled system. You should choose these components over native HTML elements.
+
+`<A>`, `<Address>`, `<Article>`, `<Aside>`, `<HtmlButton>`, `<Div>`, `<HtmlFooter>`, `<HtmlHeader>`, `<Img>`, `<Input>`, `<List>`, `<Main>`, `<Nav>`, `<Section>`, `<Span>`, `<Table>`
+
+For text elements, prefer a `<Text>` or `<Paragraph>` component rather than `<Span>` or a `<Div>`.
+
+
+## Create missing HTML elements
+
+Hopper only re-export the most used HTML elements. If you need to use a less common HTML element, you can create a custom component using the `htmlElement` function.
+
+```tsx
+import { htmlElement } from "@hopper-ui/components";
+
+const HtmlUnderline = htmlElement("u");
+```

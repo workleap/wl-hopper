@@ -112,6 +112,7 @@
 .hd-header__nav {
     display: flex;
     flex: 1 1 auto;
+    min-width: 0;
     align-items: center;
     gap: var(--hd-space-6);
 }

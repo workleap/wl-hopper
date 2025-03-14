@@ -21,6 +21,11 @@ export const navigation: NavItem[] = [
         "status": "ready"
     },
     {
+        "label": "Styled System",
+        "path": "/styled-system/overview/introduction",
+        "status": "ready"
+    },
+    {
         "label": "Components",
         "path": "/components/component-list",
         "status": "ready"
