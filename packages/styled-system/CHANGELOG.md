@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.5
+
+### Patch Changes
+
+- 911767d: Exported a getRootCSSClasses function
+
 ## 2.5.4
 
 ### Patch Changes
