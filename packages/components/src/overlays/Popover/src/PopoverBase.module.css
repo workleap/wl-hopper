@@ -1,0 +1,38 @@
+.hop-PopoverBase {
+    --hop-Popover-background: var(--hop-neutral-surface);
+    --hop-Popover-border: 0.0625rem solid var(--hop-neutral-border-weak);
+    --hop-Popover-border-radius: var(--hop-shape-rounded-md);
+    --hop-Popover-box-shadow: var(--hop-elevation-lifted);
+    --hop-Popover-color: var(--hop-neutral-text);
+
+    isolation: isolate;
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+
+    box-sizing: border-box;
+
+    /* Don't be larger than full screen minus 2 * containerPadding. --container-padding is coming from JS */
+    max-inline-size: calc(100vw - 2* var(--container-padding, 0));
+
+    color: var(--hop-Popover-color);
+
+    background-color: var(--hop-Popover-background);
+    border: var(--hop-Popover-border);
+    border-radius: var(--hop-Popover-border-radius);
+    box-shadow: var(--hop-Popover-box-shadow);
+
+    transition: opacity  var(--hop-easing-duration-2) ;
+}
+
+.hop-PopoverBase[data-entering]{
+    opacity: 0;
+}
+
+.hop-PopoverBase[data-exiting] {
+    pointer-events: none;
+    opacity: 0;
+    transition-timing-function: var(--hop-easing-productive);
+}
+
