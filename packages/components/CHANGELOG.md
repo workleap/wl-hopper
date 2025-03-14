@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.4.13
+
+### Patch Changes
+
+- 911767d: We are now exporting a PopoverBase component, which is just a styled RAC Popover
+- Updated dependencies [911767d]
+  - @hopper-ui/icons@2.9.2
+
 ## 1.4.12
 
 ### Patch Changes
