@@ -1,3 +1,5 @@
 export * from "./Popover.tsx";
-export * from "./PopoverTrigger.tsx";
+export * from "./PopoverBase.tsx";
 export * from "./PopoverContext.ts";
+export * from "./PopoverTrigger.tsx";
+

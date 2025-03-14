@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useCallback, useState, type ReactNode, forwardRef, type ForwardedRef } from "react";
+import { forwardRef, useCallback, useState, type ForwardedRef, type ReactNode } from "react";
 
 import {
     ColorSchemeContext,
@@ -15,7 +15,7 @@ import {
     DefaultUnsupportedMatchMediaBreakpoint,
     type BreakpointProviderProps
 } from "./responsive/BreakpointProvider.tsx";
-import { HopperRootCssClass, StyledSystemRootCssClass } from "./styledSystemRootCssClass.ts";
+import { getRootCSSClasses } from "./styledSystemRootCssClass.ts";
 import { TokenProvider } from "./tokens/TokenProvider.tsx";
 
 export const GlobalStyledSystemProviderCssSelector = "hop-StyledSystemProvider";
@@ -72,10 +72,7 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
     const classNames = clsx(
         className,
         GlobalStyledSystemProviderCssSelector,
-        HopperRootCssClass,
-        `${HopperRootCssClass}-${computedColorScheme}`,
-        StyledSystemRootCssClass,
-        `${StyledSystemRootCssClass}-${computedColorScheme}`
+        getRootCSSClasses(computedColorScheme)
     );
 
     return (
