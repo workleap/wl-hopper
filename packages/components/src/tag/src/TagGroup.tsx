@@ -24,7 +24,7 @@ import { composeClassnameRenderProps, cssModule, type FieldProps, SlotProvider }
 
 import type { TagSize, TagVariant } from "./Tag.tsx";
 import { TagContext } from "./TagContext.ts";
-import { TagGroupContext } from "./TagGroupContext.ts";
+import { InternalTagGroupContext, TagGroupContext } from "./TagGroupContext.ts";
 
 import styles from "./TagGroup.module.css";
 
@@ -119,41 +119,46 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
 
 
     return (
-        <SlotProvider
-            values={[
-                [TagContext, {
-                    className: styles["hop-TagGroup__tag"],
-                    isInvalid,
-                    size: size,
-                    variant: variant
-                }],
-                [RACFieldErrorContext, {
-                    isInvalid: isInvalid,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+        <InternalTagGroupContext.Provider value={{
+            isInGroup: true
+        }}
         >
-            <RACTagGroup
-                ref={ref}
-                className={classNames}
-                style={style}
-                {...otherProps}
+            <SlotProvider
+                values={[
+                    [TagContext, {
+                        className: styles["hop-TagGroup__tag"],
+                        isInvalid,
+                        size: size,
+                        variant: variant
+                    }],
+                    [RACFieldErrorContext, {
+                        isInvalid: isInvalid,
+                        validationErrors: [] as never[],
+                        validationDetails: {} as never
+                    }]
+                ]}
             >
-                {label && <Label className={styles["hop-TagGroup__Label"]} necessityIndicator={necessityIndicator}>{label}</Label>}
-                <TagList
-                    items={items}
-                    renderEmptyState={renderEmptyState}
-                    className={tagListClassNames}
-                    style={tagListStyle}
-                    {...otherTagListProps}
+                <RACTagGroup
+                    ref={ref}
+                    className={classNames}
+                    style={style}
+                    {...otherProps}
                 >
-                    {children}
-                </TagList>
-                {description && <HelperMessage className={styles["hop-TagGroup__error-message"]} hideIcon>{description}</HelperMessage>}
-                <ErrorMessage className={styles["hop-TagGroup__helper-message"]} hideIcon>{errorMessage}</ErrorMessage>
-            </RACTagGroup>
-        </SlotProvider>
+                    {label && <Label className={styles["hop-TagGroup__Label"]} necessityIndicator={necessityIndicator}>{label}</Label>}
+                    <TagList
+                        items={items}
+                        renderEmptyState={renderEmptyState}
+                        className={tagListClassNames}
+                        style={tagListStyle}
+                        {...otherTagListProps}
+                    >
+                        {children}
+                    </TagList>
+                    {description && <HelperMessage className={styles["hop-TagGroup__error-message"]} hideIcon>{description}</HelperMessage>}
+                    <ErrorMessage className={styles["hop-TagGroup__helper-message"]} hideIcon>{errorMessage}</ErrorMessage>
+                </RACTagGroup>
+            </SlotProvider>
+        </InternalTagGroupContext.Provider>
     );
 }
 

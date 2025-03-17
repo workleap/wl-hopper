@@ -6,8 +6,11 @@ import {
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
+import { filterDOMProps, mergeProps, useObjectRef } from "@react-aria/utils";
+import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
-import { type ForwardedRef, forwardRef } from "react";
+import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
+import { useFocusRing, useHover, useLink } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../Avatar/index.ts";
@@ -24,11 +27,13 @@ import {
     SlotProvider,
     composeClassnameRenderProps,
     cssModule,
-    ensureTextWrapper
+    ensureTextWrapper,
+    useRenderProps
 } from "../../utils/index.ts";
 import { mapOrbiterToHopperVariants } from "../utils/Tag.utils.ts";
 
 import { TagContext } from "./TagContext.ts";
+import { InternalTagGroupContext } from "./TagGroupContext.ts";
 
 import styles from "./Tag.module.css";
 
@@ -135,8 +140,10 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
     const { className: clearButtonClassName, ...otherClearButtonProps } = clearButtonProps ?? {};
     const clearButtonClassNames = clsx(styles["hop-Tag__remove-btn"], clearButtonClassName);
 
+    const ElementType = useContext(InternalTagGroupContext).isInGroup ? RACTag : StandaloneTag;
+
     return (
-        <RACTag
+        <ElementType
             ref={ref}
             className={classNames}
             style={style}
@@ -208,9 +215,72 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
                     </>
                 );
             }}
-        </RACTag>
+        </ElementType>
     );
 }
+
+interface StandaloneTagProps extends RACTagProps {
+    onRemove?: () => void;
+}
+
+/**
+ * A tag can also be rendered outside a TagGroup. In those cases, this component should be used.
+ */
+const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, ref) => {
+    const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
+    const objectRef = useObjectRef(ref);
+    const { linkProps } = useLink(props, objectRef);
+    const { hoverProps, isHovered } = useHover({
+        // disabled, since we don't allow selection.
+        isDisabled: true,
+        onHoverStart: props.onHoverStart,
+        onHoverChange: props.onHoverChange,
+        onHoverEnd: props.onHoverEnd
+    });
+
+    const isLink = props.href != null;
+    const itemProps = isLink ? linkProps : props;
+    const ElementType: ElementType = isLink ? "a" : "div";
+
+    const renderProps = useRenderProps({
+        ...itemProps,
+        id: undefined,
+        children: props.children,
+        values: {
+            isFocusVisible,
+            isHovered,
+            isDisabled: props.isDisabled ?? false,
+            isFocused,
+            isPressed: false,
+            allowsRemoving: false,
+            isSelected: false,
+            selectionBehavior: "toggle",
+            selectionMode: "none"
+        }
+    });
+
+    useEffect(() => {
+        if (!props.textValue) {
+            console.warn("A `textValue` prop is required for <Tag> elements with non-plain text children for accessibility.");
+        }
+    }, [props.textValue]);
+
+    return (
+        <ElementType
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ref={objectRef as any}
+            aria-label={props.textValue}
+            // pressProps contains all the props
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...mergeProps(filterDOMProps(itemProps as any, { labelable: true }), focusProps, hoverProps)}
+            {...renderProps}
+            data-disabled={props.isDisabled || undefined}
+            data-hovered={isHovered || undefined}
+            data-focused={isFocused || undefined}
+            data-focus-visible={isFocusVisible || undefined}
+        />
+    );
+});
 
 /**
  * A tag group is an interactive collection of labels, categories, keywords, or filters, with capabilities for keyboard navigation, selection, and removal.
