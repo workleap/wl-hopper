@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.0
+
+### Minor Changes
+
+- d58d856: Tags can now be used without being in a TagsGroup
+
 ## 1.4.13
 
 ### Patch Changes
