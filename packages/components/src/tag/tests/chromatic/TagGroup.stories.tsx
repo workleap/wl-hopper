@@ -1,4 +1,4 @@
-import type { Selection } from "@hopper-ui/components";
+import type { Selection, TagVariant } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
@@ -39,6 +39,49 @@ export const Default = {
                     <Tag id="1">Tag 1</Tag>
                     <Tag id="2">Tag 2</Tag>
                     <Tag id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
+                </TagGroup>
+            </Stack>
+        );
+    }
+} satisfies Story;
+
+const variants: TagVariant[] = ["neutral", "subdued", "progress", "positive", "caution", "negative", "option1", "option2", "option3", "option4", "option5", "option6"];
+export const AllVariants = {
+    render: props => {
+        return (
+            <Stack>
+                {variants.map(variant => (
+                    <TagGroup {...props} size="sm" label={variant} variant={variant} key={variant}>
+                        <Tag id="1">Tag 1</Tag>
+                        <Tag id="2">Tag 2</Tag>
+                        <Tag id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    </TagGroup>
+                ))}
+            </Stack>
+        );
+    }
+} satisfies Story;
+
+export const Href = {
+    render: props => {
+        return (
+            <Stack>
+                <TagGroup {...props} size="sm" label="Small">
+                    <Tag href="www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                </TagGroup>
+
+                <TagGroup {...props} label="Medium">
+                    <Tag href="www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                </TagGroup>
+
+                <TagGroup {...props} size="lg" label="Large">
+                    <Tag href="www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="www.google.com" id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
                 </TagGroup>
             </Stack>
         );
