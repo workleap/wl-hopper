@@ -37,6 +37,7 @@
 
     border: 0;
     border-block-end: var(--hop-TabList-in-card-border);
+    border-radius: var(--hop-Tablist-border-radius) var(--hop-Tablist-border-radius) 0 0;
 }
 
 .hop-TabList__tablist {

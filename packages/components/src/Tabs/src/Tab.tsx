@@ -1,7 +1,7 @@
 import { IconContext } from "@hopper-ui/icons";
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, useContext, useId } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import { type TabProps as RACTabProps, Provider, Tab as RACTab, useContextProps } from "react-aria-components";
 
 import { BadgeContext } from "../../Badge/index.ts";
@@ -23,7 +23,6 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const { variant, size, fluid } = useContext(InternalTabsContext) ?? {};
-    const contentId = useId();
 
     const {
         className,
@@ -60,7 +59,6 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
             <Provider
                 values={[
                     [TextContext, {
-                        id: contentId,
                         className: styles["hop-Tab__text"],
                         size
                     }],

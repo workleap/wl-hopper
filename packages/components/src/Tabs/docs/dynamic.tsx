@@ -1,4 +1,4 @@
-import { Tab, TabList, TabPanel, Tabs } from "@hopper-ui/components";
+import { Collection, Tab, TabList, TabPanel, Tabs } from "@hopper-ui/components";
 
 export default function Example() {
     const items = [
@@ -22,15 +22,19 @@ export default function Example() {
     return (
         <Tabs aria-label="Frogs">
             <TabList>
-                {items.map(({ id, header }) => (
-                    <Tab id={id}>{header}</Tab>
-                ))}
+                <Collection items={items}>
+                    {({ id, header }) => (
+                        <Tab id={id}>{header}</Tab>
+                    )}
+                </Collection>
             </TabList>
-            {items.map(({ id, content }) => (
-                <TabPanel id={id} padding="inset-md">
-                    {content}
-                </TabPanel>
-            ))}
+            <Collection items={items}>
+                {({ id, content }) => (
+                    <TabPanel id={id} padding="inset-md">
+                        {content}
+                    </TabPanel>
+                )}
+            </Collection>
         </Tabs>
     );
 }
