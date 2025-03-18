@@ -8,6 +8,7 @@
     --hop-Tab-border-radius: var(--hop-shape-rounded-md);
     --hop-Tab-outline: none;
     --hop-Tab-padding: var(--hop-space-inset-sm);
+    --hop-Tab-text-decoration: none;
 
     /* Selected */
     --hop-Tab-selected-color: var(--hop-neutral-text);
@@ -36,6 +37,7 @@
     padding: var(--hop-Tab-padding);
 
     color: var(--color, var(--hop-Tab-color));
+    text-decoration: var(--hop-Tab-text-transform);
     white-space: var(--hop-Tab-white-space);
 
     border-radius: var(--hop-Tab-border-radius);

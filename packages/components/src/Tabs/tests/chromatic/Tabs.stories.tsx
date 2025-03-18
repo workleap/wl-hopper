@@ -284,3 +284,19 @@ export const WithMediumAll = {
         size: "md"
     }
 } satisfies Story;
+
+export const WithHref = {
+    render: args => (
+        <Tabs {...args} >
+            <TabList>
+                <Tab id="red-eye-tree" href="https://www.google.com">
+                    Google
+                </Tab>
+            </TabList>
+        </Tabs>
+    ),
+    args: {
+        ...Default.args,
+        size: "md"
+    }
+} satisfies Story;

@@ -52,7 +52,7 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
     const [value, setValue] = useControlledState(props.selectedKey, props.defaultSelectedKey ?? null!, props.onSelectionChange);
 
     if (!props["aria-label"] && !props["aria-labelledby"]) {
-        console.error("An aria-label or aria-labelledby prop is required on Tabs for accessibility.");
+        console.warn("An aria-label or aria-labelledby prop is required on Tabs for accessibility.");
     }
 
     const classNames = clsx(

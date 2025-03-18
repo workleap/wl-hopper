@@ -126,7 +126,7 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
         }
 
         if (isFunction(children)) {
-            console.error("ListBox: Children should not be a function when items are not provided.");
+            console.warn("ListBox: Children should not be a function when items are not provided.");
 
             return null;
         }
