@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.1
+
+### Patch Changes
+
+- 15a1635: Add Tabs component
+
 ## 1.5.0
 
 ### Minor Changes
