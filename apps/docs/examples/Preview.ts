@@ -1013,6 +1013,21 @@ export const Previews: Record<string, Preview> = {
     "Tabs/docs/controlled": {
         component: lazy(() => import("@/../../packages/components/src/Tabs/docs/controlled.tsx"))
     },
+    "Tabs/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/disabled.tsx"))
+    },
+    "Tabs/docs/disabledItems": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/disabledItems.tsx"))
+    },
+    "Tabs/docs/disabledKeys": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/disabledKeys.tsx"))
+    },
+    "Tabs/docs/embedded": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/embedded.tsx"))
+    },
+    "Tabs/docs/links": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/links.tsx"))
+    },
     "Modal/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Modal/docs/preview.tsx"))
     },

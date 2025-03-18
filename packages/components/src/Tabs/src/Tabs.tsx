@@ -72,6 +72,8 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
             slot={slot}
             className={classNames}
             style={mergedStyles}
+            isDisabled={isDisabled}
+            disabledKeys={disabledKeys}
             {...otherProps}
         >
             <Provider
