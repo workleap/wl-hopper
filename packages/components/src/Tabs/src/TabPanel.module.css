@@ -1,0 +1,14 @@
+.hop-TabPanel {
+    --hop-TabPanel-outline: none;
+    --hop-TabPanel-outline-width: 0.125rem;
+
+    /* Focus */
+    --hop-TabPanel-focus-outline: var(--hop-TabPanel-outline-width) solid var(--hop-primary-border-focus);
+
+    outline: var(--outline, var(--hop-TabPanel-outline));
+    outline-offset: calc(-1 * var(--hop-TabPanel-outline-width));
+}
+
+.hop-TabPanel[data-focus-visible] {
+    --outline: var(--hop-TabPanel-focus-outline);
+}

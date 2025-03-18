@@ -3,9 +3,11 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { type TabPanelProps as RACTabPanelProps, TabPanel as RACTabPanel, useContextProps } from "react-aria-components";
 
-import type { BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { TabPanelContext } from "./TabsContext.ts";
+
+import styles from "./TabPanel.module.css";
 
 export const GlobalTabPanelCssSelector = "hop-TabPanel";
 
@@ -25,6 +27,10 @@ function TabPanel(props: TabPanelProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const classNames = clsx(
         GlobalTabPanelCssSelector,
+        cssModule(
+            styles,
+            "hop-TabPanel"
+        ),
         stylingProps.className,
         className
     );
