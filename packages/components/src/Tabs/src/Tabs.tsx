@@ -15,7 +15,7 @@ import { InternalTabsContext, TabsContext } from "./TabsContext.ts";
 
 export const GlobalTabsCssSelector = "hop-Tabs";
 
-export interface TabsProps extends Omit<RACTabsProps, "id" | "children" | "style" | "className" | "orientation" | "isDisabled" | "disabledKeys">, StyledComponentProps<BaseComponentDOMProps> {
+export interface TabsProps extends Omit<RACTabsProps, "id" | "children" | "style" | "className" | "orientation">, StyledComponentProps<BaseComponentDOMProps> {
     /**
      * The variant of the tabs.
      * @default "standalone"
@@ -41,6 +41,8 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
         children,
         style,
         slot,
+        isDisabled,
+        disabledKeys,
         variant = "standalone",
         size = "sm",
         fluid,
@@ -80,6 +82,8 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
                         selectedKey: value,
                         onSelectionChange: setValue,
                         fluid,
+                        isDisabled,
+                        disabledKeys,
                         "aria-label": props["aria-label"],
                         "aria-labelledby": props["aria-labelledby"]
                     }]

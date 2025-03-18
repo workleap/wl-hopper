@@ -1004,11 +1004,8 @@ export const Previews: Record<string, Preview> = {
     "Tabs/docs/manual": {
         component: lazy(() => import("@/../../packages/components/src/Tabs/docs/manual.tsx"))
     },
-    "Tabs/docs/in-card": {
-        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/in-card.tsx"))
-    },
-    "Tabs/docs/heading": {
-        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/heading.tsx"))
+    "Tabs/docs/variant": {
+        component: lazy(() => import("@/../../packages/components/src/Tabs/docs/variant.tsx"))
     },
     "Tabs/docs/fluid": {
         component: lazy(() => import("@/../../packages/components/src/Tabs/docs/fluid.tsx"))

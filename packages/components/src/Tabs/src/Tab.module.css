@@ -22,6 +22,9 @@
     --hop-Tab-focus-color: var(--hop-neutral-text-hover);
     --hop-Tab-focus-outline: 0.125rem solid var(--hop-primary-border-focus);
 
+    /* Disabled */
+    --hop-Tab-disabled-color: var(--hop-neutral-text-disabled);
+
     /* Medium */
     --hop-Tab-padding-block: 0.125rem;
 
@@ -62,6 +65,10 @@
 .hop-Tab[data-focus-visible] {
     --color: var(--hop-Tab-focus-color);
     --outline: var(--hop-Tab-focus-outline);
+}
+
+.hop-Tab[data-disabled] {
+    --color: var(--hop-Tab-disabled-color);
 }
 
 .hop-Tab__icon {

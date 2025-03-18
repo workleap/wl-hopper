@@ -18,7 +18,7 @@ export interface TabListProps<T> extends
 
 function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabListContext);
-    const { variant } = useContext(InternalTabsContext) ?? {};
+    const { variant, isDisabled, disabledKeys } = useContext(InternalTabsContext) ?? {};
     const state = useContext(TabListStateContext);
 
     const [selectedTab, setSelectedTab] = useState<HTMLElement | undefined>(undefined);
@@ -37,7 +37,6 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
 
     const {
         className,
-        children,
         style,
         ...otherProps
     } = ownProps;
@@ -64,10 +63,8 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
                 {...otherProps}
                 ref={ref}
                 className={styles["hop-TabList__tablist"]}
-            >
-                {children}
-            </RACTablist>
-            <TabLine selectedTab={selectedTab} />
+            />
+            <TabLine selectedTab={selectedTab} isDisabled={isDisabled} disabledKeys={disabledKeys} />
         </div>
     );
 }
