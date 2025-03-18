@@ -29,7 +29,7 @@ export interface TabsProps extends Omit<RACTabsProps, "id" | "children" | "style
     /**
      * Whether or not the tabs takes up the width of its container.
      */
-    fluid?: boolean;
+    isFluid?: boolean;
 }
 
 function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -45,7 +45,7 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
         disabledKeys,
         variant = "standalone",
         size = "sm",
-        fluid,
+        isFluid,
         ...otherProps
     } = ownProps;
 
@@ -83,7 +83,7 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
                         size,
                         selectedKey: value,
                         onSelectionChange: setValue,
-                        fluid,
+                        isFluid,
                         isDisabled,
                         disabledKeys,
                         "aria-label": props["aria-label"],

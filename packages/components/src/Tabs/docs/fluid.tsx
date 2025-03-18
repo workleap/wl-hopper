@@ -2,7 +2,7 @@ import { Tab, TabList, TabPanel, Tabs } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Tabs aria-label="Frogs" fluid>
+        <Tabs aria-label="Frogs" isFluid>
             <TabList>
                 <Tab id="red-eye-tree">Red-Eyed Tree Frog</Tab>
                 <Tab id="poison-dart">Poison Dart Frog</Tab>
