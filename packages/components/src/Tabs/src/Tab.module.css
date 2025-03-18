@@ -9,6 +9,7 @@
     --hop-Tab-outline: none;
     --hop-Tab-padding: var(--hop-space-inset-sm);
     --hop-Tab-text-decoration: none;
+    --hop-Tab-cursor: pointer;
 
     /* Selected */
     --hop-Tab-selected-color: var(--hop-neutral-text);
@@ -28,6 +29,8 @@
 
     /* Medium */
     --hop-Tab-padding-block: 0.125rem;
+
+    cursor: var(--cursor, var(--hop-Tab-cursor));
 
     display: var(--hop-Tab-display);
     gap: var(--hop-Tab-gap);
@@ -71,6 +74,7 @@
 
 .hop-Tab[data-disabled] {
     --color: var(--hop-Tab-disabled-color);
+    --cursor: auto;
 }
 
 .hop-Tab__icon {
