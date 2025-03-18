@@ -1,0 +1,94 @@
+.hop-Tab {
+    --hop-Tab-display: flex;
+    --hop-Tab-gap: var(--hop-space-inset-sm);
+    --hop-Tab-align-items: center;
+    --hop-Tab-justify-content: center;
+    --hop-Tab-color: var(--hop-neutral-text-weak);
+    --hop-Tab-white-space: nowrap;
+    --hop-Tab-border-radius: var(--hop-shape-rounded-md);
+    --hop-Tab-outline: none;
+    --hop-Tab-padding: var(--hop-space-inset-sm);
+    --hop-Tab-text-decoration: none;
+    --hop-Tab-cursor: pointer;
+
+    /* Selected */
+    --hop-Tab-selected-color: var(--hop-neutral-text);
+
+    /* Hovered */
+    --hop-Tab-hovered-color: var(--hop-neutral-text-hover);
+
+    /* Pressed */
+    --hop-Tab-pressed-color: var(--hop-neutral-text-press);
+
+    /* Focus */
+    --hop-Tab-focus-color: var(--hop-neutral-text-hover);
+    --hop-Tab-focus-outline: 0.125rem solid var(--hop-primary-border-focus);
+
+    /* Disabled */
+    --hop-Tab-disabled-color: var(--hop-neutral-text-disabled);
+
+    /* Medium */
+    --hop-Tab-padding-block: 0.125rem;
+
+    cursor: var(--cursor, var(--hop-Tab-cursor));
+
+    display: var(--hop-Tab-display);
+    gap: var(--hop-Tab-gap);
+    align-items: var(--hop-Tab-align-items);
+    justify-content: var(--hop-Tab-justify-content);
+
+    padding: var(--hop-Tab-padding);
+
+    color: var(--color, var(--hop-Tab-color));
+    text-decoration: var(--hop-Tab-text-transform);
+    white-space: var(--hop-Tab-white-space);
+
+    border-radius: var(--hop-Tab-border-radius);
+    outline: var(--outline, var(--hop-Tab-outline));
+}
+
+.hop-Tab--fluid {
+    flex: 1;
+}
+
+.hop-Tab--md {
+    padding-block: var(--hop-Tab-padding-block);
+}
+
+.hop-Tab[data-selected] {
+    --color: var(--hop-Tab-selected-color);
+}
+
+.hop-Tab[data-hovered] {
+    --color: var(--hop-Tab-hovered-color)
+}
+
+.hop-Tab[data-pressed] {
+    --color: var(--hop-Tab-pressed-color);
+}
+
+.hop-Tab[data-focus-visible] {
+    --color: var(--hop-Tab-focus-color);
+    --outline: var(--hop-Tab-focus-outline);
+}
+
+.hop-Tab[data-disabled] {
+    --color: var(--hop-Tab-disabled-color);
+    --cursor: auto;
+}
+
+.hop-Tab__icon {
+    order: 1;
+}
+
+.hop-Tab__text {
+    order: 2;
+}
+
+.hop-Tab__badge {
+    order: 3;
+}
+
+.hop-Tab__tag {
+    order: 4;
+}

@@ -1,0 +1,26 @@
+.hop-TabLine {
+    --hop-TabLine-position: absolute;
+    --hop-TabLine-inset-block-end: 0;
+    --hop-TabLine-block-size: 0.125rem;
+    --hop-TabLine-background: var(--hop-neutral-border-selected);
+    --hop-TabLine-transition: transform 0.15s ease-in-out, width 0.15s ease-in-out;
+
+    /* Disabled */
+    --hop-TabLine-disabled-background: var(--hop-neutral-border-disabled);
+
+    /* Internal */
+    --background: var(--hop-TabLine-background);
+
+    position: var(--hop-TabLine-position);
+    inset-block-end: var(--hop-TabLine-inset-block-end);
+
+    block-size: var(--hop-TabLine-block-size);
+
+    background: var(--background);
+
+    transition: var(--hop-TabLine-transition);
+}
+
+.hop-TabLine--disabled {
+    --background: var(--hop-TabLine-disabled-background);
+}

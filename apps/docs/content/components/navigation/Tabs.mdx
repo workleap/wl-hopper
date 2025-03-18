@@ -1,0 +1,129 @@
+---
+title: Tabs
+description: Tabs are used to organize content by grouping similar information on the same page.
+category: "navigation"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tabs/src/Tabs.tsx
+---
+
+<Example src="Tabs/docs/preview" isOpen />
+
+## Anatomy
+
+A `Tab` uses the following components:
+
+<ComposedComponents components={["Icon", "Badge", "Text", "Tag"] }/>
+
+## Usage
+
+### Sizes
+
+Tabs can vary in size.
+
+<Example src="Tabs/docs/size" />
+
+### Icon
+
+A tab can contain an icon.
+
+<Example src="Tabs/docs/icon" />
+
+### Lozenge
+
+A tab can contain a lozenge.
+
+<Example src="Tabs/docs/lozenge" />
+
+### Badge
+
+A tab can contain a badge.
+
+<Example src="Tabs/docs/badge" />
+
+### Dynamic Tabs
+
+Tabs items can be rendered dynamically.
+
+<Example src="Tabs/docs/dynamic" />
+
+### Manually Activated Tabs
+
+By default, tabs are activated automatically. This means when you use the arrow keys to change tabs, the tab is activated and focused.
+
+<Callout variant="information">
+The content of a tab should ideally be preloaded. However, if switching to a tab panel causes a network request and possibly a page refresh, there might be some notable latency and this might affect the experience for keyboard and screen reader users.
+</Callout>
+
+In this scenario, you should use a manually activated tab, which moves focus without activating the tabs. With the focus on a specific tab, users can activate a tab by pressing Space or Enter.
+
+<Example src="Tabs/docs/manual" />
+
+### Variants
+
+Tabs can use different variants.
+
+<Example src="Tabs/docs/variant" />
+
+### Fluid
+
+A tabs component can split the width of its container equally between its tabs.
+
+<Example src="Tabs/docs/fluid" />
+
+### Controlled
+
+The selectedKey state can be handled in a controlled mode.
+
+<Example src="Tabs/docs/controlled" />
+
+### Disabled
+
+All tabs can be disabled using the `isDisabled` prop.
+
+<Example src="Tabs/docs/disabled" />
+
+#### Disabled items
+
+An individual Tab can be disabled with the isDisabled prop. Disabled tabs are not focusable, selectable, or keyboard navigable.
+
+<Example src="Tabs/docs/disabledItems" />
+
+In dynamic collections, it may be more convenient to use the disabledKeys prop at the Tabs level instead of isDisabled on individual tabs.
+Each key in this list corresponds with the `id` prop passed to the Tab component, or automatically derived from the values passed to the items prop.
+A tab is considered disabled if its id exists in `disabledKeys` or if it has `isDisabled`.
+
+<Example src="Tabs/docs/disabledKeys" />
+
+### Embedded
+
+Tabs can be embedded in other components.
+
+<Example src="Tabs/docs/embedded" />
+
+### Links
+
+Tabs can be used as links.
+
+<Example src="Tabs/docs/links" />
+
+## Props
+
+### Tabs
+
+<PropTable component="Tabs" />
+
+### TabList
+
+<PropTable component="TabList" />
+
+### Tab
+
+<PropTable component="Tab" />
+
+### TabPanel
+
+<PropTable component="TabPanel" />
+
+## Migration Notes
+
+<MigrateGuide src="Tabs/docs/migration-notes" />
