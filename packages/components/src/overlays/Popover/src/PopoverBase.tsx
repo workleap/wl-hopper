@@ -63,10 +63,7 @@ function PopoverBase(props: PopoverBaseProps, ref: ForwardedRef<HTMLElement>) {
         return {
             ...stylingProps.style,
             ...extraStyles,
-            ...prev,
-
-            // Override default z-index from useOverlayPosition. We use isolation: isolate instead.
-            zIndex: undefined
+            ...prev
         };
     });
 
