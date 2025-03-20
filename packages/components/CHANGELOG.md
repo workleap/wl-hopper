@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 1.5.2
+
+### Patch Changes
+
+- b497871: Fixed an issue where the Image component was logging a warning when the `alt` prop was provided, but empty.
+- b497871: Fixed an issue where the zIndex should of been forwarded
+
 ## 1.5.1
 
 ### Patch Changes
