@@ -1097,6 +1097,27 @@ export const Previews: Record<string, Preview> = {
     "overlays/Popover/docs/controlled": {
         component: lazy(() => import("@/../../packages/components/src/overlays/Popover/docs/controlled.tsx"))
     },
+    "Tooltip/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/preview.tsx"))
+    },
+    "Tooltip/docs/trigger": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/trigger.tsx"))
+    },
+    "Tooltip/docs/placement": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/placement.tsx"))
+    },
+    "Tooltip/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/disabled.tsx"))
+    },
+    "Tooltip/docs/custom-trigger": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/custom-trigger.tsx"))
+    },
+    "Tooltip/docs/disabled-trigger": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/disabled-trigger.tsx"))
+    },
+    "Tooltip/docs/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/controlled.tsx"))
+    },
     "ComboBox/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/ComboBox/docs/preview.tsx"))
     },
