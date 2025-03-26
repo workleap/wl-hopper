@@ -1118,6 +1118,9 @@ export const Previews: Record<string, Preview> = {
     "Tooltip/docs/controlled": {
         component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/controlled.tsx"))
     },
+    "Tooltip/docs/groups": {
+        component: lazy(() => import("@/../../packages/components/src/Tooltip/docs/groups.tsx"))
+    },
     "ComboBox/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/ComboBox/docs/preview.tsx"))
     },
