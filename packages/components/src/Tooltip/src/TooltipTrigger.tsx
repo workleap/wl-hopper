@@ -1,8 +1,8 @@
 
-import { getOwnerWindow, isFocusable, mergeRefs } from "@react-aria/utils";
-import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, type ReactNode, useEffect, useState, version } from "react";
+import { mergeRefs } from "@react-aria/utils";
+import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, type ReactNode, version } from "react";
 import { useObjectRef } from "react-aria";
-import { Focusable, TooltipTrigger as RACTooltipTrigger, TooltipContext, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
+import { TooltipTrigger as RACTooltipTrigger, TooltipContext, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
 
 import { InternalTooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
@@ -31,7 +31,6 @@ function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<HTMLDivEle
         ? Children.toArray(props.children) as [ReactElement, ReactElement]
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         : Children.toArray(props.children) as [any, any];
-    const [focusable, setFocusable] = useState(true);
 
     const triggerRef = parseInt(version, 10) < 19 ? trigger.ref : trigger.props.ref;
 
@@ -46,30 +45,12 @@ function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<HTMLDivEle
         ...triggerProps
     } = props;
 
-    useEffect(() => {
-        const el = objectRef.current;
-
-        if (!el || !(el instanceof getOwnerWindow(el).Element)) {
-            console.warn("<TooltipTrigger>'s first child must forward its ref to a DOM element.");
-
-            return;
-        }
-
-        if (!isDisabled && !isFocusable(el)) {
-            setFocusable(false);
-        }
-    }, [objectRef, isDisabled, trigger]);
-
-    let newTrigger = cloneElement(
+    const newTrigger = cloneElement(
         trigger,
         {
             ref: mergeRefs(triggerRef, objectRef)
         }
     );
-
-    newTrigger = focusable
-        ? newTrigger
-        : <Focusable><span role="button">{newTrigger}</span></Focusable>;
 
     return (
         <RACTooltipTrigger delay={delay} isDisabled={isDisabled} {...triggerProps}>
