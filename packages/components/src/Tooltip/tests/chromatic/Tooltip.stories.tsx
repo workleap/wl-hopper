@@ -1,9 +1,12 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
+import { Menu, MenuItem } from "react-aria-components";
 
 import { Button } from "../../../buttons/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";
 import { Link } from "../../../Link/index.ts";
+import { Tab, TabList, Tabs } from "../../../Tabs/index.ts";
+import { Tag, TagGroup } from "../../../tag/index.ts";
 import { H1 } from "../../../typography/Heading/index.ts";
 import { Tooltip } from "../../src/Tooltip.tsx";
 import { TooltipTrigger } from "../../src/TooltipTrigger.tsx";
@@ -38,7 +41,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: args => (
-        <TooltipTrigger defaultOpen>
+        <TooltipTrigger isOpen>
             <Button>{buttonText}</Button>
             <Tooltip {...args} />
         </TooltipTrigger>
@@ -53,27 +56,27 @@ export const Placement = {
             templateColumns={["1fr", "1fr"]}
             width="100%"
         >
-            <TooltipTrigger defaultOpen placement="start">
+            <TooltipTrigger isOpen placement="start">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
-            <TooltipTrigger defaultOpen placement="end">
+            <TooltipTrigger isOpen placement="end">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
-            <TooltipTrigger defaultOpen placement="right">
+            <TooltipTrigger isOpen placement="right">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
-            <TooltipTrigger defaultOpen placement="left">
+            <TooltipTrigger isOpen placement="left">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
-            <TooltipTrigger defaultOpen placement="top">
+            <TooltipTrigger isOpen placement="top">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
-            <TooltipTrigger defaultOpen placement="bottom">
+            <TooltipTrigger isOpen placement="bottom">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
@@ -85,7 +88,7 @@ export const ShouldFlip = {
     render: args => (
         <Stack>
             <H1>Original Placement: left</H1>
-            <TooltipTrigger defaultOpen placement="left">
+            <TooltipTrigger isOpen placement="left">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
             </TooltipTrigger>
@@ -105,7 +108,7 @@ export const ShouldFlip = {
 
 export const LinkTrigger = {
     render: args => (
-        <TooltipTrigger defaultOpen>
+        <TooltipTrigger isOpen>
             <Link>{buttonText}</Link>
             <Tooltip {...args} />
         </TooltipTrigger>
@@ -115,7 +118,7 @@ export const LinkTrigger = {
 export const IconTrigger = {
     render: function Render(args) {
         return (
-            <TooltipTrigger defaultOpen>
+            <TooltipTrigger isOpen>
                 <SparklesIcon role="button" tabIndex={0} />
                 <Tooltip {...args} />
             </TooltipTrigger>
@@ -150,7 +153,7 @@ export const LongContent = {
 
 export const DisabledTrigger = {
     render: args => (
-        <TooltipTrigger defaultOpen>
+        <TooltipTrigger isOpen>
             <Button isDisabled>{buttonText}</Button>
             <Tooltip {...args} />
         </TooltipTrigger>
@@ -159,7 +162,7 @@ export const DisabledTrigger = {
 
 export const Styling = {
     render: args => (
-        <TooltipTrigger defaultOpen>
+        <TooltipTrigger isOpen>
             <Button>{buttonText}</Button>
             <Tooltip {...args} />
         </TooltipTrigger>
@@ -172,4 +175,45 @@ export const Styling = {
             }
         }
     }
+} satisfies Story;
+
+export const MenuItems = {
+    render: args => (
+        <Menu aria-label="menu">
+            <TooltipTrigger isOpen>
+                <MenuItem>Item 1</MenuItem>
+                <Tooltip {...args} />
+            </TooltipTrigger>
+            <MenuItem>Item 2</MenuItem>
+            <MenuItem>Item 3</MenuItem>
+        </Menu>
+    )
+} satisfies Story;
+
+export const TooltipInTabs = {
+    render: args => (
+        <Tabs aria-label="frogs">
+            <TabList>
+                <Tab id="red-eye-tree">Red-Eyed Tree Frog</Tab>
+                <TooltipTrigger isOpen>
+                    <Tab id="poison-dart">Poison Dart Frog</Tab>
+                    <Tooltip {...args} />
+                </TooltipTrigger>
+                <Tab id="goliath">Goliath Frog</Tab>
+            </TabList>
+        </Tabs>
+    )
+} satisfies Story;
+
+export const TooltipInTagGroups = {
+    render: args => (
+        <TagGroup aria-label="tags" size="sm" label="Small">
+            <Tag id="1">Tag 1</Tag>
+            <TooltipTrigger isOpen>
+                <Tag id="2">Tag 2</Tag>
+                <Tooltip {...args} />
+            </TooltipTrigger>
+            <Tag id="3">Tag 3</Tag>
+        </TagGroup>
+    )
 } satisfies Story;

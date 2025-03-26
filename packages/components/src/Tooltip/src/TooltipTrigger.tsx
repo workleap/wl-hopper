@@ -2,7 +2,7 @@
 import { getOwnerWindow, isFocusable, mergeRefs } from "@react-aria/utils";
 import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, type ReactNode, useEffect, useState, version } from "react";
 import { useObjectRef } from "react-aria";
-import { Focusable, TooltipTrigger as RACTooltipTrigger, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
+import { Focusable, TooltipTrigger as RACTooltipTrigger, TooltipContext, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
 
 import { InternalTooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
@@ -22,7 +22,6 @@ export interface TooltipTriggerProps extends
      */
     placement?: "start" | "end" | "right" | "left" | "top" | "bottom";
 }
-
 
 function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<HTMLDivElement>) {
     const objectRef = useObjectRef(ref);
@@ -59,7 +58,7 @@ function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<HTMLDivEle
         if (!isDisabled && !isFocusable(el)) {
             setFocusable(false);
         }
-    }, [objectRef, isDisabled]);
+    }, [objectRef, isDisabled, trigger]);
 
     let newTrigger = cloneElement(
         trigger,
@@ -74,18 +73,20 @@ function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<HTMLDivEle
 
     return (
         <RACTooltipTrigger delay={delay} isDisabled={isDisabled} {...triggerProps}>
-            <InternalTooltipTriggerContext.Provider
-                value={{
-                    containerPadding,
-                    crossOffset,
-                    offset,
-                    placement,
-                    shouldFlip
-                }}
-            >
-                {newTrigger}
-                {tooltip}
-            </InternalTooltipTriggerContext.Provider>
+            <TooltipContext.Provider value={{ triggerRef: objectRef }}>
+                <InternalTooltipTriggerContext.Provider
+                    value={{
+                        containerPadding,
+                        crossOffset,
+                        offset,
+                        placement,
+                        shouldFlip
+                    }}
+                >
+                    {newTrigger}
+                    {tooltip}
+                </InternalTooltipTriggerContext.Provider>
+            </TooltipContext.Provider>
         </RACTooltipTrigger>
     );
 }
