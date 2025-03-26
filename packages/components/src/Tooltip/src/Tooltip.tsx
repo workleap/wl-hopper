@@ -8,7 +8,7 @@ import { TextContext } from "../../typography/index.ts";
 import { cssModule, ensureTextWrapper, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import { TooltipContext } from "./TooltipContext.ts";
-import { InternalTooltipTriggerContext } from "./TooltipTriggerContext.ts";
+import { TooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
 import styles from "./Tooltip.module.css";
 
@@ -31,7 +31,7 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TooltipContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const { colorScheme } = useColorSchemeContext();
-    const { containerPadding, crossOffset, offset, placement = "top", shouldFlip } = useContext(InternalTooltipTriggerContext);
+    const { containerPadding, crossOffset, offset, placement = "top", shouldFlip } = useContext(TooltipTriggerContext);
 
     const {
         className,

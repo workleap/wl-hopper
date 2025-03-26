@@ -1,10 +1,10 @@
-import { Button, InternalTooltipTriggerContext, Tooltip, TooltipTrigger } from "@hopper-ui/components";
+import { Button, Tooltip, TooltipTrigger, TooltipTriggerContext } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import { forwardRef, useContext } from "react";
 
 export default function Example() {
     const CustomTrigger = forwardRef<HTMLButtonElement>((props, ref) => {
-        const { isOpen } = useContext(InternalTooltipTriggerContext);
+        const { isOpen } = useContext(TooltipTriggerContext);
 
         return (
             <Button

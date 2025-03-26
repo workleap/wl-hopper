@@ -1,20 +1,16 @@
-import { isFocusable, mergeRefs } from "@react-aria/utils";
+import { getOwnerWindow, isFocusable, mergeRefs } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
-import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, type ReactNode, useEffect, useState, version } from "react";
-import { Focusable, useFocusable, useObjectRef } from "react-aria";
-import { TooltipTrigger as RACTooltipTrigger, TooltipContext, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
+import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, useEffect, useState, version } from "react";
+import { useFocusable, useObjectRef } from "react-aria";
+import { TooltipTrigger as RACTooltipTrigger, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
 
-import { InternalTooltipTriggerContext } from "./TooltipTriggerContext.ts";
+import { TooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
 export const GlobalTooltipTriggerCssSelector = "hop-TooltipTrigger";
 
 export interface TooltipTriggerProps extends
-    Omit<TooltipTriggerComponentProps, "children" | "closeDelay">,
+    Omit<TooltipTriggerComponentProps, "closeDelay">,
     Pick<TooltipProps, "shouldFlip" | "containerPadding" | "offset" | "crossOffset" | "triggerRef"> {
-    /**
-     * The content of the tooltip.
-     */
-    children: ReactNode;
     /**
      * The placement of the element with respect to its anchor element.
      *
@@ -23,11 +19,14 @@ export interface TooltipTriggerProps extends
     placement?: "start" | "end" | "right" | "left" | "top" | "bottom";
 }
 
-function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<FocusableElement>) {
-    const objectRef = useObjectRef(ref);
-    const [focusable, setFocusable] = useState(true);
-    const { focusableProps } = useFocusable(props, objectRef);
-
+/**
+ * TooltipTrigger wraps around a trigger element and a Tooltip. It handles opening and closing
+ * the Tooltip when the user hovers over or focuses the trigger, and positioning the Tooltip
+ * relative to the trigger.
+ *
+ * [View Documentation](https://hopper.workleap.design/components/Tooltip)
+ */
+export function TooltipTrigger(props: TooltipTriggerProps) {
     // React 19 handles the ref differently
     const [trigger, tooltip] = parseInt(version, 10) < 19
         ? Children.toArray(props.children) as [ReactElement, ReactElement]
@@ -45,49 +44,62 @@ function TooltipTrigger(props: TooltipTriggerProps, ref: ForwardedRef<FocusableE
         ...triggerProps
     } = props;
 
-    let newTrigger = cloneElement(
-        trigger,
-        {
-            ref: mergeRefs(trigger.props.ref, objectRef)
-        }
-    );
-
-    useEffect(() => {
-        if (!isDisabled && objectRef.current && !isFocusable(objectRef.current)) {
-            setFocusable(false);
-        }
-    }, [isDisabled, objectRef]);
-
-    newTrigger = focusable ? newTrigger : <Focusable><div {...focusableProps}>{newTrigger}</div></Focusable>;
-
     return (
         <RACTooltipTrigger delay={delay} isDisabled={isDisabled} {...triggerProps}>
-            <TooltipContext.Provider value={{ triggerRef: objectRef }}>
-                <InternalTooltipTriggerContext.Provider
-                    value={{
-                        containerPadding,
-                        crossOffset,
-                        offset,
-                        placement,
-                        shouldFlip
-                    }}
-                >
-                    {newTrigger}
-                    {tooltip}
-                </InternalTooltipTriggerContext.Provider>
-            </TooltipContext.Provider>
+            <TooltipTriggerContext.Provider
+                value={{
+                    containerPadding,
+                    crossOffset,
+                    offset,
+                    placement,
+                    shouldFlip
+                }}
+            >
+                <FocusableTrigger {...props}>
+                    {trigger}
+                </FocusableTrigger>
+                {tooltip}
+            </TooltipTriggerContext.Provider>
         </RACTooltipTrigger>
     );
 }
 
-/**
- * TooltipTrigger wraps around a trigger element and a Tooltip. It handles opening and closing
- * the Tooltip when the user hovers over or focuses the trigger, and positioning the Tooltip
- * relative to the trigger.
- *
- * [View Documentation](https://hopper.workleap.design/components/Tooltip)
- */
-const _TooltipTrigger = forwardRef<FocusableElement, TooltipTriggerProps>(TooltipTrigger);
-_TooltipTrigger.displayName = "TooltipTrigger";
+const FocusableTrigger = forwardRef(({ children, ...props }: TooltipTriggerProps, ref: ForwardedRef<FocusableElement>) => {
+    const objectRef = useObjectRef(ref);
+    const { focusableProps } = useFocusable(props, objectRef);
+    const [focusable, setFocusable] = useState(true);
+    const child = Children.only(children) as ReactElement<FocusableElement>;
 
-export { _TooltipTrigger as TooltipTrigger };
+    // @ts-expect-error - Accessing refs is different for React 19
+    const childRef = parseInt(version, 10) < 19 ? child.ref : child.props.ref;
+
+    useEffect(() => {
+        const el = objectRef.current;
+
+        if (!el || !(el instanceof getOwnerWindow(el).Element)) {
+            console.warn("<FocusableTrigger>'s child must forward its ref to a DOM element.");
+
+            return;
+        }
+
+        if (!props.isDisabled && !isFocusable(el)) {
+            setFocusable(false);
+        }
+    }, [objectRef, props.isDisabled]);
+
+    if (!focusable) {
+        // @ts-expect-error - set the objectRef as the ref
+        return <div {...focusableProps} ref={objectRef}>{children}</div>;
+    }
+
+    return cloneElement(
+        child,
+        {
+            ...child.props,
+            // @ts-expect-error - merge refs
+            ref: mergeRefs(childRef, objectRef)
+        }
+    );
+});
+
+TooltipTrigger.displayName = "TooltipTrigger";
