@@ -6,7 +6,3 @@ import type { TooltipProps } from "./Tooltip.tsx";
 export const TooltipContext = createContext<ContextValue<TooltipProps, HTMLDivElement>>({});
 
 TooltipContext.displayName = "TooltipContext";
-
-export const InternalTooltipContext = createContext<Partial<TooltipProps>>({});
-
-InternalTooltipContext.displayName = "InternalTooltipContext";

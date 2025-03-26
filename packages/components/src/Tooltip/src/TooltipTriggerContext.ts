@@ -1,9 +1,10 @@
+import type { FocusableElement } from "@react-types/shared";
 import { createContext } from "react";
 import type { ContextValue } from "react-aria-components";
 
 import type { TooltipTriggerProps } from "./TooltipTrigger.tsx";
 
-export const TooltipTriggerContext = createContext<ContextValue<TooltipTriggerProps, HTMLDivElement>>({});
+export const TooltipTriggerContext = createContext<ContextValue<TooltipTriggerProps, FocusableElement>>({});
 
 TooltipTriggerContext.displayName = "TooltipTriggerContext";
 

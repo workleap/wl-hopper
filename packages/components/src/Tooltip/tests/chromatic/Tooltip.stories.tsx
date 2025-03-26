@@ -177,7 +177,7 @@ export const Styling = {
     }
 } satisfies Story;
 
-export const MenuItems = {
+export const TooltipInMenuItems = {
     render: args => (
         <Menu aria-label="menu">
             <TooltipTrigger isOpen>
