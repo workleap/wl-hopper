@@ -4,6 +4,10 @@ import clsx from "clsx";
 import { createContext, forwardRef, useContext, type ForwardedRef } from "react";
 import { I18nProvider, RouterProvider } from "react-aria-components";
 
+import { cssModule } from "../../utils/index.ts";
+
+import styles from "./HopperProvider.module.css";
+
 export const GlobalHopperProviderCssSelector = "hop-HopperProvider";
 
 export interface HopperProviderProps extends StyledSystemProviderProps {
@@ -98,6 +102,10 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
 
     const classNames = clsx(
         GlobalHopperProviderCssSelector,
+        cssModule(
+            styles,
+            "hop-HopperProvider"
+        ),
         className
     );
 
