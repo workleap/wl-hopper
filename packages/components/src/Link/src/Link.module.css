@@ -4,6 +4,37 @@
     --hop-Link-color-disabled: var(--hop-neutral-text-disabled);
     --hop-Link-column-gap: var(--hop-space-inline-xs);
 
+    /** Sizes */
+
+    --hop-Link-xs-font-size: var(--hop-body-xs-font-size);
+    --hop-Link-xs-font-family: var(--hop-body-xs-font-family);
+    --hop-Link-xs-font-weight: var(--hop-body-xs-font-weight);
+    --hop-Link-xs-line-height: var(--hop-body-xs-line-height);
+    --hop-Link-sm-font-size: var(--hop-body-sm-font-size);
+    --hop-Link-sm-font-family: var(--hop-body-sm-font-family);
+    --hop-Link-sm-font-weight: var(--hop-body-sm-font-weight);
+    --hop-Link-sm-line-height: var(--hop-body-sm-line-height);
+    --hop-Link-md-font-size: var(--hop-body-md-font-size);
+    --hop-Link-md-font-family: var(--hop-body-md-font-family);
+    --hop-Link-md-font-weight: var(--hop-body-md-font-weight);
+    --hop-Link-md-line-height: var(--hop-body-md-line-height);
+    --hop-Link-lg-font-size: var(--hop-body-lg-font-size);
+    --hop-Link-lg-font-family: var(--hop-body-lg-font-family);
+    --hop-Link-lg-font-weight: var(--hop-body-lg-font-weight);
+    --hop-Link-lg-line-height: var(--hop-body-lg-line-height);
+    --hop-Link-xl-font-size: var(--hop-body-xl-font-size);
+    --hop-Link-xl-font-family: var(--hop-body-xl-font-family);
+    --hop-Link-xl-font-weight: var(--hop-body-xl-font-weight);
+    --hop-Link-xl-line-height: var(--hop-body-xl-line-height);
+    --hop-Link-2xl-font-size: var(--hop-body-2xl-font-size);
+    --hop-Link-2xl-font-family: var(--hop-body-2xl-font-family);
+    --hop-Link-2xl-font-weight: var(--hop-body-2xl-font-weight);
+    --hop-Link-2xl-line-height: var(--hop-body-2xl-line-height);
+    --hop-Link-inherit-size-font-size: inherit;
+    --hop-Link-inherit-size-font-family: inherit;
+    --hop-Link-inherit-size-font-weight: inherit;
+    --hop-Link-inherit-size-line-height: inherit;
+
     /** Primary */
     --hop-Link-primary-text-color: var(--hop-primary-text);
     --hop-Link-primary-text-disabled-color: var(--hop-primary-text-disabled);
@@ -40,6 +71,62 @@
     border-radius: var(--hop-Link-border-radius);
     outline: none;
     outline-offset: 0.125rem;
+}
+
+:where(.hop-Link) {
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    font-weight: var(--font-weight);
+    line-height: var(--line-height);
+}
+
+:where(.hop-Link--xs) {
+    --font-size: var(--hop-Link-xs-font-size);
+    --font-family: var(--hop-Link-xs-font-family);
+    --font-weight: var(--hop-Link-xs-font-weight);
+    --line-height: var(--hop-Link-xs-line-height);
+}
+
+:where(.hop-Link--sm) {
+    --font-size: var(--hop-Link-sm-font-size);
+    --font-family: var(--hop-Link-sm-font-family);
+    --font-weight: var(--hop-Link-sm-font-weight);
+    --line-height: var(--hop-Link-sm-line-height);
+}
+
+:where(.hop-Link--md) {
+    --font-size: var(--hop-Link-md-font-size);
+    --font-family: var(--hop-Link-md-font-family);
+    --font-weight: var(--hop-Link-md-font-weight);
+    --line-height: var(--hop-Link-md-line-height);
+}
+
+:where(.hop-Link--lg) {
+    --font-size: var(--hop-Link-lg-font-size);
+    --font-family: var(--hop-Link-lg-font-family);
+    --font-weight: var(--hop-Link-lg-font-weight);
+    --line-height: var(--hop-Link-lg-line-height);
+}
+
+:where(.hop-Link--xl) {
+    --font-size: var(--hop-Link-xl-font-size);
+    --font-family: var(--hop-Link-xl-font-family);
+    --font-weight: var(--hop-Link-xl-font-weight);
+    --line-height: var(--hop-Link-xl-line-height);
+}
+
+:where(.hop-Link--2xl) {
+    --font-size: var(--hop-Link-2xl-font-size);
+    --font-family: var(--hop-Link-2xl-font-family);
+    --font-weight: var(--hop-Link-2xl-font-weight);
+    --line-height: var(--hop-Link-2xl-line-height);
+}
+
+:where(.hop-Link--inherit) {
+    --font-size: var(--hop-Link-inherit-size-font-size);
+    --font-family: var(--hop-Link-inherit-size-font-family);
+    --font-weight: var(--hop-Link-inherit-size-font-weight);
+    --line-height: var(--hop-Link-inherit-size-line-height);
 }
 
 /** Focus Ring */

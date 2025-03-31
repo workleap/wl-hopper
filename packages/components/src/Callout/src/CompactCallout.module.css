@@ -7,12 +7,14 @@
     --hop-CompactCallout-border-radius: var(--hop-shape-rounded-md);
     --hop-CompactCallout-border-width: 0.0625rem;
     --hop-CompactCallout-border-style: solid;
-    --hop-CompactCallout-grid-template-areas:
-        "content button dismiss"
-        "content link dismiss";
-    --hop-CompactCallout-grid-template-columns: 1fr auto auto;
-    --hop-CompactCallout-margin-right-content: var(--hop-space-inline-md);
-    --hop-CompactCallout-margin-right-cta: var(--hop-space-inline-md);
+    --hop-CompactCallout-grid-template: "content cta" 1fr / 1fr auto;
+    --hop-CompactCallout-grid-template-dismissable: "content cta dismiss" 1fr / 1fr auto auto;
+    --hop-CompactCallout-gap: var(--hop-space-inline-md);
+    --hop-CompactCallout-font-size: var(--hop-body-sm-font-size);
+    --hop-CompactCallout-font-weight: var(--hop-body-sm-font-weight);
+    --hop-CompactCallout-font-family: var(--hop-body-sm-font-family);
+    --hop-CompactCallout-line-height: var(--hop-body-sm-line-height);
+    --hop-CompactCallout-min-block-size: var(--hop-space-480);
 
     /* Information */
     --hop-CompactCallout-border-information: var(--hop-CompactCallout-border-width) var(--hop-CompactCallout-border-style) var(--hop-information-border);
@@ -38,38 +40,42 @@
     --hop-CompactCallout-border-subtle: transparent;
 
     /* Internal Variables */
-    --grid-template-areas: var(--hop-CompactCallout-grid-template-areas);
-    --grid-template-columns: var(--hop-CompactCallout-grid-template-columns);
+    --grid-template: var(--hop-CompactCallout-grid-template);
 
     display: var(--hop-CompactCallout-display);
-    grid-template-areas: var(--grid-template-areas);
-    grid-template-columns: var(--grid-template-columns);
+    grid-template: var(--grid-template);
+    column-gap: var(--hop-CompactCallout-gap);
     align-items: var(--hop-CompactCallout-align-items);
 
+    box-sizing: border-box;
+    min-block-size: var(--hop-CompactCallout-min-block-size);
     padding: var(--hop-CompactCallout-padding-y) var(--hop-CompactCallout-padding-x);
+
+    font-family: var(--hop-CompactCallout-font-family);
+    font-size: var(--hop-CompactCallout-font-size);
+    font-weight: var(--hop-CompactCallout-font-weight);
+    line-height: var(--hop-CompactCallout-line-height);
 
     background: var(--background);
     border: var(--border);
     border-radius: var(--hop-CompactCallout-border-radius);
 }
 
+.hop-CompactCallout--dismissable {
+    --grid-template: var(--hop-CompactCallout-grid-template-dismissable);
+}
+
 .hop-CompactCallout__content {
     grid-area: content;
-    margin-inline-end: var(--hop-CompactCallout-margin-right-content);
     color: var(--color);
 }
 
 .hop-CompactCallout__button {
-    grid-area: button;
+    grid-area: cta;
 }
 
 .hop-CompactCallout__link {
-    grid-area: link;
-}
-
-.hop-CompactCallout:has(.hop-CompactCallout__dismiss) .hop-CompactCallout__button:not(.hop-CompactCallout__dismiss),
-.hop-CompactCallout:has(.hop-CompactCallout__dismiss) .hop-CompactCallout__link {
-    margin-inline-end: var(--hop-CompactCallout-margin-right-cta);
+    grid-area: cta;
 }
 
 .hop-CompactCallout__dismiss {

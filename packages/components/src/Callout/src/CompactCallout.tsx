@@ -1,7 +1,7 @@
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { useContextProps } from "react-aria-components";
+import { DEFAULT_SLOT, useContextProps } from "react-aria-components";
 
 import { ButtonContext, CloseButton } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
@@ -31,13 +31,16 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
         ...otherProps
     } = ownProps;
 
+    const isDismissible = onClose !== undefined;
+
     const classNames = clsx(
         GlobalCompactCalloutCssSelector,
         cssModule(
             styles,
             "hop-CompactCallout",
             variant,
-            fillStyle === "subtleFill" && "subtle-fill"
+            fillStyle === "subtleFill" && "subtle-fill",
+            isDismissible && "dismissable"
         ),
         stylingProps.className,
         className
@@ -62,15 +65,26 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
                         className: styles["hop-CompactCallout__content"]
                     }],
                     [ButtonContext, {
-                        className: styles["hop-CompactCallout__button"]
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                className: styles["hop-CompactCallout__button"],
+                                variant: "secondary",
+                                size: "sm"
+                            },
+                            close: {
+                                className: styles["hop-CompactCallout__dismiss"]
+                            }
+                        }
                     }],
                     [LinkContext, {
-                        className: styles["hop-CompactCallout__link"]
+                        className: styles["hop-CompactCallout__link"],
+                        variant: "secondary",
+                        size: "sm"
                     }]
                 ]}
             >
                 {children}
-                {onClose && <CloseButton className={styles["hop-CompactCallout__dismiss"]} onPress={onClose} />}
+                {isDismissible && <CloseButton onPress={onClose} />}
             </SlotProvider>
         </div>
     );

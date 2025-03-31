@@ -258,6 +258,13 @@ export const StandaloneSecondary: Story = {
     }
 };
 
+export const OverwriteFontWeight: Story = {
+    ...Secondary,
+    args: {
+        ...Secondary.args,
+        fontWeight: "core_505"
+    }
+};
 export const StaticColor: Story = {
     ...Primary,
     decorators: [
