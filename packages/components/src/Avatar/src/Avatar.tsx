@@ -5,7 +5,7 @@ import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMe
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/Text/index.ts";
-import { type AccessibleSlotProps, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
+import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
 import { RichIconAvatarImage } from "./RichIconAvatarImage.tsx";
@@ -114,7 +114,6 @@ function AvatarInitials(props: AvatarInitialsProps) {
     return (
         <Text
             size={AvatarToTextSizeAdapter[size]}
-            className={styles["hop-Avatar__initials"]}
         >
             {initials}
         </Text>
@@ -225,7 +224,9 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             slot={slot ?? undefined}
             ref={ref}
         >
-            {content}
+            <ClearContainerSlots>
+                {content}
+            </ClearContainerSlots>
         </div>
     );
 }
