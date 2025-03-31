@@ -110,6 +110,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
                                 }],
                                 [HeadingContext, {
                                     className: styles["hop-Modal__heading"],
+                                    size: "lg",
                                     slot: "title"
                                 }],
                                 [HeaderContext, {
