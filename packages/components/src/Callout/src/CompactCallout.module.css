@@ -7,9 +7,8 @@
     --hop-CompactCallout-border-radius: var(--hop-shape-rounded-md);
     --hop-CompactCallout-border-width: 0.0625rem;
     --hop-CompactCallout-border-style: solid;
-    --hop-CompactCallout-grid-template-areas:
-        "content cta dismiss";
-    --hop-CompactCallout-grid-template-columns: 1fr auto auto auto;
+    --hop-CompactCallout-grid-template: "content cta" 1fr / 1fr auto;
+    --hop-CompactCallout-grid-template-dismissable: "content cta dismiss" 1fr / 1fr auto auto;
     --hop-CompactCallout-gap: var(--hop-space-inline-md);
     --hop-CompactCallout-font-size: var(--hop-body-sm-font-size);
     --hop-CompactCallout-font-weight: var(--hop-body-sm-font-weight);
@@ -41,12 +40,10 @@
     --hop-CompactCallout-border-subtle: transparent;
 
     /* Internal Variables */
-    --grid-template-areas: var(--hop-CompactCallout-grid-template-areas);
-    --grid-template-columns: var(--hop-CompactCallout-grid-template-columns);
+    --grid-template: var(--hop-CompactCallout-grid-template);
 
     display: var(--hop-CompactCallout-display);
-    grid-template-areas: var(--grid-template-areas);
-    grid-template-columns: var(--grid-template-columns);
+    grid-template: var(--grid-template);
     column-gap: var(--hop-CompactCallout-gap);
     align-items: var(--hop-CompactCallout-align-items);
 
@@ -62,6 +59,10 @@
     background: var(--background);
     border: var(--border);
     border-radius: var(--hop-CompactCallout-border-radius);
+}
+
+.hop-CompactCallout--dismissable {
+    --grid-template: var(--hop-CompactCallout-grid-template-dismissable);
 }
 
 .hop-CompactCallout__content {

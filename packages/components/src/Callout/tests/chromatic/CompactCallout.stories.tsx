@@ -101,3 +101,60 @@ export const WithButtonAndLink = {
         )
     }
 } satisfies Story;
+
+export const Overflow = {
+    ...WithButtonAndLink,
+    args: {
+        ...WithButtonAndLink.args,
+        children: (
+            <>
+                <Content>
+                    {new Array(30).fill("Callout content").join(" ")}
+                </Content>
+                <Link>Label</Link>
+            </>
+        )
+    }
+} satisfies Story;
+
+export const OverflowWithClose = {
+    ...WithClose,
+    args: {
+        ...WithClose.args,
+        children: (
+            <Content>
+                {new Array(30).fill("Callout content").join(" ")}
+            </Content>
+        )
+    }
+} satisfies Story;
+
+export const OverflowWithCta = {
+    ...WithLink,
+    args: {
+        ...WithLink.args,
+        children: (
+            <>
+                <Content>
+                    {new Array(30).fill("Callout content").join(" ")}
+                </Content>
+                <Link>Label</Link>
+            </>
+        )
+    }
+} satisfies Story;
+
+export const OverflowWithButtonAndLink = {
+    ...WithButtonAndLink,
+    args: {
+        ...WithButtonAndLink.args,
+        children: (
+            <>
+                <Content>
+                    {new Array(30).fill("Callout content").join(" ")}
+                </Content>
+                <Link>Label</Link>
+            </>
+        )
+    }
+} satisfies Story;

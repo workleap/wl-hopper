@@ -31,13 +31,16 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
         ...otherProps
     } = ownProps;
 
+    const isDismissible = onClose !== undefined;
+
     const classNames = clsx(
         GlobalCompactCalloutCssSelector,
         cssModule(
             styles,
             "hop-CompactCallout",
             variant,
-            fillStyle === "subtleFill" && "subtle-fill"
+            fillStyle === "subtleFill" && "subtle-fill",
+            isDismissible && "dismissable"
         ),
         stylingProps.className,
         className
@@ -81,7 +84,7 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
                 ]}
             >
                 {children}
-                {onClose && <CloseButton onPress={onClose} />}
+                {isDismissible && <CloseButton onPress={onClose} />}
             </SlotProvider>
         </div>
     );
