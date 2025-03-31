@@ -146,7 +146,7 @@ function Link(props: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
                     }
                 }],
                 [TextContext, {
-                    size: size,
+                    size: "inherit",
                     className: styles["hop-Link__text"]
                 }]
             ]}
