@@ -8,7 +8,15 @@ import { Callout } from "../../src/Callout.tsx";
 
 const meta = {
     title: "Components/Callout",
-    component: Callout
+    component: Callout,
+    args: {
+        children: (
+            <>
+                <Heading>Callout title</Heading>
+                <Content>Callout content</Content>
+            </>
+        )
+    }
 } satisfies Meta<typeof Callout>;
 
 export default meta;
@@ -16,12 +24,16 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default = {
-    render: props => (
-        <Callout {...props}>
-            <Heading>Callout title</Heading>
-            <Content>Callout content</Content>
-        </Callout>
-    )
+} satisfies Story;
+
+export const NoHeader = {
+    args: {
+        children: (
+            <>
+                <Content>{new Array(30).fill("Callout Content").join(" ")}</Content>
+            </>
+        )
+    }
 } satisfies Story;
 
 export const Inline = {

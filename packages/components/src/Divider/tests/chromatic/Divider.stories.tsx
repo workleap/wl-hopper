@@ -49,11 +49,11 @@ export const Vertical = {
         return (
             <Stack>
                 <h1>Default</h1>
-                <Inline alignY="stretch" height="core_160">
+                <Inline height="core_160">
                     <Divider {...args} />
                 </Inline>
                 <h1>Multiple</h1>
-                <Inline alignY="stretch">
+                <Inline>
                     <Text>Apollo 8 - 1968</Text>
                     <Divider {...args} />
                     <Text>Apollo 11 - 1969</Text>
@@ -63,12 +63,12 @@ export const Vertical = {
                     <Text>Salyut 1 - 1971</Text>
                 </Inline>
                 <h1>Zoom</h1>
-                <Inline alignY="stretch" height="core_160">
+                <Inline height="core_160">
                     <Divider {...args} className="zoom-in" />
                     <Divider {...args} className="zoom-out" />
                 </Inline>
                 <h1>Styling</h1>
-                <Inline alignY="stretch">
+                <Inline>
                     <Divider {...args} height="core_1280" />
                     <Divider {...args} height="core_160" />
                     <Divider {...args} height="core_240" style={{ borderColor: "red" }} />

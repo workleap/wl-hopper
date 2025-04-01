@@ -4,6 +4,7 @@
     --hop-Popover-border-radius: var(--hop-shape-rounded-md);
     --hop-Popover-box-shadow: var(--hop-elevation-lifted);
     --hop-Popover-color: var(--hop-neutral-text);
+    --hop-Popover-color-outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
 
     isolation: isolate;
 
@@ -21,6 +22,7 @@
     background-color: var(--hop-Popover-background);
     border: var(--hop-Popover-border);
     border-radius: var(--hop-Popover-border-radius);
+    outline: none;
     box-shadow: var(--hop-Popover-box-shadow);
 
     transition: opacity  var(--hop-easing-duration-2) ;
@@ -36,3 +38,7 @@
     transition-timing-function: var(--hop-easing-productive);
 }
 
+/* a Popover doesn't have [data-focus-visible] */
+.hop-PopoverBase:focus-visible {
+	outline: var(--hop-Popover-color-outline);
+}

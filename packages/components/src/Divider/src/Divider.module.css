@@ -38,4 +38,6 @@
     --border-inline-start: var(--hop-Divider-vertical-border-inline-start);
     --inline-size: var(--hop-Divider-vertical-inline-size);
     --block-size: var(--hop-Divider-vertical-block-size);
+
+    align-self: stretch;
 }

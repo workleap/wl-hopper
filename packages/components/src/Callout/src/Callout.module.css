@@ -38,13 +38,9 @@
     /* Subtle */
     --hop-Callout-border-subtle: transparent;
 
-    /* Internal Variables */
-    --grid-template-areas: var(--hop-Callout-grid-template-areas);
-    --grid-template-columns: var(--hop-Callout-grid-template-columns);
-
     display: var(--hop-Callout-display);
-    grid-template-areas: var(--grid-template-areas);
-    grid-template-columns: var(--grid-template-columns);
+    grid-template-areas: var(--hop-Callout-grid-template-areas);
+    grid-template-columns: var(--hop-Callout-grid-template-columns);
     align-items: var(--hop-Callout-align-items);
 
     padding: var(--hop-Callout-padding);
@@ -66,8 +62,11 @@
 
 .hop-Callout__content {
     grid-area: content;
-    margin-block-start: var(--hop-Callout-margin-top-content);
     color: var(--color);
+}
+
+.hop-Callout:has(.hop-Callout__heading) .hop-Callout__content {
+    margin-block-start: var(--hop-Callout-margin-top-content);
 }
 
 .hop-Callout__button {
@@ -83,28 +82,24 @@
     --border: var(--hop-Callout-border-information);
     --background: var(--hop-Callout-background-information);
     --color: var(--hop-Callout-color-information);
-    --icon-fill: var(--hop-Callout-icon-fill-information);
 }
 
 .hop-Callout--success {
     --border: var(--hop-Callout-border-success);
     --background: var(--hop-Callout-background-success);
     --color: var(--hop-Callout-color-success);
-    --icon-fill: var(--hop-Callout-icon-fill-success);
 }
 
 .hop-Callout--warning {
     --border: var(--hop-Callout-border-warning);
     --background: var(--hop-Callout-background-warning);
     --color: var(--hop-Callout-color-warning);
-    --icon-fill: var(--hop-Callout-icon-fill-warning);
 }
 
 .hop-Callout--upsell {
     --border: var(--hop-Callout-border-upsell);
     --background: var(--hop-Callout-background-upsell);
     --color: var(--hop-Callout-color-upsell);
-    --icon-fill: var(--hop-Callout-icon-fill-upsell);
 }
 
 .hop-Callout--subtle-fill {
