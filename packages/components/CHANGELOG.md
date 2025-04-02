@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.5.5
+
+### Patch Changes
+
+- b56f903: All root elements now properly set their base typography
+- 75e3148: Fix Text styling for Content in a Callout, Modal and Popover
+  - @hopper-ui/icons@2.9.2
+
 ## 1.5.4
 
 ### Patch Changes
