@@ -1,4 +1,9 @@
-.hop-HopperProvider {
+/*
+ * This must remain a global css file. We want all "roots" to force a base typo settings
+ * This includes all HopperProviders, but also all root element such as Modal, Popovers, Tooltips, etc.
+*/
+/* stylelint-disable selector-class-pattern */
+.hop {
     font-family: var(--hop-body-md-font-family);
     font-size: var(--hop-body-md-font-size);
     font-weight: var(--hop-body-md-font-weight);

@@ -1,6 +1,7 @@
 import type { ColorScheme } from "@hopper-ui/components";
 
 import packageJson from "../package.json";
+import "./styledSystemRootCssClass.css";
 
 export const HopperRootCssClass = "hop";
 
