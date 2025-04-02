@@ -16,22 +16,22 @@
         "react-router-dom": "6.27.0"
     },
     "devDependencies": {
-        "@swc/core": "1.10.0",
+        "@swc/core": "1.11.16",
         "@swc/helpers": "0.5.15",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
-        "@typescript-eslint/parser": "8.17.0",
-        "@workleap/browserslist-config": "2.0.1",
-        "@workleap/eslint-plugin": "3.2.3",
-        "@workleap/swc-configs": "2.2.3",
-        "@workleap/typescript-configs": "3.0.2",
-        "@workleap/webpack-configs": "1.5.1",
-        "browserslist": "4.24.2",
+        "@typescript-eslint/parser": "8.29.0",
+        "@workleap/browserslist-config": "2.0.3",
+        "@workleap/eslint-plugin": "3.3.2",
+        "@workleap/swc-configs": "2.2.6",
+        "@workleap/typescript-configs": "3.0.3",
+        "@workleap/webpack-configs": "1.5.5",
+        "browserslist": "4.24.4",
         "eslint": "8.57.1",
-        "shelljs": "0.8.5",
-        "typescript": "5.5.4",
-        "webpack": "5.97.1",
+        "shelljs": "0.9.2",
+        "typescript": "5.8.2",
+        "webpack": "5.98.0",
         "webpack-cli": "5.1.4",
-        "webpack-dev-server": "5.1.0"
+        "webpack-dev-server": "5.2.1"
     }
 }
