@@ -1,9 +1,8 @@
-import { useColorSchemeContext, useStyledSystem, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, useContext, type CSSProperties, type ForwardedRef } from "react";
 import { Provider, Tooltip as RACTooltip, useContextProps, type TooltipProps as RACTooltipProps } from "react-aria-components";
 
-import { HopperProvider } from "../../HopperProvider/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import { cssModule, ensureTextWrapper, type BaseComponentDOMProps } from "../../utils/index.ts";
 
@@ -21,10 +20,6 @@ export type TooltipContainerProps = Omit<BaseComponentDOMProps, "slot"> & Styled
 export interface TooltipProps extends
     Omit<RACTooltipProps, PropsToOmit>,
     StyledComponentProps<BaseComponentDOMProps> {
-    /**
-     * The props of the tooltip's inner container.
-     */
-    containerProps?: TooltipContainerProps;
 }
 
 function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -37,15 +32,12 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
         className,
         children,
         style,
-        containerProps,
         ...otherProps
     } = ownProps;
 
-    const { stylingProps: containerStylingProps, ...containerOwnProps } = useStyledSystem(containerProps ?? {});
-    const { className: containerClassName, style: containerStyleProp, ...containerOtherProps } = containerOwnProps;
-
     const classNames = clsx(
         GlobalTooltipCssSelector,
+        clsx(getRootCSSClasses(colorScheme)),
         cssModule(
             styles,
             "hop-Tooltip",
@@ -60,38 +52,28 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
         ...stylingProps.style
     };
 
-    const containerClassNames = clsx(containerClassName, styles["hop-Tooltip__container"], containerStylingProps.className);
-    const containerStyle = {
-        ...containerStylingProps.style,
-        ...containerStyleProp
-    };
-
     return (
-        <RACTooltip
-            ref={ref}
-            style={mergedStyles}
-            className={classNames}
-            containerPadding={containerPadding}
-            crossOffset={crossOffset}
-            offset={offset}
-            placement={placement}
-            shouldFlip={shouldFlip}
-            {...otherProps}
+        <Provider
+            values={[
+                [TextContext, {
+                    size: "xs"
+                }]
+            ]}
         >
-            <HopperProvider colorScheme={colorScheme} withCssVariables={false}>
-                <div className={containerClassNames} style={containerStyle} {...containerOtherProps}>
-                    <Provider
-                        values={[
-                            [TextContext, {
-                                size: "xs"
-                            }]
-                        ]}
-                    >
-                        {ensureTextWrapper(children)}
-                    </Provider>
-                </div>
-            </HopperProvider>
-        </RACTooltip>
+            <RACTooltip
+                ref={ref}
+                style={mergedStyles}
+                className={classNames}
+                containerPadding={containerPadding}
+                crossOffset={crossOffset}
+                offset={offset}
+                placement={placement}
+                shouldFlip={shouldFlip}
+                {...otherProps}
+            >
+                {ensureTextWrapper(children)}
+            </RACTooltip>
+        </Provider>
     );
 }
 

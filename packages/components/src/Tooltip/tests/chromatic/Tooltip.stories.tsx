@@ -1,6 +1,5 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
-import { Menu, MenuItem } from "react-aria-components";
 
 import { Button } from "../../../buttons/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";
@@ -157,36 +156,6 @@ export const DisabledTrigger = {
             <Button isDisabled>{buttonText}</Button>
             <Tooltip {...args} />
         </TooltipTrigger>
-    )
-} satisfies Story;
-
-export const Styling = {
-    render: args => (
-        <TooltipTrigger isOpen>
-            <Button>{buttonText}</Button>
-            <Tooltip {...args} />
-        </TooltipTrigger>
-    ),
-    args: {
-        containerProps: {
-            style: {
-                backgroundColor: "red",
-                color: "white"
-            }
-        }
-    }
-} satisfies Story;
-
-export const TooltipInMenuItems = {
-    render: args => (
-        <Menu aria-label="menu">
-            <TooltipTrigger isOpen>
-                <MenuItem>Item 1</MenuItem>
-                <Tooltip {...args} />
-            </TooltipTrigger>
-            <MenuItem>Item 2</MenuItem>
-            <MenuItem>Item 3</MenuItem>
-        </Menu>
     )
 } satisfies Story;
 

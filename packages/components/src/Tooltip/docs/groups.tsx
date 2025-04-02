@@ -1,17 +1,8 @@
 import { Stack, Tab, TabList, Tabs, Tag, TagGroup, Tooltip, TooltipTrigger } from "@hopper-ui/components";
-import { Menu, MenuItem } from "react-aria-components";
 
 export default function Example() {
     return (
         <Stack>
-            <Menu aria-label="menu">
-                <TooltipTrigger>
-                    <MenuItem>Poison Da...</MenuItem>
-                    <Tooltip>Poison Dart Frog</Tooltip>
-                </TooltipTrigger>
-                <MenuItem>Red-Eyed Tree Frog</MenuItem>
-                <MenuItem>Goliath Frog</MenuItem>
-            </Menu>
             <Tabs aria-label="frogs">
                 <TabList>
                     <Tab id="red-eye-tree">Red-Eyed Tree Frog</Tab>

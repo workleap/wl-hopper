@@ -1,6 +1,11 @@
 .hop-Tooltip {
     --hop-Tooltip-max-inline-size: 25rem;
     --hop-Tooltip-slide-amount: 0.25rem; /* Tokens not available here */
+    --hop-Tooltip-background: var(--hop-neutral-surface-strong);
+    --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
+    --hop-Tooltip-box-shadow: var(--hop-elevation-raised);
+    --hop-Tooltip-color: var(--hop-neutral-text-strong);
+    --hop-Tooltip-padding: var(--hop-space-inset-squish-md);
 
     /* Internal Variables */
     --origin-x: 0;
@@ -8,6 +13,13 @@
 
     /* Ensures there's always 1rem space around the tooltip, but it'll still have a max width of 25rem. */
     max-inline-size: min(var(--hop-Tooltip-max-inline-size), calc(100% - (var(--container-padding) * 2)));
+    padding: var(--hop-Tooltip-padding);
+
+    color: var(--hop-Tooltip-color);
+
+    background: var(--hop-Tooltip-background);
+    border-radius: var(--hop-Tooltip-border-radius);
+    box-shadow: var(--hop-Tooltip-box-shadow);
 }
 
 .hop-Tooltip--top {
@@ -36,22 +48,6 @@
 
 .hop-Tooltip[data-exiting] {
     animation: slide 0.2s ease-in reverse;
-}
-
-.hop-Tooltip__container {
-    --hop-Tooltip-background: var(--hop-neutral-surface-strong);
-    --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
-    --hop-Tooltip-box-shadow: var(--hop-elevation-raised);
-    --hop-Tooltip-color: var(--hop-neutral-text-strong);
-    --hop-Tooltip-padding: var(--hop-space-inset-squish-md);
-
-    padding: var(--hop-Tooltip-padding);
-
-    color: var(--hop-Tooltip-color);
-
-    background: var(--hop-Tooltip-background);
-    border-radius: var(--hop-Tooltip-border-radius);
-    box-shadow: var(--hop-Tooltip-box-shadow);
 }
 
 @keyframes slide {
