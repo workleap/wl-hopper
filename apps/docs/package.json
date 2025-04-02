@@ -67,7 +67,7 @@
         "shiki": "1.24.0",
         "storybook": "8.6.12",
         "tsconfig-paths-webpack-plugin": "4.2.0",
-        "typescript": "5.8.2"
+        "typescript": "5.6.3"
     },
     "browser": {
         "fs": false
