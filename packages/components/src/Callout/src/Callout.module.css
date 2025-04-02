@@ -15,6 +15,12 @@
     --hop-Callout-margin-top-content: var(--hop-space-stack-xs);
     --hop-Callout-margin-top-button: var(--hop-space-stack-md);
 
+    /* Heading */
+    --hop-Callout-heading-font-size: var(--hop-body-sm-font-size);
+    --hop-Callout-heading-font-family: var(--hop-body-sm-font-family);
+    --hop-Callout-heading-font-weight: var(--hop-body-sm-semibold-font-weight);
+    --hop-Callout-heading-line-height: var(--hop-body-sm-line-height);
+
     /* Content */
     --hop-Callout-content-font-size: var(--hop-body-sm-font-size);
     --hop-Callout-content-font-family: var(--hop-body-sm-font-family);
@@ -63,6 +69,11 @@
 
 .hop-Callout__heading {
     grid-area: heading;
+
+    font-family: var(--hop-Callout-heading-font-family);
+    font-size: var(--hop-Callout-heading-font-size);
+    font-weight: var(--hop-Callout-heading-font-weight);
+    line-height: var(--hop-Callout-heading-line-height);
     color: var(--color);
 }
 
