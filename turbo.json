@@ -25,6 +25,7 @@
         "typecheck": {
             "outputs": ["node_modules/.cache/tsbuildinfo.json"]
         },
+        "//#syncpack": {},
         "test": {
             "outputs": ["node_modules/.cache/jest"]
         }
