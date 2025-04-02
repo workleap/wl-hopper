@@ -81,6 +81,8 @@
     --hop-Popover-title-font-family: var(--hop-body-sm-font-family);
     --hop-Popover-title-font-weight: var(--hop-body-sm-semibold-font-weight);
     --hop-Popover-content-font-size: var(--hop-body-sm-font-size);
+    --hop-Popover-content-font-family: var(--hop-body-sm-font-family);
+    --hop-Popover-content-font-weight: var(--hop-body-sm-font-weight);
     --hop-Popover-content-line-height: var(--hop-body-sm-line-height);
     --hop-Popover-content-color: var(--hop-neutral-text-weak);
     --hop-Popover-footer-font-size: var(--hop-body-sm-font-size);
@@ -145,6 +147,8 @@
 .hop-Popover__content {
     --font-size: var(--hop-Popover-content-font-size);
     --line-height: var(--hop-Popover-content-line-height);
+    --font-family: var(--hop-Popover-content-font-family);
+    --font-weight: var(--hop-Popover-content-font-weight);
 
     grid-area: content;
 
