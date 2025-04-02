@@ -13,6 +13,12 @@
         "footer footer buttons" auto
         / auto auto auto;
 
+        /* Content */
+    --hop-Modal-content-font-size: var(--hop-body-sm-font-size);
+    --hop-Modal-content-font-family: var(--hop-body-sm-font-family);
+    --hop-Modal-content-font-weight: var(--hop-body-sm-font-weight);
+    --hop-Modal-content-line-height: var(--hop-body-sm-line-height);
+
     /* Large screen */
     --hop-Modal-large-grid-template:
         "image heading header" auto
@@ -96,7 +102,13 @@
 .hop-Modal > .hop-Modal__content {
     overflow-y: auto;
     grid-area: content;
+
     margin: var(--hop-Modal-margin);
+
+    font-family: var(--hop-Callout-content-font-family);
+    font-size: var(--hop-Callout-content-font-size);
+    font-weight: var(--hop-Callout-content-font-weight);
+    line-height: var(--hop-Callout-content-line-height);
 
     @media (max-height: 24rem) {
         overflow-y: visible;
