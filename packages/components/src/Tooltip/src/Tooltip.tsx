@@ -1,4 +1,4 @@
-import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, useContext, type CSSProperties, type ForwardedRef } from "react";
 import { Provider, Tooltip as RACTooltip, useContextProps, type TooltipProps as RACTooltipProps } from "react-aria-components";
@@ -15,12 +15,7 @@ export const GlobalTooltipCssSelector = "hop-Tooltip";
 
 type PropsToOmit = "children" | "className" | "style" | "UNSTABLE_portalContainer" | "isEntering" | "isExiting" | "placement" | "containerPadding" | "offset" | "crossOffset" | "shouldFlip" | "arrowBoundaryOffset" | "isOpen" | "defaultOpen" | "onOpenChange";
 
-export type TooltipContainerProps = Omit<BaseComponentDOMProps, "slot"> & StyledSystemProps;
-
-export interface TooltipProps extends
-    Omit<RACTooltipProps, PropsToOmit>,
-    StyledComponentProps<BaseComponentDOMProps> {
-}
+export interface TooltipProps extends StyledComponentProps<Omit<RACTooltipProps, PropsToOmit>>, BaseComponentDOMProps {}
 
 function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TooltipContext);
@@ -37,7 +32,7 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const classNames = clsx(
         GlobalTooltipCssSelector,
-        clsx(getRootCSSClasses(colorScheme)),
+        getRootCSSClasses(colorScheme),
         cssModule(
             styles,
             "hop-Tooltip",

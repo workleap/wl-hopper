@@ -11,7 +11,7 @@ export const GlobalTooltipTriggerCssSelector = "hop-TooltipTrigger";
 
 export interface TooltipTriggerProps extends
     Omit<TooltipTriggerComponentProps, "closeDelay">,
-    Pick<TooltipProps, "shouldFlip" | "containerPadding" | "offset" | "crossOffset" | "triggerRef"> {
+    Pick<TooltipProps, "shouldFlip" | "containerPadding" | "offset" | "crossOffset"> {
     /**
      * The placement of the element with respect to its anchor element.
      *
