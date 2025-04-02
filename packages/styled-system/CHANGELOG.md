@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.6
+
+### Patch Changes
+
+- b56f903: All root elements now properly set their base typography
+
 ## 2.5.5
 
 ### Patch Changes
