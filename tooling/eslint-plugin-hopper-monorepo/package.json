@@ -1,6 +1,6 @@
 {
   "name": "@internals/eslint-plugin-hopper-monorepo",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "devDependencies": {
     "eslint": "8.57.1",

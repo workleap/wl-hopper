@@ -49,7 +49,7 @@ export const Default = {
             <Heading>Fascinating Frog Facts!</Heading>
             <Content>
                 <Text>
-                        Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
                 </Text>
             </Content>
         </Modal>
@@ -130,7 +130,7 @@ export const footer = {
                 </Text>
             </Content>
             <Footer>
-                    Copyright 2025
+                Copyright 2025
             </Footer>
         </Modal>
     )
@@ -196,7 +196,7 @@ export const everything = {
                         </Text>
                     </Content>
                     <Footer>
-                            Copyright 2021
+                        Copyright 2021
                     </Footer>
                     <ButtonGroup>
                         <Button variant="secondary" onPress={close}>Cancel</Button>

@@ -13,7 +13,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -29,7 +29,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -46,7 +46,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -62,7 +62,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -76,10 +76,10 @@ describe("Disclosure", () => {
             <DisclosureContext.Provider value={{ slots: { test: { children: [], className: "test" } } }}>
                 <Disclosure data-testid="disclosure" slot="test">
                     <DisclosureHeader>
-                    Disclosure Header
+                        Disclosure Header
                     </DisclosureHeader>
                     <DisclosurePanel>
-                Disclosure Panel
+                        Disclosure Panel
                     </DisclosurePanel>
                 </Disclosure>
             </DisclosureContext.Provider>
@@ -97,7 +97,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -113,7 +113,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );
@@ -131,7 +131,7 @@ describe("Disclosure", () => {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
         );

@@ -1,8 +1,8 @@
 {
     "$schema": "https://json.schemastore.org/eslintrc",
     "root": true,
-    "plugins": ["hopper-monorepo"],
-    "extends": ["plugin:@workleap/react-library", "plugin:hopper-monorepo/import-order"],
+    "plugins": ["@internals/hopper-monorepo"],
+    "extends": ["plugin:@workleap/react-library", "plugin:@internals/hopper-monorepo/import-order"],
     "rules": {
         "no-restricted-imports": ["error", {
             "patterns": [

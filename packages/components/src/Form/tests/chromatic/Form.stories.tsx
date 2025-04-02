@@ -53,7 +53,7 @@ export const Default = {
                 <TextField placeholder="Old El Paso" label="City" />
                 <TextArea placeholder="Leave a comment" label="Comments" />
                 <Checkbox>
-                Agree to terms and conditions
+                    Agree to terms and conditions
                 </Checkbox>
                 <Select isRequired label="Choose an animal">
                     <SelectItem id="designer">Designer</SelectItem>
