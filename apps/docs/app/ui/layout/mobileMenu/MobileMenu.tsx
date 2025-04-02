@@ -83,7 +83,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                     className={clsx("hd-mobile-menu-nav-list__link", isActive && "hd-mobile-menu-nav-list__link--active", (!featureFlags.alpha && status !== "ready") && "hd-mobile-menu-nav-list__link--disabled")}
                     onClick={onClose}
                 >
-                    {label}{label === "Components" && <span className="hd-mobile-menu-nav-tag">Preview</span>}
+                    {label}
                 </Link>
             </li>
         );
