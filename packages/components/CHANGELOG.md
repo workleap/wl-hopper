@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.6
+
+### Patch Changes
+
+- 7f6a762: Add default color on heading
+
 ## 1.5.5
 
 ### Patch Changes
