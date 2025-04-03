@@ -347,6 +347,18 @@ export const Previews: Record<string, Preview> = {
     "Avatar/docs/customization": {
         component: lazy(() => import("@/../../packages/components/src/Avatar/docs/customization.tsx"))
     },
+    "Avatar/docs/AvatarGroup/preview": {
+        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/AvatarGroup/preview.tsx"))
+    },
+    "Avatar/docs/AvatarGroup/tooMany": {
+        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/AvatarGroup/tooMany.tsx"))
+    },
+    "Avatar/docs/AvatarGroup/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/AvatarGroup/sizes.tsx"))
+    },
+    "Avatar/docs/AvatarGroup/maxNumberOfAvatars": {
+        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/AvatarGroup/maxNumberOfAvatars.tsx"))
+    },
     "Card/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Card/docs/preview.tsx"))
     },
