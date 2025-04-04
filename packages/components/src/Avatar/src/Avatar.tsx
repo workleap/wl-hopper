@@ -7,10 +7,10 @@ import { Text, type TextSize } from "../../typography/Text/index.ts";
 import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
+import { BrokenAvatar } from "./BrokenAvatar.tsx";
 import { useImageFallback } from "./useImageFallback.ts";
 
 import styles from "./Avatar.module.css";
-import { BrokenAvatar } from "./BrokenAvatar.tsx";
 
 export const GlobalAvatarCssSelector = "hop-Avatar";
 export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
