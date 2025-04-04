@@ -1,4 +1,3 @@
-import { BrokenImageRichIcon } from "@hopper-ui/icons";
 import { type ResponsiveProp, slot as slotFn, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import { filterDOMProps, mergeProps } from "@react-aria/utils";
 import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
@@ -8,10 +7,10 @@ import { Text, type TextSize } from "../../typography/Text/index.ts";
 import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
-import { RichIconAvatarImage } from "./RichIconAvatarImage.tsx";
 import { useImageFallback } from "./useImageFallback.ts";
 
 import styles from "./Avatar.module.css";
+import { BrokenAvatar } from "./BrokenAvatar.tsx";
 
 export const GlobalAvatarCssSelector = "hop-Avatar";
 export type AvatarSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
@@ -181,16 +180,14 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
 
     if (isBrokenImage) {
         return (
-            <RichIconAvatarImage
+            <BrokenAvatar
                 {...mergeProps(domProps, renderProps)}
                 aria-label={ariaLabel ?? name}
                 isDisabled={isDisabled}
                 ref={ref}
                 size={size}
                 slot={slot}
-            >
-                <BrokenImageRichIcon />
-            </RichIconAvatarImage>
+            />
         );
     }
 
