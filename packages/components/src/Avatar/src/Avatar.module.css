@@ -149,3 +149,16 @@
     object-fit: cover;
     mix-blend-mode: var(--mix-blend-mode);
 }
+
+.hop-Avatar__container {
+    display: flex;
+    gap: var(--hop-space-inset-sm);
+    align-items: center;
+    justify-content: center;
+}
+
+.hop-Avatar__container-name {
+
+}
+
+

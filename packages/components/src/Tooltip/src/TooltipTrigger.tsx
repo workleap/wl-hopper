@@ -1,5 +1,5 @@
 import { Div } from "@hopper-ui/styled-system";
-import { getOwnerWindow, isFocusable, mergeRefs } from "@react-aria/utils";
+import { getOwnerWindow, isFocusable, mergeProps, mergeRefs } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, useEffect, useState, version } from "react";
 import { useFocusable, useObjectRef } from "react-aria";
@@ -90,7 +90,7 @@ const FocusableTrigger = forwardRef(({ children, ...props }: TooltipTriggerProps
 
     if (!focusable) {
         // @ts-expect-error - set the objectRef as the ref
-        return <Div {...focusableProps} ref={objectRef} width="fit-content">{children}</Div>;
+        return <Div {...mergeProps(child.props, focusableProps)} ref={objectRef} width="fit-content">{children}</Div>;
     }
 
     return cloneElement(
