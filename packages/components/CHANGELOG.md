@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.7
+
+### Patch Changes
+
+- 0233be7: Now exporting the Broken Avatar
+
 ## 1.5.6
 
 ### Patch Changes
