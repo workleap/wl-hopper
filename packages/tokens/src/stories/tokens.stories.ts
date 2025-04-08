@@ -1,4 +1,4 @@
-import { hopperParameters, a11yParameters } from "@hopper-ui/storybook-addon";
+import { a11yParameters, hopperParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { List, type Style, type TokenType } from "./components/List.tsx";
@@ -10,7 +10,10 @@ const meta = {
     component: List,
     parameters: {
         ...hopperParameters({ disabled: true }), // the story handle their own color scheme
-        ...a11yParameters({ disable: true }) // Disable a11y rules as this only displays colors
+        ...a11yParameters({ disable: true }), // Disable a11y rules as this only displays colors
+        controls: {
+            exclude: ["styles"]
+        }
     }
 } satisfies Meta<typeof List>;
 
