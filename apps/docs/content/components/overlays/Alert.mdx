@@ -1,0 +1,91 @@
+---
+title: Alert
+description: An Alert is a “conversation” between the system and the user. It is prompted when the system needs input from the user or to give the user urgent information concerning their current workflow.
+category: "overlays"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/Alert/src/Alert.tsx
+---
+
+<Example src="Alert/docs/preview" isOpen />
+
+### Composed Components
+
+A `Alert` uses the following components:
+
+<ComposedComponents components={["Heading", "Content"]}/>
+
+## Usage
+
+### Default
+
+An alert must have a heading, some content and a primary button label.
+
+<Example src="Alert/docs/default" />
+
+### Secondary button
+
+An alert can have a secondary button.
+
+<Example src="Alert/docs/secondary" />
+
+### Cancel button
+
+An alert can have a cancel button.
+
+<Example src="Alert/docs/cancel" />
+
+### Disabled buttons
+
+An alert primary and secondary buttons can be disabled.
+
+<Example src="Alert/docs/disabled" />
+
+### Confirmation
+
+Use a confirmation alert when a non-destructive action is required from a user.
+
+<Example src="Alert/docs/confirmation" />
+
+### Destructive
+
+Use a destructive alert to confirm a permanent change, like deleting data.
+
+<Example src="Alert/docs/destructive" />
+
+### Not Dismissable
+
+An alert can be undismissable.
+
+<Example src="Alert/docs/undismissable" />
+
+### Controlled
+
+The open state can be handled in controlled mode.
+
+<Example src="Alert/docs/controlled" />
+
+### Sizes
+
+A Alert can be small, medium, large, extra-large, fullscreen or fullscreenTakeover. The default size is medium.
+
+<Example src="Alert/docs/sizes" />
+
+### Responsive sizes
+
+A Alert can have different size in mobile and desktop view.
+
+<Example src="Alert/docs/responsive-sizes" />
+
+## Props
+
+### Alert
+
+<PropTable component="Alert" />
+
+### AlertTrigger
+
+<PropTable component="AlertTrigger" />
+
+## Migration Notes
+
+<MigrateGuide src="Alert/docs/migration-notes" />

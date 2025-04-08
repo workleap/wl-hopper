@@ -1,0 +1,70 @@
+.hop-AlertOverlay {
+    --hop-AlertOverlay-isolation: isolate;
+    --hop-AlertOverlay-position: fixed;
+    --hop-AlertOverlay-inset: 0;
+    --hop-AlertOverlay-inset-block-start: 0;
+    --hop-AlertOverlay-inset-inline-start: 0;
+    --hop-AlertOverlay-overflow: hidden;
+    --hop-AlertOverlay-display: flex;
+    --hop-AlertOverlay-align-items: center;
+    --hop-AlertOverlay-justify-content: center;
+    --hop-AlertOverlay-inline-size: 100%;
+    --hop-AlertOverlay-block-size: 100%;
+    --hop-AlertOverlay-background-color: #3c3c3c99;
+    --hop-AlertOverlay-z-index: 10000;
+
+    /* Exiting */
+    --hop-AlertOverlay-exiting-opacity: 0;
+
+    isolation: var(--hop-AlertOverlay-isolation);
+    position: var(--hop-AlertOverlay-position);
+    z-index: var(--hop-AlertOverlay-z-index);
+    inset: var(--hop-AlertOverlay-inset);
+    inset-block-start: var(--hop-AlertOverlay-inset-block-start);
+    inset-inline-start: var(--hop-AlertOverlay-inset-inline-start);
+
+    overflow: var(--hop-AlertOverlay-overflow);
+    display: var(--hop-AlertOverlay-display);
+    align-items: var(--hop-AlertOverlay-align-items);
+    justify-content: var(--hop-AlertOverlay-justify-content);
+
+    inline-size: var(--hop-AlertOverlay-inline-size);
+    block-size: var(--hop-AlertOverlay-block-size);
+
+    /* hop-rock-800 with a 60% transparency */
+    background-color: var(--hop-AlertOverlay-background-color);
+
+    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
+}
+
+.hop-AlertOverlay__modal {
+    --hop-AlertOverlay__modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
+
+    /* Entering */
+    --hop-AlertOverlay__modal-entering-opacity: 0;
+    --hop-AlertOverlay__modal-entering-transform: translateY(1.25rem);
+
+    /* Exiting */
+    --hop-AlertOverlay__modal-exiting-opacity: 0;
+    --hop-AlertOverlay__modal-exiting-transition: opacity var(--hop-easing-duration-1) ease-in-out 0, transform var(--hop-easing-duration-1) ease-in-out 0;
+
+    transition: var(--hop-AlertOverlay__modal-transition);
+}
+
+.hop-AlertOverlay--entering {
+    opacity: var(--hop-AlertOverlay-entering-opacity);
+
+    .hop-AlertOverlay__modal {
+        transform: var(--hop-AlertOverlay__modal-entering-transform);
+        opacity: var(--hop-AlertOverlay__modal-entering-opacity);
+    }
+}
+
+.hop-AlertOverlay--exiting {
+    opacity: var(--hop-AlertOverlay-exiting-opacity);
+
+    .hop-AlertOverlay__modal {
+        opacity: var(--hop-AlertOverlay__modal-exiting-opacity);
+        transition: var(--hop-AlertOverlay__modal-exiting-transition);
+    }
+}
