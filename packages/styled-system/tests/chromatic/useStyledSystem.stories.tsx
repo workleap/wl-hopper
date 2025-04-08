@@ -1,4 +1,3 @@
-import { a11yParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Div, type DivProps } from "../../src/html-wrappers/html.ts";
@@ -14,8 +13,7 @@ const meta = {
             delay: 100,
             viewports: viewports
         },
-        controls: { hideNoControlsWarning: true },
-        ...a11yParameters({ disable: true })
+        controls: { hideNoControlsWarning: true }
     },
     args: {
         color: "core_samoyed",
