@@ -11,7 +11,7 @@ const meta = {
     component: Div,
     parameters: {
         chromatic: {
-            delay: 100,
+            delay: 1000,
             viewports: viewports
         },
         controls: {
