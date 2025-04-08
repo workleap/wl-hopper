@@ -14,7 +14,10 @@ const meta = {
             delay: 100,
             viewports: viewports
         },
-        controls: { hideNoControlsWarning: true },
+        controls: {
+            hideNoControlsWarning: true,
+            exclude: ["backgroundColor"]
+        },
         ...a11yParameters({ disable: true })
     },
     args: {
