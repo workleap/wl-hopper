@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.8
+
+### Patch Changes
+
+- 11ab82c: Add negative margins to Heading to make it appear more centered
+
 ## 1.5.7
 
 ### Patch Changes
