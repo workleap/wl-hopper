@@ -78,11 +78,11 @@
 }
 
 :where(.hop-Heading)::before {
-    margin-block-end: var(--bottom-offset);
+    margin-block-end: var(--top-offset);
 }
 
 :where(.hop-Heading)::after {
-    margin-block-start: var(--top-offset);
+    margin-block-start: var(--bottom-offset);
 }
 
 :where(.hop-Heading--xs) {
