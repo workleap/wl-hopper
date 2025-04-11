@@ -289,8 +289,14 @@ export const WithHref = {
     render: args => (
         <Tabs {...args} >
             <TabList>
-                <Tab id="red-eye-tree" href="https://www.google.com">
+                <Tab id="google" href="https://www.google.com">
                     Google
+                </Tab>
+                <Tab id="facebook" href="https://www.facebook.com">
+                    Facebook
+                </Tab>
+                <Tab id="amazon" href="https://www.amazon.com">
+                    Amazon
                 </Tab>
             </TabList>
         </Tabs>

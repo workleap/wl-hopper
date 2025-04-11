@@ -1,9 +1,12 @@
 import {
+    Badge,
     CloseButton,
     Content,
     CustomModal,
     Div,
     Heading,
+    Inline,
+    Tag,
     Text
 } from "@hopper-ui/components";
 import { hopperParameters } from "@hopper-ui/storybook-addon";
@@ -40,8 +43,12 @@ type Story = StoryObj<typeof meta>;
 export const Default = {
     render: args => (
         <CustomModal {...args}>
-            <CloseButton position="absolute" top="24px" right="24px" />
-            <Heading slot="title" paddingBottom="inset-lg">Fascinating Frog Facts!</Heading>
+            <CloseButton position="absolute" top="20px" right="24px" />
+            <Inline slot="title" paddingBottom="inset-lg" alignY="center">
+                <Heading>Fascinating Frog Facts!</Heading>
+                <Badge>NEW</Badge>
+                <Tag>This is a tag</Tag>
+            </Inline>
             <Content alignContent="center">
                 <Text> Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
             </Content>

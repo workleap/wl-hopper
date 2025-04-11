@@ -12,7 +12,7 @@
         "icon button dismiss";
     --hop-Callout-grid-template-columns: auto 1fr auto;
     --hop-Callout-margin-right-icon: var(--hop-space-inline-md);
-    --hop-Callout-margin-top-content: var(--hop-space-stack-xs);
+    --hop-Callout-margin-top-content: var(--hop-space-stack-sm);
     --hop-Callout-margin-top-button: var(--hop-space-stack-md);
 
     /* Heading */
