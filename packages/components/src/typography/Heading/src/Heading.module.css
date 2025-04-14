@@ -1,59 +1,37 @@
 .hop-Heading {
-    /* XS */
+    /** Component Tokens */
     --hop-Heading-xs-font-size: var(--hop-heading-xs-font-size);
     --hop-Heading-xs-font-family: var(--hop-heading-xs-font-family);
     --hop-Heading-xs-font-weight: var(--hop-heading-xs-font-weight);
     --hop-Heading-xs-line-height: var(--hop-heading-xs-line-height);
-    --hop-Heading-xs-top-offset: var(--hop-heading-xs-top-offset);
-    --hop-Heading-xs-bottom-offset: var(--hop-heading-xs-bottom-offset);
-
-    /* SM */
     --hop-Heading-sm-font-size: var(--hop-heading-sm-font-size);
     --hop-Heading-sm-font-family: var(--hop-heading-sm-font-family);
     --hop-Heading-sm-font-weight: var(--hop-heading-sm-font-weight);
     --hop-Heading-sm-line-height: var(--hop-heading-sm-line-height);
-    --hop-Heading-sm-top-offset: var(--hop-heading-sm-top-offset);
-    --hop-Heading-sm-bottom-offset: var(--hop-heading-sm-bottom-offset);
-
-    /* MD */
     --hop-Heading-md-font-size: var(--hop-heading-md-font-size);
     --hop-Heading-md-font-family: var(--hop-heading-md-font-family);
     --hop-Heading-md-font-weight: var(--hop-heading-md-font-weight);
     --hop-Heading-md-line-height: var(--hop-heading-md-line-height);
-    --hop-Heading-md-top-offset: var(--hop-heading-md-top-offset);
-    --hop-Heading-md-bottom-offset: var(--hop-heading-md-bottom-offset);
-
-    /* LG */
     --hop-Heading-lg-font-size: var(--hop-heading-lg-font-size);
     --hop-Heading-lg-font-family: var(--hop-heading-lg-font-family);
     --hop-Heading-lg-font-weight: var(--hop-heading-lg-font-weight);
     --hop-Heading-lg-line-height: var(--hop-heading-lg-line-height);
-    --hop-Heading-lg-top-offset: var(--hop-heading-lg-top-offset);
-    --hop-Heading-lg-bottom-offset: var(--hop-heading-lg-bottom-offset);
-
-    /* XL */
     --hop-Heading-xl-font-size: var(--hop-heading-xl-font-size);
     --hop-Heading-xl-font-family: var(--hop-heading-xl-font-family);
     --hop-Heading-xl-font-weight: var(--hop-heading-xl-font-weight);
     --hop-Heading-xl-line-height: var(--hop-heading-xl-line-height);
-    --hop-Heading-xl-top-offset: var(--hop-heading-xl-top-offset);
-    --hop-Heading-xl-bottom-offset: var(--hop-heading-xl-bottom-offset);
-
-    /* 2XL */
     --hop-Heading-2xl-font-size: var(--hop-heading-2xl-font-size);
     --hop-Heading-2xl-font-family: var(--hop-heading-2xl-font-family);
     --hop-Heading-2xl-font-weight: var(--hop-heading-2xl-font-weight);
     --hop-Heading-2xl-line-height: var(--hop-heading-2xl-line-height);
-    --hop-Heading-2xl-top-offset: var(--hop-heading-2xl-top-offset);
-    --hop-Heading-2xl-bottom-offset: var(--hop-heading-2xl-bottom-offset);
-
-    /* 3XL */
     --hop-Heading-3xl-font-size: var(--hop-heading-3xl-font-size);
     --hop-Heading-3xl-font-family: var(--hop-heading-3xl-font-family);
     --hop-Heading-3xl-font-weight: var(--hop-heading-3xl-font-weight);
     --hop-Heading-3xl-line-height: var(--hop-heading-3xl-line-height);
-    --hop-Heading-3xl-top-offset: var(--hop-heading-3xl-top-offset);
-    --hop-Heading-3xl-bottom-offset: var(--hop-heading-3xl-bottom-offset);
+    --hop-Heading-inherit-size-font-size: inherit;
+    --hop-Heading-inherit-size-font-family: inherit;
+    --hop-Heading-inherit-size-font-weight: inherit;
+    --hop-Heading-inherit-size-line-height: inherit;
 }
 
 :where(.hop-Heading) {
@@ -66,32 +44,11 @@
     color: var(--hop-neutral-text);
 }
 
-:where(.hop-Heading)::before,
-:where(.hop-Heading)::after {
-    content: '';
-
-    display: block;
-
-    box-sizing: border-box;
-    inline-size: 0;
-    block-size: 0;
-}
-
-:where(.hop-Heading)::before {
-    margin-block-end: var(--bottom-offset);
-}
-
-:where(.hop-Heading)::after {
-    margin-block-start: var(--top-offset);
-}
-
 :where(.hop-Heading--xs) {
     --font-size: var(--hop-Heading-xs-font-size);
     --font-family: var(--hop-Heading-xs-font-family);
     --font-weight: var(--hop-Heading-xs-font-weight);
     --line-height: var(--hop-Heading-xs-line-height);
-    --top-offset: var(--hop-Heading-xs-top-offset);
-    --bottom-offset: var(--hop-Heading-xs-bottom-offset);
 }
 
 :where(.hop-Heading--sm) {
@@ -99,8 +56,6 @@
     --font-family: var(--hop-Heading-sm-font-family);
     --font-weight: var(--hop-Heading-sm-font-weight);
     --line-height: var(--hop-Heading-sm-line-height);
-    --top-offset: var(--hop-Heading-sm-top-offset);
-    --bottom-offset: var(--hop-Heading-sm-bottom-offset);
 }
 
 :where(.hop-Heading--md) {
@@ -108,8 +63,6 @@
     --font-family: var(--hop-Heading-md-font-family);
     --font-weight: var(--hop-Heading-md-font-weight);
     --line-height: var(--hop-Heading-md-line-height);
-    --top-offset: var(--hop-Heading-md-top-offset);
-    --bottom-offset: var(--hop-Heading-md-bottom-offset);
 }
 
 :where(.hop-Heading--lg) {
@@ -117,8 +70,6 @@
     --font-family: var(--hop-Heading-lg-font-family);
     --font-weight: var(--hop-Heading-lg-font-weight);
     --line-height: var(--hop-Heading-lg-line-height);
-    --top-offset: var(--hop-Heading-lg-top-offset);
-    --bottom-offset: var(--hop-Heading-lg-bottom-offset);
 }
 
 :where(.hop-Heading--xl) {
@@ -126,8 +77,6 @@
     --font-family: var(--hop-Heading-xl-font-family);
     --font-weight: var(--hop-Heading-xl-font-weight);
     --line-height: var(--hop-Heading-xl-line-height);
-    --top-offset: var(--hop-Heading-xl-top-offset);
-    --bottom-offset: var(--hop-Heading-xl-bottom-offset);
 }
 
 :where(.hop-Heading--2xl) {
@@ -135,8 +84,6 @@
     --font-family: var(--hop-Heading-2xl-font-family);
     --font-weight: var(--hop-Heading-2xl-font-weight);
     --line-height: var(--hop-Heading-2xl-line-height);
-    --top-offset: var(--hop-Heading-2xl-top-offset);
-    --bottom-offset: var(--hop-Heading-2xl-bottom-offset);
 }
 
 :where(.hop-Heading--3xl) {
@@ -144,6 +91,4 @@
     --font-family: var(--hop-Heading-3xl-font-family);
     --font-weight: var(--hop-Heading-3xl-font-weight);
     --line-height: var(--hop-Heading-3xl-line-height);
-    --top-offset: var(--hop-Heading-3xl-top-offset);
-    --bottom-offset: var(--hop-Heading-3xl-bottom-offset);
 }

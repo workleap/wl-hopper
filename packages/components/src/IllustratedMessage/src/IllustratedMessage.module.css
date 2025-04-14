@@ -4,7 +4,7 @@
     --hop-IllustratedMessage-content-font-weight: var(--hop-body-md-font-weight);
     --hop-IllustratedMessage-content-line-height: var(--hop-body-md-line-height);
     --hop-IllustratedMessage-heading-margin-top: var(--hop-space-stack-md);
-    --hop-IllustratedMessage-content-margin-top: var(--hop-space-stack-md);
+    --hop-IllustratedMessage-content-margin-top: var(--hop-space-stack-sm);
     --hop-IllustratedMessage-buttons-margin-top: var(--hop-space-stack-md);
 
     /* Small */

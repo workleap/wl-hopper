@@ -75,7 +75,7 @@
                             "footer action"
                             / auto auto;
     --hop-Popover-column-gap: var(--hop-space-inset-sm);
-    --hop-Popover-row-gap: var(--hop-space-stack-md);
+    --hop-Popover-row-gap: var(--hop-space-stack-sm);
     --hop-Popover-dialog-padding: var(--hop-space-inset-md);
     --hop-Popover-dropdown-padding: 0;
     --hop-Popover-title-font-family: var(--hop-body-sm-font-family);

@@ -1,7 +1,6 @@
 import { a11yParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Stack } from "../../../../layout/index.ts";
 import { H1, H2, H3, H4, H5, H6, Heading } from "../../src/Heading.tsx";
 
 const meta = {
@@ -18,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: props => (
-        <Stack>
+        <>
             <Heading size="3xl" {...props} />
             <Heading size="2xl" {...props} />
             <Heading size="xl" {...props} />
@@ -26,7 +25,7 @@ export const Default = {
             <Heading {...props} />
             <Heading size="sm" {...props} />
             <Heading size="xs" {...props} />
-        </Stack>
+        </>
     )
 } satisfies Story;
 
@@ -43,23 +42,23 @@ export const Styling: Story = {
         ...a11yParameters({ disableContrastCheck: true })
     },
     render: props => (
-        <Stack>
+        <>
             <Heading border="warning" {...props} />
             <Heading className="bg-red" {...props} />
             <Heading style={{ backgroundColor: "red" }} {...props} />
-        </Stack>
+        </>
     )
 } satisfies Story;
 
 export const CreateHeading: Story = {
     render: props => (
-        <Stack>
+        <>
             <H1 {...props} size="3xl" />
             <H2 {...props} size="2xl" />
             <H3 {...props} size="xl" />
             <H4 {...props} size="lg" />
             <H5 {...props} size="sm" />
             <H6 {...props} size="xs" />
-        </Stack>
+        </>
     )
 } satisfies Story;
