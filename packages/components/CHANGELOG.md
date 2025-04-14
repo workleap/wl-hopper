@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.9
+
+### Patch Changes
+
+- 248cbeb: Revert changes to the Heading
+
 ## 1.5.8
 
 ### Patch Changes
