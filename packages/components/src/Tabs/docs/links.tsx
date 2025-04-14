@@ -1,4 +1,4 @@
-import { HopperProvider, Stack, Tab, TabList, Tabs, useColorSchemeContext } from "@hopper-ui/components";
+import { HopperProvider, Stack, Tab, TabList, Tabs } from "@hopper-ui/components";
 import { createMemoryRouter, RouterProvider, useLocation, useNavigate } from "react-router-dom";
 
 export default function App() {
@@ -43,10 +43,9 @@ export default function App() {
 function Example() {
     const navigate = useNavigate();
     const { pathname } = useLocation();
-    const { colorScheme } = useColorSchemeContext();
 
     return (
-        <HopperProvider colorScheme={colorScheme} navigate={navigate}>
+        <HopperProvider colorScheme="system" navigate={navigate}>
             <Tabs aria-label="Navigation" selectedKey={pathname}>
                 <TabList>
                     <Tab id="/" href="/">Home</Tab>

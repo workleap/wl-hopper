@@ -71,7 +71,7 @@
 
 .hop-Modal__close {
     position: absolute;
-    inset-block-start: calc(var(--hop-Modal-margin) - var(--hop-space-stack-xs));
+    inset-block-start: var(--hop-Modal-margin);
     inset-inline-end: var(--hop-Modal-margin);;
 }
 
