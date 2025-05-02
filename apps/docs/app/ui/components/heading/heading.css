@@ -17,22 +17,6 @@
     margin-inline: calc(var(--hd-space-1) * -1);
 }
 
-.hd-heading__banner {
-    background-color: var(--hd-color-neutral-surface-weak);
-    border: 0.125rem solid var(--hd-color-neutral-border-strong);
-    border-radius: var(--hd-border-radius-sm);
-    margin-block-end: var(--hd-space-4);
-    padding: var(--hd-space-2);
-}
-
-.hd-heading__banner-title {
-    font-weight: 600;
-}
-
-.hd-heading__banner-link {
-    text-decoration: underline;
-}
-
 .hd-heading__alpha {
     margin-block-end: var(--hd-space-2);
 }
