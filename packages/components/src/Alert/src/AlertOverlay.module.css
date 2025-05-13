@@ -51,20 +51,21 @@
     transition: var(--hop-AlertOverlay__modal-transition);
 }
 
-.hop-AlertOverlay--entering {
+.hop-AlertOverlay[data-entering] {
     opacity: var(--hop-AlertOverlay-entering-opacity);
-
-    .hop-AlertOverlay__modal {
-        transform: var(--hop-AlertOverlay__modal-entering-transform);
-        opacity: var(--hop-AlertOverlay__modal-entering-opacity);
-    }
 }
 
-.hop-AlertOverlay--exiting {
-    opacity: var(--hop-AlertOverlay-exiting-opacity);
+.hop-AlertOverlay[data-entering] .hop-AlertOverlay__modal {
+    transform: var(--hop-AlertOverlay__modal-entering-transform);
+    opacity: var(--hop-AlertOverlay__modal-entering-opacity);
+}
 
-    .hop-AlertOverlay__modal {
-        opacity: var(--hop-AlertOverlay__modal-exiting-opacity);
-        transition: var(--hop-AlertOverlay__modal-exiting-transition);
-    }
+
+.hop-AlertOverlay[data-exiting] {
+    opacity: var(--hop-AlertOverlay-exiting-opacity);
+}
+
+.hop-AlertOverlay[data-exiting] .hop-AlertOverlay__modal {
+    transform: var(--hop-AlertOverlay__modal-exiting-transform);
+    opacity: var(--hop-AlertOverlay__modal-exiting-opacity);
 }

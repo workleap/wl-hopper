@@ -1,7 +1,7 @@
 import { getRootCSSClasses, type StyledComponentProps, useColorSchemeContext, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { ModalOverlay, type ModalOverlayProps, type ModalRenderProps, Modal as RACModal } from "react-aria-components";
+import { ModalOverlay, type ModalOverlayProps, Modal as RACModal } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
@@ -23,13 +23,11 @@ const AlertOverlay = (props: AlertOverlayProps, ref: ForwardedRef<HTMLDivElement
     } = ownProps;
 
     const { colorScheme } = useColorSchemeContext();
-    const classNames = (renderProps: ModalRenderProps) => clsx(
+    const classNames = clsx(
         GlobalAlertOverlayCssSelector,
         cssModule(
             styles,
-            GlobalAlertOverlayCssSelector,
-            renderProps.isEntering && "entering",
-            renderProps.isExiting && "exiting"
+            GlobalAlertOverlayCssSelector
         ),
         getRootCSSClasses(colorScheme),
         stylingProps.className,

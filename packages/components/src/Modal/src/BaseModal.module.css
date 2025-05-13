@@ -103,22 +103,22 @@
     }
 }
 
-.hop-BaseModal--entering {
+.hop-BaseModal[data-entering] {
     opacity: var(--hop-BaseModal-entering-opacity);
-
-    .hop-BaseModal__modal {
-        transform: var(--hop-BaseModal__modal-entering-transform);
-        opacity: var(--hop-BaseModal__modal-entering-opacity);
-    }
 }
 
-.hop-BaseModal--exiting {
-    opacity: var(--hop-BaseModal-exiting-opacity);
+.hop-BaseModal[data-entering]  .hop-BaseModal__modal {
+    transform: var(--hop-BaseModal__modal-entering-transform);
+    opacity: var(--hop-BaseModal__modal-entering-opacity);
+}
 
-    .hop-BaseModal__modal {
-        opacity: var(--hop-BaseModal__modal-exiting-opacity);
-        transition: var(--hop-BaseModal__modal-exiting-transition);
-    }
+.hop-BaseModal[data-exiting] {
+    opacity: var(--hop-BaseModal-exiting-opacity);
+}
+
+.hop-BaseModal[data-exiting] .hop-BaseModal__modal {
+    opacity: var(--hop-BaseModal__modal-exiting-opacity);
+    transition: var(--hop-BaseModal__modal-exiting-transition);
 }
 
 .hop-BaseModal--sm .hop-BaseModal__modal {
