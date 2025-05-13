@@ -75,7 +75,7 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
     /**
      * Additional props to render on the wrapper element.
      */
-    wrapperProps?: Partial<AlertOverlayProps>;
+    overlayProps?: Partial<AlertOverlayProps>;
 }
 
 function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -99,7 +99,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         secondaryButtonDisabled,
         secondaryButtonLabel,
         variant = "confirmation",
-        wrapperProps,
+        overlayProps,
         ...otherProps
     } = ownProps;
 
@@ -139,7 +139,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             isDismissable={isDismissable}
             onOpenChange={onOpenChange}
             isKeyboardDismissDisabled={isDismissable}
-            {...wrapperProps}
+            {...overlayProps}
         >
             <Dialog
                 role="alertdialog"
