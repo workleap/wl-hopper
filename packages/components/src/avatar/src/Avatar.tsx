@@ -27,7 +27,7 @@ interface AvatarRenderProps {
 export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<AvatarRenderProps>, "children"> {
     /**
     * The src of the image to display if the image fails to load. If set to null, the initials will be displayed instead.
-    * * @default "BrokenImageRichIcon"
+    * @default "BrokenImageRichIcon"
     */
     fallbackSrc?: string | null;
     /**
@@ -44,7 +44,7 @@ export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omi
     name: string;
     /**
      * The size of the avatar.
-     * * @default "md"
+     * @default "md"
      */
     size?: ResponsiveProp<AvatarSize>;
     /**

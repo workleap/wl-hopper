@@ -1,0 +1,147 @@
+---
+title: Menu
+description: A menu offers a list of choices to the user, such as a set of actions or functions.
+category: "collections"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/menu/src/Menu.tsx
+    aria: https://www.w3.org/WAI/ARIA/apg/patterns/menu-button/
+---
+
+<Example src="menu/docs/Preview" isOpen />
+
+## Usage
+
+### Empty state
+
+A menu can have an empty state.
+
+<Example src="menu/docs/Empty" />
+
+### Sections
+
+A menu's items can be grouped by sections.
+
+<Example src="menu/docs/Sections" />
+
+### Dividers
+
+A menu's items can be separated by dividers.
+
+<Example src="menu/docs/Dividers" />
+
+### Item icons
+
+A menu item can have icons.
+
+<Example src="menu/docs/ItemIcon" />
+
+### Item end icon
+
+A select item can have non standard end icons can be provided to handle special cases like displaying a list of icons.
+However, think twice before adding end icons, start icons should be your go-to.
+
+<Example src="menu/docs/ItemEndIcon" />
+
+### Item description
+
+A menu item can have a description.
+
+<Example src="menu/docs/ItemDescription" />
+
+A description can be paired with an icon.
+
+<Example src="menu/docs/ItemDescriptionIcon" />
+
+A description can also be paired with an avatar.
+
+<Example src="menu/docs/ItemDescriptionAvatar" />
+
+### Disabled item
+
+A menu item can be disabled.
+
+<Example src="menu/docs/DisabledItem" />
+
+They can also be disabled using the `disabledKeys` prop on the `Menu` component.
+
+<Example src="menu/docs/DisabledKeys" />
+
+### Validation
+
+A menu can display a validation state to communicate to the user whether the current value is valid or invalid.
+Implement your own validation logic in your app and pass either "valid" or "invalid" to the menu via the validationState prop.
+
+<Callout variant="information">
+When using selection with a `<Menu>` component wraped inside a `<MenuTrigger>`, you must handled the selected keys in controlled mode with the selectedKeys property otherwise the selected keys {`won't`} be persisted through openings.
+</Callout>
+
+<Example src="menu/docs/Validation" />
+
+### Selection
+
+A menu supports multiple selection modes.
+By default, selection is disabled, however this can be changed by settings the selectionMode property to "single" or "multiple".
+
+<Example src="menu/docs/Selection" />
+
+### Custom Trigger
+
+A menu trigger can update is appareance based on the isOpen value by using a controlled state.
+
+Any trigger would work as long as it accepts a ref and any other props provided by the menu.
+
+<Example src="menu/docs/CustomTrigger" />
+
+### Dynamic items
+
+A menu items can be rendered dynamically.
+
+<Example src="menu/docs/DynamicItems" />
+
+### Controlled
+
+The `selectedKey` and `open` state can be handled in controlled mode.
+
+<Example src="menu/docs/Controlled" />
+
+### Opening a modal
+
+A ModalTrigger component won't work with a menu item. Still, it can be done with a custom modal trigger.
+
+<Example src="menu/docs/OpeningModal" />
+
+### Submenu
+
+A menu can have submenus, which are menus that open when hovering or clicking on a menu item.
+
+<Example src="menu/docs/Submenu" />
+
+## Props
+
+### MenuTrigger
+
+<PropTable component="MenuTrigger" />
+
+### Menu
+
+<PropTable component="Menu" />
+
+### MenuItem
+
+<PropTable component="MenuItem" />
+
+### MenuSection
+
+<PropTable component="MenuSection" />
+
+### Divider
+
+<PropTable component="Divider" />
+
+### SubmenuTrigger
+
+<PropTable component="SubmenuTrigger" />
+
+## Migration Notes
+
+<MigrateGuide src="menu/docs/migration-notes" />

@@ -1,0 +1,59 @@
+.hop-Menu  {
+    --hop-Menu-border-size: 0.0625rem;
+    --hop-Menu-overflow-y: auto;
+    --hop-Menu-inline-size: max-content;
+    --hop-Menu-min-inline-size: 12.5rem;
+    --hop-Menu-max-inline-size: 20rem;
+    --hop-Menu-block-size: max-content;
+    --hop-Menu-margin: 0;
+    --hop-Menu-padding: var(--hop-space-inset-sm);
+    --hop-Menu-list-style-type: none;
+    --hop-Menu-background-color: var(--hop-neutral-surface);
+    --hop-Menu-border: var(--hop-Menu-border-size) solid var(--hop-neutral-border-weak);
+    --hop-Menu-border-radius: var(--hop-shape-rounded-md);
+    --hop-Menu-box-shadow: var(--hop-elevation-lifted);
+
+    overflow-y: var(--hop-Menu-overflow-y);
+
+    inline-size: var(--hop-Menu-inline-size);
+    min-inline-size: var(--hop-Menu-min-inline-size);
+    max-inline-size: var(--hop-Menu-max-inline-size);
+    block-size: var(--hop-Menu-block-size);
+    margin: var(--hop-Menu-margin);
+    padding: var(--hop-Menu-padding);
+
+    list-style-type: var(--hop-Menu-list-style-type);
+
+    background-color: var(--hop-Menu-background-color);
+    border: var(--hop-Menu-border);
+    border-radius: var(--hop-Menu-border-radius);
+    outline: none;
+    box-shadow: var(--hop-Menu-box-shadow);
+}
+
+.hop-Menu__header {
+    --hop-Menu-header-cursor: default;
+    --hop-Menu-header-display: flex;
+    --hop-Menu-header-align-items: center;
+    --hop-Menu-header-block-size: 2rem;
+    --hop-Menu-header-padding-inline: var(--hop-space-inset-md);
+    --hop-Menu-header-font-size: var(--hop-body-xs-medium-font-size);
+    --hop-Menu-header-font-weight: var(--hop-body-xs-medium-font-weight);
+    --hop-Menu-header-line-height: var(--hop-body-xs-medium-line-height);
+    --hop-Menu-header-color: var(--hop-neutral-text-disabled);
+    --hop-Menu-header-text-transform: uppercase;
+
+    cursor: var(--hop-Menu-header-cursor);
+
+    display: var(--hop-Menu-header-display);
+    align-items: var(--hop-Menu-header-align-items);
+
+    block-size: var(--hop-Menu-header-block-size);
+    padding-inline: var(--hop-Menu-header-padding-inline);
+
+    font-size: var(--hop-Menu-header-font-size);
+    font-weight: var(--hop-Menu-header-font-weight);
+    line-height: var(--hop-Menu-header-line-height);
+    color: var(--hop-Menu-header-color);
+    text-transform: var(--hop-Menu-header-text-transform);
+}
