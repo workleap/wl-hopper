@@ -92,14 +92,6 @@ export const FocusOnSecondaryButton = {
     }
 } satisfies Story;
 
-export const Mobile = {
-    ...Default,
-    args: {
-        size: "mobile",
-        cancelButtonLabel: "Cancel"
-    }
-} satisfies Story;
-
 export const Small = {
     ...Default,
     args: {

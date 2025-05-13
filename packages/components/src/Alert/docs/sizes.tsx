@@ -15,7 +15,6 @@ export default function Example() {
 
     return (
         <Stack gap="stack-md">
-            {alert("mobile")}
             {alert("sm")}
             {alert("md")}
         </Stack>

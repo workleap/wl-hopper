@@ -8,9 +8,8 @@ export default function Example() {
                 primaryButtonLabel="Leap ahead!"
                 cancelButtonLabel="Cancel"
                 size={{
-                    base: "mobile",
-                    sm: "sm",
-                    md: "md"
+                    xs: "sm",
+                    sm: "md"
                 }}
             >
                 <Heading>Ribbit Reminder!</Heading>

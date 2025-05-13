@@ -6,11 +6,11 @@ import { composeRenderProps, Dialog, type DialogProps, Provider, useContextProps
 
 import { Button, ButtonGroup, CloseButton } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
+import { BaseModal, type BaseModalProps } from "../../Modal/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
 import { cssModule } from "../../utils/index.ts";
 
 import { AlertContext } from "./AlertContext.ts";
-import { AlertOverlay, type AlertOverlayProps } from "./AlertOverlay.tsx";
 
 import styles from "./Alert.module.css";
 
@@ -71,11 +71,11 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * The size of the Alert.
      * @default "md"
      */
-    size?: ResponsiveProp<"mobile" | "sm" | "md">;
+    size?: ResponsiveProp<"sm" | "md">;
     /**
      * Additional props to render on the wrapper element.
      */
-    overlayProps?: Partial<AlertOverlayProps>;
+    overlayProps?: Partial<BaseModalProps>;
 }
 
 function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -110,8 +110,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         cssModule(
             styles,
             GlobalAlertCssSelector,
-            variant,
-            size
+            variant
         ),
         stylingProps.className,
         className
@@ -132,10 +131,10 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         }
     };
 
-    const isButtonGroupFluid = size === "mobile";
-
     return (
-        <AlertOverlay
+        <BaseModal
+            size={size}
+            className={styles["hop-Alert__wrapper"]}
             isDismissable={isDismissable}
             onOpenChange={onOpenChange}
             isKeyboardDismissDisabled={isDismissable}
@@ -166,7 +165,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                         >
                             {children(renderProps)}
                         </Provider>
-                        <ButtonGroup align="end" isFluid={isButtonGroupFluid} className={styles["hop-Alert__button-group"]}>
+                        <ButtonGroup align="end" className={styles["hop-Alert__button-group"]}>
                             {cancelButtonLabel &&
                                 <Button
                                     onPress={() => chain(renderProps.close(), onCancelButtonClick?.())}
@@ -198,7 +197,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                     </>
                 )}
             </Dialog>
-        </AlertOverlay>
+        </BaseModal>
     );
 }
 
