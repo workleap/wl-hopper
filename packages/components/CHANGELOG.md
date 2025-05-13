@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.10
+
+### Patch Changes
+
+- 153b62c: Add the Alert component
+
 ## 1.5.9
 
 ### Patch Changes
