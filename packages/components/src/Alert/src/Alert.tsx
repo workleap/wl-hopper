@@ -134,7 +134,6 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
     return (
         <BaseModal
             size={size}
-            className={styles["hop-Alert__wrapper"]}
             isDismissable={isDismissable}
             onOpenChange={onOpenChange}
             isKeyboardDismissDisabled={isDismissable}

@@ -3,6 +3,7 @@
     --hop-Alert-max-block-size: 90vh;
     --hop-Alert-background: var(--hop-neutral-surface);
     --hop-Alert-border-radius: var(--hop-shape-rounded-md);
+    --hop-Alert-outline: none;
     --hop-Alert-display: grid;
     --hop-Alert-grid-template:
         "heading close" auto
@@ -30,6 +31,7 @@
 
     background: var(--hop-Alert-background);
     border-radius: var(--border-radius);
+    outline: var(--hop-Alert-outline);
 }
 
 .hop-Alert__button-group {
