@@ -1,0 +1,9 @@
+.hop-MenuSection  {
+    box-sizing: border-box;
+    inline-size: 100%;
+    outline: none;
+}
+
+.hop-MenuSection[data-focus-visible] {
+    outline: var(--hop-space-20) solid var(--hop-primary-border-focus)
+}
