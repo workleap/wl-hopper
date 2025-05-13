@@ -87,7 +87,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         style,
         slot,
         size: sizeProp,
-        autoFocusButton = "primary",
+        autoFocusButton,
         cancelButtonLabel,
         isDismissable = true,
         onCancelButtonClick,
