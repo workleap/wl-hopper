@@ -1,3 +1,4 @@
+export * from "./BaseModal.tsx";
 export * from "./CustomModal.tsx";
 export * from "./CustomModalContext.ts";
 export * from "./Modal.tsx";

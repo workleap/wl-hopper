@@ -13,7 +13,7 @@
         "footer footer buttons" auto
         / auto auto auto;
 
-        /* Content */
+    /* Content */
     --hop-Modal-content-font-size: var(--hop-body-sm-font-size);
     --hop-Modal-content-font-family: var(--hop-body-sm-font-family);
     --hop-Modal-content-font-weight: var(--hop-body-sm-font-weight);

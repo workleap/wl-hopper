@@ -1031,6 +1031,39 @@ export const Previews: Record<string, Preview> = {
     "Tabs/docs/links": {
         component: lazy(() => import("@/../../packages/components/src/Tabs/docs/links.tsx"))
     },
+    "Alert/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/preview.tsx"))
+    },
+    "Alert/docs/default": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/default.tsx"))
+    },
+    "Alert/docs/secondary": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/secondary.tsx"))
+    },
+    "Alert/docs/cancel": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/cancel.tsx"))
+    },
+    "Alert/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/disabled.tsx"))
+    },
+    "Alert/docs/confirmation": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/confirmation.tsx"))
+    },
+    "Alert/docs/destructive": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/destructive.tsx"))
+    },
+    "Alert/docs/undismissable": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/undismissable.tsx"))
+    },
+    "Alert/docs/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/controlled.tsx"))
+    },
+    "Alert/docs/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/sizes.tsx"))
+    },
+    "Alert/docs/responsive-sizes": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/responsive-sizes.tsx"))
+    },
     "Modal/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Modal/docs/preview.tsx"))
     },

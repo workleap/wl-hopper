@@ -1,0 +1,89 @@
+.hop-Alert  {
+    --hop-Alert-max-inline-size: 90vw;
+    --hop-Alert-max-block-size: 90vh;
+    --hop-Alert-background: var(--hop-neutral-surface);
+    --hop-Alert-border-radius: var(--hop-shape-rounded-md);
+    --hop-Alert-outline: none;
+    --hop-Alert-display: grid;
+    --hop-Alert-grid-template:
+        "heading close" auto
+        "content content" auto
+        "buttons buttons" auto
+        / 1fr auto;
+
+    /* Mobile */
+    --hop-Alert-mobile-width: calc(28.75rem - 2 * var(--hop-space-inset-md));
+    --hop-Alert-mobile-padding: var(--hop-space-inset-md);
+
+    /* Internal variables */
+    --border-radius: var(--hop-Alert-border-radius);
+    --max-inline-size: var(--hop-Alert-max-inline-size);
+    --max-block-size: var(--hop-Alert-max-block-size);
+    --grid-template: var(--hop-Alert-grid-template);
+
+    display: var(--hop-Alert-display);
+    grid-template: var(--grid-template);
+
+    max-inline-size: var(--max-inline-size);
+    block-size: var(--height);
+    max-block-size: var(--max-block-size);
+    padding: var(--padding, var(--hop-space-inset-lg));
+
+    background: var(--hop-Alert-background);
+    border-radius: var(--border-radius);
+    outline: var(--hop-Alert-outline);
+}
+
+.hop-Alert__button-group {
+    --hop-Alert_button-group-margin-top: var(--hop-space-stack-xl);
+
+    grid-area: buttons;
+    inline-size: 100%;
+    margin-block-start: var(--hop-Alert_button-group-margin-top);
+}
+
+.hop-Alert__button-group > button {
+    flex-grow: 1;
+    max-inline-size: 50%;
+}
+
+/* 460px (width) + 32px (padding) */
+ @media screen and (max-width: 30.75rem) {
+    .hop-Alert {
+        --width: var(--hop-Alert-mobile-width);
+        --padding: var(--hop-Alert-mobile-padding);
+        --hop-Alert-grid-template:
+            "close" auto
+            "heading" auto
+            "content" auto
+            "buttons" auto
+            / 1fr;
+    }
+
+    .hop-Alert__button-group {
+        inline-size: 100%;
+    }
+
+    .hop-Alert__button-group > button {
+        inline-size: 100%;
+        max-inline-size: unset;
+    }
+}
+
+.hop-Alert__heading {
+    grid-area: heading;
+}
+
+.hop-Alert__close {
+    --hop-Alert-close-justify-self: end;
+
+    grid-area: close;
+    justify-self: var(--hop-Alert-close-justify-self);
+}
+
+.hop-Alert__content {
+    --hop-Alert__content-margin-top: var(--hop-space-stack-md);
+
+    grid-area: content;
+    margin-block-start: var(--hop-Alert__content-margin-top);
+}
