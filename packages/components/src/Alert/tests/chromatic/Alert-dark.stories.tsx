@@ -9,6 +9,16 @@ import { Heading } from "../../../typography/index.ts";
 import { Alert } from "../../src/Alert.tsx";
 import { AlertTrigger } from "../../src/AlertTrigger.tsx";
 
+const viewports = {
+    mobile: {
+        name: "Mobile",
+        styles: {
+            width: "375px",
+            height: "667px"
+        }
+    }
+};
+
 const meta = {
     title: "Components/Alert/dark",
     component: Alert,
@@ -18,7 +28,6 @@ const meta = {
     decorators: [
         Story => (
             <Div
-                width="100%"
                 // Important for chromatic tests.
                 UNSAFE_minHeight="800px"
             >
@@ -89,6 +98,20 @@ export const FocusOnSecondaryButton = {
     args: {
         autoFocusButton: "secondary",
         secondaryButtonLabel: "Leap back"
+    }
+} satisfies Story;
+
+export const Mobile = {
+    ...Default,
+    parameters: {
+        ...meta.parameters,
+        viewport: {
+            viewports: viewports,
+            defaultViewport: "mobile"
+        }
+    },
+    args: {
+        cancelButtonLabel: "Cancel"
     }
 } satisfies Story;
 
