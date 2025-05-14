@@ -52,7 +52,7 @@ export const Upsell = {
 
 export const WithClose = {
     args: {
-        onClose: () => alert("Closed")
+        onClose: () => {}
     }
 } satisfies Story;
 
@@ -69,7 +69,7 @@ export const WithCta = {
 
 export const WithButtonAndCta = {
     args: {
-        onClose: () => alert("Closed"),
+        onClose: () => {},
         children: (
             <>
                 <Content>Callout content</Content>
@@ -81,7 +81,7 @@ export const WithButtonAndCta = {
 
 export const WithLinkButtonAndCta = {
     args: {
-        onClose: () => alert("Closed"),
+        onClose: () => {},
         children: (
             <>
                 <Content>Callout content</Content>
@@ -104,7 +104,7 @@ export const WithLink = {
 
 export const WithButtonAndLink = {
     args: {
-        onClose: () => alert("Closed"),
+        onClose: () => {},
         children: (
             <>
                 <Content>Callout content</Content>
