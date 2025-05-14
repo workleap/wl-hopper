@@ -5,19 +5,19 @@ export default function Example() {
         <Stack>
             <CompactCallout>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button  size="sm">Undo</Button>
+                <Button size="sm">Undo</Button>
             </CompactCallout>
             <CompactCallout variant="success">
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button  size="sm">Undo</Button>
+                <Button size="sm">Undo</Button>
             </CompactCallout>
             <CompactCallout variant="warning">
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button  size="sm">Undo</Button>
+                <Button size="sm">Undo</Button>
             </CompactCallout>
             <CompactCallout>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button  size="sm">Undo</Button>
+                <Button size="sm">Undo</Button>
             </CompactCallout>
         </Stack>
     );
