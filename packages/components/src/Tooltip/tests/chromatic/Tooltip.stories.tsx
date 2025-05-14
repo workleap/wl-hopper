@@ -244,7 +244,6 @@ export const TooltipSpinner = {
     )
 } satisfies Story;
 
-
 export const TooltipOnAvatar = {
     render: args => (
         <TooltipTrigger isOpen>

@@ -102,7 +102,8 @@ const FocusableTrigger = forwardRef(({ children, ...props }: TooltipTriggerProps
     );
 });
 
-function isTriggerDisabled(child: ReactElement) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isTriggerDisabled(child: ReactElement<any>) {
     return child.props.disabled || child.props.isDisabled;
 }
 
