@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.11
+
+### Patch Changes
+
+- 9f32d29: Fixed Callout to support LinkButton in addition to buttons
+
 ## 1.5.10
 
 ### Patch Changes
