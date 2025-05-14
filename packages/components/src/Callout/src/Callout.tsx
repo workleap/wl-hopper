@@ -104,10 +104,12 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
                         className: styles["hop-Callout__content"]
                     }],
                     [LinkButtonContext, {
-                        className: styles["hop-Callout__button"]
+                        className: styles["hop-Callout__button"],
+                        variant: "secondary"
                     }],
                     [ButtonContext, {
-                        className: styles["hop-Callout__button"]
+                        className: styles["hop-Callout__button"],
+                        variant: "secondary"
                     }],
                     [RichIconContext, {
                         className: styles["hop-Callout__icon"],

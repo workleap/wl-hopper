@@ -4,7 +4,7 @@ export default function Example() {
     return (
         <CompactCallout>
             <Content>You have selected to automatically invite users when they are created.</Content>
-            <Button variant="secondary" size="sm">Undo</Button>
+            <Button size="sm">Undo</Button>
         </CompactCallout>
     );
 }

@@ -6,22 +6,22 @@ export default function Example() {
             <Callout onClose={() => alert("Closed")}>
                 <Heading>New users will be automatically invited</Heading>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button variant="secondary">Undo</Button>
+                <Button >Undo</Button>
             </Callout>
             <Callout onClose={() => alert("Closed")} variant="success">
                 <Heading>New users will be automatically invited</Heading>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button variant="secondary">Undo</Button>
+                <Button >Undo</Button>
             </Callout>
             <Callout onClose={() => alert("Closed")} variant="warning">
                 <Heading>New users will be automatically invited</Heading>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button variant="secondary">Undo</Button>
+                <Button >Undo</Button>
             </Callout>
             <Callout onClose={() => alert("Closed")} variant="upsell">
                 <Heading>New users will be automatically invited</Heading>
                 <Content>You have selected to automatically invite users when they are created.</Content>
-                <Button variant="secondary">Undo</Button>
+                <Button >Undo</Button>
             </Callout>
         </Stack>
 

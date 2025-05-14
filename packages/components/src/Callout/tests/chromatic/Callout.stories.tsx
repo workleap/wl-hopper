@@ -114,7 +114,7 @@ export const CustomRichIcon = {
             <IdeaRichIcon />
             <Heading>Callout title</Heading>
             <Content>Callout content</Content>
-            <Button variant="secondary">Label</Button>
+            <Button>Label</Button>
         </Callout>
     )
 } satisfies Story;
