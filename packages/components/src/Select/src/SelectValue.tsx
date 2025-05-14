@@ -1,6 +1,5 @@
 import { IconContext } from "@hopper-ui/icons";
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
-import { filterDOMProps } from "@react-aria/utils";
 import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent, useContext, useRef } from "react";
 import {
     composeRenderProps,
@@ -87,13 +86,11 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
         }
     });
 
-    const DOMProps = filterDOMProps(ownProps);
-
     return (
         <ClearContainerSlots>
             <Text
                 ref={ref}
-                {...DOMProps}
+                {...ownProps}
                 {...renderProps}
                 size={size}
                 title={isOverflow ? textValue : undefined}

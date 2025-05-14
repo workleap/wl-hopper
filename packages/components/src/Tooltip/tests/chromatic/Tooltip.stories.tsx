@@ -1,12 +1,19 @@
 import { SparklesIcon } from "@hopper-ui/icons";
+import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Avatar } from "../../../Avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";
+import { TextField } from "../../../inputs/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";
 import { Link } from "../../../Link/index.ts";
+import { Select } from "../../../Select/index.ts";
+import { Spinner } from "../../../Spinner/index.ts";
 import { Tab, TabList, Tabs } from "../../../Tabs/index.ts";
 import { Tag, TagGroup } from "../../../tag/index.ts";
 import { H1 } from "../../../typography/Heading/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { Tooltip } from "../../src/Tooltip.tsx";
 import { TooltipTrigger } from "../../src/TooltipTrigger.tsx";
 
@@ -18,6 +25,9 @@ const meta = {
     component: Tooltip,
     args: {
         children: childrenText
+    },
+    parameters: {
+        ...hopperParameters({ colorSchemes: ["light"] })
     },
     decorators: [
         (Story, context) => {
@@ -114,11 +124,21 @@ export const LinkTrigger = {
     )
 } satisfies Story;
 
+export const DOMTrigger = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <button type="button">{buttonText}</button>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
+
+
 export const IconTrigger = {
     render: function Render(args) {
         return (
             <TooltipTrigger isOpen>
-                <SparklesIcon role="button" tabIndex={0} />
+                <SparklesIcon />
                 <Tooltip {...args} />
             </TooltipTrigger>
         );
@@ -159,6 +179,15 @@ export const DisabledTrigger = {
     )
 } satisfies Story;
 
+export const DisabledDOMTrigger = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <button type="button" disabled>{buttonText}</button>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
+
 export const TooltipInTabs = {
     render: args => (
         <Tabs aria-label="frogs">
@@ -184,5 +213,84 @@ export const TooltipInTagGroups = {
             </TooltipTrigger>
             <Tag id="3">Tag 3</Tag>
         </TagGroup>
+    )
+} satisfies Story;
+
+export const TooltipEllipsis = {
+    render: args => (
+        <Div UNSAFE_width="100px">
+            <TooltipTrigger isOpen>
+                <Text
+                    display="block"
+                    overflow="hidden"
+                    whiteSpace="nowrap"
+                    textOverflow="ellipsis"
+                    size="sm"
+                >
+                    Super long text that is going to be ellipsed
+                </Text>
+                <Tooltip {...args} />
+            </TooltipTrigger>
+        </Div>
+    )
+} satisfies Story;
+
+export const TooltipSpinner = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Div><Spinner aria-label="in progress" /></Div>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
+
+
+export const TooltipOnAvatar = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Avatar name="Alexandre Asselin" />
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
+
+export const TooltipOnField = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <TextField
+                isFluid
+                label="Deactivated by member ID:"
+                placeholder="00000000-0000-0000-0000-000000000000"
+                isReadOnly
+            />
+            <Tooltip {...args} />
+        </TooltipTrigger>
+
+    )
+} satisfies Story;
+
+export const TooltipOnStandaloneTag = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Tag
+                maxWidth="100%"
+                size="sm"
+            >
+                    alexandre.asselin@workleap.com
+            </Tag>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+
+    )
+} satisfies Story;
+
+export const TooltipOnSelect = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Select isDisabled width="100%" maxWidth="100%">
+                {null}
+            </Select>
+            <Tooltip {...args} />
+        </TooltipTrigger>
     )
 } satisfies Story;

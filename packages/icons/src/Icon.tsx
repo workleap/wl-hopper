@@ -1,5 +1,4 @@
 import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ElementType, type RefAttributes, type SVGProps } from "react";
 import { useContextProps, type SlotProps } from "react-aria-components";
@@ -78,9 +77,9 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
         <As
             ref={ref}
             style={mergedStyles}
-            {...filterDOMProps(otherProps)}
             focusable="false"
             role="img"
+            {...otherProps}
             aria-label={ariaLabel}
             aria-hidden={(ariaLabel ? (ariaHidden || undefined) : true)}
             className={classNames}
