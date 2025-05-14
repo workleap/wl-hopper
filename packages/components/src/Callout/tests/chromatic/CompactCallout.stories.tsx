@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "../../../buttons/index.ts";
+import { Button, LinkButton } from "../../../buttons/index.ts";
 import { Content } from "../../../layout/index.ts";
 import { Link } from "../../../Link/index.ts";
 import { CompactCallout } from "../../src/index.ts";
@@ -74,6 +74,18 @@ export const WithButtonAndCta = {
             <>
                 <Content>Callout content</Content>
                 <Button>Label</Button>
+            </>
+        )
+    }
+} satisfies Story;
+
+export const WithLinkButtonAndCta = {
+    args: {
+        onClose: () => alert("Closed"),
+        children: (
+            <>
+                <Content>Callout content</Content>
+                <LinkButton>Label</LinkButton>
             </>
         )
     }

@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { DEFAULT_SLOT, useContextProps } from "react-aria-components";
 
-import { ButtonContext, CloseButton } from "../../buttons/index.ts";
+import { ButtonContext, CloseButton, LinkButtonContext } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { LinkContext } from "../../Link/index.ts";
 import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
@@ -76,6 +76,12 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
                             }
                         }
                     }],
+                    [LinkButtonContext, {
+                        className: styles["hop-CompactCallout__button"],
+                        variant: "secondary",
+                        size: "sm"
+                    }],
+
                     [LinkContext, {
                         className: styles["hop-CompactCallout__link"],
                         variant: "secondary",

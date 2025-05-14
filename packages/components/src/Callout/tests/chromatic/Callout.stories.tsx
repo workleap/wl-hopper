@@ -1,7 +1,7 @@
 import { IdeaRichIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Button } from "../../../buttons/index.ts";
+import { Button, LinkButton } from "../../../buttons/index.ts";
 import { Content } from "../../../layout/index.ts";
 import { Heading } from "../../../typography/index.ts";
 import { Callout } from "../../src/Callout.tsx";
@@ -90,9 +90,22 @@ export const WithCta = {
         <Callout {...props}>
             <Heading>Callout title</Heading>
             <Content>Callout content</Content>
-            <Button variant="secondary">Label</Button>
+            <Button>Label</Button>
         </Callout>
     )
+} satisfies Story;
+
+export const WithLinkButtonAndCta = {
+    args: {
+        onClose: () => alert("Closed"),
+        children: (
+            <>
+                <Heading>Callout title</Heading>
+                <Content>Callout content</Content>
+                <LinkButton>Label</LinkButton>
+            </>
+        )
+    }
 } satisfies Story;
 
 export const CustomRichIcon = {
