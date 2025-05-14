@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { forwardRef, useMemo, type CSSProperties, type ForwardedRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { ButtonContext, CloseButton } from "../../buttons/index.ts";
+import { ButtonContext, CloseButton, LinkButtonContext } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
 import { cssModule, SlotProvider, useSlot, type BaseComponentDOMProps } from "../../utils/index.ts";
@@ -103,8 +103,13 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
                     [ContentContext, {
                         className: styles["hop-Callout__content"]
                     }],
+                    [LinkButtonContext, {
+                        className: styles["hop-Callout__button"],
+                        variant: "secondary"
+                    }],
                     [ButtonContext, {
-                        className: styles["hop-Callout__button"]
+                        className: styles["hop-Callout__button"],
+                        variant: "secondary"
                     }],
                     [RichIconContext, {
                         className: styles["hop-Callout__icon"],
