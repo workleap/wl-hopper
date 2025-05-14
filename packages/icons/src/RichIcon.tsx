@@ -54,6 +54,7 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
         className,
         "aria-label": ariaLabel,
         "aria-hidden": ariaHidden,
+        slot,
         ...otherProps
     } = ownProps;
 
@@ -86,6 +87,7 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
         <As
             ref={ref}
             style={mergedStyles}
+            data-slot={slot}
             {...otherProps}
             focusable="false"
             role="img"

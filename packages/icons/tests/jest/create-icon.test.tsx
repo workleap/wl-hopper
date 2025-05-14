@@ -54,6 +54,7 @@ describe("create-icon", () => {
 
         const element = screen.getByRole("img", { hidden: true });
         expect(element).not.toHaveAttribute("slot", "test"); // svg doesn't have slot attribute
+        expect(element).toHaveAttribute("data-slot", "test");
         expect(element).toHaveAttribute("aria-label", "test");
     });
 

@@ -46,6 +46,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
         className,
         "aria-label": ariaLabel,
         "aria-hidden": ariaHidden,
+        slot,
         ...otherProps
     } = ownProps;
 
@@ -76,6 +77,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
     return (
         <As
             ref={ref}
+            data-slot={slot}
             style={mergedStyles}
             focusable="false"
             role="img"
