@@ -127,19 +127,9 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
     });
 
     const handleOnPrimaryButtonClick = async() => {
-        if (!onPrimaryButtonClick) {
-            return;
-        }
-
-        if (onPrimaryButtonClick.constructor.name !== "AsyncFunction") {
-            onPrimaryButtonClick();
-
-            return;
-        }
-
         setIsPrimaryButtonLoading(true);
 
-        await onPrimaryButtonClick();
+        await onPrimaryButtonClick?.();
 
         setIsPrimaryButtonLoading(false);
     };
