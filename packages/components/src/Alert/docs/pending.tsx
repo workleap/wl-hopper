@@ -1,25 +1,16 @@
 import { Alert, AlertTrigger, Button, Content, Heading } from "@hopper-ui/components";
-import { useState } from "react";
+import { useCallback } from "react";
 
 export default function Example() {
-    const [isOpen, setIsOpen] = useState(false);
-
-    const onClose = () => {
-        setIsOpen(false);
-    };
-
-    const handlePrimaryButtonClick = async() => {
+    const handlePrimaryButtonClick = useCallback(async() => {
         await new Promise(resolve => setTimeout(resolve, 3000));
-        setIsOpen(false);
-    };
+    }, []);
 
     return (
-        <AlertTrigger isOpen={isOpen}>
-            <Button variant="secondary" onPress={() => setIsOpen(true)}>Open</Button>
+        <AlertTrigger>
+            <Button variant="secondary">Open</Button>
             <Alert
-                onClose={onClose}
                 onPrimaryButtonClick={handlePrimaryButtonClick}
-                onCancelButtonClick={onClose}
                 primaryButtonLabel="Leap ahead!"
                 cancelButtonLabel="Cancel"
             >

@@ -126,12 +126,13 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         return prev;
     });
 
-    const handleOnPrimaryButtonClick = async() => {
+    const handleOnPrimaryButtonClick = async(close: () => void) => {
         setIsPrimaryButtonLoading(true);
 
         await onPrimaryButtonClick?.();
 
         setIsPrimaryButtonLoading(false);
+        close();
     };
 
     return (
@@ -175,7 +176,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                         <ButtonGroup align="end" className={styles["hop-Alert__button-group"]}>
                             {cancelButtonLabel &&
                                 <Button
-                                    onPress={() => chain(renderProps.close(), onCancelButtonClick?.())}
+                                    onPress={() => chain(onCancelButtonClick?.(), renderProps.close())}
                                     variant="secondary"
                                     isDisabled={isPrimaryButtonLoading}
                                     autoFocus={autoFocusButton === "cancel"}
@@ -185,7 +186,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             {secondaryButtonLabel &&
                                 <Button
-                                    onPress={() => chain(renderProps.close(), onSecondaryButtonClick?.())}
+                                    onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
                                     isDisabled={isPrimaryButtonLoading || secondaryButtonDisabled}
                                     autoFocus={autoFocusButton === "secondary"}
@@ -198,7 +199,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                 isLoading={isPrimaryButtonLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
-                                onPress={() => chain(renderProps.close(), handleOnPrimaryButtonClick())}
+                                onPress={() => chain(handleOnPrimaryButtonClick(renderProps.close))}
                             >
                                 {primaryButtonLabel}
                             </Button>
