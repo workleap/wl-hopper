@@ -64,6 +64,14 @@ export function TooltipTrigger(props: TooltipTriggerProps) {
     );
 }
 
+/**
+ * RAC has the assumption that the trigger element is another RAC component. They also provide the Focusable component to allow any trigger to work
+ * with their tooltip. However, they enforce some accessibility checks on the trigger elements, such as that the element is focusable. In many of
+ * our product sadly, they put tooltips on anything. Disabled buttons, divs, spans, etc. This is a problem because the RAC Focusable component
+ * would make those elements tabbable, or would put warning in the console. So we created this wrapper to allow any element to be used as a trigger.
+ * If the child is disabled (therefore prevents the element from reacting to pointer enter/leave), we wrap it in a div, and we attach the focusable props to that div.
+ * If the child is something not from RAC, instead of wrapping it in a div, we just attach the focusable props to the element directly.
+ */
 function FocusableTrigger(props: TooltipTriggerProps) {
     const [focusableRef, hasFocusableRACElement] = useSlot<FocusableElement>();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -87,6 +95,7 @@ function FocusableTrigger(props: TooltipTriggerProps) {
 
     return (
         // We forward the FocusableProvider props, but we make sure to merge the refs
+        // This allows us to know if the child is implementing the Focusable interface, aka is a RAC component.
         <FocusableProvider {...context} ref={mergeRefs(context?.ref, focusableRef)}>
             {trigger}
         </FocusableProvider>
