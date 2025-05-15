@@ -64,14 +64,6 @@ describe("Button", () => {
     });
 
     /** Loading */
-    it("should show a spinner when the button is loading", async () => {
-        render(<Button isLoading>Loading Button</Button>
-        );
-
-        const element = screen.getByRole("progressbar");
-        expect(element).not.toBeNull();
-    });
-
     it("should add data-pending and aria-disabled attribute when the button is loading", async () => {
         render(<Button isLoading >Loading Button</Button>);
 

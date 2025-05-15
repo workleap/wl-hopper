@@ -3,18 +3,29 @@ import { useCallback, useState } from "react";
 
 export default function Example() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const handleOpenChange = useCallback((open: boolean) => {
         setIsOpen(open);
     }, [setIsOpen]);
+
+    const handlePrimaryButtonClick = () => {
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            setIsOpen(false);
+        }, 3000);
+    };
 
     return (
         <>
             <Button variant="secondary" onPress={() => setIsOpen(true)}>Open</Button>
             <Alert
+                isLoading={isLoading}
+                onPrimaryButtonClick={handlePrimaryButtonClick}
+                onCancelButtonClick={() => setIsOpen(false)}
                 primaryButtonLabel="Leap ahead!"
                 cancelButtonLabel="Cancel"
-                onPrimaryButtonClick={() => setIsOpen(false)}
-                onCancelButtonClick={() => setIsOpen(false)}
                 overlayProps={{
                     isOpen,
                     onOpenChange: handleOpenChange
