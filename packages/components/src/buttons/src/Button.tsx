@@ -95,7 +95,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
             variant,
             size,
             isFluid && "fluid",
-            isProgressVisible && isLoading && "loading",
+            isProgressVisible && "loading",
             !hasText && "icon-only"
         ),
         stylingProps.className
@@ -176,7 +176,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                 {buttonRenderProps => {
                     return <>
                         {children(buttonRenderProps)}
-                        {isProgressVisible && isLoading && (
+                        {isProgressVisible && (
                             <Spinner
                                 aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
                                 size={size}

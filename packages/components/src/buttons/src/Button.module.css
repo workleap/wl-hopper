@@ -334,7 +334,7 @@
 
 /* Disabled */
 .hop-Button[data-disabled],
-.hop-Button--loading.hop-Button[data-pending] {
+.hop-Button--loading {
     cursor: not-allowed;
 }
 
@@ -352,45 +352,45 @@
 
 /* Loading */
 
-.hop-Button--loading.hop-Button--primary[data-pending] {
+.hop-Button--loading.hop-Button--primary {
     --background-color: var(--hop-Button-primary-background-color);
     --color: var(--hop-Button-primary-color);
     --border: var(--hop-Button-primary-border);
 }
 
-.hop-Button--loading.hop-Button--secondary[data-pending] {
+.hop-Button--loading.hop-Button--secondary {
     --background-color: var(--hop-Button-secondary-background-color);
     --color: var(--hop-Button-secondary-color);
     --border: var(--hop-Button-secondary-border);
 }
 
-.hop-Button--loading.hop-Button--upsell[data-pending] {
+.hop-Button--loading.hop-Button--upsell {
     --background-color: var(--hop-Button-upsell-background-color);
     --color: var(--hop-Button-upsell-color);
     --border: var(--hop-Button-upsell-border);
 }
 
-.hop-Button--loading.hop-Button--danger[data-pending] {
+.hop-Button--loading.hop-Button--danger {
     --background-color: var(--hop-Button-danger-background-color);
     --color: var(--hop-Button-danger-color);
     --border: var(--hop-Button-danger-border);
 }
 
-.hop-Button--loading.hop-Button--ghost-primary[data-pending] {
+.hop-Button--loading.hop-Button--ghost-primary {
     --background-color: var(--hop-Button-ghost-primary-background-color);
     --color: var(--hop-Button-ghost-primary-color);
     --border: var(--hop-Button-ghost-primary-border);
     --text-underline: none;
 }
 
-.hop-Button--loading.hop-Button--ghost-secondary[data-pending] {
+.hop-Button--loading.hop-Button--ghost-secondary {
     --background-color: var(--hop-Button-ghost-secondary-background-color);
     --color: var(--hop-Button-ghost-secondary-color);
     --border: var(--hop-Button-ghost-secondary-border);
     --text-underline: none;
 }
 
-.hop-Button--loading.hop-Button--ghost-danger[data-pending] {
+.hop-Button--loading.hop-Button--ghost-danger {
     --background-color: var(--hop-Button-ghost-danger-background-color);
     --color: var(--hop-Button-ghost-danger-color);
     --border: var(--hop-Button-ghost-danger-border);
@@ -438,6 +438,6 @@
  - allows screen readers to read the content
  - preserve the button's size
 */
-.hop-Button--loading.hop-Button[data-pending] > *:not(.hop-Button__Spinner) {
+.hop-Button--loading.hop-Button > *:not(.hop-Button__Spinner) {
     opacity: 0;
 }
