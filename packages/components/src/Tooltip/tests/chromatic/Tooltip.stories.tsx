@@ -238,7 +238,7 @@ export const TooltipEllipsis = {
 export const TooltipSpinner = {
     render: args => (
         <TooltipTrigger isOpen>
-            <Div><Spinner aria-label="in progress" /></Div>
+            <Spinner aria-label="in progress" />
             <Tooltip {...args} />
         </TooltipTrigger>
     )
@@ -286,7 +286,7 @@ export const TooltipOnStandaloneTag = {
 export const TooltipOnSelect = {
     render: args => (
         <TooltipTrigger isOpen>
-            <Select isDisabled width="100%" maxWidth="100%">
+            <Select aria-label="label" isDisabled width="100%" maxWidth="100%">
                 {null}
             </Select>
             <Tooltip {...args} />

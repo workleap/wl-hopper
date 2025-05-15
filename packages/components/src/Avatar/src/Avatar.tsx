@@ -1,5 +1,5 @@
 import { type ResponsiveProp, slot as slotFn, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
-import { mergeProps } from "@react-aria/utils";
+import { filterDOMProps, mergeProps } from "@react-aria/utils";
 import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
@@ -135,7 +135,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         style,
         ...otherProps
     } = ownProps;
-    const domProps = otherProps;
+    const domProps = filterDOMProps(otherProps);
 
     const { onError, onLoad, ...otherImageProps } = imageProps ?? {};
     const { imageUrl, status } = useImageFallback({ src, fallbackSrc, onError, onLoad });
@@ -203,7 +203,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
 
     if (imageLoaded) {
         content = <img
-            {...otherImageProps}
+            {...filterDOMProps(otherImageProps)}
             alt=""
             aria-hidden
             className={styles["hop-Avatar__image"]}

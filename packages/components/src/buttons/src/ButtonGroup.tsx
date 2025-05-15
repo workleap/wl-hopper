@@ -1,10 +1,10 @@
 import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type HTMLAttributes } from "react";
+import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import type { Orientation } from "react-aria";
 import { useContextProps } from "react-aria-components";
 
-import { SlotProvider, cssModule, type Align } from "../../utils/index.ts";
+import { SlotProvider, cssModule, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
 import type { ButtonSize } from "../utils/index.ts";
 
 import { ButtonContext } from "./ButtonContext.ts";
@@ -13,7 +13,7 @@ import { LinkButtonContext } from "./LinkButtonContext.ts";
 
 import styles from "./ButtonGroup.module.css";
 
-export interface ButtonGroupProps extends StyledComponentProps<HTMLAttributes<HTMLDivElement>> {
+export interface ButtonGroupProps extends StyledComponentProps<BaseComponentDOMProps> {
     /**
    * The axis the ButtonGroup should align with.
    * @default 'horizontal'

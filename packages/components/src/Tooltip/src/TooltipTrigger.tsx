@@ -1,12 +1,12 @@
 import { Div } from "@hopper-ui/styled-system";
-import { type FocusableAria, FocusableContext, type FocusableOptions, FocusableProvider, useFocusable } from "@react-aria/interactions";
-import { mergeProps, mergeRefs } from "@react-aria/utils";
+import { FocusableContext, FocusableProvider, useFocusable } from "@react-aria/interactions";
+import { mergeRefs } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
-import { Children, cloneElement, type ForwardedRef, forwardRef, type ReactElement, type Ref, type RefObject, useContext, useMemo, version } from "react";
+import { Children, cloneElement, forwardRef, type ReactElement, type Ref, type RefObject, useContext, useLayoutEffect } from "react";
 import { useObjectRef } from "react-aria";
 import { TooltipTrigger as RACTooltipTrigger, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
 
-import { useSlot } from "../../utils/index.ts";
+import { createSyntheticEvent, getChildRef, useSlot } from "../../utils/index.ts";
 
 import { TooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
@@ -64,62 +64,120 @@ export function TooltipTrigger(props: TooltipTriggerProps) {
     );
 }
 
-const FocusableTrigger = forwardRef(({ children, ...props }: TooltipTriggerProps, ref: ForwardedRef<FocusableElement>) => {
-    const objectRef = useObjectRef(ref);
-    const { focusableProps } = useFocusableWithoutTabIndex(props, objectRef);
+function FocusableTrigger(props: TooltipTriggerProps) {
     const [focusableRef, hasFocusableRACElement] = useSlot<FocusableElement>();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const child = Children.only(props.children) as ReactElement<any>;
+    const isChildDisabled = isTriggerDisabled(child);
     const context = useContext(FocusableContext);
 
-    const content = useMemo(() => {
-        const child = Children.only(children) as ReactElement<FocusableElement>;
+    // If the properties can't be forwarded via the context, or put on the disabled trigger, we need to attach event handlers straight on the element.
+    useForwardFocusablePropsToRef({
+        disabled: hasFocusableRACElement || isChildDisabled,
+        triggerRef: context?.ref
+    });
 
-        // HACK: a disabled element doesn't fire event, therefore the element is wrapped in a div.
-        const trigger = isTriggerDisabled(child) ? (
-            <Div display="inline-block" {...focusableProps} ref={objectRef as Ref<HTMLDivElement>} >{child}</Div>
-        ) : child;
+    // HACK: a disabled element doesn't fire event, therefore the element is wrapped in a div.
+    const trigger = isChildDisabled ? (
+        <DisabledTriggerWrapper ref={context?.ref as Ref<HTMLDivElement> ?? undefined} {...props}>
+            {child}
+        </DisabledTriggerWrapper>
+    ) : cloneElement(child, { ref: mergeRefs(getChildRef(child), context?.ref) });
 
-        // If the ref set by the context is not null, it means that the element is using useFocusable, therefore we don't need to do anything
-        if (hasFocusableRACElement) {
-            return trigger;
-        }
-
-        // Otherwise, we need to find an alternative way to forward the onPointerEnter and onPointerLeave events
-        // to the trigger element. This is done by cloning the element and passing the hoverableProps to it.
-        return cloneElement(
-            trigger,
-            {
-                ...mergeProps(focusableProps, trigger.props),
-                ref: mergeRefs(getChildRef(trigger), objectRef)
-            }
-        );
-    }, [children, focusableProps, objectRef, hasFocusableRACElement]);
 
     return (
         // We forward the FocusableProvider props, but we make sure to merge the refs
-        <FocusableProvider {...context} ref={mergeRefs(context?.ref, objectRef, focusableRef)}>
-            {content}
+        <FocusableProvider {...context} ref={mergeRefs(context?.ref, focusableRef)}>
+            {trigger}
         </FocusableProvider>
     );
-});
+}
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isTriggerDisabled(child: ReactElement<any>) {
     return child.props.disabled || child.props.isDisabled;
 }
 
-function getChildRef(child: ReactElement<FocusableElement>) {
-    // @ts-expect-error - Accessing refs is different for React 19
-    return parseInt(version, 10) < 19 ? child.ref : child.props.ref;
-}
-
-function useFocusableWithoutTabIndex(props: FocusableOptions<FocusableElement>, objectRef: RefObject<FocusableElement | null>): FocusableAria {
+const DisabledTriggerWrapper = forwardRef<HTMLDivElement, TooltipTriggerProps>(({ children, ...props }, ref) => {
+    const objectRef = useObjectRef(ref);
     const { focusableProps } = useFocusable(props, objectRef);
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { tabIndex, ...focusablePropsWithoutTabIndex } = focusableProps;
 
-    return {
-        focusableProps: {
-            ...focusablePropsWithoutTabIndex
+    return (
+        <Div
+            ref={objectRef}
+            display="inline-block"
+            {...focusablePropsWithoutTabIndex}
+        >
+            {children}
+        </Div>
+    );
+});
+
+interface UseForwardFocusablePropsToRef {
+    disabled?: boolean;
+    triggerRef?: RefObject<FocusableElement | null>;
+}
+
+/**
+ * We take the focusable props, and since we can't pass them to the trigger element via the context,
+ * and since we can't simply cloneElement with those props, since some RAC components like ProgressBar (for spinner)
+ * don't accept onPointerEnter props, we need to attach the events to the trigger element directly.
+ */
+function useForwardFocusablePropsToRef({ disabled = false, triggerRef }: UseForwardFocusablePropsToRef) {
+    const context = useContext(FocusableContext);
+
+    useLayoutEffect(() => {
+        if (disabled || !triggerRef?.current) {
+            return;
         }
-    };
+
+        const onPointerEnter = (e: Event) => {
+            context?.onPointerEnter?.(createSyntheticEvent(e));
+        };
+
+        const onPointerLeave = (e: Event) => {
+            context?.onPointerLeave?.(createSyntheticEvent(e));
+        };
+
+        const onPointerDown = (e: Event) => {
+            context?.onPointerDown?.(createSyntheticEvent(e));
+        };
+
+        const onFocus = (e: Event) => {
+            context?.onFocus?.(createSyntheticEvent(e));
+        };
+
+        const onBlur = (e: Event) => {
+            context?.onBlur?.(createSyntheticEvent(e));
+        };
+
+        const onKeyDown = (e: Event) => {
+            context?.onKeyDown?.(createSyntheticEvent(e));
+        };
+
+        const onKeyUp = (e: Event) => {
+            context?.onKeyUp?.(createSyntheticEvent(e));
+        };
+
+        const element = triggerRef.current;
+        element.addEventListener("pointerenter", onPointerEnter);
+        element.addEventListener("pointerleave", onPointerLeave);
+        element.addEventListener("pointerdown ", onPointerDown);
+        element.addEventListener("focusin", onFocus);
+        element.addEventListener("focusout", onBlur);
+        element.addEventListener("keydown", onKeyDown);
+        element.addEventListener("keyup", onKeyUp);
+
+        return () => {
+            element.removeEventListener("pointerenter", onPointerEnter);
+            element.removeEventListener("pointerleave", onPointerLeave);
+            element.removeEventListener("pointerdown ", onPointerDown);
+            element.removeEventListener("focusin", onFocus);
+            element.removeEventListener("focusout", onBlur);
+            element.removeEventListener("keydown", onKeyDown);
+            element.removeEventListener("keyup", onKeyUp);
+        };
+    }, [triggerRef, context, disabled]);
 }
