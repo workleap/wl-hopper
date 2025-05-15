@@ -35,10 +35,6 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      */
     onCancelButtonClick?: () => void;
     /**
-     * Called when a closing event happenened.
-     */
-    onClose?: () => void;
-    /**
      * Called when the primary button is clicked.
      */
     onPrimaryButtonClick?: () => void | Promise<void>;
@@ -92,7 +88,6 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         cancelButtonLabel,
         isDismissable = true,
         onCancelButtonClick,
-        onClose,
         onPrimaryButtonClick,
         onSecondaryButtonClick,
         primaryButtonDisabled,
@@ -154,7 +149,6 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                     <>
                         {isDismissable && (
                             <CloseButton
-                                onPress={onClose}
                                 isDisabled={isPrimaryButtonLoading}
                                 className={styles["hop-Alert__close"]}
                             />

@@ -8,14 +8,10 @@ export default function Example() {
         setIsOpen(open);
     }, [setIsOpen]);
 
-    const handleClose = useCallback(() => {
-        setIsOpen(false);
-    }, [setIsOpen]);
-
     return (
         <AlertTrigger isOpen={isOpen} onOpenChange={handleOpenChange}>
             <Button variant="secondary">Open</Button>
-            <Alert onClose={handleClose} primaryButtonLabel="Leap ahead!" cancelButtonLabel="Cancel">
+            <Alert primaryButtonLabel="Leap ahead!" cancelButtonLabel="Cancel">
                 <Heading>Ribbit Reminder!</Heading>
                 <Content>
                 Your changes have been saved—no need to leap again. Hop along, hero!
