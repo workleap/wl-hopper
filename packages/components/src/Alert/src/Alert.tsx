@@ -1,6 +1,6 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, useState } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { chain } from "react-aria";
 import { composeRenderProps, Dialog, type DialogProps, Provider, useContextProps } from "react-aria-components";
 
@@ -37,7 +37,7 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
     /**
      * Called when the primary button is clicked.
      */
-    onPrimaryButtonClick?: () => void | Promise<void>;
+    onPrimaryButtonClick?: () => void;
     /**
      * Called when the secondary button is clicked.
      */
@@ -72,11 +72,14 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Additional props to render on the wrapper element.
      */
     overlayProps?: Partial<BaseModalProps>;
+    /**
+     * Whether or not the Alert is loading.
+     */
+    isLoading?: boolean;
 }
 
 function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AlertContext);
-    const [isPrimaryButtonLoading, setIsPrimaryButtonLoading] = useState(false);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
@@ -96,6 +99,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         secondaryButtonLabel,
         variant = "confirmation",
         overlayProps,
+        isLoading,
         ...otherProps
     } = ownProps;
 
@@ -121,20 +125,11 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         return prev;
     });
 
-    const handleOnPrimaryButtonClick = async(close: () => void) => {
-        setIsPrimaryButtonLoading(true);
-
-        await onPrimaryButtonClick?.();
-
-        setIsPrimaryButtonLoading(false);
-        close();
-    };
-
     return (
         <BaseModal
             size={size}
-            isDismissable={isDismissable && !isPrimaryButtonLoading}
-            isKeyboardDismissDisabled={isDismissable && !isPrimaryButtonLoading}
+            isDismissable={isDismissable && !isLoading}
+            isKeyboardDismissDisabled={isDismissable && !isLoading}
             {...overlayProps}
         >
             <Dialog
@@ -149,7 +144,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                     <>
                         {isDismissable && (
                             <CloseButton
-                                isDisabled={isPrimaryButtonLoading}
+                                isDisabled={isLoading}
                                 className={styles["hop-Alert__close"]}
                             />
                         )}
@@ -172,7 +167,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                 <Button
                                     onPress={() => chain(onCancelButtonClick?.(), renderProps.close())}
                                     variant="secondary"
-                                    isDisabled={isPrimaryButtonLoading}
+                                    isDisabled={isLoading}
                                     autoFocus={autoFocusButton === "cancel"}
                                 >
                                     {cancelButtonLabel}
@@ -182,7 +177,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                 <Button
                                     onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
-                                    isDisabled={isPrimaryButtonLoading || secondaryButtonDisabled}
+                                    isDisabled={isLoading || secondaryButtonDisabled}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}
@@ -190,10 +185,10 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
-                                isLoading={isPrimaryButtonLoading}
+                                isLoading={isLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
-                                onPress={() => chain(handleOnPrimaryButtonClick(renderProps.close))}
+                                onPress={() => chain(onPrimaryButtonClick?.(), renderProps.close)}
                             >
                                 {primaryButtonLabel}
                             </Button>
