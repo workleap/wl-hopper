@@ -1,6 +1,6 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, useState } from "react";
 import { chain } from "react-aria";
 import { composeRenderProps, Dialog, type DialogProps, Provider, useContextProps } from "react-aria-components";
 
@@ -41,7 +41,7 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
     /**
      * Called when the primary button is clicked.
      */
-    onPrimaryButtonClick?: () => void;
+    onPrimaryButtonClick?: () => void | Promise<void>;
     /**
      * Called when the secondary button is clicked.
      */
@@ -76,14 +76,11 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Additional props to render on the wrapper element.
      */
     overlayProps?: Partial<BaseModalProps>;
-    /**
-     * Whether or not the Alert is loading.
-     */
-    isLoading?: boolean;
 }
 
 function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AlertContext);
+    const [isPrimaryButtonLoading, setIsPrimaryButtonLoading] = useState(false);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
@@ -103,7 +100,6 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         secondaryButtonDisabled,
         secondaryButtonLabel,
         variant = "confirmation",
-        isLoading,
         overlayProps,
         ...otherProps
     } = ownProps;
@@ -130,20 +126,29 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         return prev;
     });
 
-    const onOpenChange = (isOpen: boolean) => {
-        if (!isOpen) {
-            onClose?.();
+    const handleOnPrimaryButtonClick = async() => {
+        if (!onPrimaryButtonClick) {
+            return;
         }
-    };
 
-    const isControlled = !!overlayProps?.onOpenChange;
+        if (onPrimaryButtonClick.constructor.name !== "AsyncFunction") {
+            onPrimaryButtonClick();
+
+            return;
+        }
+
+        setIsPrimaryButtonLoading(true);
+
+        await onPrimaryButtonClick();
+
+        setIsPrimaryButtonLoading(false);
+    };
 
     return (
         <BaseModal
             size={size}
-            isDismissable={isDismissable && !isLoading}
-            onOpenChange={onOpenChange}
-            isKeyboardDismissDisabled={isDismissable && !isLoading}
+            isDismissable={isDismissable && !isPrimaryButtonLoading}
+            isKeyboardDismissDisabled={isDismissable && !isPrimaryButtonLoading}
             {...overlayProps}
         >
             <Dialog
@@ -156,7 +161,13 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             >
                 {renderProps => (
                     <>
-                        {isDismissable && <CloseButton isDisabled={isLoading} className={styles["hop-Alert__close"]} />}
+                        {isDismissable && (
+                            <CloseButton
+                                onPress={onClose}
+                                isDisabled={isPrimaryButtonLoading}
+                                className={styles["hop-Alert__close"]}
+                            />
+                        )}
                         <Provider
                             values={[
                                 [HeadingContext, {
@@ -174,9 +185,9 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                         <ButtonGroup align="end" className={styles["hop-Alert__button-group"]}>
                             {cancelButtonLabel &&
                                 <Button
-                                    onPress={() => chain(!isControlled && renderProps.close(), onCancelButtonClick?.())}
+                                    onPress={() => chain(renderProps.close(), onCancelButtonClick?.())}
                                     variant="secondary"
-                                    isDisabled={isLoading}
+                                    isDisabled={isPrimaryButtonLoading}
                                     autoFocus={autoFocusButton === "cancel"}
                                 >
                                     {cancelButtonLabel}
@@ -184,9 +195,9 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             {secondaryButtonLabel &&
                                 <Button
-                                    onPress={() => chain(!isControlled && renderProps.close(), onSecondaryButtonClick?.())}
+                                    onPress={() => chain(renderProps.close(), onSecondaryButtonClick?.())}
                                     variant="secondary"
-                                    isDisabled={isLoading || secondaryButtonDisabled}
+                                    isDisabled={isPrimaryButtonLoading || secondaryButtonDisabled}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}
@@ -194,10 +205,10 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
-                                isLoading={isLoading}
+                                isLoading={isPrimaryButtonLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
-                                onPress={() => chain(!isControlled && renderProps.close(), onPrimaryButtonClick?.())}
+                                onPress={() => chain(renderProps.close(), handleOnPrimaryButtonClick())}
                             >
                                 {primaryButtonLabel}
                             </Button>
