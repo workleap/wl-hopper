@@ -1,5 +1,5 @@
 .hop-Tooltip {
-    --hop-Tooltip-max-inline-size: 25rem;
+    --hop-Tooltip-max-inline-size: 20rem;
     --hop-Tooltip-slide-amount: 0.25rem; /* Tokens not available here */
     --hop-Tooltip-background: var(--hop-neutral-surface-strong);
     --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
@@ -11,7 +11,7 @@
     --origin-x: 0;
     --origin-y: 0;
 
-    /* Ensures there's always 1rem space around the tooltip, but it'll still have a max width of 25rem. */
+    /* Ensures there's always 1rem space around the tooltip, but it'll still have a max width of 20rem. */
     max-inline-size: min(var(--hop-Tooltip-max-inline-size), calc(100% - (var(--container-padding) * 2)));
     padding: var(--hop-Tooltip-padding);
 

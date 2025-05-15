@@ -1,8 +1,8 @@
-import { Div } from "@hopper-ui/styled-system";
+import { Div, useIsomorphicLayoutEffect } from "@hopper-ui/styled-system";
 import { FocusableContext, FocusableProvider, useFocusable } from "@react-aria/interactions";
 import { mergeRefs } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
-import { Children, cloneElement, forwardRef, type ReactElement, type Ref, type RefObject, useContext, useLayoutEffect } from "react";
+import { Children, cloneElement, forwardRef, type ReactElement, type Ref, type RefObject, useContext } from "react";
 import { useObjectRef } from "react-aria";
 import { TooltipTrigger as RACTooltipTrigger, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
 
@@ -137,7 +137,7 @@ interface UseForwardFocusablePropsToRef {
 function useForwardFocusablePropsToRef({ disabled = false, triggerRef }: UseForwardFocusablePropsToRef) {
     const context = useContext(FocusableContext);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
         if (disabled || !triggerRef?.current) {
             return;
         }
