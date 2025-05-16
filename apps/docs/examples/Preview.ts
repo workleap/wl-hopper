@@ -26,6 +26,9 @@ export const Previews: Record<string, Preview> = {
     "buttons/docs/button/loading": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/loading.tsx"))
     },
+    "buttons/docs/button/pending": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/pending.tsx"))
+    },
     "buttons/docs/button/layout": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/layout.tsx"))
     },
@@ -1057,6 +1060,9 @@ export const Previews: Record<string, Preview> = {
     },
     "Alert/docs/controlled": {
         component: lazy(() => import("@/../../packages/components/src/Alert/docs/controlled.tsx"))
+    },
+    "Alert/docs/pending": {
+        component: lazy(() => import("@/../../packages/components/src/Alert/docs/pending.tsx"))
     },
     "Alert/docs/sizes": {
         component: lazy(() => import("@/../../packages/components/src/Alert/docs/sizes.tsx"))

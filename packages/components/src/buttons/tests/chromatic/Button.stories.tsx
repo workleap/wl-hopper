@@ -14,6 +14,11 @@ const meta = {
     component: Button,
     args: {
         children: "Click me!"
+    },
+    parameters: {
+        chromatic: {
+            delay: 2000
+        }
     }
 } satisfies Meta<typeof Button>;
 

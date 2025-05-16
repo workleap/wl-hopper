@@ -12,6 +12,11 @@ const meta = {
     args: {
         children: <SparklesIcon />,
         "aria-label": "Clean"
+    },
+    parameters: {
+        chromatic: {
+            delay: 2000
+        }
     }
 } satisfies Meta<typeof Button>;
 

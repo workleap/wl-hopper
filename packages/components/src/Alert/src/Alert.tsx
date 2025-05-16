@@ -35,10 +35,6 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      */
     onCancelButtonClick?: () => void;
     /**
-     * Called when a closing event happenened.
-     */
-    onClose?: () => void;
-    /**
      * Called when the primary button is clicked.
      */
     onPrimaryButtonClick?: () => void;
@@ -76,6 +72,10 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Additional props to render on the wrapper element.
      */
     overlayProps?: Partial<BaseModalProps>;
+    /**
+     * Whether or not the Alert is loading.
+     */
+    isLoading?: boolean;
 }
 
 function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -91,7 +91,6 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         cancelButtonLabel,
         isDismissable = true,
         onCancelButtonClick,
-        onClose,
         onPrimaryButtonClick,
         onSecondaryButtonClick,
         primaryButtonDisabled,
@@ -100,6 +99,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         secondaryButtonLabel,
         variant = "confirmation",
         overlayProps,
+        isLoading,
         ...otherProps
     } = ownProps;
 
@@ -125,18 +125,11 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         return prev;
     });
 
-    const onOpenChange = (isOpen: boolean) => {
-        if (!isOpen) {
-            onClose?.();
-        }
-    };
-
     return (
         <BaseModal
             size={size}
-            isDismissable={isDismissable}
-            onOpenChange={onOpenChange}
-            isKeyboardDismissDisabled={isDismissable}
+            isDismissable={isDismissable && !isLoading}
+            isKeyboardDismissDisabled={isDismissable && !isLoading}
             {...overlayProps}
         >
             <Dialog
@@ -149,7 +142,12 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             >
                 {renderProps => (
                     <>
-                        {isDismissable && <CloseButton className={styles["hop-Alert__close"]} />}
+                        {isDismissable && (
+                            <CloseButton
+                                isDisabled={isLoading}
+                                className={styles["hop-Alert__close"]}
+                            />
+                        )}
                         <Provider
                             values={[
                                 [HeadingContext, {
@@ -167,8 +165,9 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                         <ButtonGroup align="end" className={styles["hop-Alert__button-group"]}>
                             {cancelButtonLabel &&
                                 <Button
-                                    onPress={() => chain(renderProps.close(), onCancelButtonClick?.())}
+                                    onPress={() => chain(onCancelButtonClick?.(), renderProps.close())}
                                     variant="secondary"
+                                    isDisabled={isLoading}
                                     autoFocus={autoFocusButton === "cancel"}
                                 >
                                     {cancelButtonLabel}
@@ -176,9 +175,9 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             {secondaryButtonLabel &&
                                 <Button
-                                    onPress={() => chain(renderProps.close(), onSecondaryButtonClick?.())}
+                                    onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
-                                    isDisabled={secondaryButtonDisabled}
+                                    isDisabled={isLoading || secondaryButtonDisabled}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}
@@ -186,9 +185,10 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             }
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
+                                isLoading={isLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
-                                onPress={() => chain(renderProps.close(), onPrimaryButtonClick?.())}
+                                onPress={() => chain(onPrimaryButtonClick?.(), renderProps.close)}
                             >
                                 {primaryButtonLabel}
                             </Button>

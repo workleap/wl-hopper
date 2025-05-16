@@ -65,8 +65,11 @@ describe("Button", () => {
 
     /** Loading */
     it("should show a spinner when the button is loading", async () => {
-        render(<Button isLoading>Loading Button</Button>
-        );
+        render(<Button isLoading>Loading Button</Button>);
+
+        await act(async () => {
+            await new Promise(resolve => setTimeout(resolve, 3000));
+        });
 
         const element = screen.getByRole("progressbar");
         expect(element).not.toBeNull();
