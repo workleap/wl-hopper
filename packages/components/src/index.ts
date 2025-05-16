@@ -32,6 +32,7 @@ export * from "./switch/index.ts";
 export * from "./Tabs/index.ts";
 export * from "./tag/index.ts";
 export * from "./ToggleArrow/index.ts";
+export * from "./Tooltip/index.ts";
 export * from "./typography/Heading/index.ts";
 export * from "./typography/Label/index.ts";
 export * from "./typography/OverlineText/index.ts";

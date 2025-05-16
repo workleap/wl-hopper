@@ -1,7 +1,6 @@
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, type ElementType, type RefAttributes, type SVGProps, type CSSProperties } from "react";
+import { forwardRef, type CSSProperties, type ElementType, type RefAttributes, type SVGProps } from "react";
 import { useContextProps, type SlotProps } from "react-aria-components";
 
 import { cssModule } from "../../components/src/utils/src/cssModule.ts";
@@ -55,6 +54,7 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
         className,
         "aria-label": ariaLabel,
         "aria-hidden": ariaHidden,
+        slot,
         ...otherProps
     } = ownProps;
 
@@ -87,7 +87,8 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
         <As
             ref={ref}
             style={mergedStyles}
-            {...filterDOMProps(otherProps)}
+            data-slot={slot}
+            {...otherProps}
             focusable="false"
             role="img"
             aria-label={ariaLabel}
