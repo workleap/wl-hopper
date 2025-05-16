@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 1.5.12
+
+### Patch Changes
+
+- 6caa19d: Add Tooltip component
+- a87f044: Adds pending state to Button and Alert
+
 ## 1.5.11
 
 ### Patch Changes
