@@ -6,11 +6,11 @@ import {
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
-import { mergeProps, useObjectRef } from "@react-aria/utils";
+import { filterDOMProps, mergeProps, useObjectRef } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
 import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
-import { type FocusableOptions, useFocusRing, useFocusable, useHover, useLink } from "react-aria";
+import { useFocusRing, useHover, useLink } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../Avatar/index.ts";
@@ -93,7 +93,6 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TagContext);
     props = useFormProps(props as FormStyleProps); /* Needed because Tag has an extra size. */
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-
     const {
         className,
         children: childrenProp,
@@ -231,9 +230,6 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
     const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
     const objectRef = useObjectRef(ref);
     const { linkProps } = useLink(props, objectRef);
-    // so we can use the same props as the RACTag
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { focusableProps: { tabIndex: _, ...focusableProps } } = useFocusable(props as FocusableOptions<FocusableElement>, objectRef);
     const { hoverProps, isHovered } = useHover({
         // disabled, since we don't allow selection.
         isDisabled: true,
@@ -243,7 +239,7 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
     });
 
     const isLink = props.href != null;
-    const itemProps = isLink ? linkProps : mergeProps(props, focusableProps);
+    const itemProps = isLink ? linkProps : props;
     const ElementType: ElementType = isLink ? "a" : "div";
 
     const renderProps = useRenderProps({
@@ -274,7 +270,9 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ref={objectRef as any}
             aria-label={props.textValue}
-            {...mergeProps(itemProps, focusProps, hoverProps)}
+            // pressProps contains all the props
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...mergeProps(filterDOMProps(itemProps as any, { labelable: true }), focusProps, hoverProps)}
             {...renderProps}
             data-disabled={props.isDisabled || undefined}
             data-hovered={isHovered || undefined}
