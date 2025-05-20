@@ -3,7 +3,7 @@ import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar } from "../../../Avatar/index.ts";
+import { Avatar } from "../../../avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";
 import { TextField } from "../../../inputs/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";

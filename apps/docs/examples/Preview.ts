@@ -308,44 +308,44 @@ export const Previews: Record<string, Preview> = {
     "layout/docs/grid": {
         component: lazy(() => import("@/../../packages/components/src/layout/docs/grid.tsx"))
     },
-    "Avatar/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/preview.tsx"))
+    "avatar/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/preview.tsx"))
     },
-    "Avatar/docs/localImage": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/localImage.tsx"))
+    "avatar/docs/localImage": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/localImage.tsx"))
     },
-    "Avatar/docs/remoteImage": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/remoteImage.tsx"))
+    "avatar/docs/remoteImage": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/remoteImage.tsx"))
     },
-    "Avatar/docs/fallbackImage": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/fallbackImage.tsx"))
+    "avatar/docs/fallbackImage": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/fallbackImage.tsx"))
     },
-    "Avatar/docs/brokenImage": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/brokenImage.tsx"))
+    "avatar/docs/brokenImage": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/brokenImage.tsx"))
     },
-    "Avatar/docs/brokenImageWithBothFailing": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/brokenImageWithBothFailing.tsx"))
+    "avatar/docs/brokenImageWithBothFailing": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/brokenImageWithBothFailing.tsx"))
     },
-    "Avatar/docs/brokenImageWithNoFallback": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/brokenImageWithNoFallback.tsx"))
+    "avatar/docs/brokenImageWithNoFallback": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/brokenImageWithNoFallback.tsx"))
     },
-    "Avatar/docs/anonymous": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/anonymous.tsx"))
+    "avatar/docs/anonymous": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/anonymous.tsx"))
     },
-    "Avatar/docs/deleted": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/deleted.tsx"))
+    "avatar/docs/deleted": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/deleted.tsx"))
     },
-    "Avatar/docs/broken": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/broken.tsx"))
+    "avatar/docs/broken": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/broken.tsx"))
     },
-    "Avatar/docs/sizes": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/sizes.tsx"))
+    "avatar/docs/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/sizes.tsx"))
     },
-    "Avatar/docs/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/disabled.tsx"))
+    "avatar/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/disabled.tsx"))
     },
-    "Avatar/docs/customization": {
-        component: lazy(() => import("@/../../packages/components/src/Avatar/docs/customization.tsx"))
+    "avatar/docs/customization": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/customization.tsx"))
     },
     "Card/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Card/docs/preview.tsx"))
@@ -899,29 +899,29 @@ export const Previews: Record<string, Preview> = {
     "layout/docs/stack/alignY": {
         component: lazy(() => import("@/../../packages/components/src/layout/docs/stack/alignY.tsx"))
     },
-    "Accordion/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/preview.tsx"))
+    "accordion/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/preview.tsx"))
     },
-    "Accordion/docs/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/disabled.tsx"))
+    "accordion/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/disabled.tsx"))
     },
-    "Accordion/docs/standalone": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/standalone.tsx"))
+    "accordion/docs/standalone": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/standalone.tsx"))
     },
-    "Accordion/docs/inline": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/inline.tsx"))
+    "accordion/docs/inline": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/inline.tsx"))
     },
-    "Accordion/docs/multiple-selection": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/multiple-selection.tsx"))
+    "accordion/docs/multiple-selection": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/multiple-selection.tsx"))
     },
-    "Accordion/docs/icon": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/icon.tsx"))
+    "accordion/docs/icon": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/icon.tsx"))
     },
-    "Accordion/docs/description": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/description.tsx"))
+    "accordion/docs/description": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/description.tsx"))
     },
-    "Accordion/docs/controlled": {
-        component: lazy(() => import("@/../../packages/components/src/Accordion/docs/controlled.tsx"))
+    "accordion/docs/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/accordion/docs/controlled.tsx"))
     },
     "Disclosure/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Disclosure/docs/preview.tsx"))
@@ -1034,41 +1034,41 @@ export const Previews: Record<string, Preview> = {
     "Tabs/docs/links": {
         component: lazy(() => import("@/../../packages/components/src/Tabs/docs/links.tsx"))
     },
-    "Alert/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/preview.tsx"))
+    "alert/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/preview.tsx"))
     },
-    "Alert/docs/default": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/default.tsx"))
+    "alert/docs/default": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/default.tsx"))
     },
-    "Alert/docs/secondary": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/secondary.tsx"))
+    "alert/docs/secondary": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/secondary.tsx"))
     },
-    "Alert/docs/cancel": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/cancel.tsx"))
+    "alert/docs/cancel": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/cancel.tsx"))
     },
-    "Alert/docs/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/disabled.tsx"))
+    "alert/docs/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/disabled.tsx"))
     },
-    "Alert/docs/confirmation": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/confirmation.tsx"))
+    "alert/docs/confirmation": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/confirmation.tsx"))
     },
-    "Alert/docs/destructive": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/destructive.tsx"))
+    "alert/docs/destructive": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/destructive.tsx"))
     },
-    "Alert/docs/undismissable": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/undismissable.tsx"))
+    "alert/docs/undismissable": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/undismissable.tsx"))
     },
-    "Alert/docs/controlled": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/controlled.tsx"))
+    "alert/docs/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/controlled.tsx"))
     },
-    "Alert/docs/pending": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/pending.tsx"))
+    "alert/docs/pending": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/pending.tsx"))
     },
-    "Alert/docs/sizes": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/sizes.tsx"))
+    "alert/docs/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/sizes.tsx"))
     },
-    "Alert/docs/responsive-sizes": {
-        component: lazy(() => import("@/../../packages/components/src/Alert/docs/responsive-sizes.tsx"))
+    "alert/docs/responsive-sizes": {
+        component: lazy(() => import("@/../../packages/components/src/alert/docs/responsive-sizes.tsx"))
     },
     "Modal/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Modal/docs/preview.tsx"))

@@ -2,7 +2,7 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Avatar } from "../../../Avatar/index.ts";
+import { Avatar } from "../../../avatar/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Badge } from "../../src/Badge.tsx";
 import { FloatingBadge } from "../../src/FloatingBadge.tsx";
@@ -48,12 +48,12 @@ export const CircularOverlap = {
                 <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" name="John Doe" />
                 <Badge>99+</Badge>
             </FloatingBadge>
-        
+
             <FloatingBadge {...props} overlap="circular">
                 <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" name="John Doe" />
                 <Badge />
             </FloatingBadge>
-            
+
             <FloatingBadge {...props} overlap="circular">
                 <SparklesIcon />
                 <Badge />
@@ -83,7 +83,7 @@ export const Placement = {
                     <Badge>12</Badge>
                 </FloatingBadge>
             </Inline>
-        
+
             <Inline gap="inline-xl">
                 <FloatingBadge {...props} placement="top right" overlap="circular">
                     <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" name="John Doe" />
@@ -121,7 +121,7 @@ export const Placement = {
                     <Badge isIndeterminate />
                 </FloatingBadge>
             </Inline>
-        
+
             <Inline gap="inline-xl">
                 <FloatingBadge {...props} placement="top right" overlap="circular">
                     <Avatar src="https://randomuser.me/api/portraits/men/10.jpg" name="John Doe" />

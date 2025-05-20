@@ -3,7 +3,7 @@ import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
-import { Avatar } from "../../../Avatar/index.ts";
+import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../Badge/index.ts";
 import { Header } from "../../../Header/index.ts";
 import { IconList } from "../../../IconList/index.ts";

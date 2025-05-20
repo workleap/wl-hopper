@@ -12,7 +12,7 @@ import {
     useContextProps, useSlottedContext
 } from "react-aria-components";
 
-import { AvatarContext, type AvatarProps } from "../../Avatar/index.ts";
+import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Text, TextContext } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, type FieldSize, type SizeAdapter, SlotProvider, useIsOverflow, useRenderProps } from "../../utils/index.ts";

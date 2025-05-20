@@ -13,7 +13,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { AvatarContext, type AvatarSize } from "../../Avatar/index.ts";
+import { AvatarContext, type AvatarSize } from "../../avatar/index.ts";
 import { BadgeContext } from "../../Badge/index.ts";
 import { DecorativeCheckbox, type DecorativeCheckboxProps } from "../../checkbox/index.ts";
 import { IconListContext } from "../../IconList/index.ts";

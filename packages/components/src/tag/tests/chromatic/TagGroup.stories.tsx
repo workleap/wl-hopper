@@ -3,7 +3,7 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
-import { Avatar } from "../../../Avatar/index.ts";
+import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../Badge/index.ts";
 import { IconList } from "../../../IconList/index.ts";
 import { Stack } from "../../../layout/index.ts";
