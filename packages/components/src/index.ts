@@ -1,4 +1,4 @@
-export * from "./Accordion/index.ts";
+export * from "./accordion/index.ts";
 export * from "./Alert/index.ts";
 export * from "./Avatar/index.ts";
 export * from "./Badge/index.ts";
