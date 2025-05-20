@@ -14,7 +14,7 @@ import {
 } from "react-aria-components";
 
 import { AvatarContext, type AvatarSize } from "../../avatar/index.ts";
-import { BadgeContext } from "../../Badge/index.ts";
+import { BadgeContext } from "../../badge/index.ts";
 import { DecorativeCheckbox, type DecorativeCheckboxProps } from "../../checkbox/index.ts";
 import { IconListContext } from "../../IconList/index.ts";
 import { DecorativeRadio, type DecorativeRadioProps } from "../../radio/index.ts";

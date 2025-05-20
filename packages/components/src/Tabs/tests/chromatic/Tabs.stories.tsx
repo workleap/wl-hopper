@@ -1,7 +1,7 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { Badge } from "../../../Badge/index.ts";
+import { Badge } from "../../../badge/index.ts";
 import { Card } from "../../../Card/index.ts";
 import { Tag } from "../../../tag/index.ts";
 import { Text } from "../../../typography/index.ts";

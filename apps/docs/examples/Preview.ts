@@ -1325,23 +1325,23 @@ export const Previews: Record<string, Preview> = {
     "Header/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Header/docs/preview.tsx"))
     },
-    "Badge/docs/badge/preview": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/preview.tsx"))
+    "badge/docs/badge/preview": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/preview.tsx"))
     },
-    "Badge/docs/badge/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/disabled.tsx"))
+    "badge/docs/badge/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/disabled.tsx"))
     },
-    "Badge/docs/badge/indeterminate": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/indeterminate.tsx"))
+    "badge/docs/badge/indeterminate": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/indeterminate.tsx"))
     },
-    "Badge/docs/badge/variants": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/variants.tsx"))
+    "badge/docs/badge/variants": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/variants.tsx"))
     },
-    "Badge/docs/badge/highCount": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/highCount.tsx"))
+    "badge/docs/badge/highCount": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/highCount.tsx"))
     },
-    "Badge/docs/badge/text": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/badge/text.tsx"))
+    "badge/docs/badge/text": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/text.tsx"))
     },
     "Callout/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Callout/docs/preview.tsx"))
@@ -1373,17 +1373,17 @@ export const Previews: Record<string, Preview> = {
     "Callout/docs/dismissableCompact": {
         component: lazy(() => import("@/../../packages/components/src/Callout/docs/dismissableCompact.tsx"))
     },
-    "Badge/docs/floatingbadge/preview": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/floatingbadge/preview.tsx"))
+    "badge/docs/floatingbadge/preview": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/floatingbadge/preview.tsx"))
     },
-    "Badge/docs/floatingbadge/placement": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/floatingbadge/placement.tsx"))
+    "badge/docs/floatingbadge/placement": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/floatingbadge/placement.tsx"))
     },
-    "Badge/docs/floatingbadge/overlap": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/floatingbadge/overlap.tsx"))
+    "badge/docs/floatingbadge/overlap": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/floatingbadge/overlap.tsx"))
     },
-    "Badge/docs/floatingbadge/offset": {
-        component: lazy(() => import("@/../../packages/components/src/Badge/docs/floatingbadge/offset.tsx"))
+    "badge/docs/floatingbadge/offset": {
+        component: lazy(() => import("@/../../packages/components/src/badge/docs/floatingbadge/offset.tsx"))
     },
     "Spinner/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/Spinner/docs/preview.tsx"))

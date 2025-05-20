@@ -13,7 +13,7 @@ import {
     type ComboBoxProps as RACComboBoxProps
 } from "react-aria-components";
 
-import { BadgeContext } from "../../Badge/index.ts";
+import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../ErrorMessage/index.ts";
 import { useFormProps } from "../../Form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";

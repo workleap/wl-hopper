@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
 import { Avatar } from "../../../avatar/index.ts";
-import { Badge } from "../../../Badge/index.ts";
+import { Badge } from "../../../badge/index.ts";
 import { IconList } from "../../../IconList/index.ts";
 import { Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";

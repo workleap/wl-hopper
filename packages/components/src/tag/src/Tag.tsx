@@ -14,7 +14,7 @@ import { useFocusRing, useHover, useLink } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
-import { BadgeContext } from "../../Badge/index.ts";
+import { BadgeContext } from "../../badge/index.ts";
 import { ClearButton, type ClearButtonProps } from "../../buttons/index.ts";
 import { type FormStyleProps, useFormProps } from "../../Form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";

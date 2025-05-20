@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import { type TabProps as RACTabProps, Provider, Tab as RACTab, useContextProps } from "react-aria-components";
 
-import { BadgeContext } from "../../Badge/index.ts";
+import { BadgeContext } from "../../badge/index.ts";
 import { TagContext } from "../../tag/index.ts";
 import { Text, TextContext } from "../../typography/Text/index.ts";
 import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
