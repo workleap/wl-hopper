@@ -1,0 +1,2977 @@
+{
+  "core": {
+    "color": [
+      {
+        "name": "hop-coastal-25",
+        "value": "#f0f8ff"
+      },
+      {
+        "name": "hop-coastal-50",
+        "value": "#d9efff"
+      },
+      {
+        "name": "hop-coastal-75",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-coastal-100",
+        "value": "#9fd2f7"
+      },
+      {
+        "name": "hop-coastal-200",
+        "value": "#81b9e4"
+      },
+      {
+        "name": "hop-coastal-300",
+        "value": "#5d9acd"
+      },
+      {
+        "name": "hop-coastal-400",
+        "value": "#3a7bb2"
+      },
+      {
+        "name": "hop-coastal-500",
+        "value": "#2e70a8"
+      },
+      {
+        "name": "hop-coastal-600",
+        "value": "#23669f"
+      },
+      {
+        "name": "hop-coastal-700",
+        "value": "#0a538b"
+      },
+      {
+        "name": "hop-coastal-800",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-coastal-900",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-quetzal-25",
+        "value": "#ddfdf9"
+      },
+      {
+        "name": "hop-quetzal-50",
+        "value": "#cff4ef"
+      },
+      {
+        "name": "hop-quetzal-75",
+        "value": "#bde8e1"
+      },
+      {
+        "name": "hop-quetzal-100",
+        "value": "#a3d6cb"
+      },
+      {
+        "name": "hop-quetzal-200",
+        "value": "#83beaf"
+      },
+      {
+        "name": "hop-quetzal-300",
+        "value": "#5da18c"
+      },
+      {
+        "name": "hop-quetzal-400",
+        "value": "#38836a"
+      },
+      {
+        "name": "hop-quetzal-500",
+        "value": "#2b795e"
+      },
+      {
+        "name": "hop-quetzal-600",
+        "value": "#206f54"
+      },
+      {
+        "name": "hop-quetzal-700",
+        "value": "#055c41"
+      },
+      {
+        "name": "hop-quetzal-800",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-quetzal-900",
+        "value": "#002d1c"
+      },
+      {
+        "name": "hop-orchid-bloom-25",
+        "value": "#f6f5ff"
+      },
+      {
+        "name": "hop-orchid-bloom-50",
+        "value": "#eae9fb"
+      },
+      {
+        "name": "hop-orchid-bloom-75",
+        "value": "#ddddf7"
+      },
+      {
+        "name": "hop-orchid-bloom-100",
+        "value": "#c8caf0"
+      },
+      {
+        "name": "hop-orchid-bloom-200",
+        "value": "#aeb3e8"
+      },
+      {
+        "name": "hop-orchid-bloom-300",
+        "value": "#8d91dc"
+      },
+      {
+        "name": "hop-orchid-bloom-400",
+        "value": "#6b6ecc"
+      },
+      {
+        "name": "hop-orchid-bloom-500",
+        "value": "#5f61c5"
+      },
+      {
+        "name": "hop-orchid-bloom-600",
+        "value": "#5454be"
+      },
+      {
+        "name": "hop-orchid-bloom-700",
+        "value": "#433fac"
+      },
+      {
+        "name": "hop-orchid-bloom-800",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-orchid-bloom-900",
+        "value": "#1e1c5d"
+      },
+      {
+        "name": "hop-sapphire-25",
+        "value": "#f5f6ff"
+      },
+      {
+        "name": "hop-sapphire-50",
+        "value": "#e6ebff"
+      },
+      {
+        "name": "hop-sapphire-75",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-sapphire-100",
+        "value": "#b9cbff"
+      },
+      {
+        "name": "hop-sapphire-200",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-sapphire-300",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-sapphire-400",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-sapphire-500",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-sapphire-600",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-sapphire-700",
+        "value": "#2040c7"
+      },
+      {
+        "name": "hop-sapphire-800",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-sapphire-900",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-fog-25",
+        "value": "#f2f8fa"
+      },
+      {
+        "name": "hop-fog-50",
+        "value": "#e1eef1"
+      },
+      {
+        "name": "hop-fog-75",
+        "value": "#d2e3e7"
+      },
+      {
+        "name": "hop-fog-100",
+        "value": "#bad0d5"
+      },
+      {
+        "name": "hop-fog-200",
+        "value": "#9cb7be"
+      },
+      {
+        "name": "hop-fog-300",
+        "value": "#7c9aa3"
+      },
+      {
+        "name": "hop-fog-400",
+        "value": "#5e7b84"
+      },
+      {
+        "name": "hop-fog-500",
+        "value": "#557079"
+      },
+      {
+        "name": "hop-fog-600",
+        "value": "#4e6770"
+      },
+      {
+        "name": "hop-fog-700",
+        "value": "#40535a"
+      },
+      {
+        "name": "hop-fog-800",
+        "value": "#313e43"
+      },
+      {
+        "name": "hop-fog-900",
+        "value": "#20282a"
+      },
+      {
+        "name": "hop-toad-25",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-toad-50",
+        "value": "#f0eae3"
+      },
+      {
+        "name": "hop-toad-75",
+        "value": "#e5ded6"
+      },
+      {
+        "name": "hop-toad-100",
+        "value": "#d4cbc0"
+      },
+      {
+        "name": "hop-toad-200",
+        "value": "#bdb1a3"
+      },
+      {
+        "name": "hop-toad-300",
+        "value": "#a19382"
+      },
+      {
+        "name": "hop-toad-400",
+        "value": "#837463"
+      },
+      {
+        "name": "hop-toad-500",
+        "value": "#776a59"
+      },
+      {
+        "name": "hop-toad-600",
+        "value": "#6e6151"
+      },
+      {
+        "name": "hop-toad-700",
+        "value": "#594f41"
+      },
+      {
+        "name": "hop-toad-800",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-toad-900",
+        "value": "#2a2620"
+      },
+      {
+        "name": "hop-sunken-treasure-25",
+        "value": "#fff8d6"
+      },
+      {
+        "name": "hop-sunken-treasure-50",
+        "value": "#fff2b8"
+      },
+      {
+        "name": "hop-sunken-treasure-75",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-sunken-treasure-100",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-sunken-treasure-200",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-sunken-treasure-300",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-sunken-treasure-400",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-sunken-treasure-500",
+        "value": "#8b6609"
+      },
+      {
+        "name": "hop-sunken-treasure-600",
+        "value": "#7e5e0a"
+      },
+      {
+        "name": "hop-sunken-treasure-700",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-sunken-treasure-800",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-sunken-treasure-900",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-koi-25",
+        "value": "#fff5e9"
+      },
+      {
+        "name": "hop-koi-50",
+        "value": "#ffe8d3"
+      },
+      {
+        "name": "hop-koi-75",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-koi-100",
+        "value": "#ffbf92"
+      },
+      {
+        "name": "hop-koi-200",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-koi-300",
+        "value": "#e57723"
+      },
+      {
+        "name": "hop-koi-400",
+        "value": "#c95109"
+      },
+      {
+        "name": "hop-koi-500",
+        "value": "#ba4705"
+      },
+      {
+        "name": "hop-koi-600",
+        "value": "#ab4104"
+      },
+      {
+        "name": "hop-koi-700",
+        "value": "#8c3504"
+      },
+      {
+        "name": "hop-koi-800",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-koi-900",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-amanita-25",
+        "value": "#fdf6f6"
+      },
+      {
+        "name": "hop-amanita-50",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-amanita-75",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-amanita-100",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-amanita-200",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-amanita-300",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-amanita-400",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-amanita-500",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-amanita-600",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-amanita-700",
+        "value": "#952927"
+      },
+      {
+        "name": "hop-amanita-800",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-amanita-900",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-moss-25",
+        "value": "#f4f9e9"
+      },
+      {
+        "name": "hop-moss-50",
+        "value": "#e3f3b9"
+      },
+      {
+        "name": "hop-moss-75",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-moss-100",
+        "value": "#aad89d"
+      },
+      {
+        "name": "hop-moss-200",
+        "value": "#7dc291"
+      },
+      {
+        "name": "hop-moss-300",
+        "value": "#47a584"
+      },
+      {
+        "name": "hop-moss-400",
+        "value": "#188a71"
+      },
+      {
+        "name": "hop-moss-500",
+        "value": "#0c796b"
+      },
+      {
+        "name": "hop-moss-600",
+        "value": "#0a6f64"
+      },
+      {
+        "name": "hop-moss-700",
+        "value": "#115a52"
+      },
+      {
+        "name": "hop-moss-800",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-moss-900",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-abyss",
+        "value": "#1d1d1c"
+      },
+      {
+        "name": "hop-rock-20",
+        "value": "#fcfbfb"
+      },
+      {
+        "name": "hop-rock-25",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-rock-50",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-rock-75",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-rock-100",
+        "value": "#ccccca"
+      },
+      {
+        "name": "hop-rock-200",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-rock-300",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-rock-400",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-rock-500",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-rock-600",
+        "value": "#636362"
+      },
+      {
+        "name": "hop-rock-700",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-rock-800",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-rock-900",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-samoyed",
+        "value": "#ffffff"
+      }
+    ],
+    "shadow": [
+      {
+        "name": "hop-shadow-none",
+        "value": "none"
+      },
+      {
+        "name": "hop-shadow-sm",
+        "value": "0 1px 6px 0 rgba(60, 60, 60, 0.10)"
+      },
+      {
+        "name": "hop-shadow-md",
+        "value": "0 4px 10px 4px rgba(60, 60, 60, 0.08)"
+      },
+      {
+        "name": "hop-shadow-lg",
+        "value": "0 10px 18px 8px rgba(60, 60, 60, 0.08)"
+      }
+    ],
+    "fontFamily": [
+      {
+        "name": "hop-font-family-primary",
+        "value": "'ABC Favorit', Helvetica, Arial, sans-serif"
+      },
+      {
+        "name": "hop-font-family-secondary",
+        "value": "'Inter', Helvetica, Arial, sans-serif"
+      },
+      {
+        "name": "hop-font-family-tertiary",
+        "value": "'ABC Favorit Mono', Consolas, 'SF Mono', monospace"
+      }
+    ],
+    "fontSize": [
+      {
+        "name": "hop-font-size-120",
+        "value": "0.75rem"
+      },
+      {
+        "name": "hop-font-size-140",
+        "value": "0.875rem"
+      },
+      {
+        "name": "hop-font-size-160",
+        "value": "1rem"
+      },
+      {
+        "name": "hop-font-size-180",
+        "value": "1.125rem"
+      },
+      {
+        "name": "hop-font-size-200",
+        "value": "1.25rem"
+      },
+      {
+        "name": "hop-font-size-240",
+        "value": "1.5rem"
+      },
+      {
+        "name": "hop-font-size-280",
+        "value": "1.75rem"
+      },
+      {
+        "name": "hop-font-size-320",
+        "value": "2rem"
+      },
+      {
+        "name": "hop-font-size-360",
+        "value": "2.25rem"
+      },
+      {
+        "name": "hop-font-size-480",
+        "value": "3rem"
+      }
+    ],
+    "fontWeight": [
+      {
+        "name": "hop-font-weight-400",
+        "value": "400"
+      },
+      {
+        "name": "hop-font-weight-410",
+        "value": "410"
+      },
+      {
+        "name": "hop-font-weight-505",
+        "value": "505"
+      },
+      {
+        "name": "hop-font-weight-580",
+        "value": "580"
+      },
+      {
+        "name": "hop-font-weight-590",
+        "value": "590"
+      },
+      {
+        "name": "hop-font-weight-680",
+        "value": "680"
+      },
+      {
+        "name": "hop-font-weight-690",
+        "value": "690"
+      }
+    ],
+    "lineHeight": [
+      {
+        "name": "hop-line-height-1-125",
+        "value": "1.125"
+      },
+      {
+        "name": "hop-line-height-1-14",
+        "value": "1.1428571"
+      },
+      {
+        "name": "hop-line-height-1-20",
+        "value": "1.2"
+      },
+      {
+        "name": "hop-line-height-1-25",
+        "value": "1.25"
+      },
+      {
+        "name": "hop-line-height-1-33",
+        "value": "1.3333333"
+      },
+      {
+        "name": "hop-line-height-1-4285",
+        "value": "1.4285714"
+      },
+      {
+        "name": "hop-line-height-1-50",
+        "value": "1.5"
+      }
+    ],
+    "duration": [
+      {
+        "name": "hop-easing-duration-1",
+        "value": "100ms"
+      },
+      {
+        "name": "hop-easing-duration-2",
+        "value": "200ms"
+      },
+      {
+        "name": "hop-easing-duration-3",
+        "value": "300ms"
+      },
+      {
+        "name": "hop-easing-duration-4",
+        "value": "500ms"
+      },
+      {
+        "name": "hop-easing-duration-5",
+        "value": "800ms"
+      }
+    ],
+    "timingFunction": [
+      {
+        "name": "hop-easing-productive",
+        "value": "cubic-bezier(0.22, 0.61, 0.36, 1)"
+      },
+      {
+        "name": "hop-easing-focus",
+        "value": "cubic-bezier(0.46, 0.03, 0.52, 0.96)"
+      },
+      {
+        "name": "hop-easing-expressive",
+        "value": "cubic-bezier(0.72, -0.66, 0.15, 1.5)"
+      }
+    ],
+    "borderRadius": [
+      {
+        "name": "hop-border-radius-0",
+        "value": 0
+      },
+      {
+        "name": "hop-border-radius-1",
+        "value": "0.25rem"
+      },
+      {
+        "name": "hop-border-radius-2",
+        "value": "0.5rem"
+      },
+      {
+        "name": "hop-border-radius-3",
+        "value": "1rem"
+      },
+      {
+        "name": "hop-border-radius-4",
+        "value": "1.5rem"
+      },
+      {
+        "name": "hop-border-radius-9999",
+        "value": "624.9375rem"
+      }
+    ],
+    "size": [
+      {
+        "name": "hop-space-0",
+        "value": 0
+      },
+      {
+        "name": "hop-space-10",
+        "value": "0.0625rem"
+      },
+      {
+        "name": "hop-space-20",
+        "value": "0.125rem"
+      },
+      {
+        "name": "hop-space-40",
+        "value": "0.25rem"
+      },
+      {
+        "name": "hop-space-80",
+        "value": "0.5rem"
+      },
+      {
+        "name": "hop-space-160",
+        "value": "1rem"
+      },
+      {
+        "name": "hop-space-240",
+        "value": "1.5rem"
+      },
+      {
+        "name": "hop-space-320",
+        "value": "2rem"
+      },
+      {
+        "name": "hop-space-400",
+        "value": "2.5rem"
+      },
+      {
+        "name": "hop-space-480",
+        "value": "3rem"
+      },
+      {
+        "name": "hop-space-640",
+        "value": "4rem"
+      },
+      {
+        "name": "hop-space-800",
+        "value": "5rem"
+      },
+      {
+        "name": "hop-space-960",
+        "value": "6rem"
+      },
+      {
+        "name": "hop-space-1280",
+        "value": "8rem"
+      }
+    ]
+  },
+  "semantic": {
+    "color": [
+      {
+        "name": "hop-danger-border-active",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-icon-active",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-danger-icon-weak-active",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-surface-active",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-surface-weak-active",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-text-active",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-danger-text-weak-active",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-border",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-danger-border-selected",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-border-press",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-danger-border-strong",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-icon",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-danger-icon-selected",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-icon-disabled",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-icon-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-danger-icon-press",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-danger-icon-strong",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-danger-icon-strong-hover",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-danger-icon-weak",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-icon-weak-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-danger-icon-weak-press",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-icon-weakest",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-surface",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-danger-surface-selected",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-danger-surface-disabled",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-surface-hover",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-danger-surface-press",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-surface-strong",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-danger-surface-strong-hover",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-danger-surface-weak",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-danger-surface-weak-hover",
+        "value": "#952927"
+      },
+      {
+        "name": "hop-danger-surface-weak-press",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-text",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-danger-text-selected",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-text-disabled",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-danger-text-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-danger-text-press",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-danger-text-strong",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-danger-text-strong-hover",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-danger-text-weak",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-danger-text-weak-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-danger-text-weak-press",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-neutral-border-active",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-neutral-icon-active",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-icon-weak-active",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-surface-active",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-neutral-surface-weak-active",
+        "value": "#636362"
+      },
+      {
+        "name": "hop-neutral-text-active",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-text-weak-active",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-border",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-neutral-border-selected",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-border-disabled",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-border-hover",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-neutral-border-press",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-neutral-border-strong",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-neutral-border-strong-hover",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-neutral-border-weakest",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-border-weak",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-icon",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-neutral-icon-selected",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-icon-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-neutral-icon-hover",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-icon-press",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-icon-strong",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-icon-strong-hover",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-icon-weak",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-neutral-icon-weak-hover",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-neutral-icon-weak-press",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-icon-weak-selected",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-neutral-icon-weakest",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-neutral-surface",
+        "value": "#1d1d1c"
+      },
+      {
+        "name": "hop-neutral-surface-selected",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-surface-disabled",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-neutral-surface-hover",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-surface-press",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-neutral-surface-strong",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-surface-weakest",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-surface-weak",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-surface-weak-selected",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-surface-weak-hover",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-neutral-surface-weak-press",
+        "value": "#636362"
+      },
+      {
+        "name": "hop-neutral-surface-weakest-selected",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-surface-weakest-hover",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-neutral-text",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-neutral-text-selected",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-text-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-neutral-text-hover",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-text-press",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-neutral-text-strong",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-neutral-text-weak",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-neutral-text-weak-hover",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-neutral-text-weak-press",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-neutral-text-weak-selected",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-neutral-text-weakest",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-primary-border-active",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-primary-icon-active",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-primary-surface-active",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-primary-surface-strong-active",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-primary-surface-weak-active",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-primary-text-active",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-primary-border",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-primary-border-selected",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-primary-border-focus",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-border-press",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-primary-icon",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-icon-selected",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-icon-disabled",
+        "value": "#2040c7"
+      },
+      {
+        "name": "hop-primary-icon-hover",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-primary-icon-press",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-primary-icon-strong",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-primary-icon-strong-hover",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-primary-surface",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-surface-selected",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-primary-surface-disabled",
+        "value": "#2040c7"
+      },
+      {
+        "name": "hop-primary-surface-focus",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-primary-surface-hover",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-primary-surface-press",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-primary-surface-strong",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-primary-surface-strong-selected",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-primary-surface-strong-hover",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-primary-surface-strong-press",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-primary-surface-weak",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-primary-surface-weak-hover",
+        "value": "#2040c7"
+      },
+      {
+        "name": "hop-primary-surface-weak-press",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-primary-text",
+        "value": "#b9cbff"
+      },
+      {
+        "name": "hop-primary-text-hover",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-text-press",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-primary-text-strong",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-primary-text-strong-hover",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-primary-text-selected",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-primary-text-disabled",
+        "value": "#2040c7"
+      },
+      {
+        "name": "hop-upsell-border-active",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-upsell-icon-active",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-upsell-icon-weak-active",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-upsell-surface-active",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-upsell-surface-weak-active",
+        "value": "#7e5e0a"
+      },
+      {
+        "name": "hop-upsell-text-active",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-upsell-text-weak-active",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-upsell-border",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-upsell-border-selected",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-border-disabled",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-upsell-border-press",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-upsell-icon",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-upsell-icon-selected",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-icon-hover",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-upsell-icon-press",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-upsell-icon-weakest",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-icon-weak",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-icon-weak-hover",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-upsell-icon-weak-press",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-upsell-surface",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-upsell-surface-selected",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-upsell-surface-disabled",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-upsell-surface-hover",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-surface-press",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-upsell-surface-weak",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-upsell-surface-weak-hover",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-upsell-surface-weak-press",
+        "value": "#7e5e0a"
+      },
+      {
+        "name": "hop-upsell-text",
+        "value": "#654c0d"
+      },
+      {
+        "name": "hop-upsell-text-selected",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-text-disabled",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-upsell-text-hover",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-upsell-text-press",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-upsell-text-weak",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-upsell-text-weak-hover",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-upsell-text-weak-press",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-decorative-option1-border",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-decorative-option1-icon",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-decorative-option1-surface",
+        "value": "#b9cbff"
+      },
+      {
+        "name": "hop-decorative-option1-surface-hover",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-decorative-option1-surface-strong",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-decorative-option1-surface-weak",
+        "value": "#e6ebff"
+      },
+      {
+        "name": "hop-decorative-option1-surface-weak-hover",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-decorative-option1-surface-weakest",
+        "value": "#f5f6ff"
+      },
+      {
+        "name": "hop-decorative-option1-text",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-decorative-option1-text-weak",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-decorative-option2-border",
+        "value": "#38836a"
+      },
+      {
+        "name": "hop-decorative-option2-icon",
+        "value": "#002d1c"
+      },
+      {
+        "name": "hop-decorative-option2-surface",
+        "value": "#a3d6cb"
+      },
+      {
+        "name": "hop-decorative-option2-surface-hover",
+        "value": "#83beaf"
+      },
+      {
+        "name": "hop-decorative-option2-surface-strong",
+        "value": "#83beaf"
+      },
+      {
+        "name": "hop-decorative-option2-surface-weak",
+        "value": "#cff4ef"
+      },
+      {
+        "name": "hop-decorative-option2-surface-weak-hover",
+        "value": "#bde8e1"
+      },
+      {
+        "name": "hop-decorative-option2-surface-weakest",
+        "value": "#ddfdf9"
+      },
+      {
+        "name": "hop-decorative-option2-text",
+        "value": "#002d1c"
+      },
+      {
+        "name": "hop-decorative-option2-text-weak",
+        "value": "#5da18c"
+      },
+      {
+        "name": "hop-decorative-option3-border",
+        "value": "#c95109"
+      },
+      {
+        "name": "hop-decorative-option3-icon",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-decorative-option3-surface",
+        "value": "#ffbf92"
+      },
+      {
+        "name": "hop-decorative-option3-surface-hover",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-decorative-option3-surface-strong",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-decorative-option3-surface-weak",
+        "value": "#ffe8d3"
+      },
+      {
+        "name": "hop-decorative-option3-surface-weak-hover",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-decorative-option3-surface-weakest",
+        "value": "#fff5e9"
+      },
+      {
+        "name": "hop-decorative-option3-text",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-decorative-option3-text-weak",
+        "value": "#e57723"
+      },
+      {
+        "name": "hop-decorative-option4-border",
+        "value": "#188a71"
+      },
+      {
+        "name": "hop-decorative-option4-icon",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-decorative-option4-surface",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-decorative-option4-surface-hover",
+        "value": "#aad89d"
+      },
+      {
+        "name": "hop-decorative-option4-surface-strong",
+        "value": "#aad89d"
+      },
+      {
+        "name": "hop-decorative-option4-surface-weak",
+        "value": "#e3f3b9"
+      },
+      {
+        "name": "hop-decorative-option4-surface-weak-hover",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-decorative-option4-surface-weakest",
+        "value": "#f4f9e9"
+      },
+      {
+        "name": "hop-decorative-option4-text",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-decorative-option4-text-weak",
+        "value": "#188a71"
+      },
+      {
+        "name": "hop-decorative-option5-border",
+        "value": "#3a7bb2"
+      },
+      {
+        "name": "hop-decorative-option5-icon",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-decorative-option5-surface",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-decorative-option5-surface-hover",
+        "value": "#9fd2f7"
+      },
+      {
+        "name": "hop-decorative-option5-surface-strong",
+        "value": "#9fd2f7"
+      },
+      {
+        "name": "hop-decorative-option5-surface-weak",
+        "value": "#d9efff"
+      },
+      {
+        "name": "hop-decorative-option5-surface-weak-hover",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-decorative-option5-surface-weakest",
+        "value": "#f0f8ff"
+      },
+      {
+        "name": "hop-decorative-option5-text",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-decorative-option5-text-weak",
+        "value": "#5d9acd"
+      },
+      {
+        "name": "hop-decorative-option6-border",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-decorative-option6-icon",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-decorative-option6-surface",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-decorative-option6-surface-hover",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-decorative-option6-surface-strong",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-decorative-option6-surface-weak",
+        "value": "#fff2b8"
+      },
+      {
+        "name": "hop-decorative-option6-surface-weak-hover",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-decorative-option6-surface-weakest",
+        "value": "#fff8d6"
+      },
+      {
+        "name": "hop-decorative-option6-text",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-decorative-option6-text-weak",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-decorative-option7-border",
+        "value": "#837463"
+      },
+      {
+        "name": "hop-decorative-option7-icon",
+        "value": "#2a2620"
+      },
+      {
+        "name": "hop-decorative-option7-surface",
+        "value": "#f0eae3"
+      },
+      {
+        "name": "hop-decorative-option7-surface-hover",
+        "value": "#d4cbc0"
+      },
+      {
+        "name": "hop-decorative-option7-surface-strong",
+        "value": "#d4cbc0"
+      },
+      {
+        "name": "hop-decorative-option7-surface-weak",
+        "value": "#f0eae3"
+      },
+      {
+        "name": "hop-decorative-option7-surface-weak-hover",
+        "value": "#e5ded6"
+      },
+      {
+        "name": "hop-decorative-option7-surface-weakest",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-decorative-option7-text",
+        "value": "#2a2620"
+      },
+      {
+        "name": "hop-decorative-option7-text-weak",
+        "value": "#776a59"
+      },
+      {
+        "name": "hop-decorative-option8-border",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-decorative-option8-icon",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-decorative-option8-surface",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-decorative-option8-surface-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-decorative-option8-surface-strong",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-decorative-option8-surface-weak",
+        "value": "#fde6e5"
+      },
+      {
+        "name": "hop-decorative-option8-surface-weak-hover",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-decorative-option8-surface-weakest",
+        "value": "#fdf6f6"
+      },
+      {
+        "name": "hop-decorative-option8-text",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-decorative-option8-text-weak",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-decorative-option9-border",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-decorative-option9-icon",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-decorative-option9-surface",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-decorative-option9-surface-hover",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-decorative-option9-surface-strong",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-decorative-option9-surface-weak",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-decorative-option9-surface-weak-hover",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-decorative-option9-surface-weakest",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-decorative-option9-text",
+        "value": "#ffffff"
+      },
+      {
+        "name": "hop-decorative-option9-text-weak",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-information-border",
+        "value": "#3a7bb2"
+      },
+      {
+        "name": "hop-information-icon",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-information-icon-weakest",
+        "value": "#81b9e4"
+      },
+      {
+        "name": "hop-information-icon-weak",
+        "value": "#5d9acd"
+      },
+      {
+        "name": "hop-information-surface",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-information-surface-strong",
+        "value": "#5d9acd"
+      },
+      {
+        "name": "hop-information-surface-weak",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-information-text",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-information-text-weak",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-status-caution-border",
+        "value": "#c95109"
+      },
+      {
+        "name": "hop-status-caution-border-disabled",
+        "value": "#ab4104"
+      },
+      {
+        "name": "hop-status-caution-border-hover",
+        "value": "#ba4705"
+      },
+      {
+        "name": "hop-status-caution-border-press",
+        "value": "#c95109"
+      },
+      {
+        "name": "hop-status-caution-border-selected",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-status-caution-icon",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-icon-disabled",
+        "value": "#ba4705"
+      },
+      {
+        "name": "hop-status-caution-icon-hover",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-status-caution-icon-press",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-icon-selected",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-status-caution-surface",
+        "value": "#ffbf92"
+      },
+      {
+        "name": "hop-status-caution-surface-disabled",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-surface-hover",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-status-caution-surface-press",
+        "value": "#e57723"
+      },
+      {
+        "name": "hop-status-caution-surface-selected",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-surface-strong",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-status-caution-text",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-text-disabled",
+        "value": "#ba4705"
+      },
+      {
+        "name": "hop-status-caution-text-hover",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-status-caution-text-press",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-status-caution-text-selected",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-status-inactive-border",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-status-inactive-border-disabled",
+        "value": "#636362"
+      },
+      {
+        "name": "hop-status-inactive-border-hover",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-status-inactive-border-press",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-status-inactive-border-selected",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-status-inactive-icon",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-icon-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-status-inactive-icon-hover",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-status-inactive-icon-press",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-icon-selected",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-status-inactive-surface",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-status-inactive-surface-disabled",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-surface-hover",
+        "value": "#b3b3b1"
+      },
+      {
+        "name": "hop-status-inactive-surface-press",
+        "value": "#959593"
+      },
+      {
+        "name": "hop-status-inactive-surface-selected",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-surface-strong",
+        "value": "#ccccca"
+      },
+      {
+        "name": "hop-status-inactive-text",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-text-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-status-inactive-text-hover",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-status-inactive-text-press",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-inactive-text-selected",
+        "value": "#e0dfdd"
+      },
+      {
+        "name": "hop-status-negative-border",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-status-negative-border-disabled",
+        "value": "#ba2d2d"
+      },
+      {
+        "name": "hop-status-negative-border-hover",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-status-negative-border-press",
+        "value": "#df3236"
+      },
+      {
+        "name": "hop-status-negative-border-selected",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-status-negative-icon",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-icon-disabled",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-status-negative-icon-hover",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-status-negative-icon-press",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-icon-selected",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-status-negative-surface",
+        "value": "#ffbcb7"
+      },
+      {
+        "name": "hop-status-negative-surface-disabled",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-surface-hover",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-status-negative-surface-press",
+        "value": "#fa4d59"
+      },
+      {
+        "name": "hop-status-negative-surface-selected",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-surface-strong",
+        "value": "#ff8e8e"
+      },
+      {
+        "name": "hop-status-negative-text",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-text-disabled",
+        "value": "#cb2e31"
+      },
+      {
+        "name": "hop-status-negative-text-hover",
+        "value": "#431a17"
+      },
+      {
+        "name": "hop-status-negative-text-press",
+        "value": "#6c2320"
+      },
+      {
+        "name": "hop-status-negative-text-selected",
+        "value": "#ffd6d3"
+      },
+      {
+        "name": "hop-status-neutral-border",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-border-disabled",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-neutral-border-hover",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-status-neutral-border-press",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-border-selected",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-icon",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-icon-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-status-neutral-icon-hover",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-status-neutral-icon-press",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-icon-selected",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-surface",
+        "value": "#1d1d1c"
+      },
+      {
+        "name": "hop-status-neutral-surface-disabled",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-status-neutral-surface-hover",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-status-neutral-surface-press",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-status-neutral-surface-selected",
+        "value": "#fef6ef"
+      },
+      {
+        "name": "hop-status-neutral-surface-strong",
+        "value": "#ccccca"
+      },
+      {
+        "name": "hop-status-neutral-text",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-text-disabled",
+        "value": "#6c6c6b"
+      },
+      {
+        "name": "hop-status-neutral-text-hover",
+        "value": "#ecebe8"
+      },
+      {
+        "name": "hop-status-neutral-text-press",
+        "value": "#f8f6f3"
+      },
+      {
+        "name": "hop-status-neutral-text-selected",
+        "value": "#292929"
+      },
+      {
+        "name": "hop-status-option1-border",
+        "value": "#3a7bb2"
+      },
+      {
+        "name": "hop-status-option1-border-disabled",
+        "value": "#23669f"
+      },
+      {
+        "name": "hop-status-option1-border-hover",
+        "value": "#2e70a8"
+      },
+      {
+        "name": "hop-status-option1-border-press",
+        "value": "#3a7bb2"
+      },
+      {
+        "name": "hop-status-option1-border-selected",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-status-option1-icon",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-icon-disabled",
+        "value": "#2e70a8"
+      },
+      {
+        "name": "hop-status-option1-icon-hover",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-status-option1-icon-press",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-icon-selected",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-status-option1-surface",
+        "value": "#9fd2f7"
+      },
+      {
+        "name": "hop-status-option1-surface-disabled",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-surface-hover",
+        "value": "#81b9e4"
+      },
+      {
+        "name": "hop-status-option1-surface-press",
+        "value": "#5d9acd"
+      },
+      {
+        "name": "hop-status-option1-surface-selected",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-surface-strong",
+        "value": "#9fd2f7"
+      },
+      {
+        "name": "hop-status-option1-text",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-text-disabled",
+        "value": "#2e70a8"
+      },
+      {
+        "name": "hop-status-option1-text-hover",
+        "value": "#00274b"
+      },
+      {
+        "name": "hop-status-option1-text-press",
+        "value": "#003d70"
+      },
+      {
+        "name": "hop-status-option1-text-selected",
+        "value": "#bae6ff"
+      },
+      {
+        "name": "hop-status-option2-border",
+        "value": "#8d91dc"
+      },
+      {
+        "name": "hop-status-option2-border-disabled",
+        "value": "#5454be"
+      },
+      {
+        "name": "hop-status-option2-border-hover",
+        "value": "#5f61c5"
+      },
+      {
+        "name": "hop-status-option2-border-press",
+        "value": "#8d91dc"
+      },
+      {
+        "name": "hop-status-option2-border-selected",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-icon",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-icon-disabled",
+        "value": "#5f61c5"
+      },
+      {
+        "name": "hop-status-option2-icon-hover",
+        "value": "#1e1c5d"
+      },
+      {
+        "name": "hop-status-option2-icon-press",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-icon-selected",
+        "value": "#ddddf7"
+      },
+      {
+        "name": "hop-status-option2-surface",
+        "value": "#c8caf0"
+      },
+      {
+        "name": "hop-status-option2-surface-disabled",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-surface-hover",
+        "value": "#aeb3e8"
+      },
+      {
+        "name": "hop-status-option2-surface-press",
+        "value": "#8d91dc"
+      },
+      {
+        "name": "hop-status-option2-surface-selected",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-surface-strong",
+        "value": "#c8caf0"
+      },
+      {
+        "name": "hop-status-option2-text",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-text-disabled",
+        "value": "#5f61c5"
+      },
+      {
+        "name": "hop-status-option2-text-hover",
+        "value": "#1e1c5d"
+      },
+      {
+        "name": "hop-status-option2-text-press",
+        "value": "#322b8d"
+      },
+      {
+        "name": "hop-status-option2-text-selected",
+        "value": "#ddddf7"
+      },
+      {
+        "name": "hop-status-option3-border",
+        "value": "#38836a"
+      },
+      {
+        "name": "hop-status-option3-border-disabled",
+        "value": "#206f54"
+      },
+      {
+        "name": "hop-status-option3-border-hover",
+        "value": "#2b795e"
+      },
+      {
+        "name": "hop-status-option3-border-press",
+        "value": "#38836a"
+      },
+      {
+        "name": "hop-status-option3-border-selected",
+        "value": "#bde8e1"
+      },
+      {
+        "name": "hop-status-option3-icon",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-icon-disabled",
+        "value": "#2b795e"
+      },
+      {
+        "name": "hop-status-option3-icon-hover",
+        "value": "#002d1c"
+      },
+      {
+        "name": "hop-status-option3-icon-press",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-icon-selected",
+        "value": "#bde8e1"
+      },
+      {
+        "name": "hop-status-option3-surface",
+        "value": "#a3d6cb"
+      },
+      {
+        "name": "hop-status-option3-surface-disabled",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-surface-hover",
+        "value": "#83beaf"
+      },
+      {
+        "name": "hop-status-option3-surface-press",
+        "value": "#5da18c"
+      },
+      {
+        "name": "hop-status-option3-surface-selected",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-surface-strong",
+        "value": "#a3d6cb"
+      },
+      {
+        "name": "hop-status-option3-text",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-text-disabled",
+        "value": "#83beaf"
+      },
+      {
+        "name": "hop-status-option3-text-hover",
+        "value": "#002d1c"
+      },
+      {
+        "name": "hop-status-option3-text-press",
+        "value": "#00452d"
+      },
+      {
+        "name": "hop-status-option3-text-selected",
+        "value": "#bde8e1"
+      },
+      {
+        "name": "hop-status-option4-border",
+        "value": "#5e7b84"
+      },
+      {
+        "name": "hop-status-option4-border-disabled",
+        "value": "#4e6770"
+      },
+      {
+        "name": "hop-status-option4-border-hover",
+        "value": "#557079"
+      },
+      {
+        "name": "hop-status-option4-border-press",
+        "value": "#5e7b84"
+      },
+      {
+        "name": "hop-status-option4-border-selected",
+        "value": "#d2e3e7"
+      },
+      {
+        "name": "hop-status-option4-icon",
+        "value": "#313e43"
+      },
+      {
+        "name": "hop-status-option4-icon-disabled",
+        "value": "#557079"
+      },
+      {
+        "name": "hop-status-option4-icon-hover",
+        "value": "#20282a"
+      },
+      {
+        "name": "hop-status-option4-icon-press",
+        "value": "#313e43"
+      },
+      {
+        "name": "hop-status-option4-icon-selected",
+        "value": "#d2e3e7"
+      },
+      {
+        "name": "hop-status-option4-surface",
+        "value": "#bad0d5"
+      },
+      {
+        "name": "hop-status-option4-surface-disabled",
+        "value": "#4e6770"
+      },
+      {
+        "name": "hop-status-option4-surface-hover",
+        "value": "#9cb7be"
+      },
+      {
+        "name": "hop-status-option4-surface-press",
+        "value": "#7c9aa3"
+      },
+      {
+        "name": "hop-status-option4-surface-selected",
+        "value": "#313e43"
+      },
+      {
+        "name": "hop-status-option4-surface-strong",
+        "value": "#bad0d5"
+      },
+      {
+        "name": "hop-status-option4-text",
+        "value": "#313e43"
+      },
+      {
+        "name": "hop-status-option4-text-disabled",
+        "value": "#557079"
+      },
+      {
+        "name": "hop-status-option4-text-hover",
+        "value": "#20282a"
+      },
+      {
+        "name": "hop-status-option4-text-press",
+        "value": "#20282a"
+      },
+      {
+        "name": "hop-status-option4-text-selected",
+        "value": "#d2e3e7"
+      },
+      {
+        "name": "hop-status-option5-border",
+        "value": "#837463"
+      },
+      {
+        "name": "hop-status-option5-border-disabled",
+        "value": "#6e6151"
+      },
+      {
+        "name": "hop-status-option5-border-hover",
+        "value": "#776a59"
+      },
+      {
+        "name": "hop-status-option5-border-press",
+        "value": "#837463"
+      },
+      {
+        "name": "hop-status-option5-border-selected",
+        "value": "#e5ded6"
+      },
+      {
+        "name": "hop-status-option5-icon",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-icon-disabled",
+        "value": "#776a59"
+      },
+      {
+        "name": "hop-status-option5-icon-hover",
+        "value": "#2a2620"
+      },
+      {
+        "name": "hop-status-option5-icon-press",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-icon-selected",
+        "value": "#e5ded6"
+      },
+      {
+        "name": "hop-status-option5-surface",
+        "value": "#d4cbc0"
+      },
+      {
+        "name": "hop-status-option5-surface-disabled",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-surface-hover",
+        "value": "#bdb1a3"
+      },
+      {
+        "name": "hop-status-option5-surface-press",
+        "value": "#a19382"
+      },
+      {
+        "name": "hop-status-option5-surface-selected",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-surface-strong",
+        "value": "#d4cbc0"
+      },
+      {
+        "name": "hop-status-option5-text",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-text-disabled",
+        "value": "#776a59"
+      },
+      {
+        "name": "hop-status-option5-text-hover",
+        "value": "#2a2620"
+      },
+      {
+        "name": "hop-status-option5-text-press",
+        "value": "#433b31"
+      },
+      {
+        "name": "hop-status-option5-text-selected",
+        "value": "#e5ded6"
+      },
+      {
+        "name": "hop-status-option6-border",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-status-option6-border-disabled",
+        "value": "#7e5e0a"
+      },
+      {
+        "name": "hop-status-option6-border-hover",
+        "value": "#8b6609"
+      },
+      {
+        "name": "hop-status-option6-border-press",
+        "value": "#996f08"
+      },
+      {
+        "name": "hop-status-option6-border-selected",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-status-option6-icon",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-icon-disabled",
+        "value": "#8b6609"
+      },
+      {
+        "name": "hop-status-option6-icon-hover",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-status-option6-icon-press",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-icon-selected",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-status-option6-surface",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-status-option6-surface-disabled",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-surface-hover",
+        "value": "#e2a934"
+      },
+      {
+        "name": "hop-status-option6-surface-press",
+        "value": "#c28b12"
+      },
+      {
+        "name": "hop-status-option6-surface-selected",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-surface-strong",
+        "value": "#eac96d"
+      },
+      {
+        "name": "hop-status-option6-text",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-text-disabled",
+        "value": "#8b6609"
+      },
+      {
+        "name": "hop-status-option6-text-hover",
+        "value": "#2f250d"
+      },
+      {
+        "name": "hop-status-option6-text-press",
+        "value": "#4b390f"
+      },
+      {
+        "name": "hop-status-option6-text-selected",
+        "value": "#f7e694"
+      },
+      {
+        "name": "hop-status-positive-border",
+        "value": "#188a71"
+      },
+      {
+        "name": "hop-status-positive-border-disabled",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-border-hover",
+        "value": "#0c796b"
+      },
+      {
+        "name": "hop-status-positive-border-press",
+        "value": "#188a71"
+      },
+      {
+        "name": "hop-status-positive-border-selected",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-status-positive-icon",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-icon-disabled",
+        "value": "#0c796b"
+      },
+      {
+        "name": "hop-status-positive-icon-hover",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-status-positive-icon-press",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-icon-selected",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-status-positive-surface",
+        "value": "#aad89d"
+      },
+      {
+        "name": "hop-status-positive-surface-disabled",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-surface-hover",
+        "value": "#7dc291"
+      },
+      {
+        "name": "hop-status-positive-surface-press",
+        "value": "#47a584"
+      },
+      {
+        "name": "hop-status-positive-surface-selected",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-surface-strong",
+        "value": "#7dc291"
+      },
+      {
+        "name": "hop-status-positive-text",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-text-disabled",
+        "value": "#0c796b"
+      },
+      {
+        "name": "hop-status-positive-text-hover",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-status-positive-text-press",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-status-positive-text-selected",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-status-progress-border",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-status-progress-border-disabled",
+        "value": "#2a43e8"
+      },
+      {
+        "name": "hop-status-progress-border-hover",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-status-progress-border-press",
+        "value": "#4767fe"
+      },
+      {
+        "name": "hop-status-progress-border-selected",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-status-progress-icon",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-icon-disabled",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-status-progress-icon-hover",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-status-progress-icon-press",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-icon-selected",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-status-progress-surface",
+        "value": "#b9cbff"
+      },
+      {
+        "name": "hop-status-progress-surface-disabled",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-surface-hover",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-status-progress-surface-press",
+        "value": "#6c8ffd"
+      },
+      {
+        "name": "hop-status-progress-surface-selected",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-surface-strong",
+        "value": "#95b1ff"
+      },
+      {
+        "name": "hop-status-progress-text",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-text-disabled",
+        "value": "#3b57ff"
+      },
+      {
+        "name": "hop-status-progress-text-hover",
+        "value": "#152450"
+      },
+      {
+        "name": "hop-status-progress-text-press",
+        "value": "#1b3587"
+      },
+      {
+        "name": "hop-status-progress-text-selected",
+        "value": "#d6e0ff"
+      },
+      {
+        "name": "hop-success-border",
+        "value": "#0c796b"
+      },
+      {
+        "name": "hop-success-icon",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-success-icon-weakest",
+        "value": "#7dc291"
+      },
+      {
+        "name": "hop-success-icon-weak",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-success-surface",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-success-surface-strong",
+        "value": "#47a584"
+      },
+      {
+        "name": "hop-success-surface-weak",
+        "value": "#16433d"
+      },
+      {
+        "name": "hop-success-text",
+        "value": "#132a27"
+      },
+      {
+        "name": "hop-success-text-weak",
+        "value": "#cde8ac"
+      },
+      {
+        "name": "hop-success-text-hover",
+        "value": "#115a52"
+      },
+      {
+        "name": "hop-warning-border",
+        "value": "#ba4705"
+      },
+      {
+        "name": "hop-warning-icon",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-warning-icon-weakest",
+        "value": "#ff9b3f"
+      },
+      {
+        "name": "hop-warning-icon-weak",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-warning-surface",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-warning-surface-strong",
+        "value": "#e57723"
+      },
+      {
+        "name": "hop-warning-surface-weak",
+        "value": "#692803"
+      },
+      {
+        "name": "hop-warning-text",
+        "value": "#451a02"
+      },
+      {
+        "name": "hop-warning-text-weak",
+        "value": "#ffd8be"
+      },
+      {
+        "name": "hop-dataviz-unavailable",
+        "value": "#636362"
+      },
+      {
+        "name": "hop-dataviz-unavailable-weak",
+        "value": "#777775"
+      },
+      {
+        "name": "hop-dataviz-unavailable-strong",
+        "value": "#505050"
+      },
+      {
+        "name": "hop-dataviz-text-onlight",
+        "value": "#3c3c3c"
+      },
+      {
+        "name": "hop-dataviz-text-ondark",
+        "value": "#ffffff"
+      }
+    ],
+    "shadow": [],
+    "fontFamily": [],
+    "fontSize": [],
+    "fontWeight": [],
+    "lineHeight": [],
+    "duration": [],
+    "timingFunction": [],
+    "borderRadius": [],
+    "size": []
+  }
+}
