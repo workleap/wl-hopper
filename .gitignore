@@ -55,4 +55,7 @@ storybook-static
 # contains our project's chromatic ID
 chromatic.config.json
 
+# generated component data documentation
+/apps/docs/datas
+
 .turbo

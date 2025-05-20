@@ -38,6 +38,9 @@ jobs:
                         ${{ runner.os }}-turborepo-
                     path: .turbo
 
+            -   name: Generate documentation
+                run: pnpm doc:generate
+
             -   name: Build packages
                 run: pnpm build:pkg
 
