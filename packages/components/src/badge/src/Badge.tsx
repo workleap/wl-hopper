@@ -4,7 +4,7 @@ import { forwardRef, type ForwardedRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { OverlineText } from "../../typography/OverlineText/index.ts";
+import { OverlineText } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useRenderProps, type AccessibleSlotProps, type RenderProps } from "../../utils/index.ts";
 import { mapOrbiterToHopperVariants } from "../utils/Badge.utils.ts";
 

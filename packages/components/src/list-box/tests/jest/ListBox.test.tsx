@@ -1,7 +1,7 @@
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { ListBoxItem } from "../../src/index.ts";
 import { ListBox } from "../../src/ListBox.tsx";
 import { ListBoxContext } from "../../src/ListBoxContext.ts";
@@ -103,10 +103,10 @@ describe("ListBoxItem", () => {
         const firstItem = screen.getByTestId("earth-item");
         const label = screen.getByText("Earth");
         const labelId = label.getAttribute("id");
-    
+
         expect(firstItem).toHaveAttribute("aria-labelledby", labelId);
     });
-    
+
     it("should have a matching aria-describedBy and description ID", async () => {
         const descriptionText = "description here";
         render(
@@ -122,7 +122,7 @@ describe("ListBoxItem", () => {
         const firstItem = screen.getByTestId("earth-item");
         const description = screen.getByText(descriptionText);
         const descriptionId = description.getAttribute("id");
-    
+
         expect(firstItem).toHaveAttribute("aria-describedBy", descriptionId);
     });
 

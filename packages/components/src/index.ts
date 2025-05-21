@@ -33,10 +33,7 @@ export * from "./tag/index.ts";
 export * from "./tile/index.ts";
 export * from "./toggle-arrow/index.ts";
 export * from "./tooltip/index.ts";
-export * from "./typography/Heading/index.ts";
-export * from "./typography/Label/index.ts";
-export * from "./typography/OverlineText/index.ts";
-export * from "./typography/Text/index.ts";
+export * from "./typography/index.ts";
 export * from "./utils/index.ts";
 
 export * from "@hopper-ui/styled-system";

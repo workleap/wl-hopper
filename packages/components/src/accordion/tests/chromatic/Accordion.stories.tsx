@@ -4,7 +4,7 @@ import { within } from "@storybook/test";
 
 import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../disclosure/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { Accordion, type AccordionProps } from "../../src/Accordion.tsx";
 
 const meta = {

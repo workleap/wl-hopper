@@ -8,7 +8,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { type TextProps, Text } from "../../typography/Text/index.ts";
+import { type TextProps, Text } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, useRenderProps } from "../../utils/index.ts";
 
 import { ErrorMessageContext } from "./ErrorMessageContext.ts";

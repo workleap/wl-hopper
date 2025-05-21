@@ -2,7 +2,7 @@ import { OrderedListIcon, UnorderedListIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { SegmentedControl, SegmentedControlItem } from "../../src/index.ts";
 
 const meta = {

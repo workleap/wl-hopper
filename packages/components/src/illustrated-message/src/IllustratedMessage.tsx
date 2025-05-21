@@ -6,7 +6,7 @@ import { useContextProps } from "react-aria-components";
 import { ButtonContext, ButtonGroupContext } from "../../buttons/index.ts";
 import { ImageContext, SvgImageContext } from "../../image/index.ts";
 import { ContentContext } from "../../layout/index.ts";
-import { HeadingContext } from "../../typography/Heading/index.ts";
+import { HeadingContext } from "../../typography/index.ts";
 import { cssModule, SlotProvider, type AccessibleSlotProps, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import { IllustratedMessageContext } from "./IllustratedMessageContext.ts";

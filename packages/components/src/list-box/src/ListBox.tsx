@@ -6,7 +6,7 @@ import { Collection, composeRenderProps, type ListBoxRenderProps, ListBox as RAC
 
 import { HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { Text, type TextSize } from "../../typography/Text/index.ts";
+import { Text, type TextSize } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isFunction, type SizeAdapter, SlotProvider } from "../../utils/index.ts";
 
 import { ListBoxContext } from "./ListBoxContext.ts";

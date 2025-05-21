@@ -8,7 +8,7 @@ import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { useId } from "react-aria";
 import { ProgressBar, useContextProps } from "react-aria-components";
 
-import { Text, type TextSize } from "../../typography/Text/index.ts";
+import { Text, type TextSize } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, type BaseComponentDOMProps, type SizeAdapter } from "../../utils/index.ts";
 
 import { SpinnerContext } from "./SpinnerContext.ts";

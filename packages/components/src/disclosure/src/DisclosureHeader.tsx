@@ -5,8 +5,7 @@ import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "r
 import { Button, type ButtonProps, composeRenderProps, DisclosureStateContext, useContextProps, useSlottedContext } from "react-aria-components";
 
 import { ToggleArrow } from "../../toggle-arrow/index.ts";
-import type { HeadingProps } from "../../typography/Heading/index.ts";
-import { Heading, TextContext } from "../../typography/index.ts";
+import { Heading, TextContext, type HeadingProps } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { DisclosureContext } from "./DisclosureContext.ts";

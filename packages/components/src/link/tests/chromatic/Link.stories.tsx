@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
 import { Inline, Stack } from "../../../index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { Link, type LinkProps } from "../../src/Link.tsx";
 
 const meta = {

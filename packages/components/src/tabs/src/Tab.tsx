@@ -6,7 +6,7 @@ import { type TabProps as RACTabProps, Provider, Tab as RACTab, useContextProps 
 
 import { BadgeContext } from "../../badge/index.ts";
 import { TagContext } from "../../tag/index.ts";
-import { Text, TextContext } from "../../typography/Text/index.ts";
+import { Text, TextContext } from "../../typography/index.ts";
 import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { InternalTabsContext, TabContext } from "./TabsContext.ts";

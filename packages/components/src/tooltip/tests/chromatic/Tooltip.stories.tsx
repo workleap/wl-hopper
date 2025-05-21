@@ -12,8 +12,7 @@ import { Select } from "../../../select/index.ts";
 import { Spinner } from "../../../spinner/index.ts";
 import { Tab, TabList, Tabs } from "../../../tabs/index.ts";
 import { Tag, TagGroup } from "../../../tag/index.ts";
-import { H1 } from "../../../typography/Heading/index.ts";
-import { Text } from "../../../typography/index.ts";
+import { H1, Text } from "../../../typography/index.ts";
 import { Tooltip } from "../../src/Tooltip.tsx";
 import { TooltipTrigger } from "../../src/TooltipTrigger.tsx";
 

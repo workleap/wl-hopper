@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import { FieldErrorContext as RACFieldErrorContext, useContextProps } from "react-aria-components";
 
-import { type TextProps, Text } from "../../typography/Text/index.ts";
+import { type TextProps, Text } from "../../typography/index.ts";
 import { cssModule } from "../../utils/index.ts";
 
 import { HelperMessageContext } from "./HelperMessageContext.ts";

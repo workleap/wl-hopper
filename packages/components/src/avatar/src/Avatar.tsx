@@ -3,7 +3,7 @@ import { filterDOMProps, mergeProps } from "@react-aria/utils";
 import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { Text, type TextSize } from "../../typography/Text/index.ts";
+import { Text, type TextSize } from "../../typography/index.ts";
 import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";

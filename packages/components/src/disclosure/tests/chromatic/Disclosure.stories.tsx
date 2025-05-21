@@ -4,7 +4,7 @@ import { within } from "@storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { DisclosureHeader, DisclosurePanel } from "../../index.ts";
 import { Disclosure, type DisclosureProps } from "../../src/Disclosure.tsx";
 
