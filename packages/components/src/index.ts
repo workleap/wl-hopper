@@ -30,6 +30,7 @@ export * from "./spinner/index.ts";
 export * from "./switch/index.ts";
 export * from "./tabs/index.ts";
 export * from "./tag/index.ts";
+export * from "./tile/index.ts";
 export * from "./ToggleArrow/index.ts";
 export * from "./Tooltip/index.ts";
 export * from "./typography/Heading/index.ts";
