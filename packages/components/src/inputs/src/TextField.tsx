@@ -21,7 +21,7 @@ import {
 import { ClearButton } from "../../buttons/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
-import { HelperMessage } from "../../HelperMessage/index.ts";
+import { HelperMessage } from "../../helper-message/index.ts";
 import { Label, TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,

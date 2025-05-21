@@ -17,7 +17,7 @@ import {
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
-import { HelperMessage } from "../../HelperMessage/index.ts";
+import { HelperMessage } from "../../helper-message/index.ts";
 import { RadioContext, RadioFieldContext } from "../../radio/index.ts";
 import { Label } from "../../typography/Label/index.ts";
 import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";

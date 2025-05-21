@@ -12,7 +12,7 @@ export * from "./divider/index.ts";
 export * from "./error-message/index.ts";
 export * from "./form/index.ts";
 export * from "./header/index.ts";
-export * from "./HelperMessage/index.ts";
+export * from "./helper-message/index.ts";
 export * from "./HopperProvider/index.ts";
 export * from "./IconList/index.ts";
 export * from "./IllustratedMessage/index.ts";

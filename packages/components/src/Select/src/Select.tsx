@@ -17,7 +17,7 @@ import {
 import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
-import { HelperMessage } from "../../HelperMessage/index.ts";
+import { HelperMessage } from "../../helper-message/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, ListBoxItem, type ListBoxItemProps, type ListBoxProps, type SelectionIndicator } from "../../ListBox/index.ts";
 import { ListBoxSection } from "../../ListBoxSection/index.ts";

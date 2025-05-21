@@ -9,7 +9,7 @@ import { composeRenderProps, TextArea as RACTextArea, TextField as RACTextField,
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
-import { HelperMessage } from "../../HelperMessage/index.ts";
+import { HelperMessage } from "../../helper-message/index.ts";
 import { Label } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";
 

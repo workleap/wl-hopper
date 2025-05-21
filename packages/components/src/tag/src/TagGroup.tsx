@@ -18,7 +18,7 @@ import {
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { type FormStyleProps, useFormProps } from "../../form/index.ts";
-import { HelperMessage } from "../../HelperMessage/index.ts";
+import { HelperMessage } from "../../helper-message/index.ts";
 import { Label } from "../../typography/Label/index.ts";
 import { composeClassnameRenderProps, cssModule, type FieldProps, SlotProvider } from "../../utils/index.ts";
 
