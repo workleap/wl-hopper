@@ -24,7 +24,7 @@ export * from "./list-box/index.ts";
 export * from "./modal/index.ts";
 export * from "./overlays/index.ts";
 export * from "./radio/index.ts";
-export * from "./SegmentedControl/index.ts";
+export * from "./segmented-control/index.ts";
 export * from "./Select/index.ts";
 export * from "./Spinner/index.ts";
 export * from "./switch/index.ts";
