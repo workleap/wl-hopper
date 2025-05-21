@@ -15,7 +15,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { ErrorMessage } from "../../ErrorMessage/index.ts";
+import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../Form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { RadioContext, RadioFieldContext } from "../../radio/index.ts";

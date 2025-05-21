@@ -17,7 +17,7 @@ import {
 } from "react-aria-components";
 
 import { EmbeddedButton, type EmbeddedButtonProps } from "../../buttons/index.ts";
-import { ErrorMessage } from "../../ErrorMessage/index.ts";
+import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../Form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";

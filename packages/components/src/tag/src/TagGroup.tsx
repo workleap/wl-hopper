@@ -16,7 +16,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { ErrorMessage } from "../../ErrorMessage/index.ts";
+import { ErrorMessage } from "../../error-message/index.ts";
 import { type FormStyleProps, useFormProps } from "../../Form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { Label } from "../../typography/Label/index.ts";
