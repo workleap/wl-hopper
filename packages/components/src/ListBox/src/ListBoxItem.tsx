@@ -16,7 +16,7 @@ import {
 import { AvatarContext, type AvatarSize } from "../../avatar/index.ts";
 import { BadgeContext } from "../../badge/index.ts";
 import { DecorativeCheckbox, type DecorativeCheckboxProps } from "../../checkbox/index.ts";
-import { IconListContext } from "../../IconList/index.ts";
+import { IconListContext } from "../../icon-list/index.ts";
 import { DecorativeRadio, type DecorativeRadioProps } from "../../radio/index.ts";
 import { TextContext, type TextSize } from "../../typography/Text/index.ts";
 import { composeClassnameRenderProps, cssModule, ensureTextWrapper, type SizeAdapter, SlotProvider } from "../../utils/index.ts";

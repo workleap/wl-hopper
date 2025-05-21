@@ -6,7 +6,7 @@ import { within } from "@storybook/test";
 import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../badge/index.ts";
 import { Header } from "../../../header/index.ts";
-import { IconList } from "../../../IconList/index.ts";
+import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { ListBoxSection } from "../../../ListBoxSection/index.ts";
 import { Text } from "../../../typography/Text/index.ts";

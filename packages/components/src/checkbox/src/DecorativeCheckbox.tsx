@@ -10,7 +10,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { IconListContext } from "../../IconList/index.ts";
+import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/Text/index.ts";
 import {
     ClearContainerSlots,
