@@ -6,7 +6,7 @@ import { composeRenderProps, Dialog, type DialogProps, Provider, useContextProps
 
 import { Button, ButtonGroup, CloseButton } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
-import { BaseModal, type BaseModalProps } from "../../Modal/index.ts";
+import { BaseModal, type BaseModalProps } from "../../modal/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
 import { cssModule } from "../../utils/index.ts";
 
