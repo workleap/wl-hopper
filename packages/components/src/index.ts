@@ -28,7 +28,7 @@ export * from "./segmented-control/index.ts";
 export * from "./select/index.ts";
 export * from "./spinner/index.ts";
 export * from "./switch/index.ts";
-export * from "./Tabs/index.ts";
+export * from "./tabs/index.ts";
 export * from "./tag/index.ts";
 export * from "./ToggleArrow/index.ts";
 export * from "./Tooltip/index.ts";
