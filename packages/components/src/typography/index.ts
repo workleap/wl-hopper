@@ -1,4 +1,4 @@
-export { Heading, HeadingContext } from "./Heading/index.ts";
-export { Text, TextContext } from "./Text/index.ts";
-export { OverlineText, OverlineTextContext } from "./OverlineText/index.ts";
-export { Label, LabelContext } from "./Label/index.ts";
+export * from "./heading/index.ts";
+export * from "./text/index.ts";
+export * from "./overline-text/index.ts";
+export * from "./label/index.ts";

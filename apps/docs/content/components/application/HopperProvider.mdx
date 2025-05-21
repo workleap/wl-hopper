@@ -4,10 +4,10 @@ description: HopperProvider is the container for all applications using Hopper. 
 order: 1
 category: "application"
 links:
-    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/HopperProvider/src/HopperProvider.tsx
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/hopper-provider/src/HopperProvider.tsx
 ---
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/preview" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/preview" />
 
 ## Application provider
 
@@ -18,7 +18,7 @@ You can nest multiple HopperProviders to create different themes or locales for 
 
 We recommend supporting both light and dark color schemes in your application. If you need to override this with an application specific setting, you can use the colorScheme prop.
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/color-scheme" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/color-scheme" />
 
 See the [Styled System documentation](/styled-system/overview/introduction) for more information about using Hopper color variables in your application to ensure it adapts to light and dark mode properly.
 
@@ -29,7 +29,7 @@ See the [color schemes documentation](./color-schemes) for more information on h
 Another important setting for your application is the locale. By default, Hopper chooses the locale matching the user's browser/operating system language. This can be overridden with the locale prop if you have an application specific setting. This prop accepts a [BCP 47](https://www.ietf.org/rfc/bcp/bcp47.txt) language code.
 Hopper currently supports the following locales: `en-US`, `en-UK`, `fr-CA`, `fr-FR`.
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/locale" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/locale" />
 
 To access the current locale anywhere in your application, see the `useLocale` hook.
 
@@ -37,13 +37,13 @@ To access the current locale anywhere in your application, see the `useLocale` h
 
 The HopperProvider component accepts an optional router prop. This enables Hopper components that render links to perform client side navigation using your application or framework's client side router. See the [client side routing](./client-side-routing) guide for details on how to set this up.
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/client-side-routing" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/client-side-routing" />
 
 ### Inject body styles
 
 `withBodyStyle` determines whether you want Hopper to style the body of your application. By default, it is set to false. You should enable it on the Hopper provider at the root of your application.
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/inject-body-style" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/inject-body-style" />
 
 
 `withBodyStyle` includes the following body elements styles:
@@ -71,7 +71,7 @@ body {
 
 `withCssVariables` determines whether Hopper's CSS variables should be added to your application. By default, it is set to true and should not be changed unless you want to manage CSS variables via a CSS file. Note that in this case, you will need to add the tokens manually, ideally using the `@hopper-ui/tokens` package.
 
-<CodeOnlyExample src="HopperProvider/docs/hopper-provider/inject-css-var" />
+<CodeOnlyExample src="hopper-provider/docs/hopper-provider/inject-css-var" />
 
 ### useHopperContext
 

@@ -6,7 +6,7 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/inputs/src/TextArea.tsx
 ---
 
-<Example src="inputs/docs/textArea/preview" isOpen />
+<Example src="inputs/docs/text-area/preview" isOpen />
 
 <FeatureFlag flag="next">
     ## Guidelines
@@ -33,62 +33,62 @@ links:
 ### Disabled
 A text area in a disabled state shows that an input field exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
-<Example src="inputs/docs/textArea/disabled" />
+<Example src="inputs/docs/text-area/disabled" />
 
 ### ReadOnly
 The `isReadOnly` prop makes the text area's text content immutable. Unlike `isDisabled`, the text area remains focusable and the contents can still be copied. See [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly) for more information.
 
-<Example src="inputs/docs/textArea/readOnly" />
+<Example src="inputs/docs/text-area/readOnly" />
 
 ### Error
 A text area can be displayed in an error state to indicate that the user input is invalid.
 
-<Example src="inputs/docs/textArea/error" />
+<Example src="inputs/docs/text-area/error" />
 
 ### Sizes
 A text area can vary in size. The height is determined by the number of rows. Each size has a unique font size, resulting in varying heights across different sizes.
 
-<Example src="inputs/docs/textArea/sizes" />
+<Example src="inputs/docs/text-area/sizes" />
 
 ### Labeling
 If a visible label isn't specified, an `aria-label` must be provided to the text area for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
-<Example src="inputs/docs/textArea/labeling" />
+<Example src="inputs/docs/text-area/labeling" />
 
 ### Description
 A text area can have a description using the [HelperMessage](HelperMessage) component to provide additional context to the user.
 
-<Example src="inputs/docs/textArea/description" />
+<Example src="inputs/docs/text-area/description" />
 
 ### Character Count
 A character count can be displayed below the input. The character count is based on the `maxLength` prop. If the `maxLength` prop is not set, the character count will not be displayed.
 
-<Example src="inputs/docs/textArea/characterCount" />
+<Example src="inputs/docs/text-area/characterCount" />
 
 ### Max Length Exceeded
 To exceed the max length, set the `allowExceedingMaxLength` prop to `true` – default is `false`. When the character count is displayed, it turns red if the max length is exceeded.
 
 Note: If allowExceedingMaxLength is set, a character count is required to be set as well.
 
-<Example src="inputs/docs/textArea/maxLengthExceeded" />
+<Example src="inputs/docs/text-area/maxLengthExceeded" />
 
 ### Rows
 The `rows` prop can be used to set the height of the text area and should be used in favor of the `height` prop. One row is equivalent to the height of one line of text.
 
-<Example src="inputs/docs/textArea/rows" />
+<Example src="inputs/docs/text-area/rows" />
 
 ### Max Rows
 The `maxRows` prop can be used to set the maximum height of the text area and should be used in favor of the `maxHeight` prop.
 It differs from the `rows` prop in that it will not set the initial height of the text area.
 
-<Example src="inputs/docs/textArea/maxRows" />
+<Example src="inputs/docs/text-area/maxRows" />
 
 ### Vertical Resize
 The `resizeMode` prop can be used to set the resize behavior of the text area.
 The default behavior is `none`, which prevents the user from resizing the text area.
 The `vertical` behavior allows the user to resize the text area vertically.
 
-<Example src="inputs/docs/textArea/verticalResize" />
+<Example src="inputs/docs/text-area/verticalResize" />
 
 <FeatureFlag flag="next">
     ## Advanced customization

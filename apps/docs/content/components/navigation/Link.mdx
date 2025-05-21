@@ -3,11 +3,11 @@ title: Link
 description: A link allows a user to navigate to a different location.
 category: "navigation"
 links:
-    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/Link/src/Link.tsx
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/link/src/Link.tsx
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
-<Example src="Link/docs/preview" isOpen />
+<Example src="link/docs/preview" isOpen />
 
 <FeatureFlag flag="next">
     ## Guidelines
@@ -41,13 +41,13 @@ A `Link` uses the following components:
 
 Links can be disabled.
 
-<Example src="Link/docs/disabled" />
+<Example src="link/docs/disabled" />
 
 ### External
 
 An external text link will render by default with `rel="noopener noreferrer"` and `target="_blank"` attributes.
 
-<Example src="Link/docs/external" />
+<Example src="link/docs/external" />
 
 ### No Href
 
@@ -55,73 +55,73 @@ When a `<Link>` does not have an href prop, it is rendered as a `<span role="lin
 
 Note: this will not behave like a native link. Browser features like context menus and open in a new tab will not apply.
 
-<Example src="Link/docs/noHref" />
+<Example src="link/docs/noHref" />
 
 ### Variants
 
 Links can be presented in different variants.
 
-<Example src="Link/docs/variants" />
+<Example src="link/docs/variants" />
 
 ### Sizes
 
 Links can be presented in different sizes.
 
-<Example src="Link/docs/size" />
+<Example src="link/docs/size" />
 
 ### Inherit Size
 
 The size can also be inherited.
 
-<Example src="Link/docs/inheritSize" />
+<Example src="link/docs/inheritSize" />
 
 ### Icon
 
 Links can contain an icon.
 
-<Example src="Link/docs/icon" />
+<Example src="link/docs/icon" />
 
 ### Start Icon
 
 **Non standard** start icons can be provided to handle special cases. However, think twice before adding start icons, end icons should be your go to.
 
-<Example src="Link/docs/startIcon" />
+<Example src="link/docs/startIcon" />
 
 ### Icon Only
 
 A link's content can be a single icon. When using this variant, an accessible name must be provided through the `aria-label` prop. See [WCAG practices](https://www.w3.org/TR/WCAG20-TECHS/ARIA6.html).
 
-<Example src="Link/docs/iconOnly" />
+<Example src="link/docs/iconOnly" />
 
 ### Quiet
 
 All links can have a quiet style, without an underline. This style should only be used when the placement and context of the link is explicit enough that a visible underline isn’t necessary.
 
-<Example src="Link/docs/quiet" />
+<Example src="link/docs/quiet" />
 
 ### Standalone
 
 All links can have a standalone style, without an underline which is similar to quiet, the difference is this adds block padding to make it more similar to a button.
 
-<Example src="Link/docs/standalone" />
+<Example src="link/docs/standalone" />
 
 ### React Router Link
 
 A button can be rendered as a react router link when using the `href` property and setting the navigate property on the `HopperProvider`
 
-<Example src="Link/docs/reactRouterLink" />
+<Example src="link/docs/reactRouterLink" />
 
 ### Custom Styles
 
 When the colors from the variant props are not enough, you can use the `color` prop to set the color of the link. This removes the hover and focus colors from the link. Use the color props when a link needs to be placed on top of a colored background or visual. Make sure that the background and the link color meet the minimum color contrast ratio.
 
-<Example src="Link/docs/staticColor" />
+<Example src="link/docs/staticColor" />
 
 ### Image
 
 A link's content can be an image element.
 
-<Example src="Link/docs/image" />
+<Example src="link/docs/image" />
 
 <FeatureFlag flag="next">
     ## Advanced customization
@@ -144,4 +144,4 @@ A link's content can be an image element.
 
 ## Migration Notes
 
-<MigrateGuide src="Link/docs/migration-notes" />
+<MigrateGuide src="link/docs/migration-notes" />

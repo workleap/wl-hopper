@@ -4,7 +4,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 import { ButtonContext } from "react-aria-components";
 
-import { IconList } from "../../../IconList/index.ts";
+import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { Button, type ButtonProps } from "../../src/Button.tsx";

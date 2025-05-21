@@ -13,14 +13,14 @@ import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect 
 import { useFocusRing, useHover, useLink } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
-import { AvatarContext, type AvatarProps } from "../../Avatar/index.ts";
-import { BadgeContext } from "../../Badge/index.ts";
+import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
+import { BadgeContext } from "../../badge/index.ts";
 import { ClearButton, type ClearButtonProps } from "../../buttons/index.ts";
-import { type FormStyleProps, useFormProps } from "../../Form/index.ts";
+import { type FormStyleProps, useFormProps } from "../../form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { IconListContext } from "../../IconList/index.ts";
-import { Spinner, type SpinnerProps } from "../../Spinner/index.ts";
-import { TextContext, type TextSize } from "../../typography/Text/index.ts";
+import { IconListContext } from "../../icon-list/index.ts";
+import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
+import { TextContext, type TextSize } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
     type SizeAdapter,

@@ -1,9 +1,9 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { IconList } from "../../../IconList/index.ts";
+import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { Radio } from "../../src/Radio.tsx";
 import { RadioField } from "../../src/RadioField.tsx";
 import { RadioGroup } from "../../src/RadioGroup.tsx";

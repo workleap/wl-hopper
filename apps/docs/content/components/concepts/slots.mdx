@@ -27,7 +27,7 @@ Each Hopper exports a corresponding context that you can use to build your own c
 
 This example shows a `FieldGroup` component that renders a group of text fields. The entire group can be marked as disabled via the isDisabled prop, which is passed to all child text fields via the TextFieldContext provider.
 
-<CodeOnlyExample src="HopperProvider/docs/slots/custom-patterns" isOpen />
+<CodeOnlyExample src="hopper-provider/docs/slots/custom-patterns" isOpen />
 
 Any `TextField` component you place inside a `FieldGroup` will automatically receive the `isDisabled` prop from the group, including those that are deeply nested inside other components.
 
@@ -45,7 +45,7 @@ Some patterns include multiple instances of the same component. These use the `s
 This example shows a `Stepper` component with slots for its increment and decrement buttons.
 
 
-<CodeOnlyExample src="HopperProvider/docs/slots/slots" isOpen />
+<CodeOnlyExample src="hopper-provider/docs/slots/slots" isOpen />
 
 And it can be used like this:
 
@@ -65,7 +65,7 @@ The default slot is used to provide props to a component without specifying a sl
 
 This example shows a custom component that passes a specific class name to a standard button child and to a button child with a slot named "end".
 
-<CodeOnlyExample src="HopperProvider/docs/slots/default-slot" isOpen />
+<CodeOnlyExample src="hopper-provider/docs/slots/default-slot" isOpen />
 
 And it can be used like this:
 

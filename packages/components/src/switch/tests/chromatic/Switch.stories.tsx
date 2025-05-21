@@ -2,9 +2,9 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { IconList } from "../../../IconList/index.ts";
+import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Text } from "../../../typography/Text/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { Switch } from "../../src/Switch.tsx";
 
 

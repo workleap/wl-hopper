@@ -3,11 +3,11 @@ title: Disclosure
 description: The disclosure component is used to put long sections of information under a block that users can expand or collapse.
 category: "navigation"
 links:
-    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/Disclosure/src/Disclosure.tsx
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/disclosure/src/Disclosure.tsx
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
 ---
 
-<Example src="Disclosure/docs/preview" isOpen />
+<Example src="disclosure/docs/preview" isOpen />
 
 <FeatureFlag flag="next">
     ## Guidelines
@@ -41,13 +41,13 @@ A `Disclosure` uses the following components:
 
 A disclosure can be disabled.
 
-<Example src="Disclosure/docs/disabled" />
+<Example src="disclosure/docs/disabled" />
 
 ### Variants
 
 A disclosure has multiple variants.
 
-<Example src="Disclosure/docs/variants" />
+<Example src="disclosure/docs/variants" />
 
 **Standalone** - Used when the disclosure is not inside a container.
 
@@ -57,26 +57,26 @@ A disclosure has multiple variants.
 
 A disclosure can contain an icon.
 
-<Example src="Disclosure/docs/icon" />
+<Example src="disclosure/docs/icon" />
 
 ### Description
 
 A disclosure can contain a description.
 
-<Example src="Disclosure/docs/description" />
+<Example src="disclosure/docs/description" />
 
 ### Controlled
 
 A disclosure can handle its expanded state in controlled mode.
 
-<Example src="Disclosure/docs/controlled" />
+<Example src="disclosure/docs/controlled" />
 
 ### Custom Header
 
 A disclosure can have a custom header. To accomplish this, do not use `DisclosureHeader` and use the [Button](./Button) component with `slot="trigger"` instead.
 Using React Aria's [Button](https://react-spectrum.adobe.com/react-aria/Button.html) component will also work.
 
-<Example src="Disclosure/docs/customHeader" />
+<Example src="disclosure/docs/customHeader" />
 
 <FeatureFlag flag="next">
     ## Advanced customization
@@ -116,4 +116,4 @@ These features enhance animations where supported. In browsers without support, 
 
 ## Migration Notes
 
-<MigrateGuide src="Disclosure/docs/migration-notes" />
+<MigrateGuide src="disclosure/docs/migration-notes" />

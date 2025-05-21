@@ -3,10 +3,10 @@ title: Form
 description: Forms are used to gather information from the user.
 category: "forms"
 links:
-    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/Form/src/Form.tsx
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/form/src/Form.tsx
 ---
 
-<Example src="Form/docs/preview" />
+<Example src="form/docs/preview" />
 
 <FeatureFlag flag="next">
     ## Guidelines
@@ -40,7 +40,7 @@ A `Form` uses the following components:
 
 A disabled form will not allow the user to interact with the form.
 
-<Example src="Form/docs/disabled" />
+<Example src="form/docs/disabled" />
 
 ### Validation
 
@@ -48,32 +48,32 @@ To provide validation errors, the `validationErrors` prop should be set to an ob
 to a string or array of strings representing one or more errors. These are displayed to the user as soon as the
 `validationErrors` prop is set and cleared after the user modifies each field's value.
 
-<Example src="Form/docs/validation" />
+<Example src="form/docs/validation" />
 
 #### Native Behavior
 
 Native HTML form validation is used to display errors and block form submission.
 
-<Example src="Form/docs/nativeValidation" />
+<Example src="form/docs/nativeValidation" />
 
 #### Aria Behavior
 
 To use form validation via ARIA, set the `validationBehavior` property to "aria".
 This will not block form submission and will display validation errors to the user in real time as the value is modified.
 
-<Example src="Form/docs/ariaValidation" />
+<Example src="form/docs/ariaValidation" />
 
 ### Sizes
 
 A form has multiple sizes to choose from.
 
-<Example src="Form/docs/size" />
+<Example src="form/docs/size" />
 
 ### Fluid
 
 Form fields can take the width of their container.
 
-<Example src="Form/docs/fluid" />
+<Example src="form/docs/fluid" />
 
 <FeatureFlag flag="next">
     ## Advanced customization

@@ -14,23 +14,23 @@ We recommend that all Hopper applications support both light and dark mode. It c
 
 A color scheme can either be enforced by providing a specific light or dark value to a [HopperProvider](./HopperProvider).
 
-<Example src="HopperProvider/docs/color-scheme/apply" isOpen />
+<Example src="hopper-provider/docs/color-scheme/apply" isOpen />
 
 A color scheme can also be set to `system`, which will follow the [user's operating system setting](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme).
 
 When the `system` value is provided, an additional fallback color scheme must be specified to defaultColorScheme in case the theme provider is not able to access the user setting.
 
-<Example src="HopperProvider/docs/color-scheme/apply-system" isOpen />
+<Example src="hopper-provider/docs/color-scheme/apply-system" isOpen />
 
 Color schemes can also be nested. You could have a dark themed dialog inside a light themed application. This might be useful for certain experiences, such as color scheme previews, where you want to showcase a specific color scheme regardless of the operating system's setting.
 
-<Example src="HopperProvider/docs/color-scheme/apply-nested" isOpen />
+<Example src="hopper-provider/docs/color-scheme/apply-nested" isOpen />
 
 ## Context Hooks
 
 To manage the color scheme in your application, Hopper exposes a `ColorSchemeContext` and a `useColorSchemeContext` hook.
 
-<Example src="HopperProvider/docs/color-scheme/changing" isOpen />
+<Example src="hopper-provider/docs/color-scheme/changing" isOpen />
 
 ## Utility Methods
 
@@ -42,4 +42,4 @@ To help with that, Hopper offers the `useColorSchemeValue` hook which will retur
 
 You can test this hook by clicking the moon icon in the example below.
 
-<Example src="HopperProvider/docs/color-scheme/useColorSchemeValue" isOpen />
+<Example src="hopper-provider/docs/color-scheme/useColorSchemeValue" isOpen />

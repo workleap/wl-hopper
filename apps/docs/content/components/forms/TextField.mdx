@@ -10,7 +10,7 @@ Specialized text fields are available for different scenarios:
 - If you want a text field with `type="search"`, use the [SearchField](./SearchField) component.
 - If you want a text field that shows/hides a password, use the [PasswordField](./PasswordField) component.
 
-<Example src="inputs/docs/textField/preview" isOpen />
+<Example src="inputs/docs/text-field/preview" isOpen />
 
 <FeatureFlag flag="next">
     ## Guidelines
@@ -37,66 +37,66 @@ Specialized text fields are available for different scenarios:
 ### Disabled
 A text field in a disabled state shows that an input field exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
-<Example src="inputs/docs/textField/disabled" />
+<Example src="inputs/docs/text-field/disabled" />
 
 ### ReadOnly
 The `isReadOnly` prop makes the text field's text content immutable. Unlike `isDisabled`, the text field remains focusable and the contents can still be copied. See [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly) for more information.
 
-<Example src="inputs/docs/textField/readOnly" />
+<Example src="inputs/docs/text-field/readOnly" />
 
 ### Error
 A text field can be displayed in an error state to indicate that the user input is invalid.
 
-<Example src="inputs/docs/textField/error" />
+<Example src="inputs/docs/text-field/error" />
 
 ### Clearable
 The `isClearable` prop can be set to `true` to display a clear button at the end of the input.
 
-<Example src="inputs/docs/textField/clearable" />
+<Example src="inputs/docs/text-field/clearable" />
 
 ### Sizes
 Text fields have multiple sizes to choose from.
 
-<Example src="inputs/docs/textField/sizes" />
+<Example src="inputs/docs/text-field/sizes" />
 
 ### Labeling
 If a visible label isn't specified, an `aria-label` must be provided to the text field for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
-<Example src="inputs/docs/textField/labeling" />
+<Example src="inputs/docs/text-field/labeling" />
 
 ### Description
 A text field with a helper message.
 
-<Example src="inputs/docs/textField/description" />
+<Example src="inputs/docs/text-field/description" />
 
 ### Icon Prefix
 An icon can be displayed at the start of the input.
 
-<Example src="inputs/docs/textField/iconPrefix" />
+<Example src="inputs/docs/text-field/iconPrefix" />
 
 ### Text Prefix
 A short text can be displayed at the start of the input.
 
-<Example src="inputs/docs/textField/textPrefix" />
+<Example src="inputs/docs/text-field/textPrefix" />
 
 ### Character Count
 A character count can be displayed at the end of the input.
 The character count is based on the `maxLength` prop.
 If the `maxLength` prop is not set, the character count will not be displayed.
 
-<Example src="inputs/docs/textField/characterCount" />
+<Example src="inputs/docs/text-field/characterCount" />
 
 ### Max Length Exceeded
 To exceed the max length, set the `allowExceedingMaxLength` prop to `true` – default is `false`. When the character count is displayed, it turns red if the max length is exceeded.
 
 Note: If allowExceedingMaxLength is set, a character count is required to be set as well.
 
-<Example src="inputs/docs/textField/maxLengthExceeded" />
+<Example src="inputs/docs/text-field/maxLengthExceeded" />
 
 ### Fluid
 A text field can take the width of its container.
 
-<Example src="inputs/docs/textField/fluid" />
+<Example src="inputs/docs/text-field/fluid" />
 
 <FeatureFlag flag="next">
     ## Advanced customization

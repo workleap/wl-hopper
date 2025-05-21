@@ -3,10 +3,10 @@ title: Select
 description: A select displays a collapsible list of options from which the user can select one.
 category: "pickers"
 links:
-    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/Select/src/Select.tsx
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/select/src/Select.tsx
 ---
 
-<Example src="Select/docs/preview" isOpen />
+<Example src="select/docs/preview" isOpen />
 
 ## Anatomy
 
@@ -48,138 +48,138 @@ A `Select` uses the following components:
 ### Disabled
 A select in a disabled state shows that it exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
-<Example src="Select/docs/disabled" />
+<Example src="select/docs/disabled" />
 
 ### Disabled Item
 
 A select with a disabled item.
 
-<Example src="Select/docs/selectDropdown/disabled" />
+<Example src="select/docs/select-dropdown/disabled" />
 
 ### Error
 A select can be displayed in an error state to indicate that the selection is invalid.
 
-<Example src="Select/docs/error" />
+<Example src="select/docs/error" />
 
 ### Sizes
 A select has multiple sizes to choose from.
 The select menu also changes size based on the size of the select.
 
-<Example src="Select/docs/sizes" />
+<Example src="select/docs/sizes" />
 
 ### Labeling
 If a visible label isn't specified, an `aria-label` must be provided to the select for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
-<Example src="Select/docs/labeling" />
+<Example src="select/docs/labeling" />
 
 ### Icon Prefix
 An icon can be displayed at the start of the select trigger.
 
-<Example src="Select/docs/iconPrefix" />
+<Example src="select/docs/iconPrefix" />
 
 ### Text Prefix
 A short text can be displayed at the start of the select trigger.
 
-<Example src="Select/docs/textPrefix" />
+<Example src="select/docs/textPrefix" />
 
 ### Fluid
 A select can take the width of its container.
 
-<Example src="Select/docs/fluid" />
+<Example src="select/docs/fluid" />
 
 ### Custom Value
 A select's trigger value can be customized using the `renderValue` function to allow other elements such as an avatar or icon inside the trigger value.
 
-<Example src="Select/docs/customValue" />
+<Example src="select/docs/customValue" />
 
 ### Controlled
 A select can have a controlled selected value. In this example, it shows how it is possible to deselect an option.
 
-<Example src="Select/docs/controlled" />
+<Example src="select/docs/controlled" />
 
 ### Form
 A select can be part of a form. To submit the value of a select, make sure you specify the `name` property.
 
-<Example src="Select/docs/form" />
+<Example src="select/docs/form" />
 
 ### Auto Menu Width
 
 A select can have a menu that automatically adjusts its width based on the longest item.
 
-<Example src="Select/docs/selectDropdown/autoMenuWidth" />
+<Example src="select/docs/select-dropdown/autoMenuWidth" />
 
 ### Menu placement
 
 A select's menu can have a customized menu placement using the `direction` and `align` props.
 
-<Example src="Select/docs/selectDropdown/menuPlacement" />
+<Example src="select/docs/select-dropdown/menuPlacement" />
 
 ### Section
 
 A select can have sections and section headers.
 
-<Example src="Select/docs/selectDropdown/section" />
+<Example src="select/docs/select-dropdown/section" />
 
 ### Footer
 
 A select can have a footer.
 
-<Example src="Select/docs/selectDropdown/footer" />
+<Example src="select/docs/select-dropdown/footer" />
 
 ### Avatar
 
 A select option can contain an avatar.
 
-<Example src="Select/docs/selectDropdown/avatar" />
+<Example src="select/docs/select-dropdown/avatar" />
 
 ### Count
 
 A select option can contain a count using a badge.
 
-<Example src="Select/docs/selectDropdown/count" />
+<Example src="select/docs/select-dropdown/count" />
 
 ### Dynamic Lists
 
 Options and sections can be populated from a hierarchial data structure.
 If a section has a header, the `Collection` component can be used to render the child items.
 
-<Example src="Select/docs/selectDropdown/dynamicLists" />
+<Example src="select/docs/select-dropdown/dynamicLists" />
 
 ### Icons
 
 A select option can contain icons.
 
-<Example src="Select/docs/selectDropdown/icons" />
+<Example src="select/docs/select-dropdown/icons" />
 
 ### End Icons
 
 A select can contain icons at the end of an option.
 
-<Example src="Select/docs/selectDropdown/endIcons" />
+<Example src="select/docs/select-dropdown/endIcons" />
 
 ### Loading
 
 A select can have a loading state.
 
-<Example src="Select/docs/selectDropdown/loading" />
+<Example src="select/docs/select-dropdown/loading" />
 
 ### Load on scroll
 
 A select can load more items when scrolling within.
 
-<Example src="Select/docs/selectDropdown/loadOnScroll" />
+<Example src="select/docs/select-dropdown/loadOnScroll" />
 
 ### Selection indicator
 
 A select can have a different selection indicator.
 
-<Example src="Select/docs/selectDropdown/selectionIndicator" />
+<Example src="select/docs/select-dropdown/selectionIndicator" />
 
 ### Description
 
 A select item can have a description.
 
-<Example src="Select/docs/selectDropdown/description" />
+<Example src="select/docs/select-dropdown/description" />
 
 <FeatureFlag flag="next">
     ## Advanced customization
@@ -212,4 +212,4 @@ A select item can have a description.
 
 ## Migration Notes
 
-<MigrateGuide src="Select/docs/migration-notes" />
+<MigrateGuide src="select/docs/migration-notes" />

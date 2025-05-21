@@ -9,7 +9,7 @@ import { forwardRef, type ForwardedRef, type ReactNode } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { Text, type TextSize } from "../../typography/Text/index.ts";
+import { Text, type TextSize } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
     composeClassnameRenderProps,

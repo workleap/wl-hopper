@@ -1,7 +1,7 @@
 import type { Context, PropsWithChildren, ReactNode } from "react";
 import { TextContext as RACTextContext, type ContextValue } from "react-aria-components";
 
-import { TextContext } from "../../typography/Text/index.ts";
+import { TextContext } from "../../typography/index.ts";
 
 export interface ClearProvidersProps {
     /**

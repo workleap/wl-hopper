@@ -15,9 +15,9 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { useFormProps } from "../../Form/index.ts";
-import { IconListContext } from "../../IconList/index.ts";
-import { TextContext } from "../../typography/Text/index.ts";
+import { useFormProps } from "../../form/index.ts";
+import { IconListContext } from "../../icon-list/index.ts";
+import { TextContext } from "../../typography/index.ts";
 import {
     composeClassnameRenderProps,
     cssModule,
