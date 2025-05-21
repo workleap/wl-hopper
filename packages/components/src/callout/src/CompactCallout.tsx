@@ -5,7 +5,7 @@ import { DEFAULT_SLOT, useContextProps } from "react-aria-components";
 
 import { ButtonContext, CloseButton, LinkButtonContext } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
-import { LinkContext } from "../../Link/index.ts";
+import { LinkContext } from "../../link/index.ts";
 import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import type { CalloutProps } from "./Callout.tsx";

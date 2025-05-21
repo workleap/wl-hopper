@@ -7,7 +7,7 @@ import { Avatar } from "../../../avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";
 import { TextField } from "../../../inputs/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";
-import { Link } from "../../../Link/index.ts";
+import { Link } from "../../../link/index.ts";
 import { Select } from "../../../Select/index.ts";
 import { Spinner } from "../../../Spinner/index.ts";
 import { Tab, TabList, Tabs } from "../../../Tabs/index.ts";
