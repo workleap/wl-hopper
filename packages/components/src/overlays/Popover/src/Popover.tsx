@@ -11,7 +11,7 @@ import {
 } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext, LinkButtonContext } from "../../../buttons/index.ts";
-import { HopperProvider, useForwardedHopperContext } from "../../../HopperProvider/index.ts";
+import { HopperProvider, useForwardedHopperContext } from "../../../hopper-provider/index.ts";
 import { ContentContext, FooterContext } from "../../../layout/index.ts";
 import { LinkContext } from "../../../Link/index.ts";
 import { ListBoxContext } from "../../../ListBox/index.ts";

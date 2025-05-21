@@ -3,7 +3,7 @@ import { userEvent } from "@testing-library/user-event";
 import { createRef, type PropsWithChildren } from "react";
 import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom";
 
-import { HopperProvider } from "../../../HopperProvider/index.ts";
+import { HopperProvider } from "../../../hopper-provider/index.ts";
 import { LinkButton } from "../../src/LinkButton.tsx";
 import { LinkButtonContext } from "../../src/LinkButtonContext.ts";
 

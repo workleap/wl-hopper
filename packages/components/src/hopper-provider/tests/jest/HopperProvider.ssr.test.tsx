@@ -3,7 +3,7 @@
  */
 import { renderToString } from "react-dom/server";
 
-import { HopperProvider } from "../../../HopperProvider/index.ts";
+import { HopperProvider } from "../../../hopper-provider/index.ts";
 
 describe("HopperProvider", () => {
     it("should render on the server", () => {

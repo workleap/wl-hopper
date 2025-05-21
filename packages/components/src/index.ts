@@ -13,7 +13,7 @@ export * from "./error-message/index.ts";
 export * from "./form/index.ts";
 export * from "./header/index.ts";
 export * from "./helper-message/index.ts";
-export * from "./HopperProvider/index.ts";
+export * from "./hopper-provider/index.ts";
 export * from "./IconList/index.ts";
 export * from "./IllustratedMessage/index.ts";
 export * from "./Image/index.ts";
