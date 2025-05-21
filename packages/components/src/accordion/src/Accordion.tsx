@@ -9,7 +9,7 @@ import {
     type SlotProps
 } from "react-aria-components";
 
-import { DisclosureContext, DisclosureHeaderContext, DisclosurePanelContext } from "../../Disclosure/index.ts";
+import { DisclosureContext, DisclosureHeaderContext, DisclosurePanelContext } from "../../disclosure/index.ts";
 import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { AccordionContext } from "./AccordionContext.ts";

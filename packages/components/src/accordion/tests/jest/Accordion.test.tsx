@@ -1,7 +1,7 @@
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
-import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../Disclosure/index.ts";
+import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../disclosure/index.ts";
 import { Accordion } from "../../src/Accordion.tsx";
 import { AccordionContext } from "../../src/AccordionContext.ts";
 

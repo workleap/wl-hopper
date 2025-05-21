@@ -3,7 +3,7 @@
  */
 import { renderToString } from "react-dom/server";
 
-import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../Disclosure/index.ts";
+import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../disclosure/index.ts";
 import { Accordion } from "../../src/Accordion.tsx";
 
 describe("Accordion", () => {

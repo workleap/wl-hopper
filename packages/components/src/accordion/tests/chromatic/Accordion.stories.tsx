@@ -2,7 +2,7 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
-import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../Disclosure/index.ts";
+import { Disclosure, DisclosureHeader, DisclosurePanel } from "../../../disclosure/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/Text/index.ts";
 import { Accordion, type AccordionProps } from "../../src/Accordion.tsx";
