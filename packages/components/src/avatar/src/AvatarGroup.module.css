@@ -1,0 +1,101 @@
+.hop-AvatarGroup  {
+    --hop-AvatarGroup-display: flex;
+    --hop-AvatarGroup-align-items: center;
+
+    display: var(--hop-AvatarGroup-display);
+    align-items: var(--hop-AvatarGroup-align-items);
+}
+
+.hop-AvatarGroup--wrap {
+    flex-wrap: wrap;
+}
+
+.hop-AvatarGroup--xs {
+    --gap: -0.125rem;
+}
+
+.hop-AvatarGroup--sm {
+    --gap: -0.25rem;
+}
+
+.hop-AvatarGroup--md {
+    --gap: -0.5rem;
+}
+
+.hop-AvatarGroup--lg {
+    --gap: -1rem;
+}
+
+.hop-AvatarGroup--xl {
+    --gap: -1rem;
+}
+
+.hop-AvatarGroup--2xl {
+    --gap: -2rem;
+}
+
+.hop-AvatarGroup__avatar {
+    margin-inline-start: var(--gap);
+    transition: margin var(--hop-easing-duration-2);
+}
+
+.hop-AvatarGroup__avatar:hover:not(:last-child) + .hop-AvatarGroup__avatar {
+    margin-inline-start: 0;
+}
+
+.hop-AvatarGroup__avatar:first-child {
+    margin-inline-start: 0;
+}
+
+.hop-AvatarGroup__label {
+    --hop-AvatarGroup-label-font-size: var(--hop-body-sm-font-size);
+    --hop-AvatarGroup-label-font-weight: var(--hop-body-sm-semibold-font-weight);
+    --hop-AvatarGroup-label-line-height: var(--hop-body-sm-line-height);
+    --hop-AvatarGroup-label-font-family: var(--hop-body-sm-font-family);
+    --hop-AvatarGroup-label-margin-left: 0.25rem;
+
+    margin-inline-start: var(--hop-AvatarGroup-label-margin-left);
+
+    font-family: var(--hop-AvatarGroup-label-font-family);
+    font-size: var(--hop-AvatarGroup-label-font-size);
+    font-weight: var(--hop-AvatarGroup-label-font-weight);
+    line-height: var(--hop-AvatarGroup-label-line-height);
+}
+
+.hop-AvatarGroup__hiddenAvatar {
+    --hop-AvatarGroup__hiddenAvatar-display: flex;
+    --hop-AvatarGroup__hiddenAvatar-align-items: center;
+    --hop-AvatarGroup__hiddenAvatar-gap: var(--hop-space-inset-sm);
+    --hop-AvatarGroup__hiddenAvatar-font-family: var(--hop-body-xs-font-family);
+    --hop-AvatarGroup__hiddenAvatar-font-size: var(--hop-body-xs-font-size);
+    --hop-AvatarGroup__hiddenAvatar-font-weight: var(--hop-body-xs-semibold-font-weight);
+    --hop-AvatarGroup__hiddenAvatar-line-height: var(--hop-body-xs-line-height);
+    --hop-AvatarGroup__hiddenAvatar-color: var(--hop-neutral-text-strong);
+
+
+    display: var(--hop-AvatarGroup__hiddenAvatar-display);
+    gap: var(--hop-AvatarGroup__hiddenAvatar-gap);
+    align-items: var(--hop-AvatarGroup__hiddenAvatar-align-items);
+
+    font-family: var(--hop-AvatarGroup__hiddenAvatar-font-family);
+    font-size: var(--hop-AvatarGroup__hiddenAvatar-font-size);
+    font-weight: var(--hop-AvatarGroup__hiddenAvatar-font-weight);
+    line-height: var(--hop-AvatarGroup__hiddenAvatar-line-height);
+    color: var(--hop-AvatarGroup__hiddenAvatar-color);
+}
+
+.hop-AvatarGroup__hiddenAvatar:not(:last-child) {
+    margin-block-end: 0.25rem;
+}
+
+.hop-AvatarGroup--start {
+    justify-content: flex-start;
+}
+
+.hop-AvatarGroup--end {
+    justify-content: flex-end;
+}
+
+.hop-AvatarGroup--center {
+    justify-content: center;
+}
