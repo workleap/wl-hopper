@@ -19,7 +19,7 @@ import {
 import { useFormProps } from "../../form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
-import { Spinner, type SpinnerProps } from "../../Spinner/index.ts";
+import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/Text/index.ts";
 import {
     composeClassnameRenderProps,
