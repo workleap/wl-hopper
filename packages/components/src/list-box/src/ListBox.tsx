@@ -6,13 +6,13 @@ import { Collection, composeRenderProps, type ListBoxRenderProps, ListBox as RAC
 
 import { HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { ListBoxSectionContext } from "../../ListBoxSection/index.ts";
 import { Text, type TextSize } from "../../typography/Text/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isFunction, type SizeAdapter, SlotProvider } from "../../utils/index.ts";
 
 import { ListBoxContext } from "./ListBoxContext.ts";
 import { ListBoxItem, type ListBoxItemProps, type ListBoxItemSize, type SelectionIndicator } from "./ListBoxItem.tsx";
 import { ListBoxItemContext } from "./ListBoxItemContext.ts";
+import { ListBoxSectionContext } from "./ListBoxSectionContext.ts";
 
 import styles from "./ListBox.module.css";
 

@@ -8,7 +8,7 @@ import { Badge } from "../../../badge/index.ts";
 import { Header } from "../../../header/index.ts";
 import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
-import { ListBoxSection } from "../../../ListBoxSection/index.ts";
+import { ListBoxSection } from "../../../list-box/index.ts";
 import { Text } from "../../../typography/Text/index.ts";
 import { ListBox, ListBoxItem, type ListBoxProps } from "../../index.ts";
 

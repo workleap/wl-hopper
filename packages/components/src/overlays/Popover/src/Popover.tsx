@@ -14,7 +14,7 @@ import { ButtonContext, ButtonGroupContext, LinkButtonContext } from "../../../b
 import { HopperProvider, useForwardedHopperContext } from "../../../hopper-provider/index.ts";
 import { ContentContext, FooterContext } from "../../../layout/index.ts";
 import { LinkContext } from "../../../link/index.ts";
-import { ListBoxContext } from "../../../ListBox/index.ts";
+import { ListBoxContext } from "../../../list-box/index.ts";
 import { HeadingContext } from "../../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, isFunction, isNil, SlotProvider, type BaseComponentDOMProps } from "../../../utils/index.ts";
 
