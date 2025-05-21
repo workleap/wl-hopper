@@ -5,7 +5,7 @@ import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, O
 
 import { ButtonContext, ButtonGroupContext, CloseButton } from "../../buttons/index.ts";
 import { HeaderContext } from "../../header/index.ts";
-import { ImageContext } from "../../Image/index.ts";
+import { ImageContext } from "../../image/index.ts";
 import { ContentContext, FooterContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
 import { cssModule, useSlot } from "../../utils/index.ts";
