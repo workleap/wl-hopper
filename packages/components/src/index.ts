@@ -3,7 +3,7 @@ export * from "./alert/index.ts";
 export * from "./avatar/index.ts";
 export * from "./badge/index.ts";
 export * from "./buttons/index.ts";
-export * from "./Callout/index.ts";
+export * from "./callout/index.ts";
 export * from "./Card/index.ts";
 export * from "./checkbox/index.ts";
 export * from "./ComboBox/index.ts";
