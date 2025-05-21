@@ -8,7 +8,7 @@ export * from "./card/index.ts";
 export * from "./checkbox/index.ts";
 export * from "./combobox/index.ts";
 export * from "./disclosure/index.ts";
-export * from "./Divider/index.ts";
+export * from "./divider/index.ts";
 export * from "./ErrorMessage/index.ts";
 export * from "./Form/index.ts";
 export * from "./Header/index.ts";
