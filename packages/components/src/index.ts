@@ -6,7 +6,7 @@ export * from "./buttons/index.ts";
 export * from "./callout/index.ts";
 export * from "./card/index.ts";
 export * from "./checkbox/index.ts";
-export * from "./ComboBox/index.ts";
+export * from "./combobox/index.ts";
 export * from "./Disclosure/index.ts";
 export * from "./Divider/index.ts";
 export * from "./ErrorMessage/index.ts";
