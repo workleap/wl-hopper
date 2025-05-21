@@ -16,7 +16,7 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { useFormProps } from "../../Form/index.ts";
+import { useFormProps } from "../../form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../IconList/index.ts";
 import { Spinner, type SpinnerProps } from "../../Spinner/index.ts";

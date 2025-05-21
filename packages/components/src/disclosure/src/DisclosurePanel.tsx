@@ -2,7 +2,8 @@ import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-sy
 import { forwardRef, type ForwardedRef } from "react";
 import { composeRenderProps, DisclosurePanel as RACDisclosurePanel, useContextProps, useSlottedContext, type DisclosurePanelProps as RACDisclosurePanelProps } from "react-aria-components";
 
-import { FormContext } from "../../Form/index.ts";
+
+import { FormContext } from "../../form/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider } from "../../utils/index.ts";
 

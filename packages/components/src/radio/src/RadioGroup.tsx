@@ -16,7 +16,7 @@ import {
 } from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
-import { useFormProps } from "../../Form/index.ts";
+import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { RadioContext, RadioFieldContext } from "../../radio/index.ts";
 import { Label } from "../../typography/Label/index.ts";

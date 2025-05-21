@@ -8,7 +8,7 @@ import { useObjectRef } from "react-aria";
 import { composeRenderProps, TextArea as RACTextArea, TextField as RACTextField, useContextProps, type TextFieldProps as RACTextFieldProps } from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
-import { useFormProps } from "../../Form/index.ts";
+import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { Label } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";

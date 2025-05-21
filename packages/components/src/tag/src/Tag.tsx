@@ -16,7 +16,7 @@ import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useCon
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
 import { BadgeContext } from "../../badge/index.ts";
 import { ClearButton, type ClearButtonProps } from "../../buttons/index.ts";
-import { type FormStyleProps, useFormProps } from "../../Form/index.ts";
+import { type FormStyleProps, useFormProps } from "../../form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../IconList/index.ts";
 import { Spinner, type SpinnerProps } from "../../Spinner/index.ts";

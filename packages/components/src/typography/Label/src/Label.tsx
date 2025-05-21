@@ -7,7 +7,7 @@ import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { Label as RACLabel, useContextProps, type LabelProps as RACLabelProps } from "react-aria-components";
 
-import { useFormProps } from "../../../Form/index.ts";
+import { useFormProps } from "../../../form/index.ts";
 import { useLocalizedString } from "../../../i18n/index.ts";
 import { cssModule, type NecessityIndicator } from "../../../utils/index.ts";
 

@@ -17,7 +17,7 @@ import {
 
 import { CheckboxContext, CheckboxFieldContext } from "../../checkbox/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
-import { useFormProps } from "../../Form/index.ts";
+import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { Label } from "../../typography/Label/index.ts";
 import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";

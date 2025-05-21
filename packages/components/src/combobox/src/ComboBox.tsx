@@ -15,7 +15,7 @@ import {
 
 import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
-import { useFormProps } from "../../Form/index.ts";
+import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../HelperMessage/index.ts";
 import { Input, InputContext, InputGroup, type InputGroupProps } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
