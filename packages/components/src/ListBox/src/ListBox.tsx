@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type ForwardedRef, forwardRef, type NamedExoticComponent } from "react";
 import { Collection, composeRenderProps, type ListBoxRenderProps, ListBox as RACListBox, type ListBoxProps as RACListBoxProps, useContextProps } from "react-aria-components";
 
-import { HeaderContext } from "../../Header/index.ts";
+import { HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { ListBoxSectionContext } from "../../ListBoxSection/index.ts";
 import { Text, type TextSize } from "../../typography/Text/index.ts";

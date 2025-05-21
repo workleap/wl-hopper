@@ -4,7 +4,7 @@ import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, OverlayTriggerStateContext, Provider, useContextProps } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext, CloseButton } from "../../buttons/index.ts";
-import { HeaderContext } from "../../Header/index.ts";
+import { HeaderContext } from "../../header/index.ts";
 import { ImageContext } from "../../Image/index.ts";
 import { ContentContext, FooterContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";

@@ -5,7 +5,7 @@ import type { Meta, StoryFn, StoryObj } from "@storybook/react";
 import { userEvent, within } from "@storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
-import { Header } from "../../../Header/index.ts";
+import { Header } from "../../../header/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/Text/index.ts";
 
