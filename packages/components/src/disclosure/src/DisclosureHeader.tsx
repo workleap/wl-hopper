@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import { Button, type ButtonProps, composeRenderProps, DisclosureStateContext, useContextProps, useSlottedContext } from "react-aria-components";
 
-import { ToggleArrow } from "../../ToggleArrow/index.ts";
+import { ToggleArrow } from "../../toggle-arrow/index.ts";
 import type { HeadingProps } from "../../typography/Heading/index.ts";
 import { Heading, TextContext } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";

@@ -21,7 +21,7 @@ import { HelperMessage } from "../../helper-message/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxProps, type SelectionIndicator } from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
-import { ToggleArrow } from "../../ToggleArrow/index.ts";
+import { ToggleArrow } from "../../toggle-arrow/index.ts";
 import { Label, TextContext } from "../../typography/index.ts";
 import { ClearContainerSlots, ClearProviders, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type MenuAlignment, type MenuDirection } from "../../utils/index.ts";
 

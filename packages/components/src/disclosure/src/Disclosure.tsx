@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { forwardRef, type ForwardedRef } from "react";
 import { composeRenderProps, Disclosure as RACDisclosure, useContextProps, useSlottedContext, type DisclosureProps as RACDisclosureProps } from "react-aria-components";
 
-import { ToggleArrowContext } from "../../ToggleArrow/index.ts";
+import { ToggleArrowContext } from "../../toggle-arrow/index.ts";
 import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { DisclosureContext } from "./DisclosureContext.ts";

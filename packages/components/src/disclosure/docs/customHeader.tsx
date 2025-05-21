@@ -1,6 +1,6 @@
 import { Button, Disclosure, DisclosurePanel, Text } from "@hopper-ui/components";
 
-import { ToggleArrow } from "../../ToggleArrow/index.ts";
+import { ToggleArrow } from "../../toggle-arrow/index.ts";
 
 export default function Example() {
     return (
