@@ -2,7 +2,7 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { Badge } from "../../../badge/index.ts";
-import { Card } from "../../../Card/index.ts";
+import { Card } from "../../../card/index.ts";
 import { Tag } from "../../../tag/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { TabPanel } from "../../src/index.ts";
