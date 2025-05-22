@@ -1,6 +1,6 @@
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { Children, forwardRef, isValidElement, type CSSProperties, type ForwardedRef } from "react";
+import { Children, forwardRef, isValidElement, type CSSProperties, type ForwardedRef, type PropsWithChildren, type ReactElement, type ReactNode } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
@@ -17,15 +17,18 @@ import styles from "./AvatarGroup.module.css";
 
 export const GlobalAvatarGroupCssSelector = "hop-AvatarGroup";
 
-// Putting any to support React 19
+/**
+ * Extracts all avatars from the children of the AvatarGroup.
+ * @param children The children of the AvatarGroup.
+ * @returns An array of avatars, deleted avatars, or anonymous avatars.
+ */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const extractAvatars = (children: any): React.ReactElement<any>[] => Children.toArray(children).flatMap((child: any) => {
+const extractAvatars = (children: ReactNode): ReactElement<any>[] => Children.toArray(children).flatMap(child => {
     if (isValidElement(child)) {
         if (child.type === Avatar || child.type === DeletedAvatar || child.type === AnonymousAvatar) {
             return child;
         } else {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const childProps = child.props as any;
+            const childProps = child.props as PropsWithChildren<ReactNode>;
 
             return extractAvatars(childProps.children);
         }
