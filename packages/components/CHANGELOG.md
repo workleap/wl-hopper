@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.13
+
+### Patch Changes
+
+- 1fb4187: Add AvatarGroup component
+
 ## 1.5.12
 
 ### Patch Changes
