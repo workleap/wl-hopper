@@ -65,7 +65,6 @@ function AnonymousAvatar(props: AnonymousAvatarProps, ref: ForwardedRef<HTMLDivE
         }
     });
 
-
     return (
         <RichIconAvatarImage
             {...mergeProps(otherProps, renderProps)}
