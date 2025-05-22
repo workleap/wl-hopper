@@ -31,14 +31,6 @@ export const LocalImage = {
     }
 } satisfies Story;
 
-export const LocalImageWithTooltip = {
-    ...LocalImage,
-    args: {
-        ...LocalImage.args,
-        showTooltip: true
-    }
-} satisfies Story;
-
 export const LocalTallImage = {
     render: args => (
         <Inline alignY="center">

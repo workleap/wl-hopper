@@ -3,7 +3,6 @@ import { filterDOMProps, mergeProps } from "@react-aria/utils";
 import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { Text, type TextSize } from "../../typography/index.ts";
 import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
@@ -52,11 +51,6 @@ export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omi
      * The src of the image to display. If not provided, the initials will be displayed instead.
      */
     src?: string;
-    /**
-     * Whether or not to show the tooltip. The tooltip will show the content from the name.
-     * @default false
-     */
-    showTooltip?: boolean;
 }
 
 export const AvatarToTextSizeAdapter: SizeAdapter<AvatarSize, TextSize> = {
@@ -139,7 +133,6 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         src,
         className,
         style,
-        showTooltip,
         ...otherProps
     } = ownProps;
     const domProps = filterDOMProps(otherProps);
@@ -219,7 +212,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         />;
     }
 
-    const avatar = (
+    return (
         <div
             {...mergeProps(domProps, renderProps)}
             aria-label={ariaLabel ?? name}
@@ -233,17 +226,6 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             </ClearContainerSlots>
         </div>
     );
-
-    if (showTooltip) {
-        return (
-            <TooltipTrigger>
-                {avatar}
-                <Tooltip>{name}</Tooltip>
-            </TooltipTrigger>
-        );
-    }
-
-    return avatar;
 }
 
 /**

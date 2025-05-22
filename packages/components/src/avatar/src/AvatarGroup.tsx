@@ -1,41 +1,19 @@
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { Children, forwardRef, isValidElement, type CSSProperties, type ForwardedRef, type PropsWithChildren, type ReactElement, type ReactNode } from "react";
+import { Children, cloneElement, forwardRef, type CSSProperties, type ForwardedRef, type ReactElement } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { Text } from "../../typography/index.ts";
 import { cssModule, type AccessibleSlotProps, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import { AnonymousAvatar } from "./AnonymousAvatar.tsx";
-import { Avatar, type AvatarSize } from "./Avatar.tsx";
+import type { AvatarSize } from "./Avatar.tsx";
 import { AvatarContext } from "./AvatarContext.ts";
 import { AvatarGroupContext } from "./AvatarGroupContext.ts";
-import { DeletedAvatar } from "./DeletedAvatar.tsx";
 
 import styles from "./AvatarGroup.module.css";
 
 export const GlobalAvatarGroupCssSelector = "hop-AvatarGroup";
-
-/**
- * Extracts all avatars from the children of the AvatarGroup.
- * @param children The children of the AvatarGroup.
- * @returns An array of avatars, deleted avatars, or anonymous avatars.
- */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const extractAvatars = (children: ReactNode): ReactElement<any>[] => Children.toArray(children).flatMap(child => {
-    if (isValidElement(child)) {
-        if (child.type === Avatar || child.type === DeletedAvatar || child.type === AnonymousAvatar) {
-            return child;
-        } else {
-            const childProps = child.props as PropsWithChildren<ReactNode>;
-
-            return extractAvatars(childProps.children);
-        }
-    }
-
-    return [];
-});
 
 export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMProps>, AccessibleSlotProps {
     /**
@@ -80,7 +58,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
         ...otherProps
     } = ownProps;
 
-    let avatars = extractAvatars(children);
+    let avatars = Children.toArray(children) as ReactElement[];
 
     if (reverse) {
         avatars = avatars.reverse();
@@ -113,47 +91,51 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
     const hiddenAvatars = avatars.slice(maxNumberOfAvatar);
     const numberOfHiddenAvatars = hiddenAvatars.length;
 
-    return (
-        <AvatarContext.Provider
-            value={{
-                size,
-                className: styles["hop-AvatarGroup__avatar"],
-                showTooltip: true
-            }}
-        >
-            <div
-                role="group"
-                ref={ref}
-                slot={slot ?? undefined}
-                className={classNames}
-                style={mergedStyles}
-                {...otherProps}
-            >
-                {shownAvatars}
-                {numberOfHiddenAvatars > 0 && (
-                    <TooltipTrigger>
-                        <span className={styles["hop-AvatarGroup__label"]}>+{numberOfHiddenAvatars}</span>
-                        <Tooltip>
-                            <AvatarContext.Provider value={{ size: "xs" }}>
-                                {hiddenAvatars.map((avatar, index) => {
-                                    const name = avatar.props.name ?? avatar.props["aria-label"] ?? avatar.props["aria-labelledby"];
+    const shownAvatarsMarkup = shownAvatars.map((avatar, index) => {
+        const name = avatar.props.name ?? avatar.props["aria-label"] ?? avatar.props["aria-labelledby"];
+        const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
-                                    return (
-                                        // eslint-disable-next-line react/no-array-index-key
-                                        <div role="button" className={styles["hop-AvatarGroup__hiddenAvatar"]} key={`${name}-${index}`}>
-                                            {avatar}
-                                            <Text>
-                                                {name}
-                                            </Text>
-                                        </div>
-                                    );
-                                })}
-                            </AvatarContext.Provider>
-                        </Tooltip>
-                    </TooltipTrigger>
-                )}
-            </div>
-        </AvatarContext.Provider>
+        return (
+            <TooltipTrigger key={uniqueKey}>
+                {cloneElement(avatar, { ...avatar.props, size, className: styles["hop-AvatarGroup__avatar"] })}
+                <Tooltip>{name}</Tooltip>
+            </TooltipTrigger>
+        );
+    });
+
+    return (
+        <div
+            role="group"
+            ref={ref}
+            slot={slot ?? undefined}
+            className={classNames}
+            style={mergedStyles}
+            {...otherProps}
+        >
+            {shownAvatarsMarkup}
+            {numberOfHiddenAvatars > 0 && (
+                <TooltipTrigger>
+                    <span className={styles["hop-AvatarGroup__label"]}>+{numberOfHiddenAvatars}</span>
+                    <Tooltip>
+                        <AvatarContext.Provider value={{ size: "xs" }}>
+                            {hiddenAvatars.map((avatar, index) => {
+                                const name = avatar.props.name ?? avatar.props["aria-label"] ?? avatar.props["aria-labelledby"];
+                                const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
+
+                                return (
+                                    <div role="button" className={styles["hop-AvatarGroup__hiddenAvatar"]} key={uniqueKey}>
+                                        {avatar}
+                                        <Text>
+                                            {name}
+                                        </Text>
+                                    </div>
+                                );
+                            })}
+                        </AvatarContext.Provider>
+                    </Tooltip>
+                </TooltipTrigger>
+            )}
+        </div>
     );
 }
 

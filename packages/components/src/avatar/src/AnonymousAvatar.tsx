@@ -4,7 +4,6 @@ import { type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { type AccessibleSlotProps, type RenderProps, composeClassnameRenderProps, useRenderProps } from "../../utils/index.ts";
 
 import type { AvatarSize } from "./Avatar.tsx";
@@ -30,14 +29,6 @@ export interface AnonymousAvatarProps extends StyledSystemProps, AccessibleSlotP
      * * @default "md"
      */
     size?: ResponsiveProp<AvatarSize>;
-    /**
-     * Whether or not to show the tooltip.
-     * The tooltip will show the content from the aria-label or aria-labelledby.
-     * If both are provided, aria-label will be used.
-     * If neither are provided, the tooltip will not be shown.
-     * @default false
-     */
-    showTooltip?: boolean;
 }
 
 function AnonymousAvatar(props: AnonymousAvatarProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -47,7 +38,6 @@ function AnonymousAvatar(props: AnonymousAvatarProps, ref: ForwardedRef<HTMLDivE
         className,
         style,
         size: sizeValue,
-        showTooltip,
         ...otherProps
     } = ownProps;
 
@@ -75,7 +65,7 @@ function AnonymousAvatar(props: AnonymousAvatarProps, ref: ForwardedRef<HTMLDivE
         }
     });
 
-    const avatar = (
+    return (
         <RichIconAvatarImage
             {...mergeProps(otherProps, renderProps)}
             ref={ref}
@@ -84,19 +74,6 @@ function AnonymousAvatar(props: AnonymousAvatarProps, ref: ForwardedRef<HTMLDivE
             <AnonymousRichIcon />
         </RichIconAvatarImage>
     );
-
-    const ariaLabel = props["aria-label"] ?? props["aria-labelledby"];
-
-    if (showTooltip && ariaLabel) {
-        return (
-            <TooltipTrigger>
-                {avatar}
-                <Tooltip>{ariaLabel}</Tooltip>
-            </TooltipTrigger>
-        );
-    }
-
-    return avatar;
 }
 
 /**

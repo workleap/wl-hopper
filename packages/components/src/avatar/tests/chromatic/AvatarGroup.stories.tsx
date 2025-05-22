@@ -13,14 +13,15 @@ const meta = {
     title: "Components/AvatarGroup",
     component: AvatarGroup,
     args: {
-        children: <>
-            <Avatar name="Croakster" />
-            <Avatar name="Lily Puddle" />
-            <Avatar name="Hopperton" />
-            <Avatar name="Ribbitus Maximus" />
-            <Avatar name="Toadie McLeap" />
+        children: [
+            <Avatar name="Croakster" />,
+            <Avatar name="Lily Puddle" />,
+            <Avatar name="Hopperton" />,
+            <Avatar name="Ribbitus Maximus" />,
+            <Avatar name="Toadie McLeap" />,
             <Avatar name="Bubbles McFrog" />
-        </>
+        ]
+
     }
 } satisfies Meta<typeof AvatarGroup>;
 

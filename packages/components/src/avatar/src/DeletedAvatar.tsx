@@ -4,7 +4,6 @@ import { type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { type AccessibleSlotProps, type RenderProps, composeClassnameRenderProps, useRenderProps } from "../../utils/index.ts";
 
 import type { AvatarSize } from "./Avatar.tsx";
@@ -31,10 +30,6 @@ export interface DeletedAvatarProps extends StyledSystemProps, AccessibleSlotPro
      * * @default "md"
      */
     size?: ResponsiveProp<AvatarSize>;
-    /**
-     * Whether or not to show the tooltip
-     */
-    showTooltip?: boolean;
 }
 
 function DeletedAvatar(props: DeletedAvatarProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -45,7 +40,6 @@ function DeletedAvatar(props: DeletedAvatarProps, ref: ForwardedRef<HTMLDivEleme
         size: sizeValue,
         style,
         isDisabled,
-        showTooltip,
         ...otherProps
     } = ownProps;
 
@@ -73,7 +67,7 @@ function DeletedAvatar(props: DeletedAvatarProps, ref: ForwardedRef<HTMLDivEleme
         }
     });
 
-    const avatar = (
+    return (
         <RichIconAvatarImage
             isDisabled={isDisabled}
             ref={ref}
@@ -83,19 +77,6 @@ function DeletedAvatar(props: DeletedAvatarProps, ref: ForwardedRef<HTMLDivEleme
             <DeletedUserRichIcon />
         </RichIconAvatarImage>
     );
-
-    const ariaLabel = props["aria-label"] ?? props["aria-labelledby"];
-
-    if (showTooltip && ariaLabel) {
-        return (
-            <TooltipTrigger>
-                {avatar}
-                <Tooltip>{ariaLabel}</Tooltip>
-            </TooltipTrigger>
-        );
-    }
-
-    return avatar;
 }
 
 /**

@@ -1,11 +1,11 @@
 import { Avatar, AvatarGroup, Stack } from "@hopper-ui/components";
 
 export default function Example() {
-    const avatars = <>
-        <Avatar name="John Doe" />
-        <Avatar name="Alex Turner" />
+    const avatars = [
+        <Avatar name="John Doe" />,
+        <Avatar name="Alex Turner" />,
         <Avatar name="Chris Dalton" />
-    </>;
+    ];
 
     return (
         <Stack>
