@@ -47,7 +47,7 @@ export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMP
     /**
      * The content of the AvatarGroup.
      */
-    children: AvatarGroupElement | AvatarGroupElement[];
+    children?: AvatarGroupElement | AvatarGroupElement[];
 }
 
 function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) {
