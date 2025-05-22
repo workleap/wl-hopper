@@ -53,7 +53,8 @@ export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omi
      */
     src?: string;
     /**
-     * Whether or not to show the tooltip
+     * Whether or not to show the tooltip. The tooltip will show the content from the name.
+     * @default false
      */
     showTooltip?: boolean;
 }

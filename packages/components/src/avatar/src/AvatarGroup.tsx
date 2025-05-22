@@ -17,22 +17,19 @@ import styles from "./AvatarGroup.module.css";
 
 export const GlobalAvatarGroupCssSelector = "hop-AvatarGroup";
 
-// Putting any to support React 19
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const extractAvatars = (children: any): React.ReactElement<any>[] => Children.toArray(children).flatMap((child: any) => {
-    if (isValidElement(child)) {
-        if (child.type === Avatar || child.type === DeletedAvatar || child.type === AnonymousAvatar) {
-            return child;
-        } else {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const childProps = child.props as any;
-
-            return extractAvatars(childProps.children);
+const extractAvatars = (children: React.ReactNode): React.ReactElement[] => {
+    return Children.toArray(children).flatMap(child => {
+        if (isValidElement(child)) {
+            if (child.type === Avatar || child.type === DeletedAvatar || child.type === AnonymousAvatar) {
+                return child;
+            } else if (child.props && child.props.children) {
+                return extractAvatars(child.props.children);
+            }
         }
-    }
 
-    return [];
-});
+        return [];
+    });
+};
 
 export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMProps>, AccessibleSlotProps {
     /**

@@ -31,7 +31,11 @@ export interface AnonymousAvatarProps extends StyledSystemProps, AccessibleSlotP
      */
     size?: ResponsiveProp<AvatarSize>;
     /**
-     * Whether or not to show the tooltip
+     * Whether or not to show the tooltip.
+     * The tooltip will show the content from the aria-label or aria-labelledby.
+     * If both are provided, aria-label will be used.
+     * If neither are provided, the tooltip will not be shown.
+     * @default false
      */
     showTooltip?: boolean;
 }

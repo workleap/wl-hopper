@@ -12,7 +12,7 @@ export default function Example() {
             <Avatar name="Marie Curie" />
             <Avatar name="Rosalind Franklin" />
             <DeletedAvatar aria-label="Alan Sheppard" />
-            <AnonymousAvatar aria-label="Anonynous" />
+            <AnonymousAvatar aria-label="Anonymous" />
         </AvatarGroup>
     );
 }
