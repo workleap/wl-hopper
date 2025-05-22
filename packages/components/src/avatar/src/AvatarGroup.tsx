@@ -7,12 +7,16 @@ import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { Text } from "../../typography/index.ts";
 import { cssModule, type AccessibleSlotProps, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import type { AvatarSize } from "./Avatar.tsx";
+import type { AnonymousAvatarProps } from "./AnonymousAvatar.tsx";
+import type { AvatarProps, AvatarSize } from "./Avatar.tsx";
 import { AvatarContext } from "./AvatarContext.ts";
 import { AvatarGroupContext } from "./AvatarGroupContext.ts";
+import type { BrokenAvatarProps } from "./BrokenAvatar.tsx";
+import type { DeletedAvatarProps } from "./DeletedAvatar.tsx";
 
 import styles from "./AvatarGroup.module.css";
 
+type AvatarGroupChildren = ReactElement<AvatarProps | DeletedAvatarProps | AnonymousAvatarProps | BrokenAvatarProps>;
 export const GlobalAvatarGroupCssSelector = "hop-AvatarGroup";
 
 export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMProps>, AccessibleSlotProps {
@@ -40,6 +44,10 @@ export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMP
      * @default 'start'
      */
     align?: ResponsiveProp<Align>;
+    /**
+     * The children of the AvatarGroup.
+     */
+    children: AvatarGroupChildren | AvatarGroupChildren[];
 }
 
 function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -58,7 +66,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
         ...otherProps
     } = ownProps;
 
-    let avatars = Children.toArray(children) as ReactElement[];
+    let avatars = Children.toArray(children) as AvatarGroupChildren[];
 
     if (reverse) {
         avatars = avatars.reverse();
@@ -91,8 +99,19 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
     const hiddenAvatars = avatars.slice(maxNumberOfAvatar);
     const numberOfHiddenAvatars = hiddenAvatars.length;
 
+    const getAvatarName = ({ props: possibleAvatarProps }: AvatarGroupChildren) => {
+        let name = possibleAvatarProps["aria-label"] ?? possibleAvatarProps["aria-labelledby"];
+
+        if (isAvatarProps(possibleAvatarProps)) {
+            name = possibleAvatarProps.name ?? name;
+        }
+
+        return name;
+    };
+
     const shownAvatarsMarkup = shownAvatars.map((avatar, index) => {
-        const name = avatar.props.name ?? avatar.props["aria-label"] ?? avatar.props["aria-labelledby"];
+        const name = getAvatarName(avatar);
+
         const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
         return (
@@ -119,7 +138,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
                     <Tooltip>
                         <AvatarContext.Provider value={{ size: "xs" }}>
                             {hiddenAvatars.map((avatar, index) => {
-                                const name = avatar.props.name ?? avatar.props["aria-label"] ?? avatar.props["aria-labelledby"];
+                                const name = getAvatarName(avatar);
                                 const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
                                 return (
@@ -148,3 +167,8 @@ const _AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(AvatarGroup);
 _AvatarGroup.displayName = "AvatarGroup";
 
 export { _AvatarGroup as AvatarGroup };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isAvatarProps(props: any): props is AvatarProps {
+    return "name" in props;
+}
