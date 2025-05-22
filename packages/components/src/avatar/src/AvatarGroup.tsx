@@ -16,7 +16,7 @@ import type { DeletedAvatarProps } from "./DeletedAvatar.tsx";
 
 import styles from "./AvatarGroup.module.css";
 
-type AvatarGroupChildren = ReactElement<AvatarProps | DeletedAvatarProps | AnonymousAvatarProps | BrokenAvatarProps>;
+type AvatarGroupElement = ReactElement<AvatarProps | DeletedAvatarProps | AnonymousAvatarProps | BrokenAvatarProps>;
 export const GlobalAvatarGroupCssSelector = "hop-AvatarGroup";
 
 export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMProps>, AccessibleSlotProps {
@@ -45,9 +45,9 @@ export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMP
      */
     align?: ResponsiveProp<Align>;
     /**
-     * The children of the AvatarGroup.
+     * The content of the AvatarGroup.
      */
-    children: AvatarGroupChildren | AvatarGroupChildren[];
+    children: AvatarGroupElement | AvatarGroupElement[];
 }
 
 function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -66,7 +66,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
         ...otherProps
     } = ownProps;
 
-    let avatars = Children.toArray(children) as AvatarGroupChildren[];
+    let avatars = Children.toArray(children) as AvatarGroupElement[];
 
     if (reverse) {
         avatars = avatars.reverse();
@@ -99,7 +99,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
     const hiddenAvatars = avatars.slice(maxNumberOfAvatar);
     const numberOfHiddenAvatars = hiddenAvatars.length;
 
-    const getAvatarName = ({ props: possibleAvatarProps }: AvatarGroupChildren) => {
+    const getAvatarName = ({ props: possibleAvatarProps }: AvatarGroupElement) => {
         let name = possibleAvatarProps["aria-label"] ?? possibleAvatarProps["aria-labelledby"];
 
         if (isAvatarProps(possibleAvatarProps)) {

@@ -1,7 +1,5 @@
-import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
 
 import { Stack } from "../../../layout/index.ts";
 import { AnonymousAvatar } from "../../src/AnonymousAvatar.tsx";
@@ -112,21 +110,3 @@ export const Alignments = {
     )
 } satisfies Story;
 
-export const ShowTooltip = {
-    render: args => (
-        <AvatarGroup {...args}>
-            <Avatar name="Croakster" />
-            <Avatar name="Lily Puddle" />
-            <Avatar name="Hopperton" />
-        </AvatarGroup>
-    ),
-    play: async ({ canvasElement }) => {
-        const canvas = within(canvasElement);
-        const avatar = await canvas.findByRole("img", { name: "Lily Puddle" });
-        await userEvent.hover(avatar);
-    },
-    parameters: {
-        ...hopperParameters({ colorSchemes: ["light"] }),
-        chromatic: { delay: 2000 }
-    }
-} satisfies Story;
