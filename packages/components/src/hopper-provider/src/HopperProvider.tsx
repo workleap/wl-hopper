@@ -4,6 +4,10 @@ import clsx from "clsx";
 import { createContext, forwardRef, useContext, type ForwardedRef } from "react";
 import { I18nProvider, RouterProvider } from "react-aria-components";
 
+import { cssModule } from "../../utils/index.ts";
+
+import styles from "./HopperProvider.module.css";
+
 export const GlobalHopperProviderCssSelector = "hop-HopperProvider";
 
 export interface HopperProviderProps extends StyledSystemProviderProps {
@@ -69,6 +73,7 @@ export function useHopperContext() {
 /**
  * This hook is used to get the HopperProviderProps from the nearest HopperProvider ancestor.
  * It will only return the props that would need to be forwarded to the next HopperProvider.
+ * @deprecated This hook is deprecated and should not be used in new code. Prefer setting `getRootCSSClasses(colorScheme)` instead of creating a new HopperProvider in portals.
  */
 export function useForwardedHopperContext() {
     const context = useContext(HopperContext);
@@ -81,7 +86,6 @@ export function useForwardedHopperContext() {
         withCssVariables: false // we never need to re-add css variables in a nested provider
     } satisfies Partial<HopperProviderProps>;
 }
-
 
 const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
@@ -98,6 +102,10 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
 
     const classNames = clsx(
         GlobalHopperProviderCssSelector,
+        cssModule(
+            styles,
+            "hop-HopperProvider"
+        ),
         className
     );
 

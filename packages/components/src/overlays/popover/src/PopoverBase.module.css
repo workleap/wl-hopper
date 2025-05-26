@@ -5,6 +5,11 @@
     --hop-Popover-box-shadow: var(--hop-elevation-lifted);
     --hop-Popover-color: var(--hop-neutral-text);
     --hop-Popover-color-outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
+    --hop-Popover-font-family: var(--hop-body-md-font-family);
+    --hop-Popover-font-size: var(--hop-body-md-font-size);
+    --hop-Popover-font-weight: var(--hop-body-md-font-weight);
+    --hop-Popover-line-height: var(--hop-body-md-line-height);
+    --hop-Popover-font-smoothing: antialiased;
 
     isolation: isolate;
 
@@ -17,6 +22,11 @@
     /* Don't be larger than full screen minus 2 * containerPadding. --container-padding is coming from JS */
     max-inline-size: calc(100vw - 2* var(--container-padding, 0));
 
+    font-family: var(--hop-Popover-font-family);
+    font-size: var(--hop-Popover-font-size);
+    font-weight: var(--hop-Popover-font-weight);
+    -webkit-font-smoothing: var(--hop-Popover-font-smoothing);
+    line-height: var(--hop-Popover-line-height);
     color: var(--hop-Popover-color);
 
     background-color: var(--hop-Popover-background);
