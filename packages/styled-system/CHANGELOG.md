@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.7
+
+### Patch Changes
+
+- 4f84364: Revert the "All root elements now properly set their base typography" PR. Modal/Popover/Tooltips now sets their fonts properly themselves
+
 ## 2.5.6
 
 ### Patch Changes
