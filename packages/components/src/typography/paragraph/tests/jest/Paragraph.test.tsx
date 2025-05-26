@@ -52,7 +52,7 @@ describe("Paragraph", () => {
         render(<Paragraph ref={ref}>Test</Paragraph>);
 
         expect(ref.current).not.toBeNull();
-        expect(ref.current instanceof HTMLSpanElement).toBeTruthy();
+        expect(ref.current instanceof HTMLParagraphElement).toBeTruthy();
     });
 
     it("should set size inherit on nested text", () => {
