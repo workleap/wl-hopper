@@ -473,6 +473,15 @@ export const Previews: Record<string, Preview> = {
     "typography/label/docs/advancedCustomization": {
         component: lazy(() => import("@/../../packages/components/src/typography/label/docs/advancedCustomization.tsx"))
     },
+    "typography/paragraph/docs/paragraph/preview": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/preview.tsx"))
+    },
+    "typography/paragraph/docs/paragraph/size": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/size.tsx"))
+    },
+    "typography/paragraph/docs/paragraph/inherit": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/inherit.tsx"))
+    },
     "typography/text/docs/text/preview": {
         component: lazy(() => import("@/../../packages/components/src/typography/text/docs/text/preview.tsx"))
     },
