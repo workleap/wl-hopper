@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.15
+
+### Patch Changes
+
+- 054ae18: Created a Paragraph Component
+
 ## 1.5.14
 
 ### Patch Changes
