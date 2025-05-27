@@ -6,10 +6,7 @@ import { Paragraph } from "../../src/Paragraph.tsx";
 
 const meta = {
     title: "Components/Typography/Paragraph",
-    component: Paragraph,
-    args: {
-        children: "Software built for everyone to do their best work."
-    }
+    component: Paragraph
 } satisfies Meta<typeof Paragraph>;
 
 export default meta;
