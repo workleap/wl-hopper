@@ -294,6 +294,14 @@ export const Invalid = {
     }
 } satisfies Story;
 
+export const Links = {
+    render: () => {
+        return (
+            <Tag id="1" href="https://www.google.com">Google</Tag>
+        );
+    }
+} satisfies Story;
+
 export const Everything = {
     render: props => {
         return (
