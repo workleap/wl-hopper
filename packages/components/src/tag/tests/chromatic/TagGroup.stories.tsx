@@ -67,21 +67,21 @@ export const Href = {
         return (
             <Stack>
                 <TagGroup {...props} size="sm" label="Small">
-                    <Tag href="www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
                 </TagGroup>
 
                 <TagGroup {...props} label="Medium">
-                    <Tag href="www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
                 </TagGroup>
 
                 <TagGroup {...props} size="lg" label="Large">
-                    <Tag href="www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="www.google.com" id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
+                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
                 </TagGroup>
             </Stack>
         );
