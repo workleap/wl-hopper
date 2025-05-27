@@ -6,7 +6,7 @@ import {
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
-import { filterDOMProps, mergeProps, useObjectRef } from "@react-aria/utils";
+import { mergeProps, useObjectRef } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
 import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
@@ -246,6 +246,8 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
         ...itemProps,
         id: undefined,
         children: props.children,
+        className: props.className,
+        style: props.style,
         values: {
             isFocusVisible,
             isHovered,
@@ -270,9 +272,7 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ref={objectRef as any}
             aria-label={props.textValue}
-            // pressProps contains all the props
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            {...mergeProps(filterDOMProps(itemProps as any, { labelable: true }), focusProps, hoverProps)}
+            {...mergeProps(itemProps, focusProps, hoverProps)}
             {...renderProps}
             data-disabled={props.isDisabled || undefined}
             data-hovered={isHovered || undefined}

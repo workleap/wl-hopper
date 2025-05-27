@@ -1,0 +1,123 @@
+---
+title: Tag
+description: A tag represents a label, category, keyword, or filter, and can be used for various groupings. If you need multiple tags, consider using the TagGroup component.
+category: "collections"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tag/src/Tag.tsx
+---
+
+<Example src="tag/docs/tag/preview" />
+
+<FeatureFlag flag="next">
+    ## Guidelines
+
+    TODO: If we have some guidelines about this component usage
+
+    ### Accessibility?
+
+    TODO: If we have some guidelines about this component and accessibility
+</FeatureFlag>
+
+## Anatomy
+
+<FeatureFlag flag="rc">
+
+    TODO: We have anatomy screenshots from the Figma, we could most likely use them here
+
+    ### Concepts
+
+    TODO: links to related concepts
+</FeatureFlag>
+
+### Composed Components
+
+A `Tag` uses the following components:
+
+<ComposedComponents components={["Avatar", "Badge", "Icon", "IconList", "Text"]}/>
+
+## Usage
+
+> If you need multiple tags, consider using the [TagGroup](TagGroup) component.
+
+### Sizes
+
+A tag can vary in size.
+
+<Example src="tag/docs/tag/sizes" />
+
+### Disabled
+
+A tag can be disabled using the `isDisabled` prop.
+
+<Example src="tag/docs/tag/disabled" />
+
+### Variants
+
+A tag can vary in style using the `variant` prop.
+
+<Example src="tag/docs/tag/variants" />
+
+### Invalid
+
+A tag can be set as invalid using the `isInvalid` prop.
+
+<Example src="tag/docs/tag/invalid" />
+
+### Loading
+
+A tag can have a loading state using the `isLoading` prop.
+
+<Example src="tag/docs/tag/loading" />
+
+### Avatar
+
+A tag can contain an avatar.
+
+<Example src="tag/docs/tag/avatar" />
+
+### Icons
+
+A tag can contain an icon or an icon list.
+
+<Example src="tag/docs/tag/icons" />
+
+### Count
+
+A tag can contain a count using the `Badge` component.
+
+<Example src="tag/docs/tag/count" />
+
+### Links
+
+A tag can be a link by using the `href` prop on the Tag component. Tags with an `href` are not selectable.
+
+<Example src="tag/docs/tag/links" />
+
+### React Router Links
+
+A tag can be rendered as a react router link when using the `href` prop and setting the `navigate` prop on the `HopperProvider`.
+
+<Example src="tag/docs/tag/reactRouterLinks" />
+
+<FeatureFlag flag="next">
+    ## Advanced customization
+
+    ### Contexts
+    TODO: Example of context + content about the context
+
+    ### Custom Children
+
+    TODO: Example of passing custom children to the components to fake a slot
+
+    ### Custom Component
+
+    TODO: Example of creating a custom version of this component
+</FeatureFlag>
+
+## Props
+
+<PropTable component="Tag" />
+
+## Migration Notes
+
+<MigrateGuide src="tag/docs/migration-notes-tag" />

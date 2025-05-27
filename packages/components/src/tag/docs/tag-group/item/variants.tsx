@@ -1,8 +1,8 @@
-import { Inline, Tag } from "@hopper-ui/components";
+import { Tag, TagGroup } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Inline>
+        <TagGroup aria-label="Jobs">
             <Tag variant="neutral">
                 Neutral
             </Tag>
@@ -39,6 +39,6 @@ export default function Example() {
             <Tag variant="option6">
                 Option 6
             </Tag>
-        </Inline>
+        </TagGroup>
     );
 }
