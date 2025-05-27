@@ -7,7 +7,7 @@ export default function Example() {
                 Designer
             </Tag>
             <Tag id="developer">
-                Designer
+                Developer
             </Tag>
             <Tag id="manager">
                 Manager
