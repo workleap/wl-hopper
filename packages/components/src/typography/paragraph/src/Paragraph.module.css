@@ -1,0 +1,52 @@
+.hop-Paragraph {
+    /*
+     * These are orbiter values
+     * Those tokens no longer exist in the DS, but if we change the value here,
+     * all the products using the Paragraph component will be affected.
+     * So we keep those odd values here for now, and we might swap them later.
+     */
+    --hop-Paragraph-xs-margin-bottom: calc(.625rem * .75);
+    --hop-Paragraph-sm-margin-bottom: calc(.75rem * .75);
+    --hop-Paragraph-md-margin-bottom: calc(.875rem * .75);
+    --hop-Paragraph-lg-margin-bottom: calc(1rem * .75);
+    --hop-Paragraph-xl-margin-bottom: calc(1.125rem * .75);
+    --hop-Paragraph-2xl-margin-bottom: calc(1.375rem * .75);
+    --hop-Paragraph-inherit-margin-bottom: .75em;
+
+    margin: 0;
+    margin-block-end: var(--margin-block-end);
+    overflow-wrap: break-word;
+}
+
+/* If there is multiple paragraph back to back, we add a margin bottom on all of them except the last one */
+.hop-Paragraph:last-child {
+    --margin-block-end: 0;
+}
+
+.hop-Paragraph--xs {
+    --margin-block-end: var(--hop-Paragraph-xs-margin-bottom);
+}
+
+.hop-Paragraph--sm {
+    --margin-block-end: var(--hop-Paragraph-sm-margin-bottom);
+}
+
+.hop-Paragraph--md {
+    --margin-block-end: var(--hop-Paragraph-md-margin-bottom);
+}
+
+.hop-Paragraph--lg {
+    --margin-block-end: var(--hop-Paragraph-lg-margin-bottom);
+}
+
+.hop-Paragraph--xl {
+    --margin-block-end: var(--hop-Paragraph-xl-margin-bottom);
+}
+
+.hop-Paragraph--2xl {
+    --margin-block-end: var(--hop-Paragraph-2xl-margin-bottom);
+}
+
+.hop-Paragraph--inherit {
+    --margin-block-end: var(--hop-Paragraph-inherit-margin-bottom);
+}
