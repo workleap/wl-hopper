@@ -35,7 +35,7 @@ function Paragraph(props: ParagraphProps, ref: ForwardedRef<HTMLParagraphElement
             ref={ref}
             elementType="p"
             className={classNames}
-            size={size}
+            size={sizeProp}
             {...otherProps}
         >
             {children}

@@ -1,7 +1,6 @@
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
-import { ButtonGroupContext } from "../../../../buttons/src/ButtonGroupContext.ts";
 import { TextContext } from "../../../text/index.ts";
 import { Paragraph } from "../../src/Paragraph.tsx";
 
@@ -53,23 +52,5 @@ describe("Paragraph", () => {
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLParagraphElement).toBeTruthy();
-    });
-
-    it("should set size inherit on nested text", () => {
-        render(<Paragraph>Test <Paragraph>Nested</Paragraph></Paragraph>);
-
-        const element = screen.getByText("Nested");
-        expect(element).toHaveClass("hop-Text--inherit");
-    });
-
-    it("should stop context propagation on nested text", () => {
-        render(
-            <ButtonGroupContext.Provider value={{ className: "testClass" }}>
-                <Paragraph>Test <Paragraph>Nested</Paragraph></Paragraph>
-            </ButtonGroupContext.Provider>
-        );
-
-        const element = screen.getByText("Nested");
-        expect(element).not.toHaveClass("testClass");
     });
 });
