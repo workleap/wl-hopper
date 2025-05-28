@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.5.16
+
+### Patch Changes
+
+- f24923f: Fix Tags outside of TagGroups to better support being links
+
 ## 1.5.15
 
 ### Patch Changes
