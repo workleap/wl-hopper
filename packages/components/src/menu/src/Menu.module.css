@@ -57,3 +57,9 @@
     color: var(--hop-Menu-header-color);
     text-transform: var(--hop-Menu-header-text-transform);
 }
+
+.hop-Menu__divider {
+    --hop-Menu-divider-margin-block: var(--hop-space-stack-xs);
+
+    margin-block: var( --hop-Menu-divider-margin-block);
+}

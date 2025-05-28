@@ -65,8 +65,7 @@ export type {
 export { useFilter, type Placement } from "react-aria";
 export {
     Collection,
-    DEFAULT_SLOT,
-    useContextProps,
+    DEFAULT_SLOT, Pressable, useContextProps,
     useLocale,
     useSlottedContext,
     type ContextValue

@@ -215,6 +215,9 @@ export const Previews: Record<string, Preview> = {
     "menu/docs/Empty": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/Empty.tsx"))
     },
+    "menu/docs/AlignDirection": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/AlignDirection.tsx"))
+    },
     "menu/docs/Sections": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/Sections.tsx"))
     },
@@ -247,6 +250,9 @@ export const Previews: Record<string, Preview> = {
     },
     "menu/docs/Selection": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/Selection.tsx"))
+    },
+    "menu/docs/SectionLevelSelection": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/SectionLevelSelection.tsx"))
     },
     "menu/docs/CustomTrigger": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/CustomTrigger.tsx"))

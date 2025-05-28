@@ -17,6 +17,12 @@ A menu can have an empty state.
 
 <Example src="menu/docs/Empty" />
 
+### Align and direction
+
+The align prop aligns the Menu relative to the trigger and the direction prop controls the direction the Menu will render.
+
+<Example src="menu/docs/AlignDirection" />
+
 ### Sections
 
 A menu's items can be grouped by sections.
@@ -68,12 +74,7 @@ They can also be disabled using the `disabledKeys` prop on the `Menu` component.
 
 ### Validation
 
-A menu can display a validation state to communicate to the user whether the current value is valid or invalid.
-Implement your own validation logic in your app and pass either "valid" or "invalid" to the menu via the validationState prop.
-
-<Callout variant="information">
-When using selection with a `<Menu>` component wraped inside a `<MenuTrigger>`, you must handled the selected keys in controlled mode with the selectedKeys property otherwise the selected keys {`won't`} be persisted through openings.
-</Callout>
+A menu item can be set as invalid using the `isInvalid` prop.
 
 <Example src="menu/docs/Validation" />
 
@@ -82,13 +83,23 @@ When using selection with a `<Menu>` component wraped inside a `<MenuTrigger>`, 
 A menu supports multiple selection modes.
 By default, selection is disabled, however this can be changed by settings the selectionMode property to "single" or "multiple".
 
+<Callout variant="information">
+When using selection with a `<Menu>` component wraped inside a `<MenuTrigger>`, you must handled the selected keys in controlled mode with the selectedKeys property otherwise the selected keys {`won't`} be persisted through openings.
+</Callout>
+
 <Example src="menu/docs/Selection" />
+
+### Section-level selection
+
+Each section in a menu may have independent selection states. This works the same way as [described above](/components/Menu#usage-selection) for the entire menu, but operates at the section level instead.
+
+<Example src="menu/docs/SectionLevelSelection" />
 
 ### Custom Trigger
 
-A menu trigger can update is appareance based on the isOpen value by using a controlled state.
+MenuTrigger works out of the box with any pressable component (e.g. Button, Link, etc.).
 
-Any trigger would work as long as it accepts a ref and any other props provided by the menu.
+Custom trigger elements such as third party components and other DOM elements are also supported by wrapping them with the `<Pressable>` component.
 
 <Example src="menu/docs/CustomTrigger" />
 

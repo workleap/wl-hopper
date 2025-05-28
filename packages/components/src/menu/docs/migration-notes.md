@@ -1,27 +1,28 @@
 Coming from Orbiter, you should be aware of the following changes:
 
-## MenuTrigger
+### MenuTrigger
 
 - `allowPreventOverflow` has been removed.
 - `closeOnSelect` has been removed.
 - `open` has been renamed to `isOpen`.
 
-## Menu
+### Menu
 
 - `autoFocusTarget` has been removed.
 - `disabled` has been removed, set the disabled items as `disabledKeys` instead.
 - `fluid` has been removed.
 - `nodes` has been removed.
+- `validationState` has been removed. `isInvalid` should be used instead on the `MenuItem`.
 
-## MenuItem
+### MenuItem
 
 - `disabled` has been renamed to `isDisabled`
 
-## MenuSection
+### MenuSection
 
 - `title` has been removed from `MenuSection`, use `Header` as a children instead
 
-## Miscellaneous
+### Miscellaneous
 
 - `Item` has been renamed `MenuItem`
 - `Section` has been renamed `MenuSection`

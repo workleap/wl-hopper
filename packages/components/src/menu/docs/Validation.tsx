@@ -8,12 +8,11 @@ export default function Example() {
                 <KebabIcon />
             </Button>
             <Menu
-                validationState="invalid"
                 selectionMode="single"
                 selectedKeys={["edit"]}
             >
                 <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit">Edit</MenuItem>
+                <MenuItem id="edit" isInvalid>Edit</MenuItem>
                 <MenuItem id="delete">Delete</MenuItem>
             </Menu>
         </MenuTrigger>

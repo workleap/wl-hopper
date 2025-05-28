@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, MenuTrigger } from "@hopper-ui/components";
+import { Menu, MenuItem, MenuTrigger, Pressable } from "@hopper-ui/components";
 import { useCallback, useState } from "react";
 
 export default function Example() {
@@ -7,11 +7,11 @@ export default function Example() {
         setIsOpen(newOpen);
     }, [setIsOpen]);
 
-    const customTrigger = <Button variant={isOpen ? "primary" : "secondary"}>Custom Trigger</Button>;
-
     return (
         <MenuTrigger onOpenChange={handleOpenChange} isOpen={isOpen}>
-            {customTrigger}
+            <Pressable>
+                <span role="button">Custom trigger</span>
+            </Pressable>
             <Menu>
                 <MenuItem>Favorite</MenuItem>
                 <MenuItem>Edit</MenuItem>

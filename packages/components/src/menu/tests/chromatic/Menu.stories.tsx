@@ -9,24 +9,21 @@ import { Button } from "../../../buttons/index.ts";
 import { Divider } from "../../../divider/index.ts";
 import { Header } from "../../../header/index.ts";
 import { IconList } from "../../../icon-list/index.ts";
+import { Inline } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { Menu, MenuItem, MenuSection, MenuTrigger, SubmenuTrigger } from "../../src/index.ts";
-import { CombinedMenu } from "../../src/Menu.tsx";
 
 const meta = {
     title: "Components/Menu",
-    component: CombinedMenu,
+    component: Menu,
     decorators: [
         Story => (
             <Div UNSAFE_height="300px">
                 <Story />
             </Div>
         )
-    ],
-    args: {
-        isOpen: true
-    }
-} satisfies Meta<typeof CombinedMenu>;
+    ]
+} satisfies Meta<typeof Menu>;
 
 export default meta;
 
@@ -34,7 +31,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -47,9 +44,56 @@ export const Default = {
     )
 } satisfies Story;
 
+export const AlignAndDirection = {
+    render: args => (
+        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_height="300px">
+            <MenuTrigger isOpen align="start">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args}>
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="end" direction="top">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args}>
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="start" direction="top">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args}>
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="end" direction="bottom">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args}>
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+        </Inline>
+    )
+} satisfies Story;
+
 export const Sections = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -70,9 +114,34 @@ export const Sections = {
     )
 } satisfies Story;
 
+export const SelectedSubmenu = {
+    render: args => (
+        <MenuTrigger isOpen>
+            <Button variant="secondary" aria-label="Actions for selected resource">
+                <KebabIcon />
+            </Button>
+            <Menu {...args}>
+                <MenuItem id="favorite">Favorite</MenuItem>
+                <MenuItem id="edit">Edit</MenuItem>
+                <SubmenuTrigger>
+                    <MenuItem id="share">Share</MenuItem>
+                    <Menu>
+                        <MenuItem>SMS</MenuItem>
+                        <MenuItem>Email</MenuItem>
+                    </Menu>
+                </SubmenuTrigger>
+            </Menu>
+        </MenuTrigger>
+    ),
+    args: {
+        selectionMode: "single",
+        selectedKeys: ["share"]
+    }
+} satisfies Story;
+
 export const Dividers = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -88,7 +157,7 @@ export const Dividers = {
 
 export const ItemIcon = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -108,7 +177,7 @@ export const ItemIcon = {
 
 export const ItemEndIcon = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -136,7 +205,7 @@ export const ItemEndIcon = {
 
 export const ItemDescription = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -160,7 +229,7 @@ export const ItemDescription = {
 
 export const ItemDescriptionIcon = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -187,7 +256,7 @@ export const ItemDescriptionIcon = {
 
 export const ItemDescriptionAvatar = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -218,7 +287,7 @@ export const ItemDescriptionAvatar = {
 
 export const DisabledItem = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -233,20 +302,18 @@ export const DisabledItem = {
 
 export const Validation = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
             <Menu {...args}>
                 <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit">Edit</MenuItem>
-                <MenuItem id="delete">Delete</MenuItem>
+                <MenuItem id="edit" isInvalid>Edit</MenuItem>
+                <MenuItem id="delete" isInvalid>Delete</MenuItem>
             </Menu>
         </MenuTrigger>
     ),
     args: {
-        isOpen: true,
-        validationState: "invalid",
         selectionMode: "single",
         selectedKeys: ["edit"]
     }
@@ -254,7 +321,7 @@ export const Validation = {
 
 export const SubmenuLight = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -291,7 +358,7 @@ export const SubmenuDark = {
 
 export const SingleSelectionMode = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
@@ -310,7 +377,7 @@ export const SingleSelectionMode = {
 
 export const MultipleSelectionMode = {
     render: args => (
-        <MenuTrigger {...args}>
+        <MenuTrigger isOpen>
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>

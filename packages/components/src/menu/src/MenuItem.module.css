@@ -64,17 +64,17 @@
     --background-color: var(--hop-neutral-surface-press);
 }
 
-.hop-MenuItem[data-selected] .hop-MenuItem__text {
+.hop-MenuItem[data-selected]:not(.hop-MenuItem[data-has-submenu]) .hop-MenuItem__text {
     font-weight: var(--hop-body-sm-semibold-font-weight);
 }
 
-.hop-MenuItem--invalid[data-selected] {
+.hop-MenuItem--invalid {
     --hop-MenuItem-description-color: var(--hop-danger-text-selected);
     --hop-MenuItem-icon-color: var(--hop-danger-icon-selected);
     --color: var(--hop-danger-text-selected);
 }
 
-.hop-MenuItem--invalid[data-selected][data-hovered] {
+.hop-MenuItem--invalid[data-hovered] {
     --hop-MenuItem-description-color: var(--hop-danger-text-strong-hover);
     --hop-MenuItem-icon-color: var(--hop-danger-icon-strong-hover);
     --background-color: var(--hop-danger-surface-hover);

@@ -9,7 +9,6 @@ MenuContext.displayName = "MenuContext";
 
 interface InternalMenuContextProps {
     isSubmenu: boolean;
-    validationState?: "valid" | "invalid";
 }
 
 export const InternalMenuContext = createContext<InternalMenuContextProps>({

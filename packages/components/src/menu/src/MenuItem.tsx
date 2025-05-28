@@ -1,15 +1,13 @@
 import { AngleRightIcon, CheckmarkIcon, IconContext } from "@hopper-ui/icons";
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { useContext, useRef, type CSSProperties, type ReactNode } from "react";
+import { useRef, type CSSProperties, type ReactNode } from "react";
 import { DEFAULT_SLOT, MenuItem as RACMenuItem, type MenuItemProps as RACMenuItemProps } from "react-aria-components";
 
 import { AvatarContext } from "../../avatar/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Text, TextContext } from "../../typography/index.ts";
 import { cssModule, SlotProvider } from "../../utils/index.ts";
-
-import { InternalMenuContext } from "./MenuContext.ts";
 
 import styles from "./MenuItem.module.css";
 
@@ -20,12 +18,15 @@ export interface MenuItemProps extends StyledComponentProps<RACMenuItemProps> {
      * The contents of the item.
      */
     children: ReactNode;
+    /**
+     * Whether or not the item is invalid
+     */
+    isInvalid?: boolean;
 }
 
 export function MenuItem(props: MenuItemProps) {
     const { style, ...ownProps } = useStyledSystem(props);
-    const { children, stylingProps, className, ...otherProps } = ownProps;
-    const { validationState } = useContext(InternalMenuContext);
+    const { children, stylingProps, className, isInvalid, ...otherProps } = ownProps;
     const ref = useRef(null);
     const textValue = props.textValue || (typeof children === "string" ? children : undefined);
 
@@ -35,7 +36,7 @@ export function MenuItem(props: MenuItemProps) {
         cssModule(
             styles,
             GlobalMenuItemCssSelector,
-            validationState === "invalid" && "invalid"
+            isInvalid && "invalid"
         ),
         stylingProps.className
     );

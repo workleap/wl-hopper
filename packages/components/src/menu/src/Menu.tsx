@@ -1,7 +1,7 @@
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import type { forwardRefType } from "@react-types/shared";
 import clsx from "clsx";
-import { forwardRef, useContext, type CSSProperties, type ForwardedRef, type NamedExoticComponent, type ReactNode } from "react";
+import { forwardRef, useContext, type CSSProperties, type ForwardedRef, type NamedExoticComponent } from "react";
 import type { Placement } from "react-aria";
 import {
     Menu as RACMenu,
@@ -9,26 +9,19 @@ import {
     type MenuProps as RACMenuProps
 } from "react-aria-components";
 
+import { DividerContext } from "../../divider/index.ts";
 import { HeaderContext } from "../../header/index.ts";
 import { PopoverBase } from "../../overlays/index.ts";
 import { cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { InternalMenuContext, MenuContext } from "./MenuContext.ts";
-import type { MenuTriggerProps } from "./MenuTrigger.tsx";
 import { InternalMenuTriggerContext } from "./MenuTriggerContext.ts";
 
 import styles from "./Menu.module.css";
 
 export const GlobalMenuCssSelector = "hop-Menu";
 
-export interface MenuProps<T> extends StyledComponentProps<RACMenuProps<T>> {
-    /**
-     * Whether or not the menu should display as "valid" or "invalid".
-     */
-    // Not sure why eslint is complaining about this prop, it is used.
-    // eslint-disable-next-line react/no-unused-prop-types
-    validationState?: "valid" | "invalid";
-}
+export interface MenuProps<T> extends StyledComponentProps<RACMenuProps<T>> {}
 
 function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, MenuContext);
@@ -41,7 +34,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
     let initialPlacement: Placement = `${direction} ${align}`;
 
     if (isSubmenu) {
-        initialPlacement = "end top" as Placement;
+        initialPlacement = "end top";
     }
 
     const {
@@ -49,7 +42,6 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
         style,
         children,
         slot,
-        validationState,
         ...otherProps
     } = ownProps;
 
@@ -69,11 +61,14 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
     };
 
     const content = (
-        <InternalMenuContext.Provider value={{ isSubmenu: true, validationState }}>
+        <InternalMenuContext.Provider value={{ isSubmenu: true }}>
             <SlotProvider
                 values={[
                     [HeaderContext, {
                         className: styles["hop-Menu__header"]
+                    }],
+                    [DividerContext, {
+                        className: styles["hop-Menu__divider"]
                     }]
                 ]}
             >
@@ -122,11 +117,4 @@ const _Menu = (forwardRef as forwardRefType)(Menu);
 (_Menu as NamedExoticComponent).displayName = "Menu";
 
 export { _Menu as Menu };
-
-// This is purely so that storybook generates the types for both Menu and MenuTrigger
-interface ICombined<T extends object> extends MenuProps<T>, Omit<MenuTriggerProps, "children"> {}
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function CombinedMenu<T extends object>(props: ICombined<T>): ReactNode {
-    return <div />;
-}
 
