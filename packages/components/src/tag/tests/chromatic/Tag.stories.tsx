@@ -49,8 +49,8 @@ export const Href = {
             <Stack>
                 <Inline>
                     <Tag size="sm" id="1" {...props}>Tag 1</Tag>
-                    <Tag size="sm" href="www.google.com" id="2" {...props}>Tag 2</Tag>
-                    <Tag size="sm" href="www.google.com" id="3" style={{ maxWidth: "5rem" }} {...props}>Tag 3 with long text</Tag>
+                    <Tag size="sm" href="https://www.google.com" id="2" {...props}>Tag 2</Tag>
+                    <Tag size="sm" href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }} {...props}>Tag 3 with long text</Tag>
                 </Inline>
 
                 <Inline>
@@ -68,7 +68,7 @@ export const Href = {
         );
     },
     args:{
-        href: "www.google.com"
+        href: "https://www.google.com"
     }
 } satisfies Story;
 

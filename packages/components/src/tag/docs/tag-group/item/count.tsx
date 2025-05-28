@@ -1,8 +1,8 @@
-import { Badge, Inline, Tag, Text } from "@hopper-ui/components";
+import { Badge, Tag, TagGroup, Text } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Inline>
+        <TagGroup aria-label="Jobs">
             <Tag id="designer" size="sm" textValue="Designer">
                 <Text>Designer</Text>
                 <Badge>12</Badge>
@@ -15,6 +15,6 @@ export default function Example() {
                 <Text>Manager</Text>
                 <Badge>99+</Badge>
             </Tag>
-        </Inline>
+        </TagGroup>
     );
 }

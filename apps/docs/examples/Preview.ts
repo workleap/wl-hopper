@@ -269,8 +269,8 @@ export const Previews: Record<string, Preview> = {
     "menu/docs/Submenu": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/Submenu.tsx"))
     },
-    "tag/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/preview.tsx"))
+    "tag/docs/tag-group/preview": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/preview.tsx"))
     },
     "tag/docs/tag-group/label": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/label.tsx"))
@@ -281,8 +281,8 @@ export const Previews: Record<string, Preview> = {
     "tag/docs/tag-group/disabled": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/disabled.tsx"))
     },
-    "tag/docs/tag/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/disabled.tsx"))
+    "tag/docs/tag-group/item/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/disabled.tsx"))
     },
     "tag/docs/tag-group/invalid": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/invalid.tsx"))
@@ -296,38 +296,38 @@ export const Previews: Record<string, Preview> = {
     "tag/docs/tag-group/sizes": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/sizes.tsx"))
     },
-    "tag/docs/tag/sizes": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/sizes.tsx"))
+    "tag/docs/tag-group/item/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/sizes.tsx"))
     },
     "tag/docs/tag-group/variants": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/variants.tsx"))
     },
-    "tag/docs/tag/variants": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/variants.tsx"))
+    "tag/docs/tag-group/item/variants": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/variants.tsx"))
     },
     "tag/docs/tag-group/empty": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/empty.tsx"))
     },
-    "tag/docs/tag/invalid": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/invalid.tsx"))
+    "tag/docs/tag-group/item/invalid": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/invalid.tsx"))
     },
-    "tag/docs/tag/loading": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/loading.tsx"))
+    "tag/docs/tag-group/item/loading": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/loading.tsx"))
     },
-    "tag/docs/tag/avatar": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/avatar.tsx"))
+    "tag/docs/tag-group/item/avatar": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/avatar.tsx"))
     },
-    "tag/docs/tag/icons": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/icons.tsx"))
+    "tag/docs/tag-group/item/icons": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/icons.tsx"))
     },
-    "tag/docs/tag/count": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/count.tsx"))
+    "tag/docs/tag-group/item/count": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/count.tsx"))
     },
-    "tag/docs/tag/links": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/links.tsx"))
+    "tag/docs/tag-group/item/links": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/links.tsx"))
     },
-    "tag/docs/tag/reactRouterLinks": {
-        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/reactRouterLinks.tsx"))
+    "tag/docs/tag-group/item/reactRouterLinks": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/reactRouterLinks.tsx"))
     },
     "hopper-provider/docs/color-scheme/apply": {
         component: lazy(() => import("@/../../packages/components/src/hopper-provider/docs/color-scheme/apply.tsx"))
@@ -532,6 +532,15 @@ export const Previews: Record<string, Preview> = {
     },
     "typography/label/docs/advancedCustomization": {
         component: lazy(() => import("@/../../packages/components/src/typography/label/docs/advancedCustomization.tsx"))
+    },
+    "typography/paragraph/docs/paragraph/preview": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/preview.tsx"))
+    },
+    "typography/paragraph/docs/paragraph/size": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/size.tsx"))
+    },
+    "typography/paragraph/docs/paragraph/inherit": {
+        component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/inherit.tsx"))
     },
     "typography/text/docs/text/preview": {
         component: lazy(() => import("@/../../packages/components/src/typography/text/docs/text/preview.tsx"))
@@ -1471,6 +1480,39 @@ export const Previews: Record<string, Preview> = {
     },
     "spinner/docs/advancedCustomization": {
         component: lazy(() => import("@/../../packages/components/src/spinner/docs/advancedCustomization.tsx"))
+    },
+    "tag/docs/tag/preview": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/preview.tsx"))
+    },
+    "tag/docs/tag/sizes": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/sizes.tsx"))
+    },
+    "tag/docs/tag/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/disabled.tsx"))
+    },
+    "tag/docs/tag/variants": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/variants.tsx"))
+    },
+    "tag/docs/tag/invalid": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/invalid.tsx"))
+    },
+    "tag/docs/tag/loading": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/loading.tsx"))
+    },
+    "tag/docs/tag/avatar": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/avatar.tsx"))
+    },
+    "tag/docs/tag/icons": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/icons.tsx"))
+    },
+    "tag/docs/tag/count": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/count.tsx"))
+    },
+    "tag/docs/tag/links": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/links.tsx"))
+    },
+    "tag/docs/tag/reactRouterLinks": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/reactRouterLinks.tsx"))
     },
 };
     

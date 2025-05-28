@@ -1,5 +1,17 @@
 # @hopper-ui/components
 
+## 1.5.16
+
+### Patch Changes
+
+- f24923f: Fix Tags outside of TagGroups to better support being links
+
+## 1.5.15
+
+### Patch Changes
+
+- 054ae18: Created a Paragraph Component
+
 ## 1.5.14
 
 ### Patch Changes

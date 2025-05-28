@@ -90,7 +90,7 @@
 
     /* Option 5 */
     --hop-Tag-option5-border-color: transparent;
-    --hop-Tag-option5-background-color: var(--hop-status-option5-surface); 
+    --hop-Tag-option5-background-color: var(--hop-status-option5-surface);
     --hop-Tag-option5-text-color: var(--hop-status-option5-text);
 
     /* Option 6 */
@@ -179,7 +179,7 @@
     --hop-Tag-background-color-selected: var(--hop-neutral-surface-selected);
     --hop-Tag-border-color-selected: var(--hop-neutral-border-selected);
     --hop-Tag-text-color-selected: var(--hop-neutral-text-selected);
-    
+
     /* Press */
     --hop-Tag-neutral-background-color-press: var(--hop-neutral-surface-press);
     --hop-Tag-neutral-border-color-press: var(--hop-neutral-border-press);
@@ -217,7 +217,7 @@
     --hop-Tag-option6-background-color-press: var(--hop-status-option6-surface-press);
     --hop-Tag-option6-border-color-press: transparent;
     --hop-Tag-option6-text-color-press: var(--hop-status-option6-text-press);
-    
+
     /* Invalid */
     --hop-Tag-border-color-invalid: var(--hop-danger-border-strong);
 
@@ -278,6 +278,7 @@
     padding-inline: var(--padding-inline);
 
     color: var(--text-color);
+    text-decoration: none;
     white-space: nowrap;
 
     background-color: var(--background-color);
