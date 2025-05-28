@@ -1,0 +1,5 @@
+.hop-FieldLabel__wrapper {
+    display: flex;
+    gap: var(--hop-space-inset-xs);
+    align-items: center;
+}

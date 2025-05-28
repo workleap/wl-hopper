@@ -311,6 +311,9 @@ export const Previews: Record<string, Preview> = {
     "tag/docs/tag-group/empty": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/empty.tsx"))
     },
+    "tag/docs/tag-group/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/ContextualHelp.tsx"))
+    },
     "tag/docs/tag-group/item/invalid": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/item/invalid.tsx"))
     },
@@ -623,6 +626,9 @@ export const Previews: Record<string, Preview> = {
     "checkbox/docs/checkbox-group/itemsDescription": {
         component: lazy(() => import("@/../../packages/components/src/checkbox/docs/checkbox-group/itemsDescription.tsx"))
     },
+    "checkbox/docs/checkbox-group/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/checkbox/docs/checkbox-group/ContextualHelp.tsx"))
+    },
     "form/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/form/docs/preview.tsx"))
     },
@@ -680,6 +686,9 @@ export const Previews: Record<string, Preview> = {
     "inputs/docs/number-field/fluid": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/number-field/fluid.tsx"))
     },
+    "inputs/docs/number-field/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/number-field/ContextualHelp.tsx"))
+    },
     "inputs/docs/password-field/preview": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/password-field/preview.tsx"))
     },
@@ -700,6 +709,9 @@ export const Previews: Record<string, Preview> = {
     },
     "inputs/docs/password-field/description": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/password-field/description.tsx"))
+    },
+    "inputs/docs/password-field/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/password-field/ContextualHelp.tsx"))
     },
     "radio/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/radio/docs/preview.tsx"))
@@ -727,6 +739,9 @@ export const Previews: Record<string, Preview> = {
     },
     "radio/docs/radio-group/controlled": {
         component: lazy(() => import("@/../../packages/components/src/radio/docs/radio-group/controlled.tsx"))
+    },
+    "radio/docs/radio-group/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/radio/docs/radio-group/ContextualHelp.tsx"))
     },
     "radio/docs/radio/noLabel": {
         component: lazy(() => import("@/../../packages/components/src/radio/docs/radio/noLabel.tsx"))
@@ -760,6 +775,9 @@ export const Previews: Record<string, Preview> = {
     },
     "inputs/docs/search-field/labeling": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/search-field/labeling.tsx"))
+    },
+    "inputs/docs/search-field/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/search-field/ContextualHelp.tsx"))
     },
     "inputs/docs/search-field/description": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/search-field/description.tsx"))
@@ -824,6 +842,9 @@ export const Previews: Record<string, Preview> = {
     "inputs/docs/text-area/verticalResize": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-area/verticalResize.tsx"))
     },
+    "inputs/docs/text-area/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-area/ContextualHelp.tsx"))
+    },
     "inputs/docs/text-field/preview": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-field/preview.tsx"))
     },
@@ -859,6 +880,9 @@ export const Previews: Record<string, Preview> = {
     },
     "inputs/docs/text-field/maxLengthExceeded": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-field/maxLengthExceeded.tsx"))
+    },
+    "inputs/docs/text-field/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-field/ContextualHelp.tsx"))
     },
     "inputs/docs/text-field/fluid": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-field/fluid.tsx"))
@@ -1154,6 +1178,15 @@ export const Previews: Record<string, Preview> = {
     "alert/docs/responsive-sizes": {
         component: lazy(() => import("@/../../packages/components/src/alert/docs/responsive-sizes.tsx"))
     },
+    "contextual-help/docs/Preview": {
+        component: lazy(() => import("@/../../packages/components/src/contextual-help/docs/Preview.tsx"))
+    },
+    "contextual-help/docs/Variant": {
+        component: lazy(() => import("@/../../packages/components/src/contextual-help/docs/Variant.tsx"))
+    },
+    "contextual-help/docs/Size": {
+        component: lazy(() => import("@/../../packages/components/src/contextual-help/docs/Size.tsx"))
+    },
     "modal/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/modal/docs/preview.tsx"))
     },
@@ -1286,6 +1319,9 @@ export const Previews: Record<string, Preview> = {
     "combobox/docs/form": {
         component: lazy(() => import("@/../../packages/components/src/combobox/docs/form.tsx"))
     },
+    "combobox/docs/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/combobox/docs/ContextualHelp.tsx"))
+    },
     "combobox/docs/combobox-option/autoMenuWidth": {
         component: lazy(() => import("@/../../packages/components/src/combobox/docs/combobox-option/autoMenuWidth.tsx"))
     },
@@ -1360,6 +1396,9 @@ export const Previews: Record<string, Preview> = {
     },
     "select/docs/form": {
         component: lazy(() => import("@/../../packages/components/src/select/docs/form.tsx"))
+    },
+    "select/docs/ContextualHelp": {
+        component: lazy(() => import("@/../../packages/components/src/select/docs/ContextualHelp.tsx"))
     },
     "select/docs/select-dropdown/autoMenuWidth": {
         component: lazy(() => import("@/../../packages/components/src/select/docs/select-dropdown/autoMenuWidth.tsx"))

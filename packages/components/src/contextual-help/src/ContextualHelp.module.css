@@ -1,0 +1,98 @@
+.hop-ContextualHelp {
+    --hop-ContextualHelp-block-size: fit-content;
+    --hop-ContextualHelp-inline-size: fit-content;
+    --hop-ContextualHelp-box-sizing: border-box;
+    --hop-ContextualHelp-background-color: transparent;
+    --hop-ContextualHelp-border: none;
+    --hop-ContextualHelp-border-radius: var(--hop-shape-rounded-md);
+    --hop-ContextualHelp-outline: none;
+    --hop-ContextualHelp-outline-size: var(--hop-space-20);
+    --hop-ContextualHelp-padding: var(--hop-space-10);
+    --hop-ContextualHelp-color: var(--hop-neutral-text-weak);
+    --hop-ContextualHelp-focus-ring-color: var(--hop-primary-border-focus);
+    --hop-ContextualHelp-display: flex;
+    --hop-ContextualHelp-aspect-ratio: 1;
+    --hop-ContextualHelp-column-gap: 0;
+    --hop-ContextualHelp-align-items: center;
+    --hop-ContextualHelp-justify-content: center;
+
+    display: var(--hop-ContextualHelp-display);
+    column-gap: var(--hop-ContextualHelp-column-gap);
+    align-items: var(--hop-ContextualHelp-align-items);
+    justify-content: var(--hop-ContextualHelp-justify-content);
+
+    box-sizing: var(--hop-ContextualHelp-box-sizing);
+    aspect-ratio: var(--hop-ContextualHelp-aspect-ratio);
+    inline-size: var(--hop-ContextualHelp-inline-size);
+    block-size: var(--hop-ContextualHelp-block-size);
+    padding: var( --hop-ContextualHelp-padding);
+
+    color: var(--hop-ContextualHelp-color);
+
+    background-color: var(--hop-ContextualHelp-background-color);
+    border: var(--hop-ContextualHelp-border);
+    border-radius: var(--hop-ContextualHelp-border-radius);
+    outline: var(--hop-ContextualHelp-outline);
+    outline-offset: var(--hop-ContextualHelp-outline-size);
+}
+
+.hop-ContextualHelp[data-focus-visible] {
+    outline: var(--hop-ContextualHelp-outline-size) solid var(--hop-ContextualHelp-focus-ring-color);
+}
+
+.hop-ContextualHelp__popover {
+    --hop-ContextualHelp__popover-outline: none;
+    --hop-ContextualHelp__popover-border: none;
+    --hop-ContextualHelp__popover-max-inline-size: 20rem;
+    --hop-ContextualHelp__popover-background: var(--hop-neutral-surface-strong);
+    --hop-ContextualHelp__popover-border-radius: var(--hop-shape-rounded-md);
+    --hop-ContextualHelp__popover-box-shadow: var(--hop-elevation-raised);
+    --hop-ContextualHelp__popover-font-family: var(--hop-body-md-font-family);
+    --hop-ContextualHelp__popover-font-size: var(--hop-body-md-font-size);
+    --hop-ContextualHelp__popover-font-weight: var(--hop-body-md-font-weight);
+    --hop-ContextualHelp__popover-line-height: var(--hop-body-md-line-height);
+    --hop-ContextualHelp__popover-font-smoothing: antialiased;
+    --hop-ContextualHelp__popover-color: var(--hop-neutral-text-strong);
+    --hop-ContextualHelp__popover-padding: var(--hop-space-inset-squish-md);
+    --hop-ContextualHelp__popover-translate-amount: 0.5rem;
+
+    max-inline-size: min(var(--hop-ContextualHelp__popover-max-inline-size), calc(100% - (var(--container-padding) * 2)));
+    padding: var(--hop-ContextualHelp__popover-padding);
+
+    font-family: var(--hop-ContextualHelp__popover-font-family);
+    font-size: var(--hop-ContextualHelp__popover-font-size);
+    font-weight: var(--hop-ContextualHelp__popover-font-weight);
+    -webkit-font-smoothing: var(--hop-ContextualHelp__popover-font-smoothing);
+    line-height: var(--hop-ContextualHelp__popover-line-height);
+    color: var(--hop-ContextualHelp__popover-color);
+
+    background: var(--hop-ContextualHelp__popover-background);
+    border: var(--hop-ContextualHelp__popover-border);
+    border-radius: var(--hop-ContextualHelp__popover-border-radius);
+    outline: var(--hop-ContextualHelp__popover-outline);
+    box-shadow: var(--hop-ContextualHelp__popover-box-shadow);
+
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.hop-ContextualHelp__popover[data-entering],
+.hop-ContextualHelp__popover[data-exiting] {
+    transform: var(--origin);
+    opacity: 0;
+}
+
+.hop-ContextualHelp__popover[data-placement="top"] {
+    --origin: translateY(var(--hop-ContextualHelp__popover-translate-amount));
+}
+
+.hop-ContextualHelp__popover[data-placement="bottom"] {
+    --origin: translateY(calc(-1 * var(--hop-ContextualHelp__popover-translate-amount)));
+}
+
+.hop-ContextualHelp__popover[data-placement="right"] {
+    --origin: translateX(calc(-1 * var(--hop-ContextualHelp__popover-translate-amount)));
+}
+
+.hop-ContextualHelp__popover[data-placement="left"] {
+    --origin: translateX(var(--hop-ContextualHelp__popover-translate-amount));
+}

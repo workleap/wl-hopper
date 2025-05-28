@@ -21,7 +21,7 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, type FieldProps, type FieldSize } from "../../utils/index.ts";
 
 import { Input, type InputProps } from "./Input.tsx";
@@ -85,6 +85,7 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
 
     const {
         className,
+        contextualHelp,
         style: styleProp,
         size,
         placeholder,
@@ -154,7 +155,14 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
 
     const childrenMarkup = (
         <>
-            {label && <Label className={styles["hop-PasswordField__Label"]} isRequired={isRequired} necessityIndicator={necessityIndicator}>{label}</Label>}
+            <FieldLabel
+                className={styles["hop-PasswordField__Label"]}
+                contextualHelp={contextualHelp}
+                isRequired={isRequired}
+                necessityIndicator={necessityIndicator}
+            >
+                {label}
+            </FieldLabel>
             {inputMarkup}
             {description && <HelperMessage className={styles["hop-PasswordField__HelperMessage"]}>{description}</HelperMessage>}
             <ErrorMessage className={styles["hop-PasswordField__ErrorMessage"]}>{errorMessage}</ErrorMessage>

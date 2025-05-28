@@ -21,7 +21,7 @@ import {
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label, TextContext } from "../../typography/index.ts";
+import { FieldLabel, TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
     composeClassnameRenderProps,
@@ -102,6 +102,7 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
 
     const {
         className,
+        contextualHelp,
         style: styleProp,
         size,
         prefix,
@@ -181,7 +182,14 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
 
     const childrenMarkup = (
         <>
-            {label && <Label className={styles["hop-NumberField__Label"]} isRequired={isRequired} necessityIndicator={necessityIndicator}>{label}</Label>}
+            <FieldLabel
+                className={styles["hop-NumberField__Label"]}
+                contextualHelp={contextualHelp}
+                isRequired={isRequired}
+                necessityIndicator={necessityIndicator}
+            >
+                {label}
+            </FieldLabel>
             {inputMarkup}
             {description && <HelperMessage className={styles["hop-NumberField__HelperMessage"]}>{description}</HelperMessage>}
             <ErrorMessage className={styles["hop-NumberField__ErrorMessage"]}>{errorMessage}</ErrorMessage>

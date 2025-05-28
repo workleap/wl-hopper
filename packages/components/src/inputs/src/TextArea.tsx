@@ -10,7 +10,7 @@ import { composeRenderProps, TextArea as RACTextArea, TextField as RACTextField,
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";
 
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
@@ -135,6 +135,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const {
         className,
+        contextualHelp,
         style: styleProp,
         size: sizeProp,
         showCharacterCount,
@@ -291,7 +292,14 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const childrenMarkup = (
         <>
-            {label && <Label className={styles["hop-TextArea__Label"]} isRequired={isRequired} necessityIndicator={necessityIndicator}>{label}</Label>}
+            <FieldLabel
+                className={styles["hop-TextArea__Label"]}
+                contextualHelp={contextualHelp}
+                isRequired={isRequired}
+                necessityIndicator={necessityIndicator}
+            >
+                {label}
+            </FieldLabel>
             {inputMarkup}
             {description && <HelperMessage className={styles["hop-TextArea__HelperMessage"]}>{description}</HelperMessage>}
             <ErrorMessage className={styles["hop-TextArea__ErrorMessage"]}>{errorMessage}</ErrorMessage>

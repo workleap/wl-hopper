@@ -20,7 +20,7 @@ import { ClearButton, type ClearButtonProps } from "../../buttons/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, SlotProvider, type FieldProps } from "../../utils/index.ts";
 
 import { Input } from "./Input.tsx";
@@ -83,6 +83,7 @@ function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>)
 
     const {
         className,
+        contextualHelp,
         style: styleProp,
         size,
         placeholder,
@@ -155,7 +156,14 @@ function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>)
 
     const childrenMarkup = (
         <>
-            {label && <Label className={styles["hop-SearchField__Label"]} isRequired={isRequired} necessityIndicator={necessityIndicator}>{label}</Label>}
+            <FieldLabel
+                className={styles["hop-SearchField__Label"]}
+                contextualHelp={contextualHelp}
+                isRequired={isRequired}
+                necessityIndicator={necessityIndicator}
+            >
+                {label}
+            </FieldLabel>
             {inputMarkup}
             {description && <HelperMessage className={styles["hop-SearchField__HelperMessage"]}>{description}</HelperMessage>}
             <ErrorMessage className={styles["hop-SearchField__ErrorMessage"]}>{errorMessage}</ErrorMessage>

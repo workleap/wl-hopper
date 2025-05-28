@@ -7,6 +7,7 @@ export * from "./callout/index.ts";
 export * from "./card/index.ts";
 export * from "./checkbox/index.ts";
 export * from "./combobox/index.ts";
+export * from "./contextual-help/index.ts";
 export * from "./disclosure/index.ts";
 export * from "./divider/index.ts";
 export * from "./error-message/index.ts";

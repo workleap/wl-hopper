@@ -19,7 +19,7 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { RadioContext, RadioFieldContext } from "../../radio/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { RadioGroupContext } from "./RadioGroupContext.ts";
@@ -55,6 +55,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     const {
         className,
         children: childrenProp,
+        contextualHelp,
         description,
         errorMessage,
         isDisabled,
@@ -148,15 +149,14 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
             >
                 {radioGroupRenderProps => (
                     <>
-                        {label && (
-                            <Label
-                                className={styles["hop-RadioGroup__label"]}
-                                isRequired={isRequired}
-                                necessityIndicator={necessityIndicator}
-                            >
-                                {label}
-                            </Label>
-                        )}
+                        <FieldLabel
+                            className={styles["hop-RadioGroup__label"]}
+                            contextualHelp={contextualHelp}
+                            isRequired={isRequired}
+                            necessityIndicator={necessityIndicator}
+                        >
+                            {label}
+                        </FieldLabel>
                         {children(radioGroupRenderProps)}
                         {description && (
                             <HelperMessage className={styles["hop-RadioGroup__helper-message"]} hideIcon>
