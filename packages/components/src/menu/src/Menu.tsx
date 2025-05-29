@@ -10,7 +10,7 @@ import {
 
 import { DividerContext } from "../../divider/index.ts";
 import { HeaderContext } from "../../header/index.ts";
-import { PopoverBase } from "../../overlays/index.ts";
+import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
 import { cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { InternalMenuContext, MenuContext } from "./MenuContext.ts";
@@ -28,6 +28,10 @@ export interface MenuProps<T> extends StyledComponentProps<RACMenuProps<T>> {
      * @default "sm"
      */
     size?: ResponsiveProp<MenuItemSize>;
+    /**
+     * The props for the popover.
+     */
+    popoverProps?: PopoverBaseProps;
 }
 
 function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivElement>) {
@@ -48,6 +52,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
         className,
         style,
         children,
+        popoverProps,
         slot,
         size,
         ...otherProps
@@ -108,7 +113,8 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 offset={isSubmenu ? 12 : 8}
                 // Offset by padding + border so that the first item in a submenu lines up with the parent menu item.
                 crossOffset={isSubmenu ? -10 : 0}
-                className={styles["hop-Menu__popover"]}
+                className={clsx(popoverProps?.className, styles["hop-Menu__popover"])}
+                {...popoverProps}
             >
                 {content}
             </PopoverBase>
