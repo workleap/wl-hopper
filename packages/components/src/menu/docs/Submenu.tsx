@@ -1,0 +1,23 @@
+import { Button, Menu, MenuItem, MenuTrigger, SubmenuTrigger } from "@hopper-ui/components";
+import { KebabIcon } from "@hopper-ui/icons";
+
+export default function Example() {
+    return (
+        <MenuTrigger>
+            <Button variant="secondary" aria-label="Actions for selected resource">
+                <KebabIcon />
+            </Button>
+            <Menu>
+                <MenuItem>Favorite</MenuItem>
+                <MenuItem>Edit</MenuItem>
+                <SubmenuTrigger>
+                    <MenuItem>Share</MenuItem>
+                    <Menu>
+                        <MenuItem>SMS</MenuItem>
+                        <MenuItem>Email</MenuItem>
+                    </Menu>
+                </SubmenuTrigger>
+            </Menu>
+        </MenuTrigger>
+    );
+}
