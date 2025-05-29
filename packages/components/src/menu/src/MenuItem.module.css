@@ -5,7 +5,6 @@
     --hop-MenuItem-box-sizing: border-box;
     --hop-MenuItem-inline-size: 100%;
     --hop-MenuItem-padding-inline: var(--hop-space-inset-md);
-    --hop-MenuItem-padding-block: var(--hop-space-inset-xs);;
     --hop-MenuItem-color: var(--hop-neutral-text);
     --hop-MenuItem-text-decoration: none;
     --hop-MenuItem-border-radius: var(--hop-shape-rounded-md);
@@ -26,12 +25,25 @@
     /* Icon */
     --hop-MenuItem-icon-color: var(--hop-neutral-icon);
 
+        /* XS */
+    --hop-MenuItem-xs-padding-block: 0.374rem;
+
+    /* SM */
+    --hop-MenuItem-sm-padding-block: 0.625rem;
+
+    /* MD */
+    --hop-MenuItem-md-padding-block: var(--hop-space-inset-md);
+
+    /* LG */
+    --hop-MenuItem-lg-padding-block: 0.875rem;
+
     /* Internal variable */
     --display: var(--hop-MenuItem-display);
     --align-items: var(--hop-MenuItem-align-items);
     --background-color: var(--hop-neutral-surface);
     --cursor: var(--hop-MenuItem-cursor);
     --color: var(--hop-MenuItem-color);
+    --padding-block: var(--hop-MenuItem-sm-padding-block);
 
     cursor: var(--cursor);
 
@@ -40,7 +52,7 @@
 
     box-sizing: var(--hop-MenuItem-box-sizing);
     inline-size: var(--hop-MenuItem-inline-size);
-    padding-block: var(--hop-MenuItem-padding-block);
+    padding-block: var(--padding-block);
     padding-inline: var(--hop-MenuItem-padding-inline);
 
     color: var(--color);
@@ -143,3 +155,18 @@
     row-gap: var(--hop-space-stack-xs);
 }
 
+.hop-MenuItem--xs {
+    --padding-block: var(--hop-MenuItem-xs-padding-block);
+}
+
+.hop-MenuItem--sm {
+    --padding-block: var(--hop-MenuItem-sm-padding-block);
+}
+
+.hop-MenuItem--md {
+    --padding-block: var(--hop-MenuItem-md-padding-block);
+}
+
+.hop-MenuItem--lg {
+    --padding-block: var(--hop-MenuItem-lg-padding-block);
+}

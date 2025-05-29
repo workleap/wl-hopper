@@ -3,7 +3,7 @@ import type { ContextValue } from "react-aria-components";
 
 import type { MenuProps } from "./Menu.tsx";
 
-export const MenuContext = createContext<ContextValue<MenuProps<unknown>, HTMLDivElement>>({});
+export const MenuContext = createContext<ContextValue<Partial<MenuProps<unknown>>, HTMLDivElement>>({});
 
 MenuContext.displayName = "MenuContext";
 

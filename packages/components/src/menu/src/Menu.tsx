@@ -1,5 +1,4 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
-import type { forwardRefType } from "@react-types/shared";
+import { useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, useContext, type CSSProperties, type ForwardedRef, type NamedExoticComponent } from "react";
 import type { Placement } from "react-aria";
@@ -15,13 +14,21 @@ import { PopoverBase } from "../../overlays/index.ts";
 import { cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { InternalMenuContext, MenuContext } from "./MenuContext.ts";
+import type { MenuItemSize } from "./MenuItem.tsx";
+import { MenuItemContext } from "./MenuItemContext.ts";
 import { InternalMenuTriggerContext } from "./MenuTriggerContext.ts";
 
 import styles from "./Menu.module.css";
 
 export const GlobalMenuCssSelector = "hop-Menu";
 
-export interface MenuProps<T> extends StyledComponentProps<RACMenuProps<T>> {}
+export interface MenuProps<T> extends StyledComponentProps<RACMenuProps<T>> {
+    /**
+     * The size of the menu.
+     * @default "sm"
+     */
+    size?: ResponsiveProp<MenuItemSize>;
+}
 
 function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, MenuContext);
@@ -42,6 +49,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
         style,
         children,
         slot,
+        size,
         ...otherProps
     } = ownProps;
 
@@ -69,6 +77,9 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                     }],
                     [DividerContext, {
                         className: styles["hop-Menu__divider"]
+                    }],
+                    [MenuItemContext, {
+                        size
                     }]
                 ]}
             >
@@ -113,7 +124,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
  *
  * [View Documentation](https://hopper.workleap.design/components/Menu)
  */
-const _Menu = (forwardRef as forwardRefType)(Menu);
+const _Menu = forwardRef(Menu) as <T extends object>(props: MenuProps<T> & { ref?: ForwardedRef<HTMLDivElement> }) => ReturnType<typeof Menu>;
 (_Menu as NamedExoticComponent).displayName = "Menu";
 
 export { _Menu as Menu };

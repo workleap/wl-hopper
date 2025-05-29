@@ -17,11 +17,19 @@ const meta = {
     title: "Components/Menu",
     component: Menu,
     decorators: [
-        Story => (
-            <Div UNSAFE_height="300px">
+        (Story, { parameters }) => (
+            parameters.disableWrapper ? (
                 <Story />
-            </Div>
-        )
+            ) : (
+                <Div UNSAFE_minHeight="300px">
+                    <MenuTrigger isOpen>
+                        <Button variant="secondary" aria-label="Actions for selected resource">
+                            <KebabIcon />
+                        </Button>
+                        <Story />
+                    </MenuTrigger>
+                </Div>
+            ))
     ]
 } satisfies Meta<typeof Menu>;
 
@@ -31,22 +39,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>Favorite</MenuItem>
-                <MenuItem>Edit</MenuItem>
-                <MenuItem>Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>Favorite</MenuItem>
+            <MenuItem>Edit</MenuItem>
+            <MenuItem>Delete</MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const AlignAndDirection = {
     render: args => (
-        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_height="300px">
+        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="800px">
             <MenuTrigger isOpen align="start">
                 <Button variant="secondary" aria-label="Actions for selected resource">
                     <KebabIcon />
@@ -88,50 +91,93 @@ export const AlignAndDirection = {
                 </Menu>
             </MenuTrigger>
         </Inline>
-    )
+    ),
+    parameters: {
+        disableWrapper: true
+    }
+} satisfies Story;
+
+export const Sizes = {
+    render: args => (
+        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="800px">
+            <MenuTrigger isOpen align="start">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args} size="xs">
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="end" direction="top">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args} size="sm">
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="start" direction="top">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args} size="md">
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+            <MenuTrigger isOpen align="end" direction="bottom">
+                <Button variant="secondary" aria-label="Actions for selected resource">
+                    <KebabIcon />
+                </Button>
+                <Menu {...args} size="lg">
+                    <MenuItem>Favorite</MenuItem>
+                    <MenuItem>Edit</MenuItem>
+                    <MenuItem>Delete</MenuItem>
+                </Menu>
+            </MenuTrigger>
+        </Inline>
+    ),
+    parameters: {
+        disableWrapper: true
+    }
 } satisfies Story;
 
 export const Sections = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuSection>
-                    <Header>Actions</Header>
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </MenuSection>
-                <MenuSection>
-                    <Header>Others</Header>
-                    <MenuItem>Help</MenuItem>
-                    <MenuItem>Exit</MenuItem>
-                </MenuSection>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuSection>
+                <Header>Actions</Header>
+                <MenuItem>Favorite</MenuItem>
+                <MenuItem>Edit</MenuItem>
+                <MenuItem>Delete</MenuItem>
+            </MenuSection>
+            <MenuSection>
+                <Header>Others</Header>
+                <MenuItem>Help</MenuItem>
+                <MenuItem>Exit</MenuItem>
+            </MenuSection>
+        </Menu>
     )
 } satisfies Story;
 
 export const SelectedSubmenu = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit">Edit</MenuItem>
-                <SubmenuTrigger>
-                    <MenuItem id="share">Share</MenuItem>
-                    <Menu>
-                        <MenuItem>SMS</MenuItem>
-                        <MenuItem>Email</MenuItem>
-                    </Menu>
-                </SubmenuTrigger>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem id="favorite">Favorite</MenuItem>
+            <MenuItem id="edit">Edit</MenuItem>
+            <SubmenuTrigger>
+                <MenuItem id="share">Share</MenuItem>
+                <Menu>
+                    <MenuItem>SMS</MenuItem>
+                    <MenuItem>Email</MenuItem>
+                </Menu>
+            </SubmenuTrigger>
+        </Menu>
     ),
     args: {
         selectionMode: "single",
@@ -141,177 +187,137 @@ export const SelectedSubmenu = {
 
 export const Dividers = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>Favorite</MenuItem>
-                <MenuItem>Edit</MenuItem>
-                <Divider />
-                <MenuItem>Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>Favorite</MenuItem>
+            <MenuItem>Edit</MenuItem>
+            <Divider />
+            <MenuItem>Delete</MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const ItemIcon = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>
-                    <EditIcon />
+        <Menu {...args}>
+            <MenuItem>
+                <EditIcon />
                     Edit
-                </MenuItem>
-                <MenuItem>
-                    <DeleteIcon />
+            </MenuItem>
+            <MenuItem>
+                <DeleteIcon />
                     Delete
-                </MenuItem>
-            </Menu>
-        </MenuTrigger>
+            </MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const ItemEndIcon = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>
-                    <EditIcon slot="end-icon" />
+        <Menu {...args}>
+            <MenuItem>
+                <EditIcon slot="end-icon" />
                     Edit
-                </MenuItem>
-                <MenuItem>
-                    <DeleteIcon slot="end-icon" />
+            </MenuItem>
+            <MenuItem>
+                <DeleteIcon slot="end-icon" />
                     Delete
-                </MenuItem>
-                <MenuItem>
-                    <IconList slot="end-icon">
-                        <SparklesIcon />
-                        <EditIcon />
-                        <DeleteIcon />
-                    </IconList>
+            </MenuItem>
+            <MenuItem>
+                <IconList slot="end-icon">
+                    <SparklesIcon />
+                    <EditIcon />
+                    <DeleteIcon />
+                </IconList>
                     Miscellaneous
-                </MenuItem>
-            </Menu>
-        </MenuTrigger>
+            </MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const ItemDescription = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>
-                    <Text>Favorite</Text>
-                    <Text slot="description">You can favorite your item</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Text>Delete</Text>
-                    <Text slot="description">Your item will be forever gone</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Text>Edit</Text>
-                    <Text slot="description">Edit your item at your own risk</Text>
-                </MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>
+                <Text>Favorite</Text>
+                <Text slot="description">You can favorite your item</Text>
+            </MenuItem>
+            <MenuItem>
+                <Text>Delete</Text>
+                <Text slot="description">Your item will be forever gone</Text>
+            </MenuItem>
+            <MenuItem>
+                <Text>Edit</Text>
+                <Text slot="description">Edit your item at your own risk</Text>
+            </MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const ItemDescriptionIcon = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>
-                    <SparklesIcon />
-                    <Text>Favorite</Text>
-                    <Text slot="description">You can favorite your item</Text>
-                </MenuItem>
-                <MenuItem>
-                    <DeleteIcon />
-                    <Text>Delete</Text>
-                    <Text slot="description">Your item will be forever gone</Text>
-                </MenuItem>
-                <MenuItem>
-                    <EditIcon />
-                    <Text>Edit</Text>
-                    <Text slot="description">Edit your item at your own risk</Text>
-                </MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>
+                <SparklesIcon />
+                <Text>Favorite</Text>
+                <Text slot="description">You can favorite your item</Text>
+            </MenuItem>
+            <MenuItem>
+                <DeleteIcon />
+                <Text>Delete</Text>
+                <Text slot="description">Your item will be forever gone</Text>
+            </MenuItem>
+            <MenuItem>
+                <EditIcon />
+                <Text>Edit</Text>
+                <Text slot="description">Edit your item at your own risk</Text>
+            </MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const ItemDescriptionAvatar = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>
-                    <Avatar name="Red-Eyed Tree Frog" />
-                    <Text>Red-Eyed Tree Frog</Text>
-                    <Text slot="description">The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber</Text>
-                </MenuItem>
-                <MenuItem>
-                    <Avatar name="Poison Dart Frog" />
-                    <Text>Poison Dart Frog</Text>
-                    <Text slot="description">
+        <Menu {...args}>
+            <MenuItem>
+                <Avatar name="Red-Eyed Tree Frog" />
+                <Text>Red-Eyed Tree Frog</Text>
+                <Text slot="description">The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber</Text>
+            </MenuItem>
+            <MenuItem>
+                <Avatar name="Poison Dart Frog" />
+                <Text>Poison Dart Frog</Text>
+                <Text slot="description">
                         The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian
-                    </Text>
-                </MenuItem>
-                <MenuItem>
-                    <Avatar name="Goliath Frog" />
-                    <Text>Goliath Frog</Text>
-                    <Text slot="description">
+                </Text>
+            </MenuItem>
+            <MenuItem>
+                <Avatar name="Goliath Frog" />
+                <Text>Goliath Frog</Text>
+                <Text slot="description">
                         The Goliath Frog (Conraua goliath) is the largest frog in the world
-                    </Text>
-                </MenuItem>
-            </Menu>
-        </MenuTrigger>
+                </Text>
+            </MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const DisabledItem = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>Favorite</MenuItem>
-                <MenuItem isDisabled>Edit</MenuItem>
-                <MenuItem>Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>Favorite</MenuItem>
+            <MenuItem isDisabled>Edit</MenuItem>
+            <MenuItem>Delete</MenuItem>
+        </Menu>
     )
 } satisfies Story;
 
 export const Validation = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit" isInvalid>Edit</MenuItem>
-                <MenuItem id="delete" isInvalid>Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem id="favorite">Favorite</MenuItem>
+            <MenuItem id="edit" isInvalid>Edit</MenuItem>
+            <MenuItem id="delete" isInvalid>Delete</MenuItem>
+        </Menu>
     ),
     args: {
         selectionMode: "single",
@@ -321,22 +327,17 @@ export const Validation = {
 
 export const SubmenuLight = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem>Favorite</MenuItem>
-                <MenuItem>Edit</MenuItem>
-                <SubmenuTrigger>
-                    <MenuItem>Share</MenuItem>
-                    <Menu>
-                        <MenuItem>SMS</MenuItem>
-                        <MenuItem>Email</MenuItem>
-                    </Menu>
-                </SubmenuTrigger>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem>Favorite</MenuItem>
+            <MenuItem>Edit</MenuItem>
+            <SubmenuTrigger>
+                <MenuItem>Share</MenuItem>
+                <Menu>
+                    <MenuItem>SMS</MenuItem>
+                    <MenuItem>Email</MenuItem>
+                </Menu>
+            </SubmenuTrigger>
+        </Menu>
     ),
     parameters: {
         ...hopperParameters({ colorSchemes: ["light"] })
@@ -358,16 +359,11 @@ export const SubmenuDark = {
 
 export const SingleSelectionMode = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit">Edit</MenuItem>
-                <MenuItem id="delete">Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem id="favorite">Favorite</MenuItem>
+            <MenuItem id="edit">Edit</MenuItem>
+            <MenuItem id="delete">Delete</MenuItem>
+        </Menu>
     ),
     args: {
         selectionMode: "single",
@@ -377,16 +373,11 @@ export const SingleSelectionMode = {
 
 export const MultipleSelectionMode = {
     render: args => (
-        <MenuTrigger isOpen>
-            <Button variant="secondary" aria-label="Actions for selected resource">
-                <KebabIcon />
-            </Button>
-            <Menu {...args}>
-                <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit">Edit</MenuItem>
-                <MenuItem id="delete">Delete</MenuItem>
-            </Menu>
-        </MenuTrigger>
+        <Menu {...args}>
+            <MenuItem id="favorite">Favorite</MenuItem>
+            <MenuItem id="edit">Edit</MenuItem>
+            <MenuItem id="delete">Delete</MenuItem>
+        </Menu>
     ),
     args: {
         selectionMode: "multiple",

@@ -218,6 +218,9 @@ export const Previews: Record<string, Preview> = {
     "menu/docs/AlignDirection": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/AlignDirection.tsx"))
     },
+    "menu/docs/Sizes": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Sizes.tsx"))
+    },
     "menu/docs/Sections": {
         component: lazy(() => import("@/../../packages/components/src/menu/docs/Sections.tsx"))
     },
