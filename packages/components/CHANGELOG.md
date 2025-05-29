@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.6.0
+
+### Minor Changes
+
+- 3a71b78: Add Menu component
+
 ## 1.5.16
 
 ### Patch Changes
