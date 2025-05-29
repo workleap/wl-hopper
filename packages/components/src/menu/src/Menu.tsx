@@ -84,7 +84,6 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 ]}
             >
                 <RACMenu
-                    ref={ref}
                     slot={slot}
                     className={classNames}
                     style={mergedStyles}
@@ -110,7 +109,6 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 // Offset by padding + border so that the first item in a submenu lines up with the parent menu item.
                 crossOffset={isSubmenu ? -10 : 0}
                 className={styles["hop-Menu__popover"]}
-                {...otherProps}
             >
                 {content}
             </PopoverBase>
