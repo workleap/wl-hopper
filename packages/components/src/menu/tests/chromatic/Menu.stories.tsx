@@ -49,48 +49,50 @@ export const Default = {
 
 export const AlignAndDirection = {
     render: args => (
-        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="800px">
-            <MenuTrigger isOpen align="start">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args}>
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="end" direction="top">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args}>
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="start" direction="top">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args}>
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="end" direction="bottom">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args}>
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-        </Inline>
+        <Div UNSAFE_minHeight="800px">
+            <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="400px">
+                <MenuTrigger isOpen align="start">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args}>
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="end" direction="top">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args}>
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="start" direction="top">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args}>
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="end" direction="bottom">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args}>
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+            </Inline>
+        </Div>
     ),
     parameters: {
         disableWrapper: true
@@ -99,48 +101,50 @@ export const AlignAndDirection = {
 
 export const Sizes = {
     render: args => (
-        <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="800px">
-            <MenuTrigger isOpen align="start">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args} size="xs">
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="end" direction="top">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args} size="sm">
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="start" direction="top">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args} size="md">
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-            <MenuTrigger isOpen align="end" direction="bottom">
-                <Button variant="secondary" aria-label="Actions for selected resource">
-                    <KebabIcon />
-                </Button>
-                <Menu {...args} size="lg">
-                    <MenuItem>Favorite</MenuItem>
-                    <MenuItem>Edit</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                </Menu>
-            </MenuTrigger>
-        </Inline>
+        <Div UNSAFE_minHeight="800px">
+            <Inline alignY="center" alignX="center" UNSAFE_gap="200px" UNSAFE_minHeight="400px">
+                <MenuTrigger isOpen align="start">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args} size="xs">
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="end" direction="top">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args} size="sm">
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="start" direction="top">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args} size="md">
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+                <MenuTrigger isOpen align="end" direction="bottom">
+                    <Button variant="secondary" aria-label="Actions for selected resource">
+                        <KebabIcon />
+                    </Button>
+                    <Menu {...args} size="lg">
+                        <MenuItem>Favorite</MenuItem>
+                        <MenuItem>Edit</MenuItem>
+                        <MenuItem>Delete</MenuItem>
+                    </Menu>
+                </MenuTrigger>
+            </Inline>
+        </Div>
     ),
     parameters: {
         disableWrapper: true

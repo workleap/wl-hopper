@@ -1,7 +1,7 @@
 .hop-Menu  {
     --hop-Menu-border-size: 0.0625rem;
     --hop-Menu-overflow-y: auto;
-    --hop-Menu-inline-size: max-content;
+    --hop-Menu-inline-size: 100%;
     --hop-Menu-min-inline-size: 12.5rem;
     --hop-Menu-max-inline-size: 20rem;
     --hop-Menu-block-size: max-content;
