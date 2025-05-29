@@ -2,8 +2,6 @@
     --hop-Menu-border-size: 0.0625rem;
     --hop-Menu-overflow-y: auto;
     --hop-Menu-inline-size: 100%;
-    --hop-Menu-min-inline-size: 12.5rem;
-    --hop-Menu-max-inline-size: 20rem;
     --hop-Menu-block-size: max-content;
     --hop-Menu-margin: 0;
     --hop-Menu-padding: var(--hop-space-inset-sm);
@@ -12,13 +10,21 @@
     overflow-y: var(--hop-Menu-overflow-y);
 
     inline-size: var(--hop-Menu-inline-size);
-    min-inline-size: var(--hop-Menu-min-inline-size);
-    max-inline-size: var(--hop-Menu-max-inline-size);
     block-size: var(--hop-Menu-block-size);
     margin: var(--hop-Menu-margin);
     padding: var(--hop-Menu-padding);
 
     outline: var(--hop-Menu-outline);
+}
+
+.hop-Menu__popover {
+    --hop-Menu-popover-min-inline-size: 12.5rem;
+    --hop-Menu-popover-max-inline-size: 20rem;
+    --hop-Menu-popover-inline-size: max-content;
+
+    inline-size: var(--hop-Menu-popover-inline-size);
+    min-inline-size: var(--hop-Menu-popover-min-inline-size);
+    max-inline-size: var(--hop-Menu-popover-max-inline-size);
 }
 
 .hop-Menu__header {
