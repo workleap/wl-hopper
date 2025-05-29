@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, MenuTrigger } from "@hopper-ui/components";
+import { Button, Menu, MenuItem, MenuTrigger, Text } from "@hopper-ui/components";
 import { DeleteIcon, EditIcon, KebabIcon } from "@hopper-ui/icons";
 
 export default function Example() {
@@ -10,11 +10,11 @@ export default function Example() {
             <Menu>
                 <MenuItem>
                     <EditIcon />
-                    Edit
+                    <Text>Edit</Text>
                 </MenuItem>
                 <MenuItem>
                     <DeleteIcon />
-                    Delete
+                    <Text>Delete</Text>
                 </MenuItem>
             </Menu>
         </MenuTrigger>

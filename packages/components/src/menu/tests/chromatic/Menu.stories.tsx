@@ -205,11 +205,11 @@ export const ItemIcon = {
         <Menu {...args}>
             <MenuItem>
                 <EditIcon />
-                    Edit
+                <Text>Edit</Text>
             </MenuItem>
             <MenuItem>
                 <DeleteIcon />
-                    Delete
+                <Text>Delete</Text>
             </MenuItem>
         </Menu>
     )
@@ -220,11 +220,11 @@ export const ItemEndIcon = {
         <Menu {...args}>
             <MenuItem>
                 <EditIcon slot="end-icon" />
-                    Edit
+                <Text>Edit</Text>
             </MenuItem>
             <MenuItem>
                 <DeleteIcon slot="end-icon" />
-                    Delete
+                <Text>Delete</Text>
             </MenuItem>
             <MenuItem>
                 <IconList slot="end-icon">
@@ -232,7 +232,7 @@ export const ItemEndIcon = {
                     <EditIcon />
                     <DeleteIcon />
                 </IconList>
-                    Miscellaneous
+                <Text>Miscellaneous</Text>
             </MenuItem>
         </Menu>
     )

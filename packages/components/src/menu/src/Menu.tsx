@@ -109,6 +109,9 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 offset={isSubmenu ? 12 : 8}
                 // Offset by padding + border so that the first item in a submenu lines up with the parent menu item.
                 crossOffset={isSubmenu ? -10 : 0}
+                UNSAFE_width="max-content"
+                UNSAFE_minWidth="12.5rem"
+                UNSAFE_maxWidth="20rem"
                 {...otherProps}
             >
                 {content}
