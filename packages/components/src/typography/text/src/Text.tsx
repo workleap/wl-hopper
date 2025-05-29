@@ -6,10 +6,10 @@ import {
     type StyledComponentProps
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Text as RACText, useContextProps, type TextProps as RACTextProps } from "react-aria-components";
+import { forwardRef, useContext, type CSSProperties, type ForwardedRef } from "react";
+import { Text as RACText, TextContext as RACTextContext, useContextProps, type TextProps as RACTextProps } from "react-aria-components";
 
-import { ClearContainerSlots, cssModule, SlotProvider } from "../../../utils/index.ts";
+import { cssModule, SlotProvider } from "../../../utils/index.ts";
 
 import { TextContext } from "./TextContext.ts";
 
@@ -30,7 +30,8 @@ export interface TextProps extends StyledComponentProps<RACTextProps> {
 function Text(props: TextProps, ref: ForwardedRef<HTMLSpanElement>) {
     [props, ref] = useContextProps(props, ref, TextContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const { className, size: sizeProp, children, style, elementType = "span", ...otherProps } = ownProps;
+    const { className, size: sizeProp, children, style, elementType = "span", slot, ...otherProps } = ownProps;
+    const racContext = useContext(RACTextContext);
 
     const size = useResponsiveValue(sizeProp ?? "md");
 
@@ -50,27 +51,35 @@ function Text(props: TextProps, ref: ForwardedRef<HTMLSpanElement>) {
         ...style
     };
 
-    return (
+    const text = (
         <RACText
             ref={ref}
             elementType={elementType}
             className={classNames}
             style={mergedStyles}
+            slot={slot || undefined}
             {...otherProps}
         >
-            <ClearContainerSlots>
-                <SlotProvider
-                    values={[
-                        [TextContext, {
-                            size: "inherit"
-                        }]
-                    ]}
-                >
-                    {children}
-                </SlotProvider>
-            </ClearContainerSlots>
+            <SlotProvider
+                values={[
+                    [TextContext, {
+                        size: "inherit"
+                    }]
+                ]}
+            >
+                {children}
+            </SlotProvider>
         </RACText>
     );
+
+
+    if (slot && racContext && "slots" in racContext && !racContext.slots?.[slot]) {
+        console.log("Clearing slot:", slot, Object.keys(racContext.slots!));
+
+        return <RACTextContext.Provider value={null}>{text}</RACTextContext.Provider>;
+    }
+
+    return text;
 }
 
 /**

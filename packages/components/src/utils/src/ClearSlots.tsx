@@ -1,7 +1,6 @@
 import type { Context, PropsWithChildren, ReactNode } from "react";
-import { TextContext as RACTextContext, type ContextValue } from "react-aria-components";
+import type { ContextValue } from "react-aria-components";
 
-import { TextContext } from "../../typography/index.ts";
 
 export interface ClearProvidersProps {
     /**
@@ -37,16 +36,23 @@ export function ClearProviders({
 
 /**
  *  Most of the time, you won't need to use this component. It's mostly useful for when you're trying to make a component that is a container for other components, and you don't want anything set above to affect your content.
+ * TODO: Check if this can be removed and replaced by :
+ * if (slot && racContext && 'slots' in racContext && !racContext.slots?.[slot]) {
+ *   return <RACTextContext.Provider value={null}>{text}</RACTextContext.Provider>;
+ * }
+ * inside the text component, like S2.
  */
 export function ClearContainerSlots({ children }: PropsWithChildren) {
-    return (
-        <ClearProviders
-            values={[
-                RACTextContext,
-                TextContext
-            ]}
-        >
-            {children}
-        </ClearProviders>
-    );
+    return children;
+
+    // return (
+    //     // <ClearProviders
+    //     //     values={[
+    //     //         RACTextContext,
+    //     //         TextContext
+    //     //     ]}
+    //     // >
+    //     { children }
+    //     // </ClearProviders>
+    // );
 }
