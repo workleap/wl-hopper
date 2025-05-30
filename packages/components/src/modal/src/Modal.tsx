@@ -17,6 +17,8 @@ import styles from "./Modal.module.css";
 
 export const GlobalModalCssSelector = "hop-Modal";
 
+const CLEAR_CONTEXTS = [ImageContext, HeadingContext, HeaderContext, ContentContext, FooterContext, ButtonContext, ButtonGroupContext];
+
 export interface ModalProps extends
     StyledComponentProps<DialogProps>,
     Pick<ModalOverlayProps, "isOpen" | "defaultOpen" | "onOpenChange"> {
@@ -102,36 +104,100 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
                 {renderProps => (
                     <OverlayTriggerStateContext.Provider value={null}>
                         {isDismissible && <CloseButton className={styles["hop-Modal__close"]} />}
-                        <Provider
-                            values={[
-                                [ImageContext, {
-                                    className: styles["hop-Modal__image"],
-                                    ref: imageRef
-                                }],
-                                [HeadingContext, {
-                                    className: styles["hop-Modal__heading"],
-                                    size: "lg",
-                                    slot: "title"
-                                }],
-                                [HeaderContext, {
-                                    className: styles["hop-Modal__header"]
-                                }],
-                                [ContentContext, {
-                                    className: styles["hop-Modal__content"]
-                                }],
-                                [FooterContext, {
-                                    className: styles["hop-Modal__footer"]
-                                }],
-                                [ButtonContext, {
-                                    className: styles["hop-Modal__button"]
-                                }],
-                                [ButtonGroupContext, {
-                                    className: styles["hop-Modal__button-group"]
-                                }]
-                            ]}
-                        >
-                            {children(renderProps)}
-                        </Provider>
+
+                        {/* TODO : headers */}
+                        <div className={styles["hop-Modal__header-container"]}>
+                            <Provider
+                                values={[
+                                    //TODO: should support illustrations
+                                    [ImageContext, { isHidden: true }],
+                                    [HeadingContext, {
+                                        className: styles["hop-Modal__heading"],
+                                        size: "lg",
+                                        slot: "title",
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [HeaderContext, {
+                                        className: styles["hop-Modal__header"],
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [ContentContext, { isHidden: true }],
+                                    [FooterContext, { isHidden: true }],
+                                    [ButtonContext, { isHidden: true }],
+                                    [ButtonGroupContext, { isHidden: true }]
+                                ]}
+                            >
+                                {children(renderProps)}
+                            </Provider>
+                        </div>
+
+                        {/* TODO : content */}
+                        <div className={styles["hop-Modal__content-container"]}>
+                            <Provider
+                                values={[
+                                //TODO: should support illustrations
+                                    [ImageContext, { isHidden: true }],
+                                    [HeadingContext, { isHidden: true }],
+                                    [HeaderContext, { isHidden: true }],
+                                    [ContentContext, {
+                                        className: styles["hop-Modal__content"],
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [FooterContext, { isHidden: true }],
+                                    [ButtonContext, { isHidden: true }],
+                                    [ButtonGroupContext, { isHidden: true }]
+                                ]}
+                            >
+                                {children(renderProps)}
+                            </Provider>
+                        </div>
+
+                        {/* // TODO : footer */}
+                        <div className={styles["hop-Modal__footer-container"]}>
+                            <Provider
+                                values={[
+                                    [ImageContext, { isHidden: true }],
+                                    [HeadingContext, { isHidden: true }],
+                                    [HeaderContext, { isHidden: true }],
+                                    [ContentContext, { isHidden: true }],
+                                    [FooterContext, {
+                                        className: styles["hop-Modal__footer"],
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [ButtonContext, {
+                                        className: styles["hop-Modal__button"],
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [ButtonGroupContext, {
+                                        className: styles["hop-Modal__button-group"],
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }]
+                                ]}
+                            >
+                                {children(renderProps)}
+                            </Provider>
+                        </div>
+
+                        {/* // TODO : image */}
+                        <div className={styles["hop-Modal__image-container"]}>
+                            <Provider
+                                values={[
+                                    [ImageContext, {
+                                        className: styles["hop-Modal__image"],
+                                        ref: imageRef,
+                                        clearContexts: CLEAR_CONTEXTS
+                                    }],
+                                    [HeadingContext, { isHidden: true }],
+                                    [HeaderContext, { isHidden: true }],
+                                    [ContentContext, { isHidden: true }],
+                                    [FooterContext, { isHidden: true }],
+                                    [ButtonContext, { isHidden: true }],
+                                    [ButtonGroupContext, { isHidden: true }]
+                                ]}
+                            >
+                                {children(renderProps)}
+                            </Provider>
+                        </div>
                     </OverlayTriggerStateContext.Provider>
                 )}
             </Dialog>

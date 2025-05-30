@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import type { BaseComponentDOMProps } from "../../utils/index.ts";
+import { ClearProviders, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import { ContentContext } from "./ContentContext.ts";
+import { ContentContext, type ContentContextValue } from "./ContentContext.ts";
 
 export const GlobalContentCssSelector = "hop-Content";
 
@@ -14,14 +14,20 @@ export interface ContentProps extends StyledComponentProps<BaseComponentDOMProps
 
 function Content(props: ContentProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, ContentContext);
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const { stylingProps, ...ownProps } = useStyledSystem(props as ContentContextValue);
     const {
         className,
         children,
         style,
         slot,
+        isHidden,
+        clearContexts,
         ...otherProps
     } = ownProps;
+
+    if (isHidden) {
+        return null;
+    }
 
     const classNames = clsx(
         GlobalContentCssSelector,
@@ -35,15 +41,17 @@ function Content(props: ContentProps, ref: ForwardedRef<HTMLDivElement>) {
     };
 
     return (
-        <div
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot || undefined}
-            {...otherProps}
-        >
-            {children}
-        </div>
+        <ClearProviders values={clearContexts}>
+            <div
+                ref={ref}
+                className={classNames}
+                style={mergedStyles}
+                slot={slot || undefined}
+                {...otherProps}
+            >
+                {children}
+            </div>
+        </ClearProviders>
     );
 }
 

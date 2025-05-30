@@ -5,11 +5,11 @@ import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import type { Orientation } from "react-aria";
 import { useContextProps } from "react-aria-components";
 
-import { SlotProvider, cssModule, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { ClearProviders, SlotProvider, cssModule, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
 import type { ButtonSize } from "../utils/index.ts";
 
 import { ButtonContext } from "./ButtonContext.ts";
-import { ButtonGroupContext } from "./ButtonGroupContext.ts";
+import { ButtonGroupContext, type ButtonGroupContextValue } from "./ButtonGroupContext.ts";
 import { LinkButtonContext } from "./LinkButtonContext.ts";
 
 import styles from "./ButtonGroup.module.css";
@@ -51,7 +51,7 @@ export const GlobalButtonGroupCssSelector = "hop-ButtonGroup";
 function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, ButtonGroupContext);
 
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonGroupContextValue);
 
     const {
         children,
@@ -63,6 +63,8 @@ function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>)
         style: styleProp,
         orientation: orientationProp,
         wrap: wrapProp,
+        isHidden,
+        clearContexts,
         ...otherProps
     } = ownProps;
 
@@ -71,6 +73,10 @@ function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>)
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
     const wrap = useResponsiveValue(wrapProp) ?? true;
     const orientation = useResponsiveValue(orientationProp) ?? "horizontal";
+
+    if (isHidden) {
+        return null;
+    }
 
     const classNames = clsx(
         className,
@@ -93,29 +99,31 @@ function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>)
     };
 
     return (
-        <div
-            {...filterDOMProps(otherProps, { labelable: true })}
-            ref={ref}
-            className={classNames}
-            style={style}
-            slot={props.slot || undefined}
-        >
-            <SlotProvider values={[
-                [ButtonContext, {
-                    size,
-                    isDisabled,
-                    isFluid
-                }],
-                [LinkButtonContext, {
-                    size,
-                    isDisabled,
-                    isFluid
-                }]
-            ]}
+        <ClearProviders values={clearContexts}>
+            <div
+                {...filterDOMProps(otherProps, { labelable: true })}
+                ref={ref}
+                className={classNames}
+                style={style}
+                slot={props.slot || undefined}
             >
-                {children}
-            </SlotProvider>
-        </div>
+                <SlotProvider values={[
+                    [ButtonContext, {
+                        size,
+                        isDisabled,
+                        isFluid
+                    }],
+                    [LinkButtonContext, {
+                        size,
+                        isDisabled,
+                        isFluid
+                    }]
+                ]}
+                >
+                    {children}
+                </SlotProvider>
+            </div>
+        </ClearProviders>
     );
 }
 

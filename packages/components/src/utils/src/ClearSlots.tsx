@@ -1,5 +1,7 @@
 import type { Context, PropsWithChildren, ReactNode } from "react";
-import type { ContextValue } from "react-aria-components";
+import { TextContext as RACTextContext } from "react-aria-components";
+
+import { TextContext } from "../../typography/index.ts";
 
 
 export interface ClearProvidersProps {
@@ -7,7 +9,7 @@ export interface ClearProvidersProps {
      * The list of providers to clear.
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    values: Context<ContextValue<any, any>>[];
+    values?: Context<any>[];
 
     children: ReactNode;
 }
@@ -27,6 +29,10 @@ export function ClearProviders({
     children
 }: ClearProvidersProps) {
     // Similar implementation to SlotProvider
+    if (!values || values.length === 0) {
+        return children;
+    }
+
     for (const Context of values) {
         children = <Context.Provider value={null}>{children}</Context.Provider>;
     }
@@ -36,23 +42,16 @@ export function ClearProviders({
 
 /**
  *  Most of the time, you won't need to use this component. It's mostly useful for when you're trying to make a component that is a container for other components, and you don't want anything set above to affect your content.
- * TODO: Check if this can be removed and replaced by :
- * if (slot && racContext && 'slots' in racContext && !racContext.slots?.[slot]) {
- *   return <RACTextContext.Provider value={null}>{text}</RACTextContext.Provider>;
- * }
- * inside the text component, like S2.
  */
 export function ClearContainerSlots({ children }: PropsWithChildren) {
-    return children;
-
-    // return (
-    //     // <ClearProviders
-    //     //     values={[
-    //     //         RACTextContext,
-    //     //         TextContext
-    //     //     ]}
-    //     // >
-    //     { children }
-    //     // </ClearProviders>
-    // );
+    return (
+        <ClearProviders
+            values={[
+                RACTextContext,
+                TextContext
+            ]}
+        >
+            {children}
+        </ClearProviders>
+    );
 }
