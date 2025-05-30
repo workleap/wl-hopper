@@ -7,11 +7,11 @@
     --hop-Modal-margin: var(--hop-space-inset-lg);
     --hop-Modal-color: var(--hop-neutral-text);
     --hop-Modal-grid-template:
-        "image image image" 12rem
-        "heading heading header" auto
-        "content content content" auto
-        "footer footer buttons" auto
-        / auto auto auto;
+        "image image" 12rem
+        "top top" auto
+        "content content" auto
+        "bottom bottom" auto
+        / auto auto;
 
     /* Content */
     --hop-Modal-content-font-size: var(--hop-body-sm-font-size);
@@ -21,10 +21,10 @@
 
     /* Large screen */
     --hop-Modal-large-grid-template:
-        "image heading header" auto
-        "image content content" auto
-        "image footer buttons" auto
-        / 16rem auto auto;
+        "image top" auto
+        "image content" auto
+        "image bottom" auto
+        / 16rem auto;
 
     /* Internal variables */
     --grid-template: var(--hop-Modal-grid-template);
@@ -44,28 +44,41 @@
     outline: var(--hop-Modal-outline);
 }
 
-.hop-Modal:not(.hop-Modal--fullscreen, .hop-Modal--fullscreentakeover) {
-    @media screen and (min-width: 49rem) {
-        --grid-template: var(--hop-Modal-large-grid-template);
-    }
+.hop-Modal__top-container {
+    display: grid;
+    grid-area: top;
+    grid-template:
+        "heading header" auto
+        / 1fr auto;
 }
 
-.hop-Modal:not(:has(> .hop-Modal__image)) {
-    --grid-template:
-        "heading heading header" auto
-        "content content content" auto
-        "footer footer buttons" auto
-        / auto auto auto;
+.hop-Modal__bottom-container {
+    display: grid;
+    grid-area: bottom;
+    grid-template:
+        "footer buttons" auto
+        / 1fr auto;
+}
 
-    :not(.hop-Modal--fullscreen),
-    :not(.hop-Modal--fullscreentakeover) {
-        @media screen and (min-width: 49rem) {
-            --grid-template:
-                "heading header" auto
-                "content content" auto
-                "footer buttons" auto
-                / auto auto;
-            }
+.hop-Modal:not(.hop-Modal--has-image) {
+    --grid-template:
+        "top top" auto
+        "content content" auto
+        "bottom bottom" auto
+        / auto auto;
+}
+
+@media screen and (min-width: 49rem) {
+    .hop-Modal:not(.hop-Modal--has-image, .hop-Modal--fullscreen, .hop-Modal--fullscreenTakeover) {
+        --grid-template:
+            "top top" auto
+            "content content" auto
+            "bottom bottom" auto
+            / auto auto;
+    }
+
+    .hop-Modal.hop-Modal--has-image:not(.hop-Modal--fullscreen, .hop-Modal--fullscreenTakeover) {
+        --grid-template: var(--hop-Modal-large-grid-template);
     }
 }
 
@@ -75,7 +88,7 @@
     inset-inline-end: var(--hop-Modal-margin);;
 }
 
-.hop-Modal > img.hop-Modal__image {
+.hop-Modal > .hop-Modal__image {
     --hop-Modal-image-inline-size: 100%;
     --hop-Modal-image-block-size: 100%;
     --hop-Modal-image-object-fit: cover;
@@ -86,20 +99,20 @@
     object-fit: var(--hop-Modal-image-object-fit);
 }
 
-.hop-Modal > .hop-Modal__heading {
+.hop-Modal__heading {
     grid-area: heading;
     margin-block-start: var(--hop-Modal-margin);
     margin-inline: var(--hop-Modal-margin);
 }
 
-.hop-Modal > .hop-Modal__header {
+.hop-Modal__header {
     grid-area: header;
     place-self: center end;
     margin-block-start: var(--hop-Modal-margin);
     margin-inline: var(--hop-Modal-margin);
 }
 
-.hop-Modal > .hop-Modal__content {
+.hop-Modal__content {
     overflow-y: auto;
     grid-area: content;
 
@@ -110,26 +123,29 @@
     font-weight: var(--hop-Callout-content-font-weight);
     line-height: var(--hop-Callout-content-line-height);
 
-    @media (max-height: 24rem) {
+}
+
+@media (max-height: 24rem) {
+    .hop-Modal__content {
         overflow-y: visible;
     }
 }
 
-.hop-Modal > .hop-Modal__footer {
+.hop-Modal__footer {
     grid-area: footer;
     align-self: center;
     margin-block-end: var(--hop-Modal-margin);
     margin-inline: var(--hop-Modal-margin);
 }
 
-.hop-Modal > .hop-Modal__button {
+.hop-Modal__button {
     grid-area: buttons;
     place-self: center end;
     margin-block-end: var(--hop-Modal-margin);
     margin-inline: var(--hop-Modal-margin);
 }
 
-.hop-Modal > div.hop-Modal__button-group {
+.hop-Modal__button-group {
     grid-area: buttons;
     flex-wrap: nowrap;
     place-self: center end;
@@ -139,24 +155,23 @@
 }
 
 /* If there's a close button, add right margin to the header and heading */
-.hop-Modal:has(.hop-Modal__close) > .hop-Modal__header,
-.hop-Modal:has(.hop-Modal__close) > .hop-Modal__heading {
+.hop-Modal:has(.hop-Modal__close) > .hop-Modal__top-container {
     margin-inline-end: calc(var(--hop-Modal-margin) + 2rem);
 }
 
 /* On a small screen, if there's an image and a close button, remove the right margin */
 @media screen and (max-width: 48rem)  {
-    .hop-Modal:has(.hop-Modal__close):has(> .hop-Modal__image) > .hop-Modal__header,
-    .hop-Modal:has(.hop-Modal__close):has(> .hop-Modal__image) > .hop-Modal__heading  {
+    .hop-Modal:has(.hop-Modal__close).hop-Modal--has-image > .hop-Modal__header,
+    .hop-Modal:has(.hop-Modal__close).hop-Modal--has-image > .hop-Modal__heading  {
         margin-inline-end: var(--hop-Modal-margin);
     }
 }
 
-.hop-Modal:has(> .hop-Modal__header) > .hop-Modal__heading {
+.hop-Modal__top-container:has(> .hop-Modal__header) > .hop-Modal__heading {
     margin-inline-end: 0;
 }
 
-.hop-Modal:has(> .hop-Modal__button) > .hop-Modal__footer,
-.hop-Modal:has(> .hop-Modal__button-group) > .hop-Modal__footer {
+.hop-Modal__bottom-container:has(> .hop-Modal__button) > .hop-Modal__footer,
+.hop-Modal__bottom-container:has(> .hop-Modal__button-group) > .hop-Modal__footer {
     margin-inline-end: 0;
 }
