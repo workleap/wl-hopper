@@ -4,7 +4,6 @@
     --hop-Popover-border-radius: var(--hop-shape-rounded-md);
     --hop-Popover-box-shadow: var(--hop-elevation-lifted);
     --hop-Popover-color: var(--hop-neutral-text);
-    --hop-Popover-color-outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
     --hop-Popover-font-family: var(--hop-body-md-font-family);
     --hop-Popover-font-size: var(--hop-body-md-font-size);
     --hop-Popover-font-weight: var(--hop-body-md-font-weight);
@@ -46,9 +45,4 @@
     pointer-events: none;
     opacity: 0;
     transition-timing-function: var(--hop-easing-productive);
-}
-
-/* a Popover doesn't have [data-focus-visible] */
-.hop-PopoverBase:focus-visible {
-	outline: var(--hop-Popover-color-outline);
 }

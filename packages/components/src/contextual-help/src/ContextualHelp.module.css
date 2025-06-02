@@ -72,7 +72,3 @@
     outline: var(--hop-ContextualHelp__popover-outline);
     box-shadow: var(--hop-ContextualHelp__popover-box-shadow);
 }
-
-.hop-ContextualHelp__popover:focus-visible {
-	outline: var(--hop-ContextualHelp__popover-outline);
-}
