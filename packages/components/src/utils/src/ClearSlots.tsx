@@ -3,7 +3,6 @@ import { TextContext as RACTextContext } from "react-aria-components";
 
 import { TextContext } from "../../typography/index.ts";
 
-
 export interface ClearProvidersProps {
     /**
      * The list of providers to clear.
