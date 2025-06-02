@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, type HTMLProps } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { type AccessibleSlotProps, type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
+import { type AccessibleSlotProps, type BaseComponentDOMProps, ClearProviders, cssModule } from "../../utils/index.ts";
 
-import { ImageContext } from "./ImageContext.ts";
+import { ImageContext, type ImageContextValue } from "./ImageContext.ts";
 
 import styles from "./Image.module.css";
 
@@ -29,7 +29,7 @@ export interface ImageProps extends
 function Image(props: ImageProps, ref: ForwardedRef<HTMLImageElement>) {
     [props, ref] = useContextProps(props, ref, ImageContext);
 
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const { stylingProps, ...ownProps } = useStyledSystem(props as ImageContextValue);
     const {
         className,
         style,
@@ -37,8 +37,16 @@ function Image(props: ImageProps, ref: ForwardedRef<HTMLImageElement>) {
         src,
         slot,
         alt,
+        isHidden,
+        clearContexts,
         ...otherProps
     } = ownProps;
+
+    const srcValue = useResponsiveValue(src);
+
+    if (isHidden) {
+        return null;
+    }
 
     if (alt === undefined) {
         console.warn(
@@ -64,18 +72,18 @@ function Image(props: ImageProps, ref: ForwardedRef<HTMLImageElement>) {
         ...style
     };
 
-    const srcValue = useResponsiveValue(src);
-
     return (
-        <img
-            {...otherProps}
-            alt={alt ?? ""}
-            slot={slot ?? undefined}
-            className={classNames}
-            style={mergedStyles}
-            ref={ref}
-            src={srcValue}
-        />
+        <ClearProviders values={clearContexts}>
+            <img
+                {...otherProps}
+                alt={alt ?? ""}
+                slot={slot ?? undefined}
+                className={classNames}
+                style={mergedStyles}
+                ref={ref}
+                src={srcValue}
+            />
+        </ClearProviders>
     );
 }
 

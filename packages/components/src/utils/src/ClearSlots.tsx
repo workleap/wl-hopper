@@ -1,5 +1,5 @@
 import type { Context, PropsWithChildren, ReactNode } from "react";
-import { TextContext as RACTextContext, type ContextValue } from "react-aria-components";
+import { TextContext as RACTextContext } from "react-aria-components";
 
 import { TextContext } from "../../typography/index.ts";
 
@@ -8,7 +8,7 @@ export interface ClearProvidersProps {
      * The list of providers to clear.
      */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    values: Context<ContextValue<any, any>>[];
+    values?: Context<any>[];
 
     children: ReactNode;
 }
@@ -28,6 +28,10 @@ export function ClearProviders({
     children
 }: ClearProvidersProps) {
     // Similar implementation to SlotProvider
+    if (!values || values.length === 0) {
+        return children;
+    }
+
     for (const Context of values) {
         children = <Context.Provider value={null}>{children}</Context.Provider>;
     }

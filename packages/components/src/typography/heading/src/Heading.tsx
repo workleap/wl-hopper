@@ -6,9 +6,9 @@ import {
 } from "react";
 import { Heading as RACHeading, useContextProps, type HeadingProps as RACHeadingProps } from "react-aria-components";
 
-import { cssModule } from "../../../utils/index.ts";
+import { ClearProviders, cssModule } from "../../../utils/index.ts";
 
-import { HeadingContext } from "./HeadingContext.ts";
+import { HeadingContext, type HeadingContextValue } from "./HeadingContext.ts";
 
 import styles from "./Heading.module.css";
 
@@ -26,10 +26,14 @@ export interface HeadingProps extends StyledComponentProps<RACHeadingProps> {
 
 function Heading(props: HeadingProps, ref: ForwardedRef<HTMLHeadingElement>) {
     [props, ref] = useContextProps(props, ref, HeadingContext);
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const { className, size: sizeProp, children, style, ...otherProps } = ownProps;
+    const { stylingProps, ...ownProps } = useStyledSystem(props as HeadingContextValue);
+    const { className, size: sizeProp, children, style, isHidden, clearContexts, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp ?? "md");
+
+    if (isHidden) {
+        return null;
+    }
 
     const classNames = clsx(
         GlobalHeadingCssSelector,
@@ -48,14 +52,16 @@ function Heading(props: HeadingProps, ref: ForwardedRef<HTMLHeadingElement>) {
     };
 
     return (
-        <RACHeading
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            {...otherProps}
-        >
-            {children}
-        </RACHeading>
+        <ClearProviders values={clearContexts}>
+            <RACHeading
+                ref={ref}
+                className={classNames}
+                style={mergedStyles}
+                {...otherProps}
+            >
+                {children}
+            </RACHeading>
+        </ClearProviders>
     );
 }
 

@@ -22,6 +22,7 @@ import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
+    ClearProviders,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
@@ -30,7 +31,7 @@ import {
 } from "../../utils/index.ts";
 import type { ButtonSize, ButtonVariant } from "../utils/index.ts";
 
-import { ButtonContext } from "./ButtonContext.ts";
+import { ButtonContext, type ButtonContextValue } from "./ButtonContext.ts";
 
 import styles from "./Button.module.css";
 
@@ -66,7 +67,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     props = useFormProps(props);
     const [isProgressVisible, setIsProgressVisible] = useState(false);
 
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonContextValue);
     const stringFormatter = useLocalizedString();
 
     const {
@@ -78,6 +79,8 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         isLoading,
         style: styleProp,
         spinnerProps,
+        isHidden,
+        clearContexts,
         ...otherProps
     } = ownProps;
 
@@ -85,6 +88,26 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
+
+    useEffect(() => {
+        let timeout: ReturnType<typeof setTimeout>;
+
+        if (isLoading) {
+            timeout = setTimeout(() => {
+                setIsProgressVisible(true);
+            }, 1000);
+        } else {
+            setIsProgressVisible(false);
+        }
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [isLoading, setIsProgressVisible]);
+
+    if (isHidden) {
+        return null;
+    }
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -115,79 +138,65 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     const { className: spinnerClassName, ...otherSpinnerProps } = spinnerProps ?? {};
     const spinnerClassNames = clsx(styles["hop-Button__Spinner"], spinnerClassName);
 
-    useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout>;
-
-        if (isLoading) {
-            timeout = setTimeout(() => {
-                setIsProgressVisible(true);
-            }, 1000);
-        } else {
-            setIsProgressVisible(false);
-        }
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [isLoading, setIsProgressVisible]);
-
     return (
-        <SlotProvider
-            values={[
-                [IconListContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            size: size,
-                            className: styles["hop-Button__icon-list"]
-                        },
-                        "end-icon": {
-                            size: size,
-                            className: styles["hop-Button__end-icon-list"]
+        <ClearProviders values={clearContexts}>
+            <SlotProvider
+                values={[
+                    [IconListContext, {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                size: size,
+                                className: styles["hop-Button__icon-list"]
+                            },
+                            "end-icon": {
+                                size: size,
+                                className: styles["hop-Button__end-icon-list"]
+                            }
                         }
-                    }
-                }],
-                [IconContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            size: size,
-                            className: styles["hop-Button__icon"]
-                        },
-                        "end-icon": {
-                            size: size,
-                            className: styles["hop-Button__end-icon"]
+                    }],
+                    [IconContext, {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                size: size,
+                                className: styles["hop-Button__icon"]
+                            },
+                            "end-icon": {
+                                size: size,
+                                className: styles["hop-Button__end-icon"]
+                            }
                         }
-                    }
-                }],
-                [TextContext, {
-                    className: styles["hop-Button__text"],
-                    size: size,
-                    ref: textRef
-                }]
-            ]}
-        >
-            <RACButton
-                ref={ref}
-                slot={props.slot || undefined}
-                className={classNames}
-                style={style}
-                isPending={isLoading}
-                {...otherProps}
+                    }],
+                    [TextContext, {
+                        className: styles["hop-Button__text"],
+                        size: size,
+                        ref: textRef
+                    }]
+                ]}
             >
-                {buttonRenderProps => {
-                    return <>
-                        {children(buttonRenderProps)}
-                        {isProgressVisible && (
-                            <Spinner
-                                aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
-                                size={size}
-                                className={spinnerClassNames}
-                                {...otherSpinnerProps}
-                            />
-                        )}
-                    </>;
-                }}
-            </RACButton>
-        </SlotProvider>
+                <RACButton
+                    ref={ref}
+                    slot={props.slot || undefined}
+                    className={classNames}
+                    style={style}
+                    isPending={isLoading}
+                    {...otherProps}
+                >
+                    {buttonRenderProps => {
+                        return <>
+                            {children(buttonRenderProps)}
+                            {isProgressVisible && (
+                                <Spinner
+                                    aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
+                                    size={size}
+                                    className={spinnerClassNames}
+                                    {...otherSpinnerProps}
+                                />
+                            )}
+                        </>;
+                    }}
+                </RACButton>
+            </SlotProvider>
+        </ClearProviders>
     );
 }
 

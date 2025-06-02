@@ -3,9 +3,9 @@ import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { Header as RACHeader, useContextProps } from "react-aria-components";
 
-import type { BaseComponentDOMProps } from "../../utils/index.ts";
+import { ClearProviders, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import { HeaderContext } from "./HeaderContext.ts";
+import { HeaderContext, type HeaderContextValue } from "./HeaderContext.ts";
 
 export const GlobalHeaderCssSelector = "hop-Header";
 
@@ -13,14 +13,20 @@ export interface HeaderProps extends StyledComponentProps<BaseComponentDOMProps>
 
 function Header(props: HeaderProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, HeaderContext);
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const { stylingProps, ...ownProps } = useStyledSystem(props as HeaderContextValue);
     const {
         className,
         children,
         style,
         slot,
+        isHidden,
+        clearContexts,
         ...otherProps
     } = ownProps;
+
+    if (isHidden) {
+        return null;
+    }
 
     const classNames = clsx(
         GlobalHeaderCssSelector,
@@ -34,15 +40,17 @@ function Header(props: HeaderProps, ref: ForwardedRef<HTMLElement>) {
     };
 
     return (
-        <RACHeader
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot || undefined}
-            {...otherProps}
-        >
-            {children}
-        </RACHeader>
+        <ClearProviders values={clearContexts}>
+            <RACHeader
+                ref={ref}
+                className={classNames}
+                style={mergedStyles}
+                slot={slot || undefined}
+                {...otherProps}
+            >
+                {children}
+            </RACHeader>
+        </ClearProviders>
     );
 }
 

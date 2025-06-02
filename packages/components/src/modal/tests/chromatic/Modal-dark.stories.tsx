@@ -175,6 +175,27 @@ export const buttonGroup = {
     )
 } satisfies Story;
 
+export const LongTitle = {
+    render: args => (
+        <Modal {...args}>
+            {({ close }) => (
+                <>
+                    <Heading>Fascinating Frog Facts so fascinating that this title becomes really long!</Heading>
+                    <Content>
+                        <Text>
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                        </Text>
+                    </Content>
+                    <ButtonGroup>
+                        <Button variant="secondary" onPress={close}>Cancel</Button>
+                        <Button variant="primary" onPress={close}>Save</Button>
+                    </ButtonGroup>
+                </>
+            )}
+        </Modal>
+    )
+} satisfies Story;
+
 export const NonDismissable = {
     ...Default,
     args: {
