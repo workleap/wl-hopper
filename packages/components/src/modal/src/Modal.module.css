@@ -22,7 +22,7 @@
     /* Large screen */
     --hop-Modal-large-grid-template:
         "image top" auto
-        "image content" auto
+        "image content" 1fr
         "image bottom" auto
         / 16rem auto;
 
@@ -63,12 +63,13 @@
 .hop-Modal:not(.hop-Modal--has-image) {
     --grid-template:
         "top top" auto
-        "content content" auto
+        "content content" 1fr
         "bottom bottom" auto
         / auto auto;
 }
 
 @media screen and (min-width: 49rem) {
+    /* stylelint-disable-next-line selector-class-pattern */
     .hop-Modal:not(.hop-Modal--has-image, .hop-Modal--fullscreen, .hop-Modal--fullscreenTakeover) {
         --grid-template:
             "top top" auto
@@ -77,6 +78,7 @@
             / auto auto;
     }
 
+    /* stylelint-disable-next-line selector-class-pattern */
     .hop-Modal.hop-Modal--has-image:not(.hop-Modal--fullscreen, .hop-Modal--fullscreenTakeover) {
         --grid-template: var(--hop-Modal-large-grid-template);
     }
@@ -118,10 +120,10 @@
 
     margin: var(--hop-Modal-margin);
 
-    font-family: var(--hop-Callout-content-font-family);
-    font-size: var(--hop-Callout-content-font-size);
-    font-weight: var(--hop-Callout-content-font-weight);
-    line-height: var(--hop-Callout-content-line-height);
+    font-family: var(--hop-Modal-content-font-family);
+    font-size: var(--hop-Modal-content-font-size);
+    font-weight: var(--hop-Modal-content-font-weight);
+    line-height: var(--hop-Modal-content-line-height);
 
 }
 
