@@ -158,13 +158,13 @@
 
 /* If there's a close button, add right margin to the header and heading */
 .hop-Modal:has(.hop-Modal__close) > .hop-Modal__top-container {
-    margin-inline-end: calc(var(--hop-Modal-margin) + var(--hop-space-inline-md));
+    margin-inline-end: calc(var(--hop-Modal-margin) + var(--hop-space-inline-md) + 1.5rem);
 }
 
 .hop-Modal.hop-Modal--has-image:has(.hop-Modal__close).hop-Modal--fullscreen > .hop-Modal__top-container,
 /* stylelint-disable-next-line selector-class-pattern */
 .hop-Modal.hop-Modal--has-image:has(.hop-Modal__close).hop-Modal--fullscreenTakeover > .hop-Modal__top-container {
-    margin-inline-end: 0;
+    margin-inline-end: var(--hop-Modal-margin);
 }
 
 /* On a small screen, if there's an image and a close button, remove the right margin */
