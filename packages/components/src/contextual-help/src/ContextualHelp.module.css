@@ -15,13 +15,11 @@
     --hop-ContextualHelp-column-gap: 0;
     --hop-ContextualHelp-align-items: center;
     --hop-ContextualHelp-justify-content: center;
-    --hop-ContextualHelp-order: calc(infinity);
 
     display: var(--hop-ContextualHelp-display);
     column-gap: var(--hop-ContextualHelp-column-gap);
     align-items: var(--hop-ContextualHelp-align-items);
     justify-content: var(--hop-ContextualHelp-justify-content);
-    order: calc(infinity);
 
     box-sizing: var(--hop-ContextualHelp-box-sizing);
     aspect-ratio: var(--hop-ContextualHelp-aspect-ratio);
