@@ -32,7 +32,6 @@ export const Vertical = {
                 <Checkbox value="developer">Developer</Checkbox>
                 <Checkbox value="designer">Designer</Checkbox>
                 <Checkbox value="manager">Manager</Checkbox>
-
             </CheckboxGroup>
             <h1>Size</h1>
             <Inline alignY="start">

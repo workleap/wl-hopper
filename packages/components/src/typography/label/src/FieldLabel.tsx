@@ -70,7 +70,7 @@ export function FieldLabel(props: FieldLabelProps) {
         return null;
     }
 
-    const necessityLabel = isRequired ? stringFormatter.format("Label.necessityLabel.required") : stringFormatter.format("Label.necessityLabel.optional");
+    const necessityLabel = isRequired ? stringFormatter.format("FieldLabel.necessityLabel.required") : stringFormatter.format("FieldLabel.necessityLabel.optional");
 
     const requiredIndicator = <span aria-hidden="true" aria-label={necessityLabel} className={styles["hop-FieldLabel__indicator"]}>*</span>;
 
