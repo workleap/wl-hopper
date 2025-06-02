@@ -7,7 +7,9 @@ import {
 import clsx from "clsx";
 import type { CSSProperties, ReactNode } from "react";
 
-import { cssModule } from "../../../utils/index.ts";
+import { useFormProps } from "../../../form/index.ts";
+import { useLocalizedString } from "../../../i18n/index.ts";
+import { cssModule, type NecessityIndicator } from "../../../utils/index.ts";
 
 import { Label, type LabelProps } from "./Label.tsx";
 
@@ -17,19 +19,34 @@ export const GlobalFieldLabelCssSelector = "hop-FieldLabel";
 
 export interface FieldLabelProps extends StyledComponentProps<LabelProps> {
     /**
-     * Whether the required state should be shown as an asterisk or a label, which would display (Optional) on all non required field labels.
+     * The contextual help to be displayed next to the label
      */
     contextualHelp?: ReactNode;
+    /**
+     * The props of the wrapper
+     */
     wrapperProps?: DivProps;
+    /**
+     * Whether to show a required state.
+     */
+    isRequired?: boolean;
+    /**
+     * Whether the required state should be shown as an asterisk or a label, which would display (Optional) on all non required field labels.
+     */
+    necessityIndicator?: NecessityIndicator;
 }
 
 export function FieldLabel(props: FieldLabelProps) {
+    props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
+    const stringFormatter = useLocalizedString();
     const {
         className,
         children,
         style,
         contextualHelp,
+        isRequired,
+        necessityIndicator,
         wrapperProps,
         ...otherProps
     } = ownProps;
@@ -53,27 +70,27 @@ export function FieldLabel(props: FieldLabelProps) {
         return null;
     }
 
+    const necessityLabel = isRequired ? stringFormatter.format("Label.necessityLabel.required") : stringFormatter.format("Label.necessityLabel.optional");
+
+    const requiredIndicator = <span aria-hidden="true" aria-label={necessityLabel} className={styles["hop-Label__indicator"]}>*</span>;
+
+    const label = <Label
+        {...otherProps}
+        className={classNames}
+        style={mergedStyles}
+    >
+        {children}
+        {necessityIndicator === "label" && !isRequired && <span className={styles["hop-Label__label-indicator"]}> ({necessityLabel})</span>}
+        {necessityIndicator === "asterisk" && isRequired && requiredIndicator}
+    </Label>;
+
     if (!contextualHelp) {
-        return (
-            <Label
-                {...otherProps}
-                className={classNames}
-                style={mergedStyles}
-            >
-                {children}
-            </Label>
-        );
+        return label;
     }
 
     return (
         <Div className={clsx(wrapperProps?.className, styles["hop-FieldLabel__wrapper"])}>
-            <Label
-                {...otherProps}
-                className={classNames}
-                style={mergedStyles}
-            >
-                {children}
-            </Label>
+            {label}
             {contextualHelp}
         </Div>
     );

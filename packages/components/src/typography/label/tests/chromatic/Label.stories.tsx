@@ -19,21 +19,6 @@ export const Default: Story = {
     args: {}
 };
 
-export const Required: Story = {
-    args: {
-        children: "Username",
-        isRequired: true,
-        necessityIndicator: "asterisk"
-    }
-};
-
-export const Optional: Story = {
-    args: {
-        children: "Username",
-        necessityIndicator: "label"
-    }
-};
-
 export const Styling: Story = {
     parameters: {
         ...a11yParameters({ disableContrastCheck: true })

@@ -37,3 +37,4 @@ export const Optional: Story = {
         necessityIndicator: "label"
     }
 };
+
