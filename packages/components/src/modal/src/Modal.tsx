@@ -91,7 +91,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
             isOpen={isOpen}
             defaultOpen={defaultOpen}
             onOpenChange={onOpenChange}
-            hasImage={hasImage} // TODO: remove this
+            hasImage={hasImage} // TODO: BaseModal should not need a hasImage prop. If we need some style for this, we should pass it through the className instead.
             size={size}
             isDismissable={isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
