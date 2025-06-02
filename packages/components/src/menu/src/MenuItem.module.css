@@ -3,13 +3,13 @@
     --hop-MenuItem-display: flex;
     --hop-MenuItem-align-items: center;
     --hop-MenuItem-box-sizing: border-box;
-    --hop-MenuItem-inline-size: 100%;
     --hop-MenuItem-padding-inline: var(--hop-space-inset-md);
     --hop-MenuItem-color: var(--hop-neutral-text);
     --hop-MenuItem-text-decoration: none;
     --hop-MenuItem-border-radius: var(--hop-shape-rounded-md);
     --hop-MenuItem-outline: none;
     --hop-MenuItem-gap: var(--hop-space-inline-sm);
+    --hop-MenuItem-margin-inline: var(--hop-space-inset-sm);
 
     /* With description */
     --hop-MenuItem-description-display: grid;
@@ -51,7 +51,7 @@
     align-items: var(--align-items);
 
     box-sizing: var(--hop-MenuItem-box-sizing);
-    inline-size: var(--hop-MenuItem-inline-size);
+    margin-inline: var(--hop-MenuItem-margin-inline);
     padding-block: var(--padding-block);
     padding-inline: var(--hop-MenuItem-padding-inline);
 

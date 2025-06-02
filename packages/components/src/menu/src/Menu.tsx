@@ -113,7 +113,6 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 offset={isSubmenu ? 12 : 8}
                 // Offset by padding + border so that the first item in a submenu lines up with the parent menu item.
                 crossOffset={isSubmenu ? -10 : 0}
-                className={clsx(popoverProps?.className, styles["hop-Menu__popover"])}
                 {...popoverProps}
             >
                 {content}
