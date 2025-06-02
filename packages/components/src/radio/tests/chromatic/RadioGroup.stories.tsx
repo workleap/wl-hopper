@@ -1,6 +1,7 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
@@ -174,6 +175,20 @@ export const Vertical = {
     args: {
         label: "Roles",
         orientation: "vertical"
+    }
+} satisfies Story;
+
+export const WithContextualHelp = {
+    render: props => (
+        <RadioGroup {...props}>
+            <Radio value="developer">Developer</Radio>
+            <Radio value="designer">Designer</Radio>
+            <Radio value="manager">Manager</Radio>
+        </RadioGroup>
+    ),
+    args: {
+        label: "Roles",
+        contextualHelp: <ContextualHelp isOpen>Some help for the RadioGroup</ContextualHelp>
     }
 } satisfies Story;
 

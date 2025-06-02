@@ -2,6 +2,7 @@ import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
+import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { TextArea, type TextAreaProps } from "../../src/TextArea.tsx";
 
@@ -66,6 +67,16 @@ export const Default: Story = {
     ),
     args: {
         "aria-label": "Label"
+    }
+};
+
+export const WithContextualHelp: Story = {
+    render: args => (
+        <TextArea {...args} />
+    ),
+    args: {
+        "label": "Label",
+        contextualHelp: <ContextualHelp isOpen>Contextual help for the TextArea</ContextualHelp>
     }
 };
 

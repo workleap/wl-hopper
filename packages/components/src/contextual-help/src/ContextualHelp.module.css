@@ -7,7 +7,7 @@
     --hop-ContextualHelp-border-radius: var(--hop-shape-rounded-md);
     --hop-ContextualHelp-outline: none;
     --hop-ContextualHelp-outline-size: var(--hop-space-20);
-    --hop-ContextualHelp-padding: var(--hop-space-10);
+    --hop-ContextualHelp-padding: var(--hop-space-20);
     --hop-ContextualHelp-color: var(--hop-neutral-text-weak);
     --hop-ContextualHelp-focus-ring-color: var(--hop-primary-border-focus);
     --hop-ContextualHelp-display: flex;
@@ -33,7 +33,6 @@
     border: var(--hop-ContextualHelp-border);
     border-radius: var(--hop-ContextualHelp-border-radius);
     outline: var(--hop-ContextualHelp-outline);
-    outline-offset: var(--hop-ContextualHelp-outline-size);
 }
 
 .hop-ContextualHelp[data-focus-visible] {
@@ -73,6 +72,10 @@
     box-shadow: var(--hop-ContextualHelp__popover-box-shadow);
 
     transition: transform 0.2s, opacity 0.2s;
+}
+
+.hop-ContextualHelp__popover:focus-visible {
+	outline: var(--hop-ContextualHelp__popover-outline);
 }
 
 .hop-ContextualHelp__popover[data-entering],
