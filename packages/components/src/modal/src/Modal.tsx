@@ -132,24 +132,22 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
                         </div>
 
                         {/* Main content */}
-                        <div className={styles["hop-Modal__content-container"]}>
-                            <Provider
-                                values={[
-                                    [ImageContext, { isHidden: true }],
-                                    [HeadingContext, { isHidden: true }],
-                                    [HeaderContext, { isHidden: true }],
-                                    [ContentContext, {
-                                        className: styles["hop-Modal__content"],
-                                        clearContexts: ClearContexts
-                                    }],
-                                    [FooterContext, { isHidden: true }],
-                                    [ButtonContext, { isHidden: true }],
-                                    [ButtonGroupContext, { isHidden: true }]
-                                ]}
-                            >
-                                {children(renderProps)}
-                            </Provider>
-                        </div>
+                        <Provider
+                            values={[
+                                [ImageContext, { isHidden: true }],
+                                [HeadingContext, { isHidden: true }],
+                                [HeaderContext, { isHidden: true }],
+                                [ContentContext, {
+                                    className: styles["hop-Modal__content"],
+                                    clearContexts: ClearContexts
+                                }],
+                                [FooterContext, { isHidden: true }],
+                                [ButtonContext, { isHidden: true }],
+                                [ButtonGroupContext, { isHidden: true }]
+                            ]}
+                        >
+                            {children(renderProps)}
+                        </Provider>
 
                         {/* Footer and button group */}
                         <div className={styles["hop-Modal__bottom-container"]}>
