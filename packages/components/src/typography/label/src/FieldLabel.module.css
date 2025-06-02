@@ -3,3 +3,7 @@
     gap: var(--hop-space-inset-xs);
     align-items: center;
 }
+
+:where(.hop-FieldLabel__indicator) {
+    padding-inline-start: var(--hop-space-20);
+}

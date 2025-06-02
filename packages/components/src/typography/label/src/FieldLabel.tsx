@@ -80,7 +80,7 @@ export function FieldLabel(props: FieldLabelProps) {
         style={mergedStyles}
     >
         {children}
-        {necessityIndicator === "label" && !isRequired && <span className={styles["hop-Label__label-indicator"]}> ({necessityLabel})</span>}
+        {necessityIndicator === "label" && !isRequired && <span className={styles["hop-FieldLabel__label-indicator"]}> ({necessityLabel})</span>}
         {necessityIndicator === "asterisk" && isRequired && requiredIndicator}
     </Label>;
 
