@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.6.1
+
+### Patch Changes
+
+- bb8809e: Fix margins and paddings for Menu
+
 ## 1.6.0
 
 ### Minor Changes
