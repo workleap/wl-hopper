@@ -100,13 +100,16 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
     }, [clearCloseTimeout, setOpen]);
 
     const handleOpenChanged = useCallback((open: boolean) => {
-        if (openTrigger !== "hover") {
+        if (openTrigger === "hover") {
+            setOpen(open || isOpen);
+        } else {
             setOpen(open);
         }
+
         if (!open) {
             setOpenTrigger(undefined);
         }
-    }, [setOpen, openTrigger]);
+    }, [openTrigger, setOpen, isOpen]);
 
     const handleMouseMove = useCallback((event: MouseEvent) => {
         if (!isOpen || openTrigger !== "hover") {return;}
