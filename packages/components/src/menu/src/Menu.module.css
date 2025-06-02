@@ -1,33 +1,23 @@
 .hop-Menu  {
-    --hop-Menu-border-size: 0.0625rem;
     --hop-Menu-overflow-y: auto;
-    --hop-Menu-inline-size: 100%;
-    --hop-Menu-block-size: max-content;
-    --hop-Menu-margin: 0;
-    --hop-Menu-padding: var(--hop-space-inset-sm);
+    --hop-Menu-padding-block: var(--hop-space-inset-sm);
     --hop-Menu-outline: none;
+    --hop-Menu-min-inline-size: 12.5rem;
+    --hop-Menu-max-inline-size: 20rem;
+    --hop-Menu-inline-size: max-content;
 
     overflow-y: var(--hop-Menu-overflow-y);
 
     inline-size: var(--hop-Menu-inline-size);
-    block-size: var(--hop-Menu-block-size);
-    margin: var(--hop-Menu-margin);
-    padding: var(--hop-Menu-padding);
+    min-inline-size: var(--hop-Menu-min-inline-size);
+    max-inline-size: var(--hop-Menu-max-inline-size);
+    padding-block: var(--hop-Menu-padding-block);
 
     outline: var(--hop-Menu-outline);
 }
 
-.hop-Menu__popover {
-    --hop-Menu-popover-min-inline-size: 12.5rem;
-    --hop-Menu-popover-max-inline-size: 20rem;
-    --hop-Menu-popover-inline-size: max-content;
-
-    inline-size: var(--hop-Menu-popover-inline-size);
-    min-inline-size: var(--hop-Menu-popover-min-inline-size);
-    max-inline-size: var(--hop-Menu-popover-max-inline-size);
-}
-
 .hop-Menu__header {
+    --hop-Menu-header-margin-inline: var(--hop-space-inset-sm);
     --hop-Menu-header-cursor: default;
     --hop-Menu-header-display: flex;
     --hop-Menu-header-align-items: center;
@@ -47,6 +37,7 @@
     align-items: var(--hop-Menu-header-align-items);
 
     block-size: var(--hop-Menu-header-block-size);
+    margin-inline: var(--hop-Menu-header-margin-inline);
     padding-inline: var(--hop-Menu-header-padding-inline);
 
     font-family: var(--hop-Menu-header-font-family);
@@ -60,8 +51,6 @@
 
 .hop-Menu__divider {
     --hop-Menu-divider-margin-block: var(--hop-space-stack-sm);
-    --hop-Menu-divider-margin-inline: calc(-2 * var(--hop-space-inset-sm));
 
     margin-block: var( --hop-Menu-divider-margin-block);
-    margin-inline: var(--hop-Menu-divider-margin-inline);
 }
