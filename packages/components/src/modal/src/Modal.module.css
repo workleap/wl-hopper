@@ -157,7 +157,7 @@
 }
 
 /* If there's a close button, add right margin to the header and heading */
-.hop-Modal:has(.hop-Modal__close) > .hop-Modal__top-container {
+.hop-Modal:has(.hop-Modal__close):not(.hop-Modal--has-image) > .hop-Modal__top-container {
     margin-inline-end: calc(var(--hop-Modal-margin) + 2rem);
 }
 
