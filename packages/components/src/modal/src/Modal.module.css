@@ -111,7 +111,7 @@
     grid-area: header;
     place-self: center end;
     margin-block-start: var(--hop-Modal-margin);
-    margin-inline: var(--hop-Modal-margin);
+    margin-inline-start: var(--hop-Modal-margin);
 }
 
 .hop-Modal__content {
@@ -158,7 +158,7 @@
 
 /* If there's a close button, add right margin to the header and heading */
 .hop-Modal:has(.hop-Modal__close) > .hop-Modal__top-container {
-    margin-inline-end: calc(var(--hop-Modal-margin) + 2rem);
+    margin-inline-end: calc(var(--hop-Modal-margin) + var(--hop-space-inline-md));
 }
 
 .hop-Modal.hop-Modal--has-image:has(.hop-Modal__close).hop-Modal--fullscreen > .hop-Modal__top-container,
