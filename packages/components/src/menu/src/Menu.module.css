@@ -1,0 +1,56 @@
+.hop-Menu  {
+    --hop-Menu-overflow-y: auto;
+    --hop-Menu-padding-block: var(--hop-space-inset-sm);
+    --hop-Menu-outline: none;
+    --hop-Menu-min-inline-size: 12.5rem;
+    --hop-Menu-max-inline-size: 20rem;
+    --hop-Menu-inline-size: max-content;
+
+    overflow-y: var(--hop-Menu-overflow-y);
+
+    inline-size: var(--hop-Menu-inline-size);
+    min-inline-size: var(--hop-Menu-min-inline-size);
+    max-inline-size: var(--hop-Menu-max-inline-size);
+    padding-block: var(--hop-Menu-padding-block);
+
+    outline: var(--hop-Menu-outline);
+}
+
+.hop-Menu__header {
+    --hop-Menu-header-margin-inline: var(--hop-space-inset-sm);
+    --hop-Menu-header-cursor: default;
+    --hop-Menu-header-display: flex;
+    --hop-Menu-header-align-items: center;
+    --hop-Menu-header-block-size: 2rem;
+    --hop-Menu-header-padding-inline: var(--hop-space-inset-md);
+    --hop-Menu-header-font-size: var(--hop-overline-font-size);
+    --hop-Menu-header-font-weight: var(--hop-overline-font-weight);
+    --hop-Menu-header-line-height: var(--hop-overline-line-height);
+    --hop-Menu-header-color: var(--hop-neutral-text-weak);
+    --hop-Menu-header-text-transform: uppercase;
+    --hop-Menu-header-font-family: var(--hop-overline-font-family);
+    --hop-Menu-header-letter-spacing: 0.015rem;
+
+    cursor: var(--hop-Menu-header-cursor);
+
+    display: var(--hop-Menu-header-display);
+    align-items: var(--hop-Menu-header-align-items);
+
+    block-size: var(--hop-Menu-header-block-size);
+    margin-inline: var(--hop-Menu-header-margin-inline);
+    padding-inline: var(--hop-Menu-header-padding-inline);
+
+    font-family: var(--hop-Menu-header-font-family);
+    font-size: var(--hop-Menu-header-font-size);
+    font-weight: var(--hop-Menu-header-font-weight);
+    line-height: var(--hop-Menu-header-line-height);
+    color: var(--hop-Menu-header-color);
+    text-transform: var(--hop-Menu-header-text-transform);
+    letter-spacing: var(--hop-Menu-header-letter-spacing);
+}
+
+.hop-Menu__divider {
+    --hop-Menu-divider-margin-block: var(--hop-space-stack-sm);
+
+    margin-block: var( --hop-Menu-divider-margin-block);
+}

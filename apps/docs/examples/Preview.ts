@@ -209,6 +209,69 @@ export const Previews: Record<string, Preview> = {
     "list-box/docs/multipleSizes": {
         component: lazy(() => import("@/../../packages/components/src/list-box/docs/multipleSizes.tsx"))
     },
+    "menu/docs/Preview": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Preview.tsx"))
+    },
+    "menu/docs/Empty": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Empty.tsx"))
+    },
+    "menu/docs/AlignDirection": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/AlignDirection.tsx"))
+    },
+    "menu/docs/Sizes": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Sizes.tsx"))
+    },
+    "menu/docs/Sections": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Sections.tsx"))
+    },
+    "menu/docs/Dividers": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Dividers.tsx"))
+    },
+    "menu/docs/ItemIcon": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/ItemIcon.tsx"))
+    },
+    "menu/docs/ItemEndIcon": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/ItemEndIcon.tsx"))
+    },
+    "menu/docs/ItemDescription": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/ItemDescription.tsx"))
+    },
+    "menu/docs/ItemDescriptionIcon": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/ItemDescriptionIcon.tsx"))
+    },
+    "menu/docs/ItemDescriptionAvatar": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/ItemDescriptionAvatar.tsx"))
+    },
+    "menu/docs/DisabledItem": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/DisabledItem.tsx"))
+    },
+    "menu/docs/DisabledKeys": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/DisabledKeys.tsx"))
+    },
+    "menu/docs/Validation": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Validation.tsx"))
+    },
+    "menu/docs/Selection": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Selection.tsx"))
+    },
+    "menu/docs/SectionLevelSelection": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/SectionLevelSelection.tsx"))
+    },
+    "menu/docs/CustomTrigger": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/CustomTrigger.tsx"))
+    },
+    "menu/docs/DynamicItems": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/DynamicItems.tsx"))
+    },
+    "menu/docs/Controlled": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Controlled.tsx"))
+    },
+    "menu/docs/OpeningModal": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/OpeningModal.tsx"))
+    },
+    "menu/docs/Submenu": {
+        component: lazy(() => import("@/../../packages/components/src/menu/docs/Submenu.tsx"))
+    },
     "tag/docs/tag-group/preview": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/preview.tsx"))
     },
