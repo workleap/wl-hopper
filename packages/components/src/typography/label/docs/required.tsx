@@ -1,7 +1,7 @@
-import { Label } from "@hopper-ui/components";
+import { FieldLabel } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Label isRequired necessityIndicator="asterisk">Username</Label>
+        <FieldLabel isRequired necessityIndicator="asterisk">Username</FieldLabel>
     );
 }

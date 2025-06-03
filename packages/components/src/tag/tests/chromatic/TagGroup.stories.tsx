@@ -1,10 +1,11 @@
-import type { Selection, TagVariant } from "@hopper-ui/components";
+import { Div, type Selection, type TagVariant } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
 import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../badge/index.ts";
+import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { IconList } from "../../../icon-list/index.ts";
 import { Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
@@ -42,6 +43,30 @@ export const Default = {
                 </TagGroup>
             </Stack>
         );
+    }
+} satisfies Story;
+
+export const WithContextualHelp = {
+    render: props => {
+        return (
+            <TagGroup {...props}>
+                <Tag id="1">Tag 1</Tag>
+                <Tag id="2">Tag 2</Tag>
+                <Tag id="3">Tag 3</Tag>
+            </TagGroup>
+        );
+    },
+    decorators: [
+        Story => (
+            // Important for chromatic
+            <Div UNSAFE_height="100px">
+                <Story />
+            </Div>
+        )
+    ],
+    args: {
+        label: "Small",
+        contextualHelp: <ContextualHelp isOpen>Contextual help text for the tag group.</ContextualHelp>
     }
 } satisfies Story;
 

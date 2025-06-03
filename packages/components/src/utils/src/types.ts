@@ -113,4 +113,8 @@ export interface FieldProps {
      * @default "md"
      */
     size?: ResponsiveProp<FieldSize>;
+    /**
+     * A ContextualHelp element to place next to the label.
+     */
+    contextualHelp?: ReactNode;
 }

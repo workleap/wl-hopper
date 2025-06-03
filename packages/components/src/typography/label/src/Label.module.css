@@ -14,7 +14,3 @@
     line-height: var(--hop-Label-line-height);
     color: var(--hop-Label-color);
 }
-
-:where(.hop-Label__indicator) {
-    padding-inline-start: var(--hop-space-20);
-}

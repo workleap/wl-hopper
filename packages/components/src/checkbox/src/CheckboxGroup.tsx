@@ -19,7 +19,7 @@ import { CheckboxContext, CheckboxFieldContext } from "../../checkbox/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { CheckboxGroupContext } from "./CheckboxGroupContext.ts";
@@ -55,6 +55,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
     const {
         className,
         children: childrenProp,
+        contextualHelp,
         description,
         errorMessage,
         isDisabled,
@@ -148,15 +149,14 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
             >
                 {checkboxGroupRenderProps => (
                     <>
-                        {label && (
-                            <Label
-                                className={styles["hop-CheckboxGroup__label"]}
-                                isRequired={isRequired}
-                                necessityIndicator={necessityIndicator}
-                            >
-                                {label}
-                            </Label>
-                        )}
+                        <FieldLabel
+                            className={styles["hop-CheckboxGroup__label"]}
+                            contextualHelp={contextualHelp}
+                            isRequired={isRequired}
+                            necessityIndicator={necessityIndicator}
+                        >
+                            {label}
+                        </FieldLabel>
                         {children(checkboxGroupRenderProps)}
                         {description && (
                             <HelperMessage className={styles["hop-CheckboxGroup__helper-message"]} hideIcon>

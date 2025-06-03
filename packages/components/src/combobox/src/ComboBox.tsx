@@ -22,7 +22,7 @@ import { Footer } from "../../layout/index.ts";
 import { ListBox, ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxProps, type ListBoxSectionProps, type SelectionIndicator } from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
 import { ToggleArrow } from "../../toggle-arrow/index.ts";
-import { Label, TextContext } from "../../typography/index.ts";
+import { FieldLabel, TextContext } from "../../typography/index.ts";
 import { ClearContainerSlots, ClearProviders, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type MenuAlignment, type MenuDirection } from "../../utils/index.ts";
 
 import { ComboBoxContext } from "./ComboBoxContext.ts";
@@ -116,6 +116,7 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
         align: alignProp,
         className,
         children,
+        contextualHelp,
         description,
         direction: directionProp,
         errorMessage,
@@ -259,15 +260,14 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
             {({ isOpen }) => {
                 return (
                     <>
-                        {label && (
-                            <Label
-                                className={styles["hop-ComboBox__label"]}
-                                isRequired={isRequired}
-                                necessityIndicator={necessityIndicator}
-                            >
-                                {label}
-                            </Label>
-                        )}
+                        <FieldLabel
+                            className={styles["hop-ComboBox__label"]}
+                            contextualHelp={contextualHelp}
+                            isRequired={isRequired}
+                            necessityIndicator={necessityIndicator}
+                        >
+                            {label}
+                        </FieldLabel>
                         <InputGroup
                             ref={triggerRef}
                             className={triggerClassNames}

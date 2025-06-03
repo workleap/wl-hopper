@@ -3,6 +3,7 @@ import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
 
+import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { TextField, type TextFieldProps } from "../../src/TextField.tsx";
 
@@ -36,6 +37,24 @@ export const Default: Story = {
     ),
     args: {
         "aria-label": "Label"
+    }
+};
+
+export const WithContextualHelp: Story = {
+    render: args => (
+        <TextField {...args} />
+    ),
+    decorators: [
+        Story => (
+            // Important for chromatic
+            <Div UNSAFE_height="100px">
+                <Story />
+            </Div>
+        )
+    ],
+    args: {
+        "label": "Label",
+        contextualHelp: <ContextualHelp isOpen>Contextual help for the TextField</ContextualHelp>
     }
 };
 

@@ -8,7 +8,7 @@
     "Tag.removeAriaLabel": "Supprimer",
     "ListBoxItem.loadingTextValue": "Élément en cours de chargement",
     "ListBoxItem.indicatorAriaLabel": "Indicateur de sélection d'élément de liste",
-    "Label.necessityLabel.required": "Obligatoire",
-    "Label.necessityLabel.optional": "Facultatif",
+    "FieldLabel.necessityLabel.required": "Obligatoire",
+    "FieldLabel.necessityLabel.optional": "Facultatif",
     "Select.placeholder": "Sélectionner un élément"
 }

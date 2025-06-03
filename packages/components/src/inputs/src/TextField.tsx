@@ -22,7 +22,7 @@ import { ClearButton } from "../../buttons/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label, TextContext } from "../../typography/index.ts";
+import { FieldLabel, TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
     composeClassnameRenderProps,
@@ -131,6 +131,7 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
         inputGroupProps,
         remainingCharacterCountProps,
         label,
+        contextualHelp,
         description,
         errorMessage,
         ...otherProps
@@ -232,7 +233,16 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const childrenMarkup = (
         <>
-            {label && <Label className={styles["hop-TextField__Label"]} isRequired={isRequired} necessityIndicator={necessityIndicator}>{label}</Label>}
+            <FieldLabel
+                wrapperProps={{
+                    className: styles["hop-TextField__Label"]
+                }}
+                isRequired={isRequired}
+                necessityIndicator={necessityIndicator}
+                contextualHelp={contextualHelp}
+            >
+                {label}
+            </FieldLabel>
             {inputMarkup}
             {description && <HelperMessage className={styles["hop-TextField__HelperMessage"]}>{description}</HelperMessage>}
             <ErrorMessage className={styles["hop-TextField__ErrorMessage"]}>{errorMessage}</ErrorMessage>

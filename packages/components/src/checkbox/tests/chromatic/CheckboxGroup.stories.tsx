@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Checkbox } from "../../src/Checkbox.tsx";
 import { CheckboxField } from "../../src/CheckboxField.tsx";
@@ -31,7 +32,6 @@ export const Vertical = {
                 <Checkbox value="developer">Developer</Checkbox>
                 <Checkbox value="designer">Designer</Checkbox>
                 <Checkbox value="manager">Manager</Checkbox>
-                
             </CheckboxGroup>
             <h1>Size</h1>
             <Inline alignY="start">
@@ -143,7 +143,7 @@ export const Vertical = {
                     <Checkbox value="designer">Designer</Checkbox>
                     <Checkbox value="manager">Manager</Checkbox>
                 </CheckboxGroup>
-                <CheckboxGroup {...props} className="zoom-out">                    
+                <CheckboxGroup {...props} className="zoom-out">
                     <Checkbox value="developer">Developer</Checkbox>
                     <Checkbox value="designer">Designer</Checkbox>
                     <Checkbox value="manager">Manager</Checkbox>
@@ -157,6 +157,19 @@ export const Vertical = {
     }
 } satisfies Story;
 
+export const WithContextualHelp = {
+    render: props => (
+        <CheckboxGroup {...props}>
+            <Checkbox value="developer">Developer</Checkbox>
+            <Checkbox value="designer">Designer</Checkbox>
+            <Checkbox value="manager">Manager</Checkbox>
+        </CheckboxGroup>
+    ),
+    args: {
+        label: "Roles",
+        contextualHelp: <ContextualHelp isOpen>Some help for the checkbox group</ContextualHelp>
+    }
+} satisfies Story;
 
 export const Horizontal = {
     ...Vertical,

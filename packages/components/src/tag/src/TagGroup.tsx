@@ -19,7 +19,7 @@ import {
 import { ErrorMessage } from "../../error-message/index.ts";
 import { type FormStyleProps, useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { Label } from "../../typography/index.ts";
+import { FieldLabel } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, type FieldProps, SlotProvider } from "../../utils/index.ts";
 
 import type { TagSize, TagVariant } from "./Tag.tsx";
@@ -61,6 +61,7 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
     const {
         className,
         children,
+        contextualHelp,
         description,
         errorMessage,
         isInvalid = false,
@@ -144,7 +145,13 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
                     style={style}
                     {...otherProps}
                 >
-                    {label && <Label className={styles["hop-TagGroup__Label"]} necessityIndicator={necessityIndicator}>{label}</Label>}
+                    <FieldLabel
+                        className={styles["hop-TagGroup__Label"]}
+                        necessityIndicator={necessityIndicator}
+                        contextualHelp={contextualHelp}
+                    >
+                        {label}
+                    </FieldLabel>
                     <TagList
                         items={items}
                         renderEmptyState={renderEmptyState}
