@@ -59,6 +59,7 @@ jobs:
                 uses: chromaui/action@v1
                 id: chromatic
                 with:
+                    autoAcceptChanges: "main"
                     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
                     traceChanged: true
                     onlyChanged: true # TurboSnap
