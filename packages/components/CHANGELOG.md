@@ -1,5 +1,15 @@
 # @hopper-ui/components
 
+## 1.7.0
+
+### Minor Changes
+
+- b9b528d: Add ContextualHelp component
+
+### Patch Changes
+
+- 44db1b9: Fixed an issue in the Modal component where header and footer buttons were fighting for space, leading to overflow or early line-breaks
+
 ## 1.6.1
 
 ### Patch Changes
