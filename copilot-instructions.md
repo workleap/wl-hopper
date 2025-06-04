@@ -43,22 +43,17 @@ Hopper is a React component library built with accessibility and design consiste
 - Ensure all components have a unique `GlobalCssSelector` (e.g., `hop-Button`)
 - Use CSS variables for theming and customization
 - Ensure proper use of semantic HTML elements
-- Follow logical property usage with `stylelint-use-logical`
-- Maintain clean CSS order using `stylelint-config-clean-order`
 - Ensure styles are properly merged with higher priority for direct props
 - Use responsive design principles with the design system's breakpoints
 
 ## JavaScript/TypeScript Requirements
 
 - Use TypeScript for all components
-- Ensure proper type definitions for all props and functions
-- Use React hooks according to React's rules of hooks
 - Avoid unnecessary re-renders by using memoization where appropriate
 - Ensure proper error handling
 - Follow functional programming principles
 - Use proper naming conventions for variables, functions, and components
 - Ensure code is properly documented with JSDoc comments
-- Avoid any usage of `any` type
 - Ensure all exported components have proper display names
 
 ## React Requirements
@@ -98,7 +93,6 @@ When reviewing Hopper components, check if there's a corresponding React Spectru
 - Check that React Aria's focus management is correctly implemented
 - Ensure proper usage of React Aria's internationalization features
 - Verify that React Aria's state management is correctly implemented
-- Check that React Aria's styling approach is properly followed
 - Ensure proper usage of useContextProps for slot-based component architecture
 - Verify that components properly forward refs to React Aria components
 - Check that components properly merge props with React Aria components
@@ -355,24 +349,6 @@ When reviewing code, check for the following:
 ### Accessibility Testing
 
 Accessibility testing is a critical part of the development process. Here are specific guidelines for testing accessibility:
-
-#### Automated Testing with axe-playwright
-
-```typescript
-// Example of using axe-playwright in tests
-import { expect, test } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-
-test('component should not have any automatically detectable accessibility violations', async ({ page }) => {
-  await page.goto('http://localhost:6006/iframe.html?id=components-button--default');
-  
-  const accessibilityScanResults = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
-    .analyze();
-  
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
-```
 
 #### Manual Accessibility Testing Checklist
 
