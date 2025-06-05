@@ -7,4 +7,6 @@ Coming from Orbiter, you should be aware of the following changes:
 - `reverse` is not supported, use `flex-direction` or `row-reverse` instead.
 - `onChange` has been removed, use `onSelectionChange` instead.
 - `selectionMode` type "none" should be `undefined` instead.
+- `defaultValue` has been removed.
 - `value` has been removed.
+- `rowSize` has been removed.
