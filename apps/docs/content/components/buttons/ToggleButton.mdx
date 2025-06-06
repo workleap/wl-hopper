@@ -1,0 +1,74 @@
+---
+title: ToggleButton
+description: Offer a similar experience as a checkbox or radio with the appearance of a button.
+category: "buttons"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/buttons/src/ToggleButton.tsx
+---
+
+<Example src="buttons/docs/toggle-button/preview" isOpen />
+
+## Anatomy
+
+### Composed Components
+
+A `ToggleButton` uses the following components:
+
+<ComposedComponents components={["Icon", "IconList", "Text"] }/>
+
+## Usage
+
+### Variants
+A toggle button can use different variants.
+
+<Example src="buttons/docs/toggle-button/variant" />
+
+### Sizes
+A toggle button can vary in size.
+
+<Example src="buttons/docs/toggle-button/size" />
+
+### Disabled
+A toggle button can be disabled.
+
+<Example src="buttons/docs/toggle-button/state" />
+
+### Loading
+A toggle button can show a loading indicator. The button text is hidden but the button maintains the width that it would have if the text were visible.
+
+<Example src="buttons/docs/toggle-button/loading" />
+
+### Pending
+Buttons can indicate that a quick progress task is taking place (e.g., saving settings on a server). After a 1 second delay, an indeterminate spinner will be displayed in place of the button label and icon.
+
+<Example src="buttons/docs/toggle-button/pending" />
+
+### Fluid
+A toggle button can be expanded to full width to fill its parent container.
+
+<Example src="buttons/docs/toggle-button/layout" />
+
+### Icon Only
+A toggle button can contain only an icon.
+An accessible name must be provided through [aria-label](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) prop.
+See also [WCAG practices](https://www.w3.org/TR/WCAG20-TECHS/ARIA6.html).
+
+<Example src="buttons/docs/toggle-button/icon" />
+
+### Icon
+A toggle button can contain icons.
+
+<Example src="buttons/docs/toggle-button/icons" />
+
+### End Icon
+Nonstandard end icons can be provided to handle special cases. However, think twice before adding end icons, start icons should be your go-to.
+
+<Example src="buttons/docs/toggle-button/endIcon" />
+
+## Props
+
+<PropTable component="ToggleButton" />
+
+## Migration Notes
+
+<MigrateGuide src="buttons/docs/migration-notes-toggle-button" />
