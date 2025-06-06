@@ -149,6 +149,36 @@ export const Previews: Record<string, Preview> = {
     "tile/docs/tile-group/columns": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/tile-group/columns.tsx"))
     },
+    "buttons/docs/toggle-button/preview": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/preview.tsx"))
+    },
+    "buttons/docs/toggle-button/variant": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/variant.tsx"))
+    },
+    "buttons/docs/toggle-button/size": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/size.tsx"))
+    },
+    "buttons/docs/toggle-button/state": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/state.tsx"))
+    },
+    "buttons/docs/toggle-button/loading": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/loading.tsx"))
+    },
+    "buttons/docs/toggle-button/pending": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/pending.tsx"))
+    },
+    "buttons/docs/toggle-button/layout": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/layout.tsx"))
+    },
+    "buttons/docs/toggle-button/icon": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/icon.tsx"))
+    },
+    "buttons/docs/toggle-button/icons": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/icons.tsx"))
+    },
+    "buttons/docs/toggle-button/endIcon": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/toggle-button/endIcon.tsx"))
+    },
     "list-box/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/list-box/docs/preview.tsx"))
     },

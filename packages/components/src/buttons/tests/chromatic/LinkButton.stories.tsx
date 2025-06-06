@@ -126,7 +126,7 @@ export const Primary: Story = {
                         <Div className="zoom-in">
                             <LinkButton {...args}>Help</LinkButton>
                         </Div>
-                        <Div className="zoom-out'">
+                        <Div className="zoom-out">
                             <LinkButton {...args}>Help</LinkButton>
                         </Div>
                     </Inline>
