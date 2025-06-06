@@ -160,7 +160,7 @@ export const Primary: Story = {
                         <Div className="zoom-in">
                             <Button {...args}>Save</Button>
                         </Div>
-                        <Div className="zoom-out'">
+                        <Div className="zoom-out">
                             <Button {...args}>Save</Button>
                         </Div>
                     </Inline>

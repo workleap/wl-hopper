@@ -26,7 +26,7 @@ export interface ToggleButtonProps extends StyledComponentProps<RACToggleButtonP
     children: ReactNode;
 
     /**
-     * Whether or not thetoggle button takes up the width of its container.
+     * Whether or not the toggle button takes up the width of its container.
      */
     isFluid?: ResponsiveProp<boolean>;
 
