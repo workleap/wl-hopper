@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.8.0
+
+### Minor Changes
+
+- 2dc673d: Add ToggleButton component
+
 ## 1.7.0
 
 ### Minor Changes
