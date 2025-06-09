@@ -2,16 +2,16 @@ import { SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
-import { ButtonContext } from "react-aria-components";
+import { ToggleButtonContext } from "react-aria-components";
 
 import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
-import { Button, type ButtonProps } from "../../src/Button.tsx";
+import { ToggleButton, type ToggleButtonProps } from "../../src/ToggleButton.tsx";
 
 const meta = {
-    title: "Components/Buttons/Button",
-    component: Button,
+    title: "Components/Buttons/ToggleButton",
+    component: ToggleButton,
     args: {
         children: "Click me!"
     },
@@ -20,7 +20,7 @@ const meta = {
             delay: 2000
         }
     }
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof ToggleButton>;
 
 export default meta;
 
@@ -33,135 +33,135 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
-                        <Button size="sm" {...args}>Save</Button>
-                        <Button {...args}>Save</Button>
+                        <ToggleButton size="sm" {...args}>Save</ToggleButton>
+                        <ToggleButton {...args}>Save</ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <Button isLoading size="sm" {...args}>Save</Button>
-                        <Button isLoading {...args}>Save</Button>
+                        <ToggleButton isLoading size="sm" {...args}>Save</ToggleButton>
+                        <ToggleButton isLoading {...args}>Save</ToggleButton>
                     </Inline>
                     <Div>
-                        <Button isFluid {...args}>Save</Button>
+                        <ToggleButton isFluid {...args}>Save</ToggleButton>
                     </Div>
                     <Div width="10%">
-                        <Button isFluid {...args}>Save</Button>
+                        <ToggleButton isFluid {...args}>Save</ToggleButton>
                     </Div>
                     <Div>
-                        <Button isLoading isFluid {...args}>Save</Button>
+                        <ToggleButton isLoading isFluid {...args}>Save</ToggleButton>
                     </Div>
                 </Stack>
                 <Stack>
                     <h1>Icons</h1>
                     <Inline alignY="end">
-                        <Button size="sm" {...args}>
+                        <ToggleButton size="sm" {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
-                        <Button {...args}>
+                        </ToggleButton>
+                        <ToggleButton {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <Button size="sm" {...args}>
+                        <ToggleButton size="sm" {...args}>
                             <IconList>
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
-                        </Button>
-                        <Button {...args}>
+                        </ToggleButton>
+                        <ToggleButton {...args}>
                             <IconList>
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <Button isLoading size="sm" {...args}>
+                        <ToggleButton isLoading size="sm" {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
-                        <Button isLoading {...args}>
+                        </ToggleButton>
+                        <ToggleButton isLoading {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Div>
-                        <Button isDisabled {...args}>
+                        <ToggleButton isDisabled {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Div>
                     <Stack>
-                        <Button isFluid {...args}>
+                        <ToggleButton isFluid {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
-                        </Button>
-                        <Button isFluid {...args}>
+                        </ToggleButton>
+                        <ToggleButton isFluid {...args}>
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Stack>
                 </Stack>
                 <Stack>
                     <h1>End icons</h1>
                     <Inline alignY="end">
-                        <Button size="sm" {...args}>
+                        <ToggleButton size="sm" {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
-                        <Button {...args}>
+                        </ToggleButton>
+                        <ToggleButton {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <Button size="sm" {...args}>
+                        <ToggleButton size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
                             </IconList>
-                        </Button>
-                        <Button {...args}>
+                        </ToggleButton>
+                        <ToggleButton {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
                             </IconList>
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <Button isLoading size="sm" {...args}>
+                        <ToggleButton isLoading size="sm" {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
-                        <Button isLoading {...args}>
+                        </ToggleButton>
+                        <ToggleButton isLoading {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
+                        </ToggleButton>
                     </Inline>
                     <Div>
-                        <Button isDisabled {...args}>
+                        <ToggleButton isDisabled {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
+                        </ToggleButton>
                     </Div>
                     <Stack>
-                        <Button isFluid {...args}>
+                        <ToggleButton isFluid {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
-                        </Button>
-                        <Button isFluid {...args}>
+                        </ToggleButton>
+                        <ToggleButton isFluid {...args}>
                             <Text>Save</Text>
-                        </Button>
+                        </ToggleButton>
                     </Stack>
                 </Stack>
                 <Stack>
                     <h1>Zoom</h1>
                     <Inline alignY="end">
                         <Div className="zoom-in">
-                            <Button {...args}>Save</Button>
+                            <ToggleButton {...args}>Save</ToggleButton>
                         </Div>
                         <Div className="zoom-out">
-                            <Button {...args}>Save</Button>
+                            <ToggleButton {...args}>Save</ToggleButton>
                         </Div>
                     </Inline>
                 </Stack>
@@ -183,78 +183,58 @@ export const Upsell: Story = {
     }
 };
 
-export const Danger: Story = {
+export const Tertiary: Story = {
     ...Primary,
     args: {
-        variant: "danger"
+        variant: "tertiary"
     }
 };
 
-export const GhostPrimary: Story = {
-    ...Primary,
-    args: {
-        variant: "ghost-primary"
-    }
-};
 
-export const GhostSecondary: Story = {
-    ...Primary,
-    args: {
-        variant: "ghost-secondary"
-    }
-};
-
-export const GhostDanger: Story = {
-    ...Primary,
-    args: {
-        variant: "ghost-danger"
-    }
-};
-
-const StateTemplate = (args: Partial<ButtonProps>) => (
+const StateTemplate = (args: Partial<ToggleButtonProps>) => (
     <Inline alignY="end">
-        <Button size="sm" {...args}>Save</Button>
-        <Button {...args}>Save</Button>
-        <Button isLoading size="sm" {...args}>Save</Button>
-        <Button isLoading {...args}>Save</Button>
-        <Button {...args}>
+        <ToggleButton size="sm" {...args}>Save</ToggleButton>
+        <ToggleButton {...args}>Save</ToggleButton>
+        <ToggleButton isLoading size="sm" {...args}>Save</ToggleButton>
+        <ToggleButton isLoading {...args}>Save</ToggleButton>
+        <ToggleButton {...args}>
             <SparklesIcon />
             <Text>Save</Text>
-        </Button>
-        <Button {...args}>
+        </ToggleButton>
+        <ToggleButton {...args}>
             <Text>Save</Text>
             <SparklesIcon slot="end-icon" />
-        </Button>
-        <Button {...args}>
+        </ToggleButton>
+        <ToggleButton {...args}>
             <Text>Save</Text>
             <IconList>
                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
             </IconList>
-        </Button>
-        <Button {...args}>
+        </ToggleButton>
+        <ToggleButton {...args}>
             <Text>Save</Text>
             <IconList slot="end-icon">
                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
             </IconList>
-        </Button>
+        </ToggleButton>
     </Inline>
 );
 
 export const PrimaryStates: Story = {
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
-        const buttons = canvas.getAllByRole("button");
+        const toggleButtons = canvas.getAllByRole("button");
 
-        buttons.forEach(button => {
-            if (button.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
-                if (button.getAttribute("data-chromatic-force-focus")) {
-                    button.setAttribute("data-focus-visible", "true");
-                    button.removeAttribute("data-chromatic-force-focus");
+        toggleButtons.forEach(toggleButton => {
+            if (toggleButton.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+                if (toggleButton.getAttribute("data-chromatic-force-focus")) {
+                    toggleButton.setAttribute("data-focus-visible", "true");
+                    toggleButton.removeAttribute("data-chromatic-force-focus");
                 }
 
-                if (button.getAttribute("data-chromatic-force-hover")) {
-                    button.setAttribute("data-hovered", "true");
-                    button.removeAttribute("data-chromatic-force-hover");
+                if (toggleButton.getAttribute("data-chromatic-force-hover")) {
+                    toggleButton.setAttribute("data-hovered", "true");
+                    toggleButton.removeAttribute("data-chromatic-force-hover");
                 }
             }
         });
@@ -266,10 +246,10 @@ export const PrimaryStates: Story = {
                 <StateTemplate {...args} />
                 <h1>Disabled</h1>
                 <StateTemplate {...args} isDisabled />
-                <h1>Pressed</h1>
-                <ButtonContext.Provider value={{ isPressed: true }}>
+                <h1>Selected</h1>
+                <ToggleButtonContext.Provider value={{ isSelected: true }}>
                     <StateTemplate {...args} />
-                </ButtonContext.Provider>
+                </ToggleButtonContext.Provider>
                 <h1>Focus Visible</h1>
                 <StateTemplate {...args} data-chromatic-force-focus />
                 <h1>Hovered</h1>
@@ -294,30 +274,9 @@ export const UpsellStates: Story = {
     }
 };
 
-export const DangerStates: Story = {
+export const TertiaryStates: Story = {
     ...PrimaryStates,
     args: {
-        variant: "danger"
-    }
-};
-
-export const GhostPrimaryStates: Story = {
-    ...PrimaryStates,
-    args: {
-        variant: "ghost-primary"
-    }
-};
-
-export const GhostSecondaryStates: Story = {
-    ...PrimaryStates,
-    args: {
-        variant: "ghost-secondary"
-    }
-};
-
-export const GhostDangerStates: Story = {
-    ...PrimaryStates,
-    args: {
-        variant: "ghost-danger"
+        variant: "tertiary"
     }
 };

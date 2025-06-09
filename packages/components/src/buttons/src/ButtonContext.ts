@@ -3,7 +3,7 @@ import type { ContextValue } from "react-aria-components";
 
 import type { ButtonProps } from "./Button.tsx";
 
-export interface ButtonContextValue extends ButtonProps {
+export interface ButtonContextValue extends Partial<ButtonProps> {
     /**
      *  Contexts to clear.
      */

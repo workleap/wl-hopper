@@ -10,4 +10,5 @@ export * from "./EmbeddedButton.tsx";
 export * from "./EmbeddedButtonContext.ts";
 export * from "./LinkButton.tsx";
 export * from "./LinkButtonContext.ts";
-
+export * from "./ToggleButton.tsx";
+export * from "./ToggleButtonContext.ts";

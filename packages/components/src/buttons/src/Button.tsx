@@ -7,7 +7,7 @@ import {
     useStyledSystem
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type ForwardedRef, forwardRef, useEffect, useState } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import {
     composeRenderProps,
     DEFAULT_SLOT,
@@ -27,6 +27,7 @@ import {
     cssModule,
     ensureTextWrapper,
     SlotProvider,
+    useProgressVisibility,
     useSlot
 } from "../../utils/index.ts";
 import type { ButtonSize, ButtonVariant } from "../utils/index.ts";
@@ -65,7 +66,7 @@ export interface ButtonProps extends StyledComponentProps<Omit<RACButtonProps, "
 function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     [props, ref] = useContextProps(props, ref, ButtonContext);
     props = useFormProps(props);
-    const [isProgressVisible, setIsProgressVisible] = useState(false);
+
 
     const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonContextValue);
     const stringFormatter = useLocalizedString();
@@ -84,26 +85,12 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         ...otherProps
     } = ownProps;
 
+    const isProgressVisible = useProgressVisibility(isLoading);
+
     const [textRef, hasText] = useSlot();
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
-
-    useEffect(() => {
-        let timeout: ReturnType<typeof setTimeout>;
-
-        if (isLoading) {
-            timeout = setTimeout(() => {
-                setIsProgressVisible(true);
-            }, 1000);
-        } else {
-            setIsProgressVisible(false);
-        }
-
-        return () => {
-            clearTimeout(timeout);
-        };
-    }, [isLoading, setIsProgressVisible]);
 
     if (isHidden) {
         return null;
@@ -137,6 +124,10 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const { className: spinnerClassName, ...otherSpinnerProps } = spinnerProps ?? {};
     const spinnerClassNames = clsx(styles["hop-Button__Spinner"], spinnerClassName);
+
+    if (!hasText && (!props["aria-label"] && !props["aria-labelledby"])) {
+        console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
+    }
 
     return (
         <ClearProviders values={clearContexts}>

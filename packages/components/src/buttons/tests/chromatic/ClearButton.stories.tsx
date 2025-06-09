@@ -54,7 +54,7 @@ export const Zoom: Story = {
                     <Div className="zoom-in">
                         <ClearButton {...args} />
                     </Div>
-                    <Div className="zoom-out'">
+                    <Div className="zoom-out">
                         <ClearButton {...args} />
                     </Div>
                 </Inline>
@@ -62,7 +62,7 @@ export const Zoom: Story = {
                     <Div className="zoom-in">
                         <ClearButton {...args} size="lg" />
                     </Div>
-                    <Div className="zoom-out'">
+                    <Div className="zoom-out">
                         <ClearButton {...args} size="lg" />
                     </Div>
                 </Inline>

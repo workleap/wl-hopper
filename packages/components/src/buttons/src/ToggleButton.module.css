@@ -1,0 +1,342 @@
+.hop-ToggleButton {
+    --hop-ToggleButton-border-radius: var(--hop-shape-rounded-md);
+    --hop-ToggleButton-focus-ring-color: var(--hop-primary-border-focus);
+    --hop-ToggleButton-column-gap: var(--hop-space-inline-xs);
+    --hop-ToggleButton-icon-only-column-gap: 0;
+    --hop-ToggleButton-outline-size: var(--hop-space-20);
+    --hop-ToggleButton-border-size: var(--hop-space-10);
+    --hop-ToggleButton-text-underline-offset: var(--hop-space-20);
+
+    /* Sizes */
+    --hop-ToggleButton-icon-only-padding: 0; /* Since the content is centered, no need for padding */
+    --hop-ToggleButton-sm-height: 2rem;
+    --hop-ToggleButton-md-height: 2.5rem;
+    --hop-ToggleButton-sm-padding: 0 var(--hop-space-inset-md);
+    --hop-ToggleButton-md-padding: 0 var(--hop-space-inset-md);
+
+    /* Disabled */
+    --hop-ToggleButton-color-disabled: var(--hop-neutral-text-disabled);
+    --hop-ToggleButton-background-color-disabled: var(--hop-neutral-surface-disabled);
+    --hop-ToggleButton-border-disabled: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-background-color-disabled); /* same color as the background */
+
+    /* Primary */
+    --hop-ToggleButton-primary-color: var(--hop-primary-text-strong);
+    --hop-ToggleButton-primary-color-hover: var(--hop-primary-text-strong-hover);
+    --hop-ToggleButton-primary-color-pressed: var(--hop-primary-text-strong);
+    --hop-ToggleButton-primary-color-selected: var(--hop-primary-text-selected);
+    --hop-ToggleButton-primary-background-color: var(--hop-primary-surface-strong);
+    --hop-ToggleButton-primary-background-color-hover: var(--hop-primary-surface-strong-hover);
+    --hop-ToggleButton-primary-background-color-pressed: var(--hop-primary-surface-strong-press);
+    --hop-ToggleButton-primary-background-color-selected: var(--hop-primary-surface-selected);
+    --hop-ToggleButton-primary-border: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-primary-background-color); /* same color as the background */
+    --hop-ToggleButton-primary-border-hover: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-primary-background-color-hover); /* same color as the background */
+    --hop-ToggleButton-primary-border-pressed: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-primary-background-color-pressed); /* same color as the background */
+    --hop-ToggleButton-primary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-primary-border-selected);
+    --hop-ToggleButton-primary-spinner-color: var(--hop-primary-icon-strong);
+
+    /* Secondary */
+    --hop-ToggleButton-secondary-color: var(--hop-neutral-text);
+    --hop-ToggleButton-secondary-color-hover: var(--hop-neutral-text-hover);
+    --hop-ToggleButton-secondary-color-pressed: var(--hop-neutral-text-press);
+    --hop-ToggleButton-secondary-color-selected: var(--hop-neutral-text-selected);
+    --hop-ToggleButton-secondary-background-color: var(--hop-neutral-surface);
+    --hop-ToggleButton-secondary-background-color-hover: var(--hop-neutral-surface-hover);
+    --hop-ToggleButton-secondary-background-color-pressed: var(--hop-neutral-surface-press);
+    --hop-ToggleButton-secondary-background-color-selected: var(--hop-neutral-surface-selected);
+    --hop-ToggleButton-secondary-border: var(--hop-ToggleButton-border-size) solid var(--hop-neutral-border-strong);
+    --hop-ToggleButton-secondary-border-hover: var(--hop-ToggleButton-border-size) solid var(--hop-neutral-border-strong-hover);
+    --hop-ToggleButton-secondary-border-pressed: var(--hop-ToggleButton-border-size) solid var(--hop-neutral-border-strong);
+    --hop-ToggleButton-secondary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-neutral-border-selected);
+    --hop-ToggleButton-secondary-spinner-color: var(--hop-neutral-icon);
+
+    /* Upsell */
+    --hop-ToggleButton-upsell-color: var(--hop-upsell-text);
+    --hop-ToggleButton-upsell-color-hover: var(--hop-upsell-text-hover);
+    --hop-ToggleButton-upsell-color-pressed: var(--hop-upsell-text-press);
+    --hop-ToggleButton-upsell-color-selected: var(--hop-upsell-text-selected);
+    --hop-ToggleButton-upsell-background-color: var(--hop-upsell-surface);
+    --hop-ToggleButton-upsell-background-color-hover: var(--hop-upsell-surface-hover);
+    --hop-ToggleButton-upsell-background-color-pressed: var(--hop-upsell-surface-press);
+    --hop-ToggleButton-upsell-background-color-selected: var(--hop-upsell-surface-selected);
+    --hop-ToggleButton-upsell-border: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-upsell-background-color); /* same color as the background */
+    --hop-ToggleButton-upsell-border-hover: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-upsell-background-color-hover); /* same color as the background */
+    --hop-ToggleButton-upsell-border-pressed: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-upsell-background-color-pressed); /* same color as the background */
+    --hop-ToggleButton-upsell-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-upsell-border-selected); /* same color as the background */
+    --hop-ToggleButton-upsell-spinner-color: var(--hop-upsell-icon);
+
+    /* Tertiary */
+    --hop-ToggleButton-tertiary-color: var(--hop-neutral-text-weak);
+    --hop-ToggleButton-tertiary-color-hover: var(--hop-neutral-text-weak-hover);
+    --hop-ToggleButton-tertiary-color-pressed: var(--hop-neutral-text-weak-press);
+    --hop-ToggleButton-tertiary-background-color: transparent;
+    --hop-ToggleButton-tertiary-background-color-hover: var(--hop-neutral-surface-hover);
+    --hop-ToggleButton-tertiary-background-color-pressed: var(--hop-neutral-surface-press);
+    --hop-ToggleButton-tertiary-border: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-tertiary-background-color); /* same color as the background */
+    --hop-ToggleButton-tertiary-border-hover: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-tertiary-background-color-hover); /* same color as the background */
+    --hop-ToggleButton-tertiary-border-pressed: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-tertiary-background-color-pressed); /* same color as the background */
+    --hop-ToggleButton-tertiary-spinner-color: var(--hop-neutral-icon);
+    --hop-ToggleButton-tertiary-color-disabled: var(--hop-neutral-text-disabled);
+    --hop-ToggleButton-tertiary-background-color-disabled: transparent;
+    --hop-ToggleButton-tertiary-border-disabled: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-tertiary-background-color-disabled); /* same color as the background */
+
+    /* Internal variable */
+    --inline-size: max-content;
+    --block-size: var(--hop-ToggleButton-md-height);
+    --background-color: var(--hop-primary-surface-strong);
+    --color: var(--hop-primary-text-strong);
+    --column-gap: var(--hop-ToggleButton-column-gap);
+    --spinner: var(--hop-primary-icon-strong);
+    --border: 0;
+    --padding: var(--hop-ToggleButton-md-padding);
+    --text-underline: none;
+
+    /** styles */
+    cursor: pointer;
+
+    position: relative;
+
+    overflow: hidden;
+    display: flex;
+    column-gap: var(--column-gap);
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    inline-size: var(--inline-size);
+    block-size: var(--block-size);
+    padding: var(--padding);
+
+    color: var(--color);
+    text-decoration: none;
+    white-space: nowrap;
+
+    background-color: var(--background-color);
+    border: var(--border);
+    border-radius: var(--hop-ToggleButton-border-radius);
+    outline: none;
+    outline-offset: var(--hop-ToggleButton-outline-size);
+
+    transition:
+        color var(--hop-easing-duration-2) var(--hop-easing-productive),
+        background-color var(--hop-easing-duration-2) var(--hop-easing-productive),
+        border var(--hop-easing-duration-2) var(--hop-easing-productive);
+}
+
+.hop-ToggleButton--fluid {
+    --inline-size: 100%;
+}
+
+/** Sizes */
+.hop-ToggleButton--sm {
+    --block-size: var(--hop-ToggleButton-sm-height);
+    --padding: var(--hop-ToggleButton-sm-padding);
+}
+
+/** Modifier */
+.hop-ToggleButton--icon-only {
+    --column-gap: var(--hop-ToggleButton-icon-only-column-gap);
+    --padding: var(--hop-ToggleButton-icon-only-padding);
+
+    aspect-ratio: 1;
+}
+
+/** Variants */
+.hop-ToggleButton--primary {
+    --background-color: var(--hop-ToggleButton-primary-background-color);
+    --color: var(--hop-ToggleButton-primary-color);
+    --border: var(--hop-ToggleButton-primary-border);
+    --spinner-color: var(--hop-ToggleButton-primary-spinner-color);
+}
+
+.hop-ToggleButton--primary[data-hovered],
+.hop-ToggleButton--primary[data-focus-visible]
+ {
+    --background-color: var(--hop-ToggleButton-primary-background-color-hover);
+    --color: var(--hop-ToggleButton-primary-color-hover);
+    --border: var(--hop-ToggleButton-primary-border-hover);
+}
+
+.hop-ToggleButton--primary[data-pressed] {
+    --background-color: var(--hop-ToggleButton-primary-background-color-pressed);
+    --color: var(--hop-ToggleButton-primary-color-pressed);
+    --border: var(--hop-ToggleButton-primary-border-pressed);
+}
+
+.hop-ToggleButton--primary[data-selected] {
+    --background-color: var(--hop-ToggleButton-primary-background-color-selected);
+    --color: var(--hop-ToggleButton-primary-color-selected);
+    --border: var(--hop-ToggleButton-primary-border-selected);
+}
+
+.hop-ToggleButton--secondary {
+    --background-color: var(--hop-ToggleButton-secondary-background-color);
+    --color: var(--hop-ToggleButton-secondary-color);
+    --border: var(--hop-ToggleButton-secondary-border);
+    --spinner-color: var(--hop-ToggleButton-secondary-spinner-color);
+}
+
+.hop-ToggleButton--secondary[data-hovered],
+.hop-ToggleButton--secondary[data-focus-visible] {
+    --background-color: var(--hop-ToggleButton-secondary-background-color-hover);
+    --color: var(--hop-ToggleButton-secondary-color-hover);
+    --border: var(--hop-ToggleButton-secondary-border-hover);
+}
+
+.hop-ToggleButton--secondary[data-pressed] {
+    --background-color: var(--hop-ToggleButton-secondary-background-color-pressed);
+    --color: var(--hop-ToggleButton-secondary-color-pressed);
+    --border: var(--hop-ToggleButton-secondary-border-pressed);
+}
+
+.hop-ToggleButton--secondary[data-selected] {
+    --background-color: var(--hop-ToggleButton-secondary-background-color-selected);
+    --color: var(--hop-ToggleButton-secondary-color-selected);
+    --border: var(--hop-ToggleButton-secondary-border-selected);
+}
+
+.hop-ToggleButton--upsell {
+    --background-color: var(--hop-ToggleButton-upsell-background-color);
+    --color: var(--hop-ToggleButton-upsell-color);
+    --border: var(--hop-ToggleButton-upsell-border);
+    --spinner-color: var(--hop-ToggleButton-upsell-spinner-color);
+}
+
+.hop-ToggleButton--upsell[data-hovered],
+.hop-ToggleButton--upsell[data-focus-visible] {
+    --background-color: var(--hop-ToggleButton-upsell-background-color-hover);
+    --color: var(--hop-ToggleButton-upsell-color-hover);
+    --border: var(--hop-ToggleButton-upsell-border-hover);
+}
+
+.hop-ToggleButton--upsell[data-pressed] {
+    --background-color: var(--hop-ToggleButton-upsell-background-color-pressed);
+    --color: var(--hop-ToggleButton-upsell-color-pressed);
+    --border: var(--hop-ToggleButton-upsell-border-pressed);
+}
+
+.hop-ToggleButton--upsell[data-selected] {
+    --background-color: var(--hop-ToggleButton-upsell-background-color-selected);
+    --color: var(--hop-ToggleButton-upsell-color-selected);
+    --border: var(--hop-ToggleButton-upsell-border-selected);
+}
+
+.hop-ToggleButton--tertiary {
+    --background-color: var(--hop-ToggleButton-tertiary-background-color);
+    --color: var(--hop-ToggleButton-tertiary-color);
+    --border: var(--hop-ToggleButton-tertiary-border);
+    --spinner-color: var(--hop-ToggleButton-tertiary-spinner-color);
+}
+
+.hop-ToggleButton--tertiary[data-hovered],
+.hop-ToggleButton--tertiary[data-focus-visible] {
+    --background-color: var(--hop-ToggleButton-tertiary-background-color-hover);
+    --color: var(--hop-ToggleButton-tertiary-color-hover);
+    --border: var(--hop-ToggleButton-tertiary-border-hover);
+    --text-underline: underline;
+}
+
+.hop-ToggleButton--tertiary[data-pressed],
+.hop-ToggleButton--tertiary[data-selected] {
+    --background-color: var(--hop-ToggleButton-tertiary-background-color-pressed);
+    --color: var(--hop-ToggleButton-tertiary-color-pressed);
+    --border: var(--hop-ToggleButton-tertiary-border-pressed);
+}
+
+.hop-ToggleButton--tertiary[data-pressed] {
+    --text-underline: underline;
+}
+
+/** Focus Ring */
+.hop-ToggleButton[data-focus-visible] {
+    outline: var(--hop-ToggleButton-outline-size) solid var(--hop-ToggleButton-focus-ring-color);
+}
+
+/* Disabled */
+.hop-ToggleButton[data-disabled],
+.hop-ToggleButton--loading {
+    cursor: not-allowed;
+}
+
+.hop-ToggleButton[data-disabled] {
+    --background-color: var(--hop-ToggleButton-background-color-disabled);
+    --color: var(--hop-ToggleButton-color-disabled);
+    --border: var(--hop-ToggleButton-border-disabled);
+}
+
+.hop-ToggleButton--tertiary[data-disabled] {
+    --background-color: var(--hop-ToggleButton-tertiary-background-color-disabled);
+    --color: var(--hop-ToggleButton-tertiary-color-disabled);
+    --border: var(--hop-ToggleButton-tertiary-border-disabled);
+}
+
+/* Loading */
+
+.hop-ToggleButton--loading.hop-ToggleButton--primary {
+    --background-color: var(--hop-ToggleButton-primary-background-color);
+    --color: var(--hop-ToggleButton-primary-color);
+    --border: var(--hop-ToggleButton-primary-border);
+}
+
+.hop-ToggleButton--loading.hop-ToggleButton--secondary {
+    --background-color: var(--hop-ToggleButton-secondary-background-color);
+    --color: var(--hop-ToggleButton-secondary-color);
+    --border: var(--hop-ToggleButton-secondary-border);
+}
+
+.hop-ToggleButton--loading.hop-ToggleButton--upsell {
+    --background-color: var(--hop-ToggleButton-upsell-background-color);
+    --color: var(--hop-ToggleButton-upsell-color);
+    --border: var(--hop-ToggleButton-upsell-border);
+}
+
+.hop-ToggleButton--loading.hop-ToggleButton--tertiary {
+    --background-color: var(--hop-ToggleButton-tertiary-background-color);
+    --color: var(--hop-ToggleButton-tertiary-color);
+    --border: var(--hop-ToggleButton-tertiary-border);
+    --text-underline: none;
+}
+
+/** Elements */
+.hop-ToggleButton__Spinner {
+    position: absolute;
+    color: var(--spinner-color)
+}
+
+.hop-ToggleButton__icon,
+.hop-ToggleButton__icon-list {
+    flex: 0 0 auto;
+    justify-self: end;
+    order: 1;
+}
+
+.hop-ToggleButton__text {
+    user-select: none;
+
+    overflow: visible;
+    flex: 0 1 auto;
+    order: 2;
+
+    font-weight: var(--hop-font-weight-505);
+    text-decoration: var(--text-underline);
+    text-underline-offset: 0.125rem;
+    text-wrap: nowrap;
+}
+
+.hop-ToggleButton__end-icon,
+.hop-ToggleButton__end-icon-list {
+    flex: 0 0 auto;
+    order: 3;
+}
+
+.hop-ToggleButton .hop-ToggleButton__icon-list,
+.hop-ToggleButton .hop-ToggleButton__end-icon-list {
+    flex-wrap: nowrap;
+}
+
+/* Keep element present to:
+ - allows screen readers to read the content
+ - preserve the button's size
+*/
+.hop-ToggleButton--loading.hop-ToggleButton > *:not(.hop-ToggleButton__Spinner) {
+    opacity: 0;
+}
