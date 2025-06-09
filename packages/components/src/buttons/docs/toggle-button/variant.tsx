@@ -5,8 +5,11 @@ export default function Example() {
         <Inline>
             <ToggleButton variant="primary">Save</ToggleButton>
             <ToggleButton variant="secondary">Save</ToggleButton>
-            <ToggleButton variant="tertiary">Save</ToggleButton>
             <ToggleButton variant="upsell">Save</ToggleButton>
+            <ToggleButton variant="danger">Save</ToggleButton>
+            <ToggleButton variant="ghost-primary">Save</ToggleButton>
+            <ToggleButton variant="ghost-secondary">Save</ToggleButton>
+            <ToggleButton variant="ghost-danger">Save</ToggleButton>
         </Inline>
     );
 }
