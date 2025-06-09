@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.8.1
+
+### Patch Changes
+
+- 764351d: Add variants for ToggleButton
+
 ## 1.8.0
 
 ### Minor Changes
