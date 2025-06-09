@@ -6,5 +6,5 @@ Coming from Orbiter, you should be aware of the following changes:
 - `defaultChecked` has been renamed `defaultSelected`.
 - `inherit` has been removed.
 - `loading` has been renamed `isLoading`.
-- `onChange` signature has been changed (no event are passed).
+- `onChange` signature has been changed (no event is passed).
 - `value` has been removed, use the `id` instead.
