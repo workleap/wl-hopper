@@ -2,7 +2,7 @@ import { IconContext } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { composeRenderProps, DEFAULT_SLOT, ToggleButton as RACToggleButton, useContextProps, type ToggleButtonProps as RACToggleButtonProps } from "react-aria-components";
+import { composeRenderProps, DEFAULT_SLOT, ToggleButton as RACToggleButton, useContextProps, type Key, type ToggleButtonProps as RACToggleButtonProps } from "react-aria-components";
 
 import type { ButtonSize } from "../../buttons/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
@@ -19,7 +19,8 @@ export const GlobalToggleButtonCssSelector = "hop-ToggleButton";
 
 export type ToggleButtonVariant = "primary" | "secondary" | "tertiary" | "upsell";
 
-export interface ToggleButtonProps extends StyledComponentProps<RACToggleButtonProps> {
+// TODO: When ToggleButtonGroup is implemented, remove the `id` prop to use the definition from RAC instead.
+export interface ToggleButtonProps extends StyledComponentProps<Omit<RACToggleButtonProps, "id">> {
     /**
      * The content to display in the button.
      */
@@ -51,6 +52,11 @@ export interface ToggleButtonProps extends StyledComponentProps<RACToggleButtonP
      * @default "primary"
      */
     variant?: ToggleButtonVariant;
+
+    /**
+     * The id of the toggle button.
+     */
+    id?: Key;
 }
 
 function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
