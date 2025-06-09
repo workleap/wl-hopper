@@ -183,10 +183,31 @@ export const Upsell: Story = {
     }
 };
 
-export const Tertiary: Story = {
+export const Danger: Story = {
     ...Primary,
     args: {
-        variant: "tertiary"
+        variant: "danger"
+    }
+};
+
+export const GhostPrimary: Story = {
+    ...Primary,
+    args: {
+        variant: "ghost-primary"
+    }
+};
+
+export const GhostSecondary: Story = {
+    ...Primary,
+    args: {
+        variant: "ghost-secondary"
+    }
+};
+
+export const GhostDanger: Story = {
+    ...Primary,
+    args: {
+        variant: "ghost-danger"
     }
 };
 
@@ -274,9 +295,31 @@ export const UpsellStates: Story = {
     }
 };
 
-export const TertiaryStates: Story = {
+export const DangerStates: Story = {
     ...PrimaryStates,
     args: {
-        variant: "tertiary"
+        variant: "danger"
     }
 };
+
+export const GhostPrimaryStates: Story = {
+    ...PrimaryStates,
+    args: {
+        variant: "ghost-primary"
+    }
+};
+
+export const GhostSecondaryStates: Story = {
+    ...PrimaryStates,
+    args: {
+        variant: "ghost-secondary"
+    }
+};
+
+export const GhostDangerStates: Story = {
+    ...PrimaryStates,
+    args: {
+        variant: "ghost-danger"
+    }
+};
+

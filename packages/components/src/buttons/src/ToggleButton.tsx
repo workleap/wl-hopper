@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
 import { composeRenderProps, DEFAULT_SLOT, ToggleButton as RACToggleButton, useContextProps, type Key, type ToggleButtonProps as RACToggleButtonProps } from "react-aria-components";
 
-import type { ButtonSize } from "../../buttons/index.ts";
+import type { ButtonSize, ButtonVariant } from "../../buttons/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
@@ -16,8 +16,6 @@ import { ToggleButtonContext, type ToggleButtonContextValue } from "./ToggleButt
 import styles from "./ToggleButton.module.css";
 
 export const GlobalToggleButtonCssSelector = "hop-ToggleButton";
-
-export type ToggleButtonVariant = "primary" | "secondary" | "tertiary" | "upsell";
 
 // TODO: When ToggleButtonGroup is implemented, remove the `id` prop to use the definition from RAC instead.
 export interface ToggleButtonProps extends StyledComponentProps<Omit<RACToggleButtonProps, "id">> {
@@ -51,7 +49,7 @@ export interface ToggleButtonProps extends StyledComponentProps<Omit<RACToggleBu
      * The visual style of the toggle button.
      * @default "primary"
      */
-    variant?: ToggleButtonVariant;
+    variant?: ButtonVariant;
 
     /**
      * The id of the toggle button.
