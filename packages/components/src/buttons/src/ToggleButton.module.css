@@ -79,6 +79,11 @@
     --hop-ToggleButton-danger-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-danger-border-selected); /* same color as the background */
     --hop-ToggleButton-danger-spinner-color: var(--hop-primary-icon-strong);
 
+    /* Ghost | Disabled */
+    --hop-ToggleButton-ghost-color-disabled: var(--hop-neutral-text-disabled);
+    --hop-ToggleButton-ghost-background-color-disabled: transparent;
+    --hop-ToggleButton-ghost-border-disabled: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-background-color-disabled); /* same color as the background */
+
     /* Ghost Primary */
     --hop-ToggleButton-ghost-primary-color: var(--hop-primary-text);
     --hop-ToggleButton-ghost-primary-color-hover: var(--hop-primary-text-hover);
@@ -102,9 +107,6 @@
     --hop-ToggleButton-ghost-secondary-border-hover: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-secondary-background-color-hover); /* same color as the background */
     --hop-ToggleButton-ghost-secondary-border-pressed: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-secondary-background-color-pressed); /* same color as the background */
     --hop-ToggleButton-ghost-secondary-spinner-color: var(--hop-neutral-icon);
-    --hop-ToggleButton-ghost-secondary-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-ToggleButton-ghost-secondary-background-color-disabled: transparent;
-    --hop-ToggleButton-ghost-secondary-border-disabled: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-secondary-background-color-disabled); /* same color as the background */
 
     /* Ghost Danger */
     --hop-ToggleButton-ghost-danger-color: var(--hop-danger-text-weak);
@@ -380,14 +382,13 @@
     --border: var(--hop-ToggleButton-border-disabled);
 }
 
-.hop-ToggleButton--ghost-secondary[data-disabled] {
-    --background-color: var(--hop-ToggleButton-ghost-secondary-background-color-disabled);
-    --color: var(--hop-ToggleButton-ghost-secondary-color-disabled);
-    --border: var(--hop-ToggleButton-ghost-secondary-border-disabled);
+.hop-ToggleButton[class*="--ghost"][data-disabled] {
+    --background-color: var(--hop-ToggleButton-ghost-background-color-disabled);
+    --color: var(--hop-ToggleButton-ghost-color-disabled);
+    --border: var(--hop-ToggleButton-ghost-border-disabled);
 }
 
 /* Loading */
-
 .hop-ToggleButton--loading.hop-ToggleButton--primary {
     --background-color: var(--hop-ToggleButton-primary-background-color);
     --color: var(--hop-ToggleButton-primary-color);
@@ -406,7 +407,7 @@
     --border: var(--hop-ToggleButton-upsell-border);
 }
 
-.hop-ToggleButton--loading.hop-ToggleButton--ghost-secondary {
+.hop-ToggleButton--loading.hop-ToggleButton[class*="--ghost"] {
     --background-color: var(--hop-ToggleButton-ghost-secondary-background-color);
     --color: var(--hop-ToggleButton-ghost-secondary-color);
     --border: var(--hop-ToggleButton-ghost-secondary-border);
