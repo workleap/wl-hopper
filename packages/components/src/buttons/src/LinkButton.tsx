@@ -73,10 +73,10 @@ export interface LinkButtonProps extends StyledComponentProps<RACLinkProps> {
 
 function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>) {
     [props, ref] = useContextProps(props, ref, LinkButtonContext);
-    const size = useResponsiveValue(props.size) ?? "md";
+    const initialSize = useResponsiveValue(props.size);
     props = useFormProps({
         ...props,
-        size: LinkButtonToFieldSizeAdapter[size]
+        size: initialSize ? LinkButtonToFieldSizeAdapter[initialSize] : undefined
     });
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -89,11 +89,13 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
         target,
         isFluid: isFluidProp,
         variant = "primary",
+        size: sizeProp,
         style: styleProp,
         ...otherProps
     } = ownProps;
 
     const [textRef, hasText] = useSlot();
+    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(

@@ -79,10 +79,10 @@ export interface ButtonProps extends StyledComponentProps<Omit<RACButtonProps, "
 
 function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     [props, ref] = useContextProps(props, ref, ButtonContext);
-    const size = useResponsiveValue(props.size) ?? "md";
+    const initialSize = useResponsiveValue(props.size);
     props = useFormProps({
         ...props,
-        size: ButtonToFieldSizeAdapter[size]
+        size: initialSize ? ButtonToFieldSizeAdapter[initialSize] : undefined
     });
 
     const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonContextValue);
@@ -94,6 +94,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         isFluid: isFluidProp,
         variant = "primary",
         isLoading,
+        size: sizeProp,
         style: styleProp,
         spinnerProps,
         isHidden,
@@ -105,6 +106,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const [textRef, hasText] = useSlot();
 
+    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     if (isHidden) {
