@@ -5,6 +5,7 @@ export default function Example() {
         <Inline>
             <Button variant="primary">Save</Button>
             <Button size="sm" variant="primary">Save</Button>
+            <Button size="xs" variant="primary">Save</Button>
         </Inline>
     );
 }

@@ -33,10 +33,12 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
+                        <Button size="xs" {...args}>Save</Button>
                         <Button size="sm" {...args}>Save</Button>
                         <Button {...args}>Save</Button>
                     </Inline>
                     <Inline alignY="end">
+                        <Button isLoading size="xs" {...args}>Save</Button>
                         <Button isLoading size="sm" {...args}>Save</Button>
                         <Button isLoading {...args}>Save</Button>
                     </Inline>
@@ -53,6 +55,10 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Icons</h1>
                     <Inline alignY="end">
+                        <Button size="xs" {...args}>
+                            <SparklesIcon />
+                            <Text>Save</Text>
+                        </Button>
                         <Button size="sm" {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
@@ -63,6 +69,12 @@ export const Primary: Story = {
                         </Button>
                     </Inline>
                     <Inline alignY="end">
+                        <Button size="xs" {...args}>
+                            <IconList>
+                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            </IconList>
+                            <Text>Save</Text>
+                        </Button>
                         <Button size="sm" {...args}>
                             <IconList>
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
@@ -77,6 +89,10 @@ export const Primary: Story = {
                         </Button>
                     </Inline>
                     <Inline alignY="end">
+                        <Button isLoading size="xs" {...args}>
+                            <SparklesIcon />
+                            <Text>Save</Text>
+                        </Button>
                         <Button isLoading size="sm" {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
@@ -105,6 +121,10 @@ export const Primary: Story = {
                 <Stack>
                     <h1>End icons</h1>
                     <Inline alignY="end">
+                        <Button size="xs" {...args}>
+                            <Text>Save</Text>
+                            <SparklesIcon slot="end-icon" />
+                        </Button>
                         <Button size="sm" {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
@@ -115,6 +135,12 @@ export const Primary: Story = {
                         </Button>
                     </Inline>
                     <Inline alignY="end">
+                        <Button size="xs" {...args}>
+                            <Text>Save</Text>
+                            <IconList slot="end-icon">
+                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            </IconList>
+                        </Button>
                         <Button size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
@@ -129,6 +155,10 @@ export const Primary: Story = {
                         </Button>
                     </Inline>
                     <Inline alignY="end">
+                        <Button isLoading size="xs" {...args}>
+                            <Text>Save</Text>
+                            <SparklesIcon slot="end-icon" />
+                        </Button>
                         <Button isLoading size="sm" {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
@@ -213,8 +243,10 @@ export const GhostDanger: Story = {
 
 const StateTemplate = (args: Partial<ButtonProps>) => (
     <Inline alignY="end">
+        <Button size="xs" {...args}>Save</Button>
         <Button size="sm" {...args}>Save</Button>
         <Button {...args}>Save</Button>
+        <Button isLoading size="xs" {...args}>Save</Button>
         <Button isLoading size="sm" {...args}>Save</Button>
         <Button isLoading {...args}>Save</Button>
         <Button {...args}>

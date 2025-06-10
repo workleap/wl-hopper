@@ -7,6 +7,10 @@
 }
 
 /** Sizes */
+.hop-LinkButton--xs {
+    composes: hop-Button--xs from "./Button.module.css";
+}
+
 .hop-LinkButton--sm {
     composes: hop-Button--sm from "./Button.module.css";
 }

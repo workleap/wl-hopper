@@ -19,6 +19,13 @@ export const Default = {
     }
 } satisfies Story;
 
+export const SizeXs = {
+    ...Default,
+    args: {
+        size: "xs"
+    }
+};
+
 export const SizeSm = {
     ...Default,
     args: {

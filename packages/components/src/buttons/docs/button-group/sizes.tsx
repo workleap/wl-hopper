@@ -13,6 +13,11 @@ export default function Example() {
                 <Button variant="secondary">Remind me later</Button>
                 <Button variant="primary">Rate Now</Button>
             </ButtonGroup>
+            <ButtonGroup size="xs">
+                <Button variant="secondary">No, thanks</Button>
+                <Button variant="secondary">Remind me later</Button>
+                <Button variant="primary">Rate Now</Button>
+            </ButtonGroup>
         </Stack>
     );
 }

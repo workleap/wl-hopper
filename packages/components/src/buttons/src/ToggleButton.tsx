@@ -1,4 +1,4 @@
-import { IconContext } from "@hopper-ui/icons";
+import { IconContext, type IconSize } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
@@ -9,7 +9,7 @@ import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/index.ts";
-import { ClearProviders, cssModule, ensureTextWrapper, SlotProvider, useProgressVisibility, useSlot } from "../../utils/index.ts";
+import { ClearProviders, cssModule, ensureTextWrapper, SlotProvider, useProgressVisibility, useSlot, type SizeAdapter } from "../../utils/index.ts";
 
 import { ToggleButtonContext, type ToggleButtonContextValue } from "./ToggleButtonContext.ts";
 
@@ -17,12 +17,18 @@ import styles from "./ToggleButton.module.css";
 
 export const GlobalToggleButtonCssSelector = "hop-ToggleButton";
 
+export const ToggleButtonToIconSizeAdapter: SizeAdapter<ButtonSize, IconSize> = {
+    xs: "sm",
+    sm: "md",
+    md: "md"
+};
+
 // TODO: When ToggleButtonGroup is implemented, remove the `id` prop to use the definition from RAC instead.
 export interface ToggleButtonProps extends StyledComponentProps<Omit<RACToggleButtonProps, "id">> {
     /**
      * The content to display in the button.
      */
-    children: ReactNode;
+    children?: ReactNode;
 
     /**
      * Whether or not the toggle button takes up the width of its container.
@@ -116,6 +122,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
 
     const { className: spinnerClassName, ...otherSpinnerProps } = spinnerProps ?? {};
     const spinnerClassNames = clsx(styles["hop-ToggleButton__Spinner"], spinnerClassName);
+    const iconSize = ToggleButtonToIconSizeAdapter[size];
 
     return (
         <ClearProviders values={clearContexts}>
@@ -124,11 +131,11 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
                     [IconListContext, {
                         slots: {
                             [DEFAULT_SLOT]: {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-ToggleButton__icon-list"]
                             },
                             "end-icon": {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-ToggleButton__end-icon-list"]
                             }
                         }
@@ -136,11 +143,11 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
                     [IconContext, {
                         slots: {
                             [DEFAULT_SLOT]: {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-ToggleButton__icon"]
                             },
                             "end-icon": {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-ToggleButton__end-icon"]
                             }
                         }
@@ -166,7 +173,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
                             {isProgressVisible && (
                                 <Spinner
                                     aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
-                                    size={size}
+                                    size={iconSize}
                                     className={spinnerClassNames}
                                     {...otherSpinnerProps}
                                 />

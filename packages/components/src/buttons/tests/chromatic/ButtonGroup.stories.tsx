@@ -24,6 +24,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     render: args => (
         <Stack>
+            <ButtonGroup size="xs" {...args} />
             <ButtonGroup size="sm" {...args} />
             <ButtonGroup {...args} />
         </Stack>

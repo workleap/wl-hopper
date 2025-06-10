@@ -1,4 +1,4 @@
-import { IconContext } from "@hopper-ui/icons";
+import { IconContext, type IconSize } from "@hopper-ui/icons";
 import {
     type ResponsiveProp,
     slot as slotFn,
@@ -22,6 +22,8 @@ import {
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
+    type FieldSize,
+    type SizeAdapter,
     SlotProvider,
     useSlot
 } from "../../utils/index.ts";
@@ -32,6 +34,18 @@ import { LinkButtonContext } from "./LinkButtonContext.ts";
 import styles from "./LinkButton.module.css";
 
 export const GlobalLinkButtonCssSelector = "hop-LinkButton";
+
+export const LinkButtonToIconSizeAdapter: SizeAdapter<ButtonSize, IconSize> = {
+    xs: "sm",
+    sm: "md",
+    md: "md"
+};
+
+export const LinkButtonToFieldSizeAdapter: SizeAdapter<ButtonSize, FieldSize> = {
+    xs: "sm",
+    sm: "sm",
+    md: "md"
+};
 
 export interface LinkButtonProps extends StyledComponentProps<RACLinkProps> {
     /**
@@ -59,14 +73,17 @@ export interface LinkButtonProps extends StyledComponentProps<RACLinkProps> {
 
 function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>) {
     [props, ref] = useContextProps(props, ref, LinkButtonContext);
-    props = useFormProps(props);
+    const size = useResponsiveValue(props.size) ?? "md";
+    props = useFormProps({
+        ...props,
+        size: LinkButtonToFieldSizeAdapter[size]
+    });
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
     const {
         className,
         children: childrenProp,
-        size: sizeProp,
         isExternal,
         rel,
         target,
@@ -77,8 +94,6 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
     } = ownProps;
 
     const [textRef, hasText] = useSlot();
-
-    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
@@ -106,17 +121,19 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
         return ensureTextWrapper(prev);
     });
 
+    const iconSize = LinkButtonToIconSizeAdapter[size];
+
     return (
         <SlotProvider
             values={[
                 [IconListContext, {
                     slots: {
                         [DEFAULT_SLOT]: {
-                            size: size,
+                            size: iconSize,
                             className: styles["hop-LinkButton__icon-list"]
                         },
                         "end-icon": {
-                            size: size,
+                            size: iconSize,
                             className: styles["hop-LinkButton__end-icon-list"]
                         }
                     }
@@ -124,11 +141,11 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
                 [IconContext, {
                     slots: {
                         [DEFAULT_SLOT]: {
-                            size: size,
+                            size: iconSize,
                             className: styles["hop-LinkButton__icon"]
                         },
                         "end-icon": {
-                            size: size,
+                            size: iconSize,
                             className: styles["hop-LinkButton__end-icon"]
                         }
                     }

@@ -9,12 +9,15 @@
 
     /* Sizes */
     --hop-Button-icon-only-padding: 0; /* Since the content is centered, no need for padding */
+    --hop-Button-xs-height: 1.5rem;
     --hop-Button-sm-height: 2rem;
     --hop-Button-md-height: 2.5rem;
+    --hop-Button-xs-padding: 0 var(--hop-space-inset-sm);
     --hop-Button-sm-padding: 0 var(--hop-space-inset-md);
     --hop-Button-md-padding: 0 var(--hop-space-inset-md);
 
     /* Ghost */
+    --hop-Button-ghost-xs-padding: 0 var(--hop-space-inset-xs);
     --hop-Button-ghost-sm-padding: 0 var(--hop-space-inset-xs);
     --hop-Button-ghost-md-padding: 0 var(--hop-space-inset-sm);
 
@@ -158,6 +161,15 @@
 }
 
 /** Sizes */
+.hop-Button--xs {
+    --block-size: var(--hop-Button-xs-height);
+    --padding: var(--hop-Button-xs-padding);
+}
+
+.hop-Button--xs[class*="--ghost"] {
+    --padding: var(--hop-Button-ghost-xs-padding);
+}
+
 .hop-Button--sm {
     --block-size: var(--hop-Button-sm-height);
     --padding: var(--hop-Button-sm-padding);

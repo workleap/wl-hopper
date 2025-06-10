@@ -1,4 +1,4 @@
-import { IconContext } from "@hopper-ui/icons";
+import { IconContext, type IconSize } from "@hopper-ui/icons";
 import {
     type ResponsiveProp,
     slot as slotFn,
@@ -26,6 +26,8 @@ import {
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
+    type FieldSize,
+    type SizeAdapter,
     SlotProvider,
     useProgressVisibility,
     useSlot
@@ -37,6 +39,18 @@ import { ButtonContext, type ButtonContextValue } from "./ButtonContext.ts";
 import styles from "./Button.module.css";
 
 export const GlobalButtonCssSelector = "hop-Button";
+
+export const ButtonToIconSizeAdapter: SizeAdapter<ButtonSize, IconSize> = {
+    xs: "sm",
+    sm: "md",
+    md: "md"
+};
+
+export const ButtonToFieldSizeAdapter: SizeAdapter<ButtonSize, FieldSize> = {
+    xs: "sm",
+    sm: "sm",
+    md: "md"
+};
 
 export interface ButtonProps extends StyledComponentProps<Omit<RACButtonProps, "isPending">> {
     /**
@@ -65,8 +79,11 @@ export interface ButtonProps extends StyledComponentProps<Omit<RACButtonProps, "
 
 function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     [props, ref] = useContextProps(props, ref, ButtonContext);
-    props = useFormProps(props);
-
+    const size = useResponsiveValue(props.size) ?? "md";
+    props = useFormProps({
+        ...props,
+        size: ButtonToFieldSizeAdapter[size]
+    });
 
     const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonContextValue);
     const stringFormatter = useLocalizedString();
@@ -74,7 +91,6 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     const {
         className,
         children: childrenProp,
-        size: sizeProp,
         isFluid: isFluidProp,
         variant = "primary",
         isLoading,
@@ -89,7 +105,6 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const [textRef, hasText] = useSlot();
 
-    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     if (isHidden) {
@@ -129,6 +144,8 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
     }
 
+    const iconSize = ButtonToIconSizeAdapter[size];
+
     return (
         <ClearProviders values={clearContexts}>
             <SlotProvider
@@ -136,11 +153,11 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                     [IconListContext, {
                         slots: {
                             [DEFAULT_SLOT]: {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-Button__icon-list"]
                             },
                             "end-icon": {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-Button__end-icon-list"]
                             }
                         }
@@ -148,11 +165,11 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                     [IconContext, {
                         slots: {
                             [DEFAULT_SLOT]: {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-Button__icon"]
                             },
                             "end-icon": {
-                                size: size,
+                                size: iconSize,
                                 className: styles["hop-Button__end-icon"]
                             }
                         }
@@ -178,7 +195,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                             {isProgressVisible && (
                                 <Spinner
                                     aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
-                                    size={size}
+                                    size={iconSize}
                                     className={spinnerClassNames}
                                     {...otherSpinnerProps}
                                 />
