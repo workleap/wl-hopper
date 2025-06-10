@@ -131,7 +131,7 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
                 >
                     {children}
                 </SlotProvider>
-                {onClose && <CloseButton size="sm" className={styles["hop-Callout__dismiss"]} onPress={onClose} />}
+                {onClose && <CloseButton size="xs" className={styles["hop-Callout__dismiss"]} onPress={onClose} />}
             </SlotProvider>
         </div>
     );

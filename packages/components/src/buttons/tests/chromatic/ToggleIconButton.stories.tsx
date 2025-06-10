@@ -129,7 +129,7 @@ export const PrimaryStates: Story = {
                 <StateTemplate {...args} />
                 <h1>Disabled</h1>
                 <StateTemplate {...args} isDisabled />
-                <h1>Pressed</h1>
+                <h1>Selected</h1>
                 <ToggleButtonContext.Provider value={{ isSelected: true }}>
                     <StateTemplate {...args} />
                 </ToggleButtonContext.Provider>
