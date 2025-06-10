@@ -12,6 +12,10 @@ export default function Example() {
                 <SparklesIcon slot="end-icon" />
                 <Text>Save</Text>
             </Button>
+            <Button size="xs" aria-label="Save" variant="secondary">
+                <SparklesIcon slot="end-icon" />
+                <Text>Save</Text>
+            </Button>
         </Inline>
     );
 }

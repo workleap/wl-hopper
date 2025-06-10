@@ -10,6 +10,9 @@ export default function Example() {
             <LinkButton href="https://www.google.com" size="sm" aria-label="Clean" variant="secondary">
                 <SparklesIcon />
             </LinkButton>
+            <LinkButton href="https://www.google.com" size="xs" aria-label="Clean" variant="secondary">
+                <SparklesIcon />
+            </LinkButton>
         </Inline>
     );
 }

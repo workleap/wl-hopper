@@ -10,6 +10,9 @@ export default function Example() {
             <Button size="sm" aria-label="Clean" variant="secondary">
                 <SparklesIcon />
             </Button>
+            <Button size="xs" aria-label="Clean" variant="secondary">
+                <SparklesIcon />
+            </Button>
         </Inline>
     );
 }
