@@ -94,7 +94,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         isFluid: isFluidProp,
         variant = "primary",
         isLoading,
-        size: sizeProp,
+        size: fieldSize,
         style: styleProp,
         spinnerProps,
         isHidden,
@@ -106,7 +106,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const [textRef, hasText] = useSlot();
 
-    const size = useResponsiveValue(sizeProp) ?? "md";
+    const size = useResponsiveValue(initialSize ?? fieldSize) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     if (isHidden) {

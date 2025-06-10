@@ -89,13 +89,13 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
         target,
         isFluid: isFluidProp,
         variant = "primary",
-        size: sizeProp,
+        size: fieldSize,
         style: styleProp,
         ...otherProps
     } = ownProps;
 
     const [textRef, hasText] = useSlot();
-    const size = useResponsiveValue(sizeProp) ?? "md";
+    const size = useResponsiveValue(initialSize ?? fieldSize) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
