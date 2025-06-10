@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
+import { Inline } from "../../../layout/index.ts";
 import { CloseButton } from "../../src/CloseButton.tsx";
 
 const meta = {
@@ -19,23 +20,14 @@ export const Default = {
     }
 } satisfies Story;
 
-export const SizeXs = {
-    ...Default,
-    args: {
-        size: "xs"
+export const Sizes = {
+    render: args => {
+        return (
+            <Inline>
+                <CloseButton {...args} size="xs" />
+                <CloseButton {...args} size="sm" />
+                <CloseButton {...args} />
+            </Inline>
+        );
     }
-};
-
-export const SizeSm = {
-    ...Default,
-    args: {
-        size: "sm"
-    }
-};
-
-export const SizeLg = {
-    ...Default,
-    args: {
-        size: "lg"
-    }
-};
+} satisfies Story;
