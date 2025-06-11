@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.9.1
+
+### Patch Changes
+
+- 5e3f6b0: Adds `onPress` prop to Avatar components
+
 ## 1.9.0
 
 ### Minor Changes
