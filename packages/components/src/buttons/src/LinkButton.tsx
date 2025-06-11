@@ -15,19 +15,17 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { useFormProps } from "../../form/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    type FieldSize,
     type SizeAdapter,
     SlotProvider,
     useSlot
 } from "../../utils/index.ts";
-import type { ButtonSize, ButtonVariant } from "../utils/index.ts";
+import { type ButtonSize, type ButtonVariant, useButtonProps } from "../utils/index.ts";
 
 import { LinkButtonContext } from "./LinkButtonContext.ts";
 
@@ -38,12 +36,6 @@ export const GlobalLinkButtonCssSelector = "hop-LinkButton";
 export const LinkButtonToIconSizeAdapter: SizeAdapter<ButtonSize, IconSize> = {
     xs: "sm",
     sm: "md",
-    md: "md"
-};
-
-export const LinkButtonToFieldSizeAdapter: SizeAdapter<ButtonSize, FieldSize> = {
-    xs: "sm",
-    sm: "sm",
     md: "md"
 };
 
@@ -73,11 +65,7 @@ export interface LinkButtonProps extends StyledComponentProps<RACLinkProps> {
 
 function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>) {
     [props, ref] = useContextProps(props, ref, LinkButtonContext);
-    const initialSize = useResponsiveValue(props.size);
-    props = useFormProps({
-        ...props,
-        size: initialSize ? LinkButtonToFieldSizeAdapter[initialSize] : undefined
-    });
+    props = useButtonProps(props);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
@@ -89,13 +77,13 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
         target,
         isFluid: isFluidProp,
         variant = "primary",
-        size: fieldSize,
+        size: sizeProp,
         style: styleProp,
         ...otherProps
     } = ownProps;
 
     const [textRef, hasText] = useSlot();
-    const size = useResponsiveValue(initialSize ?? fieldSize) ?? "md";
+    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(

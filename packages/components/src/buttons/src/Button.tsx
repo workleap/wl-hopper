@@ -16,7 +16,6 @@ import {
     useContextProps
 } from "react-aria-components";
 
-import { useFormProps } from "../../form/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
@@ -26,13 +25,12 @@ import {
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    type FieldSize,
     type SizeAdapter,
     SlotProvider,
     useProgressVisibility,
     useSlot
 } from "../../utils/index.ts";
-import type { ButtonSize, ButtonVariant } from "../utils/index.ts";
+import { type ButtonSize, type ButtonVariant, useButtonProps } from "../utils/index.ts";
 
 import { ButtonContext, type ButtonContextValue } from "./ButtonContext.ts";
 
@@ -43,12 +41,6 @@ export const GlobalButtonCssSelector = "hop-Button";
 export const ButtonToIconSizeAdapter: SizeAdapter<ButtonSize, IconSize> = {
     xs: "sm",
     sm: "md",
-    md: "md"
-};
-
-export const ButtonToFieldSizeAdapter: SizeAdapter<ButtonSize, FieldSize> = {
-    xs: "sm",
-    sm: "sm",
     md: "md"
 };
 
@@ -79,11 +71,7 @@ export interface ButtonProps extends StyledComponentProps<Omit<RACButtonProps, "
 
 function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     [props, ref] = useContextProps(props, ref, ButtonContext);
-    const initialSize = useResponsiveValue(props.size);
-    props = useFormProps({
-        ...props,
-        size: initialSize ? ButtonToFieldSizeAdapter[initialSize] : undefined
-    });
+    props = useButtonProps(props);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props as ButtonContextValue);
     const stringFormatter = useLocalizedString();
@@ -94,7 +82,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         isFluid: isFluidProp,
         variant = "primary",
         isLoading,
-        size: fieldSize,
+        size: sizeProp,
         style: styleProp,
         spinnerProps,
         isHidden,
@@ -106,7 +94,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
 
     const [textRef, hasText] = useSlot();
 
-    const size = useResponsiveValue(initialSize ?? fieldSize) ?? "md";
+    const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     if (isHidden) {
