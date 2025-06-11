@@ -455,6 +455,9 @@ export const Previews: Record<string, Preview> = {
     "avatar/docs/avatar-group/sizes": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/sizes.tsx"))
     },
+    "avatar/docs/avatar-group/pressable": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/pressable.tsx"))
+    },
     "avatar/docs/avatar-group/maxNumberOfAvatars": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/maxNumberOfAvatars.tsx"))
     },
