@@ -1,14 +1,14 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within } from "@storybook/test";
-import { ButtonContext } from "react-aria-components";
+import { ToggleButtonContext } from "react-aria-components";
 
 import { Inline, Stack } from "../../../layout/index.ts";
-import { Button, type ButtonProps } from "../../src/Button.tsx";
+import { ToggleButton, type ToggleButtonProps } from "../../src/ToggleButton.tsx";
 
 const meta = {
-    title: "Components/Buttons/Button/Icon Only",
-    component: Button,
+    title: "Components/Buttons/ToggleButton/Icon Only",
+    component: ToggleButton,
     args: {
         children: <SparklesIcon />,
         "aria-label": "Clean"
@@ -18,7 +18,7 @@ const meta = {
             delay: 2000
         }
     }
-} satisfies Meta<typeof Button>;
+} satisfies Meta<typeof ToggleButton>;
 
 export default meta;
 
@@ -28,18 +28,18 @@ export const Primary: Story = {
     render: args => (
         <Stack>
             <Inline alignY="end">
-                <Button size="xs" {...args} />
-                <Button size="sm" {...args} />
-                <Button {...args} />
+                <ToggleButton size="xs" {...args} />
+                <ToggleButton size="sm" {...args} />
+                <ToggleButton {...args} />
             </Inline>
             <Inline alignY="end">
-                <Button isLoading size="xs" {...args} />
-                <Button isLoading size="sm" {...args} />
-                <Button isLoading {...args} />
+                <ToggleButton isLoading size="xs" {...args} />
+                <ToggleButton isLoading size="sm" {...args} />
+                <ToggleButton isLoading {...args} />
             </Inline>
-            <Button size="xs" isFluid {...args} />
-            <Button size="sm" isFluid {...args} />
-            <Button isFluid {...args} />
+            <ToggleButton size="xs" isFluid {...args} />
+            <ToggleButton size="sm" isFluid {...args} />
+            <ToggleButton isFluid {...args} />
         </Stack>
     )
 };
@@ -92,14 +92,14 @@ export const GhostDanger: Story = {
     }
 };
 
-const StateTemplate = (args: Partial<ButtonProps>) => (
+const StateTemplate = (args: Partial<ToggleButtonProps>) => (
     <Inline alignY="end">
-        <Button size="xs" {...args} />
-        <Button size="sm" {...args} />
-        <Button {...args} />
-        <Button isLoading size="xs" {...args} />
-        <Button isLoading size="sm" {...args} />
-        <Button isLoading {...args} />
+        <ToggleButton size="xs" {...args} />
+        <ToggleButton size="sm" {...args} />
+        <ToggleButton {...args} />
+        <ToggleButton isLoading size="xs" {...args} />
+        <ToggleButton isLoading size="sm" {...args} />
+        <ToggleButton isLoading {...args} />
     </Inline>
 );
 
@@ -129,10 +129,10 @@ export const PrimaryStates: Story = {
                 <StateTemplate {...args} />
                 <h1>Disabled</h1>
                 <StateTemplate {...args} isDisabled />
-                <h1>Pressed</h1>
-                <ButtonContext.Provider value={{ isPressed: true }}>
+                <h1>Selected</h1>
+                <ToggleButtonContext.Provider value={{ isSelected: true }}>
                     <StateTemplate {...args} />
-                </ButtonContext.Provider>
+                </ToggleButtonContext.Provider>
                 <h1>Focus Visible</h1>
                 <StateTemplate {...args} data-chromatic-force-focus />
                 <h1>Hovered</h1>

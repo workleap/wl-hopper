@@ -12,6 +12,10 @@ export default function Example() {
                 <SparklesIcon />
                 <Text>Save</Text>
             </ToggleButton>
+            <ToggleButton size="xs" aria-label="Save" variant="secondary">
+                <SparklesIcon />
+                <Text>Save</Text>
+            </ToggleButton>
         </Inline>
     );
 }

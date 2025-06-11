@@ -26,6 +26,7 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
+                        <LinkButton size="xs" {...args}>Help</LinkButton>
                         <LinkButton size="sm" {...args}>Help</LinkButton>
                         <LinkButton {...args}>Help</LinkButton>
                     </Inline>
@@ -39,6 +40,10 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Icons</h1>
                     <Inline alignY="end">
+                        <LinkButton size="xs" {...args}>
+                            <SparklesIcon />
+                            <Text>Save</Text>
+                        </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <SparklesIcon />
                             <Text>Save</Text>
@@ -49,6 +54,12 @@ export const Primary: Story = {
                         </LinkButton>
                     </Inline>
                     <Inline alignY="end">
+                        <LinkButton size="xs" {...args}>
+                            <IconList>
+                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            </IconList>
+                            <Text>Save</Text>
+                        </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <IconList>
                                 <SparklesIcon /><SparklesIcon /><SparklesIcon />
@@ -81,6 +92,10 @@ export const Primary: Story = {
                 <Stack>
                     <h1>End icons</h1>
                     <Inline alignY="end">
+                        <LinkButton size="xs" {...args}>
+                            <Text>Save</Text>
+                            <SparklesIcon slot="end-icon" />
+                        </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <Text>Save</Text>
                             <SparklesIcon slot="end-icon" />
@@ -91,6 +106,12 @@ export const Primary: Story = {
                         </LinkButton>
                     </Inline>
                     <Inline alignY="end">
+                        <LinkButton size="xs" {...args}>
+                            <Text>Save</Text>
+                            <IconList slot="end-icon">
+                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            </IconList>
+                        </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
@@ -186,6 +207,7 @@ export const GhostDanger: Story = {
 
 const StateTemplate = (args: Partial<LinkButtonProps>) => (
     <Inline alignY="end">
+        <LinkButton size="xs" {...args}>Help</LinkButton>
         <LinkButton size="sm" {...args}>Help</LinkButton>
         <LinkButton {...args}>Help</LinkButton>
         <LinkButton {...args}>

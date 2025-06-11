@@ -12,6 +12,10 @@ export default function Example() {
                 <SparklesIcon />
                 <Text>Help</Text>
             </LinkButton>
+            <LinkButton href="https://www.google.com" size="xs" variant="secondary">
+                <SparklesIcon />
+                <Text>Help</Text>
+            </LinkButton>
         </Inline>
     );
 }

@@ -5,6 +5,7 @@ export default function Example() {
         <Inline>
             <ToggleButton variant="primary">Save</ToggleButton>
             <ToggleButton size="sm" variant="primary">Save</ToggleButton>
+            <ToggleButton size="xs" variant="primary">Save</ToggleButton>
         </Inline>
     );
 }
