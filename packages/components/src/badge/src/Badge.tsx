@@ -5,7 +5,7 @@ import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { OverlineText } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useRenderProps, type AccessibleSlotProps, type RenderProps } from "../../utils/index.ts";
+import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isNil, useRenderProps, type AccessibleSlotProps, type RenderProps } from "../../utils/index.ts";
 import { mapOrbiterToHopperVariants } from "../utils/Badge.utils.ts";
 
 import { BadgeContext, type BadgeContextValue } from "./BadgeContext.ts";
@@ -107,7 +107,7 @@ function Badge(props: BadgeProps, ref: ForwardedRef<HTMLSpanElement>) {
         }
     });
 
-    const isDot = isIndeterminate || !renderProps.children;
+    const isDot = isIndeterminate || isNil(renderProps.children);
     const filteredProps = filterDOMProps(otherProps, { labelable: true });
 
     return (
