@@ -440,6 +440,9 @@ export const Previews: Record<string, Preview> = {
     "avatar/docs/disabled": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/disabled.tsx"))
     },
+    "avatar/docs/press": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/press.tsx"))
+    },
     "avatar/docs/customization": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/customization.tsx"))
     },
@@ -451,6 +454,9 @@ export const Previews: Record<string, Preview> = {
     },
     "avatar/docs/avatar-group/sizes": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/sizes.tsx"))
+    },
+    "avatar/docs/avatar-group/pressable": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/pressable.tsx"))
     },
     "avatar/docs/avatar-group/maxNumberOfAvatars": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/avatar-group/maxNumberOfAvatars.tsx"))

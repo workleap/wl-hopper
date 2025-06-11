@@ -1,7 +1,8 @@
 import { type ResponsiveProp, slot as slotFn, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import { filterDOMProps, mergeProps } from "@react-aria/utils";
-import { type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
-import { composeRenderProps, useContextProps } from "react-aria-components";
+import { type ComponentProps, type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
+import { useFocusRing } from "react-aria";
+import { composeRenderProps, Pressable, type PressEvent, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/index.ts";
 import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
@@ -22,6 +23,10 @@ interface AvatarRenderProps {
      * Whether or not the avatar is disabled.
      */
     isDisabled?: boolean;
+    /**
+     * Whether or not the avatar is focus visible.
+     */
+    isFocusVisible?: boolean;
 }
 
 export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<AvatarRenderProps>, "children"> {
@@ -51,6 +56,10 @@ export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omi
      * The src of the image to display. If not provided, the initials will be displayed instead.
      */
     src?: string;
+    /**
+     * Called when the avatar is pressed
+     */
+    onPress?: (event: PressEvent) => void;
 }
 
 export const AvatarToTextSizeAdapter: SizeAdapter<AvatarSize, TextSize> = {
@@ -132,11 +141,13 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         slot,
         src,
         className,
+        onPress,
         style,
         ...otherProps
     } = ownProps;
     const domProps = filterDOMProps(otherProps);
 
+    const { focusProps, isFocusVisible } = useFocusRing({ within: true });
     const { onError, onLoad, ...otherImageProps } = imageProps ?? {};
     const { imageUrl, status } = useImageFallback({ src, fallbackSrc, onError, onLoad });
     const imageLoaded = status === "loaded";
@@ -147,6 +158,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
     const isBrokenImage = imageFailed && !isFallbackInitials;
     const isImage = src && !imageFailed && imageLoaded;
     const isInitials = !src || (!isImage && isFallbackInitials);
+    const isClickable = !!onPress;
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -157,7 +169,9 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             size,
             isBrokenImage && "broken-image",
             isImage && "image",
-            isInitials && getColorName(name)
+            isInitials && getColorName(name),
+            isClickable && "clickable",
+            isFocusVisible && "focus-visible"
         ),
         stylingProps.className
     );
@@ -174,7 +188,8 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         className: classNames,
         style: mergedStyles,
         values: {
-            isDisabled: isDisabled || false
+            isDisabled: isDisabled || false,
+            isFocusVisible: isFocusVisible || false
         }
     });
 
@@ -212,12 +227,11 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         />;
     }
 
-    return (
+    const avatar = (extraProps: ComponentProps<"div">) => (
         <div
-            {...mergeProps(domProps, renderProps)}
+            {...mergeProps(domProps, renderProps, extraProps)}
             aria-label={ariaLabel ?? name}
             data-disabled={isDisabled || undefined}
-            role="img"
             slot={slot ?? undefined}
             ref={ref}
         >
@@ -226,6 +240,17 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             </ClearContainerSlots>
         </div>
     );
+
+    if (onPress) {
+        return <Pressable onPress={onPress}>
+            {avatar({
+                ...focusProps,
+                role: "button"
+            })}
+        </Pressable>;
+    }
+
+    return avatar({ role: "img" });
 }
 
 /**

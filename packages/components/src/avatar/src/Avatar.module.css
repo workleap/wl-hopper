@@ -57,6 +57,7 @@
 
     background-color: var(--background-color, transparent);
     border-radius: var(--hop-Avatar-border-radius);
+    outline: none;
 }
 
 .hop-Avatar--xs {
@@ -81,6 +82,14 @@
 
 .hop-Avatar--2xl {
     --size: var(--hop-Avatar-2xl-size);
+}
+
+.hop-Avatar--clickable {
+    cursor: pointer;
+}
+
+.hop-Avatar--focus-visible {
+    outline: 0.125rem solid var(--hop-primary-border-focus);
 }
 
 /* Colors */

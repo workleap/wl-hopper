@@ -1,10 +1,10 @@
 import { BrokenImageRichIcon } from "@hopper-ui/icons";
 import { type ResponsiveProp, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import { type ForwardedRef, forwardRef } from "react";
-import { mergeProps } from "react-aria";
+import { mergeProps, type PressEvent } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { type AccessibleSlotProps, type RenderProps, composeClassnameRenderProps, useRenderProps } from "../../utils/index.ts";
+import { type AccessibleSlotProps, composeClassnameRenderProps, type RenderProps, useRenderProps } from "../../utils/index.ts";
 
 import type { AvatarSize } from "./Avatar.tsx";
 import { AvatarContext } from "./AvatarContext.ts";
@@ -30,6 +30,10 @@ export interface BrokenAvatarProps extends StyledSystemProps, AccessibleSlotProp
      * * @default "md"
      */
     size?: ResponsiveProp<AvatarSize>;
+    /**
+     * Called when the avatar is pressed
+     */
+    onPress?: (event: PressEvent) => void;
 }
 
 function BrokenAvatar(props: BrokenAvatarProps, ref: ForwardedRef<HTMLDivElement>) {

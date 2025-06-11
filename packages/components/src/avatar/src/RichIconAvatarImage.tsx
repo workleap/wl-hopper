@@ -1,10 +1,10 @@
 import { RichIconContext, type RichIconProps } from "@hopper-ui/icons";
 import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledSystemProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef, type HTMLAttributes } from "react";
-import { mergeProps } from "react-aria";
+import { forwardRef, type ComponentProps, type ForwardedRef, type HTMLAttributes } from "react";
+import { mergeProps, Pressable, useFocusRing, type PressEvent } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { SlotProvider, composeClassnameRenderProps, cssModule, useRenderProps, type AccessibleSlotProps, type RenderProps, type SizeAdapter } from "../../utils/index.ts";
+import { composeClassnameRenderProps, cssModule, SlotProvider, useRenderProps, type AccessibleSlotProps, type RenderProps, type SizeAdapter } from "../../utils/index.ts";
 
 import type { AvatarProps, AvatarSize } from "./Avatar.tsx";
 import { RichIconAvatarImageContext } from "./RichIconAvatarImageContext.ts";
@@ -18,6 +18,10 @@ interface RichIconAvatarImageRenderProps {
      * Whether or not the avatar is disabled.
      */
     isDisabled?: boolean;
+    /**
+     * Whether or not the avatar is focus visible.
+     */
+    isFocusVisible?: boolean;
 }
 
 type OmittedDivProps = "slot" | "content" | "color" | "children" | "className" | "style";
@@ -32,6 +36,10 @@ export interface RichIconAvatarImageProps extends StyledSystemProps, AccessibleS
      * * @default "md"
      */
     size?: ResponsiveProp<AvatarSize>;
+    /**
+     * Called when the avatar is pressed
+     */
+    onPress?: (event: PressEvent) => void;
 }
 
 export const AvatarToIconSizeAdapter: SizeAdapter<AvatarProps["size"], RichIconProps["size"]> = {
@@ -49,12 +57,15 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
     const {
         className,
         isDisabled,
+        onPress,
         style,
         slot,
         size: sizeValue,
         ...otherProps
     } = ownProps;
 
+    const { focusProps, isFocusVisible } = useFocusRing({ within: true });
+    const isClickable = !!onPress;
     const size = useResponsiveValue(sizeValue) ?? "md";
 
     const classNames = composeClassnameRenderProps(
@@ -63,7 +74,9 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
         cssModule(
             styles,
             "hop-RichIconAvatarImage",
-            size
+            size,
+            isClickable && "clickable",
+            isFocusVisible && "focus-visible"
         ),
         stylingProps.className
     );
@@ -80,7 +93,8 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
         className: classNames,
         style: mergedStyles,
         values: {
-            isDisabled: isDisabled || false
+            isDisabled: isDisabled || false,
+            isFocusVisible: isFocusVisible || false
         }
     });
 
@@ -88,12 +102,11 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
         console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
     }
 
-    return (
+    const avatarImage = (extraProps: ComponentProps<"div">) => (
         <div
-            {...mergeProps(otherProps, renderProps)}
+            {...mergeProps(otherProps, renderProps, extraProps)}
             ref={ref}
             slot={slot ?? undefined}
-            role="img"
             data-disabled={isDisabled || undefined}
         >
             <SlotProvider
@@ -108,6 +121,14 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
             </SlotProvider>
         </div>
     );
+
+    if (onPress) {
+        return <Pressable onPress={onPress}>
+            {avatarImage({ role: "button", ...focusProps })}
+        </Pressable>;
+    }
+
+    return avatarImage({ role: "img" });
 }
 
 /**
