@@ -100,3 +100,9 @@ export const AccessToIndeterminateState = {
         />
     )
 } satisfies Story;
+
+export const Number = {
+    render: props => (
+        <Badge {...props}>{0}</Badge>
+    )
+} satisfies Story;
