@@ -23,6 +23,10 @@ interface AvatarRenderProps {
      * Whether or not the avatar is disabled.
      */
     isDisabled?: boolean;
+    /**
+     * Whether or not the avatar is focus visible.
+     */
+    isFocusVisible?: boolean;
 }
 
 export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<AvatarRenderProps>, "children"> {
@@ -184,7 +188,8 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
         className: classNames,
         style: mergedStyles,
         values: {
-            isDisabled: isDisabled || false
+            isDisabled: isDisabled || false,
+            isFocusVisible: isFocusVisible || false
         }
     });
 

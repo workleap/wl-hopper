@@ -18,6 +18,10 @@ interface RichIconAvatarImageRenderProps {
      * Whether or not the avatar is disabled.
      */
     isDisabled?: boolean;
+    /**
+     * Whether or not the avatar is focus visible.
+     */
+    isFocusVisible?: boolean;
 }
 
 type OmittedDivProps = "slot" | "content" | "color" | "children" | "className" | "style";
@@ -89,7 +93,8 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
         className: classNames,
         style: mergedStyles,
         values: {
-            isDisabled: isDisabled || false
+            isDisabled: isDisabled || false,
+            isFocusVisible: isFocusVisible || false
         }
     });
 
