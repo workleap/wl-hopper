@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.8.2
+
+### Patch Changes
+
+- b37602a: Fixes badge dot display with zero value
+
 ## 1.8.1
 
 ### Patch Changes
