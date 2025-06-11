@@ -440,6 +440,9 @@ export const Previews: Record<string, Preview> = {
     "avatar/docs/disabled": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/disabled.tsx"))
     },
+    "avatar/docs/press": {
+        component: lazy(() => import("@/../../packages/components/src/avatar/docs/press.tsx"))
+    },
     "avatar/docs/customization": {
         component: lazy(() => import("@/../../packages/components/src/avatar/docs/customization.tsx"))
     },

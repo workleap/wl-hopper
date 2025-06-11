@@ -38,9 +38,10 @@
     block-size: var(--size, var(--hop-RichIconAvatarImage-md-size));
 
     color: var(--hop-RichIconAvatarImage-icon-color);
-    
+
     background-color: var(--background-color);
     border-radius: var(--hop-RichIconAvatarImage-border-radius);
+    outline: none;
 }
 
 .hop-RichIconAvatarImage--xs {
@@ -71,6 +72,14 @@
 .hop-RichIconAvatarImage--2xl {
     --size: var(--hop-RichIconAvatarImage-2xl-size);
     --icon-size: var(--hop-RichIconAvatarImage-icon-2xl-size);
+}
+
+.hop-RichIconAvatarImage--clickable {
+    cursor: pointer;
+}
+
+.hop-RichIconAvatarImage--focus-visible {
+    outline: 0.125rem solid var(--hop-primary-border-focus);
 }
 
 .hop-RichIconAvatarImage[data-disabled] {

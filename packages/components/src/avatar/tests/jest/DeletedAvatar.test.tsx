@@ -22,6 +22,14 @@ describe("DeletedAvatar", () => {
         expect(element).toHaveClass("test");
     });
 
+    it("should have role button when there's a onPress event", () => {
+        render(<DeletedAvatar aria-label="John Doe" onPress={() => {}} />);
+
+        const element = screen.getByRole("button", { name: "John Doe" });
+
+        expect(element).toBeInTheDocument();
+    });
+
     it("should support custom style", () => {
         render(<DeletedAvatar aria-label="John Doe" marginTop="stack-sm" style={{ marginBottom: "13px" }} />);
 
