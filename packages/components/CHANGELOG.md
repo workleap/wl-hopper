@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.9.0
+
+### Minor Changes
+
+- c922d10: Adds XS size to buttons
+
+  Adds an XS size variant to the Button, LinkButton, and ToggleButton components
+
 ## 1.8.2
 
 ### Patch Changes
