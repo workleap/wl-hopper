@@ -536,6 +536,18 @@ export const Previews: Record<string, Preview> = {
     "illustrated-message/docs/migration/horizontal": {
         component: lazy(() => import("@/../../packages/components/src/illustrated-message/docs/migration/horizontal.tsx"))
     },
+    "illustration/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/illustration/docs/preview.tsx"))
+    },
+    "illustration/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/illustration/docs/preview.tsx"))
+    },
+    "illustration/docs/vertical": {
+        component: lazy(() => import("@/../../packages/components/src/illustration/docs/vertical.tsx"))
+    },
+    "illustration/docs/shape": {
+        component: lazy(() => import("@/../../packages/components/src/illustration/docs/shape.tsx"))
+    },
     "image/docs/image": {
         component: lazy(() => import("@/../../packages/components/src/image/docs/image.tsx"))
     },

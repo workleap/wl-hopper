@@ -53,7 +53,8 @@
     --max-width: var(--hop-IllustratedMessage-lg-max-width);
 }
 
-.hop-IllustratedMessage__image {
+.hop-IllustratedMessage__image,
+.hop-IllustratedMessage__illustration {
     grid-area: image;
 }
 
