@@ -1,9 +1,9 @@
-import { createRequire } from "node:module";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import type { Options } from "storybook/internal/types";
 import type { Options as SwcOptions } from "@swc/core";
+import { createRequire } from "node:module";
 import path, { dirname, join } from "path";
+import type { Options } from "storybook/internal/types";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 import { swcConfig as SwcBuildConfig } from "./swc.build.ts";
@@ -97,6 +97,6 @@ const storybookConfig: StorybookConfig = {
 
 export default storybookConfig;
 
-function getAbsolutePath(value: string): any {
+function getAbsolutePath(value: string) {
     return dirname(require.resolve(join(value, "package.json")));
 }

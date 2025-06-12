@@ -1,6 +1,6 @@
 import { render, screen } from "@hopper-ui/test-utils";
-import { userEvent, waitFor } from "storybook/test";
 import { act, createRef } from "react";
+import { userEvent, waitFor } from "storybook/test";
 
 import { ToggleButton } from "../../src/ToggleButton.tsx";
 import { ToggleButtonContext } from "../../src/ToggleButtonContext.ts";
