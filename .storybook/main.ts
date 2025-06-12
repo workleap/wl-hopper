@@ -1,12 +1,15 @@
+import { createRequire } from "node:module";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import type { StorybookConfig } from "@storybook/react-webpack5";
-import type { Options } from "@storybook/types";
+import type { Options } from "storybook/internal/types";
 import type { Options as SwcOptions } from "@swc/core";
-import path from "path";
+import path, { dirname, join } from "path";
 import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 import { swcConfig as SwcBuildConfig } from "./swc.build.ts";
 import { swcConfig as SwcDevConfig } from "./swc.dev.ts";
+
+const require = createRequire(import.meta.url);
 
 // We sometimes need to disable the lazyCompilation to properly run the test runner on stories
 const isLazyCompilation = !(process.env.STORYBOOK_NO_LAZY === "true");
@@ -16,17 +19,16 @@ const storybookConfig: StorybookConfig = {
         "../packages/**/*.stories.@(ts|tsx)"
     ],
     addons: [
-        "@storybook/addon-a11y",
-        "@storybook/addon-links",
-        "@storybook/addon-essentials",
-        "@storybook/addon-interactions",
-        "@storybook/addon-webpack5-compiler-swc",
-        "@chromatic-com/storybook"
+        getAbsolutePath("@storybook/addon-a11y"),
+        getAbsolutePath("@storybook/addon-links"),
+        getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
+        getAbsolutePath("@chromatic-com/storybook"),
+        getAbsolutePath("@storybook/addon-docs")
     ],
-    framework: "@storybook/react-webpack5",
+    framework: getAbsolutePath("@storybook/react-webpack5"),
     core: {
         builder: {
-            name: "@storybook/builder-webpack5",
+            name: getAbsolutePath("@storybook/builder-webpack5"),
             options: {
                 lazyCompilation: isLazyCompilation
             }
@@ -94,3 +96,7 @@ const storybookConfig: StorybookConfig = {
 
 
 export default storybookConfig;
+
+function getAbsolutePath(value: string): any {
+    return dirname(require.resolve(join(value, "package.json")));
+}

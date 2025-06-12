@@ -7,7 +7,7 @@ import {
     Text
 } from "@hopper-ui/components";
 import { hopperParameters } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 const meta = {
     title: "Components/Modal/CustomModal/dark",

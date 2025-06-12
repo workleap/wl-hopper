@@ -1,5 +1,5 @@
 import { AngleDownIcon, SearchIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { ClearButton } from "../../../buttons/index.ts";
 import { Stack } from "../../../layout/index.ts";

@@ -1,4 +1,4 @@
-import type { Parameters as SBParameters } from "@storybook/react";
+import type { Parameters as SBParameters } from "@storybook/react-webpack5";
 import type { configureAxe } from "axe-playwright";
 
 export type Rules = NonNullable<Parameters<typeof configureAxe>[1]>["rules"];

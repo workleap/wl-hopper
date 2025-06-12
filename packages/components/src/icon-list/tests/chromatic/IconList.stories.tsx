@@ -1,6 +1,6 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import { a11yParameters } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { IconList } from "../../src/IconList.tsx";
 

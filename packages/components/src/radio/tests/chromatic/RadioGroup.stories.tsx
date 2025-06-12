@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { IconList } from "../../../icon-list/index.ts";

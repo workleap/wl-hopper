@@ -1,4 +1,4 @@
-import type { Preview } from "@storybook/react";
+import type { Preview } from "@storybook/react-webpack5";
 import type { ReactNode } from "react";
 
 import "../app/globals.css";

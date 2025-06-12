@@ -1,8 +1,8 @@
 import { Button, ComboBox, ComboBoxItem, type ComboBoxProps, ComboBoxSection, Header, Inline, Stack, Text } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react";
-import { userEvent, within } from "@storybook/test";
+import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
+import { userEvent, within } from "storybook/test";
 
 const meta = {
     title: "Components/ComboBox",

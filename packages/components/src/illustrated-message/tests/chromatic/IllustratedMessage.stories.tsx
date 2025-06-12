@@ -1,6 +1,6 @@
 
 import { Button, ButtonGroup, Content, Div, Heading, Image, Stack, SvgImage } from "@hopper-ui/components";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Frog, NoResults } from "../../assets/index.ts";
 import { IllustratedMessage } from "../../index.ts";

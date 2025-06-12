@@ -1,7 +1,7 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react";
-import { within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { within } from "storybook/test";
 import { ToggleButtonContext } from "react-aria-components";
 
 import { IconList } from "../../../icon-list/index.ts";

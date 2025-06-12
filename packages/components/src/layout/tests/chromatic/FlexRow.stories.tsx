@@ -1,6 +1,6 @@
 import { a11yParameters } from "@hopper-ui/storybook-addon";
 import { Div, type DivProps } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Flex } from "../../src/Flex.tsx";
 import { Inline } from "../../src/Inline.tsx";
