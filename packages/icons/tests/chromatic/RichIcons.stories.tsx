@@ -1,5 +1,5 @@
 import { LI, UL } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Stack } from "../../../components/src/layout/index.ts";
 import * as IconLibrary from "../../src/index.ts";

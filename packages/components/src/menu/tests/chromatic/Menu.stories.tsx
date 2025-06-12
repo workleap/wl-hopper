@@ -1,8 +1,8 @@
 import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons";
 import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react";
-import { userEvent } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { userEvent } from "storybook/test";
 
 import { Avatar } from "../../../avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";

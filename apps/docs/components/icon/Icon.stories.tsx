@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { NpmIcon, ComponentIcon, ExternalLinkIcon, GithubIcon, WaiAriaIcon, TokenIcon } from "./index.tsx";
 
 import Icon from "./Icon";

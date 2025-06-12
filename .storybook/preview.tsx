@@ -4,8 +4,8 @@ import {
     Stories,
     Subtitle,
     Title
-} from "@storybook/blocks";
-import type { Preview } from "@storybook/react";
+} from "@storybook/addon-docs/blocks";
+import type { Preview } from "@storybook/react-webpack5";
 
 import "@hopper-ui/tokens/fonts.css";
 import "./stories.css";

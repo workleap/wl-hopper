@@ -1,5 +1,5 @@
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Stack } from "../../../layout/index.ts";
 import { AnonymousAvatar } from "../../src/AnonymousAvatar.tsx";

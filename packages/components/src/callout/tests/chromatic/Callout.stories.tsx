@@ -1,5 +1,5 @@
 import { IdeaRichIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Button, LinkButton } from "../../../buttons/index.ts";
 import { Content } from "../../../layout/index.ts";

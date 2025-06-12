@@ -1,7 +1,7 @@
 import { Div, IconList } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react";
-import { within } from "@storybook/test";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { within } from "storybook/test";
 
 import { Inline, Stack } from "../../../index.ts";
 import { Text } from "../../../typography/index.ts";

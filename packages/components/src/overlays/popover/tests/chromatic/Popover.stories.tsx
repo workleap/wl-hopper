@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Content, Div, Footer, Heading, Link } from "@hopper-ui/components";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Popover } from "../../src/Popover.tsx";
 import { PopoverTrigger } from "../../src/PopoverTrigger.tsx";

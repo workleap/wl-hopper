@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../badge/index.ts";
