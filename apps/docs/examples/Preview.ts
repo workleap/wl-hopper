@@ -539,8 +539,8 @@ export const Previews: Record<string, Preview> = {
     "illustration/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/illustration/docs/preview.tsx"))
     },
-    "illustration/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/illustration/docs/preview.tsx"))
+    "illustration/docs/default": {
+        component: lazy(() => import("@/../../packages/components/src/illustration/docs/default.tsx"))
     },
     "illustration/docs/vertical": {
         component: lazy(() => import("@/../../packages/components/src/illustration/docs/vertical.tsx"))
