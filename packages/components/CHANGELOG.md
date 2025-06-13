@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.10.0
+
+### Minor Changes
+
+- b07292e: Add Illustration component
+
 ## 1.9.1
 
 ### Patch Changes
