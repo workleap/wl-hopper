@@ -60,7 +60,8 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
                 values={[
                     [TextContext, {
                         className: styles["hop-Tab__text"],
-                        size
+                        size,
+                        fontWeight: size === "sm" ? "body-sm-medium" : "body-md-medium"
                     }],
                     [IconContext, {
                         className: styles["hop-Tab__icon"],
