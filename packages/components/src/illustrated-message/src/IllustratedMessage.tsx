@@ -4,6 +4,7 @@ import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext } from "../../buttons/index.ts";
+import { IllustrationContext } from "../../illustration/index.ts";
 import { ImageContext, SvgImageContext } from "../../image/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
@@ -66,6 +67,10 @@ function IllustratedMessage(props: IllustratedMessageProps, ref: ForwardedRef<HT
                 values={[
                     [SvgImageContext, {
                         className: styles["hop-IllustratedMessage__image"]
+                    }],
+                    [IllustrationContext, {
+                        className: styles["hop-IllustratedMessage__illustration"],
+                        clearContexts: [ImageContext]
                     }],
                     [ImageContext, {
                         className: styles["hop-IllustratedMessage__image"]

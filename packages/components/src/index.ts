@@ -17,6 +17,7 @@ export * from "./helper-message/index.ts";
 export * from "./hopper-provider/index.ts";
 export * from "./icon-list/index.ts";
 export * from "./illustrated-message/index.ts";
+export * from "./illustration/index.ts";
 export * from "./image/index.ts";
 export * from "./inputs/index.ts";
 export * from "./layout/index.ts";

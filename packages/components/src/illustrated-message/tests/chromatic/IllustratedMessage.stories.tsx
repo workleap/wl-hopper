@@ -1,5 +1,5 @@
 
-import { Button, ButtonGroup, Content, Div, Heading, Image, Stack, SvgImage } from "@hopper-ui/components";
+import { Button, ButtonGroup, Content, Div, Heading, Illustration, Image, Stack, SvgImage } from "@hopper-ui/components";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Frog, NoResults } from "../../assets/index.ts";
@@ -61,7 +61,19 @@ export const SVG = {
             <Content>Try searching for something else.</Content>
         </IllustratedMessage>
     )
-};
+} satisfies Story;
+
+export const IllustrationMessage = {
+    render: () => (
+        <IllustratedMessage>
+            <Illustration shape="rounded" width="100%" UNSAFE_height="200px" backgroundColor="core_sapphire-200">
+                <Image src={Frog} alt="Frog" UNSAFE_width="150px" />
+            </Illustration>
+            <Heading>No results found</Heading>
+            <Content>Try searching for something else.</Content>
+        </IllustratedMessage>
+    )
+} satisfies Story;
 
 export const VeryLongTitle = {
     render: () => (
