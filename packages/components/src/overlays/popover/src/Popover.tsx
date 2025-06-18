@@ -156,7 +156,8 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
                                 [HeadingContext, {
                                     slot: "title",
                                     className: styles["hop-Popover__title"],
-                                    size: "xs"
+                                    size: "xs",
+                                    fontWeight: "heading-xs-medium"
                                 }],
                                 [ButtonContext, {
                                     size: "sm",
