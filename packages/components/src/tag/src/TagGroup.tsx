@@ -52,6 +52,10 @@ export interface TagGroupProps<T> extends StyledComponentProps<Omit<RACTagGroupP
      * @default "neutral"
      */
     variant?: TagVariant;
+    /**
+     * Whether or not tag items should be render as readonly.
+     */
+    isReadOnly?: boolean;
 }
 
 function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<HTMLDivElement>) {
@@ -67,7 +71,9 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
         isInvalid = false,
         items,
         label,
+        onRemove,
         necessityIndicator,
+        isReadOnly,
         renderEmptyState,
         style: styleProp,
         size: sizeProp,
@@ -143,6 +149,7 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
                     ref={ref}
                     className={classNames}
                     style={style}
+                    onRemove={isReadOnly ? undefined : onRemove}
                     {...otherProps}
                 >
                     <FieldLabel
