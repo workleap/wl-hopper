@@ -22,7 +22,7 @@ export interface TabProps extends
 function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const { variant, size, isFluid } = useContext(InternalTabsContext) ?? {};
+    const { size, isFluid } = useContext(InternalTabsContext) ?? {};
 
     const {
         className,
@@ -36,7 +36,6 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
         cssModule(
             styles,
             "hop-Tab",
-            variant,
             size,
             isFluid && "fluid"
         ),

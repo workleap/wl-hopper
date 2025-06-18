@@ -53,7 +53,7 @@ export interface TagGroupProps<T> extends StyledComponentProps<Omit<RACTagGroupP
      */
     variant?: TagVariant;
     /**
-     * Whether or not tag items should be render as readonly.
+     * Whether or not the tags should render as readonly.
      */
     isReadOnly?: boolean;
 }

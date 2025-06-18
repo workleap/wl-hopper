@@ -14,6 +14,9 @@
     --hop-TabList-in-card-background: var(--hop-neutral-surface-weakest);
     --hop-TabList-in-card-border: 0.0625rem solid var(--hop-neutral-border-weak);
 
+    /* Heading */
+    --hop-TabList-heading-block-size: 2.75rem;
+
     position: var(--hop-TabList-position);
 
     overflow-y: var(--hop-TabList-overflow-y);
@@ -40,6 +43,10 @@
     border: 0;
     border-block-end: var(--hop-TabList-in-card-border);
     border-radius: var(--hop-Tablist-border-radius) var(--hop-Tablist-border-radius) 0 0;
+}
+
+.hop-TabList--heading {
+    --block-size: var(--hop-TabList-heading-block-size);
 }
 
 .hop-TabList__tablist {

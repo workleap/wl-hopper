@@ -342,7 +342,7 @@ export const Readonly = {
         onRemove: () => {},
         isReadOnly: true
     }
-}satisfies Story;
+} satisfies Story;
 
 export const Everything = {
     render: props => {
