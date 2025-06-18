@@ -37,7 +37,7 @@ export function TooltipTrigger(props: TooltipTriggerProps) {
         delay = 600,
         containerPadding = 16,
         crossOffset,
-        offset = 8,
+        offset = 12,
         placement = "top",
         shouldFlip,
         isDisabled,
