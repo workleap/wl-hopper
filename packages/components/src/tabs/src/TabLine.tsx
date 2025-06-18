@@ -41,8 +41,8 @@ export function TabLine(props: TabLineProps) {
             };
 
             const offset = selectedTab.offsetLeft;
-            styleObj.transform = `translateX(calc(${offset}px + var(--hop-space-inset-sm)))`;
-            styleObj.width = `calc(${selectedTab.offsetWidth}px - 2 * var(--hop-space-inset-sm))`;
+            styleObj.transform = `translateX(calc(${offset}px + var(--hop-space-inset-md)))`;
+            styleObj.width = `calc(${selectedTab.offsetWidth}px - 2 * var(--hop-space-inset-md))`;
 
             setStyle(styleObj);
         }

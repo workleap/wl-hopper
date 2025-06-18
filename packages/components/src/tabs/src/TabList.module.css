@@ -45,34 +45,5 @@
 .hop-TabList__tablist {
     --hop-TabList__tablist-display: flex;
 
-    /* Standalone */
-    --hop-TabList__tablist-standalone-gap: var(--hop-space-inset-md);
-    --hop-TabList__tablist-standalone-padding-inline: var(--hop-space-inset-md);
-
-    /* In card */
-    --hop-TabList__tablist-in-card-gap: var(--hop-space-inset-md);
-    --hop-TabList__tablist-in-card-padding-inline: var(--hop-space-inset-md);
-
-    /* Heading */
-    --hop-TabList__tablist-heading-gap: calc(2 * var(--hop-space-inset-sm));
-    --hop-TabList__tablist-heading-padding-inline: var(--hop-space-inset-sm);
-
     display: var(--hop-TabList__tablist-display);
-    gap: var(--tablist-gap);
-    padding-inline: var(--tablist-padding-inline);
-}
-
-.hop-TabList--standalone > .hop-TabList__tablist {
-    --tablist-gap: var(--hop-TabList__tablist-standalone-gap);
-    --tablist-padding-inline: var(--hop-TabList__tablist-standalone-padding-inline);
-}
-
-.hop-TabList--in-card > .hop-TabList__tablist {
-    --tablist-gap: var(--hop-TabList__tablist-in-card-gap);
-    --tablist-padding-inline: var(--hop-TabList__tablist-in-card-padding-inline);
-}
-
-.hop-TabList--heading > .hop-TabList__tablist {
-    --tablist-gap: var(--hop-TabList__tablist-heading-gap);
-    --tablist-padding-inline: var(--hop-TabList__tablist-heading-padding-inline);
 }

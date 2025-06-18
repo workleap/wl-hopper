@@ -7,7 +7,7 @@
     --hop-Tab-white-space: nowrap;
     --hop-Tab-border-radius: var(--hop-shape-rounded-md);
     --hop-Tab-outline: none;
-    --hop-Tab-padding: var(--hop-space-inset-sm);
+    --hop-Tab-padding-inline: var(--hop-space-inset-md);
     --hop-Tab-text-decoration: none;
     --hop-Tab-cursor: pointer;
 
@@ -37,7 +37,7 @@
     align-items: var(--hop-Tab-align-items);
     justify-content: var(--hop-Tab-justify-content);
 
-    padding: var(--hop-Tab-padding);
+    padding-inline: var(--hop-Tab-padding-inline);
 
     color: var(--color, var(--hop-Tab-color));
     text-decoration: var(--hop-Tab-text-transform);
