@@ -1,5 +1,17 @@
 # @hopper-ui/components
 
+## 1.11.1
+
+### Patch Changes
+
+- 6cd6be7: Multiple changes in the effort to have better Orbiter parity
+
+  - Adds isReadOnly to TagGroup component
+  - Adjust Tab padding to follow Design
+  - Adjust Heading weight for Popovers
+  - Increase the Tooltip offset
+  - Exports VisuallyHidden from react-aria
+
 ## 1.11.0
 
 ### Minor Changes
