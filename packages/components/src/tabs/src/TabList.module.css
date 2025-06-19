@@ -3,26 +3,27 @@
     --hop-TabList-position: relative;
     --hop-TabList-overflow-y: auto;
     --hop-Tablist-border-radius: var(--hop-shape-rounded-md);
+    --hop-TabList-padding-inline: var(--hop-space-inset-xs);
+    --hop-TabList-padding-block: calc(var(--hop-space-inset-xs) + var(--hop-space-10));
 
     /* Standalone */
-    --hop-TabList-standalone-block-size: 2.875rem;
     --hop-TabList-standalone-background: var(--hop-neutral-surface-weakest);
     --hop-TabList-standalone-border: 0.0625rem solid var(--hop-neutral-border-weak);
 
     /* In card */
-    --hop-TabList-in-card-block-size: 2.875rem;
     --hop-TabList-in-card-background: var(--hop-neutral-surface-weakest);
     --hop-TabList-in-card-border: 0.0625rem solid var(--hop-neutral-border-weak);
 
-    /* Heading */
-    --hop-TabList-heading-block-size: 2.75rem;
+    /* Internal */
+    --padding-inline: var(--hop-TabList-padding-inline);
 
     position: var(--hop-TabList-position);
 
     overflow-y: var(--hop-TabList-overflow-y);
     display: var(--hop-TabList-display);
 
-    block-size: var(--block-size);
+    padding-block: var(--hop-TabList-padding-block);
+    padding-inline: var(--padding-inline);
 
     background: var(--background);
     border: var(--border);
@@ -31,26 +32,26 @@
 .hop-TabList--standalone {
     --background: var(--hop-TabList-standalone-background);
     --border: var(--hop-TabList-standalone-border);
-    --block-size: var(--hop-TabList-standalone-block-size);
 
     border-radius: var(--hop-Tablist-border-radius);
 }
 
 .hop-TabList--in-card {
     --background: var(--hop-TabList-in-card-background);
-    --block-size: var(--hop-TabList-in-card-block-size);
 
     border: 0;
     border-block-end: var(--hop-TabList-in-card-border);
     border-radius: var(--hop-Tablist-border-radius) var(--hop-Tablist-border-radius) 0 0;
 }
 
-.hop-TabList--heading {
-    --block-size: var(--hop-TabList-heading-block-size);
-}
-
 .hop-TabList__tablist {
     --hop-TabList__tablist-display: flex;
+    --hop-TabList__tablist-gap: var(--hop-space-inset-sm);
 
     display: var(--hop-TabList__tablist-display);
+    gap: var(--hop-TabList__tablist-gap);
+}
+
+.hop-TabList--md {
+    --padding-inline: var(--hop-space-inset-sm);
 }

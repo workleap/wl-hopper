@@ -7,7 +7,7 @@
     --hop-Tab-white-space: nowrap;
     --hop-Tab-border-radius: var(--hop-shape-rounded-md);
     --hop-Tab-outline: none;
-    --hop-Tab-padding-inline: var(--hop-space-inset-md);
+    --hop-Tab-padding: var(--hop-space-inset-sm);
     --hop-Tab-text-decoration: none;
     --hop-Tab-cursor: pointer;
 
@@ -22,13 +22,16 @@
 
     /* Focus */
     --hop-Tab-focus-color: var(--hop-neutral-text-hover);
-    --hop-Tab-focus-outline: 0.125rem solid var(--hop-primary-border-focus);
+    --hop-Tab-focus-outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
 
     /* Disabled */
     --hop-Tab-disabled-color: var(--hop-neutral-text-disabled);
 
     /* Medium */
-    --hop-Tab-padding-block: 0.125rem;
+    --hop-Tab-medium-padding: var(--hop-space-20);
+
+    /* Internals */
+    --padding: var(--hop-Tab-padding);
 
     cursor: var(--cursor, var(--hop-Tab-cursor));
 
@@ -37,7 +40,7 @@
     align-items: var(--hop-Tab-align-items);
     justify-content: var(--hop-Tab-justify-content);
 
-    padding-inline: var(--hop-Tab-padding-inline);
+    padding: var(--padding);
 
     color: var(--color, var(--hop-Tab-color));
     text-decoration: var(--hop-Tab-text-transform);
@@ -52,7 +55,7 @@
 }
 
 .hop-Tab--md {
-    padding-block: var(--hop-Tab-padding-block);
+    --padding:  var(--hop-Tab-medium-padding);
 }
 
 .hop-Tab[data-selected] {

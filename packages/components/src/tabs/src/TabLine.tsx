@@ -5,6 +5,8 @@ import { type Key, TabListStateContext } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
+import { InternalTabsContext } from "./TabsContext.ts";
+
 import styles from "./TabLine.module.css";
 
 export const GlobalTabLineCssSelector = "hop-TabLine";
@@ -19,6 +21,7 @@ export function TabLine(props: TabLineProps) {
     const { selectedTab, disabledKeys, isDisabled: isTabsDisabled } = props;
     const state = useContext(TabListStateContext);
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
+    const { size } = useContext(InternalTabsContext) ?? {};
 
     useEffect(() => {
         const disabled = isTabsDisabled || isAllTabsDisabled(state?.collection, disabledKeys ? new Set(disabledKeys) : new Set(null));
@@ -26,27 +29,33 @@ export function TabLine(props: TabLineProps) {
         setIsDisabled(disabled);
     }, [state?.collection, disabledKeys, isTabsDisabled, setIsDisabled]);
 
-    const [style, setStyle] = useState<{ transform: string | undefined; width: string | undefined; height: string | undefined }>({
+    const [style, setStyle] = useState<{ transform?: string ; width?: string }>({
         transform: undefined,
-        width: undefined,
-        height: undefined
+        width: undefined
     });
 
     const onResize = useCallback(() => {
         if (selectedTab) {
-            const styleObj: { transform: string | undefined; width: string | undefined; height: string | undefined } = {
+            const styleObj: { transform?: string; width?: string } = {
                 transform: undefined,
-                width: undefined,
-                height: undefined
+                width: undefined
             };
 
+            let tablistPadding = "var(--hop-space-inset-xs)";
+            let tabPadding = "var(--hop-space-inset-sm)";
+
+            if (size === "md") {
+                tabPadding = "var(--hop-space-20)";
+                tablistPadding = "var(--hop-space-inset-sm)";
+            }
+
             const offset = selectedTab.offsetLeft;
-            styleObj.transform = `translateX(calc(${offset}px + var(--hop-space-inset-md)))`;
-            styleObj.width = `calc(${selectedTab.offsetWidth}px - 2 * var(--hop-space-inset-md))`;
+            styleObj.transform = `translateX(calc(${offset}px + ${tabPadding} - ${tablistPadding}))`;
+            styleObj.width = `calc(${selectedTab.offsetWidth}px - 2 * ${tabPadding})`;
 
             setStyle(styleObj);
         }
-    }, [setStyle, selectedTab]);
+    }, [setStyle, selectedTab, size]);
 
     useEffect(() => {
         window.addEventListener("resize", onResize, false);
