@@ -63,10 +63,13 @@ export const withHopperProvider = makeDecorator({
                         key={`${colorScheme}`}
                         colorScheme={colorScheme}
                         locale={locale}
+                        color="neutral"
                         backgroundColor="neutral"
+                        lineHeight="body-md"
+                        fontFamily="body-md"
+                        fontSize="body-md"
                         display="flex"
                         flexDirection="column"
-
                         UNSAFE_height={height ? `${height}px` : undefined}
                         UNSAFE_minHeight={minHeight ? `${minHeight}px` : undefined}
                         padding="inset-md"
