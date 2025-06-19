@@ -1,8 +1,0 @@
-.hop-HopperProvider {
-    font-family: var(--hop-body-md-font-family);
-    font-size: var(--hop-body-md-font-size);
-    font-weight: var(--hop-body-md-font-weight);
-    -webkit-font-smoothing: antialiased;
-    line-height: var(--hop-body-md-line-height);
-    color: var(--hop-neutral-text);
-}
