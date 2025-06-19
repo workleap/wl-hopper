@@ -315,6 +315,35 @@ export const Invalid = {
     }
 } satisfies Story;
 
+export const Removable = {
+    render: props => {
+        return (
+            <TagGroup {...props} label="Removable">
+                <Tag id="1" textValue="Developer">Developer</Tag>
+                <Tag id="2" textValue="Designer">Designer</Tag>
+            </TagGroup>
+        );
+    },
+    args: {
+        onRemove: () => {}
+    }
+} satisfies Story;
+
+export const Readonly = {
+    render: props => {
+        return (
+            <TagGroup {...props} label="Readonly">
+                <Tag id="1" textValue="Developer">Developer</Tag>
+                <Tag id="2" textValue="Designer">Designer</Tag>
+            </TagGroup>
+        );
+    },
+    args: {
+        onRemove: () => {},
+        isReadOnly: true
+    }
+} satisfies Story;
+
 export const Everything = {
     render: props => {
         return (

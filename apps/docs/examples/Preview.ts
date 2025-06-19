@@ -323,6 +323,9 @@ export const Previews: Record<string, Preview> = {
     "tag/docs/tag-group/removable": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/removable.tsx"))
     },
+    "tag/docs/tag-group/readonly": {
+        component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/readonly.tsx"))
+    },
     "tag/docs/tag-group/selectable": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag-group/selectable.tsx"))
     },

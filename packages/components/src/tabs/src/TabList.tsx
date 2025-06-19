@@ -1,6 +1,6 @@
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, useLayoutEffect, useState, type CSSProperties, type ForwardedRef } from "react";
+import { forwardRef, useContext, useLayoutEffect, useRef, useState, type CSSProperties, type ForwardedRef } from "react";
 import { TabList as RACTablist, TabListStateContext, useContextProps, type TabListProps as RACTablistProps } from "react-aria-components";
 
 import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
@@ -18,8 +18,9 @@ export interface TabListProps<T> extends
 
 function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabListContext);
-    const { variant, isDisabled, disabledKeys } = useContext(InternalTabsContext) ?? {};
+    const { variant, isDisabled, disabledKeys, size } = useContext(InternalTabsContext) ?? {};
     const state = useContext(TabListStateContext);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     const [selectedTab, setSelectedTab] = useState<HTMLElement | undefined>(undefined);
 
@@ -46,7 +47,8 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
         cssModule(
             styles,
             "hop-TabList",
-            variant
+            variant,
+            size
         ),
         stylingProps.className,
         className
@@ -58,13 +60,13 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
     };
 
     return (
-        <div className={classNames} style={mergedStyles}>
+        <div className={classNames} style={mergedStyles} ref={wrapperRef}>
             <RACTablist
                 {...otherProps}
                 ref={ref}
                 className={styles["hop-TabList__tablist"]}
             />
-            <TabLine selectedTab={selectedTab} isDisabled={isDisabled} disabledKeys={disabledKeys} />
+            <TabLine wrapperElement={wrapperRef.current} selectedTab={selectedTab} isDisabled={isDisabled} disabledKeys={disabledKeys} />
         </div>
     );
 }
