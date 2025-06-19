@@ -78,8 +78,10 @@
     --hop-Popover-row-gap: var(--hop-space-stack-sm);
     --hop-Popover-dialog-padding: var(--hop-space-inset-md);
     --hop-Popover-dropdown-padding: 0;
-    --hop-Popover-title-font-family: var(--hop-body-sm-font-family);
-    --hop-Popover-title-font-weight: var(--hop-body-sm-semibold-font-weight);
+    --hop-Popover-title-font-family: var(--hop-heading-xs-font-family);
+    --hop-Popover-title-line-height: var(--hop-heading-xs-line-height);
+    --hop-Popover-title-font-size: var(--hop-heading-xs-font-size);
+    --hop-Popover-title-font-weight: var(--hop-heading-xs-medium-font-weight);
     --hop-Popover-content-font-size: var(--hop-body-sm-font-size);
     --hop-Popover-content-font-family: var(--hop-body-sm-font-family);
     --hop-Popover-content-font-weight: var(--hop-body-sm-font-weight);
@@ -141,6 +143,11 @@
 
 .hop-Popover__title {
     grid-area: header;
+
+    font-family: var(--hop-Popover-title-font-family);
+    font-size: var(--hop-Popover-title-font-size);
+    font-weight: var(--hop-Popover-title-font-weight);
+    line-height: var(--hop-Popover-title-line-height);
     color: var(--hop-Popover-color);
 }
 
