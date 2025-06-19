@@ -68,6 +68,7 @@ export const withHopperProvider = makeDecorator({
                         lineHeight="body-md"
                         fontFamily="body-md"
                         fontSize="body-md"
+                        fontWeight="body-md"
                         display="flex"
                         flexDirection="column"
                         UNSAFE_height={height ? `${height}px` : undefined}
