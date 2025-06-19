@@ -10,14 +10,14 @@ import styles from "./TabLine.module.css";
 export const GlobalTabLineCssSelector = "hop-TabLine";
 
 export interface TabLineProps {
-    tabList?: HTMLDivElement | null;
+    wrapperElement?: HTMLDivElement | null;
     selectedTab?: HTMLElement;
     isDisabled?: boolean;
     disabledKeys?: Iterable<Key>;
 }
 
 export function TabLine(props: TabLineProps) {
-    const { tabList, selectedTab, disabledKeys, isDisabled: isTabsDisabled } = props;
+    const { wrapperElement, selectedTab, disabledKeys, isDisabled: isTabsDisabled } = props;
     const state = useContext(TabListStateContext);
     const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
@@ -33,7 +33,7 @@ export function TabLine(props: TabLineProps) {
     });
 
     const onResize = useCallback(() => {
-        if (selectedTab && tabList) {
+        if (selectedTab && wrapperElement) {
             const styleObj: CSSProperties = {
                 transform: undefined,
                 width: undefined
@@ -42,7 +42,7 @@ export function TabLine(props: TabLineProps) {
             const computedTabStyle = window.getComputedStyle(selectedTab);
             const tabPadding = computedTabStyle.paddingLeft;
 
-            const computedTabListStyle = window.getComputedStyle(tabList);
+            const computedTabListStyle = window.getComputedStyle(wrapperElement);
             const tabListPadding = computedTabListStyle.paddingLeft;
 
             const offset = selectedTab.offsetLeft;
@@ -51,7 +51,7 @@ export function TabLine(props: TabLineProps) {
 
             setStyle(styleObj);
         }
-    }, [setStyle, selectedTab, tabList]);
+    }, [setStyle, selectedTab, wrapperElement]);
 
     useEffect(() => {
         window.addEventListener("resize", onResize, false);

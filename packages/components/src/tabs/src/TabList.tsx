@@ -20,7 +20,7 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
     [props, ref] = useContextProps(props, ref, TabListContext);
     const { variant, isDisabled, disabledKeys, size } = useContext(InternalTabsContext) ?? {};
     const state = useContext(TabListStateContext);
-    const divRef = useRef<HTMLDivElement>(null);
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     const [selectedTab, setSelectedTab] = useState<HTMLElement | undefined>(undefined);
 
@@ -60,13 +60,13 @@ function TabList<T extends object>(props: TabListProps<T>, ref: ForwardedRef<HTM
     };
 
     return (
-        <div className={classNames} style={mergedStyles} ref={divRef}>
+        <div className={classNames} style={mergedStyles} ref={wrapperRef}>
             <RACTablist
                 {...otherProps}
                 ref={ref}
                 className={styles["hop-TabList__tablist"]}
             />
-            <TabLine tabList={divRef.current} selectedTab={selectedTab} isDisabled={isDisabled} disabledKeys={disabledKeys} />
+            <TabLine wrapperElement={wrapperRef.current} selectedTab={selectedTab} isDisabled={isDisabled} disabledKeys={disabledKeys} />
         </div>
     );
 }
