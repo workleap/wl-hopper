@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.11.0
+
+### Minor Changes
+
+- ee8fad1: The hopper provider no longer sets default fonts. This caused too many chromatic issues in applications
+
 ## 1.10.1
 
 ### Patch Changes
