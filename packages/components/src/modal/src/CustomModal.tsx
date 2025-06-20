@@ -1,12 +1,13 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { composeRenderProps, Dialog, type DialogProps, DialogTrigger, type ModalOverlayProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
+import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
 import { BaseModal } from "./BaseModal.tsx";
 import { CustomModalContext } from "./CustomModalContext.ts";
+import { ModalTrigger } from "./ModalTrigger.tsx";
 
 import styles from "./CustomModal.module.css";
 
@@ -118,4 +119,4 @@ _CustomModal.displayName = "CustomModal";
 
 export { _CustomModal as CustomModal };
 
-export const CustomModalTrigger = DialogTrigger;
+export const CustomModalTrigger = ModalTrigger;
