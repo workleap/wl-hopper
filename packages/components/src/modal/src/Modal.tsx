@@ -22,7 +22,7 @@ const ClearContexts = [ImageContext, HeadingContext, HeaderContext, ContentConte
 
 export interface ModalProps extends
     StyledComponentProps<DialogProps>,
-    Pick<ModalOverlayProps, "isOpen" | "defaultOpen" | "onOpenChange"> {
+    Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
     /**
      * Whether the Modal is dismissible.
      * @default true
@@ -41,6 +41,11 @@ export interface ModalProps extends
      * The props of the overlay
      */
     overlayProps?: Partial<ModalOverlayProps>;
+    /**
+     * Handler that is called when the modal's open state changes.
+     * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
+     */
+    onOpenChange?: (isOpen: boolean) => void;
 }
 
 const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {

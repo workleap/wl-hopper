@@ -1,3 +1,13 @@
-import { DialogTrigger } from "react-aria-components";
+import { DialogTrigger, type DialogTriggerProps } from "react-aria-components";
 
-export const ModalTrigger = DialogTrigger;
+import { InternalModalTriggerContext } from "./ModalContext.ts";
+
+export type ModalTriggerProps = DialogTriggerProps;
+
+export function ModalTrigger(props: ModalTriggerProps) {
+    return (
+        <InternalModalTriggerContext.Provider value={props}>
+            <DialogTrigger {...props}>{props.children}</DialogTrigger>
+        </InternalModalTriggerContext.Provider>
+    );
+}

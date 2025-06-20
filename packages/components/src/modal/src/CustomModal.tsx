@@ -1,12 +1,13 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { composeRenderProps, Dialog, type DialogProps, DialogTrigger, type ModalOverlayProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
+import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
 import { BaseModal } from "./BaseModal.tsx";
 import { CustomModalContext } from "./CustomModalContext.ts";
+import { ModalTrigger } from "./ModalTrigger.tsx";
 
 import styles from "./CustomModal.module.css";
 
@@ -14,7 +15,7 @@ export const GlobalCustomModalCssSelector = "hop-CustomModal";
 
 export interface CustomModalProps extends
     StyledComponentProps<DialogProps>,
-    Pick<ModalOverlayProps, "isOpen" | "defaultOpen" | "onOpenChange"> {
+    Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
     /**
      * Whether the CustomModal is dismissible.
      * @default true
@@ -33,6 +34,11 @@ export interface CustomModalProps extends
      * The props of the overlay
      */
     overlayProps?: Partial<ModalOverlayProps>;
+    /**
+     * Handler that is called when the custom modal's open state changes.
+     * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
+     */
+    onOpenChange?: (isOpen: boolean) => void;
 }
 
 const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>) => {
@@ -113,4 +119,4 @@ _CustomModal.displayName = "CustomModal";
 
 export { _CustomModal as CustomModal };
 
-export const CustomModalTrigger = DialogTrigger;
+export const CustomModalTrigger = ModalTrigger;
