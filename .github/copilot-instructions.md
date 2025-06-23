@@ -4,7 +4,14 @@
 
 Title: Use the token system
 
-Description: Use CSS variables from the token system for all values (colors, spacing, etc.). Don't hardcode values that should come from the token system. This ensures consistency and supports theming.
+Description: Always use CSS variables from the token system instead of hardcoded values. The token system is defined in `packages/tokens/src/tokens/` and can be referenced in `packages/styled-system/src/tokens/tokenMappings.ts` and `packages/styled-system/src/tokens/tokens.ts`.
+
+Tokens follow the pattern `var(--hop-[category]-[property])` such as:
+- `var(--hop-neutral-text)`
+- `var(--hop-space-stack-md)`
+- `var(--hop-shape-rounded-md)`
+
+Component-specific tokens should reference these global tokens, e.g., `--hop-Button-background: var(--hop-neutral-surface)`.
 
 Path patterns: packages/components/src/**/*.module.css
 
