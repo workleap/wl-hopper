@@ -21,10 +21,15 @@ export interface MenuTriggerProps extends RACMenuTriggerProps {
      * Whether or not the popup can flip when it will overflow it's boundary area.
      */
     allowFlip?: boolean;
+    /**
+   * Whether the menu should close when the menu item is selected.
+   * @default true
+   */
+    shouldCloseOnSelect?: boolean;
 }
 
 export function MenuTrigger(props: MenuTriggerProps) {
-    const { align, direction, allowFlip, children } = props;
+    const { align, direction, allowFlip, children, shouldCloseOnSelect } = props;
     const [isPressed, setPressed] = useState(false);
 
     const { addGlobalListener } = useGlobalListeners();
@@ -46,7 +51,8 @@ export function MenuTrigger(props: MenuTriggerProps) {
             value={{
                 align,
                 direction,
-                allowFlip
+                allowFlip,
+                shouldCloseOnSelect
             }}
         >
             <RACMenuTrigger {...props}>
