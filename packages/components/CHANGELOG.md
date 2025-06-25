@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 1.11.2
+
+### Patch Changes
+
+- 121b4c2: Updated the Modal component to warn when onOpenChange is used in a context where it will not work
+- 327deaf: Export the mergeProps function
+
 ## 1.11.1
 
 ### Patch Changes
