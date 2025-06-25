@@ -33,7 +33,6 @@ export interface MenuItemProps extends StyledComponentProps<RACMenuItemProps> {
     size?: ResponsiveProp<MenuItemSize>;
     /**
     * Whether the menu should close when the menu item is selected.
-    * @default true
     */
     shouldCloseOnSelect?: boolean;
 

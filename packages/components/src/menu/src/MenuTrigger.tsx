@@ -23,7 +23,6 @@ export interface MenuTriggerProps extends RACMenuTriggerProps {
     allowFlip?: boolean;
     /**
    * Whether the menu should close when the menu item is selected.
-   * @default true
    */
     shouldCloseOnSelect?: boolean;
 }
