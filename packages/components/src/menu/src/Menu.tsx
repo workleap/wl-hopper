@@ -40,7 +40,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
     const menuTriggerContext = useContext(InternalMenuTriggerContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
-    const { align = "start", direction = "bottom", allowFlip } = menuTriggerContext ?? {};
+    const { align = "start", direction = "bottom", allowFlip, shouldCloseOnSelect } = menuTriggerContext ?? {};
 
     let initialPlacement: Placement = `${direction} ${align}`;
 
@@ -84,7 +84,11 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                         className: styles["hop-Menu__divider"]
                     }],
                     [MenuItemContext, {
-                        size
+                        size,
+
+                        // The MenuTrigger doesn't expose shouldCloseOnSelect. They will implement it in the future, but for now we need to use it and forward it to the items directly.
+                        // https://github.com/adobe/react-spectrum/issues/8208
+                        shouldCloseOnSelect
                     }]
                 ]}
             >

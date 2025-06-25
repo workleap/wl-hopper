@@ -31,12 +31,17 @@ export interface MenuItemProps extends StyledComponentProps<RACMenuItemProps> {
      * @default "sm"
      */
     size?: ResponsiveProp<MenuItemSize>;
+    /**
+    * Whether the menu should close when the menu item is selected.
+    */
+    shouldCloseOnSelect?: boolean;
+
 }
 
 const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, MenuItemContext);
     const { style, ...ownProps } = useStyledSystem(props);
-    const { children, stylingProps, className, isInvalid, size: sizeProp, ...otherProps } = ownProps;
+    const { children, stylingProps, className, isInvalid, size: sizeProp, shouldCloseOnSelect, ...otherProps } = ownProps;
     const size = useResponsiveValue(sizeProp) || "sm";
     const textValue = props.textValue || (typeof children === "string" ? children : undefined);
 
@@ -64,6 +69,11 @@ const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
             ref={ref}
             style={mergedStyles}
             className={classNames}
+
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore - Undocumented prop in RACMenuItem. They will implement it in the future, but for now we need to use it.
+            // https://github.com/adobe/react-spectrum/issues/8208
+            closeOnSelect={shouldCloseOnSelect}
         >
             {renderProps => {
                 const { selectionMode, hasSubmenu, isSelected } = renderProps;
