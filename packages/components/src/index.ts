@@ -64,7 +64,7 @@ export type {
     SortDescriptor, SortDirection, TextDropItem, TextInputBase, TextInputDOMEvents, TextInputDOMProps, Validation, ValidationError,
     ValidationErrors, ValidationFunction, ValidationResult, ValidationState, ValueBase
 } from "@react-types/shared";
-export { useFilter, VisuallyHidden, type Placement } from "react-aria";
+export { mergeProps, useFilter, VisuallyHidden, type Placement } from "react-aria";
 export {
     Collection,
     DEFAULT_SLOT,
