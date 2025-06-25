@@ -45,7 +45,7 @@ const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { children, stylingProps, className, isInvalid, size: sizeProp, shouldCloseOnSelect, ...otherProps } = ownProps;
     const size = useResponsiveValue(sizeProp) || "sm";
     const textValue = props.textValue || (typeof children === "string" ? children : undefined);
-    console.log("shouldCloseOnSelect", shouldCloseOnSelect);
+
     const classNames = clsx(
         className,
         GlobalMenuItemCssSelector,
