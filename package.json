@@ -15,7 +15,7 @@
     "scripts": {
         "doc:start": "pnpm --filter=docs dev",
         "doc:storybook": "pnpm --filter=docs storybook",
-        "doc:generate": "pnpm --filter=docs generate",
+        "doc:generate": "turbo run generate:componentData --filter=docs",
         "doc:lint": "pnpm --filter=docs lint",
         "dev:basic": "pnpm -r --filter=basic dev",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules turbo run test --continue",

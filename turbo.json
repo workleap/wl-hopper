@@ -4,7 +4,7 @@
     "tasks": {
         "build": {
             "dependsOn": ["^build"],
-            "outputs": ["dist/**", ".next/**", "**/datas/**"],
+            "outputs": ["dist/**", ".next/**"],
             "cache": false
         },
         "lint": {
@@ -27,6 +27,12 @@
         },
         "test": {
             "outputs": ["node_modules/.cache/jest"]
+        },
+        "generate:componentData": {
+            "outputs": [
+                "apps/docs/datas/**",
+                "node_modules/.cache/component-data-cache.json"
+            ]
         }
     }
 }
