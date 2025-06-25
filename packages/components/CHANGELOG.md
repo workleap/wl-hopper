@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.11.3
+
+### Patch Changes
+
+- 680969e: MenuTrigger and MenuItem now expose a shouldCloseOnSelect property
+
 ## 1.11.2
 
 ### Patch Changes
