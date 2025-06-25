@@ -40,7 +40,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
     const menuTriggerContext = useContext(InternalMenuTriggerContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
-    const { align = "start", direction = "bottom", allowFlip, shouldCloseOnSelect = true } = menuTriggerContext ?? {};
+    const { align = "start", direction = "bottom", allowFlip, shouldCloseOnSelect } = menuTriggerContext ?? {};
 
     let initialPlacement: Placement = `${direction} ${align}`;
 
