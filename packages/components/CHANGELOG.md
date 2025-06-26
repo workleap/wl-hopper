@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.11.4
+
+### Patch Changes
+
+- 6c88d24: Rename isDismissible to isDismissable to follow RAC
+- Updated dependencies [7d6fe28]
+  - @hopper-ui/icons@2.10.0
+
 ## 1.11.3
 
 ### Patch Changes
