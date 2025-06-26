@@ -26,6 +26,12 @@ export interface ModalProps extends
     /**
      * Whether the Modal is dismissable.
      * @default true
+     * @deprecated Use `isDismissable` instead. This prop will be removed in a future version (~3 months from now).
+     */
+    isDismissible?: boolean;
+    /**
+     * Whether the Modal is dismissable.
+     * @default true
      */
     isDismissable?: boolean;
     /**
@@ -57,6 +63,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
         style,
         slot,
         isDismissable = true,
+        isDismissible = true,
         isKeyboardDismissDisabled,
         size: sizeProp,
         children: childrenProp,
@@ -98,7 +105,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
             onOpenChange={onOpenChange}
             hasImage={hasImage} // TODO: BaseModal should not need a hasImage prop. If we need some style for this, we should pass it through the className instead.
             size={size}
-            isDismissable={isDismissable}
+            isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
         >
             <Dialog
