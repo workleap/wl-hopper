@@ -26,7 +26,7 @@ export interface ModalProps extends
     /**
      * Whether the Modal is dismissable.
      * @default true
-     * @deprecated Use `isDismissable` instead. This prop will be removed in a future version (~3 months from now).
+     * @deprecated Use `isDismissable` instead. This prop will be removed in a future version (September 30th, 2025).
      */
     isDismissible?: boolean;
     /**
