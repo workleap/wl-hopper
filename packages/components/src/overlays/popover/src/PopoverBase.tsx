@@ -85,7 +85,7 @@ function PopoverBase(props: PopoverBaseProps, ref: ForwardedRef<HTMLElement>) {
 /**
  * A simple React Aria Popover with hopper's styling
  *
- * [View Documentation](https://hopper.workleap.design/components/Popover)
+ * [View Documentation](https://hopper.workleap.design/components/PopoverBase)
  */
 const _PopoverBase = forwardRef<HTMLElement, PopoverBaseProps>(PopoverBase);
 _PopoverBase.displayName = "PopoverBase";

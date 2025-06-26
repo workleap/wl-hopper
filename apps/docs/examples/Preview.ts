@@ -980,6 +980,9 @@ export const Previews: Record<string, Preview> = {
     "helper-message/docs/noicon": {
         component: lazy(() => import("@/../../packages/components/src/helper-message/docs/noicon.tsx"))
     },
+    "overlays/popover/docs/popover-base/preview": {
+        component: lazy(() => import("@/../../packages/components/src/overlays/popover/docs/popover-base/preview.tsx"))
+    },
     "layout/docs/flex/preview": {
         component: lazy(() => import("@/../../packages/components/src/layout/docs/flex/preview.tsx"))
     },
