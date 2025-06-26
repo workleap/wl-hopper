@@ -1,5 +1,19 @@
 # @hopper-ui/svg-icons
 
+## 2.19.0
+
+### Minor Changes
+
+- 5d47919: Modified the following SVG icons:
+
+  **Added**
+
+  | AI        |
+  | --------- |
+  | ai-16.svg |
+  | ai-24.svg |
+  | ai-32.svg |
+
 ## 2.18.0
 
 ### Minor Changes

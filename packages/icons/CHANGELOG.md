@@ -1,5 +1,17 @@
 # @hopper-ui/icons
 
+## 2.10.0
+
+### Minor Changes
+
+- 7d6fe28: Modified the following icons:
+
+  **Added**
+
+  | AI     |
+  | ------ |
+  | AiIcon |
+
 ## 2.9.2
 
 ### Patch Changes
