@@ -199,7 +199,7 @@ export const LongTitle = {
 export const NonDismissable = {
     ...Default,
     args: {
-        isDismissible: false
+        isDismissable: false
     }
 } satisfies Story;
 

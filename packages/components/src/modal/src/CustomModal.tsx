@@ -17,10 +17,16 @@ export interface CustomModalProps extends
     StyledComponentProps<DialogProps>,
     Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
     /**
-     * Whether the CustomModal is dismissible.
+     * Whether the Modal is dismissable.
      * @default true
+     * @deprecated Use `isDismissable` instead. This prop will be removed in a future version (September 30th, 2025).
      */
     isDismissible?: boolean;
+    /**
+     * Whether the CustomModal is dismissable.
+     * @default true
+     */
+    isDismissable?: boolean;
     /**
      * Whether pressing the escape key to close the dialog should be disabled.
      */
@@ -49,6 +55,7 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
         className,
         style,
         slot,
+        isDismissable = true,
         isDismissible = true,
         isKeyboardDismissDisabled,
         size: sizeProp,
@@ -89,7 +96,7 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
             defaultOpen={defaultOpen}
             onOpenChange={onOpenChange}
             size={size}
-            isDismissable={isDismissible}
+            isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
         >
             <Dialog

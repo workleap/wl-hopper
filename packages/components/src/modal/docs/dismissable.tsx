@@ -4,7 +4,7 @@ export default function Example() {
     return (
         <ModalTrigger>
             <Button variant="secondary">Open modal</Button>
-            <Modal isDismissible={false} isKeyboardDismissDisabled>
+            <Modal isDismissable={false} isKeyboardDismissDisabled>
                 {({ close }) => (
                     <>
                         <Heading>Fascinating Frog Facts!</Heading>

@@ -24,10 +24,16 @@ export interface ModalProps extends
     StyledComponentProps<DialogProps>,
     Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
     /**
-     * Whether the Modal is dismissible.
+     * Whether the Modal is dismissable.
      * @default true
+     * @deprecated Use `isDismissable` instead. This prop will be removed in a future version (September 30th, 2025).
      */
     isDismissible?: boolean;
+    /**
+     * Whether the Modal is dismissable.
+     * @default true
+     */
+    isDismissable?: boolean;
     /**
      * Whether pressing the escape key to close the dialog should be disabled.
      */
@@ -56,6 +62,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
         className,
         style,
         slot,
+        isDismissable = true,
         isDismissible = true,
         isKeyboardDismissDisabled,
         size: sizeProp,
@@ -98,7 +105,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
             onOpenChange={onOpenChange}
             hasImage={hasImage} // TODO: BaseModal should not need a hasImage prop. If we need some style for this, we should pass it through the className instead.
             size={size}
-            isDismissable={isDismissible}
+            isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
         >
             <Dialog
@@ -133,7 +140,7 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
                             >
                                 {children(renderProps)}
                             </Provider>
-                            {isDismissible && <CloseButton className={styles["hop-Modal__close"]} />}
+                            {isDismissable && <CloseButton className={styles["hop-Modal__close"]} />}
                         </div>
 
                         {/* Main content */}
