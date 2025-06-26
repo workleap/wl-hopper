@@ -6,15 +6,10 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/overlays/popover/src/PopoverBase.tsx
 ---
 
-The PopoverBase component is an internal building block that provides the core popover functionality with Hopper's styling.
-It's a wrapper around React Aria's Popover component that adds Hopper's design system styling and additional features.
+PopoverBase is a low-level building block that wraps React Aria's Popover to provide core popover functionality with Hopper's design system styling and enhancements.
+It doesn't impose layout or padding, making it ideal for building custom popover structures from scratch.
 
-## When to use
-
-PopoverBase is primarily intended as an internal component for building higher-level components.
-You should use it when you're building a custom overlay component that requires popover functionality.
-
-## Basic usage
+## Usage
 
 PopoverBase should be used with `PopoverTrigger` to handle the opening and closing of the popover:
 
