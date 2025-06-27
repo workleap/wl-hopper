@@ -11,6 +11,24 @@ interface Preview {
 }
 
 export const Previews: Record<string, Preview> = {
+    "box/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/box/docs/preview.tsx"))
+    },
+    "error-message/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/error-message/docs/preview.tsx"))
+    },
+    "error-message/docs/noicon": {
+        component: lazy(() => import("@/../../packages/components/src/error-message/docs/noicon.tsx"))
+    },
+    "error-message/docs/multipleerrors": {
+        component: lazy(() => import("@/../../packages/components/src/error-message/docs/multipleerrors.tsx"))
+    },
+    "helper-message/docs/preview": {
+        component: lazy(() => import("@/../../packages/components/src/helper-message/docs/preview.tsx"))
+    },
+    "helper-message/docs/noicon": {
+        component: lazy(() => import("@/../../packages/components/src/helper-message/docs/noicon.tsx"))
+    },
     "buttons/docs/button/preview": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/preview.tsx"))
     },
@@ -964,21 +982,6 @@ export const Previews: Record<string, Preview> = {
     },
     "icons/docs/richIcon/variants": {
         component: lazy(() => import("@/../../packages/icons/docs/richIcon/variants.tsx"))
-    },
-    "error-message/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/error-message/docs/preview.tsx"))
-    },
-    "error-message/docs/noicon": {
-        component: lazy(() => import("@/../../packages/components/src/error-message/docs/noicon.tsx"))
-    },
-    "error-message/docs/multipleerrors": {
-        component: lazy(() => import("@/../../packages/components/src/error-message/docs/multipleerrors.tsx"))
-    },
-    "helper-message/docs/preview": {
-        component: lazy(() => import("@/../../packages/components/src/helper-message/docs/preview.tsx"))
-    },
-    "helper-message/docs/noicon": {
-        component: lazy(() => import("@/../../packages/components/src/helper-message/docs/noicon.tsx"))
     },
     "layout/docs/flex/preview": {
         component: lazy(() => import("@/../../packages/components/src/layout/docs/flex/preview.tsx"))
