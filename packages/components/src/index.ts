@@ -2,6 +2,7 @@ export * from "./accordion/index.ts";
 export * from "./alert/index.ts";
 export * from "./avatar/index.ts";
 export * from "./badge/index.ts";
+export * from "./box/index.ts";
 export * from "./buttons/index.ts";
 export * from "./callout/index.ts";
 export * from "./card/index.ts";
