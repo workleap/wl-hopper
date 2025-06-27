@@ -19,7 +19,7 @@
 
     /* Upsell */
     --hop-ToggleButton-upsell-color: var(--hop-upsell-text);
-    --hop-ToggleButton-upsell-background-color: var(--hop-upsell-surface);
+    --hop-ToggleButton-upsell-background-color: var(--hop-upsell-weak-surface);
     --hop-ToggleButton-upsell-border: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-upsell-background-color); /* same color as the background */
     --hop-ToggleButton-upsell-color-selected: var(--hop-upsell-text-selected);
     --hop-ToggleButton-upsell-background-color-selected: var(--hop-upsell-surface-selected);
