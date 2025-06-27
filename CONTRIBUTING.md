@@ -48,14 +48,20 @@ pnpm generate-icons
 
 4. Run Changeset Command
 
-- After manually generating the icons, run the following command to create release notes for @hopper-ui/svg-icons and @hopper-ui/icons:
+- After manually generating the icons, you will need to create two changesets for the new icons:
+  - One for the `@hopper-ui/svg-icons` package
+  - One for the `@hopper-ui/icons` package
+
+You can do this by running the following command twice:
 ```sh
 pnpm changeset
 ```
-- Follow the prompts to describe the changes made and choose the appropriate version bump.
-- A template for the release notes of svg-icons and icons is available in the `.changeset` folder [here](./.changeset-templates/svg-icons-release.md).
 
-5- Go update the react16 icons from this [github repo](https://github.com/workleap/wl-hopper-react16/blob/main/CONTRIBUTING.md)
+- Follow the prompts to describe the changes made and choose the appropriate version bump.
+
+You can follow the template for the changeset to ensure that you provide the correct information for the release. The templates are located in the `.changeset-templates` folder.
+1- For the icons release, you can follow [this template](.changeset-templates\icons-release.md)
+2- For the svg-icons release, you can follow [this template](.changeset-templates\svg-icons-release.md)
 
 ## Updating or removing an icon
 
