@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.11.5
+
+### Patch Changes
+
+- 67df752: Prevent conflict between hover and focus states for Fields
+- 9d0f1b6: Fix tooltip line height
+- 223ce63: Update upsell button colors
+
 ## 1.11.4
 
 ### Patch Changes
