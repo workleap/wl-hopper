@@ -4,6 +4,8 @@
     --hop-TabList-overflow-y: auto;
     --hop-Tablist-border-radius: var(--hop-shape-rounded-md);
     --hop-TabList-padding-inline: var(--hop-space-inset-xs);
+
+    /* This is to ensure to the proper height of the TabList */
     --hop-TabList-padding-block: calc(var(--hop-space-inset-xs) + var(--hop-space-10));
 
     /* Standalone */

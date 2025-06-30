@@ -10,6 +10,7 @@
     --hop-InputGroup-border-color-hover: var(--hop-neutral-border-hover);
     --hop-InputGroup-border-color-focus: var(--hop-primary-border-focus);
     --hop-InputGroup-background-hover: var(--hop-neutral-surface-hover);
+    --hop-InputGroup-background-focus: var(--hop-neutral-surface);
     --hop-InputGroup-border-color-invalid: var(--hop-danger-border-strong);
     --hop-InputGroup-background-disabled: var(--hop-neutral-surface-disabled);
     --hop-InputGroup-border-color-disabled: var(--hop-neutral-border-disabled);
@@ -46,6 +47,7 @@
 }
 
 .hop-InputGroup[data-focus-within] {
+    --background: var(--hop-InputGroup-background-focus);
     --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color-focus)
 }
 
