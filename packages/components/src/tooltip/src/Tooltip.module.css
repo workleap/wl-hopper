@@ -4,10 +4,10 @@
     --hop-Tooltip-background: var(--hop-neutral-surface-strong);
     --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
     --hop-Tooltip-box-shadow: var(--hop-elevation-raised);
-    --hop-Tooltip-font-family: var(--hop-body-md-font-family);
-    --hop-Tooltip-font-size: var(--hop-body-md-font-size);
-    --hop-Tooltip-font-weight: var(--hop-body-md-font-weight);
-    --hop-Tooltip-line-height: var(--hop-body-md-line-height);
+    --hop-Tooltip-font-family: var(--hop-body-xs-font-family);
+    --hop-Tooltip-font-size: var(--hop-body-xs-font-size);
+    --hop-Tooltip-font-weight: var(--hop-body-xs-font-weight);
+    --hop-Tooltip-line-height: var(--hop-body-xs-line-height);
     --hop-Tooltip-font-smoothing: antialiased;
     --hop-Tooltip-color: var(--hop-neutral-text-strong);
     --hop-Tooltip-padding: var(--hop-space-inset-squish-md);
