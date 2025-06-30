@@ -57,9 +57,9 @@
     --hop-Button-upsell-color: var(--hop-upsell-text);
     --hop-Button-upsell-color-hover: var(--hop-upsell-text-hover);
     --hop-Button-upsell-color-pressed: var(--hop-upsell-text-press);
-    --hop-Button-upsell-background-color: var(--hop-upsell-surface);
-    --hop-Button-upsell-background-color-hover: var(--hop-upsell-surface-hover);
-    --hop-Button-upsell-background-color-pressed: var(--hop-upsell-surface-press);
+    --hop-Button-upsell-background-color: var(--hop-upsell-surface-weak);
+    --hop-Button-upsell-background-color-hover: var(--hop-upsell-surface-weak-hover);
+    --hop-Button-upsell-background-color-pressed: var(--hop-upsell-surface-weak-press);
     --hop-Button-upsell-border: var(--hop-Button-border-size) solid var(--hop-Button-upsell-background-color); /* same color as the background */
     --hop-Button-upsell-border-hover: var(--hop-Button-border-size) solid var(--hop-Button-upsell-background-color-hover); /* same color as the background */
     --hop-Button-upsell-border-pressed: var(--hop-Button-border-size) solid var(--hop-Button-upsell-background-color-pressed); /* same color as the background */
