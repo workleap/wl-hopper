@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.11.6
+
+### Patch Changes
+
+- 52637f8: Change the dependency version to a range
+
 ## 1.11.5
 
 ### Patch Changes
