@@ -35,7 +35,7 @@
     ],
     "scripts": {
         "dev": "tsup --config ./tsup.dev.ts",
-        "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsup --config ./tsup.build.ts",
+        "build": "cross-env NODE_OPTIONS=--max-old-space-size=16384 tsup --config ./tsup.build.ts",
         "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",

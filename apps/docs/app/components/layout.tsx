@@ -21,7 +21,7 @@ async function ComponentsLayout({ children }: { children: ReactNode }) {
             "status",
             "content",
             "placeholders",
-            "internal-parts"
+            "building-blocks"
         ],
         // the components paths are slightly different than the other pages
         // we want the URLS to be /components/ComponentName
