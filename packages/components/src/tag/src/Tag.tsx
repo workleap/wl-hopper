@@ -10,7 +10,7 @@ import { mergeProps, useObjectRef } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
 import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
-import { useFocusRing, useHover, useLink } from "react-aria";
+import { useFocusRing, useFocusable, useHover, useLink } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
@@ -230,6 +230,12 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
     const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
     const objectRef = useObjectRef(ref);
     const { linkProps } = useLink(props, objectRef);
+    const { focusableProps } = useFocusable({
+        ...props,
+        excludeFromTabOrder: true,
+        id: undefined
+    }, objectRef) ?? {};
+
     const { hoverProps, isHovered } = useHover({
         // disabled, since we don't allow selection.
         isDisabled: true,
@@ -272,7 +278,9 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ref={objectRef as any}
             aria-label={props.textValue}
-            {...mergeProps(itemProps, focusProps, hoverProps)}
+            {...mergeProps(itemProps, focusProps, hoverProps, focusableProps)}
+            // overwrite the tabIndex set by react-aria to ensure that the tag is not focusable by tabbing
+            tabIndex={-1}
             {...renderProps}
             data-disabled={props.isDisabled || undefined}
             data-hovered={isHovered || undefined}

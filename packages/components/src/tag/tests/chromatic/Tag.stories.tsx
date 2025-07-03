@@ -5,6 +5,7 @@ import { Avatar } from "../../../avatar/index.ts";
 import { Badge } from "../../../badge/index.ts";
 import { IconList } from "../../../icon-list/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
+import { Tooltip, TooltipTrigger } from "../../../tooltip/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { Tag, type TagVariant } from "../../src/index.ts";
 
@@ -359,6 +360,17 @@ export const Everything = {
                     </Tag>
                 </Inline>
             </Stack>
+        );
+    }
+} satisfies Story;
+
+export const TagWithTooltip = {
+    render: props => {
+        return (
+            <TooltipTrigger>
+                <Tag id="1"size="sm" {...props}>Tag 1</Tag>
+                <Tooltip>Tooltip content</Tooltip>
+            </TooltipTrigger>
         );
     }
 } satisfies Story;
