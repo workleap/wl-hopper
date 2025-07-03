@@ -367,7 +367,7 @@ export const Everything = {
 export const TagWithTooltip = {
     render: props => {
         return (
-            <TooltipTrigger>
+            <TooltipTrigger isOpen>
                 <Tag id="1"size="sm" {...props}>Tag 1</Tag>
                 <Tooltip>Tooltip content</Tooltip>
             </TooltipTrigger>
