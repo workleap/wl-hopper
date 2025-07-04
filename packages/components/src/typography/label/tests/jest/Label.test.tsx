@@ -53,4 +53,19 @@ describe("Label", () => {
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLLabelElement).toBeTruthy();
     });
+
+    it("should support htmlFor", () => {
+        const ref = createRef<HTMLLabelElement>();
+        const id = "new-id";
+        render(
+            <div>
+                <Label htmlFor={id} ref={ref}>Test</Label>
+                <input id={id} />
+            </div>
+        );
+
+        expect(ref.current).not.toBeNull();
+        expect(ref.current instanceof HTMLLabelElement).toBeTruthy();
+        expect(ref.current).toHaveProperty("htmlFor", id);
+    });
 });
