@@ -54,6 +54,49 @@ declare module "react-aria-components" {
 }
 ```
 
+### Forcing a full page reload
+
+Sometimes, you may want a link to fully reload the page. For example, when linking to an endpoint like /api/export or /logout. Hopper doesn't automatically reload the page for internal links, but you can implement a routerOptions.fullRefresh pattern in your router setup to support this behavior.
+
+```tsx
+import { BrowserRouter, type NavigateOptions, useHref, useNavigate } from "react-router-dom";
+import { HopperProvider } from "@hopper-ui/components";
+
+type CustomRouterOptions = NavigateOptions & { fullRefresh?: boolean };
+
+declare module "react-aria-components" {
+    interface RouterConfig {
+        routerOptions: CustomRouterOptions;
+    }
+}
+
+function App() {
+    const routerNavigate = useNavigate();
+    const navigate = (url: string, options: CustomRouterOptions = {}) => {
+        if (options.fullRefresh) {
+            window.location.href = url;
+        } else {
+            routerNavigate(url, options);
+        }
+    };
+
+    return (
+        <HopperProvider navigate={navigate} useHref={useHref}>
+            {/* Your app here... */}
+        </HopperProvider>
+    );
+}
+```
+You can now trigger a full reload like so:
+
+```tsx
+<Link href="/api/export" routerOptions={{ fullRefresh: true }}>
+  Download CSV
+</Link>
+```
+
+This is particularly useful when Hopper components such as `<Link>`, `<LinkButton>`, or `<MenuItem>` must behave like traditional `<a>` tags that cause a hard navigation, while still using Hopper’s consistent styling and focus management.
+
 ### React Router
 
 The [useNavigate](https://reactrouter.com/en/main/hooks/use-navigate) hook from `react-router-dom` returns a navigate function you can pass to `HopperProvider`. The [useHref](https://reactrouter.com/en/main/hooks/use-href) hook can also be provided if you're using React Router's `basename` option. Ensure that the component that calls `useNavigate` and renders `HopperProvider` is inside the router component (e.g. BrowserRouter) so that it has access to React Router's internal context. The React Router `<Routes>` element should also be defined inside Hopper's `<HopperProvider>` so that links inside the rendered routes have access to the router.
