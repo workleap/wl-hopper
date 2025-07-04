@@ -7,9 +7,9 @@ import {
 import clsx from "clsx";
 import type { CSSProperties, ReactNode } from "react";
 
-import { useFormProps } from "../../../form/index.ts";
+import { useFormProps, type FormStyleProps } from "../../../form/index.ts";
 import { useLocalizedString } from "../../../i18n/index.ts";
-import { cssModule, type NecessityIndicator } from "../../../utils/index.ts";
+import { cssModule, omitProps, type NecessityIndicator } from "../../../utils/index.ts";
 
 import { Label, type LabelProps } from "./Label.tsx";
 
@@ -46,10 +46,11 @@ export function FieldLabel(props: FieldLabelProps) {
         style,
         contextualHelp,
         isRequired,
-        necessityIndicator,
         wrapperProps,
+        necessityIndicator,
         ...otherProps
-    } = ownProps;
+        // some form props are not needed in a label
+    } = omitProps(ownProps as FieldLabelProps & FormStyleProps, ["isFluid", "isDisabled", "size"]);
 
     const classNames = clsx(
         className,

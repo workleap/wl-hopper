@@ -2,7 +2,6 @@ import {
     useStyledSystem,
     type StyledComponentProps
 } from "@hopper-ui/styled-system";
-import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
 import { Label as RACLabel, useContextProps, type LabelProps as RACLabelProps } from "react-aria-components";
@@ -46,15 +45,13 @@ function Label(props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) {
         ...style
     };
 
-    const filteredProps = filterDOMProps(otherProps, { labelable: true });
-
     return (
         <RACLabel
             ref={ref}
             className={classNames}
             slot={slot || undefined}
             style={mergedStyles}
-            {...filteredProps}
+            {...otherProps}
         >
             {children}
         </RACLabel>
