@@ -1,5 +1,16 @@
 # @hopper-ui/components
 
+## 1.12.0
+
+### Minor Changes
+
+- 8a67c63: Added Box component
+
+### Patch Changes
+
+- d3d9bb4: Fix issue where Label was not properly forwarding DOM properties
+- 517a4dc: Tags outside of TagGroup can now have a Tooltip
+
 ## 1.11.6
 
 ### Patch Changes
