@@ -1,7 +1,7 @@
 {
     "name": "@hopper-ui/components",
     "author": "Workleap",
-    "version": "1.11.5",
+    "version": "1.11.6",
     "description": "The components package.",
     "license": "Apache-2.0",
     "repository": {
@@ -50,7 +50,7 @@
         "react-dom": "^18 || ^19"
     },
     "dependencies": {
-        "@hopper-ui/icons": "workspace:*",
+        "@hopper-ui/icons": "^2.10",
         "@react-aria/interactions": "^3.24.0",
         "@react-aria/utils": "^3.28.1",
         "@react-stately/data": "^3.12.2",
@@ -59,6 +59,7 @@
         "clsx": "^2.1.1"
     },
     "devDependencies": {
+        "@hopper-ui/icons": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
         "@swc/core": "1.10.0",
         "@swc/helpers": "0.5.15",
