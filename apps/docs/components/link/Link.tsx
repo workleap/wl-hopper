@@ -1,3 +1,5 @@
+"use client";
+
 import { IconContext as HopperIconContext } from "@hopper-ui/icons";
 import clsx from "clsx";
 import {

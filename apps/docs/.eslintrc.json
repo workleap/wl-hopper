@@ -37,7 +37,8 @@
         "CodeOnlyExample": true,
         "Example": true,
         "ComposedComponents": true,
-        "FeatureFlag": true
+        "FeatureFlag": true,
+        "Link": true
     },
     "overrides": [
         {

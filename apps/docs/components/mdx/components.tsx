@@ -19,6 +19,7 @@ import Expand from "@/components/expand/Expand.tsx";
 import Figure from "@/components/figure/Figure.tsx";
 import Footnote from "@/components/footnote/Footnote.tsx";
 import NextImage from "@/components/image/Image.tsx";
+import Link from "@/components/link/Link.tsx";
 import MotionPreview from "@/components/motionPreview/MotionPreview.tsx";
 import PackageInstallation, {
     type PackageInstallationProps
@@ -71,6 +72,7 @@ export const components = {
     Tabs: Tabs,
     ComposedComponents: ComposedComponents,
     TableSection: TableSection,
+    Link: Link,
     Switcher: Switcher,
     FeatureFlag: FeatureFlag,
     PackageInstallation: (props: PackageInstallationProps) => {
