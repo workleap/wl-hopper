@@ -1,0 +1,21 @@
+{
+  "name": "@hopper-ui/dev-mcp",
+  "version": "0.1.0",
+  "author": "Workleap",
+  "description": "MCP server for Hopper UI development",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "hopper-dev-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "postbuild": "cp -r src/docs dist/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.15.0"
+  }
+}
