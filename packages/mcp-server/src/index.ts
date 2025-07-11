@@ -1,39 +1,85 @@
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
+import express from "express";
+import { randomUUID } from "node:crypto";
 
-import { prompts } from "./prompts.js";
-import { tools } from "./tools.js";
+import { setupServer } from "./server.js";
 
+console.log("Hopper MCP server\nlistening on port 3000...");
+const app = express();
+app.use(express.json());
 
-// Create an MCP server
-const server = new McpServer({
-    name: "hopper-mcp",
-    version: "0.2.0"
+// Map to store transports by session ID
+const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
+
+// Handle POST requests for client-to-server communication
+app.post("/mcp", async (req, res) => {
+    // Check for existing session ID
+    const sessionId = req.headers["mcp-session-id"] as string | undefined;
+    let transport: StreamableHTTPServerTransport;
+
+    if (sessionId && transports[sessionId]) {
+    // Reuse existing transport
+        transport = transports[sessionId];
+    } else if (!sessionId && isInitializeRequest(req.body)) {
+    // New initialization request
+        transport = new StreamableHTTPServerTransport({
+            sessionIdGenerator: () => randomUUID(),
+            onsessioninitialized: sId => {
+                // Store the transport by session ID
+                transports[sId] = transport;
+            },
+            // DNS rebinding protection is disabled by default for backwards compatibility. If you are running this server
+            // locally, make sure to set:
+            enableDnsRebindingProtection: true,
+            allowedHosts: ["127.0.0.1"]
+        });
+
+        // Clean up transport when closed
+        transport.onclose = () => {
+            if (transport.sessionId) {
+                delete transports[transport.sessionId];
+            }
+        };
+        const server = setupServer();
+
+        // Connect to the MCP server
+        await server.connect(transport);
+    } else {
+    // Invalid request
+        res.status(400).json({
+            jsonrpc: "2.0",
+            error: {
+                code: -32000,
+                message: "Bad Request: No valid session ID provided"
+            },
+            id: null
+        });
+
+        return;
+    }
+
+    // Handle the request
+    await transport.handleRequest(req, res, req.body);
 });
 
-tools(server);
-prompts(server);
+// Reusable handler for GET and DELETE requests
+const handleSessionRequest = async (req: express.Request, res: express.Response) => {
+    const sessionId = req.headers["mcp-session-id"] as string | undefined;
+    if (!sessionId || !transports[sessionId]) {
+        res.status(400).send("Invalid or missing session ID");
 
+        return;
+    }
 
-// Start receiving messages on stdin and sending messages on stdout
-const transport = new StdioServerTransport();
-await server.connect(transport);
+    const transport = transports[sessionId];
+    await transport.handleRequest(req, res);
+};
 
+// Handle GET requests for server-to-client notifications via SSE
+app.get("/mcp", handleSessionRequest);
 
-/*
-prompt to test:
+// Handle DELETE requests for session termination
+app.delete("/mcp", handleSessionRequest);
 
-Create a simple React app using Hopper Design System to manage products.
-
-Functional requirements:
-- It should have title, quantity fields and a button to save.
-- It should shows the created product on the bottom of the form (product list).
-- Products should be saved in local storage. No need to have any API call.
-- Products should be removable from the list.
-- The page should have a button on top to switch between dark and light mode.
-
-Non-functional requirements:
-- Use Hopper design system components, icons and best practices.
-- Just create a simple React app (Vite).
-- Try to use icons from Hopper for different part of the page.
-*/
+app.listen(3000);
