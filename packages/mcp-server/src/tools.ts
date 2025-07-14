@@ -40,10 +40,6 @@ export function tools(server: McpServer) {
         "Get description and details of a specific component.",
         inputSchema: { component_name: z.string() }
     }, async ({ component_name }) => {
-        if (component_name !== "HopperProvider") {
-            return getDocumentContentResult(`https://hopper.workleap.design/components/${component_name}`);
-        }
-
         return getComponentDocumentation(component_name, "description");
     });
 
@@ -80,6 +76,7 @@ export function tools(server: McpServer) {
         - installation: How to install Hopper Design System packages and styles in your project.
         - styles: How to use CSS properties and design tokens in Hopper Design System. We don't use "style" prop. Instead the properties are available as props on the components. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
+        - color-schemes: Learn how color schemes work in Hopper, including how applications can adapt to operating system's dark mode.
         - icons: How to use icons in Hopper Design System. Hopper offers a versatile and comprehensive icon system tailored to meet diverse project needs
         `,
         inputSchema: { guide: z.string() }
