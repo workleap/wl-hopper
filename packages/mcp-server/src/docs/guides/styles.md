@@ -2,6 +2,9 @@
 
 All components are designed to be styled using props.
 
+**VERY IMPORTANT!**
+**We DO NOT USE "style" prop. PLEASE DO NOT USE IT. Instead the properties are available as props on the components.**
+
 ## [Introduction](https://hopper.workleap.design/components/styled-system\#introduction)
 
 Hopper embraces a **Styled System-inspired** approach to styling components, allowing developers to define styles directly via props rather than writing CSS. This method provides a **type-safe and intuitive API**, making it easier to build consistent, on-brand interfaces without dealing with complex class names or global styles. With built-in **intellisense and static analysis**, developers can confidently apply design tokens without memorizing them, ensuring efficiency and reducing errors.

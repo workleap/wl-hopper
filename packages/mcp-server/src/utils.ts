@@ -1,24 +1,24 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkStringify from "remark-stringify";
+import { unified } from "unified";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export async function getComponentDocumentation(componentName: string, section: "props" | "examples" | "description"): Promise<CallToolResult> {
-    if (componentName !== "HopperProvider") {
-        return {
-            content: [{
-                type: "text",
-                isError: true,
-                text: `Component ${componentName} is not supported yet.`
-            }]
-        };
+    const docFilePath = join(__dirname, "docs", "components", componentName, `${section}.md`);
+    if (!existsSync(docFilePath)) {
+        return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
     }
+
+
     try {
-        const sectionPath = join(__dirname, "docs", "components", componentName, `${section}.md`);
-        const sectionContent = readFileSync(sectionPath, "utf-8");
+        const sectionContent = readFileSync(docFilePath, "utf-8");
 
         return {
             content: [{
@@ -105,7 +105,13 @@ export async function fetchDocumentContent(url: string) {
         // Remove any <script> tags from the main content
         const cleanedContent = mainContent.replace(/<script[^>]*>[\s\S]*?<\/script>/g, "");
 
-        return cleanedContent;
+        const file = await unified()
+            .use(rehypeParse)
+            .use(rehypeRemark)
+            .use(remarkStringify)
+            .process(cleanedContent);
+
+        return String(file);
     }
 
     throw new Error(`The fetch url doesn't contain <main> tag: ${url}`);

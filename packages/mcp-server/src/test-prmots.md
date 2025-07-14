@@ -60,8 +60,9 @@ Functional requirements:
 Non-functional requirements:
 
 - Use Hopper design system components, icons and best practices.
-- Just create a simple React app (using Vite).
-- Try to use icons from Hopper for different parts of the page.
+- Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
+- Use Typescript and tsx format.
+- Use pnpm all the times.
 
 ## Test 2: Basic but follows foundational tasks
 
@@ -94,6 +95,6 @@ Functional requirements:
 Non-functional requirements:
 
 - Use Hopper design system components, icons and best practices.
-- Just create a simple React app (using Vite).
-- Try to use icons from Hopper for different parts of the page.
+- Try to use icons from Hopper for different parts of the page. Never use emojis.
 - Products should be saved in local storage. No need to have any API call.
+- Use pnpm all the times.
