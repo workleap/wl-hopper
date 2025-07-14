@@ -1,5 +1,5 @@
 {
-    "extends": ["@workleap/typescript-configs/library.json"],
+    "extends": "@workleap/typescript-configs/library.json",
     "compilerOptions": {
         "noEmit": false,
         "allowImportingTsExtensions": false,
