@@ -11,15 +11,21 @@
   },
   "scripts": {
     "build": "tsc",
+    "dev": "nodemon --watch src --ext ts --exec \"tsx src/index.ts\"",
     "postbuild": "cp -r src/docs dist/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.15.0",
-    "express": "^5.1.0"
+    "@modelcontextprotocol/sdk": "1.15.1",
+    "express": "5.1.0"
   },
   "devDependencies": {
-    "@types/express": "^5.0.3"
+    "@types/express": "5.0.3",
+    "@types/node": "22.10.1",
+    "@workleap/typescript-configs": "3.0.2",
+    "nodemon": "3.1.10",
+    "tsx": "4.19.2",
+    "typescript": "5.5.4"
   }
 }
