@@ -5,7 +5,10 @@ import { randomUUID } from "node:crypto";
 
 import { setupServer } from "./server.js";
 
-console.log("Hopper MCP server\nlistening on port 3000...");
+const PORT = 3300;
+const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${PORT}`, `127.0.0.1:${PORT}`];
+
+console.log(`Hopper MCP server\nlistening on port ${PORT}...`);
 const app = express();
 app.use(express.json());
 
@@ -32,7 +35,7 @@ app.post("/mcp", async (req, res) => {
             // DNS rebinding protection is disabled by default for backwards compatibility. If you are running this server
             // locally, make sure to set:
             enableDnsRebindingProtection: true,
-            allowedHosts: ["127.0.0.1"]
+            allowedHosts: ALLOWED_HOSTS
         });
 
         // Clean up transport when closed
@@ -82,4 +85,4 @@ app.get("/mcp", handleSessionRequest);
 // Handle DELETE requests for session termination
 app.delete("/mcp", handleSessionRequest);
 
-app.listen(3000);
+app.listen(PORT);
