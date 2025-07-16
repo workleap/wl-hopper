@@ -10,8 +10,11 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-export async function getComponentDocumentation(componentName: string, section: "props" | "examples" | "description"): Promise<CallToolResult> {
-    const docFilePath = join(__dirname, "docs", "components", componentName, `${section}.md`);
+
+export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
+    const docFilePath = join(__dirname, "../../docs/dist/ai", "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
+    trackUserInteraction("get_component_documentation", { componentName, section });
+
     if (!existsSync(docFilePath)) {
         return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
     }
@@ -115,4 +118,9 @@ export async function fetchDocumentContent(url: string) {
     }
 
     throw new Error(`The fetch url doesn't contain <main> tag: ${url}`);
+}
+
+export function trackUserInteraction(event: string, data: Record<string, string | number | boolean> = {}) {
+    // Implement tracking logic here
+    console.log(`Tracking event: ${event}`, data);
 }

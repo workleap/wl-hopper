@@ -61,6 +61,7 @@ Non-functional requirements:
 
 - Use Hopper design system components, icons and best practices.
 - Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
+- Assume yourself as an experienced designer and follow general design patterns and practices.
 - Use Typescript and tsx format.
 - Use pnpm all the times.
 

@@ -18,6 +18,7 @@
         "doc:generate": "pnpm --filter=docs generate",
         "doc:lint": "pnpm --filter=docs lint",
         "dev:basic": "pnpm -r --filter=basic dev",
+        "mcp:dev": "pnpm --filter=docs generate:ai && pnpm --filter=@hopper-ui/dev-mcp dev",
         "test": "cross-env NODE_OPTIONS=--experimental-vm-modules turbo run test --continue",
         "test-storybook": "test-storybook",
         "build:doc": "turbo run build --filter=./apps/docs",

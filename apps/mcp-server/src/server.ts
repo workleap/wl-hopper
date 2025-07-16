@@ -1,6 +1,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
 import { prompts } from "./prompts.js";
+import { resources } from "./resources.js";
 import { tools } from "./tools.js";
 
 export function setupServer() {
@@ -10,7 +11,7 @@ export function setupServer() {
         version: "0.2.0"
     });
 
-    // Set up tools and prompts for the server
+    resources(server);
     tools(server);
     prompts(server);
 
