@@ -9,14 +9,15 @@
     "scripts": {
         "start": "next start",
         "dev": "next dev",
-        "build": "next build && pnpm generate:markdown",
+        "build": "next build",
         "eslint": "next lint",
         "storybook": "storybook dev -p 6010",
         "build:storybook": "storybook build",
         "generate": "pnpm run \"/^generate:.*/\"",
         "generate:componentData": "tsx scripts/generateComponentData.ts",
         "generate:previewRef": "tsx scripts/generatePreviewRef.ts",
-        "generate:markdown": "tsx scripts/generateMarkdownFromMdx.ts",
+        "generate:markdown": "tsx scripts/generateAllMarkdowns.ts",
+        "generate:ai": "tsx scripts/generateAiDocs.ts",
         "copy:images": "tsx scripts/copyImages.ts"
     },
     "dependencies": {
