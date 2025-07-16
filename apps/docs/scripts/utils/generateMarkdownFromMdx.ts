@@ -11,6 +11,7 @@ import { visit } from "unist-util-visit";
 // Import the getComponentProps function
 import { getComponentProps } from "./getComponentPropsStandalone.js";
 
+
 interface ProcessedFile {
     inputPath: string;
     outputPath: string;
@@ -24,8 +25,7 @@ interface MdxAttribute {
 }
 
 // Content directory paths
-const CONTENT_DIR = path.join(process.cwd(), "content");
-const OUTPUT_DIR = path.join(process.cwd(), "dist");
+
 
 // Helper function to extract text content from children
 function extractTextFromChildren(children: Node[]): string {
@@ -60,7 +60,7 @@ async function getExampleFileContent(srcPath: string): Promise<string | null> {
 }
 
 // Simple plugin to remove MDX-specific elements
-function remarkMdxToMarkdown() {
+function remarkMdxToMarkdown(options: GenerateMarkdownOptions) {
     return (tree: Node) => {
         let exampleCount = 0;
 
@@ -87,24 +87,33 @@ function remarkMdxToMarkdown() {
                         const src = srcAttr?.value as string;
 
                         if (src) {
-                            placeholderText = `**Example:** ${src}\n\n[EXAMPLE_CONTENT_${exampleCount}]`;
+                            placeholderText = `[EXAMPLE_CONTENT_${exampleCount}]`;
                             exampleCount++;
                         } else {
-                            placeholderText = "**Example:** code example";
+                            placeholderText = "";
                         }
                         break;
                     }
                     case "PropTable": {
-                        const componentAttr = attributes.find(attr => attr.name === "component");
-                        const component = componentAttr?.value || "component";
-                        // Use a placeholder that will be processed later
-                        placeholderText = `[PROPS_TABLE_${component}]`;
+                        if (options.props) {
+                            const componentAttr = attributes.find(attr => attr.name === "component");
+                            const component = componentAttr?.value || "component";
+                            // Use a placeholder that will be processed later
+                            placeholderText = `[PROPS_TABLE_${component}]`;
+                        } else {
+                            // When options.props is false, remove the PropTable entirely
+                            placeholderText = "";
+                        }
                         break;
                     }
                     case "MigrateGuide": {
                         const srcAttr = attributes.find(attr => attr.name === "src");
-                        const src = srcAttr?.value || "migration notes";
-                        placeholderText = `**Migration Guide:** ${src}`;
+                        const src = srcAttr?.value as string;
+                        if (src) {
+                            placeholderText = `[MIGRATION_GUIDE_${src}]`;
+                        } else {
+                            placeholderText = "";
+                        }
                         break;
                     }
                     case "ComposedComponents": {
@@ -231,27 +240,34 @@ async function findMdxFiles(dir: string): Promise<string[]> {
 }
 
 // Process a single MDX file using raw file reading (getComponentDetails has too many dependencies)
-async function processMdxFile(filePath: string): Promise<ProcessedFile | null> {
+async function processMdxFile(filePath: string, options: GenerateMarkdownOptions): Promise<ProcessedFile | null> {
     try {
         // Read the raw MDX content directly - this avoids Next.js context issues
         const rawContent = await fs.readFile(filePath, "utf8");
+
+        // Extract frontmatter before processing
+        const { frontmatter, contentWithoutFrontmatter } = extractAndParseFrontmatter(rawContent);
 
         // Use our existing remark pipeline
         const processor = unified()
             .use(remarkParse)
             .use(remarkFrontmatter, ["yaml"])
             .use(remarkMdx)
-            .use(remarkMdxToMarkdown)
+            .use(remarkMdxToMarkdown, options)
             .use(remarkStringify);
 
-        const result = await processor.process(rawContent);
+        const result = await processor.process(contentWithoutFrontmatter);
         let processedContent = String(result);
 
         //replace all \*\* with **
         processedContent = processedContent.replace(/\\\*\*/g, "**");
 
-        console.log(processedContent);
+        // Remove any remaining example placeholders
+        processedContent = processedContent.replace(/\\\*\*Example:\\\*\*[^\n]*\n\n?/g, "");
 
+        // Convert frontmatter to markdown and prepend to content
+        const frontmatterMarkdown = frontmatterToMarkdown(frontmatter);
+        processedContent = frontmatterMarkdown + processedContent;
 
         // Post-process to replace example placeholders with actual file content
         const exampleMatches = processedContent.match(/\\\[EXAMPLE\\_CONTENT\\_(\d+)\]/g);
@@ -291,15 +307,28 @@ async function processMdxFile(filePath: string): Promise<ProcessedFile | null> {
             for (const match of escapedPropsTableMatches) {
                 const componentName = match.replace(/\\\[PROPS\\_TABLE\\_(.+?)\]/, "$1");
 
-                try {
-                    const propsTableContent = await generatePropsTable(componentName);
-                    processedContent = processedContent.replace(match, propsTableContent);
-                    console.log(`✅ Replaced props table for ${componentName}`);
-                } catch (error) {
-                    console.error(`❌ Error generating props table for ${componentName}:`, error);
-                    processedContent = processedContent.replace(match, `**Props for ${componentName}:**\n\n(Error loading props data)`);
+                if (options.props) {
+                    try {
+                        const propsTableContent = await generatePropsTable(componentName);
+                        processedContent = processedContent.replace(match, propsTableContent);
+                        console.log(`✅ Replaced props table for ${componentName}`);
+                    } catch (error) {
+                        console.error(`❌ Error generating props table for ${componentName}:`, error);
+                        processedContent = processedContent.replace(match, `**Props for ${componentName}:**\n\n(Error loading props data)`);
+                    }
+                } else {
+                    // Remove the props table placeholder entirely when RENDER_PROPS is false
+                    processedContent = processedContent.replace(match, "");
+                    console.log(`⏭️ Skipped props table for ${componentName} (RENDER_PROPS is false)`);
                 }
             }
+        }
+
+        // When options.props is false, also remove "## Props" headings
+        if (!options.props) {
+            // Remove "## Props" heading that typically appears before PropTable
+            processedContent = processedContent.replace(/^## Props\s*$/gm, "");
+            console.log("⏭️ Removed \"## Props\" headings (RENDER_PROPS is false)");
         }
 
         // Post-process to replace composed components placeholders with actual tables
@@ -310,7 +339,7 @@ async function processMdxFile(filePath: string): Promise<ProcessedFile | null> {
                 const components = componentsString.split(",");
 
                 try {
-                    const composedComponentsTableContent = await generateComposedComponentsTable(components);
+                    const composedComponentsTableContent = await generateComposedComponentsTable(components, options);
                     processedContent = processedContent.replace(match, composedComponentsTableContent);
                     console.log(`✅ Replaced composed components table for [${components.join(", ")}]`);
                 } catch (error) {
@@ -320,9 +349,33 @@ async function processMdxFile(filePath: string): Promise<ProcessedFile | null> {
             }
         }
 
+        // Post-process to replace migration guide placeholders with actual content
+        const escapedMigrationGuideMatches = processedContent.match(/\\\[MIGRATION\\_GUIDE\\_(.+?)\]/g);
+        if (escapedMigrationGuideMatches) {
+            for (const match of escapedMigrationGuideMatches) {
+                const srcPath = match.replace(/\\\[MIGRATION\\_GUIDE\\_(.+?)\]/, "$1");
+
+                try {
+                    const migrationNotesContent = await getMigrationNotesContent(srcPath);
+                    if (migrationNotesContent) {
+                        processedContent = processedContent.replace(match, migrationNotesContent);
+                        console.log(`✅ Replaced migration guide for ${srcPath}`);
+                    } else {
+                        processedContent = processedContent.replace(match, "");
+                        console.log(`❌ No migration notes found for ${srcPath}`);
+                    }
+                } catch (error) {
+                    console.error(`❌ Error loading migration notes for ${srcPath}:`, error);
+                    processedContent = processedContent.replace(match, "");
+                }
+            }
+        }
+
         // Convert file path to output path
-        const relativePath = path.relative(CONTENT_DIR, filePath);
-        const outputPath = path.join(OUTPUT_DIR, relativePath.replace(".mdx", ".md"));
+        const relativePath = path.relative(options.contentDir, filePath);
+        const outputPath = options.flattenOutput
+            ? path.join(options.outputDir, path.basename(relativePath.replace(".mdx", ".md")))
+            : path.join(options.outputDir, relativePath.replace(".mdx", ".md"));
 
         return {
             inputPath: filePath,
@@ -400,19 +453,19 @@ async function generatePropsTable(componentName: string): Promise<string> {
 }
 
 // Helper function to extract component information from MDX files
-async function getComponentInfo(componentName: string): Promise<{ title: string; description: string } | null> {
+async function getComponentInfo(componentName: string, options: GenerateMarkdownOptions): Promise<{ title: string; description: string } | null> {
     try {
         // Find the MDX file for this component
         const possiblePaths = [
-            path.join(CONTENT_DIR, "components", "buttons", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "forms", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "content", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "collections", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "navigation", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "overlays", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "pickers", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "status", `${componentName}.mdx`),
-            path.join(CONTENT_DIR, "components", "icons", `${componentName}.mdx`)
+            path.join(options.contentDir, "components", "buttons", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "forms", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "content", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "collections", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "navigation", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "overlays", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "pickers", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "status", `${componentName}.mdx`),
+            path.join(options.contentDir, "components", "icons", `${componentName}.mdx`)
         ];
 
         for (const filePath of possiblePaths) {
@@ -446,10 +499,10 @@ async function getComponentInfo(componentName: string): Promise<{ title: string;
 }
 
 // Helper function to generate composed components table
-async function generateComposedComponentsTable(components: string[]): Promise<string> {
+async function generateComposedComponentsTable(components: string[], options: GenerateMarkdownOptions): Promise<string> {
     const componentInfos = await Promise.all(
         components.map(async componentName => {
-            const info = await getComponentInfo(componentName);
+            const info = await getComponentInfo(componentName, options);
 
             return {
                 name: componentName,
@@ -485,23 +538,126 @@ async function writeProcessedFile(processedFile: ProcessedFile): Promise<void> {
     }
 }
 
+// Helper function to read migration notes file content
+async function getMigrationNotesContent(srcPath: string): Promise<string | null> {
+    try {
+        // Convert the src path to actual file path
+        // src="buttons/docs/migration-notes" -> packages/components/src/buttons/docs/migration-notes.md
+        const filePath = path.join(process.cwd(), "..", "..", "packages", "components", "src", `${srcPath}.md`);
+        console.log(`Attempting to read migration notes file: ${filePath}`);
+        const content = await fs.readFile(filePath, "utf8");
+        console.log(`✅ Successfully read migration notes file: ${filePath}`);
+
+        return content;
+    } catch (error) {
+        console.warn(`❌ Could not read migration notes file: ${srcPath}`, error);
+
+        return null;
+    }
+}
+
+// Helper function to extract and parse frontmatter
+function extractAndParseFrontmatter(content: string): { frontmatter: Record<string, unknown> | null; contentWithoutFrontmatter: string } {
+    const frontmatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+
+    if (!frontmatterMatch) {
+        return { frontmatter: null, contentWithoutFrontmatter: content };
+    }
+
+    const frontmatterContent = frontmatterMatch[1];
+    const contentWithoutFrontmatter = frontmatterMatch[2];
+
+    // Simple YAML parsing for our use case
+    const frontmatter: Record<string, unknown> = {};
+    const lines = frontmatterContent.split("\n");
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (!line) {
+            continue;
+        }
+
+        if (line.includes(":")) {
+            const [key, ...valueParts] = line.split(":");
+            const value = valueParts.join(":").trim();
+
+            if (key.trim() === "links") {
+                // Handle links object
+                frontmatter.links = {};
+                i++; // Move to next line
+                while (i < lines.length && lines[i].startsWith("    ")) {
+                    const linkLine = lines[i].trim();
+                    if (linkLine.includes(":")) {
+                        const [linkKey, ...linkValueParts] = linkLine.split(":");
+                        const linkValue = linkValueParts.join(":").trim();
+                        (frontmatter.links as Record<string, string>)[linkKey.trim()] = linkValue;
+                    }
+                    i++;
+                }
+                i--; // Adjust for the outer loop increment
+            } else {
+                frontmatter[key.trim()] = value.replace(/^["']|["']$/g, ""); // Remove quotes
+            }
+        }
+    }
+
+    return { frontmatter, contentWithoutFrontmatter };
+}
+
+// Helper function to convert frontmatter to markdown
+function frontmatterToMarkdown(frontmatter: Record<string, unknown> | null): string {
+    if (!frontmatter) {
+        return "";
+    }
+
+    let markdown = "";
+
+    // Add title as H1
+    if (frontmatter.title) {
+        markdown += `# ${frontmatter.title}\n\n`;
+    }
+
+    // Add description
+    if (frontmatter.description) {
+        markdown += `${frontmatter.description}\n\n`;
+    }
+
+    // Add links without header
+    if (frontmatter.links) {
+        for (const [key, value] of Object.entries(frontmatter.links as Record<string, string>)) {
+            const linkKey = key.charAt(0).toUpperCase() + key.slice(1); // Capitalize first letter
+            markdown += `[${linkKey}](${value})\n\n`;
+        }
+    }
+
+    return markdown;
+}
+
+interface GenerateMarkdownOptions {
+    contentDir: string;
+    outputDir: string;
+    props: boolean;
+    flattenOutput?: boolean;
+}
+
+
 // Main function
-async function main() {
+export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions): Promise<void> {
     try {
         console.log("🚀 Starting MDX to Markdown conversion...");
 
         // Ensure output directory exists
-        await fs.mkdir(OUTPUT_DIR, { recursive: true });
+        await fs.mkdir(options.outputDir, { recursive: true });
 
         // Find all MDX files
-        const mdxFiles = await findMdxFiles(CONTENT_DIR);
+        const mdxFiles = await findMdxFiles(options.contentDir);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Process files
         const processedFiles: ProcessedFile[] = [];
 
         for (const filePath of mdxFiles) {
-            const processed = await processMdxFile(filePath);
+            const processed = await processMdxFile(filePath, options);
             if (processed) {
                 processedFiles.push(processed);
             }
@@ -522,16 +678,15 @@ async function main() {
             dependencies: {}
         };
 
-        const packageJsonPath = path.join(OUTPUT_DIR, "package.json");
+        const packageJsonPath = path.join(options.outputDir, "package.json");
         await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
         console.log(`✅ Successfully converted ${processedFiles.length} MDX files to Markdown`);
-        console.log(`📦 Output directory: ${OUTPUT_DIR}`);
+        console.log(`📦 Output directory: ${options.outputDir}`);
     } catch (error) {
         console.error("❌ Error during conversion:", error);
         process.exit(1);
     }
 }
 
-// Run the script
-main();
+
