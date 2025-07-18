@@ -1,4 +1,4 @@
-import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
+import type { CallToolResult, RequestInfo } from "@modelcontextprotocol/sdk/types.js";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
 import rehypeParse from "rehype-parse";
@@ -6,9 +6,27 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { fileURLToPath } from "url";
+import winston from "winston";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Configure winston logger for user interactions
+const interactionLogger = winston.createLogger({
+    level: "info",
+    format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.json()
+    ),
+    transports: [
+        new winston.transports.File({
+            filename: join(__dirname, "..", "logs", "user-interactions.log"),
+            maxsize: 10 * 1024 * 1024, // 10MB
+            maxFiles: 5,
+            tailable: true
+        })
+    ]
+});
 
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
@@ -120,7 +138,18 @@ export async function fetchDocumentContent(url: string) {
     throw new Error(`The fetch url doesn't contain <main> tag: ${url}`);
 }
 
-export function trackUserInteraction(event: string, data: Record<string, string | number | boolean> = {}) {
-    // Implement tracking logic here
-    console.log(`Tracking event: ${event}`, data);
+export function trackUserInteraction(event: string, data: Record<string, string | number | boolean> = {}, requestInfo?: RequestInfo) {
+    const sessionId = requestInfo?.headers["mcp-session-id"];
+    const logData = {
+        event,
+        sessionId,
+        data,
+        timestamp: new Date().toISOString()
+    };
+
+    // Log to file using winston
+    interactionLogger.info("User interaction tracked", logData);
+
+    // Also log to console for debugging
+    console.log(`Tracking event: ${event}`, { ...data, sessionId });
 }

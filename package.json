@@ -16,6 +16,7 @@
         "doc:start": "pnpm --filter=docs dev",
         "doc:storybook": "pnpm --filter=docs storybook",
         "doc:generate": "pnpm --filter=docs generate",
+        "doc:generateAi": "pnpm --filter=docs generate:ai",
         "doc:lint": "pnpm --filter=docs lint",
         "dev:basic": "pnpm -r --filter=basic dev",
         "mcp:dev": "pnpm --filter=docs generate:ai && pnpm --filter=@hopper-ui/dev-mcp dev",

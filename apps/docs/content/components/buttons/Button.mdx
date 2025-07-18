@@ -17,6 +17,20 @@ A `Button` uses the following components:
 
 <ComposedComponents components={["Icon", "IconList", "Text"] }/>
 
+```
+<Button>
+    <Icon />
+    <Text />
+</Button>
+```
+
+### Dos and Don'ts
+
+| Do ✅ | Don't ❌ | Description |
+|-------|----------|-------------|
+| ```<Button><Text>Delete Item</Text><Icon /></Button>``` | ```<Button>text without text tag<Icon /></Button>``` | when you have icons it is required to wrap the button's text with `<Text/>` component.|
+
+
 ## Usage
 
 ### Variants
