@@ -4,6 +4,7 @@ All components are designed to be styled using props.
 
 **VERY IMPORTANT!**
 **We DO NOT USE "style" prop. PLEASE DO NOT USE IT. Instead the properties are available as props on the components.**
+**We DO NOT USE ".css" files or modules as much as possible. Always use provided Styled Props or use UNSAFE version of css properties for fallback.**
 
 ## [Introduction](https://hopper.workleap.design/components/styled-system\#introduction)
 

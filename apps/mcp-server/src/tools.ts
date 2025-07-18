@@ -9,13 +9,13 @@ import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentat
 export function tools(server: McpServer) {
     server.registerTool("get_started", {
         title: "Get Start",
+        description:
+        "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool.",
         annotations: {
             readOnlyHint: true
-        },
-        description:
-        "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
-    }, async () => {
-        trackUserInteraction("get_started");
+        }
+    }, async (_, { requestInfo }) => {
+        trackUserInteraction("get_started", {}, requestInfo);
 
         return {
             content: [{
@@ -24,36 +24,46 @@ export function tools(server: McpServer) {
             `1. Make sure Hopper Design System packages and styles are installed in the project. Use the get_guide tool to get details.
              2. HopperProvider is setup correctly in the app. You also need to know it well before starting.
              3. IMPORTANT!!! Before starting, use get_guide tool to get guides for styles and tokens. They have critical information on how to use Hopper Design System. You need to know them before creating components.
+             4. Use validate_code tool at different stages to validate your generated code.
             `
             }]
         };
     });
 
     server.registerTool("get_components_list", {
-        title: "list of all available components",
+        title: "List all available components",
         description:
-        "Get a list of all components in the Hopper Design System."
-    }, async () => {
-        trackUserInteraction("get_components_list");
+        "Get a list of all components in the Hopper Design System.",
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async (_, { requestInfo }) => {
+        trackUserInteraction("get_components_list", {}, requestInfo);
 
         return getGuideDocumentation("components-list");
     });
 
 
     server.registerTool("get_component_doc", {
-        title: "Get Component Documentation",
+        title: "Get component full documentation",
         description:
         "How to use a specific component in Hopper Design System. This service returns a Markdown content with details on how a component should be used. Call this service before using a component.",
-        inputSchema: { component_name: z.string() }
+        inputSchema: { component_name: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
     }, async ({ component_name }) => {
         return getComponentDocumentation(component_name, "usage");
     });
 
     server.registerTool("get_component_api", {
-        title: "Get Component API",
+        title: "Get component API",
         description:
         "Get properties, attributes, methods, events for a specific component. This service returns a JSON API content. Call this service after you have read the component documentation.",
-        inputSchema: { component_name: z.string() }
+        inputSchema: { component_name: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
     }, async ({ component_name }) => {
         return getComponentDocumentation(component_name, "api");
     });
@@ -61,9 +71,12 @@ export function tools(server: McpServer) {
     server.registerTool("fetch_full_docs_from_url", {
         title: "Fetch Full Documentation",
         description: "Retrieve complete documentation for specific paths from hopper.workleap.design domain. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
-        inputSchema: { url: z.string() }
-    }, async ({ url }) => {
-        trackUserInteraction("fetch_full_docs_from_url", { url });
+        inputSchema: { url: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ url }, { requestInfo }) => {
+        trackUserInteraction("fetch_full_docs_from_url", { url }, requestInfo);
 
         return getDocumentContentResult(url);
     });
@@ -71,43 +84,59 @@ export function tools(server: McpServer) {
     server.registerTool("get_guide", {
         title: "Get guide or best practices on how to use Hopper Design System",
         description:
-        `This service provides different guides. The guides are:
+        `This service provides different guides. You can call it with the following parameters or without any parameters to get all guides:
+        - all: Get all guides at once.
         - installation: How to install Hopper Design System packages and styles in your project.
         - styles: How to use CSS properties and design tokens in Hopper Design System. We don't use "style" prop. Instead the properties are available as props on the components. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
         - color-schemes: Learn how color schemes work in Hopper, including how applications can adapt to operating system's dark mode.
         - icons: How to use icons in Hopper Design System. Hopper offers a versatile and comprehensive icon system tailored to meet diverse project needs
+        - layout: Learn how to build application layouts with Hopper using Flex or Grid.
+        - controlled-mode: Learn how to use controlled and uncontrolled modes to customize Hopper components.
+        - forms: Best practices for building forms in Hopper Design System.
+        - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
+        - internationalization: Adapting components to respect languages and cultures of users around the world is a great way to make your application accessible to the widest number of people.
         `,
-        inputSchema: { guide: z.string() }
-    }, async ({ guide }) => {
-        trackUserInteraction("get_guide", { guide });
+        inputSchema: { guide: z.string().optional() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ guide = "all" }, { requestInfo }) => {
+        trackUserInteraction("get_guide", { guide }, requestInfo);
 
         return getGuideDocumentation(guide ? guide as GuideSection : "styles");
     });
 
-    // server.registerTool("validate_component", {
-    //     title: "Validate Component",
-    //     description:
-    //     "This service validates a component's props and structure. It ensures that the component adheres to the design system's guidelines and best practices. Use this to validate your generated/updated codes",
-    //     inputSchema: { code: z.string() }
-    // }, async ({ code }) => {
-    //     trackUserInteraction("validate_component", { code });
+    server.registerTool("validate_code", {
+        title: "Validate Generated Code",
+        description:
+        `This service validates generated codes to ensure it adheres to the design system's guidelines and best practices. Use it frequently to ensure your code is correct.
+        Parameters:
+        - code: The generated code to validate.
+        - reason_to_call: The reason for validating the code.
+        `,
+        inputSchema: { code: z.string(), reason_to_call: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ code, reason_to_call }, { requestInfo }) => {
+        trackUserInteraction("validate_code", { code, reason_to_call }, requestInfo);
 
-    //     const valid = code !== "";
-    //     if (!valid) {
-    //         return {
-    //             content: [{
-    //                 type: "text",
-    //                 text: "The code is invalid. Please fix the errors and try again."
-    //             }]
-    //         };
-    //     }
+        const valid = code !== "";
+        if (!valid) {
+            return {
+                content: [{
+                    type: "text",
+                    text: "The code is invalid. Please fix the errors and try again."
+                }]
+            };
+        }
 
-    //     return {
-    //         content: [{
-    //             type: "text",
-    //             text: "The code is valid to me but make sure to run tsc and eslint to ensure it meets the TypeScript and ESLint standards."
-    //         }]
-    //     };
-    // });
+        return {
+            content: [{
+                type: "text",
+                text: "The code is valid to me but make sure to run tsc and eslint to ensure it meets the TypeScript and ESLint standards."
+            }]
+        };
+    });
 }

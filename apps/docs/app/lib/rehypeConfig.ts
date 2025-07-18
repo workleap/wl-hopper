@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // this file is hard to type, since the unified version used between frontmatter and contentlayer are different and expecting different types.
 
-import { visit } from "unist-util-visit";
 import rehypePrettyCode, { type Options } from "rehype-pretty-code";
 import type { BuiltinTheme } from "shiki";
+import { visit } from "unist-util-visit";
 
 export const rehypeOptions: Options = {
     // Use one of Shiki's packaged themes
