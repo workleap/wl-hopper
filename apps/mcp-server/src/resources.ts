@@ -17,8 +17,8 @@ export function resources(server: McpServer) {
             title: "Component docs",
             description: `JSON API and Markdown usage chunks for each component. Allowed section values: ${ALLOWED_SECTIONS.join(", ")}`
         },
-        async (uri, { component, section }) => {
-            trackUserInteraction("get_component_description", { component: component.toString(), section: section.toString() });
+        async (uri, { component, section }, { requestInfo }) => {
+            trackUserInteraction("get_component_description [resource]", { component: component.toString(), section: section.toString() }, requestInfo);
 
             // Validate section parameter
             const validatedSection = SectionSchema.parse(section);

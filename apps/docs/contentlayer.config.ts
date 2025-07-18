@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineDocumentType, defineNestedType, makeSource } from "contentlayer/source-files";
 import { rehypePluginOptions } from "./app/lib/rehypeConfig.ts";
 
@@ -243,11 +244,119 @@ export const Components = defineDocumentType(() => ({
     }
 }));
 
+import fs from "fs";
+import path from "path";
+
 export default makeSource({
     contentDirPath: "./content",
     documentTypes: [Page, Tokens, Components, Icons, Guides, GettingStarted, StyledSystem],
     mdx: {
         remarkPlugins: [],
         rehypePlugins: rehypePluginOptions
+    },
+    onSuccess: async importData => {
+        const { allDocuments } = await importData();
+
+        for (const doc of allDocuments) {
+            const mdxPath = path.join("content", doc._raw.sourceFilePath);
+            const outputMdPath = mdxPath.replace(/\.mdx$/, ".md");
+
+
+            await convertMdxToMd({
+                mdxPath,
+                outputPath: `./dist/generated-md/${outputMdPath}`
+            });
+        }
     }
 });
+
+import type { Root } from "mdast";
+import type { MdxJsxFlowElement } from "mdast-util-mdx";
+import { remark } from "remark";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkMdx from "remark-mdx";
+import remarkStringify from "remark-stringify";
+import { visit } from "unist-util-visit";
+import { getComponentDetails } from "./app/lib/getComponentDetails.ts";
+import { mdxToMarkdown } from "./mdxToMarkdown.tsx";
+
+interface ConvertMdxToMdOptions {
+    mdxPath: string;
+    outputPath: string;
+}
+
+function isJsxNode(node: any): node is MdxJsxFlowElement {
+    return node.type === "mdxJsxFlowElement" ;
+}
+
+// Transformer plugin to handle JSX conversion
+function jsxToMarkdown() {
+    return (tree: Root) => {
+        visit(tree, (node, index, parent) => {
+            if (!parent || typeof index !== "number") {return;}
+            if (!["yaml", "mdxJsxFlowElement"].includes(node.type)) {
+                return;
+            }
+
+            //console.log("--->", tree);
+            if (node.type === "yaml") {
+                parent.children[index] = {
+                    type: "heading",
+                    depth: 1,
+                    children: [{ type: "text", value: "Title" }]
+                };
+            } else if (isJsxNode(node) && node.name && !["CodeOnlyExample"].includes(node.name)) {
+                const tag = node.name;
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const content = (node.children?.[0] as any)?.value || "";
+
+                if (tag === "MyNote") {
+                    const titleAttr = node.attributes?.find(attr => attr.type === "mdxJsxAttribute" && attr.name === "title");
+                    const title = typeof titleAttr?.value === "string" ? titleAttr.value : "Note";
+                    const block = `> **${title}:** ${content}`;
+
+                    parent.children[index] = {
+                        type: "paragraph",
+                        children: [{ type: "text", value: block }]
+                    };
+                } else if (tag === "Callout") {
+                    const typeAttr = node.attributes?.find(attr => attr.type === "mdxJsxAttribute" && attr.name === "type");
+                    const type = typeof typeAttr?.value === "string" ? typeAttr.value : "note";
+                    const icon = type === "info" ? "💡" : type === "warning" ? "⚠️" : "👉";
+                    const block = `> ${icon} *${type.charAt(0).toUpperCase() + type.slice(1)}:* ${content}`;
+
+                    parent.children[index] = {
+                        type: "paragraph",
+                        children: [{ type: "text", value: block }]
+                    };
+                } else {
+                    // For other JSX elements, we can convert them to a simple text block
+                    parent.children[index] = {
+                        type: "paragraph",
+                        children: [{ type: "text", value: "Not supported yet" }]
+                    };
+                }
+            }
+        });
+    };
+}
+
+export async function convertMdxToMd({ mdxPath, outputPath }: ConvertMdxToMdOptions): Promise<void> {
+    const mdxSource = fs.readFileSync(mdxPath, "utf-8");
+
+    const markdown = await remark()
+        .use(remarkFrontmatter, ["yaml"])
+        .use(remarkMdx)
+        .use(jsxToMarkdown)
+        // .use(remarkMdxToMarkdown, {
+        //     contentDir: "./content",
+        //     outputDir: "./dist/generated-md",
+        //     props: true,
+        //     flattenOutput: true
+        // })
+        .use(remarkStringify)
+        .process(mdxSource);
+
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.writeFileSync(outputPath, await mdxToMarkdown(String(markdown)), "utf-8");
+}

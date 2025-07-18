@@ -60,7 +60,7 @@ async function getExampleFileContent(srcPath: string): Promise<string | null> {
 }
 
 // Simple plugin to remove MDX-specific elements
-function remarkMdxToMarkdown(options: GenerateMarkdownOptions) {
+export function remarkMdxToMarkdown(options: GenerateMarkdownOptions) {
     return (tree: Node) => {
         let exampleCount = 0;
 
@@ -178,6 +178,17 @@ function remarkMdxToMarkdown(options: GenerateMarkdownOptions) {
                         delete nodeData.attributes;
 
                         return;
+                    }
+                    case "CodeOnlyExample": {
+                        const srcAttr = attributes.find(attr => attr.name === "src");
+                        const src = srcAttr?.value as string;
+
+                        if (src) {
+                            placeholderText = `**[CodeOnlyExample (src="${src}", isOpen)]**`;
+                        } else {
+                            placeholderText = "**[CodeOnlyExample]**";
+                        }
+                        break;
                     }
                     default: {
                         // For unknown components, try to extract attributes
