@@ -2,9 +2,9 @@
 
 import { allComponents } from "@/.contentlayer/generated";
 
-import Card from "@/components/card/Card";
+import Card from "@/app/ui/components/card/Card";
+import Title from "@/app/ui/components/title/Title";
 import { EmptyComponent, Icon } from "@/components/icon";
-import Title from "@/components/title/Title";
 import { OverviewComponents } from "@/examples/overview";
 import Link from "next/link";
 

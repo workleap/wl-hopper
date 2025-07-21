@@ -2,7 +2,7 @@
 
 import { allComponents } from "@/.contentlayer/generated";
 
-import Title from "@/components/title/Title";
+import Title from "@/app/ui/components/title/Title.tsx";
 import { type ColorScheme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import { HopperProvider } from "@hopper-ui/components";
 

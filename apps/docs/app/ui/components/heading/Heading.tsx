@@ -1,8 +1,8 @@
 "use client";
 
 import LinkList, { type Links } from "@/app/ui/components/linkList/LinkList.tsx";
-import Tag from "@/components/tag/Tag.tsx";
-import Title from "@/components/title/Title.tsx";
+import Tag from "@/app/ui/components/tag/Tag";
+import Title from "@/app/ui/components/title/Title";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { Callout, type ColorScheme, Content, Heading as HopperHeading, HopperProvider } from "@hopper-ui/components";
 import clsx from "clsx";

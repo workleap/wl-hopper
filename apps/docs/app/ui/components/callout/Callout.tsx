@@ -1,10 +1,10 @@
 "use client";
 
+import clsx from "clsx";
 import { createContext, type ForwardedRef, forwardRef, type ReactNode } from "react";
 import { type ContextValue, useContextProps } from "react-aria-components";
-import clsx from "clsx";
 
-import { Icon, WarningIcon, CheckIcon, ErrorIcon, InfoIcon, MessageIcon } from "@/components/icon";
+import { CheckIcon, ErrorIcon, Icon, InfoIcon, MessageIcon, WarningIcon } from "@/components/icon";
 
 import "./callout.css";
 
@@ -47,4 +47,4 @@ export const CalloutContext = createContext<ContextValue<Partial<CalloutProps>, 
 const _Callout = forwardRef<HTMLDivElement, CalloutProps>(Callout);
 _Callout.displayName = "Callout";
 
-export { _Callout as Callout };
+export default _Callout;

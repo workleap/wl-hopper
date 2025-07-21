@@ -29,7 +29,7 @@ export interface PropsReferenceTableProps {
     rows: string[][];
 }
 
-export function PropsReferenceTable({ rows }: PropsReferenceTableProps) {
+export default function PropsReferenceTable({ rows }: PropsReferenceTableProps) {
     return (
         <Table
             className="hd-props-reference-table"

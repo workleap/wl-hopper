@@ -3,8 +3,8 @@
 import clsx from "clsx";
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
+import LangIcon from "@/app/ui/components/pre/langIcon/LangIcon";
 import CopyButton from "@/components/copyButton/CopyButton.tsx";
-import LangIcon from "@/components/pre/langIcon/LangIcon";
 
 import "./pre.css";
 

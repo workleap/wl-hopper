@@ -4,9 +4,9 @@ import { capitalize } from "@/app/lib/capitalize.ts";
 import { getComponentProps } from "@/app/lib/getComponentProps.ts";
 import { MDXRemote } from "next-mdx-remote/rsc";
 
+import Title from "@/app/ui/components/title/Title.tsx";
 import Collapsible from "@/components/collapsible/Collapsible.tsx";
 import { highlightCode, HighlightCode } from "@/components/highlightCode";
-import Title from "@/components/title/Title.tsx";
 
 import { PropTableCodeExample } from "./PropTableCodeExample.tsx";
 import type { Item } from "./PropTableRender.tsx";

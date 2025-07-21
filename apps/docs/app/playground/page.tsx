@@ -1,4 +1,4 @@
-import Title from "@/components/title/Title";
+import Title from "@/app/ui/components/title/Title";
 
 export default function PlaygroundPage() {
     return (

@@ -1,5 +1,5 @@
+import Tabs from "@/app/ui/components/tabs/Tabs";
 import { HighlightCode, highlightCode } from "@/components/highlightCode";
-import Tabs from "@/components/tabs/Tabs.tsx";
 
 import type { ReactElement } from "react";
 
