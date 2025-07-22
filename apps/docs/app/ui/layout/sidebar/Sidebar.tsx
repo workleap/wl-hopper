@@ -70,7 +70,7 @@ const Sidebar = ({ links }: SidebarProps) => {
                         <span className="hd-sidebar__title">{link.title}</span>
                         <ul className="hd-sidebar__nested-list">
                             {link.linkItems
-                                .filter(item => item.status === "ready" || item.status === undefined || item.status !== "ready").map(item => {
+                                .filter(item => item.status === "ready" || item.status === undefined).map(item => {
                                     const linkPath = `/${item.path}`;
                                     const isActive = pathName === linkPath;
 

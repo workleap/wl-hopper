@@ -68,8 +68,7 @@ const Overview = () => {
                             component.category &&
     component.category === category &&
     (component.status === "ready" ||
-     component.status === undefined ||
-     component.status !== "ready")
+     component.status === undefined)
                         ).map(component => {
                             return (
                                 <OverviewTile title={component.title} key={component._id} />
