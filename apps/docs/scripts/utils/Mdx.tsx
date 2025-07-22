@@ -1,12 +1,12 @@
 import { mdxToReact } from "./mdxToMarkdown";
 
 interface MdxProps {
-    code: string;
-
+    children: string | string[];
 }
 
-export const Mdx = async ({ code }: MdxProps) => {
-    const Component = await mdxToReact(code);
+
+export const Mdx = async ({ children }: MdxProps) => {
+    const Component = await mdxToReact(Array.isArray(children) ? children.join("\n") : children);
 
     return Component;
 };
