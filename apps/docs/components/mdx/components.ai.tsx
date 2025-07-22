@@ -1,18 +1,21 @@
 // eslint-disable-next-line no-restricted-imports
-import React from "react";
 import Tag from "../tag/Tag.ai";
 
 import ComponentExample from "@/app/ui/components/componentExample/ComponentExample.ai";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.ai";
-
-
+import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
+import PropTable from "@/app/ui/components/propTable/PropTable.ai";
+import { Callout } from "../callout/Callout.ai";
 
 
 export const components = {
     Tag: Tag,
+    Callout: Callout,
     CodeOnlyExample: ComponentExample,
     Example: ComponentExample,
-    ComposedComponents: ComposedComponents
+    ComposedComponents: ComposedComponents,
+    PropTable: PropTable,
+    MigrateGuide: MigrateGuide
 };
 
 export function isValidComponentName(name: string): boolean {

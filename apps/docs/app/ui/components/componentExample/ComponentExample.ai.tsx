@@ -3,7 +3,6 @@
 import { Mdx } from "@/scripts/utils/Mdx";
 import fs from "fs/promises";
 import path from "path";
-import React from "react";
 
 function formatComponentExamplePath(uri: string) {
     if (uri.includes("icons/docs/")) {
@@ -26,12 +25,11 @@ async function getFileContent(src: string) {
 const ComponentExample = async ({ src }: { src: string }) => {
     const fileContent = await getFileContent(src);
 
-    return <Mdx code={`
-        \`\`\`tsx
+    return <Mdx>
+        ```tsx
         ${fileContent}
-        \`\`\`
-        `}
-    />;
+        ```
+    </Mdx>;
 };
 
 
