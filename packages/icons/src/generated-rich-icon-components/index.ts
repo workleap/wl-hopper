@@ -24,6 +24,7 @@ export * from "./GoalIndividualRichIcon.tsx";
 export * from "./GoalTeamRichIcon.tsx";
 export * from "./GroupRichIcon.tsx";
 export * from "./GrowthRichIcon.tsx";
+export * from "./icon-list.ts";
 export * from "./IdeaRichIcon.tsx";
 export * from "./InfoRichIcon.tsx";
 export * from "./LikertScaleRichIcon.tsx";
@@ -51,4 +52,4 @@ export * from "./TemplateRichIcon.tsx";
 export * from "./TextAnswerRichIcon.tsx";
 export * from "./UpsellRichIcon.tsx";
 export * from "./WhosWhoRichIcon.tsx";
-export * from "./icon-list.ts";
+
