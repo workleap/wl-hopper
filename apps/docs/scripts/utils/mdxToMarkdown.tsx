@@ -2,6 +2,7 @@
 
 import { data } from "@/app/lib/contentConfig.ts";
 import { components } from "@/components/mdx/components.ai";
+import { iconData } from "@/content/icons/overview/data";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { renderToPipeableStream } from "react-dom/server";
 import rehypeParse from "rehype-parse";
@@ -41,8 +42,11 @@ export async function mdxToReact(mdxSource: string): Promise<React.ReactElement>
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
-            scope: data,
+            scope: { // we need to set all import data here. otherwise, it will not be available in the mdx.
+                iconData: iconData
+            },
             parseFrontmatter: false,
+
             mdxOptions: { }
 
             // mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] } We don't need this plugin as it is only for html shows the code blocks prettier.
@@ -58,7 +62,6 @@ export async function mdxToMarkdown(mdxSource: string): Promise<string> {
     // https://github.com/hashicorp/next-mdx-remote?tab=readme-ov-file#you-might-not-need-next-mdx-remote
 
     const compiled = await mdxToReact(mdxSource);
-
 
     const html = await renderToStringAsync(compiled);
 
