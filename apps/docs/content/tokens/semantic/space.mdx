@@ -1,6 +1,7 @@
 ---
 title: Space
 description: Design tokens are design decisions, translated into data. Explore the semantic space design tokens.
+status: ready
 ---
 import tokens from '../../../datas/tokens.json';
 
@@ -61,3 +62,28 @@ Inline refers to the space that separates inline elements arranged horizontally.
 <TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
     ["inline"]
 } />
+
+<FeatureFlag flag="ai">
+## Designing with space
+Every part of a UI should be intentional including the empty space between elements. The amount of space between items creates relationships and hierarchy.
+
+### Creating relationships
+Elements in a design that are near each other are seen as being meaningfully related. As more space is added between elements, their perceived relationship weakens.
+
+Patterns created through spacing can also create relationships. Elements arranged in the same spacing pattern are seen as related pieces that have equal weight.
+
+Space can also be used to denote groups of associated information. This creates content sections on a page without having to use lines or other graphical elements as a divider.
+
+### Creating hierarchy
+Elements that have more spacing around them tend to be perceived as higher in importance than elements that have less space around them.
+Take this page for instance. The top level headers have more space surrounding them giving them focus and prominence.
+Then as the headers descend in importance they receive less space, signaling they are subordinate.
+
+Elements that are set close to each other can be easily overlooked. Users may see the grouping but not process each individual item.
+Therefore, if you have an element or content of high importance on the page, consider giving it extra surrounding space to help it attract focus.
+
+### White space
+Empty space — also known as white space — is important in design. It can be used to break up sections on a page or to help create focus on certain element(s).
+White space helps with information processing; too much dense information can be disorienting or overwhelming for a user.
+Sections of a UI are allowed to be dense, but the whole page should not be crowded; there should be white space to let the user’s eye rest.
+</FeatureFlag>

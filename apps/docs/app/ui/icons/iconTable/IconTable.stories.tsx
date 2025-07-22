@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
-import { IconTable } from "./IconTable";
 import { iconNames, richIconNames } from "@hopper-ui/icons";
+import IconTable from "./IconTable";
 
 const meta = {
     title: "app/icons/IconTable",

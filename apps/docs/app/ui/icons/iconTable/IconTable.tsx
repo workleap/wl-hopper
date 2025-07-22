@@ -32,7 +32,7 @@ function getIconNumericSize(iconSize : "sm" | "md" | "lg" | "xl") {
     }
 }
 
-export default function IconTable({ size, type, items, filter }: IconTableProps) {
+function IconTable({ size, type, items, filter }: IconTableProps) {
     const { colorMode } = useContext(ThemeContext);
     const listItems = items.filter(name => {
         const formattedName = name.replace("RichIcon", "").replace("Icon", "");
@@ -62,3 +62,4 @@ export default function IconTable({ size, type, items, filter }: IconTableProps)
     );
 }
 
+export default IconTable;

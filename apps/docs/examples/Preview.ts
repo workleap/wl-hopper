@@ -62,9 +62,6 @@ export const Previews: Record<string, Preview> = {
     "buttons/docs/button/endIcon": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/endIcon.tsx"))
     },
-    "buttons/docs/button/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/advancedCustomization.tsx"))
-    },
     "buttons/docs/button-group/preview": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button-group/preview.tsx"))
     },
@@ -115,9 +112,6 @@ export const Previews: Record<string, Preview> = {
     },
     "buttons/docs/link-button/endIcon": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/link-button/endIcon.tsx"))
-    },
-    "buttons/docs/link-button/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/buttons/docs/link-button/advancedCustomization.tsx"))
     },
     "segmented-control/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/segmented-control/docs/preview.tsx"))
@@ -536,9 +530,6 @@ export const Previews: Record<string, Preview> = {
     "typography/heading/docs/inherit": {
         component: lazy(() => import("@/../../packages/components/src/typography/heading/docs/inherit.tsx"))
     },
-    "typography/heading/docs/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/typography/heading/docs/advancedCustomization.tsx"))
-    },
     "illustrated-message/docs/default": {
         component: lazy(() => import("@/../../packages/components/src/illustrated-message/docs/default.tsx"))
     },
@@ -608,9 +599,6 @@ export const Previews: Record<string, Preview> = {
     "typography/label/docs/optional": {
         component: lazy(() => import("@/../../packages/components/src/typography/label/docs/optional.tsx"))
     },
-    "typography/label/docs/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/typography/label/docs/advancedCustomization.tsx"))
-    },
     "typography/paragraph/docs/paragraph/preview": {
         component: lazy(() => import("@/../../packages/components/src/typography/paragraph/docs/paragraph/preview.tsx"))
     },
@@ -631,9 +619,6 @@ export const Previews: Record<string, Preview> = {
     },
     "typography/text/docs/text/nested": {
         component: lazy(() => import("@/../../packages/components/src/typography/text/docs/text/nested.tsx"))
-    },
-    "typography/text/docs/text/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/typography/text/docs/text/advancedCustomization.tsx"))
     },
     "checkbox/docs/checkbox/preview": {
         component: lazy(() => import("@/../../packages/components/src/checkbox/docs/checkbox/preview.tsx"))
@@ -1576,9 +1561,6 @@ export const Previews: Record<string, Preview> = {
     },
     "spinner/docs/overBackground": {
         component: lazy(() => import("@/../../packages/components/src/spinner/docs/overBackground.tsx"))
-    },
-    "spinner/docs/advancedCustomization": {
-        component: lazy(() => import("@/../../packages/components/src/spinner/docs/advancedCustomization.tsx"))
     },
     "tag/docs/tag/preview": {
         component: lazy(() => import("@/../../packages/components/src/tag/docs/tag/preview.tsx"))
