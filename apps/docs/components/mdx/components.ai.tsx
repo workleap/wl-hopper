@@ -6,6 +6,9 @@ import ComposedComponents from "@/app/ui/components/composedComponents/composedC
 import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
 import PropTable from "@/app/ui/components/propTable/PropTable.ai";
 import { Callout } from "../callout/Callout.ai";
+import CardLink from "../cardLink/cardLink.ai";
+import CardLinkList from "../cardLink/cardLinkList.ai";
+import PackageInstallation from "../packageInstallation/PackageInstallation.ai";
 
 
 export const components = {
@@ -15,7 +18,10 @@ export const components = {
     Example: ComponentExample,
     ComposedComponents: ComposedComponents,
     PropTable: PropTable,
-    MigrateGuide: MigrateGuide
+    MigrateGuide: MigrateGuide,
+    PackageInstallation: PackageInstallation,
+    CardLink,
+    CardLinkList
 };
 
 export function isValidComponentName(name: string): boolean {
