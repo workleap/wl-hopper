@@ -1,7 +1,6 @@
 ---
 title: Space
 description: Design tokens are design decisions, translated into data. Explore the semantic space design tokens.
-status: ready
 ---
 import tokens from '../../../datas/tokens.json';
 
@@ -11,59 +10,7 @@ import tokens from '../../../datas/tokens.json';
 - **Be harmonious** - Use space tokens in a way that is consistent with the rest of the experience. Some spaces are used in specific context, follow the proper documentation to apply space at the right places.
 - **Create visual groups** - The more visual elements are related, the closer they should be to each other.
 
-export const categoryKey = "size";
-
-## Tokens
-
-### Padding
-
-Padding refers to the space within a block or container from which elements are separated from the edge. Is is refered as inset in Hopper.
-
-#### Inset
-
-By default, the inset is equal on all four sides.
-
-<TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
-    ["inset"]
-} excludedCategories={["inset-squish", "inset-stretch"]} />
-
-#### Inset Squish
-
-Squish inset reduces the top and bottom padding by one increment relative to the declared inset space.
-
-<TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
-    ["inset-squish"]
-} />
-
-#### Inset Stretch
-
-Stretch inset increases the top and bottom padding by one increment relative to the declared inset space.
-
-<TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
-    ["inset-stretch"]
-} />
-
-### Margin
-
-Margin refers to the traditional meaning of space between elements. It can be used as a margin or gap when in a grid or flex layout. It is refered as stack in Hopper. The last element of a stack should omit this space.
-
-#### Stack
-
-Stack is the space that separates elements or containers arranged vertically within a column.
-
-<TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
-    ["stack"]
-} />
-
-#### Inline
-
-Inline refers to the space that separates inline elements arranged horizontally.
-
-<TableSection tokenType={"semantic"} categoryKey={categoryKey} tokens={tokens.semantic[categoryKey]} categories={
-    ["inline"]
-} />
-
-<FeatureFlag flag="ai">
+<AI>
 ## Designing with space
 Every part of a UI should be intentional including the empty space between elements. The amount of space between items creates relationships and hierarchy.
 
@@ -86,4 +33,54 @@ Therefore, if you have an element or content of high importance on the page, con
 Empty space — also known as white space — is important in design. It can be used to break up sections on a page or to help create focus on certain element(s).
 White space helps with information processing; too much dense information can be disorienting or overwhelming for a user.
 Sections of a UI are allowed to be dense, but the whole page should not be crowded; there should be white space to let the user’s eye rest.
-</FeatureFlag>
+</AI>
+
+## Tokens
+
+### Padding
+
+Padding refers to the space within a block or container from which elements are separated from the edge. Is is refered as inset in Hopper.
+
+#### Inset
+
+By default, the inset is equal on all four sides.
+
+<TableSection tokenType={"semantic"} categoryKey="size" tokens={tokens.semantic.size} categories={
+    ["inset"]
+} excludedCategories={["inset-squish", "inset-stretch"]} />
+
+#### Inset Squish
+
+Squish inset reduces the top and bottom padding by one increment relative to the declared inset space.
+
+<TableSection tokenType={"semantic"} categoryKey="size" tokens={tokens.semantic.size} categories={
+    ["inset-squish"]
+} />
+
+#### Inset Stretch
+
+Stretch inset increases the top and bottom padding by one increment relative to the declared inset space.
+
+<TableSection tokenType={"semantic"} categoryKey="size" tokens={tokens.semantic.size} categories={
+    ["inset-stretch"]
+} />
+
+### Margin
+
+Margin refers to the traditional meaning of space between elements. It can be used as a margin or gap when in a grid or flex layout. It is refered as stack in Hopper. The last element of a stack should omit this space.
+
+#### Stack
+
+Stack is the space that separates elements or containers arranged vertically within a column.
+
+<TableSection tokenType={"semantic"} categoryKey="size" tokens={tokens.semantic.size} categories={
+    ["stack"]
+} />
+
+#### Inline
+
+Inline refers to the space that separates inline elements arranged horizontally.
+
+<TableSection tokenType={"semantic"} categoryKey="size" tokens={tokens.semantic.size} categories={
+    ["inline"]
+} />

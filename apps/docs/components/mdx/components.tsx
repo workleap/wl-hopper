@@ -4,6 +4,7 @@ import type { DetailedHTMLProps, HTMLAttributes } from "react";
 import InlineCode from "@/components/code/InlineCode.tsx";
 import Link from "@/components/link/Link.tsx";
 
+import AI from "@/app/ui/components/ai/AI";
 import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable";
 import Callout from "@/app/ui/components/callout/Callout";
 import Card from "@/app/ui/components/card/Card";
@@ -41,13 +42,13 @@ import TableSection from "@/app/ui/tokens/tableSection/TableSection.tsx";
 const MigrateGuide = dynamic(() => import("@/app/ui/components/migrateGuide/MigrateGuide.tsx"));
 const PropTable = dynamic(() => import("@/app/ui/components/propTable/PropTable.tsx"));
 const ComponentExample = dynamic(() => import("@/app/ui/components/componentExample/ComponentExample.tsx"));
-const FeatureFlag = dynamic(() => import("@/app/ui/components/featureFlag/FeatureFlag"));
 
 type HeadingProps = DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
 
 let h2Title = "";
 
 export const components = {
+    AI,
     Card,
     CardLink,
     CardLinkList,
@@ -74,7 +75,6 @@ export const components = {
     TableSection: TableSection,
     Link: Link,
     Switcher: Switcher,
-    FeatureFlag: FeatureFlag,
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },

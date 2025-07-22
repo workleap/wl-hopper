@@ -2,12 +2,11 @@
 
 import type { Section } from "@/app/lib/getPageLinks";
 import Overlay from "@/components/overlay/Overlay";
-import { FeatureFlagContext } from "@/context/feature/FeatureFlagProvider.tsx";
 import { useSidebar } from "@/context/sidebar/SidebarProvider";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./sidebar.css";
 
 export interface SidebarProps {
@@ -23,7 +22,6 @@ const Sidebar = ({ links }: SidebarProps) => {
     }
 
     const { toggleSidebar, isSidebarOpen } = sidebarContext;
-    const featureFlags = useContext(FeatureFlagContext);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -72,7 +70,7 @@ const Sidebar = ({ links }: SidebarProps) => {
                         <span className="hd-sidebar__title">{link.title}</span>
                         <ul className="hd-sidebar__nested-list">
                             {link.linkItems
-                                .filter(item => item.status === "ready" || item.status === undefined || (item.status === "alpha" && featureFlags.alpha)).map(item => {
+                                .filter(item => item.status === "ready" || item.status === undefined || item.status !== "ready").map(item => {
                                     const linkPath = `/${item.path}`;
                                     const isActive = pathName === linkPath;
 
