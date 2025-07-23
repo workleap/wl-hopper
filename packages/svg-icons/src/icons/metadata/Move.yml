@@ -1,0 +1,21 @@
+name: Move
+description: >-
+    Represents a four-way arrow pointing in all directions. Used for features related
+    to dragging and dropping, repositioning elements, rearranging items, or any
+    feature that involves moving content from one place to another.
+keywords:
+  - move
+  - drag
+  - drop
+  - reposition
+  - rearrange
+  - relocate
+  - shift
+  - transfer
+  - adjust
+  - placement
+  - organize
+  - sort
+  - order
+  - arrange
+  - position

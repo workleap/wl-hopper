@@ -1,0 +1,22 @@
+name: Pause
+description: >-
+    Represents a pause button with two vertical bars. Used for features related to
+    pausing media playback, temporarily stopping processes, halting animations, or
+    any feature that involves temporarily suspending an ongoing action with the
+    intention to resume later.
+keywords:
+  - pause
+  - stop
+  - halt
+  - suspend
+  - break
+  - interrupt
+  - media
+  - playback
+  - control
+  - temporary
+  - freeze
+  - wait
+  - hold
+  - standby
+  - delay

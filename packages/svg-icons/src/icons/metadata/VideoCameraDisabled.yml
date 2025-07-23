@@ -1,0 +1,17 @@
+name: VideoCameraDisabled
+description: >-
+  Used to represent a video camera that is turned off, disabled, or unavailable.
+  Commonly used in video conferencing applications to indicate that the camera
+  is not active or has been turned off.
+keywords:
+  - video camera off
+  - camera disabled
+  - video off
+  - no video
+  - camera off
+  - video disabled
+  - stop video
+  - video unavailable
+  - camera muted
+  - video muted
+  - disabled camera

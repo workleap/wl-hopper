@@ -1,0 +1,18 @@
+name: Feedback
+description: >-
+    Represents a speech bubble or chat bubble with three dots inside. Used to
+    indicate feedback functionality, collecting user opinions, comments, reviews,
+    or any feature that involves users providing input or responses.
+keywords:
+  - feedback
+  - comment
+  - opinion
+  - review
+  - input
+  - response
+  - suggestion
+  - reaction
+  - evaluation
+  - assessment
+  - rating
+  - survey

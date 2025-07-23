@@ -1,0 +1,22 @@
+name: OrderedList
+description: >-
+    Represents a numbered list with sequential numbers on the left side. Used for
+    features related to ordered or numbered lists, sequences, prioritized items,
+    step-by-step instructions, or any feature that involves organizing content
+    in a numbered format.
+keywords:
+  - ordered list
+  - numbered list
+  - sequence
+  - priority
+  - ranking
+  - steps
+  - enumeration
+  - hierarchy
+  - organization
+  - structure
+  - formatting
+  - outline
+  - sequential
+  - itemized
+  - numeric

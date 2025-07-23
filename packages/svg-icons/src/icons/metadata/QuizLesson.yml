@@ -1,0 +1,21 @@
+name: QuizLesson
+description: >-
+    Represents a square or document with a checkmark inside. Used for features related
+    to quizzes, tests, assessments, lessons, educational content, or any feature that
+    involves knowledge verification, learning modules, or completed educational tasks.
+keywords:
+  - quiz
+  - lesson
+  - test
+  - assessment
+  - education
+  - learning
+  - evaluation
+  - examination
+  - knowledge
+  - question
+  - answer
+  - verification
+  - completion
+  - module
+  - course

@@ -1,0 +1,25 @@
+name: TextLesson
+description: >-
+    Represents lines of text with a paragraph or text formatting symbol. Used for
+    features related to text lessons, articles, reading materials, or any feature that
+    involves text-based educational content. Commonly used in e-learning platforms,
+    content management systems, and educational applications.
+keywords:
+  - text lesson
+  - article
+  - reading
+  - paragraph
+  - content
+  - document
+  - material
+  - learning
+  - education
+  - study
+  - text
+  - literature
+  - information
+  - tutorial
+  - guide
+  - instruction
+  - course
+  - textbook

@@ -1,0 +1,14 @@
+name: Grid
+description: >-
+  Used to represent a grid layout, grid view, or matrix arrangement of items.
+  Often used in UI controls for switching between different view modes.
+keywords:
+  - grid
+  - layout
+  - matrix
+  - tiles
+  - view
+  - arrangement
+  - display
+  - rows
+  - columns

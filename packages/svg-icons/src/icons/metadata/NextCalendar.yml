@@ -1,0 +1,21 @@
+name: NextCalendar
+description: >-
+    Represents a calendar with a right-pointing arrow. Used for features related to
+    calendar navigation, moving to the next day/week/month, advancing through time-based
+    content, or any feature that involves moving forward in a chronological sequence.
+keywords:
+  - next calendar
+  - forward
+  - advance
+  - navigation
+  - schedule
+  - upcoming
+  - future
+  - next period
+  - next day
+  - next week
+  - next month
+  - chronological
+  - time
+  - date
+  - progression

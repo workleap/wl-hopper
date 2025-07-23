@@ -1,0 +1,21 @@
+name: Invoice
+description: >-
+    Represents a document with lines of text. Used for features related to billing,
+    invoicing, financial transactions, receipts, or any feature that involves
+    financial documents, payment records, or transaction history.
+keywords:
+  - invoice
+  - bill
+  - receipt
+  - payment
+  - transaction
+  - financial
+  - document
+  - accounting
+  - billing
+  - statement
+  - expense
+  - record
+  - purchase
+  - order
+  - commerce

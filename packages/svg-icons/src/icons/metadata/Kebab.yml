@@ -1,0 +1,21 @@
+name: Kebab
+description: >-
+    Represents a vertical ellipsis or three dots stacked vertically. Used to indicate
+    a menu, more options, or additional actions that can be performed on an item.
+    Commonly used for dropdown menus or overflow menus in user interfaces.
+keywords:
+  - kebab
+  - menu
+  - options
+  - more
+  - actions
+  - vertical
+  - ellipsis
+  - dots
+  - dropdown
+  - overflow
+  - additional
+  - settings
+  - context
+  - controls
+  - navigation

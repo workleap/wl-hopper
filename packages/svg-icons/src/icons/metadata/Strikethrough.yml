@@ -1,0 +1,25 @@
+name: Strikethrough
+description: >-
+    Represents a text formatting symbol for strikethrough text. Used for features
+    related to text formatting, marking text as deleted or no longer relevant, or any
+    feature that involves crossing out text. Commonly used in text editors, word
+    processors, and content management systems.
+keywords:
+  - strikethrough
+  - text formatting
+  - crossed out
+  - deleted text
+  - removed
+  - obsolete
+  - formatting
+  - text style
+  - markup
+  - edit
+  - strike
+  - line through
+  - cross out
+  - redaction
+  - text decoration
+  - rich text
+  - typography
+  - text editor

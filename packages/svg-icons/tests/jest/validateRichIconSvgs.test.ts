@@ -5,7 +5,7 @@ import parse from "rehype-parse";
 import { unified } from "unified";
 import { fileURLToPath } from "url";
 
-import { RichIconSizes, RichIconsSourceDirectory, RichAllowedIconFillColors } from "../../scripts/constants.ts";
+import { RichAllowedIconFillColors, RichIconSizes, RichIconsSourceDirectory } from "../../scripts/constants.ts";
 
 const iconsSrcPath = path.resolve(path.dirname(fileURLToPath(import.meta.url)), `../../${RichIconsSourceDirectory}`);
 
@@ -56,6 +56,38 @@ describe("SVGs", () => {
 
                 expect(otherGroup).toStrictEqual(firstGroup);
             });
+    });
+
+    it("should have the same amount of icons in metadata folder as in each size folder", () => {
+        const metadataPath = path.resolve(iconsSrcPath, "metadata");
+        const metadataFiles = readdirSync(metadataPath).filter(file => file.endsWith(".yml"));
+
+        // Check each icon size folder against metadata
+        RichIconSizes.forEach(size => {
+            const sizeDir = path.resolve(iconsSrcPath, `${size}px`);
+            const svgFiles = readdirSync(sizeDir).filter(file => file.endsWith(".svg"));
+
+            expect(svgFiles.length).toStrictEqual(metadataFiles.length);
+        });
+    });
+
+    it("should have the same icon names in metadata folder as in each size folder", () => {
+        const metadataPath = path.resolve(iconsSrcPath, "metadata");
+        const metadataFiles = readdirSync(metadataPath)
+            .filter(file => file.endsWith(".yml"))
+            .map(file => file.replace(".yml", ""))
+            .sort();
+
+        // Check each icon size folder against metadata
+        RichIconSizes.forEach(size => {
+            const sizeDir = path.resolve(iconsSrcPath, `${size}px`);
+            const svgFiles = readdirSync(sizeDir)
+                .filter(file => file.endsWith(".svg"))
+                .map(file => file.replace(".svg", ""))
+                .sort();
+
+            expect(svgFiles).toStrictEqual(metadataFiles);
+        });
     });
 });
 

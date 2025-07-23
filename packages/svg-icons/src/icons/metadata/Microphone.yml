@@ -1,0 +1,21 @@
+name: Microphone
+description: >-
+    Represents a microphone. Used for features related to voice input, audio recording,
+    speech recognition, dictation, or any feature that involves capturing sound or
+    enabling verbal communication.
+keywords:
+  - microphone
+  - audio
+  - voice
+  - recording
+  - speech
+  - sound
+  - input
+  - dictation
+  - speaking
+  - talk
+  - vocal
+  - record
+  - capture
+  - communication
+  - broadcast

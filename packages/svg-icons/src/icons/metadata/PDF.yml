@@ -1,0 +1,21 @@
+name: PDF
+description: >-
+    Represents a document with the letters "PDF" on it, indicating a PDF file format.
+    Used for features related to PDF documents, file downloads, document viewing,
+    or any feature that involves creating, viewing, sharing, or managing PDF files.
+keywords:
+  - PDF
+  - document
+  - file
+  - portable document format
+  - download
+  - view
+  - read
+  - share
+  - print
+  - export
+  - report
+  - publication
+  - digital document
+  - attachment
+  - format

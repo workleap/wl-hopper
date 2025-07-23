@@ -1,0 +1,18 @@
+name: DottedLines
+description: >-
+    Represents a dotted or dashed border around a square or rectangle. Used to
+    indicate borders, boundaries, selection areas, or any feature related to
+    outlining or highlighting content with a non-solid line.
+keywords:
+  - dotted lines
+  - dashed border
+  - boundary
+  - outline
+  - selection
+  - perimeter
+  - frame
+  - container
+  - highlight
+  - area
+  - region
+  - segmentation

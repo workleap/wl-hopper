@@ -1,0 +1,24 @@
+name: SettingsNotification
+description: >-
+    Represents a gear or cog wheel with a notification dot or badge. Used for features
+    related to settings or configuration that require attention, such as pending updates,
+    unreviewed settings, or any feature that involves alerting users about
+    configuration-related matters that need attention.
+keywords:
+  - settings notification
+  - configuration alert
+  - system update
+  - pending settings
+  - attention required
+  - settings badge
+  - update available
+  - configuration notice
+  - gear notification
+  - settings alert
+  - system maintenance
+  - preferences update
+  - settings reminder
+  - unreviewed settings
+  - action needed
+  - settings change
+  - configuration status

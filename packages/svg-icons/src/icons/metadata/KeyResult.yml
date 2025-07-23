@@ -1,0 +1,22 @@
+name: KeyResult
+description: >-
+    Represents a flag or milestone marker. Used for features related to goal-setting
+    frameworks like OKRs (Objectives and Key Results), project milestones, important
+    achievements, or any feature that involves tracking progress towards specific
+    outcomes or targets.
+keywords:
+  - key result
+  - goal
+  - milestone
+  - achievement
+  - objective
+  - target
+  - outcome
+  - performance
+  - metric
+  - measurement
+  - progress
+  - success
+  - indicator
+  - benchmark
+  - OKR

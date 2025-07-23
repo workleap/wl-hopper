@@ -1,0 +1,10 @@
+name: AddCalendar
+description: >-
+    Used to represent an action to add a calendar event or schedule a new
+    appointment or meeting.
+keywords:
+  - add calendar
+  - schedule
+  - appointment
+  - meeting
+  - event

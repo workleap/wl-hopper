@@ -1,0 +1,21 @@
+name: Report
+description: >-
+    Represents a document with a graph or chart line inside it. Used for features
+    related to reports, analytics, data visualization, statistics, or any feature
+    that involves presenting summarized information, metrics, or performance data.
+keywords:
+  - report
+  - analytics
+  - data
+  - statistics
+  - metrics
+  - visualization
+  - chart
+  - graph
+  - summary
+  - dashboard
+  - insights
+  - performance
+  - analysis
+  - results
+  - documentation

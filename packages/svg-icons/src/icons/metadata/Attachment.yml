@@ -1,0 +1,12 @@
+name: Attachment
+description: >-
+    Used to represent attaching files, documents, or other content to
+    messages, emails, posts, or records.
+keywords:
+  - attachment
+  - paperclip
+  - file
+  - document
+  - attach
+  - upload
+  - append

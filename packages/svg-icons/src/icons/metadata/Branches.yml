@@ -1,0 +1,13 @@
+name: Branches
+description: >-
+    Used to represent branching paths, version control branches, or
+    workflow options that diverge from a main path.
+keywords:
+  - branches
+  - fork
+  - version control
+  - git
+  - paths
+  - options
+  - diverge
+  - workflow

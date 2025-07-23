@@ -1,0 +1,13 @@
+name: Calendar
+description: >-
+    Used to represent dates, scheduling, events, appointments, or
+    time-based planning and organization.
+keywords:
+  - calendar
+  - date
+  - schedule
+  - event
+  - appointment
+  - planning
+  - time
+  - month

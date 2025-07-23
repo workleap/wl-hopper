@@ -1,0 +1,21 @@
+name: RemoveCalendar
+description: >-
+    Represents a calendar with an X or close symbol inside it. Used for features
+    related to canceling events, removing calendar entries, deleting appointments,
+    or any feature that involves eliminating scheduled items or declining invitations.
+keywords:
+  - remove calendar
+  - cancel event
+  - delete appointment
+  - decline invitation
+  - remove meeting
+  - cancel reservation
+  - delete schedule
+  - unbook
+  - withdraw event
+  - clear calendar
+  - cancel booking
+  - remove date
+  - delete occurrence
+  - cancel appointment
+  - unschedule

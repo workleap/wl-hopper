@@ -1,0 +1,25 @@
+name: Success
+description: >-
+    Represents a checkmark inside a circle. Used for features related to success,
+    completion, approval, confirmation, or any feature that involves indicating a
+    positive outcome or successful action. Commonly used in form submissions, task
+    completion indicators, and status messages.
+keywords:
+  - success
+  - complete
+  - done
+  - finished
+  - approved
+  - confirmed
+  - verified
+  - validated
+  - accomplished
+  - achieved
+  - passed
+  - correct
+  - checkmark
+  - tick
+  - positive
+  - affirmative
+  - confirmation
+  - acceptance

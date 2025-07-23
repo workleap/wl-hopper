@@ -1,0 +1,22 @@
+name: Rewind
+description: >-
+    Represents a circular arrow pointing counterclockwise. Used for features related
+    to rewinding media, undoing actions, going back to previous states, or any
+    feature that involves returning to an earlier point, reversing progress, or
+    moving backward in a sequence.
+keywords:
+  - rewind
+  - undo
+  - back
+  - previous
+  - reverse
+  - return
+  - backward
+  - rollback
+  - restore
+  - history
+  - earlier
+  - retrace
+  - backtrack
+  - retreat
+  - reset

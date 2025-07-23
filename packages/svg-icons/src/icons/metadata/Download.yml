@@ -1,0 +1,18 @@
+name: Download
+description: >-
+    Represents a downward-pointing arrow with a horizontal line at the bottom.
+    Used to indicate download functionality, saving files, or obtaining content
+    from a server or cloud storage.
+keywords:
+  - download
+  - save
+  - get
+  - retrieve
+  - obtain
+  - file
+  - content
+  - transfer
+  - fetch
+  - acquire
+  - store
+  - local copy

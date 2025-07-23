@@ -1,0 +1,21 @@
+name: Notification
+description: >-
+    Represents a bell notification icon. Used for features related to notifications,
+    alerts, reminders, or any feature that involves informing users about events,
+    updates, messages, or important information that requires attention.
+keywords:
+  - notification
+  - bell
+  - alert
+  - reminder
+  - message
+  - update
+  - inform
+  - attention
+  - notice
+  - ping
+  - signal
+  - announcement
+  - warning
+  - activity
+  - event

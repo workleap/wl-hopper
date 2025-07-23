@@ -1,0 +1,22 @@
+name: RelationWithManager
+description: >-
+    Represents a hierarchical structure with one person at the top and multiple people
+    below. Used for features related to manager-employee relationships, reporting
+    structures, leadership dynamics, or any feature that involves vertical relationships
+    between people of different organizational levels.
+keywords:
+  - manager
+  - employee
+  - hierarchy
+  - reporting
+  - leadership
+  - supervision
+  - authority
+  - organizational structure
+  - vertical relationship
+  - direct report
+  - superior
+  - subordinate
+  - chain of command
+  - management
+  - team lead

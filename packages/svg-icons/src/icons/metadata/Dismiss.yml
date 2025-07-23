@@ -1,0 +1,17 @@
+name: Dismiss
+description: >-
+    Represents an "X" shape. Used for close buttons, dismissing notifications,
+    canceling operations, or removing items from view.
+keywords:
+  - dismiss
+  - close
+  - cancel
+  - remove
+  - exit
+  - clear
+  - cross
+  - delete
+  - hide
+  - reject
+  - terminate
+  - x

@@ -1,0 +1,21 @@
+name: Key
+description: >-
+    Represents a physical key. Used for features related to authentication, passwords,
+    security, access control, permissions, or any feature that involves unlocking,
+    securing, or providing access to content or functionality.
+keywords:
+  - key
+  - access
+  - security
+  - authentication
+  - password
+  - unlock
+  - secure
+  - permission
+  - credential
+  - login
+  - protection
+  - authorization
+  - entry
+  - private
+  - encryption

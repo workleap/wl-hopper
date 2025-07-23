@@ -1,0 +1,15 @@
+name: Grip
+description: >-
+  Used to represent a draggable handle or control point. Typically indicates
+  that an element can be moved, reordered, or resized by dragging.
+keywords:
+  - grip
+  - handle
+  - drag
+  - move
+  - reorder
+  - sort
+  - resize
+  - grabber
+  - draggable
+  - control

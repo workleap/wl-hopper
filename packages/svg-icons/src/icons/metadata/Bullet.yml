@@ -1,0 +1,13 @@
+name: Bullet
+description: >-
+    Used to represent a bullet point in lists, a dot marker, or to
+    highlight an item or point of interest.
+keywords:
+  - bullet
+  - dot
+  - point
+  - circle
+  - marker
+  - list item
+  - highlight
+  - indicator

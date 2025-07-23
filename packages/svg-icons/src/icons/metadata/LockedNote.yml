@@ -1,0 +1,21 @@
+name: LockedNote
+description: >-
+    Represents a document or note with a padlock. Used for features related to private
+    notes, secure documents, confidential information, protected content, or any
+    feature that involves restricting access to written or documented information.
+keywords:
+  - locked note
+  - secure document
+  - private note
+  - confidential
+  - protected content
+  - restricted document
+  - encrypted note
+  - sensitive information
+  - classified
+  - secure file
+  - private document
+  - access control
+  - data protection
+  - privacy
+  - security

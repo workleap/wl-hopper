@@ -1,0 +1,22 @@
+name: Percent
+description: >-
+    Represents a percent symbol (%) with two circles connected by a diagonal line.
+    Used for features related to percentages, proportions, rates, discounts, statistics,
+    or any feature that involves representing numerical percentages, ratios, or
+    relative values.
+keywords:
+  - percent
+  - percentage
+  - proportion
+  - ratio
+  - rate
+  - discount
+  - statistics
+  - calculation
+  - fraction
+  - portion
+  - share
+  - division
+  - metrics
+  - measurement
+  - comparison

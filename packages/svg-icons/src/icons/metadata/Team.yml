@@ -1,0 +1,25 @@
+name: Team
+description: >-
+    Represents a group of people or user silhouettes. Used for features related to
+    teams, groups, collaboration, or any feature that involves multiple users working
+    together. Commonly used in collaboration tools, project management applications,
+    and organizational charts.
+keywords:
+  - team
+  - group
+  - collaboration
+  - people
+  - users
+  - members
+  - colleagues
+  - crew
+  - staff
+  - personnel
+  - workforce
+  - organization
+  - department
+  - unit
+  - collective
+  - assembly
+  - community
+  - partnership

@@ -1,0 +1,17 @@
+name: Section
+description: >-
+  Used to represent a section, segment, or division of content. Indicates a distinct
+  part or category within a document, interface, or organizational structure.
+keywords:
+  - section
+  - segment
+  - division
+  - part
+  - category
+  - area
+  - block
+  - component
+  - module
+  - partition
+  - region
+  - subdivision

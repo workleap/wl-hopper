@@ -1,0 +1,17 @@
+name: Unarchive
+description: >-
+  Represents the action of retrieving or restoring items from an archive.
+  Depicted as a box with an upward arrow, indicating content being taken out
+  of storage. Used for unarchiving emails, files, or other content that was
+  previously archived.
+keywords:
+  - unarchive
+  - restore
+  - retrieve
+  - recover
+  - extract
+  - box
+  - storage
+  - archive
+  - unbox
+  - return
