@@ -6,8 +6,8 @@ import rehypeParse from "rehype-parse";
 import rehypeReact from "rehype-react";
 import { unified } from "unified";
 
+import Pre from "@/app/ui/components/pre/Pre";
 import InlineCode, { type InlineCodeProps } from "@/components/code/InlineCode.tsx";
-import Pre from "@/components/pre/Pre.tsx";
 
 export type Variant = "default" | "tiny";
 

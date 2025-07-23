@@ -1,8 +1,8 @@
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getGettingStartedSlugs } from "@/app/lib/getSlugs";
+import Title from "@/app/ui/components/title/Title";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import Mdx from "@/components/mdx/Mdx.tsx";
-import Title from "@/components/title/Title";
 import { allGettingStarteds } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 

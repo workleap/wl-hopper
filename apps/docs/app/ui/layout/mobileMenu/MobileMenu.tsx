@@ -4,7 +4,6 @@ import Wrapper from "@/app/ui/layout/wrapper/Wrapper";
 import IconButton from "@/components/iconButton/IconButton";
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import { navigation } from "@/configs/navigation";
-import { FeatureFlagContext } from "@/context/feature/FeatureFlagProvider.tsx";
 import { type ColorScheme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import clsx from "clsx";
 import Link from "next/link";
@@ -23,7 +22,6 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
-    const featureFlags = useContext(FeatureFlagContext);
     const pathname = usePathname()!;
     let firstPathLevel: string;
 
@@ -80,7 +78,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
         return (
             <li key={label}>
                 <Link href={path}
-                    className={clsx("hd-mobile-menu-nav-list__link", isActive && "hd-mobile-menu-nav-list__link--active", (!featureFlags.alpha && status !== "ready") && "hd-mobile-menu-nav-list__link--disabled")}
+                    className={clsx("hd-mobile-menu-nav-list__link", isActive && "hd-mobile-menu-nav-list__link--active", status !== "ready" && "hd-mobile-menu-nav-list__link--disabled")}
                     onClick={onClose}
                 >
                     {label}

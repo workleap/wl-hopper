@@ -5,7 +5,7 @@ interface ComponentCodeWrapperProps {
     src: string;
 }
 
-export const ComponentCodeWrapper = async ({ src }: ComponentCodeWrapperProps) => {
+export default async function ComponentCodeWrapper({ src }: ComponentCodeWrapperProps) {
     if (!src) {
         return null;
     }
@@ -13,4 +13,4 @@ export const ComponentCodeWrapper = async ({ src }: ComponentCodeWrapperProps) =
     const code = await getComponentCode(src);
 
     return <HighlightCode code={code} />;
-};
+}

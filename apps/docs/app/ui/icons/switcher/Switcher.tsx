@@ -1,6 +1,6 @@
 "use client";
 
-import { IconTable } from "@/app/ui/icons/iconTable/IconTable.tsx";
+import IconTable from "@/app/ui/icons/iconTable/IconTable.tsx";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { HopperProvider, SearchField } from "@hopper-ui/components";
 import { SparklesIcon, SparklesRichIcon, iconNames, richIconNames } from "@hopper-ui/icons";

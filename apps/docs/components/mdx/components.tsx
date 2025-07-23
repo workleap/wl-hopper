@@ -1,53 +1,54 @@
 import dynamic from "next/dynamic";
 import type { DetailedHTMLProps, HTMLAttributes } from "react";
 
+import InlineCode from "@/components/code/InlineCode.tsx";
+import Link from "@/components/link/Link.tsx";
+
+import AI from "@/app/ui/components/ai/AI";
+import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable";
+import Callout from "@/app/ui/components/callout/Callout";
+import Card from "@/app/ui/components/card/Card";
+import CardLink from "@/app/ui/components/cardLink/cardLink.tsx";
+import CardLinkList from "@/app/ui/components/cardLink/cardLinkList.tsx";
+import ComponentCodeWrapper from "@/app/ui/components/componentExample/ComponentCodeWrapper.tsx";
+import type { ComponentExampleProps } from "@/app/ui/components/componentExample/ComponentExample.tsx";
+import ComponentPreview from "@/app/ui/components/componentExample/ComponentPreview.tsx";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.tsx";
+import Expand from "@/app/ui/components/expand/Expand";
+import Figure from "@/app/ui/components/figure/Figure";
+import Footnote from "@/app/ui/components/footnote/Footnote";
+import NextImage from "@/app/ui/components/image/Image";
+import type { MigrateGuideProps } from "@/app/ui/components/migrateGuide/MigrateGuide.tsx";
+import MotionPreview from "@/app/ui/components/motionPreview/MotionPreview";
 import Overview from "@/app/ui/components/overview/Overview.tsx";
-import { IconTable } from "@/app/ui/icons/iconTable/IconTable.tsx";
+import PackageInstallation, {
+    type PackageInstallationProps
+} from "@/app/ui/components/packageInstallation/PackageInstallation";
+import Pre from "@/app/ui/components/pre/Pre";
+import PropsReferenceTable from "@/app/ui/components/propsReferenceTable/PropsReferenceTable";
+import type { PropTableProps } from "@/app/ui/components/propTable/PropTable.tsx";
+import SimpleTable from "@/app/ui/components/simpleTable/SimpleTable";
+import Tabs from "@/app/ui/components/tabs/Tabs";
+import Tag from "@/app/ui/components/tag/Tag";
+import Title from "@/app/ui/components/title/Title";
+import IconTable from "@/app/ui/icons/iconTable/IconTable.tsx";
 import Switcher from "@/app/ui/icons/switcher/Switcher.tsx";
 import IconSpecTable from "@/app/ui/tokens/table/IconSpecTable.tsx";
 import TokenTable from "@/app/ui/tokens/table/TokenTable.tsx";
 import TypographyTable from "@/app/ui/tokens/table/TypographyTable.tsx";
 import TypographyVariantTable from "@/app/ui/tokens/table/TypographyVariantTable.tsx";
 import TableSection from "@/app/ui/tokens/tableSection/TableSection.tsx";
-import { Callout } from "@/components/callout/Callout.tsx";
-import Card from "@/components/card/Card.tsx";
-import CardLink from "@/components/cardLink/cardLink.tsx";
-import CardLinkList from "@/components/cardLink/cardLinkList.tsx";
-import InlineCode from "@/components/code/InlineCode.tsx";
-import Expand from "@/components/expand/Expand.tsx";
-import Figure from "@/components/figure/Figure.tsx";
-import Footnote from "@/components/footnote/Footnote.tsx";
-import NextImage from "@/components/image/Image.tsx";
-import Link from "@/components/link/Link.tsx";
-import MotionPreview from "@/components/motionPreview/MotionPreview.tsx";
-import PackageInstallation, {
-    type PackageInstallationProps
-} from "@/components/packageInstallation/PackageInstallation.tsx";
-import Pre from "@/components/pre/Pre.tsx";
-import Tabs from "@/components/tabs/Tabs.tsx";
-import Tag from "@/components/tag/Tag.tsx";
-import Title from "@/components/title/Title.tsx";
-
-import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable";
-import { ComponentCodeWrapper } from "@/app/ui/components/componentExample/ComponentCodeWrapper.tsx";
-import type { ComponentExampleProps } from "@/app/ui/components/componentExample/ComponentExample.tsx";
-import ComponentPreview from "@/app/ui/components/componentExample/ComponentPreview.tsx";
-import type { MigrateGuideProps } from "@/app/ui/components/migrateGuide/MigrateGuide.tsx";
-import { PropsReferenceTable } from "@/app/ui/components/propsReferenceTable/PropsReferenceTable";
-import type { PropTableProps } from "@/app/ui/components/propTable/PropTable.tsx";
-import SimpleTable from "@/app/ui/components/simpleTable/SimpleTable";
 
 const MigrateGuide = dynamic(() => import("@/app/ui/components/migrateGuide/MigrateGuide.tsx"));
 const PropTable = dynamic(() => import("@/app/ui/components/propTable/PropTable.tsx"));
 const ComponentExample = dynamic(() => import("@/app/ui/components/componentExample/ComponentExample.tsx"));
-const FeatureFlag = dynamic(() => import("@/components/featureFlag/FeatureFlag.tsx"));
 
 type HeadingProps = DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>;
 
 let h2Title = "";
 
 export const components = {
+    AI,
     Card,
     CardLink,
     CardLinkList,
@@ -74,7 +75,6 @@ export const components = {
     TableSection: TableSection,
     Link: Link,
     Switcher: Switcher,
-    FeatureFlag: FeatureFlag,
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },

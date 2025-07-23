@@ -1,8 +1,8 @@
 "use client";
 
-import "./MotionPreview.css";
 import { useState, type CSSProperties } from "react";
 import { Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue, type Key } from "react-aria-components";
+import "./MotionPreview.css";
 
 interface MotionPreviewProps {
     durations: { name: string; value: string }[];

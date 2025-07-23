@@ -2,11 +2,10 @@
 
 import { allComponents } from "@/.contentlayer/generated";
 
-import Title from "@/components/title/Title";
+import Title from "@/app/ui/components/title/Title.tsx";
 import { type ColorScheme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import { HopperProvider } from "@hopper-ui/components";
 
-import { FeatureFlagContext } from "@/context/feature/FeatureFlagProvider.tsx";
 import { useContext } from "react";
 import OverviewTile from "./overviewTile/OverviewTile.tsx";
 
@@ -48,7 +47,6 @@ const categories = Array.from(new Set(allComponents.map(component => component.c
 });
 
 const Overview = () => {
-    const featureFlags = useContext(FeatureFlagContext);
     const { colorMode } = useContext(ThemeContext);
     const theme = colorMode as ColorScheme;
 
@@ -70,8 +68,7 @@ const Overview = () => {
                             component.category &&
     component.category === category &&
     (component.status === "ready" ||
-     component.status === undefined ||
-     (component.status === "alpha" && featureFlags.alpha))
+     component.status === undefined)
                         ).map(component => {
                             return (
                                 <OverviewTile title={component.title} key={component._id} />

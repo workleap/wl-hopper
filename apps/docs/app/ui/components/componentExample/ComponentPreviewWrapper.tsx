@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/card/Card.tsx";
+import Card from "@/app/ui/components/card/Card";
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch.tsx";
 import { ThemeContext, type ColorScheme } from "@/context/theme/ThemeProvider.tsx";
 import { memo, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
