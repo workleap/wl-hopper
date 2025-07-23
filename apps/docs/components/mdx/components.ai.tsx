@@ -49,6 +49,13 @@ export const components = {
     Figure: () => undefined,
     MotionPreview: () => undefined,
     Image: () => undefined,
+    JsIcon: () => undefined,
+
+    ReactIcon: () => undefined,
+    ReactIconLibIcon: () => undefined,
+    ReactRichIconLibIcon: () => undefined,
+    SvgIconLibIcon: () => undefined,
+    SvgRichIconLibIcon: () => undefined,
 
     code: ({ children }: { children: React.ReactNode }) => (
         <code>{children}</code>

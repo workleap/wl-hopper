@@ -1,6 +1,5 @@
 // scripts/mdxToMarkdown.ts
 
-import { data } from "@/app/lib/contentConfig.ts";
 import { components } from "@/components/mdx/components.ai";
 import { iconData } from "@/content/icons/overview/data";
 import { compileMDX } from "next-mdx-remote/rsc";

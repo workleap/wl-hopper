@@ -128,7 +128,7 @@ async function convertMdxToMd(filePath: string): Promise<string> {
         .use(myUnifiedPluginHandlingYamlMatter)
         .use(remarkMdx)
         .use(frontMatterToMarkdown)
-        .use(markNotSupportedComponents) // TODO: Remove this when all components are supported
+        //.use(markNotSupportedComponents) // TODO: Remove this when all components are supported
         .process(mdxSource);
 
     return await mdxToMarkdown(String(markdown));
