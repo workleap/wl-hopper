@@ -12,6 +12,8 @@ import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 import { Writable } from "stream";
 import { unified } from "unified";
+import tokensDark from "../../datas/tokens-dark.json";
+import tokens from "../../datas/tokens.json";
 
 async function renderToStringAsync(element: React.ReactElement): Promise<string> {
     return new Promise((resolve, reject) => {
@@ -41,13 +43,17 @@ export async function mdxToReact(mdxSource: string): Promise<React.ReactElement>
 
     const compiled = await compileMDX({
         source: mdxSource,
+
         options: {
             scope: { // we need to set all import data here. otherwise, it will not be available in the mdx.
-                iconData: iconData
+                iconData: iconData,
+                tokens: tokens,
+                tokensDark: tokensDark
             },
             parseFrontmatter: false,
 
-            mdxOptions: { }
+
+            mdxOptions: { format: "mdx" }
 
             // mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] } We don't need this plugin as it is only for html shows the code blocks prettier.
         },
