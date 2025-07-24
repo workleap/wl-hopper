@@ -21,6 +21,14 @@ async function generate_getting_started_docs() {
     const outputDir = path.join(process.cwd(), "dist/ai/getting-started");
 
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: true });
+
+    await mergeFiles(outputDir, [
+        "installation.md",
+        "react.md",
+        "javascript.md",
+        "text-crop.md",
+        "components.md"
+    ], "full.md");
 }
 
 async function generate_icons_docs() {
