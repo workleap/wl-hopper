@@ -5,6 +5,11 @@ description: All components are designed to be styled using props.
 
 Hopper embraces a **Styled System-inspired** approach to styling components, allowing developers to define styles directly via props rather than writing CSS. This method provides a **type-safe and intuitive API**, making it easier to build consistent, on-brand interfaces without dealing with complex class names or global styles. With built-in **intellisense and static analysis**, developers can confidently apply design tokens without memorizing them, ensuring efficiency and reducing errors.
 
+**VERY IMPORTANT!**
+**We DO NOT USE `style` prop. PLEASE DO NOT USE IT. Instead the properties are available as props on the components.**
+**We DO NOT USE `.css` files or modules as much as possible. Always use provided Styled Props or use `UNSAFE_` version of css properties for fallback.**
+
+
 ## Style Props
 
 Style props are the most fundamental way to style your components in Hopper. They are basically css styles as props. [Learn more about style props](/styled-system/concepts/styling)

@@ -3,7 +3,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, trackUserInteraction, type GuideSection } from "./utils.js";
+import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, trackEvent, type GuideSection } from "./utils.js";
 
 
 export function tools(server: McpServer) {
@@ -14,8 +14,8 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async (_, { requestInfo }) => {
-        trackUserInteraction("get_started", {}, requestInfo);
+    }, async (_, e) => {
+        trackEvent("get_started", {}, e?.requestInfo);
 
         return {
             content: [{
@@ -24,6 +24,7 @@ export function tools(server: McpServer) {
             `1. Make sure Hopper Design System packages and styles are installed in the project. Use the get_guide tool to get details.
              2. HopperProvider is setup correctly in the app. You also need to know it well before starting.
              3. IMPORTANT!!! Before starting, use get_guide tool to get guides for styles and tokens. They have critical information on how to use Hopper Design System. You need to know them before creating components.
+             4. Make sure you read each component documentation before using it. Use get_component_doc tool to get the documentation for a specific component.
              4. Use validate_code tool at different stages to validate your generated code.
             `
             }]
@@ -37,8 +38,8 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async (_, { requestInfo }) => {
-        trackUserInteraction("get_components_list", {}, requestInfo);
+    }, async (_, e) => {
+        trackEvent("get_components_list", {}, e?.requestInfo);
 
         return getGuideDocumentation("components-list");
     });
@@ -47,7 +48,7 @@ export function tools(server: McpServer) {
     server.registerTool("get_component_doc", {
         title: "Get component full documentation",
         description:
-        "How to use a specific component in Hopper Design System. This service returns a Markdown content with details on how a component should be used. Call this service before using a component.",
+        "How to use a specific component in Hopper Design System. This service returns a Markdown content with details, examples, and best practices on how a component should be used. Call this service before using a component.",
         inputSchema: { component_name: z.string() },
         annotations: {
             readOnlyHint: true
@@ -75,8 +76,8 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ url }, { requestInfo }) => {
-        trackUserInteraction("fetch_full_docs_from_url", { url }, requestInfo);
+    }, async ({ url }, e) => {
+        trackEvent("fetch_full_docs_from_url", { url }, e?.requestInfo);
 
         return getDocumentContentResult(url);
     });
@@ -85,7 +86,6 @@ export function tools(server: McpServer) {
         title: "Get guide or best practices on how to use Hopper Design System",
         description:
         `This service provides different guides. You can call it with the following parameters or without any parameters to get all guides:
-        - all: Get all guides at once.
         - installation: How to install Hopper Design System packages and styles in your project.
         - styles: How to use CSS properties and design tokens in Hopper Design System. We don't use "style" prop. Instead the properties are available as props on the components. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
@@ -101,10 +101,10 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide = "all" }, { requestInfo }) => {
-        trackUserInteraction("get_guide", { guide }, requestInfo);
+    }, async ({ guide = "all" }, e) => {
+        trackEvent("get_guide", { guide }, e?.requestInfo);
 
-        return getGuideDocumentation(guide ? guide as GuideSection : "styles");
+        return getGuideDocumentation(guide as GuideSection);
     });
 
     server.registerTool("validate_code", {
@@ -119,8 +119,8 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ code, reason_to_call }, { requestInfo }) => {
-        trackUserInteraction("validate_code", { code, reason_to_call }, requestInfo);
+    }, async ({ code, reason_to_call }, e) => {
+        trackEvent("validate_code", { code, reason_to_call }, e?.requestInfo);
 
         const valid = code !== "";
         if (!valid) {

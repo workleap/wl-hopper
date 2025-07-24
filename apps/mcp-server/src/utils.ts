@@ -8,30 +8,28 @@ import { unified } from "unified";
 import { fileURLToPath } from "url";
 import winston from "winston";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist/ai");
+
 
 // Configure winston logger for user interactions
 const interactionLogger = winston.createLogger({
     level: "info",
-    format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.json()
-    ),
+    format: winston.format.json({ space: 2 }),
     transports: [
         new winston.transports.File({
-            filename: join(__dirname, "..", "logs", "user-interactions.log"),
+            filename: join(__dirname, "logs", "user-interactions.log.jsonl"),
             maxsize: 10 * 1024 * 1024, // 10MB
             maxFiles: 5,
-            tailable: true
+            tailable: true,
+            level: "info"
         })
     ]
 });
 
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
-    const docFilePath = join(__dirname, "../../docs/dist/ai", "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
-    trackUserInteraction("get_component_documentation", { componentName, section });
+    const docFilePath = join(__dirname, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
+    trackEvent("get_component_documentation", { componentName, section });
 
     if (!existsSync(docFilePath)) {
         return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
@@ -58,12 +56,49 @@ export async function getComponentDocumentation(componentName: string, section: 
     }
 }
 
-export type GuideSection = "styles" | "tokens" | "installation" | "components-list" | "icons";
+export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-schemas" | "components-list" | "icons" | "layout" | "controlled-mode" | "forms" | "slots" | "internationalization";
 
 export async function getGuideDocumentation(section: GuideSection): Promise<CallToolResult> {
+    const guidesPath: Record<GuideSection, string> = {
+        all: "full.md",
+        installation: "getting-started/full.md",
+        styles: "styled-system/full.md",
+        tokens: "tokens/full.md",
+        icons: "icons/full.md",
+        "color-schemas": "components/usage/concepts/color-schemas.md",
+        "components-list": "components/usage/component-list.md",
+        layout: "components/usage/concepts/layout.md",
+        "controlled-mode": "components/usage/concepts/controlled-mode.md",
+        forms: "components/usage/concepts/forms.md",
+        slots: "components/usage/concepts/slots.md",
+        internationalization: "components/usage/concepts/internationalization.md"
+    };
+
+    if (!Object.keys(guidesPath).includes(section)) {
+        return {
+            content: [{
+                type: "text",
+                isError: true,
+                text: `Invalid guide section requested: ${section}`
+            }]
+        };
+    }
+
+    const guidePath = join(__dirname, guidesPath[section]);
+    console.log("-->", guidePath);
+
+    if (!existsSync(guidePath)) {
+        return {
+            content: [{
+                type: "text",
+                isError: true,
+                text: `Guide not found for section: ${section}`
+            }]
+        };
+    }
+
     try {
-        const sectionPath = join(__dirname, "docs", "guides", `${section}.md`);
-        const sectionContent = readFileSync(sectionPath, "utf-8");
+        const sectionContent = readFileSync(guidePath, "utf-8");
 
         return {
             content: [{
@@ -138,12 +173,19 @@ export async function fetchDocumentContent(url: string) {
     throw new Error(`The fetch url doesn't contain <main> tag: ${url}`);
 }
 
-export function trackUserInteraction(event: string, data: Record<string, string | number | boolean> = {}, requestInfo?: RequestInfo) {
-    const sessionId = requestInfo?.headers["mcp-session-id"];
+export function trackEvent(event: string, data: Record<string, string | number | boolean> = {}, requestInfo?: RequestInfo) {
+    let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
+    const { sessionId: dataSessionId, ...sessionLessData } = data;
+
+    if (!sessionId && dataSessionId) {
+        sessionId = dataSessionId as string;
+    }
+
+
     const logData = {
         event,
         sessionId,
-        data,
+        sessionLessData,
         timestamp: new Date().toISOString()
     };
 

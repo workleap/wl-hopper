@@ -57,9 +57,7 @@ export const components = {
     SvgIconLibIcon: () => undefined,
     SvgRichIconLibIcon: () => undefined,
 
-    code: ({ children }: { children: React.ReactNode }) => (
-        <code>{children}</code>
-    ),
+
     Card: ({ children }: { children: React.ReactNode }) => (
         <>{children}</>
     ),
