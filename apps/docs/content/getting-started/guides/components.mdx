@@ -19,33 +19,16 @@ The Hopper design systems are built on the principle that “components are desi
 
 There are multiple customization methods available, and to highlight why some are better suited than others, I’ve organized them into four tiers:
 
-
-<table className="hd-table">
-    <thead>
-        <tr>
-            <th className="hd-table__column">Customization Tier</th>
-            <th className="hd-table__column">Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr className="hd-table__row">
-            <td className="hd-table__cell">🥇**Gold Tier**</td>
-            <td className="hd-table__cell">Maximize reuse of the Design System, applying only minimal overwrites to fit your needs.</td>
-        </tr>
-        <tr className="hd-table__row">
-            <td className="hd-table__cell">🥈**Silver Tier**</td>
-            <td className="hd-table__cell">Reuse most of the component’s behaviors, but make some modifications to fit your needs.</td>
-        </tr>
-        <tr className="hd-table__row">
-            <td className="hd-table__cell">🥉**Bronze Tier**</td>
-            <td className="hd-table__cell">Reassemble the component’s behavior using smaller utility methods.</td>
-        </tr>
-        <tr className="hd-table__row">
-            <td className="hd-table__cell">🛠️**Do it yourself**</td>
-            <td className="hd-table__cell">Build the behavior from scratch and use low-level styling tools as needed.</td>
-        </tr>
-    </tbody>
-</table>
+<SimpleTable
+    aria-label="Customization Tiers"
+    headers={["Customization Tier", "Description"]}
+    data={[
+        { "Customization Tier": "🥇 Gold Tier", "Description": "Maximize reuse of the Design System, applying only minimal overwrites to fit your needs." },
+        { "Customization Tier": "🥈 Silver Tier", "Description": "Reuse most of the component's behaviors, but make some modifications to fit your needs." },
+        { "Customization Tier": "🥉 Bronze Tier", "Description": "Reassemble the component's behavior using smaller utility methods." },
+        { "Customization Tier": "🛠️ Do it yourself", "Description": "Build the behavior from scratch and use low-level styling tools as needed." }
+    ]}
+/>
 
 ## Customization Methods Overview
 
@@ -180,6 +163,26 @@ Using this approach may require you to restyle the entire component, which is fi
 ### 🥉 Custom Components Using Hooks
 
 If there is no base components to use, or if the base component is again too strict for you needs, you can use underlying hooks for more granular control. [React Aria](https://react-spectrum.adobe.com/react-aria/hooks.html) also offer hooks that you can tailor components more precisely to your needs. [The Technology team recommends using React Aria](https://workleap.atlassian.net/wiki/spaces/TL/pages/3469508719) as the preferred foundation for building components.
+
+💡[Need Help Getting Started?](#need-help-getting-started)
+
+<Callout variant="warning">
+Using this approach may require you to restyle the entire component, which is fine. At this stage, you’re essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to ensure that any future branding updates are automatically applied to your component without needing manual adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to expose style props!
+</Callout>
+
+<br /><hr />
+
+### 🛠️ Building Components From Scratch
+
+For unique needs that go beyond the capabilities of design system components, building a component from scratch may be necessary. At this point, the only recommendation we can give is to refer to the [WAI Aria Patterns](https://www.w3.org/WAI/ARIA/apg/patterns/) or [Spec](https://www.w3.org/WAI/ARIA/apg/) to determine the expected behavior of controls. Using this approach you will have to style the entire component, which is fine. Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to ensure that any future branding updates are automatically applied to your component without needing manual adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to expose style props!
+
+💡[Need Help Getting Started?](#need-help-getting-started)
+
+## Need Help Getting Started?
+
+Even if you're not using Design System components, we're here to help! The Design System team has deep expertise in React Aria and is eager to collaborate with you.
+
+💡Let's brainstorm together! Reach out to us in **#ds-hopper** for guidance, ideas, or support in finding the perfect starting point for your project.
 
 💡[Need Help Getting Started?](#need-help-getting-started)
 

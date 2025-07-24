@@ -15,7 +15,12 @@ export const generateIndex = (componentDirectory: string, iconsByNames: MultiSou
     const indexFile = `${componentDirectory}/index.ts`;
     const indexContent = `${GENERATED_HEADER}\n
 ${Object.values(iconsByNames).map(icon => `export * from "./${icon.name}${iconSuffix}.tsx";`).join("\n")}
-\nexport const ${iconListName} = ${JSON.stringify(iconList)} as const;`;
+export * from "./icon-list.ts";`;
 
     fs.writeFileSync(indexFile, indexContent);
+
+    const iconListFile = `${componentDirectory}/icon-list.ts`;
+    fs.writeFileSync(iconListFile, `${GENERATED_HEADER}\n
+
+\nexport const ${iconListName} = ${JSON.stringify(iconList)} as const;`);
 };
