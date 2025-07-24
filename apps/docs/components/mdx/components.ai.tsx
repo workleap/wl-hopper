@@ -1,25 +1,27 @@
 // eslint-disable-next-line no-restricted-imports
+import AI from "@/app/ui/components/ai/AI.ai";
 import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable.ai";
+import Callout from "@/app/ui/components/callout/Callout.ai";
+import CardLink from "@/app/ui/components/cardLink/cardLink.ai";
+import CardLinkList from "@/app/ui/components/cardLink/cardLinkList.ai";
 import ComponentExample from "@/app/ui/components/componentExample/ComponentExample.ai";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.ai";
+import Expand from "@/app/ui/components/expand/Expand.ai";
+import Footnote from "@/app/ui/components/footnote/Footnote.ai";
 import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
 import Overview from "@/app/ui/components/overview/Overview.ai";
-import { PropsReferenceTable } from "@/app/ui/components/propsReferenceTable/PropsReferenceTable.ai";
+import PackageInstallation from "@/app/ui/components/packageInstallation/PackageInstallation.ai";
+import PropsReferenceTable from "@/app/ui/components/propsReferenceTable/PropsReferenceTable.ai";
 import PropTable from "@/app/ui/components/propTable/PropTable.ai";
 import SimpleTable from "@/app/ui/components/simpleTable/SimpleTable.ai";
+import Tag from "@/app/ui/components/tag/Tag.ai";
 import Switcher from "@/app/ui/icons/switcher/Switcher.ai";
 import IconSpecTable from "@/app/ui/tokens/table/IconSpecTable.ai";
 import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 import TypographyTable from "@/app/ui/tokens/table/TypographyTable.ai";
 import TypographyVariantTable from "@/app/ui/tokens/table/TypographyVariantTable.ai";
 import TableSection from "@/app/ui/tokens/tableSection/TableSection.ai";
-import { Callout } from "../callout/Callout.ai";
-import CardLink from "../cardLink/cardLink.ai";
-import CardLinkList from "../cardLink/cardLinkList.ai";
-import Expand from "../expand/Expand.ai";
-import Footnote from "../footnote/Footnote.ai";
-import PackageInstallation from "../packageInstallation/PackageInstallation.ai";
-import Tag from "../tag/Tag.ai";
+import Link from "../link/Link.ai";
 
 export const components = {
     Overview: Overview,
@@ -44,6 +46,8 @@ export const components = {
     PropsReferenceTable: PropsReferenceTable,
     SimpleTable: SimpleTable,
     Expand: Expand,
+    Link: Link,
+    AI: AI,
 
     FeatureFlag: () => undefined,
     Figure: () => undefined,
