@@ -84,7 +84,7 @@ Functional requirements:
   - Add a button on top of the page to add a new product.
   - If user clicked on a product row, it should open a Card on the right side of the table to show the product details in readonly mode. This card should:
     - show the product title as heading
-    - show a random image for product on left side
+    - show a random image for product on left side (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
     - on right side, it should show category and description and if it is active (by using an icon)
     - on the bottom of the card, it should have these actions: edit and delete. both actions behave like what similar ones do in the product list page.
 - Product modal/dialog: Adding or modifying each product should be done through a modal.

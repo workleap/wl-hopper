@@ -8,7 +8,10 @@ links:
 
 <Example src="modal/docs/preview" isOpen />
 
+## Anatomy
+
 ### Structure
+
 ```tsx
 <Modal>
     <Header />
@@ -23,10 +26,10 @@ A `Modal` uses the following components:
 
 <ComposedComponents components={["Image", "Heading", "Header", "Content", "Footer", "Button", "ButtonGroup"]}/>
 
-
-## Dos and Don'ts
+### Dos and Don'ts
 
 - **Do Not** use a modal without a `<Content />` section.
+- `Content` section is the direct child of the `Modal` component.
 
 ## Usage
 

@@ -1,6 +1,8 @@
 import type { CallToolResult, RequestInfo } from "@modelcontextprotocol/sdk/types.js";
+import chalk from "chalk";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
+import { cwd } from "process";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
@@ -14,10 +16,10 @@ const __dirname = join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist
 // Configure winston logger for user interactions
 const interactionLogger = winston.createLogger({
     level: "info",
-    format: winston.format.json({ space: 2 }),
+    format:  winston.format.json({ space: 2 }),
     transports: [
         new winston.transports.File({
-            filename: join(__dirname, "logs", "user-interactions.log.jsonl"),
+            filename: join(cwd(), "logs", "user-interactions.log.jsonl"),
             maxsize: 10 * 1024 * 1024, // 10MB
             maxFiles: 5,
             tailable: true,
@@ -26,10 +28,27 @@ const interactionLogger = winston.createLogger({
     ]
 });
 
+if (process.env.NODE_ENV !== "production") {
+    const colorizeMessageOnly = winston.format(info => {
+        if (info.message) {
+            info.message = chalk.blue(info.message); // Only color the message
+        }
+
+        return info;
+    });
+
+    interactionLogger.add(new winston.transports.Console({
+        format: winston.format.combine(
+            colorizeMessageOnly(),
+            winston.format.timestamp(),
+            winston.format.simple()
+        )
+    }));
+}
+
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
     const docFilePath = join(__dirname, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
-    trackEvent("get_component_documentation", { componentName, section });
 
     if (!existsSync(docFilePath)) {
         return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
@@ -85,7 +104,6 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     }
 
     const guidePath = join(__dirname, guidesPath[section]);
-    console.log("-->", guidePath);
 
     if (!existsSync(guidePath)) {
         return {
@@ -175,7 +193,7 @@ export async function fetchDocumentContent(url: string) {
 
 export function trackEvent(event: string, data: Record<string, string | number | boolean> = {}, requestInfo?: RequestInfo) {
     let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
-    const { sessionId: dataSessionId, ...sessionLessData } = data;
+    const { sessionId: dataSessionId, ...modifiedData } = data;
 
     if (!sessionId && dataSessionId) {
         sessionId = dataSessionId as string;
@@ -183,15 +201,11 @@ export function trackEvent(event: string, data: Record<string, string | number |
 
 
     const logData = {
-        event,
-        sessionId,
-        sessionLessData,
+        sessionId: sessionId ? sessionId : undefined,
+        data: modifiedData && Object.keys(modifiedData).length > 0 ? modifiedData : undefined,
         timestamp: new Date().toISOString()
     };
 
     // Log to file using winston
-    interactionLogger.info("User interaction tracked", logData);
-
-    // Also log to console for debugging
-    console.log(`Tracking event: ${event}`, { ...data, sessionId });
+    interactionLogger.info(event, logData);
 }

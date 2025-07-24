@@ -35,6 +35,7 @@ export function tools(server: McpServer) {
         title: "List all available components",
         description:
         "Get a list of all components in the Hopper Design System.",
+        inputSchema: {},
         annotations: {
             readOnlyHint: true
         }
@@ -53,7 +54,9 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }) => {
+    }, async ({ component_name }, e) => {
+        trackEvent("get_component_documentation", { componentName: component_name }, e?.requestInfo);
+
         return getComponentDocumentation(component_name, "usage");
     });
 
@@ -65,7 +68,9 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }) => {
+    }, async ({ component_name }, e) => {
+        trackEvent("get_component_api", { componentName: component_name }, e?.requestInfo);
+
         return getComponentDocumentation(component_name, "api");
     });
 
@@ -86,13 +91,13 @@ export function tools(server: McpServer) {
         title: "Get guide or best practices on how to use Hopper Design System",
         description:
         `This service provides different guides. You can call it with the following parameters or without any parameters to get all guides:
-        - installation: How to install Hopper Design System packages and styles in your project.
+        - installation
         - styles: How to use CSS properties and design tokens in Hopper Design System. We don't use "style" prop. Instead the properties are available as props on the components. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
-        - color-schemes: Learn how color schemes work in Hopper, including how applications can adapt to operating system's dark mode.
-        - icons: How to use icons in Hopper Design System. Hopper offers a versatile and comprehensive icon system tailored to meet diverse project needs
-        - layout: Learn how to build application layouts with Hopper using Flex or Grid.
-        - controlled-mode: Learn how to use controlled and uncontrolled modes to customize Hopper components.
+        - color-schemes: Applying light mode, dark mode, or adapt to operating system's dark mode.
+        - icons: Using icons in Hopper Design System.
+        - layout: Building application layouts using Flex or Grid.
+        - controlled-mode: Using controlled and uncontrolled modes to customize components.
         - forms: Best practices for building forms in Hopper Design System.
         - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
         - internationalization: Adapting components to respect languages and cultures of users around the world is a great way to make your application accessible to the widest number of people.
