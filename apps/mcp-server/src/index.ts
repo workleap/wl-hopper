@@ -4,6 +4,7 @@ import express from "express";
 import { randomUUID } from "node:crypto";
 
 import { setupServer } from "./server.js";
+import { trackEvent } from "./utils.js";
 
 const PORT = 3300;
 const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${PORT}`, `127.0.0.1:${PORT}`];
@@ -11,6 +12,8 @@ const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${PORT}`, `127.0.0.1
 console.log(`Hopper MCP server\nlistening on port ${PORT}...`);
 const app = express();
 app.use(express.json());
+
+trackEvent("server_started", {});
 
 // Map to store transports by session ID
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
@@ -31,6 +34,7 @@ app.post("/mcp", async (req, res) => {
             onsessioninitialized: sId => {
                 // Store the transport by session ID
                 transports[sId] = transport;
+                trackEvent("session_initialized", { sessionId: sId }, req);
             },
             // DNS rebinding protection is disabled by default for backwards compatibility. If you are running this server
             // locally, make sure to set:

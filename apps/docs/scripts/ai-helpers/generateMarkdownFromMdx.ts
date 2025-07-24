@@ -139,6 +139,7 @@ interface GenerateMarkdownOptions {
     outputDir: string;
     props: boolean;
     flattenOutput?: boolean;
+    flattenOutputExceptions?: string[];
 }
 
 // Find all MDX files in a directory
@@ -203,12 +204,20 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
             const mdContent = await convertMdxToMd(filePath);
             if (mdContent) {
                 let targetPath = options.outputDir;
-                if (!options.flattenOutput) {
-                    const relativePath = path.relative(options.contentDir, filePath);
-                    targetPath = path.join(targetPath, path.dirname(relativePath));
+                const relativePath = path.relative(options.contentDir, filePath);
+                const fileDir = path.dirname(relativePath);
 
+                // Check if this file should maintain directory structure
+                const shouldFlatten = options.flattenOutput &&
+                    !options.flattenOutputExceptions?.some(exception =>
+                        fileDir.startsWith(exception) || fileDir === exception
+                    );
+
+                if (!shouldFlatten) {
+                    targetPath = path.join(targetPath, fileDir);
                     await fs.mkdir(targetPath, { recursive: true });
                 }
+
                 processedFiles.push({
                     outputPath: path.join(targetPath, path.basename(filePath, ".mdx") + ".md"),
                     content: mdContent

@@ -12,12 +12,12 @@
   "scripts": {
     "build": "tsc",
     "dev": "nodemon --watch src --ext ts --exec \"tsx src/index.ts\"",
-    "postbuild": "cp -r src/docs dist/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc:generateAi": "pnpm --filter=docs generate:ai"
   },
   "keywords": [],
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.15.1",
+    "@modelcontextprotocol/sdk": "1.16.0",
     "express": "5.1.0",
     "winston": "^3.17.0"
   },
@@ -25,12 +25,12 @@
     "@types/express": "5.0.3",
     "@types/node": "22.10.1",
     "@types/winston": "^2.4.4",
-    "@workleap/typescript-configs": "3.0.2",
+    "@workleap/typescript-configs": "3.0.4",
     "nodemon": "3.1.10",
     "rehype-remark": "^10.0.1",
     "remark": "^15.0.1",
-    "tsx": "4.19.2",
-    "typescript": "5.5.4",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3",
     "unist-util-visit": "5.0.0"
   }
 }

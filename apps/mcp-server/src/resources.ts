@@ -3,7 +3,7 @@
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { trackUserInteraction } from "./utils.js";
+import { trackEvent } from "./utils.js";
 
 const SectionSchema = z.enum(["api", "usage"]);
 const ALLOWED_SECTIONS = ["api", "usage"] as const;
@@ -18,7 +18,7 @@ export function resources(server: McpServer) {
             description: `JSON API and Markdown usage chunks for each component. Allowed section values: ${ALLOWED_SECTIONS.join(", ")}`
         },
         async (uri, { component, section }, { requestInfo }) => {
-            trackUserInteraction("get_component_description [resource]", { component: component.toString(), section: section.toString() }, requestInfo);
+            trackEvent("get_component_description [resource]", { component: component.toString(), section: section.toString() }, requestInfo);
 
             // Validate section parameter
             const validatedSection = SectionSchema.parse(section);

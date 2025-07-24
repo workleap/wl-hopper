@@ -1,3 +1,4 @@
+import { rehypePluginOptions } from "@/app/lib/rehypeConfig";
 import { components } from "@/components/mdx/components.ai";
 import { iconData } from "@/content/icons/overview/data";
 import tokensDark from "@/datas/tokens-dark.json";
@@ -50,9 +51,9 @@ export async function mdxToReact(mdxSource: string): Promise<React.ReactElement>
             parseFrontmatter: false,
 
 
-            mdxOptions: { format: "mdx" }
+            mdxOptions: { remarkPlugins: [], rehypePlugins: [] }
 
-            // mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] } We don't need this plugin as it is only for html shows the code blocks prettier.
+            //mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] } //We don't need this plugin as it is only for html shows the code blocks prettier.
         },
         components: components
     });

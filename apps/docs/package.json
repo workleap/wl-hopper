@@ -23,6 +23,7 @@
         "@tanstack/react-table": "^8.20.5",
         "clsx": "2.1.1",
         "contentlayer": "npm:contentlayer2@0.5.3",
+        "glob": "^11.0.3",
         "mdx-bundler": "^10.1.1",
         "next": "14.2.15",
         "next-contentlayer": "npm:next-contentlayer2@0.5.3",
