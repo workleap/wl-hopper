@@ -51,5 +51,4 @@ export * from "./TemplateRichIcon.tsx";
 export * from "./TextAnswerRichIcon.tsx";
 export * from "./UpsellRichIcon.tsx";
 export * from "./WhosWhoRichIcon.tsx";
-
-export const richIconNames = ["ActionListRichIcon","AnniversaryRichIcon","AnonymousRichIcon","ApplauseRichIcon","BirthdayRichIcon","BrokenImageRichIcon","CautionRichIcon","ConversationRichIcon","CustomRichIcon","DecreasingScoreRichIcon","DeletedUserRichIcon","DepartmentRichIcon","DirectoryRichIcon","DiscountRichIcon","EmailRichIcon","FeedbackRichIcon","GoalIndividualRichIcon","GoalTeamRichIcon","GroupRichIcon","GrowthRichIcon","IdeaRichIcon","InfoRichIcon","LikertScaleRichIcon","LocationRichIcon","MultipleChoiceRichIcon","OneOnOneRichIcon","OpenRoleRichIcon","OpinionScaleRichIcon","OrganizationRichIcon","PeopleRichIcon","ProfileRichIcon","QuestionRichIcon","ReminderRichIcon","ReviewRichIcon","RisingScoreRichIcon","RocketRichIcon","ScriptRichIcon","SettingsRichIcon","SparklesRichIcon","StarRichIcon","StatusRichIcon","SuccessRichIcon","SupportRichIcon","TemplateRichIcon","TextAnswerRichIcon","UpsellRichIcon","WhosWhoRichIcon"] as const;
+export * from "./icon-list.ts";
