@@ -1,5 +1,5 @@
 import { capitalize } from "@/app/lib/capitalize.ts";
-import { Mdx } from "@/scripts/utils/Mdx";
+import { Mdx } from "@/components/mdx/Mdx.ai";
 import fs from "fs/promises";
 import path from "path";
 

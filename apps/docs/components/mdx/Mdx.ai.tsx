@@ -1,4 +1,4 @@
-import { mdxToReact } from "./mdxToMarkdown";
+import { mdxToReact } from "./mdxToMarkdown.ai";
 
 interface MdxProps {
     children: string | string[];

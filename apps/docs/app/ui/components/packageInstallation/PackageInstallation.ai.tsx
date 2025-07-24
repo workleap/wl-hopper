@@ -1,4 +1,4 @@
-import { Mdx } from "@/scripts/utils/Mdx";
+import { Mdx } from "@/components/mdx/Mdx.ai";
 
 
 export interface PackageInstallationProps {
