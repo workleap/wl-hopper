@@ -24,7 +24,7 @@ function toRowValues([propName, cssProperty, scale, supports]: string[]): Item {
 }
 
 
-export interface PropsReferenceTableProps {
+interface PropsReferenceTableProps {
     rows: string[][];
 }
 
@@ -35,7 +35,7 @@ interface Item {
     supports: string;
 }
 
-export function PropsReferenceTable({ rows }: PropsReferenceTableProps) {
+export default function PropsReferenceTable({ rows }: PropsReferenceTableProps) {
     return (
         <PropsReferenceTableRender
             items={rows.map(x => toRowValues(x))}

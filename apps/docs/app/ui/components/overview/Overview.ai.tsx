@@ -1,7 +1,5 @@
 
 import { capitalize } from "@/app/lib/capitalize";
-import { FeatureFlagContext } from "@/context/feature/FeatureFlagProvider.tsx";
-import { useContext } from "react";
 import { allComponents } from "../../../../.contentlayer/generated/index.mjs";
 import type { Components } from "../../../../.contentlayer/generated/types";
 
@@ -44,8 +42,6 @@ const categories = Array.from(new Set(components.map(component => component.cate
 });
 
 const Overview = () => {
-    const featureFlags = useContext(FeatureFlagContext);
-
     const overviewSection = categories.map(category => {
         if (!category) {
             return null;
@@ -59,8 +55,7 @@ const Overview = () => {
                         component.category &&
                         component.category === category &&
                         (component.status === "ready" ||
-                        component.status === undefined ||
-                        (component.status === "alpha" && featureFlags.alpha))
+                        component.status === undefined)
                     )}
                 />
             </div>
