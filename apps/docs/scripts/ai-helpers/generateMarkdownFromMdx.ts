@@ -9,7 +9,7 @@ import remarkMdx from "remark-mdx";
 import { visit } from "unist-util-visit";
 import type { VFile } from "vfile";
 import { matter } from "vfile-matter";
-import { mdxToMarkdown } from "./mdxToMarkdown";
+import { mdxToMarkdown } from "../../components/mdx/mdxToMarkdown.ai";
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

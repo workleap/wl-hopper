@@ -1,6 +1,6 @@
 
 
-import { Mdx } from "@/scripts/utils/Mdx";
+import { Mdx } from "@/components/mdx/Mdx.ai";
 import fs from "fs/promises";
 import path from "path";
 

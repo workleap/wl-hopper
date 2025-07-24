@@ -1,7 +1,7 @@
-// scripts/mdxToMarkdown.ts
-
 import { components } from "@/components/mdx/components.ai";
 import { iconData } from "@/content/icons/overview/data";
+import tokensDark from "@/datas/tokens-dark.json";
+import tokens from "@/datas/tokens.json";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { renderToPipeableStream } from "react-dom/server";
 import rehypeParse from "rehype-parse";
@@ -11,8 +11,6 @@ import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 import { Writable } from "stream";
 import { unified } from "unified";
-import tokensDark from "../../datas/tokens-dark.json";
-import tokens from "../../datas/tokens.json";
 
 async function renderToStringAsync(element: React.ReactElement): Promise<string> {
     return new Promise((resolve, reject) => {
