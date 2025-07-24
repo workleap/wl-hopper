@@ -56,7 +56,7 @@ export async function getComponentDocumentation(componentName: string, section: 
     }
 }
 
-export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-schemas" | "components-list" | "icons" | "layout" | "controlled-mode" | "forms" | "slots" | "internationalization";
+export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-schemes" | "components-list" | "icons" | "layout" | "controlled-mode" | "forms" | "slots" | "internationalization";
 
 export async function getGuideDocumentation(section: GuideSection): Promise<CallToolResult> {
     const guidesPath: Record<GuideSection, string> = {
@@ -65,7 +65,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
         styles: "styled-system/full.md",
         tokens: "tokens/full.md",
         icons: "icons/full.md",
-        "color-schemas": "components/usage/concepts/color-schemas.md",
+        "color-schemes": "components/usage/concepts/color-schemes.md",
         "components-list": "components/usage/component-list.md",
         layout: "components/usage/concepts/layout.md",
         "controlled-mode": "components/usage/concepts/controlled-mode.md",
