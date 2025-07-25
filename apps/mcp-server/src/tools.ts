@@ -23,9 +23,10 @@ export function tools(server: McpServer) {
                 text:
             `1. Make sure Hopper Design System packages and styles are installed in the project. Use the get_guide tool to get details.
              2. HopperProvider is setup correctly in the app. You also need to know it well before starting.
-             3. IMPORTANT!!! Before starting, use get_guide tool to get guides for styles and tokens. They have critical information on how to use Hopper Design System. You need to know them before creating components.
-             4. Make sure you read each component documentation before using it. Use get_component_doc tool to get the documentation for a specific component.
-             4. Use validate_code tool at different stages to validate your generated code.
+             3. IMPORTANT!!! Before starting, use get_guide tool to get guides for styles, tokens and icons. They have critical information on how to use Hopper Design System. You need to know them before creating components.
+             4. Use the provided tools as much as possible and avoid guessing or using trial-and-error approach.
+             5. Make sure you read each component documentation before using it. Use get_component_doc tool to get the documentation for a specific component.
+             6. Use validate_code tool at different stages to validate your generated code.
             `
             }]
         };
