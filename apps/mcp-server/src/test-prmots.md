@@ -102,3 +102,66 @@ Non-functional requirements:
 - Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
 - Use Typescript and tsx format.
 - Use pnpm all the times.
+
+## Test 2 (modified to have dashboard): Basic but follows foundational tasks
+
+Your role:
+Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy.
+
+Task:
+Build a simple React app for managing products by following the below requirements carefully.
+
+Functional requirements:
+
+- Data structure
+  - Product has these fields: title, description (long text), category, isActive and quantity.
+  - Product category is a fixed list of: food, cloths, cosmetic, tools and etc.
+
+- The layout of the application
+  - Top Navbar to show icons
+  - Left Sidebar to show pages
+  - The rest is the content
+
+- Top Navbar:
+  - It has a button on top-right to switch between dark and light mode. Make sure you follow Hopper color scheme features.
+  - On the left side, you should use a random icon for logo.
+  - The website name is "Workleap Store Management". The name should come on the right side of the logo.
+
+- Pages
+  - Products Management
+  - Users Management
+
+- Products management page
+  - layout:
+    - Product List on left (60% of the page's width)
+    - Product Card on right (40% of the page's width)
+  - Product List:
+    - The column are: title, category and actin buttons: modify and delete.
+    - There is a "Add Product" button on top of the list.
+    - For modify: it opens a modal with already filled data.
+    - For delete: it should confirm before deleting.
+    - If user clicks on a product row, it should fills the Product Card in readonly mode.
+  - Product Card:
+    - show a random image for product on left side (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
+    - show all fields in readonly mode on the right of the image.
+    - on bottom of the card, it should have these actions: edit and delete. both actions behave like what similar ones in the Product List section.
+  - Product Modal/dialog:
+    - Adding or modifying each product should be done through this modal.
+    - Title and category are the only required fields. It should shows error message if they are left empty.
+    - In edit mode, the title field is readonly. User cannot modify it after creating it.
+    - The modal should have "save", "cancel" and "remove" buttons.
+      - The save button should also be disabled if the form is not valid.
+      - buttons should use the Design System primary, secondary, and destructive actions.
+    - Use combobox for selecting category.
+  
+- Users Management page
+  - Just design a simple user management.
+
+Non-functional requirements
+
+- The app should be responsive and consider mobile view from scratch.
+- For all cases, after an action is done, use the callout to feedback user the result.  
+- Use Hopper design system components, icons and best practices.
+- Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
+- Use Typescript and tsx format.
+- Use pnpm all the times.

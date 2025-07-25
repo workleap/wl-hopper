@@ -45,6 +45,20 @@ export function tools(server: McpServer) {
         return getGuideDocumentation("components-list");
     });
 
+    server.registerTool("get_icons_list", {
+        title: "List all available icons",
+        description:
+        "Get list of all available icons in the Hopper Design System and how to use them.",
+        inputSchema: {},
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async (_, e) => {
+        trackEvent("get_icons_list", {}, e?.requestInfo);
+
+        return getGuideDocumentation("icons");
+    });
+
 
     server.registerTool("get_component_doc", {
         title: "Get component full documentation",
@@ -95,7 +109,7 @@ export function tools(server: McpServer) {
         - styles: How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
         - color-schemes: Applying light mode, dark mode, or adapt to operating system's dark mode.
-        - icons: Using icons in Hopper Design System.
+        - icons: All available icons and how to use them.
         - layout: Building application layouts using Flex or Grid.
         - controlled-mode: Using controlled and uncontrolled modes to customize components.
         - forms: Best practices for building forms in Hopper Design System.

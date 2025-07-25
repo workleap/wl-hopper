@@ -35,7 +35,7 @@ if (process.env.NODE_ENV !== "production") {
             info.message = chalk.yellow(info.message); // Only color the message
         }
         if (info.data) {
-            info.data = chalk.cyan(JSON.stringify(info.data, null, 2)); // Only color the data
+            info.data = chalk.cyan(JSON.stringify(info.data)); // Only color the data
         }
 
         return info;
