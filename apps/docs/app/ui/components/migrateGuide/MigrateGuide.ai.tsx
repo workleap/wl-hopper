@@ -5,7 +5,7 @@ export interface MigrateGuideProps {
 }
 
 const MigrateGuide = async () => {
-    return null;
+    return <div />;
 
     // if (!src) {
     //     return null;
