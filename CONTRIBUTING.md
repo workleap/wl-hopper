@@ -22,12 +22,21 @@ pnpm storybook
 
 ## Adding a new icon
 
-1. Add SVGs to Size-Specific Folders
+1. Add SVGs to Size-Specific and Metadata Folders
 - Get the three versions (16px, 24px, 32px) of the SVG icon you want to add. Having 3 versions of the icon is mandatory.
 - Place each version in the following folders:
   - `packages/svg-icons/src/icons/16px`
   - `packages/svg-icons/src/icons/24px`
   - `packages/svg-icons/src/icons/32px`
+- For each icon, create a JSON metadata file `<YourIconName>.json` in the metadata directory - `packages/svg-icons/src/icons/metadata`. Having a metadata of the icon is mandatory. This is the following structure:
+ 
+```
+{
+  "name": "YourIconName",
+  "description": "Concise description of what the icon represents",
+  "keywords": ["keyword1", "keyword2", "keyword3"]
+}
+```
 
 2. Test the source SVGs
 - Run the following command to test the source SVGs:
@@ -69,6 +78,8 @@ You can follow the template for the changeset to ensure that you provide the cor
   - `packages/svg-icons/src/icons/16px`
   - `packages/svg-icons/src/icons/24px`
   - `packages/svg-icons/src/icons/32px`
+
+- You will also need to delete or update the metadata of the icon in `packages/svg-icons/src/icons/metadata`.
 
 - Steps 2-5 are the same as adding a new icon.
 

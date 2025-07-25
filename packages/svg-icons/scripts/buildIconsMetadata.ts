@@ -2,6 +2,8 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
+import { IconsMetadataDistDirectory } from "./constants.ts";
+
 // Get the directory name in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,15 +26,24 @@ interface MergedMetadata {
 }
 
 /**
- * Merges all JSON files in a specified directory into a single output file
+ * Ensures a directory exists, creating it if necessary
+ * @param {string} dirPath - The directory path to ensure exists
+ */
+function ensureDirectoryExists(dirPath: string): void {
+    if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true });
+        console.log(`Created directory: ${dirPath}`);
+    }
+}
+
+/**
+ * Merges all JSON files in a specified directory and returns the merged data
  * @param {string} sourceDir - The directory containing the JSON files to merge
- * @param {string} outputFilePath - The path where the merged JSON will be written
  * @param {string} type - The type of icons being processed (for logging)
  * @returns {Promise<MergedMetadata>} - The merged data object
  */
 async function mergeMetadataFiles(
     sourceDir: string,
-    outputFilePath: string,
     type: string
 ): Promise<MergedMetadata> {
     try {
@@ -66,10 +77,7 @@ async function mergeMetadataFiles(
             }
         }
 
-        // Write the merged data to the output file
-        fs.writeFileSync(outputFilePath, JSON.stringify(mergedData, null, 2), "utf8");
-
-        console.log(`Successfully merged ${Object.keys(mergedData).length - 1} ${type} files into ${outputFilePath}`);
+        console.log(`Successfully merged ${Object.keys(mergedData).length - 1} ${type} files`);
 
         return mergedData;
     } catch (error) {
@@ -78,24 +86,32 @@ async function mergeMetadataFiles(
     }
 }
 
+const distDir = path.join(__dirname, IconsMetadataDistDirectory);
+
 // Define paths for regular icons
 const regularIconsMetadataDir = path.join(__dirname, "../src/icons/metadata");
-const regularIconsOutputFile = path.join(__dirname, "../src/icons/merged-metadata.json");
+const regularIconsDistFile = path.join(distDir, "icon-metadata.json");
 
 // Define paths for rich icons
 const richIconsMetadataDir = path.join(__dirname, "../src/rich-icons/metadata");
-const richIconsOutputFile = path.join(__dirname, "../src/rich-icons/merged-metadata.json");
+const richIconsDistFile = path.join(distDir, "rich-icon-metadata.json");
 
 /**
- * Merges metadata for both regular and rich icons
+ * Merges metadata for both regular and rich icons and saves to the dist folder
  */
 async function mergeAllMetadata(): Promise<void> {
     try {
-        // Merge regular icons metadata
-        await mergeMetadataFiles(regularIconsMetadataDir, regularIconsOutputFile, "regular icon");
+        // Merge regular icons metadata and save to dist folder
+        const regularIconsData = await mergeMetadataFiles(regularIconsMetadataDir, "regular icon");
+        ensureDirectoryExists(distDir);
+        fs.writeFileSync(regularIconsDistFile, JSON.stringify(regularIconsData, null, 2), "utf8");
+        console.log(`Saved regular icon metadata to ${regularIconsDistFile}`);
 
-        // Merge rich icons metadata
-        await mergeMetadataFiles(richIconsMetadataDir, richIconsOutputFile, "rich icon");
+        // Merge rich icons metadata and save to dist folder
+        const richIconsData = await mergeMetadataFiles(richIconsMetadataDir, "rich icon");
+        ensureDirectoryExists(distDir);
+        fs.writeFileSync(richIconsDistFile, JSON.stringify(richIconsData, null, 2), "utf8");
+        console.log(`Saved rich icon metadata to ${richIconsDistFile}`);
 
         console.log("All metadata merging completed successfully");
     } catch (err) {

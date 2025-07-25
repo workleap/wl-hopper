@@ -28,7 +28,6 @@
         "ci-release": "pnpm build:pkg && changeset publish",
         "install-react19": "pnpm -r --filter \"{packages/**}\" add -D react@19 react-dom@19 @types/react@19 @types/react-dom@19 && pnpm add -D -w react@19 react-dom@19 @types/react@19 @types/react-dom@19",
         "generate-icons": "pnpm --filter=\"svg-icons\" generate-icons && pnpm --filter=\"@hopper-ui/icons*\" generate-icons",
-        "merge-icons-metadata": "pnpm --filter=\"svg-icons\" merge-metadata",
         "lint": "turbo run lint --continue",
         "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint --ignore-pattern packages --ignore-pattern apps",
         "typecheck": "tsc",

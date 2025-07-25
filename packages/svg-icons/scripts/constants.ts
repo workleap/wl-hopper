@@ -18,3 +18,5 @@ export const RichIconsSourceDirectory = "src/rich-icons";
 export const RichIconsOptimizedDirectory = "src/optimized-rich-icons";
 export const RichIconSizes = [24, 32, 40] as const;
 export const RichAllowedIconFillColors = [DecorativeOption7IconColor, DecorativeOption7SurfaceColor, White];
+
+export const IconsMetadataDistDirectory = "../dist/metadata";
