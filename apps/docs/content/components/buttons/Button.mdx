@@ -16,7 +16,7 @@ links:
 ```tsx
 <Button>
     <Icon />
-    <Text />
+    <Text /> {/* MANDATORY IF USING ICON */}
 </Button>
 ```
 ### Composed Components
@@ -25,9 +25,13 @@ A `Button` uses the following components:
 
 <ComposedComponents components={["Icon", "IconList", "Text"] }/>
 
-### Dos and Don'ts
-
-- **Use** always wrap text with `<Text>` if you are using an icon in the button.
+### 🟢 Dos and ❌ Don'ts
+<DoDont>
+    <DoDont.Item>
+        <Do>When you have icon button, it is **mandatory** to wrap the text with `<Text>`. e.g. `<Button><Text>Save</Text><Icon/></Button>`</Do>
+        <Dont>Use text without `<Text>` if you have icons. e.g. `<Button><Icon/Save></Button>`</Dont>
+    </DoDont.Item>
+</DoDont>
 
 ## Usage
 

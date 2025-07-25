@@ -9,12 +9,30 @@ order: 2
 Hopper embraces a **Styled System-inspired** approach to styling components, allowing developers to define styles directly via props rather than writing CSS. This method provides a **type-safe and intuitive API**, making it easier to build consistent, on-brand interfaces without dealing with complex class names or global styles. With built-in **intellisense and static analysis**, developers can confidently apply design tokens without memorizing them, ensuring efficiency and reducing errors.
 
 **VERY IMPORTANT!**
-**We DO NOT USE `style` prop. PLEASE DO NOT USE IT. Instead the properties are available as props on the components.**
 **We DO NOT USE `.css` files or modules as much as possible. Always use provided Styled Props or use `UNSAFE_` version of css properties for fallback.**
 
 ## Style Props
 
 Style props are the most fundamental way to style your components in Hopper. They are basically css styles as props. [Learn more about style props](/styled-system/concepts/styling)
+
+## 🟢 Dos and ❌ Don'ts
+<DoDont>
+    <DoDont.Title>
+        These guidelines help ensure consistency and scalability when using styled system props.
+    </DoDont.Title>
+    <DoDont.Item>
+        <Do>Use provided styled property to set styles. e.g. `<Stack gap="inline-lg">`</Do>
+        <Dont>Use `style` property e.g. `style={{ gap: "24px" }}`.</Dont>
+    </DoDont.Item>
+    <DoDont.Item>
+        <Do>Set styles directly in the component. e.g. `<Button maxWidth="100%">`</Do>
+        <Dont>Use `.css` files</Dont>
+    </DoDont.Item>
+    <DoDont.Item>
+        <Do>Use `UNSAFE_` version of css properties when token values are not available. e.g. `<Stack UNSAFE_width="100px">`</Do>
+        <Dont>Use `style` property e.g. `style={{ width: "100px" }}`.</Dont>
+    </DoDont.Item>
+</DoDont>
 
 ## Key Concepts
 

@@ -1,68 +1,86 @@
 import { createWriteStream } from "fs";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
-import path from "path";
+import { join } from "path";
+import { convertMdxToMd } from "./ai-helpers/convertMdxToMd.js";
 import { generateMarkdownFromMdx } from "./ai-helpers/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-helpers/generatePropsJsonFromMdx.js";
+import { updateMarkdownHeadingLevels } from "./ai-helpers/updateMarkdonwHeadingLevels.js";
 
 const baseFolder = "dist/ai";
+const aiTemplatesFolder = "content/ai-templates";
+
+function getTemplateFile(templateName: string): string {
+    return join(process.cwd(), aiTemplatesFolder, templateName);
+}
 
 async function generate_components_docs() {
-    const contentDir = path.join(process.cwd(), "content/components");
-    const outputDir = path.join(process.cwd(), baseFolder, "components/usage");
+    const contentDir = join(process.cwd(), "content/components");
+    const outputDir = join(process.cwd(), baseFolder, "components/usage");
 
     // 1. Generate Markdown files from MDX
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: true, flattenOutputExceptions: ["concepts"] });
 
-    await mergeFiles(outputDir, [
+    await mergeFiles([
         "component-list.md",
         "concepts/*.md",
-        "*.md",
-    ], "full.md");
+        "*.md"
+    ], {
+        outputFile: "llms-components.md",
+        outputDir,
+        headingFile: getTemplateFile("components.mdx")
+    });
 
     // 2. Generate JSON files from Markdown
-    const jsonOutputDir = path.join(process.cwd(), baseFolder, "components/api");
+    const jsonOutputDir = join(process.cwd(), baseFolder, "components/api");
     await generatePropsJsonFromMdx({ contentDir, jsonOutputDir });
 }
 
 async function generate_getting_started_docs() {
-    const contentDir = path.join(process.cwd(), "content/getting-started");
-    const outputDir = path.join(process.cwd(), baseFolder, "getting-started");
+    const contentDir = join(process.cwd(), "content/getting-started");
+    const outputDir = join(process.cwd(), baseFolder, "getting-started");
 
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: true });
 
-    await mergeFiles(outputDir, [
+    await mergeFiles([
         "installation.md",
         "react.md",
         "javascript.md",
         "text-crop.md",
         "components.md"
-    ], "full.md");
+    ], { outputFile: "llms-getting-started.md",
+        outputDir,
+        headingFile: getTemplateFile("getting-started.mdx")
+    });
 }
 
 async function generate_icons_docs() {
-    const contentDir = path.join(process.cwd(), "content/icons");
-    const outputDir = path.join(process.cwd(), baseFolder, "icons");
+    const contentDir = join(process.cwd(), "content/icons");
+    const outputDir = join(process.cwd(), baseFolder, "icons");
 
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
 
-    await mergeFiles(outputDir, [
+    await mergeFiles([
         "overview/introduction.md",
         "overview/designing-an-icon.md",
         "react-icons/icon-library.md",
         "react-icons/rich-icon-library.md",
         "svg-icons/icon-library.md",
         "svg-icons/rich-icon-library.md"
-    ], "full.md");
+    ], {
+        outputFile: "llms-icons.md",
+        outputDir,
+        headingFile: getTemplateFile("icons.mdx")
+    });
 }
 
 async function generate_tokens_docs() {
-    const contentDir = path.join(process.cwd(), "content/tokens");
-    const outputDir = path.join(process.cwd(), baseFolder, "tokens");
+    const contentDir = join(process.cwd(), "content/tokens");
+    const outputDir = join(process.cwd(), baseFolder, "tokens");
 
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
 
-    await mergeFiles(outputDir, [
+    await mergeFiles([
         "overview/introduction.md",
         "semantic/color.md",
         "semantic/elevation.md",
@@ -78,61 +96,82 @@ async function generate_tokens_docs() {
         "core/line-height.md",
         "core/motion.md",
         "core/shadow.md"
-    ], "full.md");
+    ], {
+        outputFile: "llms-tokens.md",
+        outputDir,
+        headingFile: getTemplateFile("tokens.mdx")
+    });
 }
 
 async function generate_styled_system_docs() {
-    const contentDir = path.join(process.cwd(), "content/styled-system");
-    const outputDir = path.join(process.cwd(), baseFolder, "styled-system");
+    const contentDir = join(process.cwd(), "content/styled-system");
+    const outputDir = join(process.cwd(), baseFolder, "styled-system");
 
     await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
 
-    await mergeFiles(outputDir, [
+    await mergeFiles([
         "overview/introduction.md",
         "concepts/styling.md",
         "concepts/responsive-styles.md",
         "concepts/html-elements.md",
         "concepts/custom-components.md"
-    ], "full.md");
+    ], {
+        outputFile: "llms-styled-system.md",
+        outputDir,
+        headingFile: getTemplateFile("styled-system.mdx")
+    });
 }
 
-async function mergeFiles(outputDir: string, files: string[], outputFile: string) {
+async function mergeFiles(files: string[], { outputFile, outputDir, headingFile }: { outputFile: string; outputDir: string; headingFile: string }) {
     // Expand all patterns and collect matching files
     const allFiles: string[] = [];
 
     for (const pattern of files) {
+        const globPattern = join(outputDir, pattern);
+        const matches = await glob(globPattern, {
+            nodir: true, // Only match files, not directories
+            absolute: false, // Return relative paths
+            cwd: outputDir // Set working directory to outputDir
+        });
 
-            const globPattern = path.join(outputDir, pattern);
-            const matches = await glob(globPattern, {
-                nodir: true,        // Only match files, not directories
-                absolute: false,    // Return relative paths
-                cwd: outputDir      // Set working directory to outputDir
-            });
+        if (matches.length === 0) {
+            throw new Error(`No files matched for pattern: ${pattern}`);
+        }
 
-            if (matches.length === 0) {
-                throw new Error(`No files matched for pattern: ${pattern}`);
+        for (const match of matches.sort()) {
+            if (!allFiles.includes(match)) {
+                allFiles.push(match);
             }
-
-            for (const match of matches.sort()) {
-                if (!allFiles.includes(match)) {
-                    allFiles.push(match);
-                }
-            }
-
+        }
     }
 
 
-    const outputPath = path.join(outputDir, outputFile);
+    const outputPath = join(outputDir, outputFile);
     const writeStream = createWriteStream(outputPath);
+
+    //read the heading file if provided
+    if (headingFile) {
+        try {
+            let headingContent = await readFile(headingFile, "utf8");
+            if (headingFile.trim().endsWith(".mdx")) {
+                headingContent = await convertMdxToMd(headingContent);
+            }
+            writeStream.write(headingContent + "\n");
+        } catch (error) {
+            throw new Error(`Error reading heading file ${headingFile}: ${error}`);
+        }
+    }
 
     // Keep the original order of files as passed
     for (const file of allFiles) {
-        const filePath = path.join(outputDir, file);
+        const filePath = join(outputDir, file);
         try {
-            const data = await readFile(filePath, "utf8");
-            writeStream.write(data + "\n");
+            const fileContent = await readFile(filePath, "utf8");
+            const updateLevel = headingFile ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
+
+            writeStream.write(updateLevel + "\n");
         } catch (error) {
-            throw new Error(`Warning: Could not read file ${filePath}: ${error}`);
+            throw new Error(`Error: Could not read file ${filePath}: ${error}`);
         }
     }
 
@@ -141,9 +180,8 @@ async function mergeFiles(outputDir: string, files: string[], outputFile: string
 
 
 async function main() {
-
     // clear baseFolder
-    await rm(path.join(process.cwd(), baseFolder), { recursive: true, force: true });
+    await rm(join(process.cwd(), baseFolder), { recursive: true, force: true });
 
     await generate_components_docs();
 
@@ -155,15 +193,19 @@ async function main() {
 
     await generate_styled_system_docs();
 
-        const outputDir = path.join(process.cwd(), baseFolder);
+    const outputDir = join(process.cwd(), baseFolder);
 
-        await mergeFiles(outputDir, [
-            "getting-started/full.md",
-            "styled-system/full.md",
-            "tokens/full.md",
-            "components/usage/full.md",
-            "icons/full.md",
-        ], "full.md");
+    await mergeFiles([
+        "getting-started/llms-getting-started.md",
+        "styled-system/llms-styled-system.md",
+        "tokens/llms-tokens.md",
+        "components/usage/llms-components.md",
+        "icons/llms-icons.md"
+    ], {
+        outputFile: "llms-full.md",
+        outputDir,
+        headingFile: getTemplateFile("all.mdx")
+    });
 }
 
 main();

@@ -70,7 +70,7 @@ Your role:
 Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy.
 
 Task:
-Create a simple React app for managing products by following the below requirements carefully.
+Build a simple React app for managing products by following the below requirements carefully.
 
 Functional requirements:
 

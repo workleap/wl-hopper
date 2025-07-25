@@ -6,6 +6,8 @@ import CardLink from "@/app/ui/components/cardLink/cardLink.ai";
 import CardLinkList from "@/app/ui/components/cardLink/cardLinkList.ai";
 import ComponentExample from "@/app/ui/components/componentExample/ComponentExample.ai";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.ai";
+import { DoDont } from "@/app/ui/components/doDont/DoDont.ai";
+import { Do, Dont } from "@/app/ui/components/doDont/util";
 import Expand from "@/app/ui/components/expand/Expand.ai";
 import Footnote from "@/app/ui/components/footnote/Footnote.ai";
 import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
@@ -48,34 +50,26 @@ export const components = {
     Expand: Expand,
     Link: Link,
     AI: AI,
+    DoDont: DoDont,
+    Do: Do,
+    Dont: Dont,
 
-    FeatureFlag: () => undefined,
-    Figure: () => undefined,
-    MotionPreview: () => undefined,
-    Image: () => undefined,
-    JsIcon: () => undefined,
 
-    ReactIcon: () => undefined,
-    ReactIconLibIcon: () => undefined,
-    ReactRichIconLibIcon: () => undefined,
-    SvgIconLibIcon: () => undefined,
-    SvgRichIconLibIcon: () => undefined,
+    Figure: () => <div />,
+    MotionPreview: () => <div />,
+    Image: () => <div />,
+    JsIcon: () => <div />,
+
+    ReactIcon: () => <div />,
+    ReactIconLibIcon: () => <div />,
+    ReactRichIconLibIcon: () => <div />,
+    SvgIconLibIcon: () => <div />,
+    SvgRichIconLibIcon: () => <div />,
 
 
     Card: ({ children }: { children: React.ReactNode }) => (
-        <>{children}</>
-    ),
-
-    br: () => <></>,
-    hr: () => <></>,
-    table: (children: React.ReactNode) => <table>{children}</table>,
-    thead: (children: React.ReactNode) => <thead>{children}</thead>,
-    tbody: (children: React.ReactNode) => <tbody>{children}</tbody>,
-    th: (children: React.ReactNode) => <th>{children}</th>,
-    td: (children: React.ReactNode) => <td>{children}</td>,
-    tr: (children: React.ReactNode) => <tr>{children}</tr>
-
-
+        <div>{children}</div>
+    )
 };
 
 export function isValidComponentName(name: string): boolean {

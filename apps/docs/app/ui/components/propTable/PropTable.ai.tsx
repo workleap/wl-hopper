@@ -41,7 +41,7 @@ function PropTableRender({ items }: { items: Item[] }) {
             {items.map(item => (
                 <tr key={item.name}>
                     <td>{item.name}</td>
-                    <td>{item.type}</td>
+                    <td><code>{item.type}</code></td>
                     <td>{item.defaultValue}</td>
                     <td><Mdx>{item.description}</Mdx></td>
                 </tr>

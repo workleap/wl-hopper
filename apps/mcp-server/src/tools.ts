@@ -3,7 +3,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, trackEvent, type GuideSection } from "./utils.js";
+import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, trackError, trackEvent, type GuideSection } from "./utils.js";
 
 
 export function tools(server: McpServer) {
@@ -49,7 +49,7 @@ export function tools(server: McpServer) {
     server.registerTool("get_component_doc", {
         title: "Get component full documentation",
         description:
-        "How to use a specific component in Hopper Design System. This service returns a Markdown content with details, examples, and best practices on how a component should be used. Call this service before using a component.",
+        "How to use a specific component. This service returns a Markdown content with component anatomy, structure, examples, and best practices on how a component should be used. Call this service before using a component. IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.",
         inputSchema: { component_name: z.string() },
         annotations: {
             readOnlyHint: true
@@ -90,9 +90,9 @@ export function tools(server: McpServer) {
     server.registerTool("get_guide", {
         title: "Get guide or best practices on how to use Hopper Design System",
         description:
-        `This service provides different guides. You can call it with the following parameters or without any parameters to get all guides:
-        - installation
-        - styles: How to use CSS properties and design tokens in Hopper Design System. We don't use "style" prop. Instead the properties are available as props on the components. Read this guide to understand how.
+        `This service provides different guides. You can call it with the following parameters:
+        - installation: How to install and set up the Hopper Design System.
+        - styles: How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
         - color-schemes: Applying light mode, dark mode, or adapt to operating system's dark mode.
         - icons: Using icons in Hopper Design System.
@@ -100,7 +100,7 @@ export function tools(server: McpServer) {
         - controlled-mode: Using controlled and uncontrolled modes to customize components.
         - forms: Best practices for building forms in Hopper Design System.
         - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
-        - internationalization: Adapting components to respect languages and cultures of users around the world is a great way to make your application accessible to the widest number of people.
+        - internationalization: Adapting components to respect languages and cultures.
         `,
         inputSchema: { guide: z.string().optional() },
         annotations: {
@@ -129,6 +129,8 @@ export function tools(server: McpServer) {
 
         const valid = code !== "";
         if (!valid) {
+            trackError(new Error("Invalid code provided"));
+
             return {
                 content: [{
                     type: "text",

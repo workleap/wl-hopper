@@ -31,7 +31,10 @@ const interactionLogger = winston.createLogger({
 if (process.env.NODE_ENV !== "production") {
     const colorizeMessageOnly = winston.format(info => {
         if (info.message) {
-            info.message = chalk.blue(info.message); // Only color the message
+            info.message = chalk.yellow(info.message); // Only color the message
+        }
+        if (info.data) {
+            info.data = chalk.cyan(JSON.stringify(info.data, null, 2)); // Only color the data
         }
 
         return info;
@@ -39,9 +42,12 @@ if (process.env.NODE_ENV !== "production") {
 
     interactionLogger.add(new winston.transports.Console({
         format: winston.format.combine(
+
             colorizeMessageOnly(),
             winston.format.timestamp(),
-            winston.format.simple()
+            winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)
+
+
         )
     }));
 }
@@ -65,6 +71,8 @@ export async function getComponentDocumentation(componentName: string, section: 
             }]
         };
     } catch (error) {
+        trackError(error);
+
         return {
             content: [{
                 type: "text",
@@ -79,11 +87,11 @@ export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-
 
 export async function getGuideDocumentation(section: GuideSection): Promise<CallToolResult> {
     const guidesPath: Record<GuideSection, string> = {
-        all: "full.md",
-        installation: "getting-started/full.md",
-        styles: "styled-system/full.md",
-        tokens: "tokens/full.md",
-        icons: "icons/full.md",
+        all: "llms-full.md",
+        installation: "getting-started/llms-getting-started.md",
+        styles: "styled-system/llms-styled-system.md",
+        tokens: "tokens/llms-tokens.md",
+        icons: "icons/llms-icons.md",
         "color-schemes": "components/usage/concepts/color-schemes.md",
         "components-list": "components/usage/component-list.md",
         layout: "components/usage/concepts/layout.md",
@@ -94,6 +102,8 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     };
 
     if (!Object.keys(guidesPath).includes(section)) {
+        trackError(new Error(`Invalid guide section requested: ${section}`));
+
         return {
             content: [{
                 type: "text",
@@ -106,6 +116,8 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     const guidePath = join(__dirname, guidesPath[section]);
 
     if (!existsSync(guidePath)) {
+        trackError(new Error(`Guide not found for section: ${section}`));
+
         return {
             content: [{
                 type: "text",
@@ -125,6 +137,8 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
             }]
         };
     } catch (error) {
+        trackError(error);
+
         return {
             content: [{
                 type: "text",
@@ -137,6 +151,8 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
 
 export async function getDocumentContentResult(url: string) : Promise<CallToolResult> {
     if (!url.startsWith("https://hopper.workleap.design")) {
+        trackError(new Error(`Invalid URL: ${url}. Please provide a URL from the hopper.workleap.design domain.`));
+
         return {
             content: [{
                 type: "text",
@@ -155,6 +171,8 @@ export async function getDocumentContentResult(url: string) : Promise<CallToolRe
             }]
         };
     } catch (error) {
+        trackError(error);
+
         return {
             content: [{
                 type: "text",
@@ -168,7 +186,8 @@ export async function getDocumentContentResult(url: string) : Promise<CallToolRe
 export async function fetchDocumentContent(url: string) {
     const response = await fetch(url);
     if (!response.ok) {
-        throw new Error(`Failed to fetch documentation: ${response.statusText}`);
+        trackError(new Error(`Failed to fetch documentation: ${response.statusText}, URL: ${url}`));
+        throw new Error(`Failed to fetch documentation: ${response.statusText}, URL: ${url}`);
     }
     const docsContent = await response.text();
 
@@ -188,14 +207,16 @@ export async function fetchDocumentContent(url: string) {
         return String(file);
     }
 
-    throw new Error(`The fetch url doesn't contain <main> tag: ${url}`);
+    const error = new Error(`The fetch url doesn't contain <main> tag: ${url}`);
+    trackError(error);
+    throw error;
 }
 
-export function trackEvent(event: string, data: Record<string, string | number | boolean> = {}, requestInfo?: RequestInfo) {
+export function trackEvent(event: string, data: object | null = {}, requestInfo?: RequestInfo) {
     let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
-    const { sessionId: dataSessionId, ...modifiedData } = data;
+    const { sessionId: dataSessionId, ...modifiedData } = data && "sessionId" in data ? data : { sessionId: null, ...data };
 
-    if (!sessionId && dataSessionId) {
+    if (!sessionId && dataSessionId && typeof dataSessionId === "string") {
         sessionId = dataSessionId as string;
     }
 
@@ -207,5 +228,13 @@ export function trackEvent(event: string, data: Record<string, string | number |
     };
 
     // Log to file using winston
-    interactionLogger.info(event, logData);
+    if (event === "error") {
+        interactionLogger.error(event, logData);
+    } else {
+        interactionLogger.info(event, logData);
+    }
+}
+
+export function trackError(error: unknown, requestInfo?: RequestInfo) {
+    return trackEvent("error", typeof error === "object" ? error : { error }, requestInfo);
 }
