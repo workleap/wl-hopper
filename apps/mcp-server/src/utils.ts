@@ -1,5 +1,6 @@
 import type { CallToolResult, RequestInfo } from "@modelcontextprotocol/sdk/types.js";
 import chalk from "chalk";
+import { log } from "console";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
 import { cwd } from "process";
@@ -229,6 +230,7 @@ export function trackEvent(event: string, data: object | null = {}, requestInfo?
 
     // Log to file using winston
     if (event === "error") {
+        console.log("--->", logData);
         interactionLogger.error(event, logData);
     } else {
         interactionLogger.info(event, logData);
