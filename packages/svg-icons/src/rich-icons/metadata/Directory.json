@@ -1,0 +1,18 @@
+{
+  "name": "Directory",
+  "description": "Used to represent a listing, catalog, or organized collection of information. Often used in interfaces for employee directories, contact lists, or any structured collection of entries that users can browse, search, or reference.",
+  "keywords": [
+    "directory",
+    "listing",
+    "catalog",
+    "index",
+    "registry",
+    "contacts",
+    "address book",
+    "employee list",
+    "phonebook",
+    "database",
+    "collection",
+    "reference list"
+  ]
+}

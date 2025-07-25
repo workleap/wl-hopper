@@ -1,0 +1,21 @@
+{
+  "name": "Notebook",
+  "description": "Represents a spiral-bound notebook or journal. Used for features related to notebooks, journals, logs, diaries, or any feature that involves collecting and organizing notes or entries in a bound format.",
+  "keywords": [
+    "notebook",
+    "journal",
+    "diary",
+    "log",
+    "notes",
+    "record",
+    "writing",
+    "documentation",
+    "collection",
+    "entries",
+    "spiral",
+    "bound",
+    "composition",
+    "planner",
+    "organizer"
+  ]
+}

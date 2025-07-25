@@ -1,0 +1,18 @@
+{
+  "name": "Event",
+  "description": "Represents a calendar or event entry with a checkmark. Used to indicate events, appointments, scheduled activities, or any feature related to calendar entries or time-based activities that have been confirmed or completed.",
+  "keywords": [
+    "event",
+    "appointment",
+    "schedule",
+    "calendar",
+    "meeting",
+    "booking",
+    "reservation",
+    "occurrence",
+    "activity",
+    "confirmed event",
+    "completed event",
+    "time slot"
+  ]
+}

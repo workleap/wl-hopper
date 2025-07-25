@@ -1,0 +1,19 @@
+{
+  "name": "Warning",
+  "description": "Represents a warning, alert, or caution notification. Depicted as a triangular exclamation mark symbol. Used to indicate potential issues, important alerts, cautionary messages, or to draw attention to critical information that requires user awareness in applications, websites, and digital interfaces.",
+  "keywords": [
+    "warning",
+    "alert",
+    "caution",
+    "attention",
+    "exclamation",
+    "notice",
+    "error",
+    "danger",
+    "important",
+    "notification",
+    "hazard",
+    "risk",
+    "triangle"
+  ]
+}

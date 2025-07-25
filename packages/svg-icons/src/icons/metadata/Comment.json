@@ -1,0 +1,18 @@
+{
+  "name": "Comment",
+  "description": "Represents a speech or chat bubble. Used for messaging, discussions, feedback, reviews, or any feature that involves user communication or comments.",
+  "keywords": [
+    "comment",
+    "chat",
+    "message",
+    "discussion",
+    "conversation",
+    "feedback",
+    "communication",
+    "speech bubble",
+    "dialogue",
+    "talk",
+    "review",
+    "reply"
+  ]
+}

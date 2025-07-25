@@ -1,0 +1,21 @@
+{
+  "name": "Groups",
+  "description": "Represents a collection of hexagonal shapes arranged in a pattern. Used for features related to team management, group collaboration, organizational units, categories, collections, or any feature that involves grouping or categorizing items or people.",
+  "keywords": [
+    "groups",
+    "teams",
+    "collections",
+    "categories",
+    "organization",
+    "collaboration",
+    "clustering",
+    "departments",
+    "units",
+    "segments",
+    "classification",
+    "community",
+    "ensemble",
+    "cohort",
+    "assembly"
+  ]
+}

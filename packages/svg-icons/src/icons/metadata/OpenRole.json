@@ -1,0 +1,21 @@
+{
+  "name": "OpenRole",
+  "description": "Represents a tag or label indicating an open job position. Used for features related to job openings, vacant positions, recruitment, hiring, or any feature that involves indicating available roles or positions within an organization.",
+  "keywords": [
+    "open role",
+    "job opening",
+    "vacancy",
+    "position",
+    "recruitment",
+    "hiring",
+    "career",
+    "opportunity",
+    "employment",
+    "job posting",
+    "talent acquisition",
+    "staffing",
+    "job search",
+    "application",
+    "human resources"
+  ]
+}

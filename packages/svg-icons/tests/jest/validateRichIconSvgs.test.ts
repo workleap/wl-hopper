@@ -60,7 +60,7 @@ describe("SVGs", () => {
 
     it("should have the same amount of icons in metadata folder as in each size folder", () => {
         const metadataPath = path.resolve(iconsSrcPath, "metadata");
-        const metadataFiles = readdirSync(metadataPath).filter(file => file.endsWith(".yml"));
+        const metadataFiles = readdirSync(metadataPath).filter(file => file.endsWith(".json"));
 
         // Check each icon size folder against metadata
         RichIconSizes.forEach(size => {
@@ -74,8 +74,8 @@ describe("SVGs", () => {
     it("should have the same icon names in metadata folder as in each size folder", () => {
         const metadataPath = path.resolve(iconsSrcPath, "metadata");
         const metadataFiles = readdirSync(metadataPath)
-            .filter(file => file.endsWith(".yml"))
-            .map(file => file.replace(".yml", ""))
+            .filter(file => file.endsWith(".json"))
+            .map(file => file.replace(".json", ""))
             .sort();
 
         // Check each icon size folder against metadata

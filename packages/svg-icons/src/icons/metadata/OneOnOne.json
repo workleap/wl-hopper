@@ -1,0 +1,21 @@
+{
+  "name": "OneOnOne",
+  "description": "Represents a calendar with two number \"1\" figures, symbolizing a one-on-one meeting. Used for features related to individual meetings, personal appointments, consultations, mentoring sessions, or any feature that involves scheduling dedicated time between two individuals.",
+  "keywords": [
+    "one-on-one",
+    "meeting",
+    "appointment",
+    "consultation",
+    "discussion",
+    "interview",
+    "mentoring",
+    "coaching",
+    "feedback",
+    "personal",
+    "individual",
+    "face-to-face",
+    "calendar",
+    "schedule",
+    "session"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Clock",
+  "description": "Represents a clock with hands showing time. Used for time-related features, scheduling, appointments, history, duration indicators, or any feature that involves time tracking or management.",
+  "keywords": [
+    "clock",
+    "time",
+    "schedule",
+    "appointment",
+    "calendar",
+    "deadline",
+    "duration",
+    "timer",
+    "history",
+    "reminder",
+    "timestamp",
+    "waiting"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "LearningPathStep",
+  "description": "Represents a specific step or module within a learning path, shown as a rectangle with an arrow pointing downward. Used for features related to individual lessons, modules, or steps within a larger learning path, educational course, or training program.",
+  "keywords": [
+    "learning step",
+    "lesson",
+    "module",
+    "course unit",
+    "educational content",
+    "training segment",
+    "curriculum component",
+    "instruction",
+    "tutorial",
+    "chapter",
+    "section",
+    "learning material",
+    "educational resource",
+    "study unit",
+    "progression"
+  ]
+}

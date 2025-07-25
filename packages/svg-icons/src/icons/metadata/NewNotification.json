@@ -1,0 +1,21 @@
+{
+  "name": "NewNotification",
+  "description": "Represents a bell with a notification dot. Used for features related to notification centers, alert systems, updates, or any feature that involves notifying users about new events, messages, or important information.",
+  "keywords": [
+    "new notification",
+    "alert",
+    "bell",
+    "update",
+    "message",
+    "reminder",
+    "notice",
+    "announcement",
+    "attention",
+    "signal",
+    "indicator",
+    "badge",
+    "prompt",
+    "inform",
+    "activity"
+  ]
+}
