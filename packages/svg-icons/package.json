@@ -35,6 +35,7 @@
         "build:inline-icons": "tsx scripts/buildInlineIcons.ts",
         "build:rich-icons": "copyfiles --flat src/optimized-rich-icons/* dist/rich-icons",
         "generate-icons": "tsx scripts/generate.ts",
+        "merge-metadata": "tsx scripts/mergeAllMetadataFiles.ts",
         "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "typecheck": "tsc",
         "test": "jest"
