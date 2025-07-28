@@ -21,11 +21,13 @@ export function tools(server: McpServer) {
             content: [{
                 type: "text",
                 text:
-            `1. Make sure Hopper Design System packages and styles are installed in the project. Use the get_guide tool to get details.
-             2. HopperProvider is setup correctly in the app. You also need to know it well before starting.
-             3. IMPORTANT!!! Before starting, use get_guide tool to get guides for styles, tokens and icons. They have critical information on how to use Hopper Design System. You need to know them before creating components.
-             4. Use the provided tools as much as possible and avoid guessing or using trial-and-error approach.
-             5. Make sure you read each component documentation before using it. Use get_component_doc tool to get the documentation for a specific component.
+            ` ALWAYS follow these steps:
+             1. get installation guide to install Hopper.
+             2. get color-schemes guide to setup light/dark mode.
+             3. get styles, tokens and icons guides to understand the design system concepts well. You MUST know the best practices BEFORE using components.
+                - Read each component's documentation CAREFULLY to follow its usage guidelines. Use get_component_doc tool to get the documentation for a specific component.
+                - The icons guide provided all available icons. DON'T USE emojis.
+             4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
              6. Use validate_code tool at different stages to validate your generated code.
             `
             }]
@@ -46,22 +48,7 @@ export function tools(server: McpServer) {
         return getGuideDocumentation("components-list");
     });
 
-    server.registerTool("get_icons_list", {
-        title: "List all available icons",
-        description:
-        "Get list of all available icons in the Hopper Design System and how to use them.",
-        inputSchema: {},
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async (_, e) => {
-        trackEvent("get_icons_list", {}, e?.requestInfo);
-
-        return getGuideDocumentation("icons");
-    });
-
-
-    server.registerTool("get_component_doc", {
+    server.registerTool("get_component_documentation", {
         title: "Get component full documentation",
         description:
         "How to use a specific component. This service returns a Markdown content with component anatomy, structure, examples, and best practices on how a component should be used. Call this service before using a component. IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.",
@@ -89,9 +76,9 @@ export function tools(server: McpServer) {
         return getComponentDocumentation(component_name, "api");
     });
 
-    server.registerTool("fetch_full_docs_from_url", {
-        title: "Fetch Full Documentation",
-        description: "Retrieve complete documentation for specific paths from hopper.workleap.design domain. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
+    server.registerTool("get_documentation_by_url", {
+        title: "Get Documentation by URL",
+        description: "Retrieve documentation for specific paths from https://hopper.workleap.design. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
         inputSchema: { url: z.string() },
         annotations: {
             readOnlyHint: true
@@ -103,9 +90,9 @@ export function tools(server: McpServer) {
     });
 
     server.registerTool("get_guide", {
-        title: "Get guide or best practices on how to use Hopper Design System",
+        title: "Get guide or best practices",
         description:
-        `This service provides different guides. You can call it with the following parameters:
+        `Available guides:
         - installation: How to install and set up the Hopper Design System.
         - styles: How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how.
         - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
