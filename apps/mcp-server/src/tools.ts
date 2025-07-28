@@ -21,14 +21,17 @@ export function tools(server: McpServer) {
             content: [{
                 type: "text",
                 text:
-            ` ALWAYS follow these steps:
-             1. get installation guide to install Hopper.
-             2. get color-schemes guide to setup light/dark mode.
-             3. get styles, tokens and icons guides to understand the design system concepts well. You MUST know the best practices BEFORE using components.
-                - Read each component's documentation CAREFULLY to follow its usage guidelines. Use get_component_doc tool to get the documentation for a specific component.
-                - The icons guide provided all available icons. DON'T USE emojis.
-             4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
-             6. Use validate_code tool at different stages to validate your generated code.
+            `
+ALWAYS follow these steps:
+1. Read "installation" guide CAREFULLY and setup CSS correctly.
+2. Configure HopperProvider correctly at application level.
+3. Setup light/dark mode by following "color-schemes" guide.
+4. Read "styles", "tokens" and "icons" guides to understand the design system concepts well.
+    - You MUST know the best practices BEFORE using components.
+    - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "get_component_documentation" tool.
+    - The "icons" guide lists all available icons. NEVER EVER USE emojis.
+5. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
+6. Use validate_code tool at different stages to validate your generated code.
             `
             }]
         };

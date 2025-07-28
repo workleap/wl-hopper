@@ -90,14 +90,10 @@ Functional requirements:
   - Title and category are the only required fields. It should show an error message if they are left empty. The save button should also disabled if the form is not valid.
   - Use combobox for selecting categories.
 - The Product list page should have a button on top to switch between dark and light mode. Make sure you use and follow  Hopper color scheme features.
-- The app should be responsive and consider mobile views from scratch.
 
 Non-functional requirements:
 
-- Use Hopper design system components, icons and best practices.
-- Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
-- Use Typescript and tsx format.
-- Use pnpm all the time.
+- The app should be responsive and consider mobile views from scratch.
 
 # Test 2 (ChatGPT suggested version)
 

@@ -52,12 +52,10 @@ async function writeProcessedFile(processedFile: ProcessedFile): Promise<void> {
         // Ensure output directory exists
         await fs.mkdir(path.dirname(processedFile.outputPath), { recursive: true });
 
-        // Write the file
-        await fs.writeFile(processedFile.outputPath, processedFile.content);
-
-        console.log(`✅ Generated: ${processedFile.outputPath}`);
+        await fs.writeFile(processedFile.outputPath, processedFile.content, { flag: "wx" });
     } catch (error) {
         console.error(`Error writing ${processedFile.outputPath}:`, error);
+        throw error;
     }
 }
 
