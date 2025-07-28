@@ -944,6 +944,54 @@ export const Previews: Record<string, Preview> = {
     "inputs/docs/text-field/fluid": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-field/fluid.tsx"))
     },
+    "html-elements/docs/aPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/aPreview.tsx"))
+    },
+    "html-elements/docs/addressPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/addressPreview.tsx"))
+    },
+    "html-elements/docs/articlePreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/articlePreview.tsx"))
+    },
+    "html-elements/docs/asidePreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/asidePreview.tsx"))
+    },
+    "html-elements/docs/buttonPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/buttonPreview.tsx"))
+    },
+    "html-elements/docs/divPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/divPreview.tsx"))
+    },
+    "html-elements/docs/footerPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/footerPreview.tsx"))
+    },
+    "html-elements/docs/headerPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/headerPreview.tsx"))
+    },
+    "html-elements/docs/imgPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/imgPreview.tsx"))
+    },
+    "html-elements/docs/inputPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/inputPreview.tsx"))
+    },
+    "html-elements/docs/listPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/listPreview.tsx"))
+    },
+    "html-elements/docs/mainPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/mainPreview.tsx"))
+    },
+    "html-elements/docs/navPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/navPreview.tsx"))
+    },
+    "html-elements/docs/sectionPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/sectionPreview.tsx"))
+    },
+    "html-elements/docs/spanPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/spanPreview.tsx"))
+    },
+    "html-elements/docs/tablePreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/tablePreview.tsx"))
+    },
     "icons/docs/icon/preview": {
         component: lazy(() => import("@/../../packages/icons/docs/icon/preview.tsx"))
     },
