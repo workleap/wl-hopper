@@ -209,6 +209,7 @@ Functional requirements:
 - Sidebar
   - No title
   - Just use icons and links for menu items. Don't use Buttons.
+    - Icon should be on left.
   - Use a weak background color.
   - The width should fit all the menu items title and consider big padding .
   - Add a collapsible button on top-right border to collapse and expand.
@@ -225,19 +226,21 @@ Functional requirements:
 
 - Products management page
   - layout:
-    - "Product List" is on the left and fill 60% of the page's width.
-    - "Product Card" is on the right and fills 40% of the page's width.
+    - "Product List" is on the left and fill 35% of the page's width.
+    - "Product Card" is on the right and fills 65% of the page's width.
     - If the screen size is smaller than tablet's width, it should show the card below the list and make both of them 100%.
   - Product List:
-    - The columns are: title, category and action buttons: modify and delete.
+    - The columns are ONLY: title, category and action buttons: modify and delete.
     - There is a "Add Product" button on top of the list.
     - For modify: it opens a modal with already filled data.
     - For delete: it should confirm before deleting.
     - If a user clicks on a product row, it should fill the "Product Card" in readonly mode.
   - Product Card:
-    - show a random image for product on left side (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
+    - show a random image for product on the top (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
+      - The image should fill at least 30% of the card completely.
     - show all fields in readonly mode on the right of the image.
     - on the bottom of the card, it should have these actions: edit and delete. both actions behave like similar ones in the Product List section.
+    - Show badge for product status (i.e. active and inactive)
   - Product Modal/dialog:
     - Adding or modifying each product should be done through this modal.
     - Title and category are the only required fields. It should show an error message if they are left empty.
