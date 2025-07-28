@@ -75,35 +75,121 @@ Build a simple React app for managing products by following the below requiremen
 Functional requirements:
 
 - Each product has these fields: title, description (long text), category, isActive and quantity.
-- Category is a fixed list of: food, cloths, cosmetic, tools and etc.
+- Category is a fixed list of: food, clothes, cosmetics, tools, etc.
 - Product list page: it shows list of product in a table format
-  - The column are: title, category and actin buttons: modify and delete.
+  - The columns are: title, category and action buttons: modify and delete.
   - For modify: it opens the modal with already filled data.
   - For delete: it should confirm before deleting.
-  - For all cases, after an action is done, use the callout to feedback user the result.  
+  - For all cases, after an action is done, use the callout to feedback the user the result.  
   - Add a button on top of the page to add a new product.
-  - If user clicked on a product row, it should open a Card on the right side of the table to show the product details in readonly mode. This card should:
+  - If a user clicked on a product row, it should open a Card on the right side of the table to show the product details in readonly mode. This card should:
     - show the product title as heading
     - show a random image for product on left side (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
     - on right side, it should show category and description and if it is active (by using an icon)
-    - on the bottom of the card, it should have these actions: edit and delete. both actions behave like what similar ones do in the product list page.
+    - on the bottom of the card, it should have these actions: edit and delete. Both actions behave like what similar ones do in the product list page.
 - Product modal/dialog: Adding or modifying each product should be done through a modal.
   - The modal should have "save", "cancel" and "remove" buttons.
     - buttons should use the Design System primary, secondary, and destructive actions.
   - If it is in edit mode, the title field is readonly.
-  - Title and category are the only required fields. It should shows error message if they are left empty. The save button should also disabled if the form is not valid.
-  - Use combobox for selecting category.
+  - Title and category are the only required fields. It should show an error message if they are left empty. The save button should also disabled if the form is not valid.
+  - Use combobox for selecting categories.
 - The Product list page should have a button on top to switch between dark and light mode. Make sure you use and follow  Hopper color scheme features.
-- The app should be responsive and consider mobile view from scratch.
+- The app should be responsive and consider mobile views from scratch.
 
 Non-functional requirements:
 
 - Use Hopper design system components, icons and best practices.
 - Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
 - Use Typescript and tsx format.
-- Use pnpm all the times.
+- Use pnpm all the time.
 
-## Test 2 (modified to have dashboard): Basic but follows foundational tasks
+## Test 2 (ChatGPT suggested version)
+
+## 🧠 Role
+
+You are an expert **UI/UX designer** and **frontend engineer**.
+
+- Follow **modern UI/UX practices**, ensuring clean spacing, clear visual hierarchy, accessible layout, and responsive behavior.
+- Follow best practices from the **Hopper Design System**, including **components**, **colors**, **icons**, **button styles**, and **themes**.
+
+---
+
+## 🎯 Goal
+
+Build a **simple React app (with TypeScript and .tsx)** to **manage a list of products**. The app should be responsive, accessible, and maintain a consistent visual identity across all screens and states.
+
+---
+
+## ✅ Functional Requirements
+
+### 📦 Product Fields
+
+Each product has the following fields:
+
+- `title`: string
+- `description`: long text
+- `category`: one of `"food"`, `"clothes"`, `"cosmetics"`, `"tools"`, etc.
+- `isActive`: boolean
+- `quantity`: number
+
+---
+
+### 🧾 Product List Page
+
+- Display all products in a **table layout** with columns:
+  - `title`
+  - `category`
+  - `actions` (Modify / Delete)
+- Add a **"New Product" button** at the top of the page.
+- **Modify**: opens a modal pre-filled with the product's data.
+- **Delete**: triggers a confirmation before deletion.
+- After any action, display a **callout message** (using Hopper components) for feedback.
+- **Dark mode toggle**: Add a switch to toggle dark/light mode using Hopper’s color scheme.
+- **Side panel/card view**:
+  - When clicking a row, open a **card on the right side** showing product details in read-only mode:
+    - Title as card heading
+    - Random product image on left (`https://picsum.photos/id/{id}/300/400`)
+    - On the right: show description, category, and active status (use Hopper icon for status)
+    - Card footer contains **Edit** and **Delete** buttons, behaving like the table actions
+
+---
+
+### 🧰 Product Modal (Add / Edit)
+
+- Used for both **adding** and **modifying** products.
+- The modal contains:
+  - Title input (readonly in edit mode)
+  - Description textarea
+  - Category selection (use Hopper’s **Combobox**)
+  - isActive checkbox
+  - Quantity input
+- Action buttons:
+  - **Save**: primary button
+  - **Cancel**: secondary button
+  - **Remove**: destructive button (only shown in edit mode)
+- **Validation**:
+  - Required fields: `title` and `category`
+  - Show error messages if these are empty
+  - Disable **Save** button if form is invalid
+
+---
+
+## 📱 Responsiveness
+
+- The entire UI must be **responsive** and support **mobile-friendly views** by default.
+- Avoid desktop-only layouts or interactions.
+
+---
+
+## 🛠️ Non-Functional Requirements
+
+- Use **Hopper Design System** for all UI elements and interactions.
+- Use **Hopper icons** for actions, statuses, and enhancements — **do not use emojis**.
+- Use **TypeScript (`.ts` and `.tsx`)**.
+- Use **pnpm** as the package manager throughout development.
+- Follow **industry-standard project structure** and code best practices.
+
+## Test 3 (modified to have dashboard): Basic but follows foundational tasks
 
 Your role:
 Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy.
@@ -115,7 +201,7 @@ Functional requirements:
 
 - Data structure
   - Product has these fields: title, description (long text), category, isActive and quantity.
-  - Product category is a fixed list of: food, cloths, cosmetic, tools and etc.
+  - Product category is a fixed list of: food, clothes, cosmetic, tools and etc.
 
 - The layout of the application
   - Top Navbar to show icons
@@ -124,7 +210,7 @@ Functional requirements:
 
 - Top Navbar:
   - It has a button on top-right to switch between dark and light mode. Make sure you follow Hopper color scheme features.
-  - On the left side, you should use a random icon for logo.
+  - On the left side, you should use a random icon for the logo.
   - The website name is "Workleap Store Management". The name should come on the right side of the logo.
 
 - Pages
@@ -136,32 +222,32 @@ Functional requirements:
     - Product List on left (60% of the page's width)
     - Product Card on right (40% of the page's width)
   - Product List:
-    - The column are: title, category and actin buttons: modify and delete.
+    - The columns are: title, category and action buttons: modify and delete.
     - There is a "Add Product" button on top of the list.
     - For modify: it opens a modal with already filled data.
     - For delete: it should confirm before deleting.
-    - If user clicks on a product row, it should fills the Product Card in readonly mode.
+    - If a user clicks on a product row, it should fills the Product Card in readonly mode.
   - Product Card:
     - show a random image for product on left side (use <https://picsum.photos/id/{id}/300/400> to get random fixed image)
     - show all fields in readonly mode on the right of the image.
-    - on bottom of the card, it should have these actions: edit and delete. both actions behave like what similar ones in the Product List section.
+    - on the bottom of the card, it should have these actions: edit and delete. both actions behave like what similar ones in the Product List section.
   - Product Modal/dialog:
     - Adding or modifying each product should be done through this modal.
-    - Title and category are the only required fields. It should shows error message if they are left empty.
-    - In edit mode, the title field is readonly. User cannot modify it after creating it.
+    - Title and category are the only required fields. It should show an error message if they are left empty.
+    - In edit mode, the title field is readonly. Users cannot modify it after creating it.
     - The modal should have "save", "cancel" and "remove" buttons.
       - The save button should also be disabled if the form is not valid.
       - buttons should use the Design System primary, secondary, and destructive actions.
-    - Use combobox for selecting category.
+    - Use combobox for selecting categories.
   
 - Users Management page
-  - Just design a simple user management.
+  - Just design simple user management.
 
 Non-functional requirements
 
-- The app should be responsive and consider mobile view from scratch.
-- For all cases, after an action is done, use the callout to feedback user the result.  
+- The app should be responsive and consider mobile views from scratch.
+- For all cases, after an action is done, use the callout to feedback the user the result.  
 - Use Hopper design system components, icons and best practices.
 - Use Hopper icons for different parts of the page to make the look more appealing. Never use emojis.
 - Use Typescript and tsx format.
-- Use pnpm all the times.
+- Use pnpm all the time.

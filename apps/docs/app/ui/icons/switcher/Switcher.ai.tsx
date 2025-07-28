@@ -1,5 +1,7 @@
 import { iconNames } from "../../../../../../packages/icons/src/generated-icon-components/iconNames.ts";
 import { richIconNames } from "../../../../../../packages/icons/src/generated-rich-icon-components/richIconNames.ts";
+import iconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/icon-metadata.json" with { type: "json" };
+import richIconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/rich-icon-metadata.json" with { type: "json" };
 
 
 interface SwitcherProps {
@@ -26,12 +28,34 @@ function getIconNumericSize(iconSize : "sm" | "md" | "lg" | "xl") {
     }
 }
 
+function getRawName(name: string) {
+    return name.replace("RichIcon", "").replace("Icon", "");
+}
+
 function getIconFileName(name: string, size: "sm" | "md" | "lg" | "xl", type: "svg" | "react") {
-    const formattedName = name.replace("RichIcon", "").replace("Icon", "");
+    const formattedName = getRawName(name);
 
     return type === "react"
         ? `${name}`
         : `${toKebabCase(formattedName).toLowerCase()}-${getIconNumericSize(size)}.svg`;
+}
+
+function getIconFileDescription(name: string, type: "icon" | "richIcon") {
+    const formattedName = getRawName(name);
+
+    return type === "icon"
+        ? iconsMetadata[formattedName]?.description || ""
+        : richIconsMetadata[formattedName]?.description || "";
+}
+
+function getIconFileKeywords(name: string, type: "icon" | "richIcon") {
+    const formattedName = getRawName(name);
+
+    const keywords = type === "icon"
+        ? iconsMetadata[formattedName]?.keywords || []
+        : richIconsMetadata[formattedName]?.keywords || [];
+
+    return keywords.join(", ");
 }
 
 const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
@@ -39,20 +63,26 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
 
     const sizes: AvailableSizes[] = iconType === "richIcon" ? ["md", "lg", "xl"] : ["sm", "md", "lg"];
 
-
     return (
         <Icons items={iconList.flatMap(name => sizes.map(size => ({
-            name,
+            name: getRawName(name),
             fileName: getIconFileName(name, size, type),
-            description: `Description for ${name}`,
+            usage: type === "react"
+                ? `<${name} size="${size}" />`
+                : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, size, type)}";`,
+            description: getIconFileDescription(name, iconType),
             size: `${SizeMap[size].title} (${SizeMap[size].size})`,
-            keywords: ""
+            keywords: getIconFileKeywords(name, iconType)
         })))}
         />
 
     );
 };
 
+const iconTypeFolderMap = {
+    icon: "icons",
+    richIcon: "rich-icons"
+};
 
 const SizeMap = {
     sm: {
@@ -77,6 +107,7 @@ interface Item {
     name: string;
     fileName: string;
     description: string;
+    usage: string;
     size: string;
     keywords: string;
 }
@@ -86,8 +117,9 @@ function Icons({ items }: { items: Item[] }) {
     return <table>
         <thead>
             <tr>
-                <th>File Name</th>
+                <th>Name</th>
                 <th>Size</th>
+                <th>Usage</th>
                 <th>Description</th>
                 <th>Keywords</th>
             </tr>
@@ -95,8 +127,9 @@ function Icons({ items }: { items: Item[] }) {
         <tbody>
             {items.map(item => (
                 <tr key={item.name}>
-                    <td>{item.fileName}</td>
+                    <td>{item.name}</td>
                     <td>{item.size}</td>
+                    <td><code>{item.usage}</code></td>
                     <td>{item.description}</td>
                     <td>{item.keywords}</td>
                 </tr>
