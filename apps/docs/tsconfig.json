@@ -1,50 +1,50 @@
 {
-    "extends": "@workleap/typescript-configs/web-application.json",
-    "compilerOptions": {
-        "incremental": true,
-        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-        "jsx": "react-jsx",
-        "module": "preserve",
-        "moduleResolution": "Bundler",
-        "baseUrl": ".",
-        "plugins": [
-            {
-                "name": "next"
-            }
-        ],
-        "paths": {
-            "@/*": [
-                "./*"
-            ],
-            "@hopper-ui/icons": [
-                "../../packages/icons/src/index.ts"
-            ],
-            "@hopper-ui/styled-system": [
-                "../../packages/styled-system/src/index.ts"
-            ],
-            "@hopper-ui/components": [
-                "../../packages/components/src/index.ts"
-            ],
-            "@hopper-ui/storybook-addon": [
-                "../../tooling/storybook-addon/index.ts"
-            ],
-            "@hopper-ui/test-utils": [
-                "../../tooling/test-utils/index.ts"
-            ],
-            "contentlayer/generated": [
-                "./.contentlayer/generated"
-            ]
-        }
-    },
-    "include": [
-        "next-env.d.ts",
-        "**/*.ts",
-        "**/*.tsx",
-        ".next/types/**/*.ts",
-        ".contentlayer/generated",
-        ".storybook/**/*"
+  "extends": "@workleap/typescript-configs/web-application.json",
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+    "jsx": "react-jsx",
+    "module": "preserve",
+    "moduleResolution": "Bundler",
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@hopper-ui/icons": [
+        "../../packages/icons/src/index.ts"
+      ],
+      "@hopper-ui/styled-system": [
+        "../../packages/styled-system/src/index.ts"
+      ],
+      "@hopper-ui/components": [
+        "../../packages/components/src/index.ts"
+      ],
+      "@hopper-ui/storybook-addon": [
+        "../../tooling/storybook-addon/index.ts"
+      ],
+      "@hopper-ui/test-utils": [
+        "../../tooling/test-utils/index.ts"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".contentlayer/generated",
+    ".storybook/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
