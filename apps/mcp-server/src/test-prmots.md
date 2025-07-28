@@ -1,8 +1,6 @@
-# Test Prompts for testing MCP server
+# Test Strategy
 
-## Strategy
-
-### Foundational Tasks (Basic component usage)
+## Foundational Tasks (Basic component usage)
 
 Ask the LLM to build:
 
@@ -14,7 +12,7 @@ Ask the LLM to build:
 
 These validate: component API usage, naming conventions, slot/props structure, default styling.
 
-### Intermediate Tasks (Common application flows)
+## Intermediate Tasks (Common application flows)
 
 Ask for:
 
@@ -26,7 +24,7 @@ Ask for:
 
 These test: layout primitives, form flows, consistent structure, accessibility, and component composition.
 
-### Advanced/Integrated Tasks (High-level scenarios)
+## Advanced/Integrated Tasks (High-level scenarios)
 
 Ask it to build:
 
@@ -43,9 +41,7 @@ These validate:
 - naming conventions,
 - and whether the model truly understands the intended usage of the components.
 
-## Test cases
-
-### Test 1: Vague and Basic
+# Test 1: Vague and Basic
 
 Create a simple React app for managing using Hopper Design System to manage products.
 
@@ -64,7 +60,7 @@ Non-functional requirements:
 - Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy- Use Typescript and tsx format.
 - Use pnpm all the times.
 
-## Test 2: Basic but follows foundational tasks
+# Test 2: Basic but follows foundational tasks
 
 Your role:
 Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy.
@@ -103,7 +99,7 @@ Non-functional requirements:
 - Use Typescript and tsx format.
 - Use pnpm all the time.
 
-## Test 2 (ChatGPT suggested version)
+# Test 2 (ChatGPT suggested version)
 
 ## 🧠 Role
 
@@ -189,7 +185,7 @@ Each product has the following fields:
 - Use **pnpm** as the package manager throughout development.
 - Follow **industry-standard project structure** and code best practices.
 
-## Test 3 (modified to have dashboard): Basic but follows foundational tasks
+# Test 3 (modified to have dashboard): Basic but follows foundational tasks
 
 Your role:
 Assume you are an expert UI/UX designer and frontend developer. Follow modern industry standards for spacing, layout, and visual hierarchy.
