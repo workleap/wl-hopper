@@ -1,0 +1,22 @@
+{
+  "name": "Hierarchy",
+  "description": "Represents an organizational structure or hierarchy with connected nodes. Used for features related to organizational charts, team structures, reporting relationships, hierarchical data visualization, or any feature that involves showing hierarchical relationships between different elements.",
+  "keywords": [
+    "hierarchy",
+    "organization",
+    "structure",
+    "reporting",
+    "chain",
+    "tree",
+    "levels",
+    "management",
+    "subordinates",
+    "relationships",
+    "taxonomy",
+    "classification",
+    "ranking",
+    "order",
+    "arrangement",
+    "network"
+  ]
+}

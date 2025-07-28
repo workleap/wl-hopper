@@ -1,0 +1,21 @@
+{
+  "name": "NewTab",
+  "description": "Represents an external link or new tab icon. Used for features related to opening links in new tabs or windows, navigating to external resources, or any feature that involves directing users to content outside the current context.",
+  "keywords": [
+    "new tab",
+    "external link",
+    "open",
+    "navigate",
+    "redirect",
+    "launch",
+    "window",
+    "browser",
+    "hyperlink",
+    "outbound",
+    "reference",
+    "destination",
+    "target",
+    "portal",
+    "connection"
+  ]
+}

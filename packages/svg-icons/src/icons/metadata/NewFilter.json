@@ -1,0 +1,21 @@
+{
+  "name": "NewFilter",
+  "description": "Represents filter sliders with a notification dot. Used for features related to data filtering, search refinement, sorting options, or any feature that involves filtering or sorting content with a notification about new filtering capabilities.",
+  "keywords": [
+    "new filter",
+    "filter",
+    "sort",
+    "refine",
+    "search",
+    "criteria",
+    "parameters",
+    "options",
+    "settings",
+    "customize",
+    "narrow",
+    "results",
+    "organize",
+    "categorize",
+    "notification"
+  ]
+}

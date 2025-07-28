@@ -1,0 +1,21 @@
+{
+  "name": "Image",
+  "description": "Represents a picture or photograph with mountains or landscape. Used for features related to image uploads, galleries, photo management, visual content, or any feature that involves displaying, managing, or interacting with images.",
+  "keywords": [
+    "image",
+    "picture",
+    "photo",
+    "photograph",
+    "gallery",
+    "visual",
+    "media",
+    "graphic",
+    "artwork",
+    "illustration",
+    "snapshot",
+    "upload",
+    "display",
+    "view",
+    "landscape"
+  ]
+}

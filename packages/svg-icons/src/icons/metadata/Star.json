@@ -1,0 +1,24 @@
+{
+  "name": "Star",
+  "description": "Represents an outline of a five-pointed star. Used for features related to favorites, ratings, bookmarks, or any feature that involves highlighting important items or expressing preferences. Commonly used in rating systems, favorite lists, and bookmark functionality.",
+  "keywords": [
+    "star",
+    "favorite",
+    "rating",
+    "bookmark",
+    "important",
+    "preference",
+    "highlight",
+    "save",
+    "mark",
+    "like",
+    "featured",
+    "review",
+    "rank",
+    "score",
+    "grade",
+    "evaluate",
+    "prioritize",
+    "wishlist"
+  ]
+}

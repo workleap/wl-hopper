@@ -1,0 +1,21 @@
+{
+  "name": "Reaction",
+  "description": "Represents a smiling face with a plus symbol. Used for features related to reactions, emoji responses, feedback, engagement, or any feature that involves users expressing emotions or opinions through quick responses to content.",
+  "keywords": [
+    "reaction",
+    "emoji",
+    "response",
+    "feedback",
+    "emotion",
+    "expression",
+    "sentiment",
+    "engagement",
+    "interaction",
+    "like",
+    "rating",
+    "react",
+    "feeling",
+    "opinion",
+    "social"
+  ]
+}

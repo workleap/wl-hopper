@@ -1,0 +1,21 @@
+{
+  "name": "Mail",
+  "description": "Represents an envelope or mail. Used for features related to email, messaging, notifications, communication, or any feature that involves sending or receiving messages or correspondence.",
+  "keywords": [
+    "mail",
+    "email",
+    "message",
+    "envelope",
+    "communication",
+    "correspondence",
+    "notification",
+    "inbox",
+    "send",
+    "receive",
+    "contact",
+    "letter",
+    "post",
+    "delivery",
+    "messaging"
+  ]
+}

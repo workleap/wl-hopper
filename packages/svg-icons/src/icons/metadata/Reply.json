@@ -1,0 +1,21 @@
+{
+  "name": "Reply",
+  "description": "Represents a curved arrow pointing to the left. Used for features related to replying to messages, responding to comments, answering queries, or any feature that involves sending a response to a previous communication or returning to a previous state.",
+  "keywords": [
+    "reply",
+    "respond",
+    "answer",
+    "feedback",
+    "comment",
+    "message",
+    "conversation",
+    "communication",
+    "return",
+    "response",
+    "discussion",
+    "correspondence",
+    "dialogue",
+    "reaction",
+    "exchange"
+  ]
+}

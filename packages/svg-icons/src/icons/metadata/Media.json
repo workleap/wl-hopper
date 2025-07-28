@@ -1,0 +1,21 @@
+{
+  "name": "Media",
+  "description": "Represents a grid or layout of content. Used for features related to media management, galleries, content libraries, multimedia collections, or any feature that involves organizing and displaying multiple media items such as images, videos, or audio files.",
+  "keywords": [
+    "media",
+    "gallery",
+    "library",
+    "collection",
+    "multimedia",
+    "content",
+    "grid",
+    "layout",
+    "images",
+    "videos",
+    "audio",
+    "files",
+    "organize",
+    "display",
+    "browse"
+  ]
+}

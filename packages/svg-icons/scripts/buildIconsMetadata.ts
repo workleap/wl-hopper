@@ -1,0 +1,119 @@
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+import { IconsMetadataDistDirectory } from "./constants.ts";
+
+// Get the directory name in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+/**
+ * Interface for metadata object structure
+ */
+interface IconMetadata {
+    name: string;
+    description: string;
+    keywords: string[];
+}
+
+/**
+ * Interface for the merged metadata object that includes a comment field
+ */
+interface MergedMetadata {
+    [key: string]: IconMetadata | string;
+}
+
+/**
+ * Ensures a directory exists, creating it if necessary
+ * @param {string} dirPath - The directory path to ensure exists
+ */
+function ensureDirectoryExists(dirPath: string): void {
+    if (!fs.existsSync(dirPath)) {
+        fs.mkdirSync(dirPath, { recursive: true });
+        console.log(`Created directory: ${dirPath}`);
+    }
+}
+
+/**
+ * Merges all JSON files in a specified directory and returns the merged data
+ * @param {string} sourceDir - The directory containing the JSON files to merge
+ * @param {string} type - The type of icons being processed (for logging)
+ * @returns {Promise<MergedMetadata>} - The merged data object
+ */
+async function mergeMetadataFiles(
+    sourceDir: string,
+    type: string
+): Promise<MergedMetadata> {
+    try {
+        // Get all JSON files in the directory
+        const files = fs.readdirSync(sourceDir).filter(file => file.endsWith(".json"));
+
+        console.log(`Found ${files.length} ${type} JSON files to merge`);
+
+        const mergedData: MergedMetadata = {};
+
+        // Process each file
+        for (const file of files) {
+            try {
+                // Read the file content
+                const filePath = path.join(sourceDir, file);
+                const fileContent = fs.readFileSync(filePath, "utf8");
+
+                // Parse the JSON content
+                const jsonData = JSON.parse(fileContent) as IconMetadata;
+
+                // Use the filename (without extension) as the key
+                const key = path.basename(file, ".json");
+
+                // Add the data to the merged object
+                mergedData[key] = jsonData;
+            } catch (fileError) {
+                console.error(`Error processing ${type} file ${file}:`, fileError);
+            }
+        }
+
+        console.log(`Successfully merged ${Object.keys(mergedData).length - 1} ${type} files`);
+
+        return mergedData;
+    } catch (error) {
+        console.error(`Error merging ${type} metadata files:`, error);
+        throw error;
+    }
+}
+
+const distDir = path.join(__dirname, IconsMetadataDistDirectory);
+
+// Define paths for regular icons
+const regularIconsMetadataDir = path.join(__dirname, "../src/icons/metadata");
+const regularIconsDistFile = path.join(distDir, "icon-metadata.json");
+
+// Define paths for rich icons
+const richIconsMetadataDir = path.join(__dirname, "../src/rich-icons/metadata");
+const richIconsDistFile = path.join(distDir, "rich-icon-metadata.json");
+
+/**
+ * Merges metadata for both regular and rich icons and saves to the dist folder
+ */
+async function mergeAllMetadata(): Promise<void> {
+    try {
+        // Merge regular icons metadata and save to dist folder
+        const regularIconsData = await mergeMetadataFiles(regularIconsMetadataDir, "regular icon");
+        ensureDirectoryExists(distDir);
+        fs.writeFileSync(regularIconsDistFile, JSON.stringify(regularIconsData, null, 2), "utf8");
+        console.log(`Saved regular icon metadata to ${regularIconsDistFile}`);
+
+        // Merge rich icons metadata and save to dist folder
+        const richIconsData = await mergeMetadataFiles(richIconsMetadataDir, "rich icon");
+        ensureDirectoryExists(distDir);
+        fs.writeFileSync(richIconsDistFile, JSON.stringify(richIconsData, null, 2), "utf8");
+        console.log(`Saved rich icon metadata to ${richIconsDistFile}`);
+
+        console.log("All metadata merging completed successfully");
+    } catch (err) {
+        console.error("Metadata merging failed:", err);
+    }
+}
+
+// Run the merged process
+mergeAllMetadata();

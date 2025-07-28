@@ -1,0 +1,17 @@
+{
+  "name": "ReportsTo",
+  "description": "Used to represent a reporting relationship in an organizational structure or hierarchy. Indicates who an employee reports to or a hierarchical relationship between team members.",
+  "keywords": [
+    "reports to",
+    "reporting line",
+    "manager",
+    "supervisor",
+    "hierarchy",
+    "organization",
+    "structure",
+    "chain of command",
+    "reporting relationship",
+    "management",
+    "team structure"
+  ]
+}

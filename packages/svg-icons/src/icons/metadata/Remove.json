@@ -1,0 +1,21 @@
+{
+  "name": "Remove",
+  "description": "Represents an X or close symbol inside a circle. Used for features related to removing items, closing windows, canceling actions, deleting content, or any feature that involves eliminating, dismissing, or terminating something.",
+  "keywords": [
+    "remove",
+    "delete",
+    "close",
+    "cancel",
+    "dismiss",
+    "eliminate",
+    "terminate",
+    "clear",
+    "discard",
+    "erase",
+    "reject",
+    "exclude",
+    "withdraw",
+    "abort",
+    "exit"
+  ]
+}

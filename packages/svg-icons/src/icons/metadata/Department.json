@@ -1,0 +1,18 @@
+{
+  "name": "Department",
+  "description": "Represents an organizational structure with a top rectangle connected to two lower rectangles. Used to indicate departments, organizational units, team structures, or hierarchical relationships within an organization.",
+  "keywords": [
+    "department",
+    "organization",
+    "team",
+    "structure",
+    "hierarchy",
+    "division",
+    "unit",
+    "group",
+    "branch",
+    "section",
+    "organizational chart",
+    "company structure"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Upload",
+  "description": "Represents the action of uploading files or content to a server, cloud storage, or other destination. Depicted as an upward-pointing arrow above a horizontal line. Used in file management interfaces, cloud storage applications, and content management systems to indicate the upload functionality.",
+  "keywords": [
+    "upload",
+    "file upload",
+    "cloud upload",
+    "send file",
+    "transfer",
+    "push",
+    "share",
+    "store",
+    "cloud storage",
+    "file transfer",
+    "data upload"
+  ]
+}

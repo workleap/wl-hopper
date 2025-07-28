@@ -1,0 +1,24 @@
+{
+  "name": "Segment",
+  "description": "Represents a square with a currency or percentage symbol inside. Used for features related to market segments, customer segments, data segmentation, or any feature that involves dividing, categorizing, or grouping information, users, or data for targeted analysis or operations.",
+  "keywords": [
+    "segment",
+    "section",
+    "category",
+    "division",
+    "group",
+    "classification",
+    "partition",
+    "subset",
+    "cluster",
+    "demographic",
+    "targeting",
+    "audience",
+    "market",
+    "customer",
+    "data",
+    "analytics",
+    "filter",
+    "organize"
+  ]
+}
