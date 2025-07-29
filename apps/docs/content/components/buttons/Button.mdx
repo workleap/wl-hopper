@@ -17,6 +17,19 @@ A `Button` uses the following components:
 
 <ComposedComponents components={["Icon", "IconList", "Text"] }/>
 
+### Rules
+
+<DosAndDonts
+    dos={{
+        code: "<Button><SparklesIcon /><Text>Terms and conditions</Text></Button>"
+    }}
+    donts={{
+        code: "<Button><SparklesIcon />Terms and conditions</Button>"
+    }}
+>
+When a Button contains anything other than a single text node (e.g., an icon, a spinner, or another element), the accompanying text must be wrapped in a `<Text>` component.
+</DosAndDonts>
+
 ## Usage
 
 ### Variants

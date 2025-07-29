@@ -5,6 +5,7 @@ import CardLink from "@/app/ui/components/cardLink/cardLink.ai";
 import CardLinkList from "@/app/ui/components/cardLink/cardLinkList.ai";
 import ComponentExample from "@/app/ui/components/componentExample/ComponentExample.ai";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.ai";
+import DosAndDonts from "@/app/ui/components/dosAndDonts/DosAndDonts.ai";
 import Expand from "@/app/ui/components/expand/Expand.ai";
 import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
 import Overview from "@/app/ui/components/overview/Overview.ai";
@@ -28,6 +29,7 @@ export const components = {
     CodeOnlyExample: ComponentExample,
     Example: ComponentExample,
     ComposedComponents: ComposedComponents,
+    DosAndDonts: DosAndDonts,
     PropTable: PropTable,
     MigrateGuide: MigrateGuide,
     PackageInstallation: PackageInstallation,
