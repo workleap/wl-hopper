@@ -75,6 +75,25 @@ Nonstandard end icons can be provided to handle special cases. However, think tw
 
 <Example src="buttons/docs/button/endIcon" />
 
+## Rules
+
+When a Button contains anything other than a single text node (e.g., an icon, a spinner, or another element), the accompanying text must be wrapped in a `<Text>` component.
+
+<DosAndDonts
+    dos={`
+    <Button>
+        <SparklesIcon />
+        <Text>Terms and conditions</Text>
+    </Button>
+    `}
+    donts={`
+    <Button>
+        <SparklesIcon />
+        Terms and conditions
+    </Button>
+    `}
+/>
+
 ## Props
 
 <PropTable component="Button" />
