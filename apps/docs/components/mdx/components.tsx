@@ -14,7 +14,7 @@ import ComponentCodeWrapper from "@/app/ui/components/componentExample/Component
 import type { ComponentExampleProps } from "@/app/ui/components/componentExample/ComponentExample.tsx";
 import ComponentPreview from "@/app/ui/components/componentExample/ComponentPreview.tsx";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.tsx";
-import DosAndDonts from "@/app/ui/components/dosAndDonts/DosAndDonts";
+import DoDont from "@/app/ui/components/doDont/DoDont";
 import Expand from "@/app/ui/components/expand/Expand";
 import Figure from "@/app/ui/components/figure/Figure";
 import Footnote from "@/app/ui/components/footnote/Footnote";
@@ -55,7 +55,7 @@ export const components = {
     CardLinkList,
     code: InlineCode,
     Callout: Callout,
-    DosAndDonts,
+    DoDont,
     Expand,
     Figure,
     Image: NextImage,
