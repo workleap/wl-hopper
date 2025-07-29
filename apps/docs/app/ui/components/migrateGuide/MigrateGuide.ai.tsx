@@ -1,19 +1,21 @@
-//import { getMigrationNotes } from "@/app/components/utils.ts";
+import { getMigrationNotes } from "@/app/components/utils.ts";
 
 export interface MigrateGuideProps {
     src: string;
 }
 
-const MigrateGuide = async () => {
-    return <div />;
+const MigrateGuide = async ({ src }: MigrateGuideProps) => {
+    // return <div />;
 
-    // if (!src) {
-    //     return null;
-    // }
+    if (!src) {
+        return null;
+    }
 
-    // const { content } = await getMigrationNotes(src);
+    const { content } = await getMigrationNotes(src);
 
-    // return <>{content}</>;
+    return <div>
+        {content}
+    </div>;
 };
 
 export default MigrateGuide;

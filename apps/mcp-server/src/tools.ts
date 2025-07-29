@@ -151,4 +151,32 @@ ALWAYS follow these steps:
             }]
         };
     });
+
+    server.registerTool("migrate_from_orbiter_to_hopper", {
+        title: "Migrate a file or all files in the folder from Orbiter to Hopper",
+        description:
+        "It migrates a file or all files in the folder from Orbiter to Hopper.",
+        inputSchema: { file_or_folder_path: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ file_or_folder_path }, e) => {
+        trackEvent("migrate_from_orbiter_to_hopper", { filePath: file_or_folder_path }, e?.requestInfo);
+
+        return {
+            content: [{
+                type: "text",
+                text:
+                `1. Run \`pnpx @workleap/migrations -t ${file_or_folder_path}\` in terminal to migrate the file/folder from Orbiter to Hopper.
+                 2. Review the files for errors:
+                    - Update the Hopper packages if they are not up-to-date and if it is required (e.g. the component is missing).
+                    - There are some added \`Migration TODO\`s comments in the code. Try to address them.
+                    - There might also be \`migration-notes.md\` file generated. Review them for additional guidance.
+                    - For each component you can check the Component documentation's Migration notes to manually adjust the code.
+                 3. If some components are not migrated, you can use the \`get_component_documentation\` tool to get the component documentation and follow the migration notes.
+                 4. Make sure the migrated code adheres to Hopper's design system standards.
+                 `
+            }]
+        };
+    });
 }
