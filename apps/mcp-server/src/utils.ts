@@ -1,6 +1,5 @@
 import type { CallToolResult, RequestInfo } from "@modelcontextprotocol/sdk/types.js";
 import chalk from "chalk";
-import { log } from "console";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
 import { cwd } from "process";
