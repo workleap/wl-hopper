@@ -17,7 +17,8 @@
         "generate:componentData": "tsx scripts/generateComponentData.ts",
         "generate:previewRef": "tsx scripts/generatePreviewRef.ts",
         "install-react19": "pnpm -r --filter \"{packages/**}\" add -D react@19 react-dom@19 @types/react@19 @types/react-dom@19 && pnpm add -D -w react@19 react-dom@19 @types/react@19 @types/react-dom@19",
-        "generateAi": "tsx  --tsconfig ./scripts/ai-helpers/tsconfig.json scripts/generateAiDocs.ts",
+        "generateAiDocs": "tsx  --tsconfig ./scripts/ai-helpers/tsconfig.json scripts/generateAiDocs.ts",
+        "buildAiDocs": "pnpm generate && pnpm install-react19 && pnpm generateAiDocs",
         "copy:images": "tsx scripts/copyImages.ts"
     },
     "dependencies": {
