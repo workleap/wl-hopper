@@ -7,9 +7,10 @@ import { env } from "./env.js";
 import { trackEvent } from "./logging.js";
 import { setupServer } from "./server.js";
 
-function getAllowedHosts(): string[] {
+function getAllowedHosts(): string[] | undefined {
     const result = [];
     for (const host of env.ALLOWED_HOSTS.split(",")) {
+        if (host === "") {continue;}
         if (host.includes(":")) {
             result.push(host);
         } else {
@@ -17,7 +18,7 @@ function getAllowedHosts(): string[] {
         }
     }
 
-    return result;
+    return result.length === 0 ? undefined : result;
 }
 
 console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);
