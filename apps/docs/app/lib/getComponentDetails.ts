@@ -47,8 +47,7 @@ async function getMDXDataFromFile(file: string) {
         slugs,
         frontmatter,
         content,
-        raw,
-        markdown: "salam: {file: " + file + "}\n" + content
+        raw
     };
 }
 

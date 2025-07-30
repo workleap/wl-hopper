@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { defineDocumentType, defineNestedType, makeSource } from "contentlayer/source-files";
 import { rehypePluginOptions } from "./app/lib/rehypeConfig.ts";
 
@@ -253,5 +252,3 @@ export default makeSource({
         rehypePlugins: rehypePluginOptions
     }
 });
-
-
