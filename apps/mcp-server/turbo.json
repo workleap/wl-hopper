@@ -1,0 +1,14 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "extends": [
+        "//"
+    ],
+    "tasks": {
+        "dev": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "inspect": {
+            "outputs": ["node_modules/.cache/jest"]
+        }
+    }
+}

@@ -14,7 +14,8 @@
     "postbuild": "cp -r ../docs/dist/ai dist/docs",
     "start": "NODE_ENV=production node dist/index.js",
     "dev": "nodemon --watch src --ext ts --exec \"tsx src/index.ts\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "inspect": "pnpx @modelcontextprotocol/inspector http://localhost:3300/mcp",
+    "test": "turbo run dev inspect --continue",
     "doc:generateAi": "pnpm --filter=docs generate:ai"
   },
   "keywords": [],
