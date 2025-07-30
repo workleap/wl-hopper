@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 
 import { useBreakpointContext } from "./responsive/BreakpointContext.tsx";
 import type { Breakpoint } from "./responsive/Breakpoints.ts";
-import { type ResponsiveProp, parseResponsiveValue, type ResponsiveValue } from "./responsive/useResponsiveValue.tsx";
-import { UnsafePrefix, type StyledSystemProps } from "./styledSystemProps.ts";
+import { parseResponsiveValue, type ResponsiveProp, type ResponsiveValue } from "./responsive/useResponsiveValue.tsx";
+import { UnsafePrefix, type StyledSystemProps, type UnsafeStyledSystemProps } from "./styledSystemProps.ts";
 import {
     BackgroundColorMapping,
     BorderMapping,
@@ -163,8 +163,8 @@ const gridTemplateAreasHandler: PropHandler = (name, value, context) => {
         context.addStyleValue("gridTemplateAreas", parsedValue);
     }
 };
-
-const PropsHandlers: Record<string, PropHandler> = {
+type PropsHandlersKey = keyof Omit<StyledSystemProps, keyof UnsafeStyledSystemProps>;
+const PropsHandlers: Record<PropsHandlersKey, PropHandler> = {
     alignContent: createPassthroughHandler(),
     alignItems: createPassthroughHandler(),
     alignSelf: createPassthroughHandler(),
@@ -298,6 +298,7 @@ const PropsHandlers: Record<string, PropHandler> = {
     textOverflow: createPassthroughHandler(),
     textTransform: createPassthroughHandler(),
     top: createPassthroughHandler(),
+    transition: createPassthroughHandler(),
     transform: createPassthroughHandler(),
     transformOrigin: createPassthroughHandler(),
     transformStyle: createPassthroughHandler(),
@@ -313,7 +314,7 @@ const PropsHandlers: Record<string, PropHandler> = {
 export function isStyledSystemProp(name: string): name is keyof typeof PropsHandlers {
     const cssProperty = name.replace(UnsafePrefix, ""); // TODO: not 100% accurate but close
 
-    return !isNil(PropsHandlers[cssProperty]);
+    return !isNil(PropsHandlers[cssProperty as PropsHandlersKey]);
 }
 
 class StylingContext {
