@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 
 import { useBreakpointContext } from "./responsive/BreakpointContext.tsx";
 import type { Breakpoint } from "./responsive/Breakpoints.ts";
-import { type ResponsiveProp, parseResponsiveValue, type ResponsiveValue } from "./responsive/useResponsiveValue.tsx";
-import { UnsafePrefix, type StyledSystemProps } from "./styledSystemProps.ts";
+import { parseResponsiveValue, type ResponsiveProp, type ResponsiveValue } from "./responsive/useResponsiveValue.tsx";
+import { UnsafePrefix, type StyledSystemProps, type UnsafeStyledSystemProps } from "./styledSystemProps.ts";
 import {
     BackgroundColorMapping,
     BorderMapping,
@@ -164,7 +164,7 @@ const gridTemplateAreasHandler: PropHandler = (name, value, context) => {
     }
 };
 
-const PropsHandlers: Record<string, PropHandler> = {
+const PropsHandlers: Record<keyof Omit<StyledSystemProps, keyof UnsafeStyledSystemProps>, PropHandler> = {
     alignContent: createPassthroughHandler(),
     alignItems: createPassthroughHandler(),
     alignSelf: createPassthroughHandler(),
@@ -298,6 +298,7 @@ const PropsHandlers: Record<string, PropHandler> = {
     textOverflow: createPassthroughHandler(),
     textTransform: createPassthroughHandler(),
     top: createPassthroughHandler(),
+    transition: createPassthroughHandler(),
     transform: createPassthroughHandler(),
     transformOrigin: createPassthroughHandler(),
     transformStyle: createPassthroughHandler(),

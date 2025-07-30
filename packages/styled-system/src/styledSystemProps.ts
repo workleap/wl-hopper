@@ -58,7 +58,7 @@ import type {
 
 export const UnsafePrefix = "UNSAFE_";
 
-export interface StyledSystemProps {
+export interface StyledSystemProps extends UnsafeStyledSystemProps{
     /**
    * Sets the `align-content` property.
    * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-content}
@@ -882,6 +882,51 @@ export interface StyledSystemProps {
     transition?: ResponsiveProp<Property.Transition>;
 
     /**
+   * Sets the `vertical-align` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/vertical-align}
+   */
+    verticalAlign?: ResponsiveProp<Property.VerticalAlign>;
+
+    /**
+   * Sets the `visibility` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/visibility}
+   */
+    visibility?: ResponsiveProp<Property.Visibility>;
+
+    /**
+   * Sets the `white-space` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/white-space}
+   */
+    whiteSpace?: ResponsiveProp<Property.WhiteSpace>;
+
+    /**
+     * Sets the `width` property.
+     * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_width`** property
+     */
+    width?: ResponsiveProp<WidthValue>;
+
+    /**
+   * Sets the `will-change` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/will-change}
+   */
+    willChange?: ResponsiveProp<Property.WillChange>;
+
+    /**
+   * Sets the `word-break` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/word-break}
+   */
+    wordBreak?: ResponsiveProp<Property.WordBreak>;
+
+    /**
+   * Sets the `z-index` property.
+   * @see {@link https://developer.mozilla.org/docs/Web/CSS/z-index}
+   */
+    zIndex?: ResponsiveProp<Property.ZIndex>;
+}
+
+export interface UnsafeStyledSystemProps {
+
+    /**
      * Sets the `background-color` property.
      *
      * If you want to use a **token value** from the **SCALE**, use the **`backgroundColor`** property instead.
@@ -1532,48 +1577,6 @@ export interface StyledSystemProps {
      * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
      */
     UNSAFE_width?: ResponsiveProp<UNSAFE_WidthValue>;
-
-    /**
-   * Sets the `vertical-align` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/vertical-align}
-   */
-    verticalAlign?: ResponsiveProp<Property.VerticalAlign>;
-
-    /**
-   * Sets the `visibility` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/visibility}
-   */
-    visibility?: ResponsiveProp<Property.Visibility>;
-
-    /**
-   * Sets the `white-space` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/white-space}
-   */
-    whiteSpace?: ResponsiveProp<Property.WhiteSpace>;
-
-    /**
-     * Sets the `width` property.
-     * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_width`** property
-     */
-    width?: ResponsiveProp<WidthValue>;
-
-    /**
-   * Sets the `will-change` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/will-change}
-   */
-    willChange?: ResponsiveProp<Property.WillChange>;
-
-    /**
-   * Sets the `word-break` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/word-break}
-   */
-    wordBreak?: ResponsiveProp<Property.WordBreak>;
-
-    /**
-   * Sets the `z-index` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/z-index}
-   */
-    zIndex?: ResponsiveProp<Property.ZIndex>;
 }
 
 export type StyledComponentProps<T>
