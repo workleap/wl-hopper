@@ -1,4 +1,3 @@
-import React from "react";
 import { allComponents } from "../../../../.contentlayer/generated/index.mjs";
 
 interface ComposedComponentsProps {
