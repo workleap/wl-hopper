@@ -65,8 +65,8 @@ async function generate_icons_docs() {
         "overview/designing-an-icon.md",
         "react-icons/icon-library.md",
         "react-icons/rich-icon-library.md",
-        "svg-icons/icon-library.md",
-        "svg-icons/rich-icon-library.md"
+        "SVG-icons/icon-library.md",
+        "SVG-icons/rich-icon-library.md"
     ], {
         outputFile: "llms-icons.md",
         outputDir,
