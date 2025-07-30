@@ -3,7 +3,8 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, trackError, trackEvent, type GuideSection } from "./utils.js";
+import { trackError, trackEvent } from "./logging.js";
+import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, type GuideSection } from "./utils.js";
 
 
 export function tools(server: McpServer) {
