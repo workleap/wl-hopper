@@ -3,7 +3,7 @@
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-import { trackEvent } from "./utils.js";
+import { trackEvent } from "./logging.js";
 
 const SectionSchema = z.enum(["api", "usage"]);
 const ALLOWED_SECTIONS = ["api", "usage"] as const;

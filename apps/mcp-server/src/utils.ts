@@ -1,5 +1,4 @@
-import type { CallToolResult, RequestInfo } from "@modelcontextprotocol/sdk/types.js";
-import chalk from "chalk";
+import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
 import { cwd } from "process";
@@ -8,53 +7,16 @@ import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { fileURLToPath } from "url";
-import winston from "winston";
 
-const __dirname = join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist/ai");
+import { trackError } from "./logging.js";
 
-
-// Configure winston logger for user interactions
-const interactionLogger = winston.createLogger({
-    level: "info",
-    format:  winston.format.json({ space: 2 }),
-    transports: [
-        new winston.transports.File({
-            filename: join(cwd(), "logs", "user-interactions.log.jsonl"),
-            maxsize: 10 * 1024 * 1024, // 10MB
-            maxFiles: 5,
-            tailable: true,
-            level: "info"
-        })
-    ]
-});
-
-if (process.env.NODE_ENV !== "production") {
-    const colorizeMessageOnly = winston.format(info => {
-        if (info.message) {
-            info.message = chalk.yellow(info.message); // Only color the message
-        }
-        if (info.data) {
-            info.data = chalk.cyan(JSON.stringify(info.data)); // Only color the data
-        }
-
-        return info;
-    });
-
-    interactionLogger.add(new winston.transports.Console({
-        format: winston.format.combine(
-
-            colorizeMessageOnly(),
-            winston.format.timestamp(),
-            winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)
-
-
-        )
-    }));
-}
+const __docsFolder = process.env.NODE_ENV === "production" ?
+    join(cwd(), "./docs") :
+    join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist/ai");
 
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
-    const docFilePath = join(__dirname, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
+    const docFilePath = join(__docsFolder, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
 
     if (!existsSync(docFilePath)) {
         return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
@@ -113,7 +75,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
         };
     }
 
-    const guidePath = join(__dirname, guidesPath[section]);
+    const guidePath = join(__docsFolder, guidesPath[section]);
 
     if (!existsSync(guidePath)) {
         trackError(new Error(`Guide not found for section: ${section}`));
@@ -212,30 +174,3 @@ export async function fetchDocumentContent(url: string) {
     throw error;
 }
 
-export function trackEvent(event: string, data: object | null = {}, requestInfo?: RequestInfo) {
-    let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
-    const { sessionId: dataSessionId, ...modifiedData } = data && "sessionId" in data ? data : { sessionId: null, ...data };
-
-    if (!sessionId && dataSessionId && typeof dataSessionId === "string") {
-        sessionId = dataSessionId as string;
-    }
-
-
-    const logData = {
-        sessionId: sessionId ? sessionId : undefined,
-        data: modifiedData && Object.keys(modifiedData).length > 0 ? modifiedData : undefined,
-        timestamp: new Date().toISOString()
-    };
-
-    // Log to file using winston
-    if (event === "error") {
-        console.log("--->", logData);
-        interactionLogger.error(event, logData);
-    } else {
-        interactionLogger.info(event, logData);
-    }
-}
-
-export function trackError(error: unknown, requestInfo?: RequestInfo) {
-    return trackEvent("error", typeof error === "object" ? error : { error }, requestInfo);
-}

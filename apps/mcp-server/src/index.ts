@@ -3,13 +3,13 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import express from "express";
 import { randomUUID } from "node:crypto";
 
+import { env } from "./env.js";
+import { trackEvent } from "./logging.js";
 import { setupServer } from "./server.js";
-import { trackEvent } from "./utils.js";
 
-const PORT = 3300;
-const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${PORT}`, `127.0.0.1:${PORT}`];
+const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${env.PORT}`, `127.0.0.1:${env.PORT}`];
 
-console.log(`Hopper MCP server\nlistening on port ${PORT}...`);
+console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);
 const app = express();
 app.use(express.json());
 
@@ -89,4 +89,4 @@ app.get("/mcp", handleSessionRequest);
 // Handle DELETE requests for session termination
 app.delete("/mcp", handleSessionRequest);
 
-app.listen(PORT);
+app.listen(env.PORT);
