@@ -28,7 +28,7 @@
         "build:tokens": "turbo run build --filter=./packages/tokens",
         "build:pkg": "turbo run build --filter=./packages/*",
         "build:apps": "turbo run build --filter=./apps/samples/*",
-        "buildAiDocs": "pnpm --filter=./apps/docs generate && pnpm build:tokens && pnpm --filter=./packages/styled-system build && pnpm --filter=./apps/docs build && pnpm install-docs-react19 && pnpm --filter=./apps/docs generateAiDocs",
+        "buildAiDocs": "pnpm --filter=./apps/docs generate && pnpm build:tokens && pnpm --filter=./packages/styled-system build && pnpm --filter=./apps/docs build && pnpm --filter=./packages/svg-icons build:metadata && pnpm install-docs-react19 && pnpm --filter=./apps/docs generateAiDocs",
         "changeset": "changeset",
         "ci-release": "pnpm build:pkg && changeset publish",
         "install-react19": "pnpm -r --filter \"{packages/**}\" add -D react@19 react-dom@19 @types/react@19 @types/react-dom@19 && pnpm add -D -w react@19 react-dom@19 @types/react@19 @types/react-dom@19",
