@@ -58,7 +58,7 @@ import type {
 
 export const UnsafePrefix = "UNSAFE_";
 
-export interface StyledSystemProps extends UnsafeStyledSystemProps{
+export interface StyledSystemProps extends UnsafeStyledSystemProps {
     /**
    * Sets the `align-content` property.
    * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-content}
@@ -925,7 +925,6 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps{
 }
 
 export interface UnsafeStyledSystemProps {
-
     /**
      * Sets the `background-color` property.
      *
