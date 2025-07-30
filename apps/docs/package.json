@@ -16,7 +16,7 @@
         "generate": "pnpm run \"/^generate:.*/\"",
         "generate:componentData": "tsx scripts/generateComponentData.ts",
         "generate:previewRef": "tsx scripts/generatePreviewRef.ts",
-        "generate:ai": "tsx scripts/generateAiDocs.ts ",
+        "generate:ai": "tsx  --tsconfig ./scripts/ai-helpers/tsconfig.json scripts/generateAiDocs.ts",
         "copy:images": "tsx scripts/copyImages.ts"
     },
     "dependencies": {

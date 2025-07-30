@@ -3,10 +3,10 @@
   "compilerOptions": {
     "incremental": true,
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "module": "preserve",
     "moduleResolution": "Bundler",
-    "baseUrl": ".",
+    "baseUrl": "../..",
     "plugins": [
       {
         "name": "next"
@@ -37,14 +37,14 @@
     }
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    ".contentlayer/generated",
-    ".storybook/**/*"
+    "../../next-env.d.ts",
+    "../../**/*.ts",
+    "../../**/*.tsx",
+    "../../.next/types/**/*.ts",
+    "../../.contentlayer/generated",
+    "../../.storybook/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "../../node_modules"
   ]
 }
