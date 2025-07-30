@@ -313,16 +313,6 @@ importers:
         specifier: 5.5.4
         version: 5.5.4
 
-  apps/docs/dist/ai/components/usage: {}
-
-  apps/docs/dist/ai/getting-started: {}
-
-  apps/docs/dist/ai/icons: {}
-
-  apps/docs/dist/ai/styled-system: {}
-
-  apps/docs/dist/ai/tokens: {}
-
   apps/mcp-server:
     dependencies:
       '@modelcontextprotocol/sdk':
