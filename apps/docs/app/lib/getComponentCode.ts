@@ -2,7 +2,7 @@ import { highlightCode } from "@/components/highlightCode";
 import fs from "fs/promises";
 import path from "path";
 
-export function formatComponentExamplePath(uri: string) {
+function formatComponentExamplePath(uri: string) {
     if (uri.includes("icons/docs/")) {
         const updatedUri = uri.replace("icons/", "");
 
