@@ -163,8 +163,8 @@ const gridTemplateAreasHandler: PropHandler = (name, value, context) => {
         context.addStyleValue("gridTemplateAreas", parsedValue);
     }
 };
-
-const PropsHandlers: Record<keyof Omit<StyledSystemProps, keyof UnsafeStyledSystemProps>, PropHandler> = {
+type PropsHandlersKey = keyof Omit<StyledSystemProps, keyof UnsafeStyledSystemProps>;
+const PropsHandlers: Record<PropsHandlersKey, PropHandler> = {
     alignContent: createPassthroughHandler(),
     alignItems: createPassthroughHandler(),
     alignSelf: createPassthroughHandler(),
@@ -314,7 +314,7 @@ const PropsHandlers: Record<keyof Omit<StyledSystemProps, keyof UnsafeStyledSyst
 export function isStyledSystemProp(name: string): name is keyof typeof PropsHandlers {
     const cssProperty = name.replace(UnsafePrefix, ""); // TODO: not 100% accurate but close
 
-    return !isNil(PropsHandlers[cssProperty]);
+    return !isNil(PropsHandlers[cssProperty as PropsHandlersKey]);
 }
 
 class StylingContext {
