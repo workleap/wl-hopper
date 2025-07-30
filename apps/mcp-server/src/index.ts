@@ -7,7 +7,18 @@ import { env } from "./env.js";
 import { trackEvent } from "./logging.js";
 import { setupServer } from "./server.js";
 
-const ALLOWED_HOSTS = ["127.0.0.1", "localhost", `localhost:${env.PORT}`, `127.0.0.1:${env.PORT}`];
+function getAllowedHosts(): string[] {
+    const result = [];
+    for (const host of env.ALLOWED_HOSTS.split(",")) {
+        if (host.includes(":")) {
+            result.push(host);
+        } else {
+            result.push(`${host}:${env.PORT}`); // Add default port for HTTP
+        }
+    }
+
+    return result;
+}
 
 console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);
 const app = express();
@@ -39,7 +50,7 @@ app.post("/mcp", async (req, res) => {
             // DNS rebinding protection is disabled by default for backwards compatibility. If you are running this server
             // locally, make sure to set:
             enableDnsRebindingProtection: true,
-            allowedHosts: ALLOWED_HOSTS
+            allowedHosts: getAllowedHosts()
         });
 
         // Clean up transport when closed
