@@ -20,29 +20,25 @@ const interactionLogger = winston.createLogger({
     ]
 });
 
-if (process.env.NODE_ENV !== "production") {
-    const colorizeMessageOnly = winston.format(info => {
-        if (info.message) {
-            info.message = chalk.yellow(info.message); // Only color the message
-        }
-        if (info.data) {
-            info.data = chalk.cyan(JSON.stringify(info.data)); // Only color the data
-        }
+const colorizeMessageOnly = winston.format(info => {
+    if (info.message) {
+        info.message = chalk.yellow(info.message); // Only color the message
+    }
+    if (info.data) {
+        info.data = chalk.cyan(JSON.stringify(info.data)); // Only color the data
+    }
 
-        return info;
-    });
+    return info;
+});
 
-    interactionLogger.add(new winston.transports.Console({
-        format: winston.format.combine(
+interactionLogger.add(new winston.transports.Console({
+    format: winston.format.combine(
 
-            colorizeMessageOnly(),
-            winston.format.timestamp(),
-            winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)
-
-
-        )
-    }));
-}
+        colorizeMessageOnly(),
+        winston.format.timestamp(),
+        winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)
+    )
+}));
 
 export function trackEvent(event: string, data: object | null = {}, requestInfo?: RequestInfo) {
     let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
