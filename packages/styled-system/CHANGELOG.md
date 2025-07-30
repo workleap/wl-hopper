@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.9
+
+### Patch Changes
+
+- 122a375: fix: transition property now works properly
+
 ## 2.5.8
 
 ### Patch Changes
