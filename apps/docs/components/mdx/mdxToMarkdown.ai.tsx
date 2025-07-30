@@ -1,4 +1,3 @@
-import { rehypePluginOptions } from "@/app/lib/rehypeConfig";
 import { components } from "@/components/mdx/components.ai";
 import { iconData } from "@/content/icons/overview/data";
 import tokensDark from "@/datas/tokens-dark.json";
