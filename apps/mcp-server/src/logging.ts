@@ -32,7 +32,7 @@ const colorizeMessageOnly = winston.format(info => {
 });
 
 interactionLogger.add(new winston.transports.Console({
-    format: winston.format.combine(
+    format: process.env.NODE_ENV === "production" ? undefined : winston.format.combine(
 
         colorizeMessageOnly(),
         winston.format.timestamp(),
@@ -40,9 +40,22 @@ interactionLogger.add(new winston.transports.Console({
     )
 }));
 
+function errorToObject(error: object | null) {
+    if (error instanceof Error) {
+        return {
+            name: error.name,
+            message: error.message,
+            stack: error.stack
+        };
+    }
+
+    return error;
+}
+
 export function trackEvent(event: string, data: object | null = {}, requestInfo?: RequestInfo) {
+    const convertedData = errorToObject(data);
     let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
-    const { sessionId: dataSessionId, ...modifiedData } = data && "sessionId" in data ? data : { sessionId: null, ...data };
+    const { sessionId: dataSessionId, ...modifiedData } = (convertedData != null && ("sessionId" in convertedData)) ? convertedData : { sessionId: null, ...convertedData };
 
     if (!sessionId && dataSessionId && typeof dataSessionId === "string") {
         sessionId = dataSessionId as string;
@@ -57,7 +70,6 @@ export function trackEvent(event: string, data: object | null = {}, requestInfo?
 
     // Log to file using winston
     if (event === "error") {
-        console.log("--->", logData);
         interactionLogger.error(event, logData);
     } else {
         interactionLogger.info(event, logData);

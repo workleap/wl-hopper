@@ -1,5 +1,5 @@
-import { join } from "path";
-import { cwd } from "process";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 import { z } from "zod";
 
 const envSchema = z.object({
@@ -9,7 +9,7 @@ const envSchema = z.object({
 });
 
 export const env = process.env.NODE_ENV === "production" ? envSchema.parse(process.env) : {
-    LOG_FILE: join(cwd(), "logs", "user-interactions.log.jsonl"),
+    LOG_FILE: join(dirname(fileURLToPath(import.meta.url)), "../logs/user-interactions.log.jsonl"),
     PORT: "3300",
     ALLOWED_HOSTS: ""
 };
