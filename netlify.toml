@@ -1,7 +1,13 @@
 [build]
-  command = "pnpm doc:generate && pnpm build:pkg && pnpm build:doc"
+  command = "pnpm doc:generate && pnpm build:pkg && pnpm build:doc && pnpm doc:generateAi && pnpm build:mcp"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "apps/mcp-server/dist/hosts/netlify"
+  included_files = ["dist/docs/**"]
+

@@ -32,7 +32,7 @@ const colorizeMessageOnly = winston.format(info => {
 });
 
 interactionLogger.add(new winston.transports.Console({
-    format: process.env.NODE_ENV === "production" ? undefined : winston.format.combine(
+    format: env.ENV === "production" ? undefined : winston.format.combine(
 
         colorizeMessageOnly(),
         winston.format.timestamp(),

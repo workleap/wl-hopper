@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 
 import { trackEvent } from "./logging.js";
@@ -17,7 +18,7 @@ export function resources(server: McpServer) {
             title: "Component docs",
             description: `JSON API and Markdown usage chunks for each component. Allowed section values: ${ALLOWED_SECTIONS.join(", ")}`
         },
-        async (uri, { component, section }, { requestInfo }) => {
+        async (uri, { component, section }, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("get_component_description [resource]", { component: component.toString(), section: section.toString() }, requestInfo);
 
             // Validate section parameter
