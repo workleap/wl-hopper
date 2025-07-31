@@ -1,7 +1,6 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { existsSync, readFileSync } from "fs";
 import { dirname, join } from "path";
-import { cwd } from "process";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
@@ -11,7 +10,7 @@ import { fileURLToPath } from "url";
 import { trackError } from "./logging.js";
 
 const __docsFolder = process.env.NODE_ENV === "production" ?
-    join(cwd(), "./docs") :
+    join(dirname(fileURLToPath(import.meta.url)), "./docs") :
     join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist/ai");
 
 
@@ -78,7 +77,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     const guidePath = join(__docsFolder, guidesPath[section]);
 
     if (!existsSync(guidePath)) {
-        trackError(new Error(`Guide not found for section: ${section}`));
+        trackError(new Error(`Guide not found for section: ${section}, path: ${guidePath}`));
 
         return {
             content: [{
