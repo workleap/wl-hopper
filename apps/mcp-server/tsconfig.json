@@ -3,10 +3,10 @@
     "compilerOptions": {
         "noEmit": false,
         "allowImportingTsExtensions": false,
-        "module": "preserve",
+        "module": "esnext",
         "moduleResolution": "Bundler",
         "outDir": "./dist",
         "rootDir": "./src"
     },
-    "exclude": ["dist", "node_modules", "logs"]
+    "exclude": ["dist", "node_modules", "logs", "netlify"],
 }

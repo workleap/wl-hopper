@@ -1,24 +1,31 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { existsSync, readFileSync } from "fs";
-import { dirname, join } from "path";
+import { join } from "path";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import { fileURLToPath } from "url";
 
+import { env } from "./env.js";
 import { trackError } from "./logging.js";
-
-const __docsFolder = process.env.NODE_ENV === "production" ?
-    join(dirname(fileURLToPath(import.meta.url)), "./docs") :
-    join(dirname(fileURLToPath(import.meta.url)), "../../docs/dist/ai");
 
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
-    const docFilePath = join(__docsFolder, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
+    const docFilePath = join(env.DOCS_PATH, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
 
     if (!existsSync(docFilePath)) {
-        return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
+        // return getDocumentContentResult(`https://hopper.workleap.design/components/${componentName}`);
+
+        const error = new Error(`${componentName}'s documentation not found: ${docFilePath}`);
+        trackError(error);
+
+        return {
+            content: [{
+                type: "text",
+                isError: true,
+                text: "Error reading component documentation: File not found."
+            }]
+        };
     }
 
 
@@ -74,7 +81,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
         };
     }
 
-    const guidePath = join(__docsFolder, guidesPath[section]);
+    const guidePath = join(env.DOCS_PATH, guidesPath[section]);
 
     if (!existsSync(guidePath)) {
         trackError(new Error(`Guide not found for section: ${section}, path: ${guidePath}`));

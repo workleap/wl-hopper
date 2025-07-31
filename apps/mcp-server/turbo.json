@@ -4,10 +4,16 @@
         "//"
     ],
     "tasks": {
-        "dev": {
+        "dev:netlify": {
             "outputs": ["node_modules/.cache/jest"]
         },
-        "inspect": {
+        "inspect:netlify": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "dev:expressJs": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "inspect:expressJs": {
             "outputs": ["node_modules/.cache/jest"]
         }
     }

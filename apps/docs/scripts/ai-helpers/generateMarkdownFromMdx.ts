@@ -103,19 +103,6 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
             await writeProcessedFile(processedFile);
         }
 
-        // Generate package.json for the output
-        const packageJson = {
-            name: "hopper-docs-markdown",
-            version: "1.0.0",
-            description: "Generated markdown files from Hopper documentation",
-            private: true,
-            scripts: {},
-            dependencies: {}
-        };
-
-        const packageJsonPath = path.join(options.outputDir, "package.json");
-        await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2));
-
         console.log(`✅ Successfully converted ${processedFiles.length} MDX files to Markdown`);
         console.log(`📦 Output directory: ${options.outputDir}`);
     } catch (error) {

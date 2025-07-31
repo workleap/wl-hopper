@@ -3,23 +3,12 @@ import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import express from "express";
 import { randomUUID } from "node:crypto";
 
-import { env } from "./env.js";
-import { trackEvent } from "./logging.js";
-import { setupServer } from "./server.js";
+import { env } from "../env.js";
+import { trackEvent } from "../logging.js";
+import { getServer } from "../server.js";
 
-function getAllowedHosts(): string[] | undefined {
-    const result = [];
-    for (const host of env.ALLOWED_HOSTS.split(",")) {
-        if (host === "") {continue;}
-        if (host.includes(":")) {
-            result.push(host);
-        } else {
-            result.push(`${host}:${env.PORT}`); // Add default port for HTTP
-        }
-    }
+import { getAllowedHosts } from "./utils.js";
 
-    return result.length === 0 ? undefined : result;
-}
 
 console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);
 const app = express();
@@ -31,7 +20,7 @@ trackEvent("server_started", {});
 const transports: { [sessionId: string]: StreamableHTTPServerTransport } = {};
 
 // Handle POST requests for client-to-server communication
-app.post("/mcp", async (req, res) => {
+app.post("/mcp", async (req: express.Request, res: express.Response) => {
     // Check for existing session ID
     const sessionId = req.headers["mcp-session-id"] as string | undefined;
     let transport: StreamableHTTPServerTransport;
@@ -60,7 +49,7 @@ app.post("/mcp", async (req, res) => {
                 delete transports[transport.sessionId];
             }
         };
-        const server = setupServer();
+        const server = getServer();
 
         // Connect to the MCP server
         await server.connect(transport);

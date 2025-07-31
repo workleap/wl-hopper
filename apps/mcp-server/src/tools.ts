@@ -1,10 +1,12 @@
 /* eslint-disable max-len */
-
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type {
+    CallToolResult
+} from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 
 import { trackError, trackEvent } from "./logging.js";
-import { getComponentDocumentation, getDocumentContentResult, getGuideDocumentation, type GuideSection } from "./utils.js";
+import { getComponentDocumentation, getGuideDocumentation, type GuideSection } from "./utils.js";
 
 
 export function tools(server: McpServer) {
@@ -15,7 +17,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async (_, e) => {
+    }, async (_, e) : Promise<CallToolResult> => {
         trackEvent("get_started", {}, e?.requestInfo);
 
         return {
@@ -25,14 +27,14 @@ export function tools(server: McpServer) {
             `
 ALWAYS follow these steps:
 1. Read "installation" guide CAREFULLY and setup CSS correctly.
-2. Configure HopperProvider correctly at application level.
-3. Setup light/dark mode by following "color-schemes" guide.
-4. Read "styles", "tokens" and "icons" guides to understand the design system concepts well.
+    - DO NOT GO TO NEXT STEP UNTIL YOU ARE SURE THAT PACKAGES ARE INSTALLED AND CONFIGURED CORRECTLY.
+2. Setup light/dark mode by following "color-schemes" guide.
+3. Read "styles", "tokens" and "icons" guides to understand the design system concepts well.
     - You MUST know the best practices BEFORE using components.
     - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "get_component_documentation" tool.
     - The "icons" guide lists all available icons. NEVER EVER USE emojis.
-5. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
-6. Use validate_code tool at different stages to validate your generated code.
+4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
+5. Use validate_code tool at different stages to validate your generated code.
             `
             }]
         };
@@ -46,7 +48,7 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async (_, e) => {
+    }, async (_, e) : Promise<CallToolResult> => {
         trackEvent("get_components_list", {}, e?.requestInfo);
 
         return getGuideDocumentation("components-list");
@@ -60,7 +62,7 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }, e) => {
+    }, async ({ component_name }, e): Promise<CallToolResult> => {
         trackEvent("get_component_documentation", { componentName: component_name }, e?.requestInfo);
 
         return getComponentDocumentation(component_name, "usage");
@@ -74,24 +76,24 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }, e) => {
+    }, async ({ component_name }, e) : Promise<CallToolResult> => {
         trackEvent("get_component_api", { componentName: component_name }, e?.requestInfo);
 
         return getComponentDocumentation(component_name, "api");
     });
 
-    server.registerTool("get_documentation_by_url", {
-        title: "Get Documentation by URL",
-        description: "Retrieve documentation for specific paths from https://hopper.workleap.design. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
-        inputSchema: { url: z.string() },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ url }, e) => {
-        trackEvent("fetch_full_docs_from_url", { url }, e?.requestInfo);
+    // server.registerTool("get_documentation_by_url", {
+    //     title: "Get Documentation by URL",
+    //     description: "Retrieve documentation for specific paths from https://hopper.workleap.design. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
+    //     inputSchema: { url: z.string() },
+    //     annotations: {
+    //         readOnlyHint: true
+    //     }
+    // }, async ({ url }, e) : Promise<CallToolResult> => {
+    //     trackEvent("fetch_full_docs_from_url", { url }, e?.requestInfo);
 
-        return getDocumentContentResult(url);
-    });
+    //     return getDocumentContentResult(url);
+    // });
 
     server.registerTool("get_guide", {
         title: "Get guide or best practices",
@@ -112,7 +114,7 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide = "all" }, e) => {
+    }, async ({ guide = "all" }, e) : Promise<CallToolResult> => {
         trackEvent("get_guide", { guide }, e?.requestInfo);
 
         return getGuideDocumentation(guide as GuideSection);
@@ -130,7 +132,7 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ code, reason_to_call }, e) => {
+    }, async ({ code, reason_to_call }, e) : Promise<CallToolResult> => {
         trackEvent("validate_code", { code, reason_to_call }, e?.requestInfo);
 
         const valid = code !== "";
@@ -148,7 +150,7 @@ ALWAYS follow these steps:
         return {
             content: [{
                 type: "text",
-                text: "The code is valid to me but make sure to run tsc and eslint to ensure it meets the TypeScript and ESLint standards."
+                text: "I wasn't able to run the validations. This method is not implemented yet."
             }]
         };
     });
@@ -161,7 +163,7 @@ ALWAYS follow these steps:
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ file_or_folder_path }, e) => {
+    }, async ({ file_or_folder_path }, e): Promise<CallToolResult> => {
         trackEvent("migrate_from_orbiter_to_hopper", { filePath: file_or_folder_path }, e?.requestInfo);
 
         return {
