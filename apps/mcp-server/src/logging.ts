@@ -4,20 +4,25 @@ import winston from "winston";
 
 import { env } from "./env.js";
 
-
-// Configure winston logger for user interactions
-const interactionLogger = winston.createLogger({
-    level: "info",
-    format:  winston.format.json({ space: 2 }),
-    transports: env.LOG_FILE ? [
-        new winston.transports.File({
+function getLogFileTransport() {
+    if (!env.LOG_FILE) {
+        return undefined; // No log file configured
+    }
+    return new winston.transports.File({
             filename: env.LOG_FILE,
             maxsize: 10 * 1024 * 1024, // 10MB
             maxFiles: 5,
             tailable: true,
             level: "info"
         })
-    ] : undefined
+}
+
+
+// Configure winston logger for user interactions
+const interactionLogger = winston.createLogger({
+    level: "info",
+    format:  winston.format.json({ space: 2 }),
+    transports: getLogFileTransport()
 });
 
 const colorizeMessageOnly = winston.format(info => {
@@ -79,3 +84,4 @@ export function trackEvent(event: string, data: object | null = {}, requestInfo?
 export function trackError(error: unknown, requestInfo?: RequestInfo) {
     return trackEvent("error", typeof error === "object" ? error : { error }, requestInfo);
 }
+
