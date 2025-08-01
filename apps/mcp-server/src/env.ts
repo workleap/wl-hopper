@@ -20,7 +20,7 @@ function getEnv(): z.infer<typeof configSchema> {
     if (process.env.IS_NETLIFY_FUNCTION === "true") {
         return {
             LOG_FILE: undefined, // No log file in Netlify environment
-            DOCS_PATH: join(import.meta.dirname, "../../docs"),
+            DOCS_PATH: join(import.meta.dirname, "./docs"),
             PORT: "3300",
             ALLOWED_HOSTS: "",
             ENV: "production"
