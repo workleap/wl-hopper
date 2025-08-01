@@ -17,7 +17,7 @@ const configSchema = environmentVariablesSchema.extend({
 export const env = getEnv();
 
 function getEnv(): z.infer<typeof configSchema> {
-    if (process.env.NETLIFY === "true") {
+    if (process.env.IS_NETLIFY_FUNCTION === "true") {
         return {
             LOG_FILE: undefined, // No log file in Netlify environment
             DOCS_PATH: join(import.meta.dirname, "../../docs"),

@@ -14,7 +14,7 @@
     "postbuild": "rm -rf dist/docs && cp -r ../docs/dist/ai dist/docs",
     "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
     "dev:expressJs": "nodemon --watch src --ext ts --exec \"tsx src/hosts/expressJs.ts\"",
-    "dev:netlify": "NETLIFY=true pnpm netlify dev",
+    "dev:netlify": "IS_NETLIFY_FUNCTION=true pnpm netlify dev",
     "inspect:expressJs": "pnpx @modelcontextprotocol/inspector http://localhost:3300/mcp",
     "inspect:netlify": "pnpx @modelcontextprotocol/inspector http://localhost:8888/mcp",
     "devUI:expressJs": "turbo run dev:expressJs inspect:expressJs --continue",
