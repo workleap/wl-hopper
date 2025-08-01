@@ -22,7 +22,7 @@ import { env } from "./env.js";
 const interactionLogger = winston.createLogger({
     level: "info",
     format:  winston.format.json({ space: 2 }),
-    transports: undefined,
+    transports: [],
 });
 
 const colorizeMessageOnly = winston.format(info => {
