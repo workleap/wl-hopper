@@ -1,13 +1,21 @@
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { existsSync, readFileSync } from "fs";
+import { readFile } from "fs/promises";
 import { join } from "path";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 
+import { existsSync } from "fs";
 import { env } from "./env.js";
 import { trackError } from "./logging.js";
+
+async function readMarkdownFile(filePath: string): Promise<string> {
+    if (!existsSync(filePath)) {
+        throw new Error(`File not found: ${filePath}`);
+    }
+    return readFile(filePath, "utf-8");
+}
 
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
@@ -30,7 +38,7 @@ export async function getComponentDocumentation(componentName: string, section: 
 
 
     try {
-        const sectionContent = readFileSync(docFilePath, "utf-8");
+        const sectionContent = section === "usage" ?  await readMarkdownFile(docFilePath) : await readFile(docFilePath, "utf-8");
 
         return {
             content: [{
@@ -96,7 +104,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     }
 
     try {
-        const sectionContent = readFileSync(guidePath, "utf-8");
+        const sectionContent = await readMarkdownFile(guidePath);
 
         return {
             content: [{
