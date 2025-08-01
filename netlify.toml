@@ -9,5 +9,5 @@
 [functions]
   node_bundler = "esbuild"
   directory = "apps/mcp-server/dist/hosts/netlify"
-  included_files = ["dist/hosts/netlify/docs/**"]
+  included_files = ["apps/mcp-server/dist/hosts/netlify/docs/**"]
 
