@@ -90,7 +90,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
             content: [{
                 type: "text",
                 isError: true,
-                text: `Guide not found for section: ${section}`
+                text: `Guide not found for section: ${section}, path: ${guidePath}`
             }]
         };
     }
