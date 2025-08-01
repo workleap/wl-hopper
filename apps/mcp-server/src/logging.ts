@@ -9,7 +9,7 @@ import { env } from "./env.js";
 const interactionLogger = winston.createLogger({
     level: "info",
     format:  winston.format.json({ space: 2 }),
-    transports: [
+    transports: env.LOG_FILE ? [
         new winston.transports.File({
             filename: env.LOG_FILE,
             maxsize: 10 * 1024 * 1024, // 10MB
@@ -17,7 +17,7 @@ const interactionLogger = winston.createLogger({
             tailable: true,
             level: "info"
         })
-    ]
+    ] : undefined
 });
 
 const colorizeMessageOnly = winston.format(info => {
