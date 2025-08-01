@@ -4,25 +4,25 @@ import winston from "winston";
 
 import { env } from "./env.js";
 
-function getLogFileTransport() {
-    if (!env.LOG_FILE) {
-        return undefined; // No log file configured
-    }
-    return new winston.transports.File({
-            filename: env.LOG_FILE,
-            maxsize: 10 * 1024 * 1024, // 10MB
-            maxFiles: 5,
-            tailable: true,
-            level: "info"
-        })
-}
+// function getLogFileTransport() {
+//     if (!env.LOG_FILE) {
+//         return undefined; // No log file configured
+//     }
+//     return new winston.transports.File({
+//             filename: env.LOG_FILE,
+//             maxsize: 10 * 1024 * 1024, // 10MB
+//             maxFiles: 5,
+//             tailable: true,
+//             level: "info"
+//         })
+// }
 
 
 // Configure winston logger for user interactions
 const interactionLogger = winston.createLogger({
     level: "info",
     format:  winston.format.json({ space: 2 }),
-    transports: getLogFileTransport()
+    transports: undefined,
 });
 
 const colorizeMessageOnly = winston.format(info => {
