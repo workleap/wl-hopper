@@ -18,7 +18,7 @@
     "inspect:expressJs": "pnpx @modelcontextprotocol/inspector http://localhost:3300/mcp",
     "inspect:netlify": "pnpx @modelcontextprotocol/inspector http://localhost:8888/mcp",
     "devUI:expressJs": "turbo run dev:expressJs inspect:expressJs --continue",
-    "devUI:netlify": "turbo run dev:netlify inspect:netlify --continue"
+    "devUI:netlify": "turbo run build dev:netlify inspect:netlify --continue"
   },
   "keywords": [],
   "dependencies": {

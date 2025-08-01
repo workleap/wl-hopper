@@ -2,7 +2,7 @@ import { join } from "path";
 import { z } from "zod";
 
 const environmentVariablesSchema = z.object({
-    LOG_FILE: z.string(),
+    LOG_FILE: z.string().optional(),
     PORT: z.string().default("3000"),
     ALLOWED_HOSTS: z.string().default(""),
     DOCS_PATH: z.string().optional()
@@ -19,7 +19,7 @@ export const env = getEnv();
 function getEnv(): z.infer<typeof configSchema> {
     if (process.env.NETLIFY === "true") {
         return {
-            LOG_FILE: join(import.meta.dirname, "../logs/user-interactions.log.jsonl"),
+            LOG_FILE: undefined, // No log file in Netlify environment
             DOCS_PATH: join(import.meta.dirname, "../../docs"),
             PORT: "3300",
             ALLOWED_HOSTS: "",
