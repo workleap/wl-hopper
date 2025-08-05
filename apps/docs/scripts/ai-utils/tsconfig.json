@@ -1,0 +1,44 @@
+{
+  "extends": "@workleap/typescript-configs/web-application.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "baseUrl": "../..",
+    "paths": {
+      "@/*": [
+        "./*"
+      ],
+      "@/.contentlayer/generated": [
+        "./.contentlayer/generated/index.mjs"
+      ],
+      "@hopper-ui/icons": [
+        "../../packages/icons/src/index.ts"
+      ],
+      "@hopper-ui/styled-system": [
+        "../../packages/styled-system/src/index.ts"
+      ],
+      "@hopper-ui/components": [
+        "../../packages/components/src/index.ts"
+      ],
+      "@hopper-ui/storybook-addon": [
+        "../../tooling/storybook-addon/index.ts"
+      ],
+      "@hopper-ui/test-utils": [
+        "../../tooling/test-utils/index.ts"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
+    }
+  },
+  "include": [
+    "../../next-env.d.ts",
+    "../../**/*.ts",
+    "../../**/*.tsx",
+    "../../.next/types/**/*.ts",
+    "../../.contentlayer/generated",
+    "../../.storybook/**/*"
+  ],
+  "exclude": [
+    "../../node_modules"
+  ]
+}
