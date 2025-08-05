@@ -38,7 +38,10 @@
         "CodeOnlyExample": true,
         "Example": true,
         "ComposedComponents": true,
-        "Link": true
+        "Link": true,
+        "DoDont": true,
+        "Do":true,
+        "Dont": true
     },
     "overrides": [
         {

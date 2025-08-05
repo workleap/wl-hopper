@@ -5,6 +5,8 @@ import CardLink from "@/app/ui/components/cardLink/cardLink.ai";
 import CardLinkList from "@/app/ui/components/cardLink/cardLinkList.ai";
 import ComponentExample from "@/app/ui/components/componentExample/ComponentExample.ai";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.ai";
+import { DoDont } from "@/app/ui/components/doDont/DoDont.ai";
+import { Do, Dont } from "@/app/ui/components/doDont/util";
 import Expand from "@/app/ui/components/expand/Expand.ai";
 import MigrateGuide from "@/app/ui/components/migrateGuide/MigrateGuide.ai";
 import Overview from "@/app/ui/components/overview/Overview.ai";
@@ -45,6 +47,9 @@ export const components = {
     Expand: Expand,
     Link: Link,
     AI: AI,
+    DoDont: DoDont,
+    Do: Do,
+    Dont: Dont,
 
     Footnote: () => <div />,
     Figure: () => <div />,
