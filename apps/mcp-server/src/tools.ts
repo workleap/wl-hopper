@@ -6,7 +6,7 @@ import type {
 import { z } from "zod";
 
 import { trackError, trackEvent } from "./logging.js";
-import { getComponentDocumentation, getDocumentInfo, getGuideDocumentation, type GuideSection } from "./utils.js";
+import { getComponentDocumentation, getDocumentInfo, getGuideDocumentation } from "./utils.js";
 
 
 export function tools(server: McpServer) {
@@ -82,7 +82,7 @@ ALWAYS follow these steps:
         - Call this service after you have read the component documentation.
         `,
         inputSchema: {
-            component_name: z.string(),
+            component_name: z.string()
         },
         annotations: {
             readOnlyHint: true
@@ -143,7 +143,7 @@ ALWAYS follow these steps:
         "Get metadata about a document including total line count, file size. Use this before paginating large documents to know the appropriate line ranges.",
         inputSchema: {
             type: z.enum(["component", "guide"]),
-            name: z.string(),
+            name: z.string()
         },
         annotations: {
             readOnlyHint: true
