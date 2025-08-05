@@ -245,6 +245,7 @@ export const Components = defineDocumentType(() => ({
 
 export default makeSource({
     contentDirPath: "./content",
+    contentDirExclude: ["ai-templates"],
     documentTypes: [Page, Tokens, Components, Icons, Guides, GettingStarted, StyledSystem],
     mdx: {
         remarkPlugins: [],
