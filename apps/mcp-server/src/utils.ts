@@ -10,15 +10,56 @@ import { existsSync } from "fs";
 import { env } from "./env.js";
 import { trackError } from "./logging.js";
 
-async function readMarkdownFile(filePath: string): Promise<string> {
+const guidesPath: Record<GuideSection, string> = {
+    all: "llms-full.md",
+    installation: "getting-started/llms-getting-started.md",
+    styles: "styled-system/llms-styled-system.md",
+    tokens: "tokens/llms-tokens.md",
+    icons: "icons/llms-icons.md",
+    "color-schemes": "components/usage/concepts/color-schemes.md",
+    "components-list": "components/usage/component-list.md",
+    layout: "components/usage/concepts/layout.md",
+    "controlled-mode": "components/usage/concepts/controlled-mode.md",
+    forms: "components/usage/concepts/forms.md",
+    slots: "components/usage/concepts/slots.md",
+    internationalization: "components/usage/concepts/internationalization.md"
+};
+
+async function readMarkdownFile(filePath: string, startLine?: number, endLine?: number): Promise<string> {
     if (!existsSync(filePath)) {
         throw new Error(`File not found: ${filePath}`);
     }
-    return readFile(filePath, "utf-8");
+
+    const content = await readFile(filePath, "utf-8");
+
+    // If no pagination parameters, return full content
+    if (startLine === undefined && endLine === undefined) {
+        return content;
+    }
+
+    const lines = content.split('\n');
+    const totalLines = lines.length;
+
+    // Validate line numbers (1-based indexing)
+    if (startLine !== undefined && (startLine < 1 || startLine > totalLines)) {
+        throw new Error(`Invalid start_line: ${startLine}. Must be between 1 and ${totalLines}`);
+    }
+    if (endLine !== undefined && (endLine < 1 || endLine > totalLines)) {
+        throw new Error(`Invalid end_line: ${endLine}. Must be between 1 and ${totalLines}`);
+    }
+    if (startLine !== undefined && endLine !== undefined && startLine > endLine) {
+        throw new Error(`Invalid range: start_line (${startLine}) cannot be greater than end_line (${endLine})`);
+    }
+
+    // Convert to 0-based indexing for array slicing
+    const start = startLine !== undefined ? startLine - 1 : 0;
+    const end = endLine !== undefined ? endLine : totalLines;
+
+    return lines.slice(start, end).join('\n');
 }
 
 
-export async function getComponentDocumentation(componentName: string, section: "usage" | "api"): Promise<CallToolResult> {
+export async function getComponentDocumentation(componentName: string, section: "usage" | "api", startLine?: number, endLine?: number): Promise<CallToolResult> {
     const docFilePath = join(env.DOCS_PATH, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
 
     if (!existsSync(docFilePath)) {
@@ -38,7 +79,9 @@ export async function getComponentDocumentation(componentName: string, section: 
 
 
     try {
-        const sectionContent = section === "usage" ?  await readMarkdownFile(docFilePath) : await readFile(docFilePath, "utf-8");
+        const sectionContent = section === "usage"
+            ? await readMarkdownFile(docFilePath, startLine, endLine)
+            : await readFile(docFilePath, "utf-8");
 
         return {
             content: [{
@@ -61,21 +104,8 @@ export async function getComponentDocumentation(componentName: string, section: 
 
 export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-schemes" | "components-list" | "icons" | "layout" | "controlled-mode" | "forms" | "slots" | "internationalization";
 
-export async function getGuideDocumentation(section: GuideSection): Promise<CallToolResult> {
-    const guidesPath: Record<GuideSection, string> = {
-        all: "llms-full.md",
-        installation: "getting-started/llms-getting-started.md",
-        styles: "styled-system/llms-styled-system.md",
-        tokens: "tokens/llms-tokens.md",
-        icons: "icons/llms-icons.md",
-        "color-schemes": "components/usage/concepts/color-schemes.md",
-        "components-list": "components/usage/component-list.md",
-        layout: "components/usage/concepts/layout.md",
-        "controlled-mode": "components/usage/concepts/controlled-mode.md",
-        forms: "components/usage/concepts/forms.md",
-        slots: "components/usage/concepts/slots.md",
-        internationalization: "components/usage/concepts/internationalization.md"
-    };
+export async function getGuideDocumentation(section: GuideSection, startLine?: number, endLine?: number): Promise<CallToolResult> {
+
 
     if (!Object.keys(guidesPath).includes(section)) {
         trackError(new Error(`Invalid guide section requested: ${section}`));
@@ -104,7 +134,7 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
     }
 
     try {
-        const sectionContent = await readMarkdownFile(guidePath);
+        const sectionContent = await readMarkdownFile(guidePath, startLine, endLine);
 
         return {
             content: [{
@@ -120,6 +150,65 @@ export async function getGuideDocumentation(section: GuideSection): Promise<Call
                 type: "text",
                 isError: true,
                 text: `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`
+            }]
+        };
+    }
+}
+
+export async function getDocumentInfo(type: "component" | "guide", name: string): Promise<CallToolResult> {
+    try {
+        let filePath: string;
+
+        if (type === "component") {
+            filePath = join(env.DOCS_PATH, "components", `usage/${name}.md`);
+        } else {
+
+            if (!(name in guidesPath)) {
+                return {
+                    content: [{
+                        type: "text",
+                        isError: true,
+                        text: `Invalid guide name: ${name}`
+                    }]
+                };
+            }
+
+            filePath = join(env.DOCS_PATH, guidesPath[name as GuideSection]);
+        }
+
+        if (!existsSync(filePath)) {
+            return {
+                content: [{
+                    type: "text",
+                    isError: true,
+                    text: `File not found: ${filePath}`
+                }]
+            };
+        }
+
+        const content = await readFile(filePath, "utf-8");
+        const lines = content.split('\n');
+        const totalLines = lines.length;
+        const fileSize = content.length;
+
+        return {
+            content: [{
+                type: "text",
+                text: JSON.stringify({
+                    filePath,
+                    totalLines,
+                    fileSize,
+                }, null, 2)
+            }]
+        };
+    } catch (error) {
+        trackError(error);
+
+        return {
+            content: [{
+                type: "text",
+                isError: true,
+                text: `Error getting document info: ${error instanceof Error ? error.message : "Unknown error"}`
             }]
         };
     }

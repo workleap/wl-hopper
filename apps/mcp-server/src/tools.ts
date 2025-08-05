@@ -6,7 +6,7 @@ import type {
 import { z } from "zod";
 
 import { trackError, trackEvent } from "./logging.js";
-import { getComponentDocumentation, getGuideDocumentation, type GuideSection } from "./utils.js";
+import { getComponentDocumentation, getDocumentInfo, getGuideDocumentation, type GuideSection } from "./utils.js";
 
 
 export function tools(server: McpServer) {
@@ -57,22 +57,33 @@ ALWAYS follow these steps:
     server.registerTool("get_component_documentation", {
         title: "Get component full documentation",
         description:
-        "How to use a specific component. This service returns a Markdown content with component anatomy, structure, examples, and best practices on how a component should be used. Call this service before using a component. IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.",
-        inputSchema: { component_name: z.string() },
+        `Includes component's anatomy, structure, examples, dos and don'ts, and best practices.
+        - IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.
+        You can optionally specify start_line and end_line for pagination (1-based indexing) if the content size matters.`,
+        inputSchema: {
+            component_name: z.string(),
+            start_line: z.number().min(1).optional(),
+            end_line: z.number().min(1).optional()
+        },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }, e): Promise<CallToolResult> => {
-        trackEvent("get_component_documentation", { componentName: component_name }, e?.requestInfo);
+    }, async ({ component_name, start_line, end_line }, e): Promise<CallToolResult> => {
+        trackEvent("get_component_documentation", { componentName: component_name, startLine: start_line, endLine: end_line }, e?.requestInfo);
 
-        return getComponentDocumentation(component_name, "usage");
+        return getComponentDocumentation(component_name, "usage", start_line, end_line);
     });
 
     server.registerTool("get_component_api", {
         title: "Get component API",
         description:
-        "Get properties, attributes, methods, events for a specific component. This service returns a JSON API content. Call this service after you have read the component documentation.",
-        inputSchema: { component_name: z.string() },
+        `Get properties, attributes, methods, events for a specific component.
+        - This service returns a JSON API content.
+        - Call this service after you have read the component documentation.
+        `,
+        inputSchema: {
+            component_name: z.string(),
+        },
         annotations: {
             readOnlyHint: true
         }
@@ -109,15 +120,38 @@ ALWAYS follow these steps:
         - forms: Best practices for building forms in Hopper Design System.
         - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
         - internationalization: Adapting components to respect languages and cultures.
+
+        You can optionally specify start_line and end_line for pagination (1-based indexing) if the content size matters.
         `,
-        inputSchema: { guide: z.string().optional() },
+        inputSchema: {
+            guide: z.enum(["installation", "styles", "tokens", "color-schemes", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization"]).optional(),
+            start_line: z.number().min(1).optional(),
+            end_line: z.number().min(1).optional()
+        },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide = "all" }, e) : Promise<CallToolResult> => {
-        trackEvent("get_guide", { guide }, e?.requestInfo);
+    }, async ({ guide, start_line, end_line }, e) : Promise<CallToolResult> => {
+        trackEvent("get_guide", { guide, startLine: start_line, endLine: end_line }, e?.requestInfo);
 
-        return getGuideDocumentation(guide as GuideSection);
+        return getGuideDocumentation(guide ?? "all", start_line, end_line);
+    });
+
+    server.registerTool("get_document_info", {
+        title: "Get document information",
+        description:
+        "Get metadata about a document including total line count, file size. Use this before paginating large documents to know the appropriate line ranges.",
+        inputSchema: {
+            type: z.enum(["component", "guide"]),
+            name: z.string(),
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ type, name }, e) : Promise<CallToolResult> => {
+        trackEvent("get_document_info", { type, name }, e?.requestInfo);
+
+        return getDocumentInfo(type, name);
     });
 
     server.registerTool("validate_code", {

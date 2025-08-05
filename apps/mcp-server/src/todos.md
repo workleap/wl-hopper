@@ -11,4 +11,5 @@
 
 ## Tools
 
-`claude mcp add --transport http Hopper-Design-System https://deploy-preview-717--wl-hopper.netlify.app/mcp`
+`claude mcp add -t http -s project Hopper-Design-System https://deploy-preview-717--wl-hopper.netlify.app/mcp`
+`claude mcp add -t http -s project Hopper-Design-System http://localhost:8888/mcp`
