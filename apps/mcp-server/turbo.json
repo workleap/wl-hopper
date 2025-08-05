@@ -1,0 +1,20 @@
+{
+    "$schema": "https://turbo.build/schema.json",
+    "extends": [
+        "//"
+    ],
+    "tasks": {
+        "dev:server:netlify": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "dev:inspect:netlify": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "dev:server:expressJs": {
+            "outputs": ["node_modules/.cache/jest"]
+        },
+        "dev:inspect:expressJs": {
+            "outputs": ["node_modules/.cache/jest"]
+        }
+    }
+}

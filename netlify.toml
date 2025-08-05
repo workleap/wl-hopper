@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm doc:generate && pnpm build:pkg && pnpm build:doc && pnpm build:ai-docs"
+  command = "pnpm doc:generate && pnpm build:pkg && pnpm build:doc && pnpm build:ai-docs && pnpm build:mcp"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
@@ -8,3 +8,8 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "apps/mcp-server/dist/hosts/netlify"
+  included_files = ["dist/hosts/netlify/docs/**", "apps/mcp-server/dist/hosts/netlify/docs/**"] # The first path is for local dev and second path is for deployment.
