@@ -1,4 +1,4 @@
-.hd-dosAndDonts {
+.hd-dosAndDonts__explanation {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 1rem;
     align-items: baseline !important;
+    justify-content: start;
 }
 
 .hd-dosAndDonts figure {
