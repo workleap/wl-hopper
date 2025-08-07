@@ -14,6 +14,8 @@ import ComponentCodeWrapper from "@/app/ui/components/componentExample/Component
 import type { ComponentExampleProps } from "@/app/ui/components/componentExample/ComponentExample.tsx";
 import ComponentPreview from "@/app/ui/components/componentExample/ComponentPreview.tsx";
 import ComposedComponents from "@/app/ui/components/composedComponents/composedComponents.tsx";
+import { DoDont } from "@/app/ui/components/doDont/DoDont";
+import { Do, Dont } from "@/app/ui/components/doDont/util";
 import Expand from "@/app/ui/components/expand/Expand";
 import Figure from "@/app/ui/components/figure/Figure";
 import Footnote from "@/app/ui/components/footnote/Footnote";
@@ -75,6 +77,9 @@ export const components = {
     TableSection: TableSection,
     Link: Link,
     Switcher: Switcher,
+    DoDont: DoDont,
+    Do: Do,
+    Dont: Dont,
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },
