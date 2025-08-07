@@ -37,6 +37,14 @@
     --inline-size: 100%;
 }
 
+.hop-TextArea--max-rows .hop-TextArea__textarea {
+    overflow-y: auto;
+}
+
+.hop-TextArea--max-rows .hop-TextArea__InputGroup {
+    overflow: hidden;
+}
+
 .hop-TextArea[data-resize-mode="vertical"] {
     --resize: vertical;
 }
