@@ -152,7 +152,7 @@ export const Styling: Story = {
 
 export const ScrollableMaxRows = {
     parameters: {
-        chromatic: { delay: 0 }
+        chromatic: { delay: 100 }
     },
     render: args => (
         <TextArea {...args} />
