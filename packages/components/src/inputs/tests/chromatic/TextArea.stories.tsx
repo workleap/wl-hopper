@@ -157,7 +157,16 @@ export const ScrollableMaxRows = {
     args: {
         "aria-label": "Label",
         maxRows: 3,
-        defaultValue: "Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads."
+        defaultValue: `
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+        `
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
