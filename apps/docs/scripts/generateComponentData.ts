@@ -57,8 +57,8 @@ const tsConfigParser = docgenTs.withCustomConfig(
                 return false;
             }
 
-            // Remove props from StyledSystemProps
-            if (prop?.parent?.name === "StyledSystemProps") {
+            // Remove props from StyledSystemProps and UnsafeStyledSystemProps
+            if (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps") {
                 return false;
             }
 
