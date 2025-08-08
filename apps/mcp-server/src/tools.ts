@@ -1,0 +1,219 @@
+/* eslint-disable max-len */
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type {
+    CallToolResult
+} from "@modelcontextprotocol/sdk/types.js";
+import { z } from "zod";
+
+import { trackError, trackEvent } from "./logging.js";
+import { getComponentDocumentation, getDocumentInfo, getGuideDocumentation } from "./utils.js";
+
+
+export function tools(server: McpServer) {
+    server.registerTool("get_started", {
+        title: "Get Start",
+        description:
+        "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool.",
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async (_, e) : Promise<CallToolResult> => {
+        trackEvent("get_started", {}, e?.requestInfo);
+
+        return {
+            content: [{
+                type: "text",
+                text:
+            `
+ALWAYS follow these steps:
+1. Read "installation" guide CAREFULLY and setup CSS correctly.
+    - DO NOT GO TO NEXT STEP UNTIL YOU ARE SURE THAT PACKAGES ARE INSTALLED AND CONFIGURED CORRECTLY.
+2. Setup light/dark mode by following "color-schemes" guide.
+3. Read "styles", "tokens" and "icons" guides to understand the design system concepts well.
+    - You MUST know the best practices BEFORE using components.
+    - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "get_component_documentation" tool.
+    - The "icons" guide lists all available icons. NEVER EVER USE emojis.
+4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
+5. Use validate_code tool at different stages to validate your generated code.
+            `
+            }]
+        };
+    });
+
+    server.registerTool("get_components_list", {
+        title: "List all available components",
+        description:
+        "Get a list of all components in the Hopper Design System.",
+        inputSchema: {},
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async (_, e) : Promise<CallToolResult> => {
+        trackEvent("get_components_list", {}, e?.requestInfo);
+
+        return getGuideDocumentation("components-list");
+    });
+
+    server.registerTool("get_component_documentation", {
+        title: "Get component full documentation",
+        description:
+        `Includes component's anatomy, structure, examples, dos and don'ts, and best practices.
+        - IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.
+        You can optionally specify start_line and end_line for pagination (1-based indexing) if the content size matters.`,
+        inputSchema: {
+            component_name: z.string(),
+            start_line: z.number().min(1).optional(),
+            end_line: z.number().min(1).optional()
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ component_name, start_line, end_line }, e): Promise<CallToolResult> => {
+        trackEvent("get_component_documentation", { componentName: component_name, startLine: start_line, endLine: end_line }, e?.requestInfo);
+
+        return getComponentDocumentation(component_name, "usage", start_line, end_line);
+    });
+
+    server.registerTool("get_component_api", {
+        title: "Get component API",
+        description:
+        `Get properties, attributes, methods, events for a specific component.
+        - This service returns a JSON API content.
+        - Call this service after you have read the component documentation.
+        `,
+        inputSchema: {
+            component_name: z.string()
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ component_name }, e) : Promise<CallToolResult> => {
+        trackEvent("get_component_api", { componentName: component_name }, e?.requestInfo);
+
+        return getComponentDocumentation(component_name, "api");
+    });
+
+    // server.registerTool("get_documentation_by_url", {
+    //     title: "Get Documentation by URL",
+    //     description: "Retrieve documentation for specific paths from https://hopper.workleap.design. Use this service if you see a link in responses that points to hopper.workleap.design domain.",
+    //     inputSchema: { url: z.string() },
+    //     annotations: {
+    //         readOnlyHint: true
+    //     }
+    // }, async ({ url }, e) : Promise<CallToolResult> => {
+    //     trackEvent("fetch_full_docs_from_url", { url }, e?.requestInfo);
+
+    //     return getDocumentContentResult(url);
+    // });
+
+    server.registerTool("get_guide", {
+        title: "Get guide or best practices",
+        description:
+        `Available guides:
+        - installation: How to install and set up the Hopper Design System.
+        - styles: How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how.
+        - tokens: How tokens are defined. You should read "styles" guide first and through "token" guide you will understand how to use them.
+        - color-schemes: Applying light mode, dark mode, or adapt to operating system's dark mode.
+        - icons: All available icons and how to use them.
+        - layout: Building application layouts using Flex or Grid.
+        - controlled-mode: Using controlled and uncontrolled modes to customize components.
+        - forms: Best practices for building forms in Hopper Design System.
+        - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
+        - internationalization: Adapting components to respect languages and cultures.
+
+        You can optionally specify start_line and end_line for pagination (1-based indexing) if the content size matters.
+        `,
+        inputSchema: {
+            guide: z.enum(["installation", "styles", "tokens", "color-schemes", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization"]).optional(),
+            start_line: z.number().min(1).optional(),
+            end_line: z.number().min(1).optional()
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ guide, start_line, end_line }, e) : Promise<CallToolResult> => {
+        trackEvent("get_guide", { guide, startLine: start_line, endLine: end_line }, e?.requestInfo);
+
+        return getGuideDocumentation(guide ?? "all", start_line, end_line);
+    });
+
+    server.registerTool("get_document_info", {
+        title: "Get document information",
+        description:
+        "Get metadata about a document including total line count, file size. Use this before paginating large documents to know the appropriate line ranges.",
+        inputSchema: {
+            type: z.enum(["component", "guide"]),
+            name: z.string()
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ type, name }, e) : Promise<CallToolResult> => {
+        trackEvent("get_document_info", { type, name }, e?.requestInfo);
+
+        return getDocumentInfo(type, name);
+    });
+
+    server.registerTool("validate_code", {
+        title: "Validate Generated Code",
+        description:
+        `This service validates generated codes to ensure it adheres to the design system's guidelines and best practices. Use it frequently to ensure your code is correct.
+        Parameters:
+        - code: The generated code to validate.
+        - reason_to_call: The reason for validating the code.
+        `,
+        inputSchema: { code: z.string(), reason_to_call: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ code, reason_to_call }, e) : Promise<CallToolResult> => {
+        trackEvent("validate_code", { code, reason_to_call }, e?.requestInfo);
+
+        const valid = code !== "";
+        if (!valid) {
+            trackError(new Error("Invalid code provided"));
+
+            return {
+                content: [{
+                    type: "text",
+                    text: "The code is invalid. Please fix the errors and try again."
+                }]
+            };
+        }
+
+        return {
+            content: [{
+                type: "text",
+                text: "I wasn't able to run the validations. This method is not implemented yet."
+            }]
+        };
+    });
+
+    server.registerTool("migrate_from_orbiter_to_hopper", {
+        title: "Migrate a file or all files in the folder from Orbiter to Hopper",
+        description:
+        "It migrates a file or all files in the folder from Orbiter to Hopper.",
+        inputSchema: { file_or_folder_path: z.string() },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ file_or_folder_path }, e): Promise<CallToolResult> => {
+        trackEvent("migrate_from_orbiter_to_hopper", { filePath: file_or_folder_path }, e?.requestInfo);
+
+        return {
+            content: [{
+                type: "text",
+                text:
+                `1. Run \`pnpx @workleap/migrations -t ${file_or_folder_path}\` in terminal to migrate the file/folder from Orbiter to Hopper.
+                 2. Review the files for errors:
+                    - Update the Hopper packages if they are not up-to-date and if it is required (e.g. the component is missing).
+                    - There are some added \`Migration TODO\`s comments in the code. Try to address them.
+                    - There might also be \`migration-notes.md\` file generated. Review them for additional guidance.
+                    - For each component you can check the Component documentation's Migration notes to manually adjust the code.
+                 3. If some components are not migrated, you can use the \`get_component_documentation\` tool to get the component documentation and follow the migration notes.
+                 4. Make sure the migrated code adheres to Hopper's design system standards.
+                 `
+            }]
+        };
+    });
+}
