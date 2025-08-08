@@ -1,6 +1,6 @@
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { userEvent, within } from "storybook/test";
+import { fireEvent, userEvent, within } from "storybook/test";
 
 import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
@@ -157,16 +157,14 @@ export const ScrollableMaxRows = {
     args: {
         "aria-label": "Label",
         maxRows: 3,
-        defaultValue: `
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-            Hop we go! Over the lily pads. Hop we go! Over the lily pads.
-        `
+        defaultValue: `Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.
+Hop we go! Over the lily pads. Hop we go! Over the lily pads.`
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
@@ -174,10 +172,7 @@ export const ScrollableMaxRows = {
 
         inputs.forEach(async input => {
             await userEvent.click(input);
-            await userEvent.keyboard("{ArrowDown}");
-            await userEvent.keyboard("{ArrowDown}");
-            await userEvent.keyboard("{ArrowDown}");
-            await userEvent.keyboard("{ArrowDown}");
+            await fireEvent.scroll(input, { target: { scrollTop: 100 } });
         });
     }
 } satisfies Story;
