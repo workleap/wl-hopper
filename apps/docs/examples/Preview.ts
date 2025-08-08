@@ -956,11 +956,11 @@ export const Previews: Record<string, Preview> = {
     "html-elements/docs/asidePreview": {
         component: lazy(() => import("@/../../packages/components/src/html-elements/docs/asidePreview.tsx"))
     },
-    "html-elements/docs/buttonPreview": {
-        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/buttonPreview.tsx"))
-    },
     "html-elements/docs/divPreview": {
         component: lazy(() => import("@/../../packages/components/src/html-elements/docs/divPreview.tsx"))
+    },
+    "html-elements/docs/buttonPreview": {
+        component: lazy(() => import("@/../../packages/components/src/html-elements/docs/buttonPreview.tsx"))
     },
     "html-elements/docs/footerPreview": {
         component: lazy(() => import("@/../../packages/components/src/html-elements/docs/footerPreview.tsx"))
