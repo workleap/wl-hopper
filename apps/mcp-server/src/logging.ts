@@ -27,6 +27,7 @@ const colorizeMessageOnly = winston.format(info => {
     if (info.message) {
         info.message = chalk.yellow(info.message);
     }
+
     if (info.data) {
         info.data = chalk.cyan(JSON.stringify(info.data));
     }
@@ -36,7 +37,6 @@ const colorizeMessageOnly = winston.format(info => {
 
 interactionLogger.add(new winston.transports.Console({
     format: env.ENV === "production" ? undefined : winston.format.combine(
-
         colorizeMessageOnly(),
         winston.format.timestamp(),
         winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)

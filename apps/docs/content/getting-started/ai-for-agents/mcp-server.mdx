@@ -1,0 +1,69 @@
+---
+title: MCP Server
+description:  Bridging the gap between AI agents and Hopper Design System
+order: 1
+---
+
+The Hopper MCP Server is a specialized
+[Model Context Protocol](https://modelcontextprotocol.io/introduction) server
+that provides AI assistants (like GitHub Copilot, Claude Code, and Cursor) with access
+to the Hopper Design System component library, design tokens, icons, and migration guidance.
+
+## Tools
+
+The Hopper MCP server exposes the following tools to AI agents:
+
+### Getting Started
+
+- **`get_started`**: Essential first step that provides a guided workflow for using the Hopper Design System.
+
+### Component Tools
+
+- **`get_components_list`**: Get a complete list of all available components in the Hopper Design System
+- **`get_component_documentation`**: Retrieve comprehensive component documentation including anatomy, structure, examples, dos and don'ts, and best practices
+- **`get_component_props`**: Get detailed component API as JSON, including properties, attributes, methods, and events
+
+### Guide Tools
+
+- **`get_guide`**: Access comprehensive guides and best practices covering:
+  - **Installation**: How to install and set up the Hopper Design System
+  - **Styles**: Using CSS properties and design tokens
+  - **Tokens**: Understanding and using design tokens
+  - **Color Schemes**: Implementing light mode, dark mode, or system-adaptive themes
+  - **Icons**: All available icons and usage guidelines
+  - **Layout**: Building layouts using Flex or Grid
+  - **Controlled Mode**: Using controlled and uncontrolled component modes
+  - **Forms**: Best practices for form building
+  - **Slots**: Using predefined component layouts and slots
+  - **Internationalization**: Adapting components for different languages and cultures
+
+### Migration Tools
+
+- **`migrate_from_orbiter_to_hopper`**: Helps agents migrate pages from Orbiter to Hopper using the [Design Systems Migrations Tools](https://github.com/workleap/wl-design-systems-migrations) and provided guides.
+
+## Setup
+
+The Hopper MCP server is available at `https://hopper.workleap.design/mcp`.
+
+### Visual Studio Code
+
+> Make sure you have the
+> [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+> and
+> [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+> extensions installed.
+
+In the `.vscode/mcp.json` file at the root of your project, add the MCP server configuration:
+
+```json title=".vscode/mcp.json"
+{
+  "servers": {
+    "hopper": {
+      "url": "https://hopper.workleap.design/mcp",
+      "type": "http"
+    }
+  }
+}
+```
+
+The MCP server is now ready to use. Click on Start on the MCP server.
