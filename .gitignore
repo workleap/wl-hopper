@@ -59,3 +59,6 @@ chromatic.config.json
 /apps/docs/datas
 
 .turbo
+
+# Local Netlify folder
+.netlify
