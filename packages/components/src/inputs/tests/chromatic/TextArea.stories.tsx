@@ -1,6 +1,6 @@
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { within } from "storybook/test";
+import { userEvent, within } from "storybook/test";
 
 import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
@@ -149,6 +149,29 @@ export const Styling: Story = {
         </Inline>
     )
 };
+
+export const ScrollableMaxRows = {
+    render: args => (
+        <TextArea {...args} />
+    ),
+    args: {
+        "aria-label": "Label",
+        maxRows: 3,
+        defaultValue: "Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads."
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+        const inputs = canvas.getAllByRole("textbox");
+
+        inputs.forEach(async input => {
+            await userEvent.click(input);
+            await userEvent.keyboard("{ArrowDown}");
+            await userEvent.keyboard("{ArrowDown}");
+            await userEvent.keyboard("{ArrowDown}");
+            await userEvent.keyboard("{ArrowDown}");
+        });
+    }
+} satisfies Story;
 
 const StateTemplate = (args: Partial<TextAreaProps>) => (
     <Stack>
