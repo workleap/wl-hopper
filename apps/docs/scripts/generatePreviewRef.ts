@@ -1,5 +1,5 @@
 import fs from "fs";
-import glob from "glob";
+import { glob } from "glob";
 import path from "path";
 
 const CONTENT_FILES = path.join(process.cwd(), "content", "components", "**", "*.mdx");
