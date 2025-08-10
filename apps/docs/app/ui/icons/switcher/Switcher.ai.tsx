@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { iconNames } from "../../../../../../packages/icons/src/generated-icon-components/icon-list.ts";
 import { richIconNames } from "../../../../../../packages/icons/src/generated-rich-icon-components/icon-list.ts";
 import iconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/icon-metadata.json" with { type: "json" };
@@ -63,16 +64,22 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
 
     const sizes: AvailableSizes[] = iconType === "richIcon" ? ["md", "lg", "xl"] : ["sm", "md", "lg"];
 
-    const iconsData = iconList.flatMap(name => sizes.map(size => ({
+    const iconsData = iconList.map(name => ({
         name: getRawName(name),
-        fileName: getIconFileName(name, size, type),
-        usage: type === "react"
-            ? `<${name} size="${size}" />`
-            : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, size, type)}";`,
+        example: type === "react"
+            ? `<${name} size="md" />`
+            : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, "md", type)}";`,
         description: getIconFileDescription(name, iconType),
-        size: `${SizeMap[size].title} (${SizeMap[size].size})`,
+        sizes: <span>
+            {sizes.map((size, idx) => (
+                <span key={size}>
+                    <code>{type == "react" ?  size : `${getIconNumericSize(size)}px`}</code>
+                    {idx < sizes.length - 1 && ","}
+                </span>
+            ))}
+        </span>,
         keywords: getIconFileKeywords(name, iconType)
-    })));
+    }));
 
     return <Icons items={iconsData} />;
 };
@@ -85,7 +92,7 @@ const iconTypeFolderMap = {
 const SizeMap = {
     sm: {
         title: "Small",
-        size: "16x16px"
+        size: "16x16px",
     },
     md:{
         title: "Medium",
@@ -103,11 +110,10 @@ const SizeMap = {
 
 interface Item {
     name: string;
-    fileName: string;
     description: string;
-    usage: string;
-    size: string;
+    example: string;
     keywords: string;
+    sizes: ReactNode;
 }
 
 
@@ -116,20 +122,20 @@ function Icons({ items }: { items: Item[] }) {
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Size</th>
-                <th>Usage</th>
-                <th>Description</th>
                 <th>Keywords</th>
+                <th>Description</th>
+                <th>Available Sizes</th>
+                <th>Example</th>
             </tr>
         </thead>
         <tbody>
             {items.map(item => (
                 <tr key={item.name}>
                     <td>{item.name}</td>
-                    <td>{item.size}</td>
-                    <td><code>{item.usage}</code></td>
-                    <td>{item.description}</td>
                     <td>{item.keywords}</td>
+                    <td>{item.description}</td>
+                    <td>{item.sizes}</td>
+                    <td><code>{item.example}</code></td>
                 </tr>
             ))}
         </tbody>

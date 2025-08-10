@@ -72,6 +72,24 @@ async function generate_icons_docs() {
         outputDir,
         headingFile: getTemplateFile("icons.mdx")
     });
+
+    await mergeFiles([
+        "react-icons/icon-library.md",
+        "react-icons/rich-icon-library.md",
+    ], {
+        outputFile: "llms-react-icons.md",
+        outputDir,
+        headingFile: getTemplateFile("icons-react.mdx")
+    });
+
+    await mergeFiles([
+        "SVG-icons/icon-library.md",
+        "SVG-icons/rich-icon-library.md"
+    ], {
+        outputFile: "llms-svg-icons.md",
+        outputDir,
+        headingFile: getTemplateFile("icons-svg.mdx")
+    });
 }
 
 async function generate_tokens_docs() {
