@@ -1,5 +1,10 @@
 import fs from "fs/promises";
+import type { Heading, Root } from "mdast";
 import path from "path";
+import remarkParse from "remark-parse";
+import remarkStringify from "remark-stringify";
+import { unified } from "unified";
+import { visit } from "unist-util-visit";
 import { convertMdxToMd } from "./convertMdxToMd.ts";
 
 
@@ -15,13 +20,28 @@ async function convertMdxFileToMd(filePath: string): Promise<string> {
 interface GenerateMarkdownOptions {
     contentDir: string;
     outputDir: string;
-    props: boolean;
     flattenOutput?: boolean;
     flattenOutputExceptions?: string[];
+
+    /**
+     * Whether to search subdirectories for MDX files.
+     * @default true
+     */
+    deep?: boolean;
+
+    /**
+     * Whether to exclude certain file or folder names from the search.
+     */
+    excludedPaths?: string[];
+
+    /*
+    Excluded sections from the generated MDX content. It is based on the section names in the MDX files.
+    */
+    excludedSections?: string[];
 }
 
 // Find all MDX files in a directory
-async function findMdxFiles(dir: string): Promise<string[]> {
+async function findMdxFiles(dir: string, deep: boolean, excludes?: string[]): Promise<string[]> {
     const files: string[] = [];
 
     try {
@@ -30,8 +50,12 @@ async function findMdxFiles(dir: string): Promise<string[]> {
         for (const entry of entries) {
             const fullPath = path.join(dir, entry.name);
 
-            if (entry.isDirectory()) {
-                const subdirFiles = await findMdxFiles(fullPath);
+            if (deep && entry.isDirectory()) {
+                const shouldExclude = excludes?.some(exclude => entry.name.startsWith(exclude));
+                if (shouldExclude) {
+                    continue;
+                }
+                const subdirFiles = await findMdxFiles(fullPath, deep, excludes);
                 files.push(...subdirFiles);
             } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
                 files.push(fullPath);
@@ -70,7 +94,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         await fs.mkdir(options.outputDir, { recursive: true });
 
         // Find all MDX files
-        const mdxFiles = await findMdxFiles(options.contentDir);
+        const mdxFiles = await findMdxFiles(options.contentDir, options.deep ?? true, options.excludedPaths);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Process files
@@ -96,7 +120,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
 
                 processedFiles.push({
                     outputPath: path.join(targetPath, path.basename(filePath, ".mdx") + ".md"),
-                    content: mdContent
+                    content: options.excludedSections && options.excludedSections.length > 0 ? excludeSections(mdContent, options.excludedSections) : mdContent
                 });
             }
         }
@@ -112,4 +136,86 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         console.error("❌ Error during conversion:", error);
         process.exit(1);
     }
+}
+
+function excludeSections(mdContent: string, excludedSections: string[]): string {
+    if (!excludedSections || excludedSections.length === 0) {
+        return mdContent;
+    }
+
+    const processor = unified()
+        .use(remarkParse)
+        .use(remarkStringify);
+
+    const tree = processor.parse(mdContent);
+    const nodesToRemove: any[] = [];
+
+    // Parse excluded sections to extract level and text
+    const parsedExcludedSections = excludedSections.map(section => {
+        const match = section.match(/^(#{1,6})\s+(.+)$/);
+        if (match) {
+            return {
+                level: match[1].length as 1 | 2 | 3 | 4 | 5 | 6,
+                text: match[2].trim()
+            };
+        }
+        // If no level specified, treat as any level
+        return {
+            level: null,
+            text: section.trim()
+        };
+    });
+
+    visit(tree, "heading", (node: Heading, index, parent) => {
+        if (!node.children || !parent) return;
+
+        // Check if heading text matches any excluded section
+        const headingText = node.children
+            .filter(child => child.type === "text")
+            .map(child => (child as any).value)
+            .join("")
+            .trim();
+
+        const shouldExclude = parsedExcludedSections.some(({ level, text }) => {
+            const textMatches = headingText.toLowerCase().includes(text.toLowerCase());
+            const levelMatches = level === null || node.depth === level;
+            return textMatches && levelMatches;
+        });
+
+        if (shouldExclude && index !== undefined) {
+            // Mark this heading for removal
+            nodesToRemove.push({ node, index, parent });
+
+            // Find all content until the next heading of same or higher level
+            const currentLevel = node.depth;
+            let nextIndex = index + 1;
+
+            while (nextIndex < parent.children.length) {
+                const nextNode = parent.children[nextIndex];
+
+                // If we hit another heading of same or higher level, stop
+                if (nextNode.type === "heading" && (nextNode as Heading).depth <= currentLevel) {
+                    break;
+                }
+
+                // Mark content for removal
+                nodesToRemove.push({
+                    node: nextNode,
+                    index: nextIndex,
+                    parent
+                });
+
+                nextIndex++;
+            }
+        }
+    });
+
+    // Remove nodes in reverse order to maintain correct indices
+    nodesToRemove
+        .sort((a, b) => b.index - a.index)
+        .forEach(({ index, parent }) => {
+            parent.children.splice(index, 1);
+        });
+
+    return processor.stringify(tree as Root);
 }

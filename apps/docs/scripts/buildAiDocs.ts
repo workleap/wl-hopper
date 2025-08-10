@@ -15,11 +15,17 @@ function getTemplateFile(templateName: string): string {
 }
 
 async function generate_components_docs() {
-    const contentDir = join(process.cwd(), "content/components");
-    const outputDir = join(process.cwd(), baseFolder, "components/usage");
+    const componentsDir = join(process.cwd(), "content/components");
+    const conceptsDir = join(process.cwd(), "content/components/concepts");
+
+    const componentsOutputDir = join(process.cwd(), baseFolder, "components/usage");
+    const conceptsOutputDir = join(process.cwd(), baseFolder, "components/usage/concepts");
 
     // 1. Generate Markdown files from MDX
-    await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: true, flattenOutputExceptions: ["concepts"] });
+    await generateMarkdownFromMdx({ contentDir: componentsDir, outputDir: componentsOutputDir, flattenOutput: true, excludedPaths: ["concepts"], excludedSections: ["## Props"] });
+
+    // 2. Generate Markdown files from MDX
+    await generateMarkdownFromMdx({ contentDir: conceptsDir, outputDir: conceptsOutputDir, flattenOutput: true });
 
     await mergeFiles([
         "component-list.md",
@@ -27,20 +33,20 @@ async function generate_components_docs() {
         "*.md"
     ], {
         outputFile: "llms-components.md",
-        outputDir,
+        outputDir: componentsOutputDir,
         headingFile: getTemplateFile("components.mdx")
     });
 
     // 2. Generate JSON files from Markdown
     const jsonOutputDir = join(process.cwd(), baseFolder, "components/api");
-    await generatePropsJsonFromMdx({ contentDir, jsonOutputDir });
+    await generatePropsJsonFromMdx({ contentDir: componentsDir, jsonOutputDir });
 }
 
 async function generate_getting_started_docs() {
     const contentDir = join(process.cwd(), "content/getting-started");
     const outputDir = join(process.cwd(), baseFolder, "getting-started");
 
-    await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: true });
+    await generateMarkdownFromMdx({ contentDir, outputDir, flattenOutput: true });
 
     await mergeFiles([
         "installation.md",
@@ -58,7 +64,7 @@ async function generate_icons_docs() {
     const contentDir = join(process.cwd(), "content/icons");
     const outputDir = join(process.cwd(), baseFolder, "icons");
 
-    await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
+    await generateMarkdownFromMdx({ contentDir, outputDir, flattenOutput: false });
 
     await mergeFiles([
         "overview/introduction.md",
@@ -96,7 +102,7 @@ async function generate_tokens_docs() {
     const contentDir = join(process.cwd(), "content/tokens");
     const outputDir = join(process.cwd(), baseFolder, "tokens");
 
-    await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
+    await generateMarkdownFromMdx({ contentDir, outputDir, flattenOutput: false });
 
     await mergeFiles([
         "overview/introduction.md",
@@ -125,7 +131,7 @@ async function generate_styled_system_docs() {
     const contentDir = join(process.cwd(), "content/styled-system");
     const outputDir = join(process.cwd(), baseFolder, "styled-system");
 
-    await generateMarkdownFromMdx({ contentDir, outputDir, props: true, flattenOutput: false });
+    await generateMarkdownFromMdx({ contentDir, outputDir,  flattenOutput: false });
 
     await mergeFiles([
         "overview/introduction.md",
