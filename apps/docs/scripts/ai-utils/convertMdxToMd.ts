@@ -7,12 +7,12 @@ import type { VFile } from "vfile";
 import { matter } from "vfile-matter";
 import { mdxToMarkdown } from "../../components/mdx/mdxToMarkdown.ai.tsx";
 
-export async function convertMdxToMd(mdxSource: string): Promise<string> {
+export async function convertMdxToMd(mdxSource: string, options?: FrontMatterConvertOptions): Promise<string> {
     const markdown = await remark()
         .use(remarkFrontmatter, ["yaml"])
         .use(yamlMatterReader)
         .use(remarkMdx)
-        .use(frontMatterToMarkdown)
+        .use(frontMatterToMarkdown, options ?? { includeLinks: false })
         .process(mdxSource);
 
     return await mdxToMarkdown(String(markdown));
@@ -34,14 +34,18 @@ interface DocumentFrontMatter {
     };
 }
 
-function frontMatterToMarkdown() {
+export interface FrontMatterConvertOptions {
+    includeLinks: boolean;
+}
+
+function frontMatterToMarkdown(options: FrontMatterConvertOptions) {
     return (tree: Root, file: VFile) => {
         visit(tree, (node, index, parent) => {
             if (!parent || typeof index !== "number") {return;}
 
             if (node.type === "yaml") {
                 const frontMatter = file.data.matter as DocumentFrontMatter;
-                const nodesToInsert = convertFrontMatterToMarkdown(frontMatter);
+                const nodesToInsert = convertFrontMatterToMarkdown(frontMatter, options);
 
                 parent.children.splice(index, 1, ...nodesToInsert);
             }
@@ -50,7 +54,7 @@ function frontMatterToMarkdown() {
 }
 
 // Convert front matter to markdown nodes
-function convertFrontMatterToMarkdown(frontMatter: DocumentFrontMatter): (Heading | Paragraph | List)[] {
+function convertFrontMatterToMarkdown(frontMatter: DocumentFrontMatter, options: FrontMatterConvertOptions): (Heading | Paragraph | List)[] {
     // Title as H1
     const titleNode: Heading = {
         type: "heading",
@@ -67,7 +71,7 @@ function convertFrontMatterToMarkdown(frontMatter: DocumentFrontMatter): (Headin
     const nodesToInsert: (Heading | Paragraph | List)[] = [titleNode, descriptionNode];
 
     // Add links list if links exist
-    if (frontMatter.links && Object.keys(frontMatter.links).length > 0) {
+    if (options.includeLinks && frontMatter.links && Object.keys(frontMatter.links).length > 0) {
         const linksListNode: List = {
             type: "list",
             ordered: false,

@@ -21,8 +21,8 @@ interface ComponentPropsData {
 }
 
 interface GeneratePropsJsonOptions {
-    contentDir: string;
-    jsonOutputDir: string;
+    files: string;
+    outputPath: string;
 }
 
 // Raw prop data interface from getComponentProps
@@ -127,10 +127,10 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
         console.log("🚀 Starting Props JSON generation from MDX files...");
 
         // Ensure output directory exists
-        await fs.mkdir(options.jsonOutputDir, { recursive: true });
+        await fs.mkdir(options.outputPath, { recursive: true });
 
         // Find all MDX files
-        const mdxFiles = await findMdxFiles(options.contentDir);
+        const mdxFiles = await findMdxFiles(options.files);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Set to track unique components (avoid duplicates)
@@ -161,7 +161,7 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
                 const componentData = await getFilteredComponentProps(componentName);
 
                 if (componentData) {
-                    const jsonPath = path.join(options.jsonOutputDir, `${componentName}.json`);
+                    const jsonPath = path.join(options.outputPath, `${componentName}.json`);
                     await fs.writeFile(jsonPath, JSON.stringify(componentData, null, 2));
 
                     console.log(`✅ Generated JSON for: ${componentName}`);
@@ -186,14 +186,14 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
             generatedAt: new Date().toISOString()
         };
 
-        const summaryPath = path.join(options.jsonOutputDir, "_summary.json");
+        const summaryPath = path.join(options.outputPath, "_summary.json");
         await fs.writeFile(summaryPath, JSON.stringify(summary, null, 2));
 
         console.log(`✅ Successfully generated JSON for ${successfulComponents.length} components`);
         if (failedComponents.length > 0) {
             console.log(`❌ Failed to generate JSON for ${failedComponents.length} components: ${failedComponents.join(", ")}`);
         }
-        console.log(`📦 Output directory: ${options.jsonOutputDir}`);
+        console.log(`📦 Output directory: ${options.outputPath}`);
     } catch (error) {
         console.error("❌ Error during Props JSON generation:", error);
         process.exit(1);
