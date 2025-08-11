@@ -1,19 +1,10 @@
 import Table, { type TableProps } from "@/components/table/Table";
 import Link from "next/link";
-import type { ReactNode } from "react";
 import "./propsReferenceTable.css";
-
-const ScaleLinks: Record<string, ReactNode> = {
-    "color-scale": <Link href="/tokens/semantic/color" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Colors</Link>,
-    "elevation-scale": <Link href="/tokens/semantic/elevation" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Elevation</Link>,
-    "dimension-scale": <Link href="/tokens/core/dimensions" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Dimensions</Link>,
-    "spacing-scale": <Link href="/tokens/semantic/space" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Spacing</Link>,
-    "shape-scale": <Link href="/tokens/semantic/space" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Shape</Link>,
-    "typography-scale": <Link href="/tokens/semantic/typography" target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>Typography</Link>
-};
+import { isScaleLink, ScaleLinks } from "./util";
 
 function toScaleLink(scale: string) {
-    return ScaleLinks[scale] ?? scale;
+    return isScaleLink(scale) ? <Link href={ScaleLinks[scale].link} target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>{ScaleLinks[scale].title}</Link> : scale;
 }
 
 function toRowValues([propName, cssProperty, scale, supports]: string[]): TableProps["data"][number] {
