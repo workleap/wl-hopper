@@ -35,7 +35,7 @@ async function generate_components_docs() {
     await mergeFiles([
         join(componentsFullDocOutputPath, "component-list.md"),
         join(conceptsOutputPath, "*.md"),
-        join(componentsFullDocOutputPath,"*.md"),
+        join(componentsFullDocOutputPath, "*.md")
     ], {
         fileName: "llms-components.md",
         path: componentOutputPath,
@@ -86,7 +86,7 @@ async function generate_icons_docs() {
 
     await mergeFiles([
         "react-icons/icon-library.md",
-        "react-icons/rich-icon-library.md",
+        "react-icons/rich-icon-library.md"
     ], {
         fileName: "llms-react-icons.md",
         path: outputPath,
@@ -136,7 +136,7 @@ async function generate_styled_system_docs() {
     const filesPath = join(process.cwd(), "content/styled-system");
     const outputPath = join(process.cwd(), baseFolder, "styled-system");
 
-    await generateMarkdownFromMdx({ filesPath, outputPath,  flattenOutput: false });
+    await generateMarkdownFromMdx({ filesPath, outputPath, flattenOutput: false });
 
     await mergeFiles([
         "overview/introduction.md",

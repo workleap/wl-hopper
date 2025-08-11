@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { iconNames } from "../../../../../../packages/icons/src/generated-icon-components/icon-list.ts";
 import { richIconNames } from "../../../../../../packages/icons/src/generated-rich-icon-components/icon-list.ts";
 import iconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/icon-metadata.json" with { type: "json" };
@@ -73,7 +73,7 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
         sizes: <span>
             {sizes.map((size, idx) => (
                 <span key={size}>
-                    <code>{type == "react" ?  size : `${getIconNumericSize(size)}px`}</code>
+                    <code>{type === "react" ? size : `${getIconNumericSize(size)}px`}</code>
                     {idx < sizes.length - 1 && ","}
                 </span>
             ))}
@@ -87,25 +87,6 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
 const iconTypeFolderMap = {
     icon: "icons",
     richIcon: "rich-icons"
-};
-
-const SizeMap = {
-    sm: {
-        title: "Small",
-        size: "16x16px",
-    },
-    md:{
-        title: "Medium",
-        size: "24x24px"
-    },
-    lg: {
-        title: "Large",
-        size: "32x32px"
-    },
-    xl: {
-        title: "Extra Large",
-        size: "40x40px"
-    }
 };
 
 interface Item {

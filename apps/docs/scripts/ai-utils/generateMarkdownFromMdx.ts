@@ -1,11 +1,11 @@
 import fs from "fs/promises";
-import type { Heading, Root } from "mdast";
+import type { Heading, Node, Parent, Root } from "mdast";
 import path from "path";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
-import { convertMdxToMd, FrontMatterConvertOptions } from "./convertMdxToMd.ts";
+import { convertMdxToMd, type FrontMatterConvertOptions } from "./convertMdxToMd.ts";
 
 
 async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions): Promise<string> {
@@ -106,7 +106,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         const processedFiles: ProcessedFile[] = [];
 
         for (const filePath of mdxFiles) {
-            const mdContent = await convertMdxFileToMd(filePath, {  includeLinks: options.includeFrontMatterLinks ?? false });
+            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.includeFrontMatterLinks ?? false });
             if (mdContent) {
                 let targetPath = options.outputPath;
                 const relativePath = path.relative(options.filesPath, filePath);
@@ -153,7 +153,7 @@ function excludeSections(mdContent: string, excludedSections: string[]): string 
         .use(remarkStringify);
 
     const tree = processor.parse(mdContent);
-    const nodesToRemove: any[] = [];
+    const nodesToRemove: { node: Node; index: number; parent: Parent }[] = [];
 
     // Parse excluded sections to extract level and text
     const parsedExcludedSections = excludedSections.map(section => {
@@ -164,6 +164,7 @@ function excludeSections(mdContent: string, excludedSections: string[]): string 
                 text: match[2].trim()
             };
         }
+
         // If no level specified, treat as any level
         return {
             level: null,
@@ -172,18 +173,19 @@ function excludeSections(mdContent: string, excludedSections: string[]): string 
     });
 
     visit(tree, "heading", (node: Heading, index, parent) => {
-        if (!node.children || !parent) return;
+        if (!node.children || !parent) {return;}
 
         // Check if heading text matches any excluded section
         const headingText = node.children
             .filter(child => child.type === "text")
-            .map(child => (child as any).value)
+            .map(child => child.value)
             .join("")
             .trim();
 
         const shouldExclude = parsedExcludedSections.some(({ level, text }) => {
             const textMatches = headingText.toLowerCase().includes(text.toLowerCase());
             const levelMatches = level === null || node.depth === level;
+
             return textMatches && levelMatches;
         });
 
