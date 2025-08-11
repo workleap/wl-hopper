@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 1.12.1
+
+### Patch Changes
+
+- e1ac9a2: feat: AvatarGroup didn't work properly with Avatars that already had a tooltip
+- 0a95e30: Allow TextArea to be scrollable when there's a maxRows set
+
 ## 1.12.0
 
 ### Minor Changes
