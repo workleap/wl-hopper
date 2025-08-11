@@ -11,7 +11,7 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";
+import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isUndefined, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";
 
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { RemainingCharacterCount, type RemainingCharacterCountProps } from "./RemainingCharacterCount.tsx";
@@ -174,7 +174,8 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         cssModule(
             styles,
             "hop-TextArea",
-            isFluid && "fluid"
+            isFluid && "fluid",
+            !isUndefined(maxRows) && "max-rows"
         ),
         stylingProps.className
     );
