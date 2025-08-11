@@ -117,7 +117,7 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
         return (
             <TooltipTrigger key={uniqueKey}>
                 <SlotProvider values={[
-                    [AvatarContext, { size: size, className: styles["hop-AvatarGroup__avatar"] }]
+                    [AvatarContext, { size, className: styles["hop-AvatarGroup__avatar"] }]
                 ]}
                 >
                     {cloneElement(avatar, { ...avatar.props })}
