@@ -2,6 +2,8 @@ import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Stack } from "../../../layout/index.ts";
+import { Tooltip, TooltipTrigger } from "../../../tooltip/index.ts";
+import { Text } from "../../../typography/index.ts";
 import { AnonymousAvatar } from "../../src/AnonymousAvatar.tsx";
 import { Avatar } from "../../src/Avatar.tsx";
 import { AvatarGroup } from "../../src/AvatarGroup.tsx";
@@ -28,6 +30,25 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default = {} satisfies Story;
+
+export const OverwriteTooltips = {
+    render: args => (
+        <AvatarGroup size="xs" {...args} >
+            <TooltipTrigger>
+                <Avatar name="Croakster" />
+                <Tooltip>
+                    <Text>Tooltip for Croakster</Text>
+                </Tooltip>
+            </TooltipTrigger>
+            <TooltipTrigger>
+                <Avatar name="Lily Puddle" />
+                <Tooltip>
+                    <Text>Tooltip for Lily Puddle</Text>
+                </Tooltip>
+            </TooltipTrigger>
+        </AvatarGroup>
+    )
+} satisfies Story;
 
 export const Sizes = {
     render: args => (
