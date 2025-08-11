@@ -5,7 +5,7 @@ import { useContextProps } from "react-aria-components";
 
 import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { Text } from "../../typography/index.ts";
-import { cssModule, type AccessibleSlotProps, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { cssModule, SlotProvider, type AccessibleSlotProps, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import type { AnonymousAvatarProps } from "./AnonymousAvatar.tsx";
 import type { AvatarProps, AvatarSize } from "./Avatar.tsx";
@@ -116,7 +116,12 @@ function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) 
 
         return (
             <TooltipTrigger key={uniqueKey}>
-                {cloneElement(avatar, { ...avatar.props, size, className: styles["hop-AvatarGroup__avatar"] })}
+                <SlotProvider values={[
+                    [AvatarContext, { size: size, className: styles["hop-AvatarGroup__avatar"] }]
+                ]}
+                >
+                    {cloneElement(avatar, { ...avatar.props })}
+                </SlotProvider>
                 <Tooltip>{name}</Tooltip>
             </TooltipTrigger>
         );
