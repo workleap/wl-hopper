@@ -48,7 +48,7 @@ export const OverwriteTooltips = {
             </TooltipTrigger>
         </AvatarGroup>
     )
-};
+} satisfies Story;
 
 export const Sizes = {
     render: args => (
