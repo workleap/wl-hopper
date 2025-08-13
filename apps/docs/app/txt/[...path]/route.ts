@@ -35,7 +35,8 @@ export async function GET(
     const fileAbs = buildFilePath(parts);
 
     if (!fileAbs) {
-        return new Response("Invalid path", { status: 400 });
+        const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "" : "public", aiDocsConfig.filesFolder);
+        return new Response(`Invalid path ${baseDir} - ${env.isNetlifyFunction}`, { status: 400 });
     }
 
     try {
