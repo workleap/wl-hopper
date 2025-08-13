@@ -9,7 +9,7 @@ export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 function buildFilePath(pathSegments: string[]): string | null {
     // Build absolute path to public/ai-docs/<...>.md
-    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "" : "dist", aiDocsConfig.filesFolder);
+    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "" : "public", aiDocsConfig.filesFolder);
 
     // Ensure last segment has no extension, then add .md
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
