@@ -9,7 +9,10 @@ export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 function buildFilePath(pathSegments: string[]): string | null {
     // The current netlify.config says the app is deployed to the .next folder
-    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "../../.next" : "public", aiDocsConfig.filesFolder);
+    const baseDir = path.join(
+        env.isNetlifyFunction ? "/var/task" : path.join(process.cwd(), "public"),
+        aiDocsConfig.filesFolder
+    );
 
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
     const urlPath = pathSegments.length === 1 ? "/" : path.join(...pathSegments.slice(0, -1));
