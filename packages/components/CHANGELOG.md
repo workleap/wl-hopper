@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.2
+
+### Patch Changes
+
+- 03f1b9a: Fixed an issue where IllustratedMessage headings would not be overwritable
+
 ## 1.12.1
 
 ### Patch Changes
