@@ -76,24 +76,24 @@ async function main() {
     for (const [fileKey, fileConfig] of Object.entries(aiDocsConfig.routes)) {
         const buildInfo = fileConfig.build;
 
-        if (isMdFromMdxBuild(buildInfo)){
+        if (isMdFromMdxBuild(buildInfo)) {
             await generateMarkdownFromMdx({
                 filesPath: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
                 flattenOutput: buildInfo.flatten,
-                markdown: buildInfo.markdown,
+                markdown: buildInfo.markdown
             });
         } else if (isPropsJsonBuild(buildInfo)) {
             await generatePropsJsonFromMdx({
                 filesPath: join(projectRoot, buildInfo.source),
-                outputPath: join(outputPath, fileKey),
+                outputPath: join(outputPath, fileKey)
             });
         } else {
-            await mergeFiles(buildInfo.merge.map((file) => join(outputPath, file)), {
+            await mergeFiles(buildInfo.merge.map(file => join(outputPath, file)), {
                 fileName: fileKey,
                 path: outputPath,
                 headingFile: join(projectRoot, buildInfo.template)
-            })
+            });
         }
     }
 }

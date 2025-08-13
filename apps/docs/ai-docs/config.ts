@@ -1,4 +1,4 @@
-import { AiDocsConfig } from "./types.ts";
+import { AiDocsConfig } from "./types";
 
 export const aiDocsConfig: AiDocsConfig = {
     buildRootPath: "dist",

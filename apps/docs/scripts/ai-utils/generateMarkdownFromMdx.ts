@@ -45,7 +45,7 @@ interface GenerateMarkdownOptions {
          */
         includeFrontMatterLinks?: boolean;
 
-    }
+    };
 }
 
 // Find all MDX files in a directory

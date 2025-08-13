@@ -12,7 +12,7 @@ function buildFilePath(pathSegments: string[]): string | null {
 
     // Ensure last segment has no extension, then add .md
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
-    const urlPath = pathSegments.length == 1 ? '/' : path.join(...pathSegments.slice(0, -1));
+    const urlPath = pathSegments.length === 1 ? "/" : path.join(...pathSegments.slice(0, -1));
 
     for (const filePath of findPossibleFilePaths(urlPath)) {
         const aiDocPath = path.join(baseDir, filePath, fileName);
@@ -26,7 +26,7 @@ function buildFilePath(pathSegments: string[]): string | null {
 
 export async function GET(
     req: Request,
-    { params, query }: { params: { path?: string[] }; query: { ext?: string } }
+    { params }: { params: { path?: string[] }; query: { ext?: string } }
 ) {
     const parts = params.path ?? []; // e.g. ["llms"] for /txt/llms?ext=txt
     if (parts.length === 0) {return new Response("Not found", { status: 404 });}
