@@ -8,10 +8,9 @@ import path from "node:path";
 export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 function buildFilePath(pathSegments: string[]): string | null {
-    // Build absolute path to public/ai-docs/<...>.md
-    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? ".next" : "public", aiDocsConfig.filesFolder);
+    // The current netlify.config says the app is deployed to the .next folder
+    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "../../.next" : "public", aiDocsConfig.filesFolder);
 
-    // Ensure last segment has no extension, then add .md
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
     const urlPath = pathSegments.length === 1 ? "/" : path.join(...pathSegments.slice(0, -1));
 
