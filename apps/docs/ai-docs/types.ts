@@ -27,7 +27,7 @@ interface ServeConfig {
     baseUrlPath: string;
 }
 
-interface FileConfig {
+interface RouteConfig {
     build: BuildConfig;
     serve?: ServeConfig;
 }
@@ -35,5 +35,5 @@ interface FileConfig {
 export interface AiDocsConfig {
     buildRootPath: string;
     filesFolder: string;
-    routes: Record<string, FileConfig>;
+    routes: Record<string, RouteConfig>;
 }
