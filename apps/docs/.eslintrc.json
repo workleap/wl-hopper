@@ -16,6 +16,7 @@
         "CardLinkList": true,
         "Callout": true,
         "Collapsible": true,
+        "DosAndDonts": true,
         "Expand": true,
         "TokenTable": true,
         "PropsReferenceTable": true,
