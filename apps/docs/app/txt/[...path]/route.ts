@@ -1,5 +1,6 @@
 import { aiDocsConfig } from "@/ai-docs/config";
 import { findPossibleFilePaths } from "@/ai-docs/util";
+import { env } from "@/context/env/env";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -8,7 +9,7 @@ export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 function buildFilePath(pathSegments: string[]): string | null {
     // Build absolute path to public/ai-docs/<...>.md
-    const baseDir = path.join(process.cwd(), "public", aiDocsConfig.filesFolder);
+    const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? "" : "dist", aiDocsConfig.filesFolder);
 
     // Ensure last segment has no extension, then add .md
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
