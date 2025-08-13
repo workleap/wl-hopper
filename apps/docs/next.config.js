@@ -45,6 +45,14 @@ const nextConfig = {
         );
 
         return config;
+    },
+    async rewrites() {
+        return [
+            {
+                source: "/:path*.:ext(txt|md)",
+                destination: "/txt/:path*?ext=:ext"
+            }
+        ];
     }
 };
 

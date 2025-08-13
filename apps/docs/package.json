@@ -9,7 +9,9 @@
     "scripts": {
         "start": "next start",
         "dev": "next dev",
+        "predev": "pnpm postbuild",
         "build": "next build",
+        "postbuild": "rm -rf public/ai-docs && cp -r dist/ai/. public/ai-docs/",
         "build:ai-docs": "tsx  --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts",
         "eslint": "next lint",
         "storybook": "storybook dev -p 6010",
