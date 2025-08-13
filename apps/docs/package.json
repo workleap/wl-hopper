@@ -13,6 +13,7 @@
         "build": "next build",
         "postbuild": "rm -rf public/ai-docs && mkdir -p public/ai-docs && cp -r dist/ai-docs public",
         "build:ai-docs": "tsx  --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts",
+        "build:contentlayer": "pnpx contentlayer build",
         "eslint": "next lint",
         "storybook": "storybook dev -p 6010",
         "build:storybook": "storybook build",
