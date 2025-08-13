@@ -1,24 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
-
-type Variant = "do" | "dont";
-
-interface DosAndDontsCardProps {
-    icon: ReactNode;
-    textValue: string;
-}
-
-const VariantToCard: Record<Variant, DosAndDontsCardProps> = {
-    "do": {
-        icon: "✅",
-        textValue: "Do"
-    },
-    "dont": {
-        icon: "❌",
-        textValue: "Don't"
-    }
-};
+import SimpleTable from "../simpleTable/SimpleTable.ai";
 
 interface DosAndDontsItem {
     explanation?: string;
@@ -26,43 +8,31 @@ interface DosAndDontsItem {
 }
 
 export interface DosAndDontsProps {
-    children?: ReactNode;
-    dos?: DosAndDontsItem;
-    donts?: DosAndDontsItem;
+    items: [{
+        do?: DosAndDontsItem;
+        dont?: DosAndDontsItem;
+    }]
 }
 
-function DosAndDonts({ children, dos, donts }: DosAndDontsProps) {
-    const renderCard = (variant: "do" | "dont") => {
-        const item = variant === "do" ? dos : donts;
-
-        if (!item) {
-            return null;
-        }
-
-        const cardProps = VariantToCard[variant];
-        const { icon, textValue } = cardProps;
-        const { explanation, code } = item;
-
-        return (
-            <div>
-                <div>
-                    {icon}
-                    {textValue}
-                </div>
-                {explanation}
-                {code}
-            </div>
-        );
-    };
-
+function DosAndDonts({ items }: DosAndDontsProps) {
     return (
-        <>
-            {children}
-            <div className="hd-dosAndDonts__explanation">
-                {renderCard("do")}
-                {renderCard("dont")}
-            </div>
-        </>
+        <SimpleTable
+            headers={["✅ Do", "🚫 Don't"]}
+            data={items.map(item => ({
+                "✅ Do": item.do ? (
+                    <div>
+                        {item.do.code}
+                        {item.do.explanation}
+                    </div>
+                ) : null,
+                "🚫 Don't": item.dont ? (
+                    <div>
+                        {item.dont.code}
+                        {item.dont.explanation}
+                    </div>
+                ) : null
+            }))}
+        />
     );
 }
 

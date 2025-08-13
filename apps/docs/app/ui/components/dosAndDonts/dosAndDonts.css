@@ -1,19 +1,37 @@
-.hd-dosAndDonts__explanation {
+.hd-dosAndDonts {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
 }
 
-.hd-dosAndDonts__card {
+.hd-dosAndDonts__item {
     flex: 1 1 18.75rem;
     min-width: 15rem;
     flex-direction: column;
-    gap: 1rem;
+    gap: 2rem;
     align-items: baseline !important;
     justify-content: start;
 }
 
-.hd-dosAndDonts figure {
-    width: 100%;
+.hd-dosAndDonts__example {
+    padding: 0.25rem;
+    border-radius: var(--hd-codeblock-border-radius);
+    margin-bottom: 1rem;
+}
+
+.hd-dosAndDonts__example--do {
+    background-color: var(--hop-status-positive-surface);
+}
+
+.hd-dosAndDonts__example--dont {
+    background-color: var(--hop-status-negative-surface);
+}
+
+.hd-dosAndDonts__example figure {
+    margin-bottom: 0 !important;
+}
+
+.hd-dosAndDonts__explanation {
+   padding-top: 1rem;
 }
