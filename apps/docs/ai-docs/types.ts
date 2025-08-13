@@ -4,27 +4,27 @@ interface MdxOptions {
     excludedSections?: string[];
 }
 
-interface MdFromMdxBuild {
+export interface MdFromMdxBuild {
     source: string;
     excludedPaths?: string[];
     flatten?: boolean;
-    mdx?: MdxOptions;
+    markdown?: MdxOptions;
 }
 
-interface TemplateBasedBuild {
+export interface TemplateBasedBuild {
     template: string;
-    merge?: string[];
+    merge: string[];
 }
 
-interface PropsJsonBuild {
+export interface PropsJsonBuild {
     //it is a temporary type until we find a more generic solution
     type: "json";
     source: string;
 }
-type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild;
+export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild;
 
 interface ServeConfig {
-    urlPath: string;
+    baseUrlPath: string;
 }
 
 interface FileConfig {
@@ -32,8 +32,8 @@ interface FileConfig {
     serve?: ServeConfig;
 }
 
-export interface AiDocsMap {
+export interface AiDocsConfig {
     buildRootPath: string;
     filesFolder: string;
-    files: Record<string, FileConfig>;
+    routes: Record<string, FileConfig>;
 }

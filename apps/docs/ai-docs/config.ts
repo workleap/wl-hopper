@@ -1,21 +1,21 @@
-import { AiDocsMap } from "./types.ts";
+import { AiDocsConfig } from "./types.ts";
 
-export const aiDocsMap: AiDocsMap = {
+export const aiDocsConfig: AiDocsConfig = {
     buildRootPath: "dist",
     filesFolder: "ai-docs",
-    files: {
+    routes: {
         // components
         "components/full": {
             build: {
                 source: "content/components",
                 excludedPaths: ["concepts"],
                 flatten: true,
-                mdx: {
+                markdown: {
                     includeFrontMatterLinks: true
                 }
             },
             serve: {
-                urlPath: "/components"
+                baseUrlPath: "/components"
             }
         },
         "components/usage": {
@@ -23,7 +23,7 @@ export const aiDocsMap: AiDocsMap = {
                 source: "content/components",
                 excludedPaths: ["concepts"],
                 flatten: true,
-                mdx: {
+                markdown: {
                     includeFrontMatterLinks: false,
                     excludedSections: ["## Props"]
                 }
@@ -45,7 +45,7 @@ export const aiDocsMap: AiDocsMap = {
                 flatten: true
             },
             serve: {
-                urlPath: "/components"
+                baseUrlPath: "/components"
             }
         },
 
@@ -126,7 +126,7 @@ export const aiDocsMap: AiDocsMap = {
         //tokens
         "tokens": {
             build: {
-                source: "content/icons",
+                source: "content/tokens",
                 flatten: false,
             }
         },
@@ -176,22 +176,27 @@ export const aiDocsMap: AiDocsMap = {
         },
 
         // llms
-        "llms.md": {
-            build: {
-                template: "/content/ai-templates/llms-full.mdx"
-            },
-            serve: {
-                urlPath: "/"
-            }
-        },
+        // "llms.md": {
+        //     build: {
+        //         template: "/content/ai-templates/llms-full.mdx"
+        //     },
+        //     serve: {
+        //         urlPath: "/"
+        //     }
+        // },
 
         "llms-full.md": {
             build: {
-                template: "/content/ai-templates/llms.mdx"
+                template: "/content/ai-templates/all.mdx",
+                merge: [
+                    "getting-started/all.md",
+                    "styled-system/all.md",
+                    "tokens/all.md",
+                    "components/all.md",
+                    "icons/all.md"
+                ]
             },
-            serve: {
-                urlPath: "/"
-            }
+
         }
 
     }

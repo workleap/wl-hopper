@@ -1,38 +1,74 @@
-import { dirname } from "path";
-import { aiDocsMap } from "./map";
+import { dirname, join } from "path";
+import { aiDocsConfig } from "./config";
+import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild } from "./types";
 
-export function resolveFilePath(urlPath: string, match:(filePath:string)=> boolean): string | null {
-    const normalizedUrlPath = urlPath.startsWith('/') ? urlPath : `/${urlPath}`;
+function normalizePath(path: string): string {
+    return path.startsWith('/') ? path : `/${path}`;
+}
 
-    for (const [fileKey, fileConfig] of Object.entries(aiDocsMap.files)) {
-        if (fileConfig.serve?.urlPath) {
-            const serveUrlPath = fileConfig.serve.urlPath;
+function isUrlPathMatchingBase(path: string, basePath: string): boolean {
+    // if they are same, or if the basePath is not root and path starts with base
+    return path === basePath || (path.startsWith(basePath) && basePath !== "/");
+}
+
+function getRelativePath(path: string, basePath: string): string | null {
+    if (!isUrlPathMatchingBase(path, basePath)) return null;
+
+    return path.slice(basePath.length) || "/";
+}
+
+export function findPossibleFilePaths(urlPath: string): string[] {
+    const normalizedUrlPath = normalizePath(urlPath);
+    const result = new Set<string>();
+
+    for (const [fileKey, fileConfig] of Object.entries(aiDocsConfig.routes)) {
+            const baseUrlPath = normalizePath(fileConfig.serve?.baseUrlPath ?? getPathOfFile(fileKey));
 
             // Check if the normalized URL path matches the serve urlPath
-            if (normalizedUrlPath === serveUrlPath) {
-                const filePath = getPathOfFile(fileKey);
-                if (match(filePath)) return filePath;
+            const relativePath = getRelativePath(normalizedUrlPath, baseUrlPath);
+            if (relativePath) {
+                const rootFilePath = getPathOfFile(fileKey);
+                const resolvedPath = join(rootFilePath, relativePath);
+
+                result.add(resolvedPath);
             }
-        }
     }
 
-    // If no match found, return null
-    return null;
+    return Array.from(result);
 }
 
 function getPathOfFile(fileKey: string): string  {
+    let result = "";
+
     if (fileKey.includes('.')) {
-        // It's a file, return its directory path
         if (fileKey.includes('/')) {
-            // For keys like "/a/b/c.md" or "components/all.md", return the directory part
-            return dirname(fileKey);
-        } else {
-            // For root-level files like "abc.md", return empty string
-            return "";
+            result= dirname(fileKey);
         }
     } else {
-        // It's a directory path, return as-is
-        // For keys like "a/b/c" or "ab", return the full key
-        return fileKey;
+        result = fileKey;
     }
+
+    return normalizePath(result);
 }
+
+export function isMdFromMdxBuild(build: BuildConfig): build is MdFromMdxBuild {
+    return (
+        'source' in build &&
+        !('template' in build) &&
+        !('type' in build)
+    );
+}
+
+export function isTemplateBasedBuild(build: BuildConfig): build is TemplateBasedBuild {
+    return (
+        'template' in build
+    );
+}
+
+export function isPropsJsonBuild(build: BuildConfig): build is PropsJsonBuild {
+    return (
+        'type' in build &&
+        build.type === "json"
+    );
+}
+

@@ -34,15 +34,18 @@ interface GenerateMarkdownOptions {
      */
     excludedPaths?: string[];
 
-    /*
-    Excluded sections from the generated MDX content. It is based on the section names in the MDX files.
-    */
-    excludedSections?: string[];
+    markdown?: {
+        /*
+        Excluded sections from the generated MDX content. It is based on the section names in the MDX files.
+        */
+        excludedSections?: string[];
 
-    /**
-     * Whether to exclude front matter links from the generated Markdown.
-     */
-    includeFrontMatterLinks?: boolean;
+        /**
+         * Whether to exclude front matter links from the generated Markdown.
+         */
+        includeFrontMatterLinks?: boolean;
+
+    }
 }
 
 // Find all MDX files in a directory
@@ -106,7 +109,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         const processedFiles: ProcessedFile[] = [];
 
         for (const filePath of mdxFiles) {
-            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.includeFrontMatterLinks ?? false });
+            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false });
             if (mdContent) {
                 let targetPath = options.outputPath;
                 const relativePath = path.relative(options.filesPath, filePath);
@@ -125,7 +128,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
 
                 processedFiles.push({
                     outputPath: path.join(targetPath, path.basename(filePath, ".mdx") + ".md"),
-                    content: options.excludedSections && options.excludedSections.length > 0 ? excludeSections(mdContent, options.excludedSections) : mdContent
+                    content: options.markdown?.excludedSections && options.markdown?.excludedSections.length > 0 ? excludeSections(mdContent, options.markdown?.excludedSections) : mdContent
                 });
             }
         }

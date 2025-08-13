@@ -1,5 +1,5 @@
-import { resolveFilePath } from "@/ai-docs/util";
-import { aiDocsMap } from "ai-docs/map.ts";
+import { aiDocsConfig } from "@/ai-docs/config";
+import { findPossibleFilePaths } from "@/ai-docs/util";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -8,22 +8,20 @@ export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 function buildFilePath(pathSegments: string[]): string | null {
     // Build absolute path to public/ai-docs/<...>.md
-    const baseDir = path.join(process.cwd(), "public", aiDocsMap.filesFolder);
+    const baseDir = path.join(process.cwd(), "public", aiDocsConfig.filesFolder);
 
     // Ensure last segment has no extension, then add .md
     const fileName = `${pathSegments[pathSegments.length - 1]!}.md`;
-    const urlPath = path.join(...pathSegments.slice(0, -1));
+    const urlPath = pathSegments.length == 1 ? '/' : path.join(...pathSegments.slice(0, -1));
 
-    const filePath = resolveFilePath(urlPath, (filePath) => existsSync(path.join(baseDir, filePath, fileName)));
-
-    if (!filePath) {
-        return null;
+    for (const filePath of findPossibleFilePaths(urlPath)) {
+        const aiDocPath = path.join(baseDir, filePath, fileName);
+        if (existsSync(aiDocPath)) {
+            return aiDocPath;
+        }
     }
 
-    const aiDocPath = path.join(baseDir, filePath, fileName);
-
-
-    return aiDocPath;
+    return null;
 }
 
 export async function GET(
