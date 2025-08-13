@@ -90,9 +90,6 @@ importers:
       plop:
         specifier: 4.0.1
         version: 4.0.1
-      prettier:
-        specifier: 3.4.2
-        version: 3.4.2
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
