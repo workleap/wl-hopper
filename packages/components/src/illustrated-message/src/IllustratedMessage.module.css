@@ -63,21 +63,21 @@
     margin-block-start: var(--hop-IllustratedMessage-heading-margin-top);
 }
 
-.hop-IllustratedMessage--sm, .hop-IllustratedMessage__heading {
+:where(.hop-IllustratedMessage--sm .hop-IllustratedMessage__heading) {
     font-family: var(--hop-IllustratedMessage-sm-heading-font-family);
     font-size: var(--hop-IllustratedMessage-sm-heading-font-size);
     font-weight: var(--hop-IllustratedMessage-sm-heading-font-weight);
     line-height: var(--hop-IllustratedMessage-sm-heading-line-height);
 }
 
-.hop-IllustratedMessage-md, .hop-IllustratedMessage__heading {
+:where(.hop-IllustratedMessage--md .hop-IllustratedMessage__heading) {
     font-family: var(--hop-IllustratedMessage-md-heading-font-family);
     font-size: var(--hop-IllustratedMessage-md-heading-font-size);
     font-weight: var(--hop-IllustratedMessage-md-heading-font-weight);
     line-height: var(--hop-IllustratedMessage-md-heading-line-height);
 }
 
-.hop-IllustratedMessage--lg, .hop-IllustratedMessage__heading {
+:where(.hop-IllustratedMessage--lg .hop-IllustratedMessage__heading) {
     font-family: var(--hop-IllustratedMessage-lg-heading-font-family);
     font-size: var(--hop-IllustratedMessage-lg-heading-font-size);
     font-weight: var(--hop-IllustratedMessage-lg-heading-font-weight);

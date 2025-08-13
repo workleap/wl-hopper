@@ -173,6 +173,16 @@ export const WithButtonGroup = {
     )
 } satisfies Story;
 
+export const OverwrittenHeadingSize = {
+    render: () => (
+        <IllustratedMessage border="warning">
+            <Image src={Frog} alt="Frog" UNSAFE_width="240px" />
+            <Heading size="3xl">No results found</Heading>
+            <Content>Try searching for something else.</Content>
+        </IllustratedMessage>
+    )
+} satisfies Story;
+
 export const Styling = {
     render: () => (
         <Stack>

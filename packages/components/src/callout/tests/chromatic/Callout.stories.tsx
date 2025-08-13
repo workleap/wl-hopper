@@ -118,3 +118,12 @@ export const CustomRichIcon = {
         </Callout>
     )
 } satisfies Story;
+
+export const OverwrittenHeadingSize = {
+    render: props => (
+        <Callout {...props}>
+            <Heading size="3xl">Callout title</Heading>
+            <Content>Callout content</Content>
+        </Callout>
+    )
+} satisfies Story;
