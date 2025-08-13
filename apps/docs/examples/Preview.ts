@@ -1595,6 +1595,12 @@ export const Previews: Record<string, Preview> = {
     "buttons/docs/button/preview": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/preview.tsx"))
     },
+    "buttons/docs/button/dos-and-donts/punctuation-do": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-do.tsx"))
+    },
+    "buttons/docs/button/dos-and-donts/punctuation-dont": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-dont.tsx"))
+    },
     "buttons/docs/button/variant": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/variant.tsx"))
     },

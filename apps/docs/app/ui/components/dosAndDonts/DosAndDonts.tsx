@@ -3,12 +3,10 @@
 import clsx from "clsx";
 import "./dosAndDonts.css";
 
-import { formatCode } from "@/app/lib/formatingCode";
-import { HighlightCode } from "@/components/highlightCode";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Div, HopperProvider, Spinner, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
+import { Div, HopperProvider, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
 import { CheckmarkIcon, DismissIcon } from "@hopper-ui/icons";
-import { useContext, useEffect, useState, type ReactNode } from "react";
+import { Fragment, useContext, type ReactNode } from "react";
 
 type Variant = "do" | "dont";
 
@@ -33,7 +31,7 @@ const VariantToCard: Record<Variant, DosAndDontsCardProps> = {
 
 interface DosAndDontsItem {
     explanation?: string;
-    code?: string;
+    example?: ReactNode;
 }
 
 export interface DosAndDontsProps {
@@ -54,72 +52,36 @@ function DosAndDonts({ items }: DosAndDontsProps) {
 
         const cardProps = VariantToCard[variant];
         const { icon, variant: tagVariant, textValue } = cardProps;
-        const { explanation, code } = item;
+        const { explanation, example } = item;
 
         return (
-            <div className="hd-dosAndDonts__item">
-                {code &&
+            <Div marginBottom="core_240">
+                {example &&
                     <Div className={clsx("hd-dosAndDonts__example", `hd-dosAndDonts__example--${variant}`)}>
-                        <Example code={code} />
+                        {example}
                     </Div>
                 }
-                <Tag variant={tagVariant}>
+                <Tag variant={tagVariant} textValue={textValue}>
                     {icon}
                     <Text size="sm">{textValue}</Text>
                 </Tag>
                 <Div className="hd-dosAndDonts__explanation">
                     <Text size="sm">{explanation}</Text>
                 </Div>
-            </div>
+            </Div>
         );
     };
 
     return (
         <HopperProvider colorScheme={theme} className="hd-dosAndDonts">
-            {items.map(item => (
-                <>
+            {items.map((item, index) => (
+                <Fragment key={index}>
                     {renderCard("do", item.do)}
                     {renderCard("dont", item.dont)}
-                </>
+                </Fragment>
             ))}
         </HopperProvider>
     );
-}
-
-interface ExampleProps {
-    code: string;
-}
-
-function Example({ code }: ExampleProps) {
-    const [formattedCode, setFormattedCode] = useState<string>();
-
-    useEffect(() => {
-        const format = async () => {
-            const response = await fetch("/api/format-code", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ code }),
-            });
-
-            if (!response.ok) {
-                console.error("Error formatting code: ", response.status);
-            }
-
-            const data = await response.json();
-            const prettierFormattedCode = data.formattedCode;
-
-            const mdxCode = await formatCode(prettierFormattedCode, "tsx");
-            setFormattedCode(mdxCode);
-        };
-
-        format();
-    }, [code]);
-
-    if (!formattedCode) {
-        return <Spinner />;
-    }
-
-    return <HighlightCode code={formattedCode} />;
 }
 
 export default DosAndDonts;

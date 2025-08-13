@@ -17,6 +17,7 @@ interface CommonProps {
     src: string;
     className?: string;
     isOpen?: boolean;
+    hideStackblitzButton?: boolean;
 }
 
 interface CodeProps extends CommonProps {
@@ -42,6 +43,7 @@ const ComponentExample = memo(({
     type = "both",
     className,
     isOpen = false,
+    hideStackblitzButton,
     ...props
 }: ComponentExampleProps) => {
     const [showCode, toggleShowCode] = useToggle(isOpen);
@@ -93,7 +95,7 @@ const ComponentExample = memo(({
 
         return (
             <ComponentPreviewWrapper
-                openInStackblitzButton={openInStackblitzButton}
+                openInStackblitzButton={hideStackblitzButton ? null : openInStackblitzButton}
                 preview={(type === "preview" || type === "both") ? (props as PreviewProps | BothProps).preview : undefined}
                 toggleButton={renderToggleButton()}
             />

@@ -1,22 +1,19 @@
 .hd-dosAndDonts {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
-.hd-dosAndDonts__item {
-    flex: 1 1 18.75rem;
-    min-width: 15rem;
-    flex-direction: column;
-    gap: 2rem;
-    align-items: baseline !important;
-    justify-content: start;
+@media (width < 75rem) {
+  .hd-dosAndDonts {
+    grid-template-columns: 1fr;
+  }
 }
 
 .hd-dosAndDonts__example {
     padding: 0.25rem;
-    border-radius: var(--hd-codeblock-border-radius);
+    border-radius: var(--hd-border-radius-lg);
     margin-bottom: 1rem;
 }
 

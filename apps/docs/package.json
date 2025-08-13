@@ -64,7 +64,6 @@
         "logrocket": "9.0.0",
         "mdast-util-mdx": "^3.0.0",
         "mdx-bundler": "^10.1.1",
-        "prettier": "3.4.2",
         "react-docgen-typescript": "^2.2.2",
         "rehype-remark": "^10.0.1",
         "remark": "^15.0.1",

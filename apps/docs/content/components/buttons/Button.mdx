@@ -24,11 +24,21 @@ A `Button` uses the following components:
         {
             do: {
                 explanation: "When a Button contains anything other than a single text node, the accompanying text must be wrapped in a <Text> component.",
-                code: "<Button><SparklesIcon /><Text>Terms and conditions</Text></Button>"
+                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-do" />
             },
             dont: {
                 explanation: "Use text without <Text> if you have anything other than a single text node inside the Button.",
-                code: "<Button><SparklesIcon />Terms and conditions</Button>"
+                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Use 1 or 2 words, no longer than 4 words, with fewer than 20 characters including spaces.",
+                example: <Example src="buttons/docs/button/dos-and-donts/punctuation-do" hideStackblitzButton />
+            },
+            dont: {
+                explanation: "Don’t use punctuation marks such as periods or exclamation points.",
+                example: <Example src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
             }
         }
     ]}

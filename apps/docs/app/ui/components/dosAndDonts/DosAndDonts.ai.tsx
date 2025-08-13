@@ -1,10 +1,11 @@
 "use client";
 
+import { ReactNode } from "react";
 import SimpleTable from "../simpleTable/SimpleTable.ai";
 
 interface DosAndDontsItem {
     explanation?: string;
-    code?: string;
+    example?: ReactNode;
 }
 
 export interface DosAndDontsProps {
@@ -15,22 +16,21 @@ export interface DosAndDontsProps {
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {
+    const doAndDontItem = (item: DosAndDontsItem) => {
+        return (
+             <div>
+                {item.example}
+                {item.explanation}
+            </div>
+        )
+    }
+
     return (
         <SimpleTable
             headers={["✅ Do", "🚫 Don't"]}
             data={items.map(item => ({
-                "✅ Do": item.do ? (
-                    <div>
-                        {item.do.code}
-                        {item.do.explanation}
-                    </div>
-                ) : null,
-                "🚫 Don't": item.dont ? (
-                    <div>
-                        {item.dont.code}
-                        {item.dont.explanation}
-                    </div>
-                ) : null
+                "✅ Do": item.do ? doAndDontItem(item.do) : null,
+                "🚫 Don't": item.dont ? doAndDontItem(item.dont) : null
             }))}
         />
     );
