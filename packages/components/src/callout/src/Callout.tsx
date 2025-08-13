@@ -98,7 +98,8 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
             <SlotProvider
                 values={[
                     [HeadingContext, {
-                        className: styles["hop-Callout__heading"]
+                        className: styles["hop-Callout__heading"],
+                        size: "unset"
                     }],
                     [ContentContext, {
                         className: styles["hop-Callout__content"]

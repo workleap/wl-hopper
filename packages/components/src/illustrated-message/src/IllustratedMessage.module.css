@@ -9,12 +9,24 @@
 
     /* Small */
     --hop-IllustratedMessage-sm-max-width: 20rem;
+    --hop-IllustratedMessage-sm-heading-font-size: var(--hop-body-md-font-size);
+    --hop-IllustratedMessage-sm-heading-font-family: var(--hop-body-md-font-family);
+    --hop-IllustratedMessage-sm-heading-font-weight: var(--hop-body-md-semibold-font-weight);
+    --hop-IllustratedMessage-sm-heading-line-height: var(--hop-body-md-line-height);
 
     /* Medium */
     --hop-IllustratedMessage-md-max-width: 25rem;
+    --hop-IllustratedMessage-md-heading-font-size: var(--hop-body-lg-font-size);
+    --hop-IllustratedMessage-md-heading-font-family: var(--hop-body-lg-font-family);
+    --hop-IllustratedMessage-md-heading-font-weight: var(--hop-body-lg-semibold-font-weight);
+    --hop-IllustratedMessage-md-heading-line-height: var(--hop-body-lg-line-height);
 
     /* Large */
     --hop-IllustratedMessage-lg-max-width: 28.5rem;
+    --hop-IllustratedMessage-lg-heading-font-size: var(--hop-body-lg-font-size);
+    --hop-IllustratedMessage-lg-heading-font-family: var(--hop-body-lg-font-family);
+    --hop-IllustratedMessage-lg-heading-font-weight: var(--hop-body-lg-semibold-font-weight);
+    --hop-IllustratedMessage-lg-heading-line-height: var(--hop-body-lg-line-height);
 
     display: grid;
     grid-template-areas:
@@ -49,6 +61,27 @@
 .hop-IllustratedMessage__heading {
     grid-area: heading;
     margin-block-start: var(--hop-IllustratedMessage-heading-margin-top);
+}
+
+:where(.hop-IllustratedMessage--sm .hop-IllustratedMessage__heading) {
+    font-family: var(--hop-IllustratedMessage-sm-heading-font-family);
+    font-size: var(--hop-IllustratedMessage-sm-heading-font-size);
+    font-weight: var(--hop-IllustratedMessage-sm-heading-font-weight);
+    line-height: var(--hop-IllustratedMessage-sm-heading-line-height);
+}
+
+:where(.hop-IllustratedMessage--md .hop-IllustratedMessage__heading) {
+    font-family: var(--hop-IllustratedMessage-md-heading-font-family);
+    font-size: var(--hop-IllustratedMessage-md-heading-font-size);
+    font-weight: var(--hop-IllustratedMessage-md-heading-font-weight);
+    line-height: var(--hop-IllustratedMessage-md-heading-line-height);
+}
+
+:where(.hop-IllustratedMessage--lg .hop-IllustratedMessage__heading) {
+    font-family: var(--hop-IllustratedMessage-lg-heading-font-family);
+    font-size: var(--hop-IllustratedMessage-lg-heading-font-size);
+    font-weight: var(--hop-IllustratedMessage-lg-heading-font-weight);
+    line-height: var(--hop-IllustratedMessage-lg-heading-line-height);
 }
 
 .hop-IllustratedMessage__content {

@@ -69,12 +69,14 @@
 
 .hop-Callout__heading {
     grid-area: heading;
+    color: var(--color);
+}
 
+:where(.hop-Callout__heading) {
     font-family: var(--hop-Callout-heading-font-family);
     font-size: var(--hop-Callout-heading-font-size);
     font-weight: var(--hop-Callout-heading-font-weight);
     line-height: var(--hop-Callout-heading-line-height);
-    color: var(--color);
 }
 
 .hop-Callout__content {

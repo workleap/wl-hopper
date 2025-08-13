@@ -77,7 +77,7 @@ function IllustratedMessage(props: IllustratedMessageProps, ref: ForwardedRef<HT
                     }],
                     [HeadingContext, {
                         className: styles["hop-IllustratedMessage__heading"],
-                        size
+                        size: "unset"
                     }],
                     [ContentContext, {
                         className: styles["hop-IllustratedMessage__content"],
