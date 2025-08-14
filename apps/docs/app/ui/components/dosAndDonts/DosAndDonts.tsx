@@ -38,7 +38,7 @@ export interface DosAndDontsProps {
     items: [{
         do?: DosAndDontsItem;
         dont?: DosAndDontsItem;
-    }]
+    }];
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {

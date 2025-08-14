@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import SimpleTable from "../simpleTable/SimpleTable.ai";
 
 interface DosAndDontsItem {
@@ -12,18 +12,18 @@ export interface DosAndDontsProps {
     items: [{
         do?: DosAndDontsItem;
         dont?: DosAndDontsItem;
-    }]
+    }];
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {
     const doAndDontItem = (item: DosAndDontsItem) => {
         return (
-             <div>
+            <div>
                 {item.example}
                 {item.explanation}
             </div>
-        )
-    }
+        );
+    };
 
     return (
         <SimpleTable

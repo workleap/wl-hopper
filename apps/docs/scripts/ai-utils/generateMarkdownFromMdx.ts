@@ -21,7 +21,6 @@ interface GenerateMarkdownOptions {
     filesPath: string;
     outputPath: string;
     flattenOutput?: boolean;
-    flattenOutputExceptions?: string[];
 
     /**
      * Whether to search subdirectories for MDX files.
@@ -121,12 +120,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
                 const fileDir = path.dirname(relativePath);
 
                 // Check if this file should maintain directory structure
-                const shouldFlatten = options.flattenOutput &&
-                    !options.flattenOutputExceptions?.some(exception =>
-                        fileDir.startsWith(exception) || fileDir === exception
-                    );
-
-                if (!shouldFlatten) {
+                if (!options.flattenOutput) {
                     targetPath = path.join(targetPath, fileDir);
                     await fs.mkdir(targetPath, { recursive: true });
                 }

@@ -1,4 +1,4 @@
-import { aiDocsConfig } from "@/ai-docs/config.js";
+import { aiDocsConfig } from "@/ai-docs/ai-docs.config.js";
 import { isMdFromMdxBuild, isPropsJsonBuild } from "@/ai-docs/util.js";
 import { createWriteStream } from "fs";
 import { readFile, rm } from "fs/promises";
@@ -31,7 +31,6 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
             }
         }
     }
-
 
     const outputPath = join(path, fileName);
     const writeStream = createWriteStream(outputPath);
@@ -66,7 +65,7 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
 }
 
 function fixRelativeLink(link: string, extension: "txt" | "md"): string {
-    // Don't modify links that start with protocols (full URLs)
+    // Don't modify full links
     if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/i.test(link)) {
         return link;
     }
@@ -105,6 +104,7 @@ async function main() {
                 filesPath: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
                 flattenOutput: buildInfo.flatten,
+                excludedPaths: buildInfo.excludedPaths,
                 markdown: {
                     replaceLinks: (link: string) => fixRelativeLink(link, "txt"),
                     ...buildInfo.markdown
@@ -116,7 +116,7 @@ async function main() {
                 outputPath: join(outputPath, fileKey)
             });
         } else {
-            await mergeFiles(buildInfo.merge.map(file => join(outputPath, file)), {
+            await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {
                 fileName: fileKey,
                 path: outputPath,
                 headingFile: join(projectRoot, buildInfo.template),
