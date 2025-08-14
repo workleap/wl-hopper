@@ -168,13 +168,6 @@ function replaceLinks(mdContent: string, replaceLinkFn?: (link: string) => strin
         }
     });
 
-    // // Also handle text nodes that might contain bare URLs
-    // visit(tree, "text", (node) => {
-    //     if (node.value) {
-    //         node.value = node.value.replace(/https?:\/\/[^\s]+/g, (link) => replaceLinkFn(link));
-    //     }
-    // });
-
     return processor.stringify(tree as Root);
 }
 
