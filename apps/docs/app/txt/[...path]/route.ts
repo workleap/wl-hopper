@@ -1,6 +1,5 @@
 import { aiDocsConfig } from "@/ai-docs/config";
 import { findPossibleFilePaths } from "@/ai-docs/util";
-import { env } from "@/context/env/env";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -34,7 +33,7 @@ export async function GET(
 
     const fileAbs = buildFilePath(parts);
     if (!fileAbs) {
-        return new Response(`Invalid path`, { status: 400 });
+        return new Response("Invalid path", { status: 400 });
     }
 
     try {
@@ -45,7 +44,6 @@ export async function GET(
                 "Content-Type": "text/markdown; charset=utf-8"
             }
         });
-
     } catch {
         return new Response("Not found", { status: 404 });
     }

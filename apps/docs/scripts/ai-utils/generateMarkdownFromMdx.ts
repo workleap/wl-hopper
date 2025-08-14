@@ -162,7 +162,7 @@ function replaceLinks(mdContent: string, replaceLinkFn?: (link: string) => strin
 
     const tree = processor.parse(mdContent);
 
-    visit(tree, "link", (node) => {
+    visit(tree, "link", node => {
         if (node.url) {
             node.url = replaceLinkFn(node.url);
         }
