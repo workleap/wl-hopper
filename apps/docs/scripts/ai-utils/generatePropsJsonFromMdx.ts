@@ -21,7 +21,7 @@ interface ComponentPropsData {
 }
 
 interface GeneratePropsJsonOptions {
-    files: string;
+    filesPath: string;
     outputPath: string;
 }
 
@@ -130,7 +130,7 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
         await fs.mkdir(options.outputPath, { recursive: true });
 
         // Find all MDX files
-        const mdxFiles = await findMdxFiles(options.files);
+        const mdxFiles = await findMdxFiles(options.filesPath);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Set to track unique components (avoid duplicates)
