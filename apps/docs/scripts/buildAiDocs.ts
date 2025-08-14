@@ -9,7 +9,7 @@ import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
 
-async function mergeFiles(files: string[], { fileName, path, headingFile }: { fileName: string; path: string; headingFile: string }) {
+async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile: string; updateLevels: boolean }) {
     // Expand all patterns and collect matching files
     const allFiles: string[] = [];
 
@@ -54,7 +54,7 @@ async function mergeFiles(files: string[], { fileName, path, headingFile }: { fi
         const filePath = join(path, file);
         try {
             const fileContent = await readFile(filePath, "utf8");
-            const updateLevel = headingFile ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
+            const updateLevel = headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
 
             writeStream.write(updateLevel + "\n");
         } catch (error) {
@@ -119,7 +119,8 @@ async function main() {
             await mergeFiles(buildInfo.merge.map(file => join(outputPath, file)), {
                 fileName: fileKey,
                 path: outputPath,
-                headingFile: join(projectRoot, buildInfo.template)
+                headingFile: join(projectRoot, buildInfo.template),
+                updateLevels: !buildInfo.keepOriginalLeveling
             });
         }
     }

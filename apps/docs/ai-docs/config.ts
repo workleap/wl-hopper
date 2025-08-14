@@ -15,7 +15,7 @@ export const aiDocsConfig: AiDocsConfig = {
                 }
             },
             serve: {
-                baseUrlPath: "/components"
+                at: "/components"
             }
         },
         "components/usage": {
@@ -45,7 +45,7 @@ export const aiDocsConfig: AiDocsConfig = {
                 flatten: true
             },
             serve: {
-                baseUrlPath: "/components"
+                at: "/components"
             }
         },
 
@@ -65,6 +65,10 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 source: "content/getting-started",
                 flatten: true,
+            },
+            serve: {
+                at: "/getting-started",
+                filesInRoot: true
             }
         },
 
@@ -86,6 +90,9 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 source: "content/icons",
                 flatten: false,
+            },
+            serve: {
+                 filesInRoot: true
             }
         },
 

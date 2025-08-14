@@ -72,7 +72,8 @@ For merging multiple **already generated files** using a template:
             "/path/to/file1.md",
             "/path/to/file2.md",
             "/folder/*.md" // glob patterns supported
-        ]
+        ],
+        keepOriginalLeveling: true //if you like to keep the original levels
     }
 }
 ```
@@ -103,10 +104,16 @@ All the generated markdown files could be served from the same route. But if you
 ```typescript
 "route-key": {
     serve: {
-        baseUrlPath: "/custom-path"
+        at: "/custom-path",
+        filesInRoot?: boolean
     }
 }
 ```
+
+#### Serve Options
+
+- **`at`**: Custom URL path mapping for the route
+- **`filesInRoot`**: Whether to only check the root directory when resolving paths. This is useful if the URL has paths but files are located in the root folder, mostly because of `flatten: true` during build time.
 
 **Serve Logic**: The serve logic is set for `.txt|.md` paths and is served from the [txt](/apps/docs/app/txt/) route handler.
 

@@ -15,6 +15,11 @@ export interface MdFromMdxBuild {
 export interface TemplateBasedBuild {
     template: string;
     merge: string[];
+
+    /**
+     * Whether to skip updating heading levels in the merged file and keep the original ones.
+     */
+    keepOriginalLeveling?: boolean;
 }
 
 export interface PropsJsonBuild {
@@ -25,7 +30,13 @@ export interface PropsJsonBuild {
 export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild;
 
 interface ServeConfig {
-    baseUrlPath: string;
+    at?: string;
+
+    /**
+     * Whether to only check the root directory when resolving paths.
+     * This is useful if the URL has paths but files are located in the root folder mostly because of `flatten: true`.
+     */
+    filesInRoot?: boolean;
 }
 
 interface RouteConfig {

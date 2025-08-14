@@ -21,23 +21,26 @@ export function findPossibleFilePaths(urlPath: string): string[] {
     const normalizedUrlPath = normalizePath(urlPath);
     const result = new Set<string>();
 
-    for (const [fileKey, fileConfig] of Object.entries(aiDocsConfig.routes)) {
-            const baseUrlPath = normalizePath(fileConfig.serve?.baseUrlPath ?? getPathOfFile(fileKey));
+    for (const [route, routeConfig] of Object.entries(aiDocsConfig.routes)) {
+            const baseUrlPath = normalizePath(routeConfig.serve?.at ?? getRoutePath(route));
 
             // Check if the normalized URL path matches the serve urlPath
-            const relativePath = getRelativePath(normalizedUrlPath, baseUrlPath);
-            if (relativePath) {
-                const rootFilePath = getPathOfFile(fileKey);
-                const resolvedPath = join(rootFilePath, relativePath);
+            const relativePath =  getRelativePath(normalizedUrlPath, baseUrlPath);
 
-                result.add(resolvedPath);
+            if (relativePath) {
+               const rootPath = getRoutePath(route);
+               const filesInRoot = routeConfig.serve?.filesInRoot;
+
+                result.add(
+                    join(rootPath, filesInRoot ? "" : relativePath)
+                );
             }
     }
 
     return Array.from(result);
 }
 
-function getPathOfFile(fileKey: string): string  {
+function getRoutePath(fileKey: string): string  {
     let result = "";
 
     if (fileKey.includes('.')) {
