@@ -2,6 +2,7 @@
 interface MdxOptions {
     includeFrontMatterLinks?: boolean;
     excludedSections?: string[];
+    replaceLinks?: (text: string) => string;
 }
 
 export interface MdFromMdxBuild {

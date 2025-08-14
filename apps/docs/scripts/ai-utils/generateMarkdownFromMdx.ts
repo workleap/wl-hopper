@@ -45,6 +45,11 @@ interface GenerateMarkdownOptions {
          */
         includeFrontMatterLinks?: boolean;
 
+        /**
+         * A function to replace links in the generated Markdown.
+         */
+        replaceLinks?: (link: string) => string;
+
     };
 }
 
@@ -128,7 +133,7 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
 
                 processedFiles.push({
                     outputPath: path.join(targetPath, path.basename(filePath, ".mdx") + ".md"),
-                    content: options.markdown?.excludedSections && options.markdown?.excludedSections.length > 0 ? excludeSections(mdContent, options.markdown?.excludedSections) : mdContent
+                    content: replaceLinks(excludeSections(mdContent, options.markdown?.excludedSections), options.markdown?.replaceLinks)
                 });
             }
         }
@@ -146,7 +151,34 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
     }
 }
 
-function excludeSections(mdContent: string, excludedSections: string[]): string {
+function replaceLinks(mdContent: string, replaceLinkFn?: (link: string) => string): string {
+    if (!replaceLinkFn) {
+        return mdContent;
+    }
+
+    const processor = unified()
+        .use(remarkParse)
+        .use(remarkStringify);
+
+    const tree = processor.parse(mdContent);
+
+    visit(tree, "link", (node) => {
+        if (node.url) {
+            node.url = replaceLinkFn(node.url);
+        }
+    });
+
+    // // Also handle text nodes that might contain bare URLs
+    // visit(tree, "text", (node) => {
+    //     if (node.value) {
+    //         node.value = node.value.replace(/https?:\/\/[^\s]+/g, (link) => replaceLinkFn(link));
+    //     }
+    // });
+
+    return processor.stringify(tree as Root);
+}
+
+function excludeSections(mdContent: string, excludedSections?: string[]): string {
     if (!excludedSections || excludedSections.length === 0) {
         return mdContent;
     }

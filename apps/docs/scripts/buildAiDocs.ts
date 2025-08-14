@@ -65,6 +65,30 @@ async function mergeFiles(files: string[], { fileName, path, headingFile }: { fi
     writeStream.end();
 }
 
+function fixRelativeLink(link: string, extension: "txt" | "md"): string {
+    // Don't modify links that start with protocols (full URLs)
+    if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/i.test(link)) {
+        return link;
+    }
+
+    // Don't modify hash-only links (internal document references)
+    if (link.startsWith('#')) {
+        return link;
+    }
+
+    // Parse the link to separate path from hash and query string
+    const url = new URL(link, 'file://dummy-base/');
+    let pathname = url.pathname;
+    const hash = url.hash;
+    const search = url.search;
+
+    if (!pathname.includes('.') || pathname.endsWith('/')) {
+        // Remove trailing slash if present before adding extension
+        pathname = `${pathname.replace(/\/$/, '')}.${extension}`;
+    }
+
+    return pathname + search + hash;
+}
 
 async function main() {
     const outputPath = join(process.cwd(), aiDocsConfig.buildRootPath, aiDocsConfig.filesFolder);
@@ -81,7 +105,10 @@ async function main() {
                 filesPath: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
                 flattenOutput: buildInfo.flatten,
-                markdown: buildInfo.markdown
+                markdown: {
+                    replaceLinks: (link: string) => fixRelativeLink(link, "txt"),
+                    ...buildInfo.markdown,
+                }
             });
         } else if (isPropsJsonBuild(buildInfo)) {
             await generatePropsJsonFromMdx({

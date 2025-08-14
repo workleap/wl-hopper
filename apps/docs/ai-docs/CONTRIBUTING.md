@@ -53,7 +53,8 @@ For processing MDX content into markdown:
         flatten?: true, // flattens directory structure
         markdown?: {
             includeFrontMatterLinks?: true,
-            excludedSections?: ["## Props", "## API"]
+            excludedSections?: ["## Props", "## API"],
+            replaceLinks?: (link: string) => string // Custom link transformation
         }
     }
 }
@@ -155,6 +156,60 @@ All the generated markdown files could be served from the same route. But if you
     }
 }
 ```
+
+## Link Transformation
+
+The system automatically transforms relative links in markdown content to ensure they work correctly in the AI documentation context. This happens by default for all MDX-to-markdown builds.
+
+### Default Link Processing
+
+By default, the system applies these transformations to relative links:
+
+1. **Preserves full URLs**: Links with protocols (http:, https:, ftp:, mailto:, etc.) remain unchanged
+2. **Preserves hash-only links**: Internal document references like `#section` remain unchanged  
+3. **Transforms relative links**: Adds `.txt` extension to relative links while preserving:
+   - Query parameters (`?param=value`)
+   - Hash fragments (`#section`)
+
+### Examples of Default Transformations
+
+```markdown
+<!-- Original links -->
+[Full URL](https://example.com/page)           → No change
+[Hash link](#introduction)                     → No change  
+[Relative link](../components/button)          → ../components/button.txt
+[With hash](../guide#installation)            → ../guide.txt#installation
+[With query](./api?version=2)                 → ./api.txt?version=2
+```
+
+### Custom Link Transformation
+
+You can override the default behavior by providing a custom `replaceLinks` function:
+
+```typescript
+"route-key": {
+    build: {
+        source: "content/your-source-folder",
+        markdown: {
+            replaceLinks: (link: string) => {
+                // Custom logic here
+                if (link.startsWith('http')) return link;
+                if (link.startsWith('#')) return link;
+                return link + '.html'; // Use .html instead of .txt
+            }
+        }
+    }
+}
+```
+
+### Why Link Transformation?
+
+The transformation ensures that:
+
+- **AI systems** can properly reference documentation files with consistent extensions
+- **Cross-references** work correctly between generated documentation files
+- **Internal navigation** (hash links) continues to function within documents
+- **External links** remain functional and unchanged
 
 ## Best Practices
 
