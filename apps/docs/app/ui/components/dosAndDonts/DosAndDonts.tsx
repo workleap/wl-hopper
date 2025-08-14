@@ -7,6 +7,7 @@ import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { Div, HopperProvider, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
 import { CheckmarkIcon, DismissIcon } from "@hopper-ui/icons";
 import { Fragment, useContext, type ReactNode } from "react";
+import Card from "../card/Card";
 
 type Variant = "do" | "dont";
 
@@ -55,7 +56,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
         const { explanation, example } = item;
 
         return (
-            <Div marginBottom="core_240" display="flex" flexDirection="column">
+            <Card size="sm" className="hd-dosAndDonts__card">
                 {example &&
                     <Div flex="1" className={clsx("hd-dosAndDonts__example", `hd-dosAndDonts__example--${variant}`)}>
                         {example}
@@ -68,7 +69,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
                 <Div className="hd-dosAndDonts__explanation">
                     <Text size="sm">{explanation}</Text>
                 </Div>
-            </Div>
+            </Card>
         );
     };
 
