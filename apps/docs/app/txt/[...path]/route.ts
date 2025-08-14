@@ -7,7 +7,7 @@ import path from "node:path";
 
 export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
-function buildFilePath(pathSegments: string[], test?: string): string | null {
+function buildFilePath(pathSegments: string[], test?: string | null): string | null {
     // The current netlify.config says the app is deployed to the .next folder
     const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? ".next" : "public", aiDocsConfig.filesFolder, test ?? "");
 
@@ -26,15 +26,15 @@ function buildFilePath(pathSegments: string[], test?: string): string | null {
 
 export async function GET(
     req: Request,
-    { params, query: {test} }: { params: { path?: string[] }; query: { ext?: string, test?: string } }
+    { params }: { params: { path?: string[] }; query: { ext?: string } }
 ) {
     const parts = params.path ?? []; // e.g. ["llms"] for /txt/llms?ext=txt
     if (parts.length === 0) {return new Response("Not found", { status: 404 });}
 
-    const fileAbs = buildFilePath(parts, test);
+    const fileAbs = buildFilePath(parts, new URL(req.url).searchParams.get("test"));
 
     if (!fileAbs) {
-        const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? ".next" : "public", aiDocsConfig.filesFolder, test ?? "");
+        const baseDir = path.join(process.cwd(), env.isNetlifyFunction ? ".next" : "public", aiDocsConfig.filesFolder, new URL(req.url).searchParams.get("test") ?? "");
         return new Response(`Invalid path ${baseDir} - ${env.isNetlifyFunction}`, { status: 400 });
     }
 
