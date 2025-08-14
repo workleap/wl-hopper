@@ -44,12 +44,17 @@ You can test this hook by clicking the moon icon in the example below.
 
 <Example src="hopper-provider/docs/color-scheme/useColorSchemeValue" isOpen />
 
-<AI>
-    ## 🟢 Dos and ❌ Don'ts
-    <DoDont>
-        <DoDont.Item>
-            <Do>Use `setColorScheme` hook to set the application color scheme.</Do>
-            <Dont>Never Set Hopper token directly on the `document.body` to set light or dark modes.</Dont>
-        </DoDont.Item>
-    </DoDont>
-</AI>
+## Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use the setColorScheme from useColorSchemeContext hook to programmatically change the application's color scheme"
+            },
+            dont: {
+                explanation: "Manually set Hopper tokens directly on document.body to control light or dark mode"
+            }
+        }
+    ]}
+/>

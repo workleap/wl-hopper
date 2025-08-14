@@ -55,9 +55,9 @@ function DosAndDonts({ items }: DosAndDontsProps) {
         const { explanation, example } = item;
 
         return (
-            <Div marginBottom="core_240">
+            <Div marginBottom="core_240" display="flex" flexDirection="column">
                 {example &&
-                    <Div className={clsx("hd-dosAndDonts__example", `hd-dosAndDonts__example--${variant}`)}>
+                    <Div flex="1" className={clsx("hd-dosAndDonts__example", `hd-dosAndDonts__example--${variant}`)}>
                         {example}
                     </Div>
                 }

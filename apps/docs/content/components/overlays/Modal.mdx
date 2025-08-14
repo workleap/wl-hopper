@@ -26,19 +26,32 @@ A `Modal` uses the following components:
 
 <ComposedComponents components={["Image", "Heading", "Header", "Content", "Footer", "Button", "ButtonGroup"]}/>
 
-<AI>
-    ### 🟢 Dos and ❌ Don'ts
-    <DoDont>
-        <DoDont.Item>
-            <Do>Always put a `<Content />` section in your modal</Do>
-            <Dont>Use a modal without a `<Content />` section</Dont>
-        </DoDont.Item>
-        <DoDont.Item>
-            <Do>`<Content />` section is the direct child</Do>
-            <Dont>Wrap `<Content />` with other elements. e.g. `<Stack><Content /></Stack>`</Dont>
-        </DoDont.Item>
-    </DoDont>
-</AI>
+## Do’s and Don’ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Include a Content section in every modal implementation",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-do" />
+            },
+            dont: {
+                explanation: "Create a modal without the required Content section",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Make the Content component a direct child of the Modal",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-do" />
+            },
+            dont: {
+                explanation: "Place the Content component inside additional wrapper elements",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-dont" />
+            }
+        }
+    ]}
+/>
 
 ## Usage
 
