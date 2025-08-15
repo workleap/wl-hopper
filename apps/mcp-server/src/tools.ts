@@ -6,7 +6,7 @@ import type {
 import { z } from "zod";
 
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentDocumentation, getGuideDocumentation } from "./utils/docs.js";
+import { getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
 
@@ -93,7 +93,10 @@ export function tools(server: McpServer) {
     server.registerTool("get_design_tokens", {
         title: "Get tokens for different groups of semantic or core design tokens",
         description:
-        `** MAKE SURE YOU READ THE STYLES GUIDE FIRST **
+        `
+        - MAKE SURE YOU READ THE STYLES GUIDE FIRST
+        - ALWAYS USE **SEMANTIC** TOKENS WHERE POSSIBLE
+
         Available tokens:
         - semantic-color: Semantic colors for text, surfaces, borders, and icons with interactive states
         - semantic-elevation: Box shadows for creating depth and hierarchy in interfaces
@@ -111,7 +114,7 @@ export function tools(server: McpServer) {
         - core-shadow: Box shadow values for elevation effects
         `,
         inputSchema: {
-            guide: z.enum(["semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color", "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow"]),
+            guide: z.enum(TokenCategories),
 
         },
         annotations: {
@@ -139,7 +142,7 @@ export function tools(server: McpServer) {
         - internationalization: Adapting components to respect languages and cultures.
         `,
         inputSchema: {
-            guide: z.enum(["installation", "styles", "color-schemes", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization"]).optional(),
+            guide: z.enum(GuideSections).optional(),
         },
         annotations: {
             readOnlyHint: true

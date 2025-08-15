@@ -2,12 +2,8 @@
 
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
-import { z } from "zod";
 import { getGuideDocumentation } from "./utils/docs";
 import { trackEvent } from "./utils/logging";
-
-const SectionSchema = z.enum(["api", "usage"]);
-const ALLOWED_SECTIONS = ["api", "usage"] as const;
 
 export function resources(server: McpServer) {
     server.registerResource(
@@ -21,8 +17,6 @@ export function resources(server: McpServer) {
             trackEvent("hopper-full-documentation", {}, requestInfo);
 
             const content = await getGuideDocumentation('all');
-
-            //basicResult.content
 
             return {
                 df: true,

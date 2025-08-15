@@ -11,42 +11,41 @@ import { content, errorContent } from "./content.js";
 import { trackError } from "./logging.js";
 import { readMarkdownFile } from "./readMarkdownFile.js";
 
-export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-schemes" | "components-list" | "react-icons" | "svg-icons" | "icons" | "layout" | "controlled-mode" | "forms" | "slots" | "internationalization";
-export type TokenSection = "semantic-color" | "semantic-elevation" | "semantic-shape" | "semantic-space" | "semantic-typography" |
-                           "core-border-radius" | "core-color" | "core-dimensions" | "core-font-family" | "core-font-size" | "core-font-weight" | "core-line-height" | "core-motion" | "core-shadow";
+export const TokenCategories = ["semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color", "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow"] as const;
+export const GuideSections = ["all", "installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization"] as const;
 
+export type GuideSection = typeof GuideSections[number];
+export type TokenCategory = typeof TokenCategories[number];
 
-const guidesPath: Record<GuideSection | TokenSection, string> = {
+const guidesPath: Record<GuideSection | TokenCategory, string> = {
     all: files.llmsFull,
-    installation: "getting-started/llms-getting-started.md",
-    styles: "styled-system/llms-styled-system.md",
-    tokens: "tokens/llms-tokens.md",
-    icons: "icons/llms-icons.md",
-    "react-icons": "icons/llms-react-icons.md",
-    "svg-icons": "icons/llms-svg-icons.md",
-    "components-list": "components/usage/component-list.md",
+    installation: files.gettingStarted.installation,
+    styles: files.styledSystem.index,
+    "react-icons": files.icons.reactIcons.index,
+    "svg-icons": files.icons.svgIcons.index,
+    "components-list": files.components.full.componentList,
 
-    "color-schemes": "components/concepts/color-schemes.md",
-    "layout": "components/concepts/layout.md",
-    "controlled-mode": "components/concepts/controlled-mode.md",
-    "forms": "components/concepts/forms.md",
-    "slots": "components/concepts/slots.md",
-    "internationalization": "components/concepts/internationalization.md",
+    "color-schemes": files.components.concepts.colorSchemes,
+    "layout": files.components.concepts.layout,
+    "controlled-mode": files.components.concepts.controlledMode,
+    "forms": files.components.concepts.forms,
+    "slots": files.components.concepts.slots,
+    "internationalization": files.components.concepts.internationalization,
 
-    "semantic-color": "tokens/semantic/color.md",
-    "semantic-elevation": "tokens/semantic/elevation.md",
-    "semantic-shape": "tokens/semantic/shape.md",
-    "semantic-space": "tokens/semantic/space.md",
-    "semantic-typography": "tokens/semantic/typography.md",
-    "core-border-radius": "tokens/core/border-radius.md",
-    "core-color": "tokens/core/color.md",
-    "core-dimensions": "tokens/core/dimensions.md",
-    "core-font-family": "tokens/core/font-family.md",
-    "core-font-size": "tokens/core/font-size.md",
-    "core-font-weight": "tokens/core/font-weight.md",
-    "core-line-height": "tokens/core/line-height.md",
-    "core-motion": "tokens/core/motion.md",
-    "core-shadow": "tokens/core/shadow.md"
+    "semantic-color": files.tokens.semantic.color,
+    "semantic-elevation": files.tokens.semantic.elevation,
+    "semantic-shape": files.tokens.semantic.shape,
+    "semantic-space": files.tokens.semantic.space,
+    "semantic-typography": files.tokens.semantic.typography,
+    "core-border-radius": files.tokens.core.borderRadius,
+    "core-color": files.tokens.core.color,
+    "core-dimensions": files.tokens.core.dimensions,
+    "core-font-family": files.tokens.core.fontFamily,
+    "core-font-size": files.tokens.core.fontSize,
+    "core-font-weight": files.tokens.core.fontWeight,
+    "core-line-height": files.tokens.core.lineHeight,
+    "core-motion": files.tokens.core.motion,
+    "core-shadow": files.tokens.core.shadow
 };
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api", startLine?: number, endLine?: number) {
@@ -68,7 +67,7 @@ export async function getComponentDocumentation(componentName: string, section: 
     }
 }
 
-export async function getGuideDocumentation(section: GuideSection | TokenSection, startLine?: number, endLine?: number) {
+export async function getGuideDocumentation(section: GuideSection | TokenCategory, startLine?: number, endLine?: number) {
 
     if (!Object.keys(guidesPath).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);

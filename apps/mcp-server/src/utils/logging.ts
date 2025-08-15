@@ -1,47 +1,9 @@
 import type { RequestInfo } from "@modelcontextprotocol/sdk/types.js";
-import chalk from "chalk";
-import winston from "winston";
+import { ConsoleLogger } from "@workleap/logging";
 import packageInfo from "../../package.json" assert { type: "json" };
 import { env } from "../env.js";
 
-function getLogFileTransport() {
-    if (!env.LOG_FILE) {
-        return undefined; // No log file configured
-    }
-    return new winston.transports.File({
-            filename: env.LOG_FILE,
-            maxsize: 10 * 1024 * 1024, // 10MB
-            maxFiles: 5,
-            tailable: true,
-            level: "info"
-        })
-}
-
-const interactionLogger = winston.createLogger({
-    level: "info",
-    format:  winston.format.json({ space: 2 }),
-    transports: getLogFileTransport() ?? [],
-});
-
-const colorizeMessageOnly = winston.format(info => {
-    if (info.message) {
-        info.message = chalk.yellow(info.message);
-    }
-
-    if (info.data) {
-        info.data = chalk.cyan(JSON.stringify(info.data));
-    }
-
-    return info;
-});
-
-interactionLogger.add(new winston.transports.Console({
-    format: env.ENV === "production" ? undefined : winston.format.combine(
-        colorizeMessageOnly(),
-        winston.format.timestamp(),
-        winston.format.printf(info => `${info.message} ${info.data ?? ""} ${info.timestamp} sessionId: ${info.sessionId ?? "n/a"}`)
-    )
-}));
+const logger =  new ConsoleLogger();
 
 function errorToObject(error: object | null) {
     if (error instanceof Error) {
@@ -72,9 +34,9 @@ export function trackEvent(event: string | "error", data: object | null = {}, re
     };
 
     if (event === "error") {
-        interactionLogger.error(event, logData);
+        logger.error(`${event}, ${JSON.stringify(logData)}`, {style: { color: 'red' }});
     } else {
-        interactionLogger.info(event, logData);
+        logger.information(`${event}, ${JSON.stringify(logData)}`, {style: { color: 'blue' }});
     }
 }
 
