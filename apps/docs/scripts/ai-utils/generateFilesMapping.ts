@@ -1,23 +1,29 @@
 import { aiDocsConfig } from "@/ai-docs/ai-docs.config.js";
-import { readdir, stat, writeFile } from "fs/promises";
+import { readdir, writeFile } from "fs/promises";
 import { join, relative } from "path";
+
+interface FileMapping {
+    [key: string]: FileMapping | string;
+}
 
 // camelCase helper from kebab/slug/upper words
 function toCamelCase(input: string): string {
     const base = input.replace(/\.[^.]+$/, "");
-    if (/[\-_\s]/.test(base)) {
-        const parts = base.split(/[\-_\s]+/);
+    if (/[-_\s]/.test(base)) {
+        const parts = base.split(/[-_\s]+/);
         const norm = parts.map(p => (p.toUpperCase() === p ? p.toLowerCase() : p));
         const first = norm[0].toLowerCase();
         const rest = norm.slice(1).map(s => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase());
+
         return [first, ...rest].join("");
     }
+
     // PascalCase or already lower/upper: just lower first char
     return base.charAt(0).toLowerCase() + base.slice(1);
 }
 
 // Build a nested object from a path like "components/concepts/client-router-file.md"
-function setDeep(obj: any, filePathFromRoot: string) {
+function setDeep(obj: Record<string, FileMapping | string>, filePathFromRoot: string) {
     const parts = filePathFromRoot.split("/");
     let cursor = obj;
     for (let i = 0; i < parts.length; i++) {
@@ -53,6 +59,7 @@ async function collectFiles(rootDir: string): Promise<string[]> {
     }
 
     await walk(rootDir);
+
     return results;
 }
 
@@ -66,7 +73,7 @@ export async function generateAiDocsMapping(outputRoot: string, fileName: string
     const publicAiDocs = outputRoot; // this should point to dist/ai-docs
 
     const files = await collectFiles(distAiDocs);
-    const mapping: any = {};
+    const mapping: FileMapping = {};
 
     for (const abs of files) {
         const relFromAiDocs = relative(distAiDocs, abs).replaceAll("\\", "/");
