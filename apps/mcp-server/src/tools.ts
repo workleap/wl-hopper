@@ -59,7 +59,7 @@ export function tools(server: McpServer) {
         **ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**
         `,
         inputSchema: {
-            component_name: z.string(),
+            component_name: z.string()
         },
         annotations: {
             readOnlyHint: true
@@ -114,7 +114,7 @@ export function tools(server: McpServer) {
         - core-shadow: Box shadow values for elevation effects
         `,
         inputSchema: {
-            guide: z.enum(TokenCategories),
+            guide: z.enum(TokenCategories)
 
         },
         annotations: {
@@ -142,7 +142,7 @@ export function tools(server: McpServer) {
         - internationalization: Adapting components to respect languages and cultures.
         `,
         inputSchema: {
-            guide: z.enum(GuideSections).optional(),
+            guide: z.enum(GuideSections).optional()
         },
         annotations: {
             readOnlyHint: true
@@ -166,7 +166,7 @@ export function tools(server: McpServer) {
     }, async ({ code }, e) : Promise<CallToolResult> => {
         try {
             const validationResult = validateComponentStructure(code);
-            trackEvent("validate_component_structure", { code , validationResult}, e?.requestInfo);
+            trackEvent("validate_component_structure", { code, validationResult }, e?.requestInfo);
 
             if (validationResult.isValid) {
                 return toolContent(content("Component structure validation passed!"));
@@ -183,6 +183,7 @@ export function tools(server: McpServer) {
             }
         } catch (error) {
             trackError(error, e?.requestInfo);
+
             return toolContent(errorContent(error, "Failed to validate component structure. Please ensure the code is valid JSX/TSX."));
         }
     });

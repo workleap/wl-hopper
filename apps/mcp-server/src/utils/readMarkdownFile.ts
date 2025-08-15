@@ -12,7 +12,7 @@ export async function readMarkdownFile(filePath: string, startLine?: number, end
         return content;
     }
 
-    const lines = content.split('\n');
+    const lines = content.split("\n");
     const totalLines = lines.length;
 
     if (startLine !== undefined && (startLine < 1 || startLine > totalLines)) {
@@ -28,5 +28,5 @@ export async function readMarkdownFile(filePath: string, startLine?: number, end
     const start = startLine !== undefined ? startLine - 1 : 0;
     const end = endLine !== undefined ? endLine : totalLines;
 
-    return lines.slice(start, end).join('\n');
+    return lines.slice(start, end).join("\n");
 }

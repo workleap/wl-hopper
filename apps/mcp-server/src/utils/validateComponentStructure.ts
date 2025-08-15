@@ -18,7 +18,7 @@ interface ValidationResult {
 export function validateComponentStructure(code: string): ValidationResult {
     const result: ValidationResult = {
         isValid: true,
-        errors: [],
+        errors: []
     };
 
     // First, check if the code is empty or whitespace only
@@ -27,6 +27,7 @@ export function validateComponentStructure(code: string): ValidationResult {
         result.errors.push({
             message: "No code provided. Please provide valid TypeScript/JSX code to validate."
         });
+
         return result;
     }
 
@@ -47,6 +48,7 @@ export function validateComponentStructure(code: string): ValidationResult {
             result.errors.push({
                 message: "No JSX components found in the provided code."
             });
+
             return result;
         }
 
@@ -67,14 +69,14 @@ export function validateComponentStructure(code: string): ValidationResult {
         for (const [componentName, instances] of componentInstances) {
             for (let i = 0; i < instances.length; i++) {
                 const element = instances[i];
-                const instanceInfo = instances.length > 1 ? ` (instance ${i + 1} of ${instances.length})` : '';
+                const instanceInfo = instances.length > 1 ? ` (instance ${i + 1} of ${instances.length})` : "";
 
                 // Validate based on component type
                 switch (componentName) {
-                    case 'Button':
+                    case "Button":
                         validateButtonComponent(element, result, instanceInfo);
                         break;
-                    case 'Modal':
+                    case "Modal":
                         validateModalComponent(element, result, instanceInfo);
                         break;
                     // Add more component validations here as needed
@@ -85,9 +87,6 @@ export function validateComponentStructure(code: string): ValidationResult {
             }
         }
 
-        // Add summary information
-        const totalComponents = Array.from(componentInstances.values()).reduce((sum, instances) => sum + instances.length, 0);
-
         result.isValid = result.errors.length === 0;
     } catch (error) {
         result.isValid = false;
@@ -97,12 +96,12 @@ export function validateComponentStructure(code: string): ValidationResult {
             // Check for common parsing issues and provide helpful messages
             let errorMessage = `Failed to parse code: ${error.message}`;
 
-            if (error.message.includes('Unexpected token')) {
+            if (error.message.includes("Unexpected token")) {
                 errorMessage += "\n\nPlease ensure the code is valid TypeScript/JSX syntax. Common issues include:";
                 errorMessage += "\n- Missing semicolons or brackets";
                 errorMessage += "\n- Invalid JSX syntax";
                 errorMessage += "\n- Incomplete component declarations";
-            } else if (error.message.includes('Unexpected end of file')) {
+            } else if (error.message.includes("Unexpected end of file")) {
                 errorMessage += "\n\nThe code appears to be incomplete. Please provide the full component code.";
             }
 
@@ -122,13 +121,16 @@ export function validateComponentStructure(code: string): ValidationResult {
 /**
  * Recursively finds all JSX elements in the AST
  */
+//
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function findJSXElements(node: any): TSESTree.JSXElement[] {
     const elements: TSESTree.JSXElement[] = [];
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function traverse(n: any) {
-        if (!n || typeof n !== 'object') return;
+        if (!n || typeof n !== "object") {return;}
 
-        if (n.type === 'JSXElement') {
+        if (n.type === "JSXElement") {
             elements.push(n as TSESTree.JSXElement);
         }
 
@@ -138,7 +140,7 @@ function findJSXElements(node: any): TSESTree.JSXElement[] {
                 const value = n[key];
                 if (Array.isArray(value)) {
                     value.forEach(traverse);
-                } else if (value && typeof value === 'object') {
+                } else if (value && typeof value === "object") {
                     traverse(value);
                 }
             }
@@ -146,6 +148,7 @@ function findJSXElements(node: any): TSESTree.JSXElement[] {
     }
 
     traverse(node);
+
     return elements;
 }
 
@@ -154,9 +157,10 @@ function findJSXElements(node: any): TSESTree.JSXElement[] {
  */
 function getComponentName(element: TSESTree.JSXElement): string | null {
     const openingElement = element.openingElement;
-    if (openingElement.name.type === 'JSXIdentifier') {
+    if (openingElement.name.type === "JSXIdentifier") {
         return openingElement.name.name;
     }
+
     return null;
 }
 
@@ -167,7 +171,7 @@ function getDirectChildren(element: TSESTree.JSXElement): string[] {
     const children: string[] = [];
 
     for (const child of element.children) {
-        if (child.type === 'JSXElement') {
+        if (child.type === "JSXElement") {
             const childName = getComponentName(child);
             if (childName) {
                 children.push(childName);
@@ -181,24 +185,24 @@ function getDirectChildren(element: TSESTree.JSXElement): string[] {
 /**
  * Gets all direct children (components + text nodes) from a JSX element
  */
-function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: 'component' | 'text', name: string }> {
-    const children: Array<{ type: 'component' | 'text', name: string }> = [];
+function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: "component" | "text"; name: string }> {
+    const children: Array<{ type: "component" | "text"; name: string }> = [];
 
     for (const child of element.children) {
-        if (child.type === 'JSXElement') {
+        if (child.type === "JSXElement") {
             const childName = getComponentName(child);
             if (childName) {
-                children.push({ type: 'component', name: childName });
+                children.push({ type: "component", name: childName });
             }
-        } else if (child.type === 'JSXText') {
+        } else if (child.type === "JSXText") {
             // Only count non-whitespace text nodes
             const text = child.value.trim();
             if (text.length > 0) {
-                children.push({ type: 'text', name: 'text' });
+                children.push({ type: "text", name: "text" });
             }
-        } else if (child.type === 'JSXExpressionContainer') {
+        } else if (child.type === "JSXExpressionContainer") {
             // Handle expressions like {variable} or {someFunction()}
-            children.push({ type: 'text', name: 'expression' });
+            children.push({ type: "text", name: "expression" });
         }
     }
 
@@ -209,10 +213,10 @@ function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: 'comp
  * Validates Button component structure
  * Rule: If the component is Button and if it has 2 children, one of them should be Text component.
  */
-function validateButtonComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ''): void {
+function validateButtonComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
     const componentName = getComponentName(element);
 
-    if (componentName !== 'Button') {
+    if (componentName !== "Button") {
         return;
     }
 
@@ -221,12 +225,12 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
 
     // If Button has 2 total children (text + components), one of the components should be Text
     if (allChildren.length === 2) {
-        const hasTextComponent = componentChildren.includes('Text');
-        const hasTextContent = allChildren.some(child => child.type === 'text');
+        const hasTextComponent = componentChildren.includes("Text");
+        const hasTextContent = allChildren.some(child => child.type === "text");
 
         if (!hasTextComponent && hasTextContent) {
             result.errors.push({
-                message: `Button component${instanceInfo} with 2 children must include a Text component when containing text content. Found children: ${componentChildren.join(', ')}${componentChildren.length === 0 ? 'none' : ''} (plus text content)`,
+                message: `Button component${instanceInfo} with 2 children must include a Text component when containing text content. Found children: ${componentChildren.join(", ")}${componentChildren.length === 0 ? "none" : ""} (plus text content)`,
                 line: element.loc?.start.line,
                 column: element.loc?.start.column
             });
@@ -239,22 +243,22 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
  * Rule: If the component is Modal, the direct children should be Header, Content and ButtonGroup.
  * If other components live as direct children, it should be an error.
  */
-function validateModalComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ''): void {
+function validateModalComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
     const componentName = getComponentName(element);
 
-    if (componentName !== 'Modal') {
+    if (componentName !== "Modal") {
         return;
     }
 
     const children = getDirectChildren(element);
-    const allowedChildren = ['Heading', 'Content', 'ButtonGroup'];
+    const allowedChildren = ["Heading", "Content", "ButtonGroup"];
 
     // Check for invalid children
     const invalidChildren = children.filter(child => !allowedChildren.includes(child));
 
     if (invalidChildren.length > 0) {
         result.errors.push({
-            message: `Modal component${instanceInfo} can only have Header, Content, and ButtonGroup as direct children. Found invalid children: ${invalidChildren.join(', ')}`,
+            message: `Modal component${instanceInfo} can only have Header, Content, and ButtonGroup as direct children. Found invalid children: ${invalidChildren.join(", ")}`,
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
@@ -264,7 +268,7 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
     const missingChildren = allowedChildren.filter(required => !children.includes(required));
     if (missingChildren.length > 0) {
         result.errors.push({
-            message: `Modal component${instanceInfo} is missing recommended children: ${missingChildren.join(', ')}`,
+            message: `Modal component${instanceInfo} is missing recommended children: ${missingChildren.join(", ")}`,
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });

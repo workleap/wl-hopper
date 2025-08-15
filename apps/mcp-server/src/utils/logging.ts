@@ -1,9 +1,9 @@
 import type { RequestInfo } from "@modelcontextprotocol/sdk/types.js";
 import { ConsoleLogger } from "@workleap/logging";
-import packageInfo from "../../package.json" assert { type: "json" };
-import { env } from "../env.js";
 
-const logger =  new ConsoleLogger();
+import packageInfo from "../../package.json" assert { type: "json" };
+
+const logger = new ConsoleLogger();
 
 function errorToObject(error: object | null) {
     if (error instanceof Error) {
@@ -30,13 +30,13 @@ export function trackEvent(event: string | "error", data: object | null = {}, re
         sessionId: sessionId ? sessionId : undefined,
         data: modifiedData && Object.keys(modifiedData).length > 0 ? modifiedData : undefined,
         timestamp: new Date().toISOString(),
-        version: packageInfo.version,
+        version: packageInfo.version
     };
 
     if (event === "error") {
-        logger.error(`${event}, ${JSON.stringify(logData)}`, {style: { color: 'red' }});
+        logger.error(`${event}, ${JSON.stringify(logData)}`, { style: { color: "red" } });
     } else {
-        logger.information(`${event}, ${JSON.stringify(logData)}`, {style: { color: 'blue' }});
+        logger.information(`${event}, ${JSON.stringify(logData)}`, { style: { color: "blue" } });
     }
 }
 

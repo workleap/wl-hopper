@@ -1,4 +1,5 @@
 import type { Config } from "jest";
+
 import { swcConfig } from "./swc.jest";
 
 const config: Config = {

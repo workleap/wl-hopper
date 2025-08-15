@@ -6,12 +6,16 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
+
 import { env } from "../env.js";
+
 import { content, errorContent } from "./content.js";
 import { trackError } from "./logging.js";
 import { readMarkdownFile } from "./readMarkdownFile.js";
 
-export const TokenCategories = ["semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color", "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow"] as const;
+export const TokenCategories = [
+    "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
+    "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow"] as const;
 export const GuideSections = ["all", "installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization"] as const;
 
 export type GuideSection = typeof GuideSections[number];
@@ -26,11 +30,11 @@ const guidesPath: Record<GuideSection | TokenCategory, string> = {
     "components-list": files.components.full.componentList,
 
     "color-schemes": files.components.concepts.colorSchemes,
-    "layout": files.components.concepts.layout,
+    layout: files.components.concepts.layout,
     "controlled-mode": files.components.concepts.controlledMode,
-    "forms": files.components.concepts.forms,
-    "slots": files.components.concepts.slots,
-    "internationalization": files.components.concepts.internationalization,
+    forms: files.components.concepts.forms,
+    slots: files.components.concepts.slots,
+    internationalization: files.components.concepts.internationalization,
 
     "semantic-color": files.tokens.semantic.color,
     "semantic-elevation": files.tokens.semantic.elevation,
@@ -53,6 +57,7 @@ export async function getComponentDocumentation(componentName: string, section: 
 
     if (!existsSync(docFilePath)) {
         const error = new Error(`${componentName}'s documentation not found: ${docFilePath}`);
+
         return errorContent(error, "Error reading component documentation: File not found.");
     }
 
@@ -68,9 +73,9 @@ export async function getComponentDocumentation(componentName: string, section: 
 }
 
 export async function getGuideDocumentation(section: GuideSection | TokenCategory, startLine?: number, endLine?: number) {
-
     if (!Object.keys(guidesPath).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
+
         return errorContent(error);
     }
 
@@ -78,11 +83,13 @@ export async function getGuideDocumentation(section: GuideSection | TokenCategor
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
+
         return errorContent(error, `Guide not found for section: ${section}`);
     }
 
     try {
         const sectionContent = await readMarkdownFile(guidePath, startLine, endLine);
+
         return content(sectionContent);
     } catch (error) {
         return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
@@ -96,9 +103,9 @@ export async function getDocumentInfo(type: "component" | "guide", name: string)
         if (type === "component") {
             filePath = join(env.DOCS_PATH, "components", `usage/${name}.md`);
         } else {
-
             if (!(name in guidesPath)) {
                 const error = new Error(`Invalid guide name: ${name}`);
+
                 return errorContent(error, `Invalid guide name: ${name}`);
             }
 
@@ -107,15 +114,16 @@ export async function getDocumentInfo(type: "component" | "guide", name: string)
 
         if (!existsSync(filePath)) {
             const error = new Error(`File not found: ${filePath}`);
+
             return errorContent(error, `Guide file not found: ${filePath}`);
         }
 
         const fileContent = await readFile(filePath, "utf-8");
-        const lines = fileContent.split('\n');
+        const lines = fileContent.split("\n");
         const totalLines = lines.length;
         const fileSize = fileContent.length;
 
-        return content(JSON.stringify({filePath, totalLines, fileSize}, null, 2));
+        return content(JSON.stringify({ filePath, totalLines, fileSize }, null, 2));
     } catch (error) {
         return errorContent(error, `Error getting document info: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
@@ -124,6 +132,7 @@ export async function getDocumentInfo(type: "component" | "guide", name: string)
 export async function getDocumentContentResult(url: string) {
     if (!url.startsWith("https://hopper.workleap.design")) {
         const error = new Error(`Invalid URL: ${url}. Please provide a URL from the hopper.workleap.design domain.`);
+
         return errorContent(error, `Invalid URL: ${url}. Please provide a URL from the hopper.workleap.design domain.`);
     }
     try {
