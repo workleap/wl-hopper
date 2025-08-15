@@ -5,6 +5,7 @@ import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
 import { isAbsolute, join } from "path";
 import { convertMdxToMd } from "./ai-utils/convertMdxToMd.js";
+import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
 import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
@@ -124,6 +125,8 @@ async function main() {
             });
         }
     }
+
+    generateAiDocsMapping(outputPath, "index.ts");
 }
 
 main();
