@@ -6,9 +6,10 @@
         "module": "esnext",
         "moduleResolution": "Bundler",
         "outDir": "./dist",
+        "rootDir": "./src",
         "paths": {
             "@docs/ai": [
-                "./dist/docs/index.ts"
+                "./src/.docs/index.ts"
             ],
         },
     },

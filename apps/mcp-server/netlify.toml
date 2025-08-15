@@ -1,0 +1,11 @@
+[build]
+  command = "pnpm doc:generate && pnpm build:pkg && pnpm build:doc && pnpm build:ai-docs && pnpm build:mcp"
+  environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
+
+[functions]
+  node_bundler = "esbuild"
+  directory = "apps/mcp-server/dist/hosts/netlify"
+  included_files = [
+    "dist/hosts/netlify/docs/**",                   # For local dev
+    "apps/mcp-server/dist/hosts/netlify/docs/**"    # For deployment
+]

@@ -8,8 +8,3 @@
 
 [functions]
   included_files = ["apps/docs/public/**"]
-
-[functions."mcp-server"]
-  node_bundler = "esbuild"
-  directory = "apps/mcp-server/dist/hosts/netlify"
-  included_files = ["dist/hosts/netlify/docs/**", "apps/mcp-server/dist/hosts/netlify/docs/**"] # The first path is for local dev and second path is for deployment.

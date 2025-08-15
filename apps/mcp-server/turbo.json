@@ -4,6 +4,7 @@
         "//"
     ],
     "tasks": {
+
         "dev:server:netlify": {
             "outputs": ["node_modules/.cache/jest"]
         },

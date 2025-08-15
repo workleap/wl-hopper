@@ -1,3 +1,4 @@
+import { files } from "@docs/ai";
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
@@ -14,8 +15,9 @@ export type GuideSection = "all" |"installation" | "styles" | "tokens" | "color-
 export type TokenSection = "semantic-color" | "semantic-elevation" | "semantic-shape" | "semantic-space" | "semantic-typography" |
                            "core-border-radius" | "core-color" | "core-dimensions" | "core-font-family" | "core-font-size" | "core-font-weight" | "core-line-height" | "core-motion" | "core-shadow";
 
+
 const guidesPath: Record<GuideSection | TokenSection, string> = {
-    all: "llms-full.md",
+    all: files.llmsFull,
     installation: "getting-started/llms-getting-started.md",
     styles: "styled-system/llms-styled-system.md",
     tokens: "tokens/llms-tokens.md",

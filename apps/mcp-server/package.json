@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "postbuild": "rm -rf dist/docs && cp -r ../docs/dist/ai-docs dist/docs && rm -rf dist/hosts/netlify/docs && cp -r ../docs/dist/ai-docs dist/hosts/netlify/docs",
+    "prebuild": "rm -rf ./src/.docs && cp -r ../docs/dist/ai-docs ./src/.docs",
+    "postbuild": "rm -rf dist/hosts/netlify/docs && cp -r ./src/.docs dist/hosts/netlify/docs",
     "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
     "dev:server:expressJs": "nodemon --watch src --ext ts --exec \"tsx src/hosts/expressJs.ts\"",
     "dev:server:netlify": "IS_NETLIFY_FUNCTION=true pnpm netlify dev",
@@ -53,6 +54,5 @@
     "@swc/helpers": "0.5.15",
     "@swc/jest": "0.2.37",
     "@workleap/swc-configs": "2.2.3"
-
   }
 }
