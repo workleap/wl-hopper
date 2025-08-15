@@ -1,4 +1,4 @@
-import { aiDocsConfig } from "@/ai-docs/config";
+import { aiDocsConfig } from "@/ai-docs/ai-docs.config";
 import { findPossibleFilePaths } from "@/ai-docs/util";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";

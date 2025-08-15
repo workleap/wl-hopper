@@ -1,5 +1,5 @@
 import { dirname, join } from "path";
-import { aiDocsConfig } from "./config";
+import { aiDocsConfig } from "./ai-docs.config";
 import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild } from "./types";
 
 function normalizePath(path: string): string {

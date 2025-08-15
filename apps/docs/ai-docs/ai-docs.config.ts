@@ -38,6 +38,16 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
+        "components/index.md": {
+            build: {
+                template: "/content/ai-templates/components.mdx",
+                merge: [
+                    "/components/full/component-list.md",
+                    "/components/full/*.md"
+                ]
+            },
+        },
+
         // components' concepts
         "components/concepts": {
             build: {
@@ -49,13 +59,11 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        "components/all.md": {
+        "components/concepts/index.md": {
             build: {
-                template: "/content/ai-templates/components.mdx",
+                template: "/content/ai-templates/components-concepts.mdx",
                 merge: [
-                    "/components/full/component-list.md",
                     "/components/concepts/*.md",
-                    "/components/full/*.md"
                 ]
             },
         },
@@ -72,7 +80,7 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        "getting-started/all.md": {
+        "getting-started/index.md": {
             build: {
                 template: "/content/ai-templates/getting-started.mdx",
                 merge: [
@@ -96,7 +104,7 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        "icons/all.md": {
+        "icons/index.md": {
             build: {
                 template: "/content/ai-templates/icons.mdx",
                 merge: [
@@ -110,7 +118,7 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        "icons/all-react-icons.md": {
+        "icons/react-icons/index.md": {
             build: {
                 template: "/content/ai-templates/icons-react.mdx",
                 merge: [
@@ -120,7 +128,7 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        "icons/all-svg-icons.md": {
+        "icons/SVG-icons/index.md": {
             build: {
                 template: "/content/ai-templates/icons-svg.mdx",
                 merge: [
@@ -138,7 +146,7 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        "tokens/all.md": {
+        "tokens/index.md": {
             build: {
                 template: "/content/ai-templates/tokens.mdx",
                 merge: [
@@ -169,7 +177,7 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        "styled-system/all.md": {
+        "styled-system/index.md": {
             build: {
                 template: "/content/ai-templates/styled-system.mdx",
                 merge: [
@@ -182,28 +190,24 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        // llms
-        // "llms.md": {
-        //     build: {
-        //         template: "/content/ai-templates/llms-full.mdx"
-        //     },
-        //     serve: {
-        //         urlPath: "/"
-        //     }
-        // },
+        "llms.md": {
+            build: {
+                template: "/content/ai-templates/llms.mdx",
+            },
+        },
 
         "llms-full.md": {
             build: {
-                template: "/content/ai-templates/all.mdx",
+                template: "/content/ai-templates/llms-full.mdx",
                 merge: [
-                    "getting-started/all.md",
-                    "styled-system/all.md",
-                    "tokens/all.md",
-                    "components/all.md",
-                    "icons/all.md"
+                    "getting-started/index.md",
+                    "styled-system/index.md",
+                    "tokens/index.md",
+                    "components/index.md",
+                    "components/concepts/index.md",
+                    "icons/index.md"
                 ]
             },
-
         }
 
     }

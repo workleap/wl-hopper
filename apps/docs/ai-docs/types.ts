@@ -14,7 +14,7 @@ export interface MdFromMdxBuild {
 
 export interface TemplateBasedBuild {
     template: string;
-    merge: string[];
+    merge?: string[];
 
     /**
      * Whether to skip updating heading levels in the merged file and keep the original ones.
