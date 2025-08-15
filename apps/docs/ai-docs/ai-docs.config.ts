@@ -128,7 +128,7 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        "icons/svg-icons/index.md": {
+        "icons/SVG-icons/index.md": {
             build: {
                 template: "/content/ai-templates/icons-svg.mdx",
                 merge: [
