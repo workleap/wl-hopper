@@ -4,7 +4,7 @@ import clsx from "clsx";
 import "./dosAndDonts.css";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Div, HopperProvider, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
+import { Div, Grid, HopperProvider, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
 import { CheckmarkIcon, DismissIcon } from "@hopper-ui/icons";
 import { Fragment, useContext, type ReactNode } from "react";
 import Card from "../card/Card";
@@ -74,13 +74,22 @@ function DosAndDonts({ items }: DosAndDontsProps) {
     };
 
     return (
-        <HopperProvider colorScheme={theme} className="hd-dosAndDonts">
-            {items.map((item, index) => (
-                <Fragment key={index}>
-                    {renderCard("do", item.do)}
-                    {renderCard("dont", item.dont)}
-                </Fragment>
-            ))}
+        <HopperProvider colorScheme={theme}>
+            <Grid
+                width="100%"
+                gap="inline-md"
+                UNSAFE_templateColumns={{
+                    base: "1fr",
+                    lg: "1fr 1fr"
+                }}
+            >
+                {items.map((item, index) => (
+                    <Fragment key={index}>
+                        {renderCard("do", item.do)}
+                        {renderCard("dont", item.dont)}
+                    </Fragment>
+                ))}
+            </Grid>
         </HopperProvider>
     );
 }
