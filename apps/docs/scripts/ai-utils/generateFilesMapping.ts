@@ -73,7 +73,7 @@ export async function generateAiDocsMapping(outputRoot: string, fileName: string
         setDeep(mapping, relFromAiDocs);
     }
 
-    const content = `// Auto-generated file - do not edit manually\nconst files = ${JSON.stringify(mapping, null, 2)};\n\nexport default files;\n`;
+    const content = `// Auto-generated file - do not edit manually\nconst files = ${JSON.stringify(mapping, null, 2)};\n\nexport { files };\n`;
     const mappingFilePath = join(publicAiDocs, fileName);
     await writeFile(mappingFilePath, content, "utf8");
     console.log(`✅ Generated AI docs mapping at: ${mappingFilePath}`);

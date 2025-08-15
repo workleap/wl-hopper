@@ -3,11 +3,11 @@
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
-[functions]
-  included_files = ["apps/docs/public/**"]
-
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  included_files = ["apps/docs/public/**"]
 
 [functions."mcp-server"]
   node_bundler = "esbuild"
