@@ -81,11 +81,11 @@ export const components = {
         return <PackageInstallation {...props} />;
     },
     Example: (props: ComponentExampleProps) => {
-        const { src } = props;
+        const { src, type = "both" } = props;
 
         return <ComponentExample
             {...props}
-            type="both"
+            type={type}
             code={<ComponentCodeWrapper src={src} />}
             preview={<ComponentPreview src={src} />}
         />;

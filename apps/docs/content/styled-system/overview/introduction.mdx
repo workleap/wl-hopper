@@ -9,6 +9,43 @@ Hopper embraces a **Styled System-inspired** approach to styling components, all
 
 Style props are the most fundamental way to style your components in Hopper. They are basically css styles as props. [Learn more about style props](/styled-system/concepts/styling)
 
+## Do's and Don'ts
+
+These guidelines help ensure consistency, maintainability, and design system compliance when using the styled system.
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use styled system props to apply design tokens directly to components",
+                example: <CodeOnlyExample src="docs/styled-system/dos-and-donts/styled-properties-do" />
+            },
+            dont: {
+                explanation: "Use the standard React 'style' prop",
+                example: <CodeOnlyExample src="docs/styled-system/dos-and-donts/styled-properties-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Use styled system props to apply design tokens directly to components"
+            },
+            dont: {
+                explanation: "Use external CSS files or CSS-in-JS solutions alongside styled system components"
+            }
+        },
+        {
+            do: {
+                explanation: "Use the UNSAFE_ prefix when you use a value that is not a token",
+                example: <CodeOnlyExample src="docs/styled-system/dos-and-donts/unsafe-styled-properties-do" />
+            },
+            dont: {
+                explanation: "Use the standard React style prop",
+                example: <CodeOnlyExample src="docs/styled-system/dos-and-donts/unsafe-styled-properties-dont" />
+            }
+        }
+    ]}
+/>
+
 ## Key Concepts
 
 Follow these links to learn key concepts about the Styled System:

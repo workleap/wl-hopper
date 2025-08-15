@@ -1,31 +1,28 @@
-.hd-dosAndDonts {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-@media (width < 75rem) {
-  .hd-dosAndDonts {
-    grid-template-columns: 1fr;
-  }
+.hd-dosAndDonts__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
 }
 
 .hd-dosAndDonts__example {
-    padding: 0.25rem;
-    border-radius: var(--hd-border-radius-lg);
+    width: 100%;
     margin-bottom: 1rem;
 }
 
-.hd-dosAndDonts__example--do {
-    background-color: var(--hop-status-positive-surface);
+.hd-dosAndDonts__example--do figure,
+.hd-dosAndDonts__example--do .hd-component-preview-wrapper__card {
+    border: 0.25rem solid var(--hop-status-positive-surface);
 }
 
-.hd-dosAndDonts__example--dont {
-    background-color: var(--hop-status-negative-surface);
+.hd-dosAndDonts__example--dont figure,
+.hd-dosAndDonts__example--dont .hd-component-preview-wrapper__card {
+    border: 0.25rem solid var(--hop-status-negative-surface);
 }
 
-.hd-dosAndDonts__example figure {
+.hd-dosAndDonts__example figure,
+.hd-dosAndDonts__example .hd-component-preview-wrapper__card {
+    border-radius: var(--hd-border-radius-lg);
     margin-bottom: 0 !important;
 }
 

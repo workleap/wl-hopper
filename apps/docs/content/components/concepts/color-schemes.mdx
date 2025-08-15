@@ -43,3 +43,18 @@ To help with that, Hopper offers the `useColorSchemeValue` hook which will retur
 You can test this hook by clicking the moon icon in the example below.
 
 <Example src="hopper-provider/docs/color-scheme/useColorSchemeValue" isOpen />
+
+## Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use the setColorScheme from useColorSchemeContext hook to programmatically change the application's color scheme"
+            },
+            dont: {
+                explanation: "Manually set Hopper tokens directly on document.body to control light or dark mode"
+            }
+        }
+    ]}
+/>

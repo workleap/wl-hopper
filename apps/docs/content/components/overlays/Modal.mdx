@@ -8,11 +8,54 @@ links:
 
 <Example src="modal/docs/preview" isOpen />
 
+## Anatomy
+
+### Structure
+
+```tsx
+<Modal>
+    <Image /> /* (Optional) Decorative image in the modal */
+    <Heading /> /** (Mandatory) the title of the modal */
+    <Header /> /** (Optional) Section to the right of the Heading  */
+    <Content /> /** (Mandatory) the content of the modal */
+    <Footer /> /** (Optional) Section under the content, to the left of the buttons
+    <ButtonGroup /> /** (Optional) If there is multiple buttons */
+    <Button /> /** (Optional) If there is only 1 button */
+</Modal>
+```
+
 ### Composed Components
 
 A `Modal` uses the following components:
 
 <ComposedComponents components={["Image", "Heading", "Header", "Content", "Footer", "Button", "ButtonGroup"]}/>
+
+## Do’s and Don’ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Include a Content section in every modal implementation",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-do" />
+            },
+            dont: {
+                explanation: "Create a modal without the required Content section",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Make the Content component a direct child of the Modal",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-do" />
+            },
+            dont: {
+                explanation: "Place the Content component inside additional wrapper elements",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-dont" />
+            }
+        }
+    ]}
+/>
 
 ## Usage
 

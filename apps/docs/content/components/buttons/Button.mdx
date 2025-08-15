@@ -11,6 +11,16 @@ links:
 
 ## Anatomy
 
+### Structure
+
+```tsx
+<Button>
+    <IconList /> /* (Optional) A list of icons in the button */
+    <Icon /> /* (Optional) An icon in the button */
+    <Text /> /** (Optional) Text in the button, required if using an Icon or an IconList */
+</Button>
+```
+
 ### Composed Components
 
 A `Button` uses the following components:
@@ -34,11 +44,11 @@ A `Button` uses the following components:
         {
             do: {
                 explanation: "Use 1 or 2 words, no longer than 4 words, with fewer than 20 characters including spaces.",
-                example: <Example src="buttons/docs/button/dos-and-donts/punctuation-do" hideStackblitzButton />
+                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-do" hideStackblitzButton />
             },
             dont: {
                 explanation: "Don’t use punctuation marks such as periods or exclamation points.",
-                example: <Example src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
+                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
             }
         }
     ]}
