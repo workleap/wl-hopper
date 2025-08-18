@@ -28,8 +28,8 @@ function DosAndDonts({ items }: DosAndDontsProps) {
         <>
             {items.map((item, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-                <Fragment key={index}>
-                    <div>Rule {index + 1}</div>
+                <div key={index}>
+                    <span>Rule: {index + 1}</span>
                     <ul>
                         {item.do && (
                             <li>
@@ -44,7 +44,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
                             </li>
                         )}
                     </ul>
-                </Fragment>
+                </div>
             ))}
         </>
     );
