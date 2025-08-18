@@ -1,6 +1,7 @@
 {
   "name": "@hopper-ui/mcp-server",
   "version": "0.1.0",
+  "private": true,
   "author": "Workleap",
   "description": "MCP server for Hopper UI development",
   "license": "Apache-2.0",
