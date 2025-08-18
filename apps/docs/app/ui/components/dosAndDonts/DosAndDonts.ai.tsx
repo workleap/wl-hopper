@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 interface DosAndDontsItem {
     explanation?: string;
@@ -28,20 +28,23 @@ function DosAndDonts({ items }: DosAndDontsProps) {
         <>
             {items.map((item, index) => (
                 // eslint-disable-next-line react/no-array-index-key
-                <div key={index}>
-                    {item.do && (
-                        <div>
-                            <div>✅ Do:</div>
-                            {doAndDontItem(item.do)}
-                        </div>
-                    )}
-                    {item.dont && (
-                        <div>
-                            <div>🚫 Don&apos;t:</div>
-                            {doAndDontItem(item.dont)}
-                        </div>
-                    )}
-                </div>
+                <Fragment key={index}>
+                    <div>Rule {index + 1}</div>
+                    <ul>
+                        {item.do && (
+                            <li>
+                                <div>✅ Do:</div>
+                                {doAndDontItem(item.do)}
+                            </li>
+                        )}
+                        {item.dont && (
+                            <li>
+                                <div>🚫 Don&apos;t:</div>
+                                {doAndDontItem(item.dont)}
+                            </li>
+                        )}
+                    </ul>
+                </Fragment>
             ))}
         </>
     );
