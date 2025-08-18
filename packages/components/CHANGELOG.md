@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.3
+
+### Patch Changes
+
+- 56804de: Fix Badge subdued text color
+
 ## 1.12.2
 
 ### Patch Changes
