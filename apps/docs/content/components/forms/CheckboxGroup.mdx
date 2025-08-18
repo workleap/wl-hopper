@@ -8,6 +8,45 @@ links:
 
 <Example src="checkbox/docs/checkbox-group/preview" isOpen />
 
+## Best practices
+
+Checkboxes should:
+
+- Work independently from each other. Selecting one checkbox should not change the selection status of another checkbox in the list. The exception is when a checkbox is used to make a bulk selection of multiple items.
+- Be framed positively.
+- Always have a label when used to activate or deactivate a setting.
+- Be listed according to a logical order, whether it’s alphabetically, numerical, time-based, or some other clear system.
+- Link to more information or include a helper text as required to provide more explanation. Don’t rely on tooltips to explain a checkbox.
+
+You can use checkboxes in many situations, such as:
+
+- Forms: that can be in a full-page layout, in a modal or a panel.
+- Filtering and batch action: to filter data either on a page, in a menu, or within a component. Checkboxes can be used in Tables for batch editing purposes.
+- Tiles: to perform a selection over a collection of tiles that are related to one another.
+
+### Alignment
+
+Checkbox labels are positioned to the right of their inputs. If there is a checkbox grouping, they can be laid out vertically. When possible, arrange the checkbox and radio button groups vertically for easier reading.
+
+### Placement
+
+The checkbox component is often used in forms. Forms can be placed on a full page, in a modal or in a side panel. A checkbox can also be used for agreeing to terms and conditions or to filter information.
+Checkboxes in a form should be placed at least 24px below of before the next component. There’s a space of 8px between each checkbox within a grouping.
+
+### Overflow content
+
+We recommend checkbox labels being fewer than three words. If you are tight on space, consider rewording the label. Do not truncate checkbox label text with an ellipsis.
+Long labels may wrap to a second line, and this is preferable than truncation. The text should wrap beneath the checkbox so the control and label are top aligned.
+
+### Checkbox vs. Switch
+
+Checkbox and Switch components are very similar in term of results when used in a form. However, a few details tell them apart.
+
+- Checkbox component can offer multiple options to the user, while the Switch only offers one.
+- Users can select none to any option with checkboxes, while the Switch always have one active selection at all time (either “on” or “off” position)
+- Choices offered in checkbox grouping are independant from each other, while the Switch’s mutually exclusive.
+- The Switch’s selection takes effect immediately, while the checkbox only happens once the user applied the change.
+
 ## Anatomy
 
 ### Composed Components

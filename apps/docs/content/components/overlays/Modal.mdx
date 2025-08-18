@@ -8,6 +8,20 @@ links:
 
 <Example src="modal/docs/preview" isOpen />
 
+## Overview
+
+Modals are a variant of Alert used to present critical information or request user input needed to complete a user’s workflow. Modals interrupt a user’s workflow by design. When active, a user is blocked from the on-page content and cannot return to their previous workflow until the modal task is completed or the user dismisses the modal. While effective when used correctly, modals should be used sparingly to limit disruption to the user.
+Modals are commonly used for short and non-frequent tasks, such as editing or management tasks. If a user needs to repeatable perform a task, consider making the task do-able from the main page.
+
+## Best practices
+
+be thought of as temporary and not be used for information or actions that need to live on in the interface in a persistent way. Don’t use modals to display complex forms or large amounts of information.
+Modals should:
+
+- Require that users take an action.
+- Close when users press the Dismiss button, the Cancel button, the ESC key, or when users click the area outside the modal.
+- Not have more than two buttons (primary and secondary) in the footer. This prevents unclear action hierarchy and crowding on mobile screens. Since modals are for focused tasks, they should have focused actions.
+
 ## Anatomy
 
 ### Structure
@@ -123,6 +137,9 @@ You don't have to use a ModalTrigger component if it doesn't fit your needs. A m
 ### Sizes
 
 A modal can be small, medium, large, extra-large, fullscreen or fullscreenTakeover. The default size is medium.
+
+Choose a size that works best for the amount of modal content you have.
+Modals with short messages should use a small or medium modal to avoid long single lines; for complex components, like a data table the large or extra large modal will be more accommodating.
 
 <Example src="modal/docs/sizes" />
 

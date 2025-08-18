@@ -9,6 +9,34 @@ links:
 
 <Example src="buttons/docs/button/preview" isOpen />
 
+## Overview
+
+Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to interact with pages in a variety of ways. Button labels express what action will occur when the user interacts with it.
+Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
+Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.
+
+## Best practices
+
+### Emphasis
+
+You don’t necessarily need to use the buttons in the order that their labels imply. For example, you don’t always need to use the secondary button as the second button in your layout.
+The most important thing is to establish a visual hierarchy between the buttons in your interface. Keep these best practices in mind.
+
+#### A single, high-emphasis button
+
+As a general rule, a layout should contain a single high-emphasis button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
+
+#### Multiple button emphasis
+
+A high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Keep in mind that you should only groups together calls to action that have a relationship to one another.
+
+### Alignment
+
+Alignment refers to whether the buttons are aligned to the right or the left of a container or layout. Buttons are unique, more so than any other component, in that their alignment depends on where they appear and whether or not they’re contained within another component.
+
+As a general rule, on full-page designs, the primary button is on the right side of the page. When the browser window is large and the user is scrolling to read, it’s best to have the primary button where the users’s attention has been focused all along.
+Whereas in wizards, where a user is progressing through a series of steps or modal, the primary action traditionally sits at the bottom right. Buttons within components are also right-aligned.
+
 ## Anatomy
 
 ### Structure
@@ -57,20 +85,22 @@ A `Button` uses the following components:
 ## Usage
 
 ### Variants
-A button can use different variants.
+
+Each button variant has a particular function and its design signals that function to the user.
+It is therefore very important that the different variants are implemented consistently across products so that they message the correct actions.
 
 <Example src="buttons/docs/button/variant" />
 
-**Primary** - For the principal call to action on the page. Primary buttons should only appear once per screen — not including the application header, modal or side panel.
-
-**Secondary** - For secondary actions on each page. Secondary buttons can be used in conjunction with a primary button or on its own. Paired with a Primary button, the secondary button usually performs the negative action of the set, such as “Cancel.”
-
-**Upsell** - For upsell actions that relate to upgrading an account or a plan. Use the upsell button to distinguish it from an existing primary button. In some cases, a primary button can be used instead when the general context of the page is about upselling.
-
-**Danger** - For actions that could have destructive effects on the user’s data.
-
-**Ghost-[primary|secondary|danger]** - For less prominent, and sometimes independent, actions. Ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action. Ghost buttons can also be used for subtasks on a
-page where a primary button for the main and final action is present.
+<SimpleTable
+    headers={["Variant", "Purpose"]}
+    data={[
+        { "Variant": "Primary",  "Purpose": "For the principal call to action on the page. Primary buttons should only appear once per screen (not including the application header, modal or side panel)." },
+        { "Variant": "Secondary",  "Purpose":  "For secondary actions on each page. Secondary buttons can be used in conjunction with a primary button or on its own. Paired with a Primary button, the secondary button usually performs the negative action of the set, such as “Cancel.”" },
+        { "Variant": "Ghost", "Purpose": "For less prominent, and sometimes independent, actions. Ghost buttons can be used in isolation or paired with a primary button when there are multiple calls to action. Ghost buttons can also be used for sub-tasks on a page where a primary button for the main and final action is present." },
+        { "Variant": "Upsell",  "Purpose":  "For upsell actions that relates to upgrading an account or a plan. Use the upsell button to distinguish from an existing primary button. In some case a primary button can be used in its place when the general context of the page is about upselling." },
+        { "Variant": "Danger",  "Purpose":  "For actions that could have destructive effects on the user’s data." },
+    ]}
+/>
 
 ### Sizes
 A button can vary in size.

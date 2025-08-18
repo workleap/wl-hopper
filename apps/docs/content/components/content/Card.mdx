@@ -8,6 +8,17 @@ links:
 
 <Example src="card/docs/preview" isOpen />
 
+## Guidelines
+
+Cards are used to group related information together. They follow a specific hierarchy to help users scan through content easily.
+Whatever the level of hierarchy, Cards all share a 8px border radius.
+
+Cards should:
+
+- Display information that prioritizes what the user needs to know most first.
+- Use headings that set clear expectations about the card’s purpose.
+- Avoid too many CTA or links and only one primary CTA per card
+
 ## Usage
 
 ### Variants
@@ -67,4 +78,14 @@ To facilitate the migration process, we've provided layout samples as reference 
 #### Fluid
 
 <Example src="card/docs/migration/fluid" />
+
+#### Variants
+
+<SimpleTable
+    headers={["Variant", "Purpose"]}
+    data={[
+        { "Variant": "main",  "Purpose": "Main cards are used to set the first level of content of the page.  They use neutral-surface and border-weak tokens with no elevation. Most content is intended to be set in this card." },
+        { "Variant": "second-level",  "Purpose":  "Second-level cards are used to group elements that are interactive within a main card with an overarching context, like a small form. They use a neutral-surface-weak token." },
+    ]}
+/>
 

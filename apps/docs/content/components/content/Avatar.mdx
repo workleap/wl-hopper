@@ -1,12 +1,17 @@
 ---
 title: Avatar
-description: An avatar is used to represent a user, team or another entity.
+description: Avatars are used to represent a user, a team or another entity in the Workleap ecosystem. They are often paired with text where room is available.
 category: "content"
 links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/avatar/src/Avatar.tsx
 ---
 
 <Example src="avatar/docs/preview" isOpen />
+
+## Content guidelines
+
+Any time you use an image to communicate a concept in Workleap, it’s important to use descriptive alt text.
+Doing this is important for accessibility because it allows screen readers to describe what’s in the image to people who may not be able to see it.
 
 ## Usage
 
@@ -67,6 +72,12 @@ A broken avatar can be displayed.
 ### Sizes
 
 An avatar can be displayed in different sizes.
+
+- Extra small (16px): use in tightly condensed layouts. This size can only accommodate one letter when using the Initials variant.
+- Small (24px): use when the medium size is too big for the layout, or when the avatar has less importance in the context.
+- Medium (32px): use as the default size
+- Large (48px): use when an avatar is a focal point, such on a member page header
+- Extra large (64px): use when an avatar is a focal point, such on a member page header
 
 <Example src="avatar/docs/sizes" />
 
