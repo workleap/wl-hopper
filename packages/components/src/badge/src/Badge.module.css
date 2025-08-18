@@ -32,7 +32,7 @@
     --hop-Badge-secondary-background-color-selected: var(--hop-neutral-surface-selected);
 
     /* Subdued */
-    --hop-Badge-subdued-text-color: var(--hop-neutral-text);
+    --hop-Badge-subdued-text-color: var(--hop-neutral-text-weak);
     --hop-Badge-subdued-background-color: var(--hop-neutral-surface-weak);
     --hop-Badge-subdued-text-color-hovered: var(--hop-neutral-text-weak-hover);
     --hop-Badge-subdued-background-color-hovered: var(--hop-neutral-surface-weak-hover);
