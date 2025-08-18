@@ -15,7 +15,7 @@ Buttons are clickable elements that are used to trigger actions. They communicat
 Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
 Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.
 
-## Best practices
+## Best Practices
 
 ### Emphasis
 
@@ -37,25 +37,7 @@ Alignment refers to whether the buttons are aligned to the right or the left of 
 As a general rule, on full-page designs, the primary button is on the right side of the page. When the browser window is large and the user is scrolling to read, it’s best to have the primary button where the users’s attention has been focused all along.
 Whereas in wizards, where a user is progressing through a series of steps or modal, the primary action traditionally sits at the bottom right. Buttons within components are also right-aligned.
 
-## Anatomy
-
-### Structure
-
-```tsx
-<Button>
-    <IconList /> /* (Optional) A list of icons in the button */
-    <Icon /> /* (Optional) An icon in the button */
-    <Text /> /** (Optional) Text in the button, required if using an Icon or an IconList */
-</Button>
-```
-
-### Composed Components
-
-A `Button` uses the following components:
-
-<ComposedComponents components={["Icon", "IconList", "Text"] }/>
-
-## Do’s and Don’ts
+### Do’s and Don’ts
 
 <DosAndDonts
     items={[
@@ -81,6 +63,24 @@ A `Button` uses the following components:
         }
     ]}
 />
+
+## Anatomy
+
+### Structure
+
+```tsx
+<Button>
+    <IconList /> /* (Optional) A list of icons in the button */
+    <Icon /> /* (Optional) An icon in the button */
+    <Text /> /** (Optional) Text in the button, required if using an Icon or an IconList */
+</Button>
+```
+
+### Composed Components
+
+A `Button` uses the following components:
+
+<ComposedComponents components={["Icon", "IconList", "Text"] }/>
 
 ## Usage
 

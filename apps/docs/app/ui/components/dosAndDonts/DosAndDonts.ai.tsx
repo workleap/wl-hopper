@@ -16,11 +16,11 @@ export interface DosAndDontsProps {
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {
-    const doAndDontItem = (item: DosAndDontsItem) => {
+    const doAndDontItem = ({ example, explanation }: DosAndDontsItem) => {
         return (
             <div>
-                {item.example}
-                {item.explanation}
+                <div>{example}</div>
+                <div>{explanation}</div>
             </div>
         );
     };
