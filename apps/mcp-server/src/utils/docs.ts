@@ -23,7 +23,7 @@ export type TokenCategory = typeof TokenCategories[number];
 
 const guidesPath: Record<GuideSection | TokenCategory, string> = {
     all: files.llmsFull,
-    installation: files.gettingStarted.installation,
+    installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
     "svg-icons": files.icons.svgIcons.index,
