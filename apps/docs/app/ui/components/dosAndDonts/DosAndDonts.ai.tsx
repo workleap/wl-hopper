@@ -29,7 +29,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
             {items.map((item, index) => (
                 // eslint-disable-next-line react/no-array-index-key
                 <div key={index}>
-                    Rule {index + 1}
+                    <span><strong>Rule {index + 1}</strong></span>
                     <ul>
                         {item.do && (
                             <li>
