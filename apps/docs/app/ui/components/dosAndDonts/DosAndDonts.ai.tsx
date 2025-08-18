@@ -18,21 +18,32 @@ export interface DosAndDontsProps {
 function DosAndDonts({ items }: DosAndDontsProps) {
     const doAndDontItem = ({ example, explanation }: DosAndDontsItem) => {
         return (
-            <div>
+            <>
                 <div>{example}</div>
                 <div>{explanation}</div>
-            </div>
+            </>
         );
     };
 
     return (
-        <SimpleTable
-            headers={["✅ Do", "🚫 Don't"]}
-            data={items.map(item => ({
-                "✅ Do": item.do ? doAndDontItem(item.do) : null,
-                "🚫 Don't": item.dont ? doAndDontItem(item.dont) : null
-            }))}
-        />
+        <>
+            {items.map(item => (
+                <div>
+                    {item.do && (
+                        <div>
+                            <div>✅ Do:</div>
+                            {doAndDontItem(item.do)}
+                        </div>
+                    )}
+                    {item.dont && (
+                        <div>
+                            <div>🚫 Don't:</div>
+                            {doAndDontItem(item.dont)}
+                        </div>
+                    )}
+                </div>
+            ))}
+        </>
     );
 }
 
