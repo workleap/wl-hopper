@@ -1,7 +1,6 @@
 "use client";
 
 import type { ReactNode } from "react";
-import SimpleTable from "../simpleTable/SimpleTable.ai";
 
 interface DosAndDontsItem {
     explanation?: string;
@@ -27,8 +26,9 @@ function DosAndDonts({ items }: DosAndDontsProps) {
 
     return (
         <>
-            {items.map(item => (
-                <div>
+            {items.map((item, index) => (
+                // eslint-disable-next-line react/no-array-index-key
+                <div key={index}>
                     {item.do && (
                         <div>
                             <div>✅ Do:</div>
@@ -37,7 +37,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
                     )}
                     {item.dont && (
                         <div>
-                            <div>🚫 Don't:</div>
+                            <div>🚫 Don&apos;t:</div>
                             {doAndDontItem(item.dont)}
                         </div>
                     )}

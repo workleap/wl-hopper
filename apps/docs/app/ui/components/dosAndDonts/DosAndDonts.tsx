@@ -84,6 +84,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
                 }}
             >
                 {items.map((item, index) => (
+                    // eslint-disable-next-line react/no-array-index-key
                     <Fragment key={index}>
                         {renderCard("do", item.do)}
                         {renderCard("dont", item.dont)}
