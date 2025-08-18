@@ -51,6 +51,7 @@ function sortBy<T>(a: T, b: T, accessor: (item: T) => number | undefined) {
 interface GetPageLinksOptions<T> {
     order?: string[];
     pathAccessor?: (item: T) => string;
+    sectionTitles?: Record<string, string>;
 }
 
 function getPageLinks<T extends Data>(items: T[], opt?: GetPageLinksOptions<T>) {
@@ -58,9 +59,10 @@ function getPageLinks<T extends Data>(items: T[], opt?: GetPageLinksOptions<T>) 
         return [];
     }
 
-    const { order, pathAccessor } = {
+    const { order, pathAccessor, sectionTitles } = {
         order: [],
         pathAccessor: item => item._raw.flattenedPath, // Default path accessor
+        sectionTitles: {},
         ...opt
     } satisfies GetPageLinksOptions<T>;
 
@@ -70,7 +72,7 @@ function getPageLinks<T extends Data>(items: T[], opt?: GetPageLinksOptions<T>) 
         if (!acc[sectionId]) {
             acc[sectionId] = {
                 id: sectionId,
-                title: capitalizeWords(sectionId),
+                title: sectionTitles[sectionId] ?? capitalizeWords(sectionId),
                 linkItems: []
             };
         }
