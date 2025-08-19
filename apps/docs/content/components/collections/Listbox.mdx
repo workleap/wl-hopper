@@ -1,6 +1,6 @@
 ---
 title: ListBox
-description: A list box displays actions relevant to the user’s current selection.
+description: A listbox is a list of interactive options that appears when users interact with an element or perform a specific action.
 category: "collections"
 links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/list-box/src/ListBox.tsx
@@ -9,9 +9,31 @@ links:
 
 <Example src="list-box/docs/preview" isOpen />
 
-### Composed Components
+## Overview
 
-#### ListBox
+A listbox is a disclosure component that appear with a set of actions relevant to a specific control, interface area, data element or application view.
+Typically, this context is determined by the user's current selection prior to invoking the menu. Listbox can be opened from components such as Selects or Buttons.
+
+## Best Practices
+
+A listbox can be composed of:
+
+- Options: the individual options inside the Listbox that users can select or deselect.
+- Dividers: placed between items and are useful in complex lists when there's a lot of information for the user to parse.
+- Section headers: used at the beginning of a section when it's necessary to call out the content being displayed. In most cases, the surrounding context should be enough for the user to understand the information in the list.
+- Section footers: used to put important action that should be treated differently from the rest of the options or to put a small piece of information related to the options above.
+
+Listboxes should:
+
+- Be clearly labeled so it's noticeable to the user what type of options will be available.
+- Limit the number of options displayed at once.
+- Indicate a loading state to the user while option data is being populated.
+
+Use Listbox to hide less frequently used or advanced options until users specifically need them. This keeps the interface clean and focused on essential elements.
+
+## Anatomy
+
+### Composed Components
 
 A `ListBox` uses the following components:
 
@@ -120,6 +142,9 @@ A list box can have multiple selected items.
 ### Sizes
 
 List boxes can vary in size.
+
+By default, the listbox maintains a minimum width of 218px to prevent a narrow appearance.
+If the menu labels become longer, the listbox component can expand up to a maximum of 288px when triggered by a button, or to the total width of the Select field.
 
 <Example src="list-box/docs/size" />
 
