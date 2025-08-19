@@ -8,17 +8,25 @@ links:
 
 <Example src="tile/docs/preview" isOpen />
 
-## Best Practices
+## Props
 
-Tiles are always used in groups. Similarly to Radio, they should:
+<PropTable component="Tile" />
 
-- Always have a clear label. You can use a description subtext to provide more details.
-- Be part of a group of minimally two tiles.
-- Be used to have users select one tile at once.
-- Include mutually exclusive options.
-- Be ordered in a logical way that users can understand.
+## Anatomy
 
-Unlike Radio, it is not mandatory for Tiles to have a default option selected.
+### Structure
+
+```tsx
+<Tile>
+    <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+</Tile>
+```
+
+### Composed Components
+
+A `Tile` uses the following components:
+
+<ComposedComponents components={["Text"] }/>
 
 ## Usage
 
@@ -38,9 +46,17 @@ A tile can be selected and disabled.
 
 <Example src="tile/docs/disabledSelected" />
 
-## Props
+## Best Practices
 
-<PropTable component="Tile" />
+Tiles are always used in groups. Similarly to Radio, they should:
+
+- Always have a clear label. You can use a description subtext to provide more details.
+- Be part of a group of minimally two tiles.
+- Be used to have users select one tile at once.
+- Include mutually exclusive options.
+- Be ordered in a logical way that users can understand.
+
+Unlike Radio, it is not mandatory for Tiles to have a default option selected.
 
 ## Migration Notes
 

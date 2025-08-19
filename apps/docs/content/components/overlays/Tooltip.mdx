@@ -6,21 +6,19 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tooltip/src/Tooltip.tsx
 ---
 
-<Example src="tooltip/docs/preview" isOpen />
-
-## Overview
-
 A tooltip is a message box displayed when a user hovers over or focuses on an element of the interface. A tooltip is used to provide more information and should be paired with and interaction element. Tooltips should be used sparingly and contain succinct supplementary information. Do not include interactive elements in tooltips; use the Popover component instead.
 
-## Best Practices
+<Example src="tooltip/docs/preview" isOpen />
 
-Tooltips should:
+## Props
 
-- Provide useful, additional information or clarification.
-- Succinctly describe or expand on the element they point to.
-- Not be used to communicate critical information, including errors in forms or other feedback.
-- Not contain any links or buttons.
-- Be used sparingly. If you're building something that requires a lot of tooltips, work on clarifying the design and the language in the experience.
+### Tooltip
+
+<PropTable component="Tooltip" />
+
+### TooltipTrigger
+
+<PropTable component="TooltipTrigger" />
 
 ## Usage
 
@@ -66,15 +64,15 @@ Tooltips can be used in Collection items.
 
 <Example src="tooltip/docs/groups" />
 
-## Props
+## Best Practices
 
-### Tooltip
+Tooltips should:
 
-<PropTable component="Tooltip" />
-
-### TooltipTrigger
-
-<PropTable component="TooltipTrigger" />
+- Provide useful, additional information or clarification.
+- Succinctly describe or expand on the element they point to.
+- Not be used to communicate critical information, including errors in forms or other feedback.
+- Not contain any links or buttons.
+- Be used sparingly. If you're building something that requires a lot of tooltips, work on clarifying the design and the language in the experience.
 
 ## Migration Notes
 

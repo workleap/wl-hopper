@@ -8,6 +8,27 @@ links:
 
 <Example src="badge/docs/floating-badge/preview" isOpen />
 
+## Props
+
+<PropTable component="FloatingBadge" />
+
+## Anatomy
+
+### Structure
+
+```tsx
+<FloatingBadge>
+    <Component /> /* (Required) The component to which the badge is attached */
+    <Badge /> /* (Required) The badge of the floating badge */
+</FloatingBadge>
+```
+
+### Composed Components
+
+A `FloatingBadge` uses the following components:
+
+<ComposedComponents components={["Badge"]} />
+
 ## Usage
 
 ### Placement
@@ -27,10 +48,6 @@ Allows you to specify whether the badge overlaps a rectangular or circular compo
 The position of the badge can be adjusted using the `offset` prop. This prop accepts an object with `x` and `y` properties that will be used to adjust the badge's position.
 
 <Example src="badge/docs/floating-badge/offset" />
-
-## Props
-
-<PropTable component="FloatingBadge" />
 
 ## Migration Notes
 

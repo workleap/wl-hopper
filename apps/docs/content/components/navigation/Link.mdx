@@ -7,40 +7,26 @@ links:
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
-<Example src="link/docs/preview" isOpen />
-
-## Overview
-
 Links are used as navigational elements and can be used on their own or inline with text.
 They provide a lightweight option for navigation but like other interactive elements, too many links will clutter a page and make it difficult for users to identify their next steps.
 This is especially true for inline links, which should be used sparingly.
 
-## Best Practices
+<Example src="link/docs/preview" isOpen />
 
-Links are used primarily for navigation, and usually appear within or directly following a sentence. Buttons are used primarily for actions.
-Differentiating between the two both in the design and code result in:
+## Props
 
-- A more inclusive experience for assistive technology users.
-- A more cohesive visual experience for sighted users.
-- Products that are easier to maintain at scale.
-
-### Open new tabs only when necessary
-
-Use links whenever possible to avoid disorienting users and causing accessibility problems by opening a new tab. When using an external link, always use the NewTab icon beside the link's label. External links should be used when users are:
-
-- Performing a task or workflow.
-- Navigating to a page outside of the Workleap platform.
-
-Use links when you want users to:
-
-- Navigate to a different page within the application
-- Navigation to an entirely different site
-- Jump to an element on the same page
-- Link to emails or phone numbers
-
-Use a button instead of a link for actions that will change data or manipulate how it is displayed, change a state, or trigger an action. Buttons should never be used for navigational actions.
+<PropTable component="Link" />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<Link>
+    <Icon /> /* (Optional) An icon in the link */
+    <Text /> /* (Optional) The text content of the link */
+</Link>
+```
 
 ### Composed Components
 
@@ -136,9 +122,30 @@ A link's content can be an image element.
 
 <Example src="link/docs/image" />
 
-## Props
+## Best Practices
 
-<PropTable component="Link" />
+Links are used primarily for navigation, and usually appear within or directly following a sentence. Buttons are used primarily for actions.
+Differentiating between the two both in the design and code result in:
+
+- A more inclusive experience for assistive technology users.
+- A more cohesive visual experience for sighted users.
+- Products that are easier to maintain at scale.
+
+### Open new tabs only when necessary
+
+Use links whenever possible to avoid disorienting users and causing accessibility problems by opening a new tab. When using an external link, always use the NewTab icon beside the link's label. External links should be used when users are:
+
+- Performing a task or workflow.
+- Navigating to a page outside of the Workleap platform.
+
+Use links when you want users to:
+
+- Navigate to a different page within the application
+- Navigation to an entirely different site
+- Jump to an element on the same page
+- Link to emails or phone numbers
+
+Use a button instead of a link for actions that will change data or manipulate how it is displayed, change a state, or trigger an action. Buttons should never be used for navigational actions.
 
 ## Migration Notes
 

@@ -7,26 +7,40 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tag/src/TagGroup.tsx
 ---
 
-<Example src="tag/docs/tag-group/preview" />
-
-## Overview
-
 Multiple or single tags can be used to categorize items.
 Use short labels for easy scanning. Use two words only if necessary to describe the status and differentiate it from other tags.
 
-## Best Practices
+<Example src="tag/docs/tag-group/preview" />
 
-Tags should:
+## Props
 
-- Be presented close to or within the input control that allows users to add and remove tags.
-- Use appropriate colour semantics when describing states of an object
-- Use a size that match the object it relates to. Tags should not be bigger or more prominent than the object it relates to.
+### TagGroup
+
+<PropTable component="TagGroup" />
+
+### Tag
+
+<PropTable component="Tag" />
 
 ## Anatomy
 
+### Structure
+
+```tsx
+<TagGroup>
+    <Tag> /* (Required) An item in the TagGroup */
+        <Avatar /> /* (Optional) An avatar in the Tag */
+        <Icon /> /* (Optional) An icon in the Tag */
+        <IconList /> /* (Optional) A list of icons in the Tag */
+        <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+        <Badge /> /* (Optional) A badge in the Tag */
+    </Tag>
+</TagGroup>
+```
+
 ### Composed Components
 
-A `TagGroup` uses the following components:
+A `Tag` within a `TagGroup` uses the following components:
 
 <ComposedComponents components={["Avatar", "Badge", "Icon", "IconList", "Text"]}/>
 
@@ -161,15 +175,13 @@ A tag can be rendered as a react router link when using the `href` prop and sett
 
 <Example src="tag/docs/tag-group/item/reactRouterLinks" />
 
-## Props
+## Best Practices
 
-### TagGroup
+Tags should:
 
-<PropTable component="TagGroup" />
-
-### Tag
-
-<PropTable component="Tag" />
+- Be presented close to or within the input control that allows users to add and remove tags.
+- Use appropriate colour semantics when describing states of an object
+- Use a size that match the object it relates to. Tags should not be bigger or more prominent than the object it relates to.
 
 ## Migration Notes
 

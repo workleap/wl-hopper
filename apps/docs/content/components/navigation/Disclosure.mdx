@@ -7,10 +7,6 @@ links:
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/
 ---
 
-<Example src="disclosure/docs/preview" isOpen />
-
-## Overview
-
 The disclosure component delivers large amounts of content in a small space through progressive disclosure.
 The header section give the user a high level overview of the content allowing the user to decide which sections to read.
 Disclosures can make information processing and discovering more effective.
@@ -18,14 +14,32 @@ However, it does hide content from users and it's important to account for a use
 If a user is likely to read all of the content then don't use a disclosure as it adds the burden of an extra click; use instead a full scrolling page with normal headers.
 Users can open or close a with different interactive element such as a button or the AngleUp and AngleDown icons.
 
-## Best Practices
+<Example src="disclosure/docs/preview" isOpen />
 
-The disclosure component should:
+## Props
 
-- Be used for information that is lower priority or that users don't need to see all the time.
-- Not be used to hide error messages or other critical information that requires an immediate action.
+### Disclosure
+<PropTable component="Disclosure" />
+
+### Disclosure Header
+<PropTable component="DisclosureHeader" />
+
+### Disclosure Panel
+<PropTable component="DisclosurePanel" />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<Disclosure>
+    <DisclosureHeader> /* (Required) A header for the Disclosure */
+        <Text /> /* (Optional) A text description for the DisclosureHeader */
+        <Icon /> /* (Optional) An icon for the DisclosureHeader */
+    </DisclosureHeader>
+    <DisclosurePanel /> /* (Required) A panel for the Disclosure */
+</Disclosure>
+```
 
 ### Composed Components
 
@@ -76,17 +90,6 @@ Using React Aria's [Button](https://react-spectrum.adobe.com/react-aria/Button.h
 
 <Example src="disclosure/docs/customHeader" />
 
-## Props
-
-### Disclosure
-<PropTable component="Disclosure" />
-
-### Disclosure Header
-<PropTable component="DisclosureHeader" />
-
-### Disclosure Panel
-<PropTable component="DisclosurePanel" />
-
 ## Progressive Enhancement
 
 Our Disclosure component uses experimental CSS features like:
@@ -96,6 +99,13 @@ Our Disclosure component uses experimental CSS features like:
 - **transition-behavior: allow-discrete**: Allows transitions for properties like content-visibility.
 
 These features enhance animations where supported. In browsers without support, the component remains fully usable without animations, maintaining progressive enhancement.
+
+## Best Practices
+
+The disclosure component should:
+
+- Be used for information that is lower priority or that users don't need to see all the time.
+- Not be used to hide error messages or other critical information that requires an immediate action.
 
 ## Migration Notes
 

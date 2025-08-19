@@ -7,33 +7,33 @@ links:
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 ---
 
-<Example src="switch/docs/switch/preview" isOpen />
-
-## Overview
-
 Switch is a control that is used to quickly switch between two possible states.
 Switches are only used for these binary actions that occur immediately after the user “flips the switch.”
 They are commonly used for “on/off” switches.
 
-## Best Practices
+<Example src="switch/docs/switch/preview" isOpen />
 
-Switches should:
+## Props
 
-- Have an immediate, visible effect when they are flipped on or off.
-- Only offer an active or inactive state.
-- Always be accompanied by a clear label.
-- Offer choices that are mutually exclusive to one another.
+### Switch
 
-### Checkbox vs. Switch
+<PropTable component="Switch" />
 
-Checkbox and Switch components are very similar in term of results when used in a form. However, a few details tell them apart.
+### SwitchField
 
-- Checkbox component can offer multiple options to the user, while the Switch only offers one.
-- Users can select none to any option with checkboxes, while the Switch always have one active selection at all time (either “on” or “off” position)
-- Choices offered in checkbox grouping are independant from each other, while the Switch's mutually exclusive.
-- The Switch's selection takes effect immediately, while the checkbox only happens once the user applied the change.
+<PropTable component="SwitchField" />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<Switch>
+    <IconList /> /* (Optional) A list of icons in the switch */
+    <Icon /> /* (Optional) An icon in the switch */
+    <Text /> /* (Optional) Text in the switch */
+</Switch>
+```
 
 ### Composed Components
 
@@ -85,15 +85,23 @@ A switch can be rendered with an icon or an icon list.
 
 <Example src="switch/docs/switch/icons" />
 
-## Props
+## Best Practices
 
-### Switch
+Switches should:
 
-<PropTable component="Switch" />
+- Have an immediate, visible effect when they are flipped on or off.
+- Only offer an active or inactive state.
+- Always be accompanied by a clear label.
+- Offer choices that are mutually exclusive to one another.
 
-### SwitchField
+### Checkbox vs. Switch
 
-<PropTable component="SwitchField" />
+Checkbox and Switch components are very similar in term of results when used in a form. However, a few details tell them apart.
+
+- Checkbox component can offer multiple options to the user, while the Switch only offers one.
+- Users can select none to any option with checkboxes, while the Switch always have one active selection at all time (either “on” or “off” position)
+- Choices offered in checkbox grouping are independant from each other, while the Switch's mutually exclusive.
+- The Switch's selection takes effect immediately, while the checkbox only happens once the user applied the change.
 
 ## Migration Notes
 

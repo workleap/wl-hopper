@@ -7,48 +7,35 @@ links:
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/radio/
 ---
 
-<Example src="radio/docs/preview" />
-
-## Overview
-
 Radio buttons are used for mutually exclusive choices, not for multiple choices. Only one radio button can be selection at a time. When a user chooses a new item, the previous choice is automatically deselected.
 They can be used in tiles, data tables, modals, side panels, and in forms on full-page layouts.
 Radio button can be used to change from one setting to another in a Listbox, page or component. It can often act as a filtering mechanism.
 
-## Best Practices
+<Example src="radio/docs/preview" />
 
-Radio buttons should:
+## Props
 
-- Always be used with an associated label component.
-- Be part of a list of radio buttons that:
-  - Include at least two or more choices.
-  - Are used to have users select only one option.
-  - Include mutually exclusive options–this means that each option must be independant from every other option in the list.
-  - List options in a logical order.
-  - Have a default option selected whenever possible.
+### RadioGroup
 
-### Alignment
+<PropTable component="RadioGroup" />
 
-Radio button labels are positioned to the right of their inputs. As a grouping, they have to be laid out vertically.
+### Radio
 
-### Placement
-
-Radio buttons are often used in forms. In a forms, they should be placed at least 24px below or before the next component. A space of 8px between each radio button in a grouping is necessary.
-
-### Overflow content
-
-We recommend radio button labels being fewer than three words. If you are tight on space, consider rewording the label. Do not truncate the radio button label text with an ellipsis.
-Long labels may wrap to a second line, and this is preferable to truncation. Text should wrap beneath the radio button so the control and label are top aligned.
-
-### States
-
-The radio button input allows for two states: unselected and selected. The default view of a radio button is having at least one radio button preselected. Only one radio should be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
-
-### Grouping in a wrapper
-
-When the Radio group is the only control in the container, or if you need to bring an intentional prominence to this control, we suggest to organize the Radio within a wrapper and to use the Medium size which will bring more scannability to the options.
+<PropTable component="Radio" />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<RadioGroup>
+    <Radio> /* (Required) A radio button for the RadioGroup */
+        <IconList /> /* (Optional) A list of icons in the radio */
+        <Icon /> /* (Optional) An icon in the radio */
+        <Text /> /* (Optional) Text in the radio, required if using an Icon or an IconList */
+    </Radio>
+</RadioGroup>
+```
 
 ### Composed Components
 
@@ -136,15 +123,38 @@ Each radio can be customized with an icon or an icon list.
 
 <Example src="radio/docs/radio/icons" />
 
-## Props
+## Best Practices
 
-### RadioGroup
+Radio buttons should:
 
-<PropTable component="RadioGroup" />
+- Always be used with an associated label component.
+- Be part of a list of radio buttons that:
+  - Include at least two or more choices.
+  - Are used to have users select only one option.
+  - Include mutually exclusive options–this means that each option must be independant from every other option in the list.
+  - List options in a logical order.
+  - Have a default option selected whenever possible.
 
-### Radio
+### Alignment
 
-<PropTable component="Radio" />
+Radio button labels are positioned to the right of their inputs. As a grouping, they have to be laid out vertically.
+
+### Placement
+
+Radio buttons are often used in forms. In a forms, they should be placed at least 24px below or before the next component. A space of 8px between each radio button in a grouping is necessary.
+
+### Overflow content
+
+We recommend radio button labels being fewer than three words. If you are tight on space, consider rewording the label. Do not truncate the radio button label text with an ellipsis.
+Long labels may wrap to a second line, and this is preferable to truncation. Text should wrap beneath the radio button so the control and label are top aligned.
+
+### States
+
+The radio button input allows for two states: unselected and selected. The default view of a radio button is having at least one radio button preselected. Only one radio should be selected at a time. When a user chooses a new item, the previous choice is automatically deselected.
+
+### Grouping in a wrapper
+
+When the Radio group is the only control in the container, or if you need to bring an intentional prominence to this control, we suggest to organize the Radio within a wrapper and to use the Medium size which will bring more scannability to the options.
 
 ## Migration Notes
 

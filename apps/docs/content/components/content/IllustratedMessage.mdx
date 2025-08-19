@@ -8,7 +8,25 @@ links:
 
 <Example src="illustrated-message/docs/default" isOpen />
 
+## Props
+
+<PropTable component="IllustratedMessage" />
+
 ## Anatomy
+
+### Structure
+
+```tsx
+<IllustratedMessage>
+    <Image /> /* (Required) The image of the illustrated message */
+    <Heading /> /* (Optional) The heading of the illustrated message */
+    <Content /> /* (Optional) The content of the illustrated message */
+    <ButtonGroup> /* (Optional) The button group of the illustrated message */
+        <Button />
+    </ButtonGroup>
+    <Button /> /* (Optional) The button of the illustrated message */
+</IllustratedMessage>
+```
 
 ### Composed Components
 
@@ -46,14 +64,6 @@ An illustrated message can handle svgs.
 
 <Example src="illustrated-message/docs/svg" />
 
-## Props
-
-<PropTable component="IllustratedMessage" />
-
-## Migration Notes
-
-<MigrateGuide src="illustrated-message/docs/migration-notes" />
-
 ### Layout Samples
 
 To facilitate the migration process, we've provided layout samples as reference guides. These examples demonstrate how to recreate features previously supported in [Orbiter](https://wl-orbiter-website.netlify.app/?path=/docs/illustrated-message--docs).
@@ -61,3 +71,7 @@ To facilitate the migration process, we've provided layout samples as reference 
 #### Horizontal
 
 <Example src="illustrated-message/docs/migration/horizontal" />
+
+## Migration Notes
+
+<MigrateGuide src="illustrated-message/docs/migration-notes" />

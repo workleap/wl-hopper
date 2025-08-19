@@ -9,6 +9,10 @@ links:
 
 <Example src="buttons/docs/link-button/preview" isOpen />
 
+## Props
+
+<PropTable component="LinkButton" />
+
 ## Anatomy
 
 ### Concepts
@@ -16,6 +20,16 @@ links:
 *LinkButton* makes use of the following concepts:
 
 - [Client Side Routing](./client-side-routing)
+
+### Structure
+
+```tsx
+<LinkButton>
+    <IconList /> /* (Optional) A list of icons in the LinkButton */
+    <Icon /> /* (Optional) An icon in the LinkButton */
+    <Text /> /* (Optional) Text in the LinkButton, required if using an Icon or an IconList */
+</LinkButton>
+```
 
 ### Composed Components
 
@@ -87,10 +101,6 @@ A link button can contain icons.
 Nonstandard end icons can be provided to handle special cases. However, think twice before adding end icons, start icons should be your go-to.
 
 <Example src="buttons/docs/link-button/endIcon" />
-
-## Props
-
-<PropTable component="LinkButton" />
 
 ## Migration Notes
 

@@ -6,34 +6,14 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/badge/src/Badge.tsx
 ---
 
-<Example src="badge/docs/badge/preview" isOpen />
-
-## Overview
-
 A badge will communicate a small piece of information that users may be interested in, but would not impede them from achieving their task.
 They can also display the amount of item for an object.
 
-## Best Practices
+<Example src="badge/docs/badge/preview" isOpen />
 
-Badges benefit users by:
+## Props
 
-- Being clearly labeled with short, scannable text
-- Being positioned to clearly identify the object they're informing or labelling.
-
-### Qualificative Badges
-
-Badges can be used to qualify an object with a word or two. Most likely, badges will be used in specific situations, but are not limited to:
-
-- New: to announce a new functionality or feature in Workleap. This badge should have a defined lifespan where at the end it is removed.
-- Beta: to highlight that a functionality or feature is being released early to test and gather feedback. This badge should be accompanied by a Popover to provide more information to the user. This badge should have a defined lifespan where at the end it is removed.
-
-### Quantitative Badges
-
-Badges can also be used to count the number of item for an object. To ensure the best scannability quantitative badges should:
-
-- Not be displayed if the count is at zero.
-- Display “+99” if the count goes beyond 99 items.
-- Use the same interaction state of the related object.
+<PropTable component="Badge" />
 
 ## Usage
 
@@ -62,9 +42,27 @@ A badge can have any text content.
 
 <Example src="badge/docs/badge/text" />
 
-## Props
+## Best Practices
 
-<PropTable component="Badge" />
+Badges benefit users by:
+
+- Being clearly labeled with short, scannable text
+- Being positioned to clearly identify the object they're informing or labelling.
+
+### Qualificative Badges
+
+Badges can be used to qualify an object with a word or two. Most likely, badges will be used in specific situations, but are not limited to:
+
+- New: to announce a new functionality or feature in Workleap. This badge should have a defined lifespan where at the end it is removed.
+- Beta: to highlight that a functionality or feature is being released early to test and gather feedback. This badge should be accompanied by a Popover to provide more information to the user. This badge should have a defined lifespan where at the end it is removed.
+
+### Quantitative Badges
+
+Badges can also be used to count the number of item for an object. To ensure the best scannability quantitative badges should:
+
+- Not be displayed if the count is at zero.
+- Display “+99” if the count goes beyond 99 items.
+- Use the same interaction state of the related object.
 
 ## Migration Notes
 

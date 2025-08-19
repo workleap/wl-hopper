@@ -6,48 +6,24 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/modal/src/Modal.tsx
 ---
 
-<Example src="modal/docs/preview" isOpen />
-
-## Overview
-
 Modals are a variant of Alert used to present critical information or request user input needed to complete a user's workflow. Modals interrupt a user's workflow by design. When active, a user is blocked from the on-page content and cannot return to their previous workflow until the modal task is completed or the user dismisses the modal. While effective when used correctly, modals should be used sparingly to limit disruption to the user.
 Modals are commonly used for short and non-frequent tasks, such as editing or management tasks. If a user needs to repeatable perform a task, consider making the task do-able from the main page.
 
-## Best Practices
+<Example src="modal/docs/preview" isOpen />
 
-be thought of as temporary and not be used for information or actions that need to live on in the interface in a persistent way. Don't use modals to display complex forms or large amounts of information.
-Modals should:
+## Props
 
-- Require that users take an action.
-- Close when users press the Dismiss button, the Cancel button, the ESC key, or when users click the area outside the modal.
-- Not have more than two buttons (primary and secondary) in the footer. This prevents unclear action hierarchy and crowding on mobile screens. Since modals are for focused tasks, they should have focused actions.
+### Modal
 
-### Do's and Don'ts
+<PropTable component="Modal" />
 
-<DosAndDonts
-    items={[
-        {
-            do: {
-                explanation: "Include a Content section in every modal implementation",
-                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-do" />
-            },
-            dont: {
-                explanation: "Create a modal without the required Content section",
-                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-dont" />
-            }
-        },
-        {
-            do: {
-                explanation: "Make the Content component a direct child of the Modal",
-                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-do" />
-            },
-            dont: {
-                explanation: "Place the Content component inside additional wrapper elements",
-                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-dont" />
-            }
-        }
-    ]}
-/>
+### ModalTrigger
+
+<PropTable component="ModalTrigger" />
+
+### CustomModal
+
+<PropTable component="CustomModal" />
 
 ## Anatomy
 
@@ -56,9 +32,9 @@ Modals should:
 ```tsx
 <Modal>
     <Image /> /* (Optional) Decorative image in the modal */
-    <Heading /> /** (Mandatory) the title of the modal */
+    <Heading /> /** (Required) the title of the modal */
     <Header /> /** (Optional) Section to the right of the Heading  */
-    <Content /> /** (Mandatory) the content of the modal */
+    <Content /> /** (Required) the content of the modal */
     <Footer /> /** (Optional) Section under the content, to the left of the buttons
     <ButtonGroup /> /** (Optional) If there is multiple buttons */
     <Button /> /** (Optional) If there is only 1 button */
@@ -155,19 +131,41 @@ A CustomModal is a Modal with a custom layout. A CustomModal must contain a `<He
 
 <Example src="modal/docs/custom" />
 
-## Props
+## Best Practices
 
-### Modal
+be thought of as temporary and not be used for information or actions that need to live on in the interface in a persistent way. Don't use modals to display complex forms or large amounts of information.
+Modals should:
 
-<PropTable component="Modal" />
+- Require that users take an action.
+- Close when users press the Dismiss button, the Cancel button, the ESC key, or when users click the area outside the modal.
+- Not have more than two buttons (primary and secondary) in the footer. This prevents unclear action hierarchy and crowding on mobile screens. Since modals are for focused tasks, they should have focused actions.
 
-### ModalTrigger
+### Do's and Don'ts
 
-<PropTable component="ModalTrigger" />
-
-### CustomModal
-
-<PropTable component="CustomModal" />
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Include a Content section in every modal implementation",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-do" />
+            },
+            dont: {
+                explanation: "Create a modal without the required Content section",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Make the Content component a direct child of the Modal",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-do" />
+            },
+            dont: {
+                explanation: "Place the Content component inside additional wrapper elements",
+                example: <CodeOnlyExample src="modal/docs/dos-and-donts/content-direct-dont" />
+            }
+        }
+    ]}
+/>
 
 ## Migration Notes
 

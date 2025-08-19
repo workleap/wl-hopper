@@ -9,6 +9,59 @@ links:
 
 <Example src="menu/docs/Preview" isOpen />
 
+## Props
+
+### MenuTrigger
+
+<PropTable component="MenuTrigger" />
+
+### Menu
+
+<PropTable component="Menu" />
+
+### MenuItem
+
+<PropTable component="MenuItem" />
+
+### MenuSection
+
+<PropTable component="MenuSection" />
+
+### Divider
+
+<PropTable component="Divider" />
+
+### SubmenuTrigger
+
+<PropTable component="SubmenuTrigger" />
+
+## Anatomy
+
+### Structure
+
+```tsx
+<Menu>
+    <MenuItem> /* (Optional) An item in the Menu */
+        <Avatar /> /* (Optional) An avatar in the MenuItem */
+        <Icon /> /* (Optional) An icon in the MenuItem */
+        <IconList /> /* (Optional) A list of icons in the MenuItem */
+        <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+        <Text slot="description" /> /* (Optional) A description in the MenuItem */
+    </MenuItem>
+    <MenuSection> /* (Optional) A section in the Menu */
+        <Header /> /* (Optional) A header in the MenuSection */
+        <MenuItem /> /* (Optional) An item in the MenuSection */
+    </MenuSection>
+    <Divider /> /* (Optional) A divider in the Menu */
+</Menu>
+```
+
+### Composed Components
+
+A `ListBox` uses the following components:
+
+<ComposedComponents components={["Header", "Divider", "Avatar", "Text", "Icon", "IconList"]}/>
+
 ## Usage
 
 ### Empty state
@@ -132,32 +185,6 @@ A ModalTrigger component won't work with a menu item. Still, it can be done with
 A menu can have submenus, which are menus that open when hovering or clicking on a menu item.
 
 <Example src="menu/docs/Submenu" />
-
-## Props
-
-### MenuTrigger
-
-<PropTable component="MenuTrigger" />
-
-### Menu
-
-<PropTable component="Menu" />
-
-### MenuItem
-
-<PropTable component="MenuItem" />
-
-### MenuSection
-
-<PropTable component="MenuSection" />
-
-### Divider
-
-<PropTable component="Divider" />
-
-### SubmenuTrigger
-
-<PropTable component="SubmenuTrigger" />
 
 ## Migration Notes
 
