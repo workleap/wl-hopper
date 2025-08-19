@@ -1,6 +1,6 @@
 ---
 title: Modal
-description: Modals focus the user’s attention exclusively on one task or piece of information via a window that sits on top of the page content.
+description: Modals focus the user's attention exclusively on one task or piece of information via a window that sits on top of the page content.
 category: "overlays"
 links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/modal/src/Modal.tsx
@@ -10,19 +10,19 @@ links:
 
 ## Overview
 
-Modals are a variant of Alert used to present critical information or request user input needed to complete a user’s workflow. Modals interrupt a user’s workflow by design. When active, a user is blocked from the on-page content and cannot return to their previous workflow until the modal task is completed or the user dismisses the modal. While effective when used correctly, modals should be used sparingly to limit disruption to the user.
+Modals are a variant of Alert used to present critical information or request user input needed to complete a user's workflow. Modals interrupt a user's workflow by design. When active, a user is blocked from the on-page content and cannot return to their previous workflow until the modal task is completed or the user dismisses the modal. While effective when used correctly, modals should be used sparingly to limit disruption to the user.
 Modals are commonly used for short and non-frequent tasks, such as editing or management tasks. If a user needs to repeatable perform a task, consider making the task do-able from the main page.
 
 ## Best Practices
 
-be thought of as temporary and not be used for information or actions that need to live on in the interface in a persistent way. Don’t use modals to display complex forms or large amounts of information.
+be thought of as temporary and not be used for information or actions that need to live on in the interface in a persistent way. Don't use modals to display complex forms or large amounts of information.
 Modals should:
 
 - Require that users take an action.
 - Close when users press the Dismiss button, the Cancel button, the ESC key, or when users click the area outside the modal.
 - Not have more than two buttons (primary and secondary) in the footer. This prevents unclear action hierarchy and crowding on mobile screens. Since modals are for focused tasks, they should have focused actions.
 
-### Do’s and Don’ts
+### Do's and Don'ts
 
 <DosAndDonts
     items={[
