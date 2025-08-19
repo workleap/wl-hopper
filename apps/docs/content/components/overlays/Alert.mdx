@@ -6,34 +6,20 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/alert/src/Alert.tsx
 ---
 
-<Example src="alert/docs/preview" isOpen />
-
-## Overview
-
 Alerts work best when used for short tasks or to warn the user to task relevant information. Alerts are useful in many scenarios; they are less disorientating than navigating a user to a new page for simple tasks or knowledge gathering. However, Alerts are disruptive and can be distracting to the user. Use them sparingly.
 
-## Best Practices
-
-### Use alerts sparingly
-
-Don't overuse alerts. They are disruptive and can easily annoy the user if used incorrectly or too frequently. When alerts are used for non-workflow related tasks, it is likely a user will start ignoring or dismissing the alert without fully understanding the content. This can cause users to make hurried or impulsive choices when dealing with more critical alerts.
-
-### Alerts should be user initiated
-
-A user action, such as clicking a button, should trigger the alert to open. Don't interrupt the user by opening an alert when they aren't expecting it. Avoid system generated pop-ups that distract the user while working. Triggers can either be a direct or indirect consequence of a user's action. An example of an indirect action is a user closing a tab with unsaved content that then causes an alert to ask if they want to save their changes before closing. If the system is autogenerating an alert that is not a consequence of a user's action, but a response to processes happening in the background, then a toast notification should be used instead.
-
-### Keep alert tasks simple and focused
-
-Alert tasks should be direct and easy to complete. Avoid feature creep in alerts where a once simple alert has become bloated with interactions. When deciding to use an alert consider how the task could expand in the future and if an alert will be able to effectively incorporate additions.
-
-### Dismissing an alert
-
-- Task completion: clicking the primary action will complete the task and automatically close the alert
-- Cancel button: clicking the Cancel button will close the modal and return the user to its previous context. Cancel undoes all applied changes.
-- X: Clicking the Dismiss button at the upper right will close the alert without submitting any data and return the user to its previous context.
-- Esc: Press ESC on the keyboard.
+<Example src="alert/docs/preview" isOpen />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<Alert>
+    <Heading /> /* (Required) The heading of the Alert */
+    <Content /> /* (Required) The content of the Alert */
+</Alert>
+```
 
 ### Composed Components
 
@@ -107,6 +93,27 @@ A Alert can be small or medium. The default size is medium.
 A Alert can have different size in mobile and desktop view.
 
 <Example src="alert/docs/responsive-sizes" />
+
+## Best Practices
+
+### Use alerts sparingly
+
+Don't overuse alerts. They are disruptive and can easily annoy the user if used incorrectly or too frequently. When alerts are used for non-workflow related tasks, it is likely a user will start ignoring or dismissing the alert without fully understanding the content. This can cause users to make hurried or impulsive choices when dealing with more critical alerts.
+
+### Alerts should be user initiated
+
+A user action, such as clicking a button, should trigger the alert to open. Don't interrupt the user by opening an alert when they aren't expecting it. Avoid system generated pop-ups that distract the user while working. Triggers can either be a direct or indirect consequence of a user's action. An example of an indirect action is a user closing a tab with unsaved content that then causes an alert to ask if they want to save their changes before closing. If the system is autogenerating an alert that is not a consequence of a user's action, but a response to processes happening in the background, then a toast notification should be used instead.
+
+### Keep alert tasks simple and focused
+
+Alert tasks should be direct and easy to complete. Avoid feature creep in alerts where a once simple alert has become bloated with interactions. When deciding to use an alert consider how the task could expand in the future and if an alert will be able to effectively incorporate additions.
+
+### Dismissing an alert
+
+- Task completion: clicking the primary action will complete the task and automatically close the alert
+- Cancel button: clicking the Cancel button will close the modal and return the user to its previous context. Cancel undoes all applied changes.
+- X: Clicking the Dismiss button at the upper right will close the alert without submitting any data and return the user to its previous context.
+- Esc: Press ESC on the keyboard.
 
 ## Props
 

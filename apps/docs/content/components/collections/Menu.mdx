@@ -9,6 +9,33 @@ links:
 
 <Example src="menu/docs/Preview" isOpen />
 
+## Anatomy
+
+### Structure
+
+```tsx
+<Menu>
+    <MenuItem> /* (Optional) An item in the Menu */
+        <Avatar /> /* (Optional) An avatar in the MenuItem */
+        <Icon /> /* (Optional) An icon in the MenuItem */
+        <IconList /> /* (Optional) A list of icons in the MenuItem */
+        <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+        <Text slot="description" /> /* (Optional) A description in the MenuItem */
+    </MenuItem>
+    <MenuSection> /* (Optional) A section in the Menu */
+        <Header /> /* (Optional) A header in the MenuSection */
+        <MenuItem /> /* (Optional) An item in the MenuSection */
+    </MenuSection>
+    <Divider /> /* (Optional) A divider in the Menu */
+</Menu>
+```
+
+### Composed Components
+
+A `ListBox` uses the following components:
+
+<ComposedComponents components={["Header", "Divider", "Avatar", "Text", "Icon", "IconList"]}/>
+
 ## Usage
 
 ### Empty state
