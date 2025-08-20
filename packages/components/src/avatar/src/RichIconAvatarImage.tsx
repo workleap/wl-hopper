@@ -99,7 +99,7 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
     });
 
     if (!props["aria-label"] && !props["aria-labelledby"]) {
-        console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
+        console.warn("An aria-label or aria-labelledby prop is required on RichIconAvatarImage for accessibility.");
     }
 
     const avatarImage = (extraProps: ComponentProps<"div">) => (
