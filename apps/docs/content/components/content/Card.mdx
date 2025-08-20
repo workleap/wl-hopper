@@ -8,22 +8,21 @@ links:
 
 <Example src="card/docs/preview" isOpen />
 
-## Best Practices
-
-Cards are used to group related information together. They follow a specific hierarchy to help users scan through content easily.
-Whatever the level of hierarchy, Cards all share a 8px border radius.
-
-Cards should:
-
-- Display information that prioritizes what the user needs to know most first.
-- Use headings that set clear expectations about the card's purpose.
-- Avoid too many CTA or links and only one primary CTA per card
-
 ## Usage
 
 ### Variants
 
 A card can use different variants. Second-level cards need to be used within a first-level card.
+
+<SimpleTable
+    headers={["Variant", "Purpose"]}
+    data={[
+        { "Variant": "main",  "Purpose": "Main cards are used to set the first level of content of the page.  They use neutral-surface and border-weak tokens with no elevation. Most content is intended to be set in this card." },
+        { "Variant": "second-level",  "Purpose":  "Second-level cards are used to group elements that are interactive within a main card with an overarching context, like a small form. They use a neutral-surface-weak token." },
+    ]}
+/>
+
+<br />
 
 <Example src="card/docs/variant" />
 
@@ -32,14 +31,6 @@ A card can use different variants. Second-level cards need to be used within a f
 A card can use a header, content, and footer section.
 
 <Example src="card/docs/sections" />
-
-## Props
-
-<PropTable component="Card" />
-
-## Migration Notes
-
-<MigrateGuide src="card/docs/migration-notes" />
 
 ### Layout Samples
 
@@ -69,23 +60,29 @@ To facilitate the migration process, we've provided layout samples as reference 
 
 <Example src="card/docs/migration/buttongroup" />
 
-
 #### Orientation
 
 <Example src="card/docs/migration/orientation" />
-
 
 #### Fluid
 
 <Example src="card/docs/migration/fluid" />
 
-#### Variants
+## Best Practices
 
-<SimpleTable
-    headers={["Variant", "Purpose"]}
-    data={[
-        { "Variant": "main",  "Purpose": "Main cards are used to set the first level of content of the page.  They use neutral-surface and border-weak tokens with no elevation. Most content is intended to be set in this card." },
-        { "Variant": "second-level",  "Purpose":  "Second-level cards are used to group elements that are interactive within a main card with an overarching context, like a small form. They use a neutral-surface-weak token." },
-    ]}
-/>
+Cards are used to group related information together. They follow a specific hierarchy to help users scan through content easily.
+Whatever the level of hierarchy, Cards all share a 8px border radius.
 
+Cards should:
+
+- Display information that prioritizes what the user needs to know most first.
+- Use headings that set clear expectations about the card's purpose.
+- Avoid too many CTA or links and only one primary CTA per card
+
+## Props
+
+<PropTable component="Card" />
+
+## Migration Notes
+
+<MigrateGuide src="card/docs/migration-notes" />

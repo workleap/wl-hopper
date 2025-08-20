@@ -6,27 +6,29 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/overlays/popover/src/Popover.tsx
 ---
 
-<Example src="overlays/popover/docs/preview" isOpen />
-
-## Overview
-
 A popover is a layer that appears above all other content on the page. Only one popover can appear at a time and can contain varying text and interactive elements.
 
-## Best Practices
-
-Popovers should:
-
-- Always be positioned next to the button or other interface element that triggers them. A space of 4px between the element and the popover is required.
-- Be used for secondary or less important information and actions since they're hidden until users hit the trigger.
-- Contain navigational or actions that share a relationship to each other.
+<Example src="overlays/popover/docs/preview" isOpen />
 
 ## Anatomy
+
+### Structure
+
+```tsx
+<Popover>
+    <Heading /> /* (Optional) Title of the popover */
+    <Content /> /* (Required) The content of the popover */
+    <Footer /> /* (Optional) Footer content of the popover */
+    <Button /> /* (Optional) Action button for the popover */
+    <ButtonGroup /> /* (Optional) Group of action buttons for the popover */
+</Popover>
+```
 
 ### Composed Components
 
 A `Popover` uses the following components:
 
-<ComposedComponents components={["Button", "ButtonGroup", "Content", "Footer", "Heading", "Link"]}/>
+<ComposedComponents components={["Button", "ButtonGroup", "Content", "Footer", "Heading"]}/>
 
 ## Usage
 
@@ -75,6 +77,14 @@ A Popover&apos;s open state can be handled in controlled mode.
 ### Styled React Aria Component Popover
 
 If you want to create a custom component using a Popover, and you just need the Popover styles, you can use the `PopoverBase` component instead.
+
+## Best Practices
+
+Popovers should:
+
+- Always be positioned next to the button or other interface element that triggers them. A space of 4px between the element and the popover is required.
+- Be used for secondary or less important information and actions since they're hidden until users hit the trigger.
+- Contain navigational or actions that share a relationship to each other.
 
 ## Props
 

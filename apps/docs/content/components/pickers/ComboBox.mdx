@@ -10,19 +10,29 @@ links:
 
 ## Anatomy
 
-#### Header
+### Structure
 
-The Header component represents a `header` within a Hopper container.
-
-#### Section
-
-The Section component represents a `section` within a Hopper container.
+```tsx
+<ComboBox>
+    <ComboBoxItem> /* (Required) The items of the combo box */
+        <Avatar /> /* (Optional) An avatar for the item */
+        <Text /> /* (Optional) The text content of the item, required if using another element */
+        <Text slot="description" /> /* (Optional) A description for the item */
+        <Badge /> /* (Optional) A badge for the item */
+        <Icon /> /* (Optional) An icon for the item */
+    </ComboBoxItem>
+    <ComboBoxSection> /* (Optional) A section of combo box items */
+        <Header /> /* (Optional) A header for the section */
+        <ComboBoxItem /> /* (Required) An item in the ComboBoxSection */
+    </ComboBoxSection>
+</ComboBox>
+```
 
 ### Composed Components
 
 A `ComboBox` uses the following components:
 
-<ComposedComponents components={["Avatar", "Badge", "Header", "Icon", "Text"]}/>
+<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]}/>
 
 ## Usage
 

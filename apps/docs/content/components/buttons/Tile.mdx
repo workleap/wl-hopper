@@ -8,6 +8,69 @@ links:
 
 <Example src="tile/docs/preview" isOpen />
 
+## Anatomy
+
+### Structure
+
+```tsx
+<Tile>
+    <Heading /> /* (Optional) The heading of the Tile */
+    <Content /> /* (Optional) The content of the Tile, but required if any other elements are present */
+    <Image /> /* (Optional) The image of the Tile */
+    <Illustration /> /* (Optional) The illustration of the Tile */
+</Tile>
+```
+
+### Composed Components
+
+A `Tile` uses the following components:
+
+<ComposedComponents components={["Heading", "Content", "Image", "Illustration"] }/>
+
+## Usage & Layout Samples
+
+To facilitate the migration process, we've provided layout samples as reference guides. These examples demonstrate how to recreate features previously supported in [Orbiter](https://wl-orbiter-website.netlify.app/?path=/docs/tile--docs).
+
+### Basic
+
+A tile consists of minimally some content.
+
+<Example src="tile/docs/migration/basic" />
+
+### Image
+
+A tile can have an image.
+
+<Example src="tile/docs/migration/image" />
+
+Or an illustration with a background color.
+
+<Example src="tile/docs/migration/illustration" />
+
+### Selected
+
+A tile can be selected.
+
+<Example src="tile/docs/migration/selected" />
+
+### Disabled
+
+A tile can be disabled.
+
+<Example src="tile/docs/migration/disabled" />
+
+### Orientation
+
+A tile can render horizontally.
+
+<Example src="tile/docs/migration/orientation" />
+
+### Controlled
+
+A tile can handle `isSelected` state in controlled mode.
+
+<Example src="tile/docs/migration/controlled" />
+
 ## Best Practices
 
 Tiles are always used in groups. Similarly to Radio, they should:
@@ -19,24 +82,6 @@ Tiles are always used in groups. Similarly to Radio, they should:
 - Be ordered in a logical way that users can understand.
 
 Unlike Radio, it is not mandatory for Tiles to have a default option selected.
-
-## Usage
-
-### Selected
-A tile can be initially selected, by using `defaultSelectedKey` or `isSelected`.
-
-<Example src="tile/docs/selected" />
-
-### Disabled
-A tile can be disabled.
-
-<Example src="tile/docs/disabled" />
-
-### Selected and Disabled
-
-A tile can be selected and disabled.
-
-<Example src="tile/docs/disabledSelected" />
 
 ## Props
 

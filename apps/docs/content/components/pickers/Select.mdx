@@ -6,39 +6,36 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/select/src/Select.tsx
 ---
 
-<Example src="select/docs/preview" isOpen />
-
-## Overview
-
 The select component collects user-provided information from a list of options. Selects are usually used in forms where a user submits data and chooses one option from a list.
 Use the select component inside a form where users are selecting from a list of option and submitting data.
 
-## Best Practices
-
-The select component should:
-
-- Be used for selecting between four or more pre-defined options.
-- Have a default option selected whenever possible
-
-### Overflow content
-
-Avoid having multiple lines of text in a select. If the text is too long for one line, add an ellipsis for overflow content, and accompany with a browser-based tooltip to show the full string of text.
+<Example src="select/docs/preview" isOpen />
 
 ## Anatomy
 
-#### Header
+### Structure
 
-The Header component represents a `header` within a Hopper container.
-
-#### Section
-
-The Section component represents a `section` within a Hopper container.
+```tsx
+<Select>
+    <SelectItem> /* (Required) The items of the select */
+        <Avatar /> /* (Optional) An avatar for the item */
+        <Text /> /* (Optional) The text content of the item, required if using another element */
+        <Text slot="description" /> /* (Optional) A description for the item */
+        <Badge /> /* (Optional) A badge for the item */
+        <Icon /> /* (Optional) An icon for the item */
+    </SelectItem>
+    <SelectSection> /* (Optional) A section of select items */
+        <Header /> /* (Optional) A header for the section */
+        <SelectItem /> /* (Required) An item in the SelectSection */
+    </SelectSection>
+</Select>
+```
 
 ### Composed Components
 
 A `Select` uses the following components:
 
-<ComposedComponents components={["Avatar", "Badge", "Header", "Icon", "Text"]}/>
+<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]}/>
 
 ## Usage
 
@@ -183,6 +180,17 @@ A select can have a different selection indicator.
 A select item can have a description.
 
 <Example src="select/docs/select-dropdown/description" />
+
+## Best Practices
+
+The select component should:
+
+- Be used for selecting between four or more pre-defined options.
+- Have a default option selected whenever possible
+
+### Overflow content
+
+Avoid having multiple lines of text in a select. If the text is too long for one line, add an ellipsis for overflow content, and accompany with a browser-based tooltip to show the full string of text.
 
 ## Props
 

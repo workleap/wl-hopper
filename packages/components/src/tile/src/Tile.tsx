@@ -1,9 +1,13 @@
 import { CheckmarkIcon } from "@hopper-ui/icons";
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { Div, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import { forwardRef, type ForwardedRef } from "react";
+import type { Orientation } from "react-aria";
 import { composeRenderProps, Provider, ToggleButton, useContextProps, type Key, type ToggleButtonProps } from "react-aria-components";
 
-import { Text, TextContext } from "../../typography/index.ts";
+import { IllustrationContext } from "../../illustration/index.ts";
+import { ImageContext } from "../../image/index.ts";
+import { Content, ContentContext } from "../../layout/index.ts";
+import { HeadingContext } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { TileContext } from "./TileContext.ts";
@@ -20,6 +24,11 @@ export interface TileProps extends
      * The id of the Tile, matching the values used in TileGroup's `selectedKeys` prop.
      */
     id: Key;
+    /**
+     * The axis the Tile should align with.
+     * @default 'vertical'
+     */
+    orientation?: ResponsiveProp<Orientation>;
 }
 
 const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
@@ -29,17 +38,21 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
     const {
         className,
         children: childrenProp,
+        orientation: orientationProp,
         style,
         isDisabled,
         slot,
         ...otherProps
     } = ownProps;
 
+    const orientation = useResponsiveValue(orientationProp) ?? "vertical";
+
     const classNames = composeClassnameRenderProps(
         GlobalTileCssSelector,
         cssModule(
             styles,
-            "hop-Tile"
+            "hop-Tile",
+            orientation
         ),
         stylingProps.className,
         className
@@ -68,17 +81,44 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
             {renderProps => {
                 const children = childrenFn(renderProps);
 
-                return <Provider
-                    values={[
-                        [TextContext, {
-                            size: "md",
-                            className: styles["hop-Tile__text"]
-                        }]
-                    ]}
-                >
-                    {typeof children === "string" ? <Text>{children}</Text> : children}
-                    <CheckmarkIcon className={styles["hop-Tile__icon"]} />
-                </Provider>;
+                return (
+                    <>
+                        <Provider
+                            values={[
+                                [HeadingContext, { isHidden: true }],
+                                [ContentContext, { isHidden: true }],
+                                [ImageContext, {
+                                    className: styles["hop-Tile__image"]
+                                }],
+                                [IllustrationContext, {
+                                    className: styles["hop-Tile__illustration"]
+                                }]
+                            ]}
+                        >
+                            {typeof children === "string" ? <Content>{children}</Content> : children}
+                        </Provider>
+                        <Div className={styles["hop-Tile__container"]}>
+                            <Provider
+                                values={[
+                                    [HeadingContext, {
+                                        className: styles["hop-Tile__heading"],
+                                        size: "unset"
+                                    }],
+                                    [ContentContext, {
+                                        className: styles["hop-Tile__content"]
+                                    }],
+                                    [ImageContext, { isHidden: true }],
+                                    [IllustrationContext, { isHidden: true }]
+                                ]}
+                            >
+                                {typeof children === "string" ? <Content>{children}</Content> : children}
+                                <Div className={styles["hop-Tile__icon-container"]}>
+                                    <CheckmarkIcon className={styles["hop-Tile__icon"]} />
+                                </Div>
+                            </Provider>
+                        </Div>
+                    </>
+                );
             }}
         </ToggleButton>
     );

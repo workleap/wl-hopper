@@ -1511,14 +1511,26 @@ export const Previews: Record<string, Preview> = {
     "tile/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/preview.tsx"))
     },
-    "tile/docs/selected": {
-        component: lazy(() => import("@/../../packages/components/src/tile/docs/selected.tsx"))
+    "tile/docs/migration/basic": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/basic.tsx"))
     },
-    "tile/docs/disabled": {
-        component: lazy(() => import("@/../../packages/components/src/tile/docs/disabled.tsx"))
+    "tile/docs/migration/image": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/image.tsx"))
     },
-    "tile/docs/disabledSelected": {
-        component: lazy(() => import("@/../../packages/components/src/tile/docs/disabledSelected.tsx"))
+    "tile/docs/migration/illustration": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/illustration.tsx"))
+    },
+    "tile/docs/migration/selected": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/selected.tsx"))
+    },
+    "tile/docs/migration/disabled": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/disabled.tsx"))
+    },
+    "tile/docs/migration/orientation": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/orientation.tsx"))
+    },
+    "tile/docs/migration/controlled": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/controlled.tsx"))
     },
     "segmented-control/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/segmented-control/docs/preview.tsx"))
@@ -1595,12 +1607,6 @@ export const Previews: Record<string, Preview> = {
     "buttons/docs/button/preview": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/preview.tsx"))
     },
-    "buttons/docs/button/dos-and-donts/punctuation-do": {
-        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-do.tsx"))
-    },
-    "buttons/docs/button/dos-and-donts/punctuation-dont": {
-        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-dont.tsx"))
-    },
     "buttons/docs/button/variant": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/variant.tsx"))
     },
@@ -1627,6 +1633,12 @@ export const Previews: Record<string, Preview> = {
     },
     "buttons/docs/button/endIcon": {
         component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/endIcon.tsx"))
+    },
+    "buttons/docs/button/dos-and-donts/punctuation-do": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-do.tsx"))
+    },
+    "buttons/docs/button/dos-and-donts/punctuation-dont": {
+        component: lazy(() => import("@/../../packages/components/src/buttons/docs/button/dos-and-donts/punctuation-dont.tsx"))
     },
     "overlays/popover/docs/popover-base/preview": {
         component: lazy(() => import("@/../../packages/components/src/overlays/popover/docs/popover-base/preview.tsx"))

@@ -1,7 +1,7 @@
-import { Tile } from "../src/index.ts";
+import { Tile } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Tile id="camel">Camel</Tile>
+        <Tile id="frog">Frog</Tile>
     );
 }

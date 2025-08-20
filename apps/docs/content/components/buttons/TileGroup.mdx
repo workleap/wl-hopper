@@ -8,17 +8,15 @@ links:
 
 <Example src="tile/docs/tile-group/preview" isOpen />
 
-## Best Practices
+## Anatomy
 
-Tiles are always used in groups. Similarly to Radio, they should:
+### Structure
 
-- Always have a clear label. You can use a description subtext to provide more details.
-- Be part of a group of minimally two tiles.
-- Be used to have users select one tile at once.
-- Include mutually exclusive options.
-- Be ordered in a logical way that users can understand.
-
-Unlike Radio, it is not mandatory for Tiles to have a default option selected.
+```tsx
+<TileGroup>
+    <Tile /> /* (Required) A tile in a TileGroup */
+</TileGroup>
+```
 
 ## Usage
 
@@ -47,6 +45,18 @@ Tiles are automatically wrapped
 A tile group can have a number of columns. Default is 3. Here's an example where it's 4.
 
 <Example src="tile/docs/tile-group/columns" />
+
+## Best Practices
+
+Tiles are always used in groups. Similarly to Radio, they should:
+
+- Always have a clear label. You can use a description subtext to provide more details.
+- Be part of a group of minimally two tiles.
+- Be used to have users select one tile at once.
+- Include mutually exclusive options.
+- Be ordered in a logical way that users can understand.
+
+Unlike Radio, it is not mandatory for Tiles to have a default option selected.
 
 ## Props
 

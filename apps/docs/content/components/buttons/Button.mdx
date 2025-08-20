@@ -9,61 +9,6 @@ links:
 
 <Example src="buttons/docs/button/preview" isOpen />
 
-## Overview
-
-Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to interact with pages in a variety of ways. Button labels express what action will occur when the user interacts with it.
-Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
-Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.
-
-## Best Practices
-
-### Emphasis
-
-You don't necessarily need to use the buttons in the order that their labels imply. For example, you don't always need to use the secondary button as the second button in your layout.
-The most important thing is to establish a visual hierarchy between the buttons in your interface. Keep these best practices in mind.
-
-#### A single, high-emphasis button
-
-As a general rule, a layout should contain a single high-emphasis button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
-
-#### Multiple button emphasis
-
-A high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Keep in mind that you should only groups together calls to action that have a relationship to one another.
-
-### Alignment
-
-Alignment refers to whether the buttons are aligned to the right or the left of a container or layout. Buttons are unique, more so than any other component, in that their alignment depends on where they appear and whether or not they're contained within another component.
-
-As a general rule, on full-page designs, the primary button is on the right side of the page. When the browser window is large and the user is scrolling to read, it's best to have the primary button where the users's attention has been focused all along.
-Whereas in wizards, where a user is progressing through a series of steps or modal, the primary action traditionally sits at the bottom right. Buttons within components are also right-aligned.
-
-### Do's and Don'ts
-
-<DosAndDonts
-    items={[
-        {
-            do: {
-                explanation: "When a Button contains anything other than a single text node, the accompanying text must be wrapped in a <Text> component.",
-                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-do" />
-            },
-            dont: {
-                explanation: "Use text without <Text> if you have anything other than a single text node inside the Button.",
-                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-dont" />
-            }
-        },
-        {
-            do: {
-                explanation: "Use 1 or 2 words, no longer than 4 words, with fewer than 20 characters including spaces.",
-                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-do" hideStackblitzButton />
-            },
-            dont: {
-                explanation: "Use punctuation marks such as periods or exclamation points.",
-                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
-            }
-        }
-    ]}
-/>
-
 ## Anatomy
 
 ### Structure
@@ -72,7 +17,7 @@ Whereas in wizards, where a user is progressing through a series of steps or mod
 <Button>
     <IconList /> /* (Optional) A list of icons in the button */
     <Icon /> /* (Optional) An icon in the button */
-    <Text /> /** (Optional) Text in the button, required if using an Icon or an IconList */
+    <Text /> /* (Optional) Text in the button, required if using an Icon or an IconList */
 </Button>
 ```
 
@@ -141,6 +86,69 @@ A button can contain icons.
 Nonstandard end icons can be provided to handle special cases. However, think twice before adding end icons, start icons should be your go-to.
 
 <Example src="buttons/docs/button/endIcon" />
+
+## Best Practices
+
+Buttons are clickable elements that are used to trigger actions.
+They communicate calls to action to the user and allow users to interact with pages in a variety of ways.
+Button labels express what action will occur when the user interacts with it.
+Use buttons to communicate actions users can take and to allow users to interact with the page.
+Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
+
+### Emphasis
+
+You don't necessarily need to use the buttons in the order that their labels imply. For example, you don't always need to use the secondary button as the second button in your layout.
+The most important thing is to establish a visual hierarchy between the buttons in your interface. Keep these best practices in mind.
+
+#### A single, high-emphasis button
+
+As a general rule, a layout should contain a single high-emphasis button that makes it clear that other buttons have less importance in the hierarchy. This high-emphasis button commands the most attention.
+
+#### Multiple button emphasis
+
+A high-emphasis button can be accompanied by medium- and low-emphasis buttons that perform less important actions. Keep in mind that you should only groups together calls to action that have a relationship to one another.
+
+### Alignment
+
+Alignment refers to whether the buttons are aligned to the right or the left of a container or layout. Buttons are unique, more so than any other component, in that their alignment depends on where they appear and whether or not they're contained within another component.
+
+As a general rule, on full-page designs, the primary button is on the right side of the page. When the browser window is large and the user is scrolling to read, it's best to have the primary button where the users's attention has been focused all along.
+Whereas in wizards, where a user is progressing through a series of steps or modal, the primary action traditionally sits at the bottom right. Buttons within components are also right-aligned.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "When a Button contains anything other than a single text node, the accompanying text must be wrapped in a <Text> component.",
+                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-do" />
+            },
+            dont: {
+                explanation: "Use text without <Text> if you have anything other than a single text node inside the Button.",
+                example: <CodeOnlyExample src="buttons/docs/button/dos-and-donts/text-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Use 1 or 2 words, no longer than 4 words, with fewer than 20 characters including spaces.",
+                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-do" hideStackblitzButton />
+            },
+            dont: {
+                explanation: "Use punctuation marks such as periods or exclamation points.",
+                example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
+            }
+        },
+        {
+            do: {
+                explanation: "Use links when the desired action is to take the user to a new page."
+            },
+            dont: {
+                explanation: "Use buttons as navigational elements."
+            }
+        }
+    ]}
+/>
 
 ## Props
 
