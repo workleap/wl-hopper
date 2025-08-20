@@ -40,6 +40,14 @@ The MCP server is now ready to use. Click on Start on the MCP server. Follow [th
 
 To know how to use MCP tools in agent mode, refer to the [Use MCP tools in agent mode](https://code.visualstudio.com/docs/copilot/chat/mcp-servers#_use-mcp-tools-in-agent-mode) section.
 
+## Try It Now
+
+You can use it for code generation, migration, or any questions you have about the Hopper Design System. A few examples:
+- "What are Hopper design tokens and how should I use them?"
+- "How do I create an accessible Hopper button component?"
+- "How should I implement responsive design in the Hopper Design System?"
+- "What are the best practices for using icons in Hopper?"
+
 ## Tools
 
 The Hopper MCP server exposes the following tools to AI agents:
@@ -51,22 +59,13 @@ The Hopper MCP server exposes the following tools to AI agents:
 ### Component Tools
 
 - **`get_components_list`**: Get a complete list of all available components in the Hopper Design System
-- **`get_component_documentation`**: Retrieve comprehensive component documentation including anatomy, structure, examples, dos and don'ts, and best practices
+- **`get_component_usage`**: Retrieve comprehensive component documentation including anatomy, structure, examples, dos and don'ts, and best practices
 - **`get_component_props`**: Get detailed component API as JSON, including properties, attributes, methods, and events
 
 ### Guide Tools
 
-- **`get_guide`**: Access comprehensive guides and best practices covering:
-  - **Installation**: How to install and set up the Hopper Design System
-  - **Styles**: Using CSS properties and design tokens
-  - **Tokens**: Understanding and using design tokens
-  - **Color Schemes**: Implementing light mode, dark mode, or system-adaptive themes
-  - **Icons**: All available icons and usage guidelines
-  - **Layout**: Building layouts using Flex or Grid
-  - **Controlled Mode**: Using controlled and uncontrolled component modes
-  - **Forms**: Best practices for form building
-  - **Slots**: Using predefined component layouts and slots
-  - **Internationalization**: Adapting components for different languages and cultures
+- **`get_design_tokens`**: Retrieve design tokens used in the Hopper Design System.
+- **`get_guide`**: Access comprehensive guides and best practices.
 
 ### Migration Tools
 

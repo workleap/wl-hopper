@@ -13,7 +13,7 @@ export interface MdFromMdxBuild {
 }
 
 export interface TemplateBasedBuild {
-    template: string;
+    template?: string;
     merge?: string[];
 
     /**

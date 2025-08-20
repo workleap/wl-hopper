@@ -15,14 +15,14 @@ import { readMarkdownFile } from "./readMarkdownFile.js";
 
 export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
-    "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow"] as const;
-export const GuideSections = ["all", "installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization"] as const;
+    "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
+    "all", "all-core", "all-semantic"] as const;
+export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-const guidesPath: Record<GuideSection | TokenCategory, string> = {
-    all: files.llmsFull,
+const guideFiles: Record<GuideSection | TokenCategory, typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
@@ -49,7 +49,10 @@ const guidesPath: Record<GuideSection | TokenCategory, string> = {
     "core-font-weight": files.tokens.core.fontWeight,
     "core-line-height": files.tokens.core.lineHeight,
     "core-motion": files.tokens.core.motion,
-    "core-shadow": files.tokens.core.shadow
+    "core-shadow": files.tokens.core.shadow,
+    "all-semantic": files.tokens.semantic.index,
+    "all-core": files.tokens.core.index,
+    all: files.tokens.index
 };
 
 export async function getComponentDocumentation(componentName: string, section: "usage" | "api", startLine?: number, endLine?: number) {
@@ -73,13 +76,13 @@ export async function getComponentDocumentation(componentName: string, section: 
 }
 
 export async function getGuideDocumentation(section: GuideSection | TokenCategory, startLine?: number, endLine?: number) {
-    if (!Object.keys(guidesPath).includes(section)) {
+    if (!Object.keys(guideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
         return errorContent(error);
     }
 
-    const guidePath = join(env.DOCS_PATH, guidesPath[section]);
+    const guidePath = join(env.DOCS_PATH, guideFiles[section].path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
@@ -103,13 +106,13 @@ export async function getDocumentInfo(type: "component" | "guide", name: string)
         if (type === "component") {
             filePath = join(env.DOCS_PATH, "components", `usage/${name}.md`);
         } else {
-            if (!(name in guidesPath)) {
+            if (!(name in guideFiles)) {
                 const error = new Error(`Invalid guide name: ${name}`);
 
                 return errorContent(error, `Invalid guide name: ${name}`);
             }
 
-            filePath = join(env.DOCS_PATH, guidesPath[name as GuideSection]);
+            filePath = join(env.DOCS_PATH, guideFiles[name as GuideSection].path);
         }
 
         if (!existsSync(filePath)) {

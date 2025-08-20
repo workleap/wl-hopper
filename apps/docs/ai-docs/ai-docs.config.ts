@@ -146,6 +146,35 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
+        "tokens/core/index.md": {
+            build: {
+                template: "/content/ai-templates/tokens-core.mdx",
+                merge: [
+                    "/tokens/core/color.md",
+                    "/tokens/core/dimensions.md",
+                    "/tokens/core/font-family.md",
+                    "/tokens/core/font-size.md",
+                    "/tokens/core/font-weight.md",
+                    "/tokens/core/line-height.md",
+                    "/tokens/core/motion.md",
+                    "/tokens/core/shadow.md"
+                ]
+            },
+        },
+
+        "tokens/semantic/index.md": {
+            build: {
+                template: "/content/ai-templates/tokens-semantic.mdx",
+                merge: [
+                    "/tokens/semantic/color.md",
+                    "/tokens/semantic/elevation.md",
+                    "/tokens/semantic/shape.md",
+                    "/tokens/semantic/space.md",
+                    "/tokens/semantic/typography.md",
+                ]
+            },
+        },
+
         "tokens/index.md": {
             build: {
                 template: "/content/ai-templates/tokens.mdx",

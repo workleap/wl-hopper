@@ -1,4 +1,10 @@
-export function content(text: string): { type: "text"; text: string } {
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type TextContent = {
+    type: "text";
+    text: string;
+};
+
+export function content(text: string): TextContent {
     return {
         type: "text",
         text
@@ -16,9 +22,9 @@ export function errorContent(error: unknown, customErrorMessage?: string): { typ
     };
 }
 
-export function toolContent(rawContent: { type: "text"; text: string }): { content: { type: "text"; text: string }[] } {
+export function toolContent(...rawContent: TextContent[]): { content: TextContent[] } {
     return {
-        content: [rawContent]
+        content: rawContent
     };
 }
 
