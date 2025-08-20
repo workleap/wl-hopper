@@ -68,6 +68,18 @@ export const Previews: Record<string, Preview> = {
     "badge/docs/floating-badge/offset": {
         component: lazy(() => import("@/../../packages/components/src/badge/docs/floating-badge/offset.tsx"))
     },
+    "callout/docs/compact": {
+        component: lazy(() => import("@/../../packages/components/src/callout/docs/compact.tsx"))
+    },
+    "callout/docs/compactVariant": {
+        component: lazy(() => import("@/../../packages/components/src/callout/docs/compactVariant.tsx"))
+    },
+    "callout/docs/compactLink": {
+        component: lazy(() => import("@/../../packages/components/src/callout/docs/compactLink.tsx"))
+    },
+    "callout/docs/dismissableCompact": {
+        component: lazy(() => import("@/../../packages/components/src/callout/docs/dismissableCompact.tsx"))
+    },
     "callout/docs/preview": {
         component: lazy(() => import("@/../../packages/components/src/callout/docs/preview.tsx"))
     },
@@ -85,18 +97,6 @@ export const Previews: Record<string, Preview> = {
     },
     "callout/docs/inline": {
         component: lazy(() => import("@/../../packages/components/src/callout/docs/inline.tsx"))
-    },
-    "callout/docs/compact": {
-        component: lazy(() => import("@/../../packages/components/src/callout/docs/compact.tsx"))
-    },
-    "callout/docs/compactVariant": {
-        component: lazy(() => import("@/../../packages/components/src/callout/docs/compactVariant.tsx"))
-    },
-    "callout/docs/compactLink": {
-        component: lazy(() => import("@/../../packages/components/src/callout/docs/compactLink.tsx"))
-    },
-    "callout/docs/dismissableCompact": {
-        component: lazy(() => import("@/../../packages/components/src/callout/docs/dismissableCompact.tsx"))
     },
     "badge/docs/badge/preview": {
         component: lazy(() => import("@/../../packages/components/src/badge/docs/badge/preview.tsx"))
@@ -1499,6 +1499,9 @@ export const Previews: Record<string, Preview> = {
     "tile/docs/tile-group/controlled": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/tile-group/controlled.tsx"))
     },
+    "tile/docs/tile-group/readonly": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/tile-group/readonly.tsx"))
+    },
     "tile/docs/tile-group/disabled": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/tile-group/disabled.tsx"))
     },
@@ -1522,6 +1525,9 @@ export const Previews: Record<string, Preview> = {
     },
     "tile/docs/migration/selected": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/selected.tsx"))
+    },
+    "tile/docs/migration/readonly": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/readonly.tsx"))
     },
     "tile/docs/migration/disabled": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/disabled.tsx"))

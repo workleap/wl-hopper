@@ -25,6 +25,10 @@ export interface TileProps extends
      */
     id: Key;
     /**
+     * Whether or not the Tile is read-only.
+     */
+    isReadonly?: boolean;
+    /**
      * The axis the Tile should align with.
      * @default 'vertical'
      */
@@ -41,6 +45,7 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
         orientation: orientationProp,
         style,
         isDisabled,
+        isReadonly,
         slot,
         ...otherProps
     } = ownProps;
@@ -52,7 +57,8 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
         cssModule(
             styles,
             "hop-Tile",
-            orientation
+            orientation,
+            isReadonly && "readonly"
         ),
         stylingProps.className,
         className
@@ -72,7 +78,7 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
     return (
         <ToggleButton
             {...otherProps}
-            isDisabled={isDisabled}
+            isDisabled={isDisabled || isReadonly}
             ref={ref}
             className={classNames}
             style={mergedStyles}
@@ -112,9 +118,11 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
                                 ]}
                             >
                                 {typeof children === "string" ? <Content>{children}</Content> : children}
-                                <Div className={styles["hop-Tile__icon-container"]}>
-                                    <CheckmarkIcon className={styles["hop-Tile__icon"]} />
-                                </Div>
+                                {!isReadonly && (
+                                    <Div className={styles["hop-Tile__icon-container"]}>
+                                        <CheckmarkIcon className={styles["hop-Tile__icon"]} />
+                                    </Div>
+                                )}
                             </Provider>
                         </Div>
                     </>
