@@ -14,7 +14,10 @@ links:
 
 ```tsx
 <Tile>
-    <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+    <Heading /> /* (Optional) The heading of the Tile */
+    <Content /> /* (Optional) The content of the Tile, but required if any other elements are present */
+    <Image /> /* (Optional) The image of the Tile */
+    <Illustration /> /* (Optional) The illustration of the Tile */
 </Tile>
 ```
 
@@ -22,7 +25,7 @@ links:
 
 A `Tile` uses the following components:
 
-<ComposedComponents components={["Text"] }/>
+<ComposedComponents components={["Heading", "Content", "Image", "Illustration"] }/>
 
 ## Usage & Layout Samples
 

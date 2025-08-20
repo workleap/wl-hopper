@@ -1,4 +1,4 @@
-import { Content, Div, Heading, Text, Tile } from "@hopper-ui/components";
+import { Content, Div, Heading, Tile } from "@hopper-ui/components";
 
 export default function Example() {
     return (

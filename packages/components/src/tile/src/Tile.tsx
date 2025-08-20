@@ -1,17 +1,17 @@
 import { CheckmarkIcon } from "@hopper-ui/icons";
-import { Div, ResponsiveProp, useResponsiveValue, useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { Div, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import { forwardRef, type ForwardedRef } from "react";
+import type { Orientation } from "react-aria";
 import { composeRenderProps, Provider, ToggleButton, useContextProps, type Key, type ToggleButtonProps } from "react-aria-components";
 
-import { HeadingContext, Text, TextContext } from "../../typography/index.ts";
+import { IllustrationContext } from "../../illustration/index.ts";
+import { ImageContext } from "../../image/index.ts";
+import { Content, ContentContext } from "../../layout/index.ts";
+import { HeadingContext } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { TileContext } from "./TileContext.ts";
 
-import { Orientation } from "react-aria";
-import { IllustrationContext } from "../../illustration/index.ts";
-import { ImageContext } from "../../image/index.ts";
-import { Content, ContentContext } from "../../layout/index.ts";
 import styles from "./Tile.module.css";
 
 export const GlobalTileCssSelector = "hop-Tile";
@@ -89,10 +89,10 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
                                 [ContentContext, { isHidden: true }],
                                 [ImageContext, {
                                     className: styles["hop-Tile__image"]
-                                 }],
+                                }],
                                 [IllustrationContext, {
                                     className: styles["hop-Tile__illustration"]
-                                }],
+                                }]
                             ]}
                         >
                             {typeof children === "string" ? <Content>{children}</Content> : children}
@@ -108,7 +108,7 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
                                         className: styles["hop-Tile__content"]
                                     }],
                                     [ImageContext, { isHidden: true }],
-                                    [IllustrationContext, { isHidden: true }],
+                                    [IllustrationContext, { isHidden: true }]
                                 ]}
                             >
                                 {typeof children === "string" ? <Content>{children}</Content> : children}

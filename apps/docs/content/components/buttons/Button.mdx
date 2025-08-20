@@ -7,10 +7,6 @@ links:
     aria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-Buttons are clickable elements that are used to trigger actions. They communicate calls to action to the user and allow users to interact with pages in a variety of ways. Button labels express what action will occur when the user interacts with it.
-Use buttons to communicate actions users can take and to allow users to interact with the page. Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
-Do not use buttons as navigational elements. Instead, use links when the desired action is to take the user to a new page.
-
 <Example src="buttons/docs/button/preview" isOpen />
 
 ## Anatomy
@@ -93,6 +89,12 @@ Nonstandard end icons can be provided to handle special cases. However, think tw
 
 ## Best Practices
 
+Buttons are clickable elements that are used to trigger actions.
+They communicate calls to action to the user and allow users to interact with pages in a variety of ways.
+Button labels express what action will occur when the user interacts with it.
+Use buttons to communicate actions users can take and to allow users to interact with the page.
+Each page should have only one primary button, and any remaining calls to action should be represented as lower emphasis buttons.
+
 ### Emphasis
 
 You don't necessarily need to use the buttons in the order that their labels imply. For example, you don't always need to use the secondary button as the second button in your layout.
@@ -135,6 +137,14 @@ Whereas in wizards, where a user is progressing through a series of steps or mod
             dont: {
                 explanation: "Use punctuation marks such as periods or exclamation points.",
                 example: <Example type="preview" src="buttons/docs/button/dos-and-donts/punctuation-dont" hideStackblitzButton />
+            }
+        },
+        {
+            do: {
+                explanation: "Use links when the desired action is to take the user to a new page."
+            },
+            dont: {
+                explanation: "Use buttons as navigational elements."
             }
         }
     ]}

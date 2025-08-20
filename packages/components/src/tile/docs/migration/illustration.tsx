@@ -4,7 +4,7 @@ export default function Example() {
     return (
         <Div UNSAFE_width="20rem">
             <Tile id="buy">
-                 <Illustration backgroundColor="primary-weak">
+                <Illustration backgroundColor="primary-weak">
                     <Image alt="frog" src="/cute-frog.png" />
                 </Illustration>
                 <Heading>Buy a ticket</Heading>

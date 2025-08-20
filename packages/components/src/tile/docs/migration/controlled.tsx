@@ -5,7 +5,7 @@ export default function Example() {
     const [isSelected, setIsSelected] = useState(false);
     const handleChange = useCallback(() => {
         setIsSelected(x => !x);
-    }, [isSelected, setIsSelected]);
+    }, [setIsSelected]);
 
     return (
         <Div UNSAFE_width="20rem">
