@@ -62,12 +62,6 @@ export function isMdFromMdxBuild(build: BuildConfig): build is MdFromMdxBuild {
     );
 }
 
-export function isTemplateBasedBuild(build: BuildConfig): build is TemplateBasedBuild {
-    return (
-        'template' in build
-    );
-}
-
 export function isPropsJsonBuild(build: BuildConfig): build is PropsJsonBuild {
     return (
         'type' in build &&

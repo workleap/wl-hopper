@@ -10,7 +10,7 @@ import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
 
-async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile: string; updateLevels: boolean }) {
+async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }) {
     // Expand all patterns and collect matching files
     const allFiles: string[] = [];
 
@@ -63,6 +63,7 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
     }
 
     writeStream.end();
+    console.log(`✅ Merged successfully: ${outputPath}`);
 }
 
 function fixRelativeLink(link: string, extension: "txt" | "md"): string {
@@ -120,7 +121,7 @@ async function main() {
             await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {
                 fileName: fileKey,
                 path: outputPath,
-                headingFile: join(projectRoot, buildInfo.template),
+                headingFile: buildInfo.template ? join(projectRoot, buildInfo.template) : undefined,
                 updateLevels: !buildInfo.keepOriginalLeveling
             });
         }

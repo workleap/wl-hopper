@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
+import { files } from "@docs/ai";
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type {
     CallToolResult
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-
 import { content, errorContent, toolContent } from "./utils/content.js";
 import { getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
@@ -56,7 +56,6 @@ export function tools(server: McpServer) {
         `
         Includes component's anatomy, structure, examples, dos and don'ts, and best practices.
         **IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**
-        **ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**
         `,
         inputSchema: {
             component_name: z.string()
@@ -67,7 +66,11 @@ export function tools(server: McpServer) {
     }, async ({ component_name }, e): Promise<CallToolResult> => {
         trackEvent("get_component_usage", { componentName: component_name }, e?.requestInfo);
 
-        return toolContent(await getComponentDocumentation(component_name, "usage"));
+        return toolContent(
+            await getComponentDocumentation(component_name, "usage"),
+            content("Call get_component_props tool to get component's props if needed."),
+            content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
+        );
     });
 
     server.registerTool("get_component_props", {
@@ -75,8 +78,7 @@ export function tools(server: McpServer) {
         description:
         `Get properties, attributes, methods, events for a specific component.
         - This service returns a JSON API content.
-        - Call this service after you have read the component documentation.
-        **ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**
+        - Call this service after you have read the component usage.
         `,
         inputSchema: {
             component_name: z.string()
@@ -87,7 +89,10 @@ export function tools(server: McpServer) {
     }, async ({ component_name }, e) : Promise<CallToolResult> => {
         trackEvent("get_component_props", { componentName: component_name }, e?.requestInfo);
 
-        return toolContent(await getComponentDocumentation(component_name, "api"));
+        return toolContent(
+            await getComponentDocumentation(component_name, "api"),
+            content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
+        );
     });
 
     server.registerTool("get_design_tokens", {
@@ -97,7 +102,7 @@ export function tools(server: McpServer) {
         - MAKE SURE YOU READ THE STYLES GUIDE FIRST
         - ALWAYS USE **SEMANTIC** TOKENS WHERE POSSIBLE
 
-        Available tokens:
+        Available tokens categories:
         - semantic-color: Semantic colors for text, surfaces, borders, and icons with interactive states
         - semantic-elevation: Box shadows for creating depth and hierarchy in interfaces
         - semantic-shape: Border radius values for rounded corners and circular elements
@@ -112,18 +117,21 @@ export function tools(server: McpServer) {
         - core-line-height: Line height ratios for consistent vertical rhythm
         - core-motion: Animation durations and easing functions for transitions
         - core-shadow: Box shadow values for elevation effects
+        - all-semantic: All semantic design tokens.
+        - all-core: All core design tokens.
+        - all: All design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible. (estimated tokens: ${files.tokens.index.estimatedTokens}).
         `,
         inputSchema: {
-            guide: z.enum(TokenCategories)
+            category: z.enum(TokenCategories)
 
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide }, e) : Promise<CallToolResult> => {
-        trackEvent("get_design_tokens", { guide }, e?.requestInfo);
+    }, async ({ category }, e) : Promise<CallToolResult> => {
+        trackEvent("get_design_tokens", { category }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(guide));
+        return toolContent(await getGuideDocumentation(category));
     });
 
     server.registerTool("get_guide", {
@@ -142,7 +150,7 @@ export function tools(server: McpServer) {
         - internationalization: Adapting components to respect languages and cultures.
         `,
         inputSchema: {
-            guide: z.enum(GuideSections).optional()
+            guide: z.enum(GuideSections)
         },
         annotations: {
             readOnlyHint: true
@@ -150,7 +158,7 @@ export function tools(server: McpServer) {
     }, async ({ guide }, e) : Promise<CallToolResult> => {
         trackEvent("get_guide", { guide }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(guide ?? "all"));
+        return toolContent(await getGuideDocumentation(guide));
     });
 
     server.registerTool("validate_component_structure", {
