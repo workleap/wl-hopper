@@ -24,23 +24,49 @@ A `Tile` uses the following components:
 
 <ComposedComponents components={["Text"] }/>
 
-## Usage
+## Usage & Layout Samples
+
+To facilitate the migration process, we've provided layout samples as reference guides. These examples demonstrate how to recreate features previously supported in [Orbiter](https://wl-orbiter-website.netlify.app/?path=/docs/tile--docs).
+
+### Basic
+
+A tile consists of minimally some content.
+
+<Example src="tile/docs/migration/basic" />
+
+### Image
+
+A tile can have an image.
+
+<Example src="tile/docs/migration/image" />
+
+Or an illustration with a background color.
+
+<Example src="tile/docs/migration/illustration" />
 
 ### Selected
-A tile can be initially selected, by using `defaultSelectedKey` or `isSelected`.
 
-<Example src="tile/docs/selected" />
+A tile can be selected.
+
+<Example src="tile/docs/migration/selected" />
 
 ### Disabled
+
 A tile can be disabled.
 
-<Example src="tile/docs/disabled" />
+<Example src="tile/docs/migration/disabled" />
 
-### Selected and Disabled
+### Orientation
 
-A tile can be selected and disabled.
+A tile can render horizontally.
 
-<Example src="tile/docs/disabledSelected" />
+<Example src="tile/docs/migration/orientation" />
+
+### Controlled
+
+A tile can handle `isSelected` state in controlled mode.
+
+<Example src="tile/docs/migration/controlled" />
 
 ## Best Practices
 
