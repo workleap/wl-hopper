@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.4
+
+### Patch Changes
+
+- 034a202: Rework Tile component
+
 ## 1.12.3
 
 ### Patch Changes
@@ -70,7 +76,6 @@
 ### Patch Changes
 
 - 6cd6be7: Multiple changes in the effort to have better Orbiter parity
-
   - Adds isReadOnly to TagGroup component
   - Adjust Tab padding to follow Design
   - Adjust Heading weight for Popovers
@@ -241,21 +246,17 @@
 - bec4e44: Multiple fixes
 
   #### Hopper Provider
-
   - Typography is now properly set by default.
 
   #### Compact Callout
-
   - Ensures a minimum height of `48px`.
   - Removes unnecessary margin when only content is provided.
   - Applies `sm` typography to the content.
 
   #### Link
-
   - Typography props like `fontWeight` can now be properly customized directly on the `Link` element.
 
   #### Modal
-
   - Heading size is now `lg` by default.
 
 ## 1.5.2
@@ -829,7 +830,6 @@
   | upsell-text-hover            |
 
   ## @hopper-ui/components
-
   - Added a press state to Links
   - Added a press state to Buttons
   - Added a press state to Checkbbox
