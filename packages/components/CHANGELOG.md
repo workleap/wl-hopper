@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.6
+
+### Patch Changes
+
+- e983568: Add minRows prop to TextArea
+
 ## 1.12.5
 
 ### Patch Changes
