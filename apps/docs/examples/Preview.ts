@@ -1526,8 +1526,8 @@ export const Previews: Record<string, Preview> = {
     "tile/docs/migration/selected": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/selected.tsx"))
     },
-    "tile/docs/migration/readonly": {
-        component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/readonly.tsx"))
+    "tile/docs/readonly": {
+        component: lazy(() => import("@/../../packages/components/src/tile/docs/readonly.tsx"))
     },
     "tile/docs/migration/disabled": {
         component: lazy(() => import("@/../../packages/components/src/tile/docs/migration/disabled.tsx"))
