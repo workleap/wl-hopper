@@ -31,6 +31,12 @@ export interface TextAreaProps extends Omit<StyledComponentProps<RACTextFieldPro
     showCharacterCount?: boolean;
 
     /**
+     * The minimum number of visible text lines.
+     * @default 3
+     */
+    minRows?: number;
+
+    /**
      * The maximum number of visible text lines before displaying a scrollbar.
      */
     maxRows?: number;
@@ -143,6 +149,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         placeholder,
         onChange: onChangeProp,
         defaultValue,
+        minRows = DefaultMinimumTextAreaRows,
         maxRows,
         cols,
         rows: rowsProp,
@@ -202,7 +209,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
     }
 
     const rowHeight = useCalculateRowHeight(mergedTextAreaRef.current);
-    const defaultNumberOfRows = maxRows && maxRows < DefaultMinimumTextAreaRows ? maxRows : DefaultMinimumTextAreaRows;
+    const defaultNumberOfRows = maxRows && maxRows < minRows ? maxRows : minRows;
     const [rows, setRows] = useState(rowsProp ?? defaultNumberOfRows);
     const truncateText = useTruncatedText();
     const [value, onChange] = useControlledState<string>(valueProp, defaultValue || "", handleTextChanged);
@@ -235,9 +242,9 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
             setRows(maxRows);
         } else {
             // If the number of rows is not specified or currentRowsWithText is less than maxRows, we adjust to the default or current text rows
-            setRows(Math.max(currentRowsWithText, DefaultMinimumTextAreaRows));
+            setRows(Math.max(currentRowsWithText, minRows));
         }
-    }, [mergedTextAreaRef, rowHeight, maxRows, rowsProp]);
+    }, [mergedTextAreaRef, rowHeight, minRows, maxRows, rowsProp]);
 
     // adjustRows needs to be called here instead of in handleTextChanged because handleTextChanged is not called when there is a defaultValue on load.
     // truncateText also needs to be here so that if the default text goes over the maxLength, it is truncated.

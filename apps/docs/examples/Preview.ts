@@ -782,6 +782,9 @@ export const Previews: Record<string, Preview> = {
     "inputs/docs/text-area/rows": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-area/rows.tsx"))
     },
+    "inputs/docs/text-area/minRows": {
+        component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-area/minRows.tsx"))
+    },
     "inputs/docs/text-area/maxRows": {
         component: lazy(() => import("@/../../packages/components/src/inputs/docs/text-area/maxRows.tsx"))
     },

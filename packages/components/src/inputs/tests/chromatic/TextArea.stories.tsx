@@ -56,6 +56,10 @@ export const Default: Story = {
                 <TextArea rows={10} {...args} />
             </Div>
             <Div>
+                <h1>Min Rows</h1>
+                <TextArea minRows={1} {...args} />
+            </Div>
+            <Div>
                 <h1>Max Rows</h1>
                 <TextArea maxRows={4} {...args} />
             </Div>
