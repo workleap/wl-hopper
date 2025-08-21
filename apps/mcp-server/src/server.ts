@@ -12,6 +12,7 @@ export function getServer() {
         title: "Workleap Hopper Design System (aka Hopper) server to provide guides, best practices, examples, migration tools, and more.",
         version: packageInfo.version
 
+    }, {
     });
 
     tools(server);

@@ -1,0 +1,10 @@
+{
+  "codeConnect": {
+    "include": ["packages/**/*.{tsx,jsx}"],
+    "label": "React",
+    "interactiveSetupFigmaFileUrl": "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System",
+    "importPaths": {
+      "*": "@hopper-ui/components"
+    }
+  }
+}
