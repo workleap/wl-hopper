@@ -1,5 +1,5 @@
 ---
-"@hopper-ui/components": minor
+"@hopper-ui/components": patch
 ---
 
 Add minRows prop to TextArea
