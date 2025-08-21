@@ -1,5 +1,13 @@
 # @hopper-ui/components
 
+## 1.12.5
+
+### Patch Changes
+
+- 8025e0a: - Add isReadonly prop to Tile
+  - Better warnings
+  - Centralize getColorName and getColorIndex in utils
+
 ## 1.12.4
 
 ### Patch Changes
