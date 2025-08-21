@@ -5,7 +5,7 @@ import { useFocusRing } from "react-aria";
 import { composeRenderProps, Pressable, type PressEvent, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/index.ts";
-import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, getColorName, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
+import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, generateDecorativeColorByName, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
 import { BrokenAvatar } from "./BrokenAvatar.tsx";
@@ -151,7 +151,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             size,
             isBrokenImage && "broken-image",
             isImage && "image",
-            isInitials && getColorName(name),
+            isInitials && generateDecorativeColorByName(name),
             isClickable && "clickable",
             isFocusVisible && "focus-visible"
         ),
