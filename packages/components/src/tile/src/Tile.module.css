@@ -45,6 +45,9 @@
     --hop-Tile-outline-color-disabled: transparent;
     --hop-Tile-cursor-disabled: auto;
 
+    /* Readonly */
+    --hop-Tile-cursor-readonly: auto;
+
     /* Icon */
     --hop-Tile-color-icon: transparent;
 
@@ -108,12 +111,16 @@
     --hop-Tile-color-icon: var(--hop-Tile-color-icon-selected);
 }
 
-.hop-Tile[data-disabled] {
+.hop-Tile[data-disabled]:not(.hop-Tile--readonly) {
     --color: var(--hop-Tile-color-disabled);
     --background: var(--hop-Tile-background-disabled);
     --border-color: var(--hop-Tile-border-color-disabled);
     --hop-Tile-outline-color: var(--hop-Tile-outline-color-disabled);
     --cursor: var(--hop-Tile-cursor-disabled);
+}
+
+.hop-Tile--readonly {
+    --cursor: var(--hop-Tile-cursor-readonly);
 }
 
 .hop-Tile[data-disabled][data-selected] {

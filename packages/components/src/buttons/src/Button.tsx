@@ -131,7 +131,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     const spinnerClassNames = clsx(styles["hop-Button__Spinner"], spinnerClassName);
 
     if (!hasText && (!props["aria-label"] && !props["aria-labelledby"])) {
-        console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
+        console.warn("An aria-label or aria-labelledby prop is required on Button for accessibility.");
     }
 
     const iconSize = ButtonToIconSizeAdapter[size];

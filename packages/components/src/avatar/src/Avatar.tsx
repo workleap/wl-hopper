@@ -5,7 +5,7 @@ import { useFocusRing } from "react-aria";
 import { composeRenderProps, Pressable, type PressEvent, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/index.ts";
-import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
+import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, generateDecorativeColorByName, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
 import { BrokenAvatar } from "./BrokenAvatar.tsx";
@@ -71,24 +71,6 @@ export const AvatarToTextSizeAdapter: SizeAdapter<AvatarSize, TextSize> = {
     "2xl": "xl"
 };
 
-function getColorIndex(name: string, maxNumberOfColor: number) {
-    let hashCode = 0;
-
-    for (let i = name.length - 1; i >= 0; i--) {
-        const character = name.charCodeAt(i);
-        const shift = i % 8;
-
-        hashCode ^= (character << shift) + (character >> (8 - shift));
-    }
-
-    return hashCode % maxNumberOfColor;
-}
-
-function getColorName(name: string) {
-    const variantToUse = `option${getColorIndex(name, 8) + 1}`;
-
-    return `decorative-${variantToUse}`;
-}
 export interface AvatarInitialsProps {
     /**
      * The name of the Avatar. This will be used for the alt text of the image or the initials if no image is provided.
@@ -169,7 +151,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             size,
             isBrokenImage && "broken-image",
             isImage && "image",
-            isInitials && getColorName(name),
+            isInitials && generateDecorativeColorByName(name),
             isClickable && "clickable",
             isFocusVisible && "focus-visible"
         ),

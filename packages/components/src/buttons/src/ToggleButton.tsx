@@ -113,7 +113,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
     };
 
     if (!hasText && (!props["aria-label"] && !props["aria-labelledby"])) {
-        console.warn("An aria-label or aria-labelledby prop is required for accessibility.");
+        console.warn("An aria-label or aria-labelledby prop is required on ToggleButton for accessibility.");
     }
 
     const children = composeRenderProps(childrenProp, prev => {

@@ -27,6 +27,13 @@ export const Selected = {
     }
 } satisfies Story;
 
+export const Readonly = {
+    ...Default,
+    args: {
+        isReadonly: true
+    }
+} satisfies Story;
+
 export const Disabled = {
     ...Default,
     args: {

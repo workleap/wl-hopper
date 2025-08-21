@@ -1,5 +1,6 @@
 export * from "./assertion.ts";
 export * from "./ClearSlots.tsx";
+export * from "./colors.ts";
 export * from "./composeClassnameRenderProps.ts";
 export * from "./createSyntheticEvent.ts";
 export * from "./cssModule.ts";

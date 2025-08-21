@@ -28,6 +28,10 @@ export interface TileGroupProps extends
      * @default true
      */
     disallowEmptySelection?: boolean;
+    /**
+     * Whether the collection is readonly.
+     */
+    isReadonly?: boolean;
 }
 
 const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => {
@@ -39,6 +43,7 @@ const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => 
         style,
         slot,
         isDisabled,
+        isReadonly,
         selectionMode = "single",
         disallowEmptySelection = true,
         numberOfColumns = 3,
@@ -85,7 +90,7 @@ const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => 
             {renderProps => (
                 <Provider
                     values={[
-                        [InternalTileContext, { isDisabled: isDisabled }]
+                        [InternalTileContext, { isDisabled: isDisabled, isReadonly: isReadonly }]
                     ]}
                 >
                     {children(renderProps)}
