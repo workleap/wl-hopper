@@ -1,5 +1,5 @@
 import { figma } from "@figma/code-connect"
-import { TableProps, TDProps, TH, THProps } from "@hopper-ui/styled-system"
+import { TDProps, TFoot, TH, THProps } from "@hopper-ui/styled-system"
 
 import { Table, TD } from "@hopper-ui/styled-system"
 
@@ -49,5 +49,56 @@ figma.connect<THProps>(
         children: figma.children('*')
     },
     example: (props) => <TH>{props.children}</TH>,
+  },
+)
+
+
+
+
+
+figma.connect(
+  TD,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=681%3A2138",
+  {
+    props: {
+        children: figma.children('*')
+    },
+    example: (props) => <TD>{props.children}</TD>,
+  },
+)
+
+
+figma.connect(
+  TD,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=681%3A2170",
+  {
+    props: {
+        children: figma.children('*')
+    },
+    example: (props) => <TD>{props.children}</TD>,
+  },
+)
+
+figma.connect(
+  TD,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=681%3A2130",
+  {
+    props: {
+        children: figma.children('*')
+    },
+    example: (props) => <TD>{props.children}</TD>,
+  },
+)
+
+
+
+figma.connect(
+  TFoot,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=6281%3A4733",
+  {
+    props: {
+
+    },
+    example: (props) => <TFoot />,
   },
 )

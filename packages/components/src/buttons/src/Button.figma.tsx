@@ -38,3 +38,57 @@ figma.connect(
     example: (props) => <Button size={props.size}>{props.children}</Button>,
   },
 )
+
+figma.connect(
+  Button,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=2777%3A2912",
+  {
+    props: {
+      // No matching props could be found for these Figma properties:
+      // "secondaryAction": figma.boolean('Secondary action'),
+      // "secondaryActionGroup": figma.boolean('Secondary action group'),
+      // "moreActions": figma.boolean('More actions'),
+      // "type": figma.enum('Type', {
+      //   "Action groups": "action-groups",
+      //   "Single actions": "single-actions"
+      // })
+      children: figma.children('*')
+    },
+    example: (props) => <Button >{props.children}</Button>,
+  },
+)
+
+figma.connect(
+  Button,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=426%3A69",
+  {
+    props: {
+      // No matching props could be found for these Figma properties:
+      // "label": figma.string('Label'),
+      // "leadingIcon": figma.boolean('Leading icon'),
+      // "trailingIcon": figma.boolean('Trailing icon'),
+      // "swapLeadingIcon": figma.instance('Swap leading icon'),
+      // "swapTrailingIcon": figma.instance('Swap trailing icon'),
+      // "type": figma.enum('Type', {
+      //   "Primary": "primary",
+      //   "Secondary": "secondary",
+      //   "Upsell": "upsell",
+      //   "Danger": "danger"
+      // }),
+      // "size": figma.enum('Size', {
+      //   "Medium": "medium",
+      //   "Small": "small"
+      // }),
+      // "state": figma.enum('State', {
+      //   "Default": "default",
+      //   "Hover": "hover",
+      //   "Press": "press",
+      //   "Selected": "selected",
+      //   "Disabled": "disabled",
+      //   "Focus": "focus"
+      // })
+      children: figma.children('*')
+    },
+    example: (props) => <Button >{props.children}</Button>,
+  },
+)
