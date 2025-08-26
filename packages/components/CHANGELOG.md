@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.7
+
+### Patch Changes
+
+- 3a29001: Remove progressive loading from Buttons
+
 ## 1.12.6
 
 ### Patch Changes
