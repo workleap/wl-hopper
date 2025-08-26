@@ -13,7 +13,6 @@ export * from "./SlotProvider.ts";
 export * from "./types.ts";
 export * from "./useFontFaceReady.ts";
 export * from "./useIsOverflow.ts";
-export * from "./useProgressVisibility.ts";
 export * from "./useRenderProps.ts";
 export * from "./useSlot.ts";
 export * from "./useTruncatedText.ts";
