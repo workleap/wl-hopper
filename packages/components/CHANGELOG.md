@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.8
+
+### Patch Changes
+
+- 006d60a: Updated react-aria dependencies.
+
 ## 1.12.7
 
 ### Patch Changes
