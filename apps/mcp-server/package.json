@@ -30,7 +30,6 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.17.3",
     "@typescript-eslint/parser": "8.17.0",
-    "@workleap/logging": "^1.0.0",
     "express": "5.1.0",
     "fetch-to-node": "2.1.0"
   },
