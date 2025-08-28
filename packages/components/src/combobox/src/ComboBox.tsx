@@ -146,8 +146,9 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
 
     const inputRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef ?? null));
     const inputContext = useSlottedContext(InputContext);
+    // ALEX: Review the typing casts here.
     // Make sure to merge the input ref with the context ref from the InputContext.
-    const mergedInputRefs = inputContext?.ref ? mergeRefs(inputRef, inputContext.ref) : inputRef;
+    const mergedInputRefs = inputContext?.ref ? mergeRefs(inputRef, inputContext.ref) as ForwardedRef<HTMLInputElement> : inputRef as ForwardedRef<HTMLInputElement>;
     const triggerRef = useRef<HTMLDivElement>(null);
 
     // Make menu width match trigger width.

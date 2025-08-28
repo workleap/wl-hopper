@@ -176,7 +176,6 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
                 selectionMode={selectionMode}
                 style={style}
                 data-loading={isLoading}
-                // @ts-expect-error It's not defined, but it is used in RAC
                 shouldSelectOnPressUp
                 {...otherProps}
             >

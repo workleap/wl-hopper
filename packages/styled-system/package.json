@@ -46,7 +46,7 @@
         "react-dom": "^18 || ^19"
     },
     "dependencies": {
-        "@react-aria/ssr": "^3.9.7",
+        "@react-aria/ssr": "^3.9.10",
         "clsx": "^2.1.1"
     },
     "devDependencies": {
@@ -59,6 +59,7 @@
         "@testing-library/react": "16.0.1",
         "@types/eslint": "8.56.12",
         "@types/jest": "29.5.14",
+        "@types/minimatch": "^6.0.0",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
         "@types/react-test-renderer": "18.3.0",
