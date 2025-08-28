@@ -94,9 +94,10 @@ function FocusableTrigger(props: TooltipTriggerProps) {
 
 
     return (
+        // ALEX: Review the typing cast here.
         // We forward the FocusableProvider props, but we make sure to merge the refs
         // This allows us to know if the child is implementing the Focusable interface, aka is a RAC component.
-        <FocusableProvider {...context} ref={mergeRefs(context?.ref, focusableRef)}>
+        <FocusableProvider {...context} ref={mergeRefs(context?.ref, focusableRef) as Ref<FocusableElement>}>
             {trigger}
         </FocusableProvider>
     );
