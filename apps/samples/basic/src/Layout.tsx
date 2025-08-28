@@ -1,11 +1,5 @@
 import { Button, Div, H1, HopperProvider, HtmlHeader, Link, Main, useColorSchemeContext } from "@hopper-ui/components";
-import { Outlet, useHref, useNavigate, type NavigateOptions } from "react-router-dom";
-
-declare module "react-aria-components" {
-    interface RouterConfig {
-        routerOptions: NavigateOptions;
-    }
-}
+import { Outlet, useHref, useNavigate } from "react-router-dom";
 
 export function Layout() {
     const navigate = useNavigate();

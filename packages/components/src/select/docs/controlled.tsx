@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function Example() {
     const [selectedKey, setSelectedKey] = useState<Key | null>();
 
-    const handleSelectionChange = (key: Key) => {
+    const handleSelectionChange = (key: Key | null) => {
         if (selectedKey === key) {
             setSelectedKey(null);
         } else {
