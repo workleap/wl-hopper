@@ -1,5 +1,11 @@
 # @hopper-ui/icons
 
+## 2.10.1
+
+### Patch Changes
+
+- 006d60a: Updated react-aria dependencies.
+
 ## 2.10.0
 
 ### Minor Changes
@@ -385,7 +391,6 @@
   | upsell-text-hover            |
 
   ## @hopper-ui/components
-
   - Added a press state to Links
   - Added a press state to Buttons
   - Added a press state to Checkbbox

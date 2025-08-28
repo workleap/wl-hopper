@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.10
+
+### Patch Changes
+
+- 006d60a: Updated react-aria dependencies.
+
 ## 2.5.9
 
 ### Patch Changes
@@ -13,7 +19,6 @@
 - f37782e: Extends some CSS property types
 
   Changes:
-
   - Updated the CssBorder type definition to include DataType.LineStyle.
   - Added 0 as a valid value for GridAutoColumnsValue, GridAutoRowsValue, GridTemplateColumnsValue, GridTemplateRowsValue.
   - Added additional values such as "-moz-max-content", "-moz-min-content", "-webkit-fit-content" and 0 to HeightValue.
@@ -250,7 +255,6 @@
   | upsell-text-hover            |
 
   ## @hopper-ui/components
-
   - Added a press state to Links
   - Added a press state to Buttons
   - Added a press state to Checkbbox
