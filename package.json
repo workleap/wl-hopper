@@ -45,6 +45,7 @@
         "build-storybook": "storybook build",
         "list-outdated-deps": "pnpm outdated -r --format list \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\"",
         "update-outdated-deps": "pnpm update -r --latest \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\"",
+        "update-react-aria-deps": "pnpm update -r react-aria react-aria-components @react-aria/* @react-stately/*",
         "plop": "plop",
         "find-types": "pnpm --filter=components find-types"
     },

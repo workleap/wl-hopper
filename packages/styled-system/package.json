@@ -46,7 +46,7 @@
         "react-dom": "^18 || ^19"
     },
     "dependencies": {
-        "@react-aria/ssr": "^3.9.7",
+        "@react-aria/ssr": "^3.9.10",
         "clsx": "^2.1.1"
     },
     "devDependencies": {
