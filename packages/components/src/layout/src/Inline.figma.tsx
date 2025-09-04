@@ -10,29 +10,29 @@ import { Inline } from "./Inline.tsx"
  * return the code example you'd like to see in Figma
  */
 
-figma.connect(
-  Inline,
-  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=10894%3A17756",
-  {
-    props: {
-      // No matching props could be found for these Figma properties:
-      // "label": figma.string('Label'),
-      // "type": figma.enum('Type', {
-      //   "Primary": "primary",
-      //   "Secondary": "secondary"
-      // }),
-      // "size": figma.enum('Size', {
-      //   "Medium": "medium",
-      //   "Small": "small"
-      // }),
-      // "state": figma.enum('State', {
-      //   "Default": "default",
-      //   "Hover": "hover",
-      //   "Disabled": "disabled",
-      //   "Focus": "focus",
-      //   "Press": "press"
-      // })
-    },
-    example: (props) => <Inline />,
-  },
-)
+// figma.connect(
+//   Inline,
+//   "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=10894%3A17756",
+//   {
+//     props: {
+//       // No matching props could be found for these Figma properties:
+//       // "label": figma.string('Label'),
+//       // "type": figma.enum('Type', {
+//       //   "Primary": "primary",
+//       //   "Secondary": "secondary"
+//       // }),
+//       // "size": figma.enum('Size', {
+//       //   "Medium": "medium",
+//       //   "Small": "small"
+//       // }),
+//       // "state": figma.enum('State', {
+//       //   "Default": "default",
+//       //   "Hover": "hover",
+//       //   "Disabled": "disabled",
+//       //   "Focus": "focus",
+//       //   "Press": "press"
+//       // })
+//     },
+//     example: (props) => <Inline />,
+//   },
+// )
