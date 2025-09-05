@@ -50,7 +50,8 @@
     color: var(--description-color);
 }
 
-.hop-CheckboxField__checkbox {
+/** More specific than just hop-CheckboxField__checkbox */
+.hop-CheckboxField .hop-CheckboxField__checkbox {
     order: 1;
     inline-size: 100%;
 }
