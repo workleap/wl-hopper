@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 1.12.9
+
+### Patch Changes
+
+- 9b8558e: Fixed jsdoc comments on TooltipTrigger to properly reflect the default delay before showing the tooltip
+- 7c76713: Added isFluid property to RadioGroup and CheckboxGroup.
+
 ## 1.12.8
 
 ### Patch Changes
