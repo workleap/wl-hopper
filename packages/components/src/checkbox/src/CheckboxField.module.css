@@ -1,9 +1,9 @@
 .hop-CheckboxField  {
     /* Default */
-    --hop-CheckboxField-description-color: var(--hop-neutral-text-weak); 
+    --hop-CheckboxField-description-color: var(--hop-neutral-text-weak);
 
     /* Disabled */
-    --hop-CheckboxField-description-color-disabled: var(--hop-neutral-text-disabled); 
+    --hop-CheckboxField-description-color-disabled: var(--hop-neutral-text-disabled);
 
     /* Small */
     --hop-CheckboxField-sm-row-gap: var(--hop-space-stack-xs);
@@ -25,7 +25,7 @@
     justify-content: flex-start;
 
     box-sizing: border-box;
-    inline-size: max-content; 
+    inline-size: max-content;
     max-inline-size: 100%;
 }
 
@@ -52,4 +52,5 @@
 
 .hop-CheckboxField__checkbox {
     order: 1;
+    inline-size: 100%
 }

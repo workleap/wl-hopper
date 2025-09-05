@@ -59,6 +59,10 @@
     --list-border-radius: var(--hop-shape-rounded-md);
 }
 
+.hop-RadioGroup--fluid {
+    --inline-size: 100%;
+}
+
 .hop-RadioGroup--sm {
     --column-gap: var(--hop-RadioGroup-sm-column-gap);
     --row-gap: var(--hop-RadioGroup-sm-row-gap);
@@ -108,7 +112,7 @@
     order: 2;
 
     box-sizing: border-box;
-    inline-size: var(--inline-size);
+    inline-size: 100%;
     max-inline-size: 100%;
 
     border: var(--list-border, none);
