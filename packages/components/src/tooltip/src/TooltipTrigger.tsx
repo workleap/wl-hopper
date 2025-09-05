@@ -21,6 +21,12 @@ export interface TooltipTriggerProps extends
      * @default 'top'
      */
     placement?: "start" | "end" | "right" | "left" | "top" | "bottom";
+
+    /**
+   * The delay time for the tooltip to show up.
+   * @default 600
+   */
+    delay?: number;
 }
 
 /**
