@@ -50,7 +50,8 @@
     color: var(--description-color);
 }
 
-.hop-RadioField__radio {
+/** More specific than just hop-RadioField__radio */
+.hop-RadioField .hop-RadioField__radio {
     order: 1;
     inline-size: 100%;
 }
