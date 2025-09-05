@@ -112,7 +112,7 @@
     order: 2;
 
     box-sizing: border-box;
-    inline-size: 100%;
+    inline-size: var(--inline-size);
     max-inline-size: 100%;
 
     border: var(--list-border, none);
