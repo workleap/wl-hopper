@@ -30,15 +30,6 @@ export const Vertical = {
                 </RadioField>
                 <Radio value="manager">Manager</Radio>
             </RadioGroup>
-            <h1>Fluid</h1>
-            <RadioGroup variant="bordered" isFluid {...props} description="Select one to continue">
-                <Radio value="developer">Developer</Radio>
-                <Radio value="designer">Designer</Radio>
-                <RadioField description="Product Owner">
-                    <Radio value="po">PO</Radio>
-                </RadioField>
-                <Radio value="manager">Manager</Radio>
-            </RadioGroup>
             <h1>Selected</h1>
             <RadioGroup {...props} defaultValue="developer">
                 <Radio value="developer">Developer</Radio>
@@ -179,6 +170,15 @@ export const Vertical = {
                     <Radio value="manager">Manager</Radio>
                 </RadioGroup>
             </Inline>
+            <h1>Bordered and Fluid</h1>
+            <RadioGroup variant="bordered" isFluid {...props} description="Select one to continue">
+                <Radio value="developer">Developer</Radio>
+                <Radio value="designer">Designer</Radio>
+                <RadioField description="Product Owner">
+                    <Radio value="po">PO</Radio>
+                </RadioField>
+                <Radio value="manager">Manager</Radio>
+            </RadioGroup>
         </Stack>
     ),
     args: {
