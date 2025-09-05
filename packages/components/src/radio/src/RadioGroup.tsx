@@ -45,6 +45,11 @@ export interface RadioGroupProps extends StyledComponentProps<Omit<RACRadioGroup
      * @default "borderless"
      */
     variant?: InputGroupVariant;
+    /**
+     * If `true`, the RadioGroup will take all available width.
+     * @default false
+     */
+    isFluid?: ResponsiveProp<boolean>;
 }
 
 function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -67,6 +72,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
         style: styleProp,
         variant = "borderless",
         necessityIndicator,
+        isFluid: isFluidProp,
         ...otherProps
     } = ownProps;
 
@@ -79,6 +85,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const orientation = useResponsiveValue(orientationProp) ?? "vertical";
     const size = useResponsiveValue(sizeProp) ?? "md";
+    const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -86,6 +93,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
         cssModule(
             styles,
             "hop-RadioGroup",
+            isFluid && "fluid",
             size,
             variant
         ),

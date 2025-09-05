@@ -45,6 +45,11 @@ export interface CheckboxGroupProps extends StyledComponentProps<RACCheckboxGrou
      * @default "borderless"
      */
     variant?: InputGroupVariant;
+    /**
+     * If `true`, the CheckboxGroup will take all available width.
+     * @default false
+     */
+    isFluid?: ResponsiveProp<boolean>;
 }
 
 function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -67,6 +72,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
         size: sizeProp = "md",
         style: styleProp,
         variant = "borderless",
+        isFluid: isFluidProp,
         ...otherProps
     } = ownProps;
 
@@ -79,6 +85,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
 
     const orientation = useResponsiveValue(orientationProp) ?? "vertical";
     const size = useResponsiveValue(sizeProp) ?? "md";
+    const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -86,6 +93,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
         cssModule(
             styles,
             "hop-CheckboxGroup",
+            isFluid && "fluid",
             size,
             variant
         ),

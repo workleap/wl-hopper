@@ -4,7 +4,7 @@ Coming from Orbiter, you should be aware of the following changes:
 - `onChange` signature has changed (no event are passed).
 - `disabled` has been renamed to `isDisabled`.
 - `autofocus` is not supported. You must use `autofocus` on the actual Radio.
-- `fluid` has been removed.
+- `fluid` has been renamed to `isFluid`.
 - `reverse` is not supported, use `flex-direction` or `row-reverse` instead.
 - The default orientation is now vertical instead of horizontal.
 - `validationState` has been removed. Use `isInvalid` instead. There is no `isValid`.

@@ -23,7 +23,7 @@ export const Vertical = {
                 <Checkbox value="developer">Developer</Checkbox>
                 <Checkbox value="designer">Designer</Checkbox>
                 <CheckboxField description="Product Owner">
-                    <Checkbox value="manager">PO</Checkbox>
+                    <Checkbox value="po">PO</Checkbox>
                 </CheckboxField>
                 <Checkbox value="manager">Manager</Checkbox>
             </CheckboxGroup>
@@ -149,6 +149,15 @@ export const Vertical = {
                     <Checkbox value="manager">Manager</Checkbox>
                 </CheckboxGroup>
             </Inline>
+            <h1>Bordered and Fluid</h1>
+            <CheckboxGroup isFluid variant="bordered" {...props} description="Select one to continue">
+                <Checkbox value="developer">Developer</Checkbox>
+                <Checkbox value="designer">Designer</Checkbox>
+                <CheckboxField description="Product Owner">
+                    <Checkbox value="po">PO</Checkbox>
+                </CheckboxField>
+                <Checkbox value="manager">Manager</Checkbox>
+            </CheckboxGroup>
         </Stack>
     ),
     args: {

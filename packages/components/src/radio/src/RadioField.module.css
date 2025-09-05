@@ -1,9 +1,9 @@
 .hop-RadioField  {
     /* Default */
-    --hop-RadioField-description-color: var(--hop-neutral-text-weak); 
+    --hop-RadioField-description-color: var(--hop-neutral-text-weak);
 
     /* Disabled */
-    --hop-RadioField-description-color-disabled: var(--hop-neutral-text-disabled); 
+    --hop-RadioField-description-color-disabled: var(--hop-neutral-text-disabled);
 
     /* Small */
     --hop-RadioField-sm-row-gap: var(--hop-space-stack-xs);
@@ -25,7 +25,7 @@
     justify-content: flex-start;
 
     box-sizing: border-box;
-    inline-size: max-content; 
+    inline-size: max-content;
     max-inline-size: 100%;
 }
 
@@ -52,4 +52,5 @@
 
 .hop-RadioField__radio {
     order: 1;
+    inline-size: 100%;
 }

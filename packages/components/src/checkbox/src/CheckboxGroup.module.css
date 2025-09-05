@@ -41,6 +41,7 @@
     --align-items: var(--hop-CheckboxGroup-align-items);
     --justify-content: var(--hop-CheckboxGroup-justify-content);
     --flex-wrap: wrap;
+    --inline-size: max-content;
 
     display: flex;
     flex-direction: column;
@@ -49,13 +50,17 @@
     justify-content: var(--justify-content);
 
     box-sizing: border-box;
-    inline-size: max-content;
+    inline-size: var(--inline-size);
     max-inline-size: 100%;
 }
 
 .hop-CheckboxGroup--bordered {
     --list-border: var(--checkbox-border-size) solid var(--checkbox-border-color);
     --list-border-radius: var(--hop-shape-rounded-md);
+}
+
+.hop-CheckboxGroup--fluid {
+    --inline-size: 100%;
 }
 
 .hop-CheckboxGroup--sm {
@@ -107,7 +112,7 @@
     order: 2;
 
     box-sizing: border-box;
-    inline-size: max-content;
+    inline-size: var(--inline-size);
     max-inline-size: 100%;
 
     border: var(--list-border, none);

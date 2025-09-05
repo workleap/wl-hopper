@@ -3,7 +3,7 @@ Coming from Orbiter, you should be aware of the following changes:
 - `onChange` signature has been changed – no events are passed.
 - `disabled` has been renamed to `isDisabled`.
 - `required` has been renamed to `isRequired`.
-- `fluid` has been removed.
+- `fluid` has been renamed to `isFluid`.
 - `reverse` is not supported, use `flex-direction` or `row-reverse` instead.
 - `autofocus` is not supported. You must put `autofocus` on the actual Checkbox.
 - The default orientation is now vertical instead of horizontal.
