@@ -380,7 +380,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect emojis in component attributes", () => {
-            const result = validateComponentStructure('<Button aria-label="Submit 🚀">Click</Button>');
+            const result = validateComponentStructure("<Button aria-label=\"Submit 🚀\">Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Emoji \"🚀\" detected");
@@ -431,12 +431,12 @@ describe("validateComponentStructure", () => {
 
         it("should detect common HTML elements", () => {
             const htmlElements = ["h1", "h2", "h3", "a", "img", "form", "input", "table", "ul", "li"];
-            
+
             for (const element of htmlElements) {
                 const result = validateComponentStructure(`<${element}>Content</${element}>`);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain(`Native HTML element \"<${element}>\" is not allowed`);
+                expect(result.errors[0].message).toContain(`Native HTML element "<${element}>" is not allowed`);
             }
         });
 
@@ -460,7 +460,7 @@ describe("validateComponentStructure", () => {
 
     describe("className and style props validation", () => {
         it("should detect className prop usage", () => {
-            const result = validateComponentStructure('<Button className="my-button">Click</Button>');
+            const result = validateComponentStructure("<Button className=\"my-button\">Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Using \"className\" prop is **STRONGLY** prohibited");
@@ -468,7 +468,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect style prop usage", () => {
-            const result = validateComponentStructure('<Button style={{color: "red"}}>Click</Button>');
+            const result = validateComponentStructure("<Button style={{color: \"red\"}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Using \"style\" prop is **STRONGLY** discouraged");
@@ -476,7 +476,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect both className and style props", () => {
-            const result = validateComponentStructure('<Button className="btn" style={{margin: "10px"}}>Click</Button>');
+            const result = validateComponentStructure("<Button className=\"btn\" style={{margin: \"10px\"}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("className");
@@ -510,13 +510,13 @@ describe("validateComponentStructure", () => {
         });
 
         it("should allow other valid props", () => {
-            const result = validateComponentStructure('<Button variant="primary" size="large" onClick={handleClick}>Click</Button>');
+            const result = validateComponentStructure("<Button variant=\"primary\" size=\"large\" onClick={handleClick}>Click</Button>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should detect props in self-closing components", () => {
-            const result = validateComponentStructure('<Icon className="icon" />');
+            const result = validateComponentStructure("<Icon className=\"icon\" />");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("className");
@@ -534,7 +534,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should provide detailed error for incomplete code", () => {
-            // This might not trigger "Unexpected end of file" in all cases, 
+            // This might not trigger "Unexpected end of file" in all cases,
             // but testing the error handling structure
             const result = validateComponentStructure("<Button");
             expect(result.isValid).toBe(false);
@@ -559,10 +559,10 @@ describe("validateComponentStructure", () => {
 </div>`;
             const result = validateComponentStructure(code);
             expect(result.isValid).toBe(false);
-            
+
             // Should detect: native HTML (div, p), className, style, emojis, Button validation
             expect(result.errors.length).toBeGreaterThan(5);
-            
+
             // Check for different error types
             const errorMessages = result.errors.map(e => e.message);
             expect(errorMessages.some(msg => msg.includes("Native HTML element"))).toBe(true);
@@ -578,7 +578,7 @@ describe("validateComponentStructure", () => {
 </div>`;
             const result = validateComponentStructure(code);
             expect(result.isValid).toBe(false);
-            
+
             // All errors should have line information
             result.errors.forEach(error => {
                 expect(error.line).toBeGreaterThan(0);
