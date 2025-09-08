@@ -323,10 +323,6 @@ function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result
     }
 }
 
-/**
- * Validates that className and style props are discouraged in favor of styled system properties
- * Rule: Use styled system properties or UNSAFE_ versions instead of className/style
- */
 function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
     for (const element of jsxElements) {
         const openingElement = element.openingElement;
