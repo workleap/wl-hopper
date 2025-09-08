@@ -106,7 +106,7 @@ export function validateComponentStructure(code: string): ValidationResult {
             // Check for common parsing issues and provide helpful messages
             let errorMessage = `Failed to parse code: ${error.message}`;
 
-            if (error.message.includes("Unexpected token")) {
+            if (error.message.includes("Identifier expected")) {
                 errorMessage += "\n\nPlease ensure the code is valid TypeScript/JSX syntax. Common issues include:";
                 errorMessage += "\n- Missing semicolons or brackets";
                 errorMessage += "\n- Invalid JSX syntax";
