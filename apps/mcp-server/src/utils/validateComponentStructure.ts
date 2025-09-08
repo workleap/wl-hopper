@@ -1,5 +1,6 @@
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
+import emojiRegex from "emoji-regex";
 
 interface ValidationError {
     message: string;
@@ -51,6 +52,15 @@ export function validateComponentStructure(code: string): ValidationResult {
 
             return result;
         }
+
+        // Check for emojis in the entire code
+        validateNoEmojis(code, result);
+
+        // Check for native HTML elements
+        validateNoNativeHTMLElements(jsxElements, result);
+
+        // Check for className and style props usage
+        validateNoClassNameAndStyleProps(jsxElements, result);
 
         // Group components by type for better validation reporting
         const componentInstances = new Map<string, TSESTree.JSXElement[]>();
@@ -238,11 +248,6 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
     }
 }
 
-/**
- * Validates Modal component structure
- * Rule: If the component is Modal, the direct children should be Header, Content and ButtonGroup.
- * If other components live as direct children, it should be an error.
- */
 function validateModalComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
     const componentName = getComponentName(element);
 
@@ -272,5 +277,86 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
+    }
+}
+
+function validateNoEmojis(code: string, result: ValidationResult): void {
+    // Use the emoji-regex library for accurate emoji detection
+    const regex = emojiRegex();
+
+    const lines = code.split('\n');
+
+    for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+        const line = lines[lineIndex];
+        const matches = line.matchAll(regex);
+
+        for (const match of matches) {
+            result.errors.push({
+                message: `Emoji "${match[0]}" detected at position ${(match.index || 0) + 1}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.`,
+                line: lineIndex + 1,
+                column: (match.index || 0) + 1
+            });
+        }
+    }
+}
+
+function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    // Common native HTML elements that should be replaced
+    const nativeHtmlElements = new Set([
+        "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
+        "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
+        "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot"
+    ]);
+
+    for (const element of jsxElements) {
+        const componentName = getComponentName(element);
+
+        if (componentName && nativeHtmlElements.has(componentName)) {
+            const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc.`;
+
+            result.errors.push({
+                message,
+                line: element.loc?.start.line,
+                column: element.loc?.start.column
+            });
+        }
+    }
+}
+
+/**
+ * Validates that className and style props are discouraged in favor of styled system properties
+ * Rule: Use styled system properties or UNSAFE_ versions instead of className/style
+ */
+function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    for (const element of jsxElements) {
+        const openingElement = element.openingElement;
+
+        if (openingElement.attributes) {
+            for (const attribute of openingElement.attributes) {
+                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
+                    const propName = attribute.name.name;
+
+                    if (propName === "className") {
+                        const message = `Using "className" prop is **STRONGLY** prohibited. Use Hopper's styled system properties (like padding, margin, color, etc.) for styling. Check the Hopper "styles" guide (available through "get_guide" tool) for accurate details.`;
+
+                        result.errors.push({
+                            message,
+                            line: attribute.loc?.start.line,
+                            column: attribute.loc?.start.column
+                        });
+                    }
+
+                    if (propName === "style") {
+                        const message = `Using "style" prop is **STRONGLY** discouraged. Most style props are DIRECTLY available as styled system properties. e.g. "<Div position='absolute' top='0'></Div>". Also, you can use "UNSAFE_*" version of the props (e.g. "UNSAFE_color") if its value is not supported. Check the Hopper "styles" guide (available through "get_guide" tool) for accurate details.`;
+
+                        result.errors.push({
+                            message,
+                            line: attribute.loc?.start.line,
+                            column: attribute.loc?.start.column
+                        });
+                    }
+                }
+            }
+        }
     }
 }
