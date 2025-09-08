@@ -19,18 +19,15 @@ export function decodeCursor(cursor: string): CursorData {
     }
 }
 
+import { createHash } from "crypto";
+
 export function createContentHash(content: string): string {
-    // Simple hash function - in production you might want to use crypto
-    let hash = 0;
-    for (let i = 0; i < content.length; i++) {
-        const char = content.charCodeAt(i);
-        hash = ((hash << 5) - hash) + char;
-        hash = hash & hash; // Convert to 32-bit integer
-    }
-    return hash.toString();
+    return createHash("sha256").update(content).digest("hex");
 }
 
 function tokenToChars(tokens: number): number {
+    // Estimate average number of characters per token for English text in GPT models.
+    // 3.5 is a commonly used approximation for OpenAI GPT-3/4; adjust if using other models or languages.
     return Math.floor(tokens * 3.5);
 }
 

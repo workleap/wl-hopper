@@ -100,7 +100,7 @@ interface Item {
 
 function Icons({ items }: { items: Item[] }) {
     return <div>
-        <div>Available Sizes: {items[0].sizes}</div>
+        <div>Available Sizes: {items.length > 0 ? items[0].sizes : "N/A"}</div>
         <table>
             <thead>
                 <tr>

@@ -16,7 +16,7 @@ const paginationParams = {
         .number()
         .min(15000)
         .optional()
-        .describe("Maximum number of tokens to return per page. **DEFAULT: Leave unset for full results.** Only specify this on the first call to start pagination. Once set, the page size is fixed for the entire pagination session. Use high values (20000+) for better performance. Low limits (<500) may lead to suboptimal implementations."),
+        .describe("Maximum number of tokens to return per page. **DEFAULT: Leave unset for full results.** Only specify this on the first call to start pagination. Once set, the page size is fixed for the entire pagination session. Use high values (e.g. 20000+) for better performance. Low limits (<500) may lead to suboptimal implementations."),
     cursor: z
         .string()
         .optional()

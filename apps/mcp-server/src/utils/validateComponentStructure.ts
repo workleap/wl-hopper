@@ -280,9 +280,11 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
     }
 }
 
+const EMOJI_REGEX = emojiRegex();
+
 function validateNoEmojis(code: string, result: ValidationResult): void {
     // Use the emoji-regex library for accurate emoji detection
-    const regex = emojiRegex();
+    const regex = EMOJI_REGEX;
 
     const lines = code.split('\n');
 
@@ -300,18 +302,18 @@ function validateNoEmojis(code: string, result: ValidationResult): void {
     }
 }
 
-function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
-    // Common native HTML elements that should be replaced
-    const nativeHtmlElements = new Set([
-        "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
-        "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
-        "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot"
-    ]);
+// Move nativeHtmlElements to module scope to avoid recreating the Set on every function call
+const NATIVE_HTML_ELEMENTS = new Set([
+    "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
+    "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
+    "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot"
+]);
 
+function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
     for (const element of jsxElements) {
         const componentName = getComponentName(element);
 
-        if (componentName && nativeHtmlElements.has(componentName)) {
+        if (componentName && NATIVE_HTML_ELEMENTS.has(componentName)) {
             const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc.`;
 
             result.errors.push({
