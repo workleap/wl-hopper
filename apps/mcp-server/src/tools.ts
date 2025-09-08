@@ -6,10 +6,22 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
+import { getComponentApi, getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
+import { generateGuidesDescription, generateTokenCategoriesDescription } from "./utils/tools-descriptions.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
 
+const paginationParams = {
+    page_size: z
+        .number()
+        .min(15000)
+        .optional()
+        .describe("Maximum number of tokens to return per page. **DEFAULT: Leave unset for full results.** Only specify this on the first call to start pagination. Once set, the page size is fixed for the entire pagination session. Use high values (40000+) for better performance. Low limits (<500) may lead to suboptimal implementations."),
+    cursor: z
+        .string()
+        .optional()
+        .describe("Pagination cursor from the previous response. **DEFAULT: Leave unset for the first page.** Use the 'next_cursor' value from the previous response to get the next page. Do not modify this value manually - it encodes both position and page size information.")
+};
 
 export function tools(server: McpServer) {
     server.registerTool("get_started", {
@@ -67,7 +79,7 @@ export function tools(server: McpServer) {
         trackEvent("get_component_usage", { componentName: component_name }, e?.requestInfo);
 
         return toolContent(
-            await getComponentDocumentation(component_name, "usage"),
+            await getComponentDocumentation(component_name),
             content("Call get_component_props tool to get component's props if needed."),
             content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
         );
@@ -90,75 +102,41 @@ export function tools(server: McpServer) {
         trackEvent("get_component_props", { componentName: component_name }, e?.requestInfo);
 
         return toolContent(
-            await getComponentDocumentation(component_name, "api"),
+            await getComponentApi(component_name),
             content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
         );
     });
 
     server.registerTool("get_design_tokens", {
         title: "Get tokens for different groups of semantic or core design tokens",
-        description:
-        `
-        - MAKE SURE YOU READ THE STYLES GUIDE FIRST
-        - ALWAYS USE **SEMANTIC** TOKENS WHERE POSSIBLE
-
-        Available tokens categories:
-        - semantic-color: Semantic colors for text, surfaces, borders, and icons with interactive states
-        - semantic-elevation: Box shadows for creating depth and hierarchy in interfaces
-        - semantic-shape: Border radius values for rounded corners and circular elements
-        - semantic-space: Spacing tokens for padding, margin, and layout gaps
-        - semantic-typography: Font styles, sizes, and weights for headings and body text
-        - core-border-radius: Fundamental border radius values from 0 to full circles
-        - core-color: Raw color palette values across all brand color scales
-        - core-dimensions: Base spacing units from 0 to 8rem for layouts
-        - core-font-family: Typography font stacks for primary, secondary, and monospace
-        - core-font-size: Font size scale from 0.75rem to 3rem
-        - core-font-weight: Font weight values from 400 to 690
-        - core-line-height: Line height ratios for consistent vertical rhythm
-        - core-motion: Animation durations and easing functions for transitions
-        - core-shadow: Box shadow values for elevation effects
-        - all-semantic: All semantic design tokens.
-        - all-core: All core design tokens.
-        - all: All design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible. (estimated tokens: ${files.tokens.index.estimatedTokens}).
-        `,
+        description: generateTokenCategoriesDescription(),
         inputSchema: {
-            category: z.enum(TokenCategories)
-
+            category: z.enum(TokenCategories),
+            ...paginationParams
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category }, e) : Promise<CallToolResult> => {
-        trackEvent("get_design_tokens", { category }, e?.requestInfo);
+    }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
+        trackEvent("get_design_tokens", { category, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(category));
+        return toolContent(await getGuideDocumentation(category, page_size, cursor));
     });
 
     server.registerTool("get_guide", {
         title: "Get guide or best practices",
-        description:
-        `Available guides:
-        - installation: How to install and set up the Hopper Design System.
-        - styles: How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how.
-        - color-schemes: Applying light mode, dark mode, or adapt to operating system's dark mode.
-        - react-icons: All available react icons with each icon description and usage examples.
-        - svg-icons: All available SVG icons with each icon description and usage examples.
-        - layout: Building application layouts using Flex or Grid.
-        - controlled-mode: Using controlled and uncontrolled modes to customize components.
-        - forms: Best practices for building forms in Hopper Design System.
-        - slots: How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them.
-        - internationalization: Adapting components to respect languages and cultures.
-        `,
+        description: generateGuidesDescription(),
         inputSchema: {
-            guide: z.enum(GuideSections)
+            guide: z.enum(GuideSections),
+            ...paginationParams
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide }, e) : Promise<CallToolResult> => {
-        trackEvent("get_guide", { guide }, e?.requestInfo);
+    }, async ({ guide, page_size, cursor }, e) : Promise<CallToolResult> => {
+        trackEvent("get_guide", { guide, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(guide));
+        return toolContent(await getGuideDocumentation(guide, page_size, cursor));
     });
 
     server.registerTool("validate_component_structure", {

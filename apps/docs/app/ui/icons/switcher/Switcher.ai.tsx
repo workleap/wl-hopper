@@ -99,28 +99,29 @@ interface Item {
 
 
 function Icons({ items }: { items: Item[] }) {
-    return <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Keywords</th>
-                <th>Description</th>
-                <th>Available Sizes</th>
-                <th>Example</th>
-            </tr>
-        </thead>
-        <tbody>
-            {items.map(item => (
-                <tr key={item.name}>
-                    <td>{item.name}</td>
-                    <td>{item.keywords}</td>
-                    <td>{item.description}</td>
-                    <td>{item.sizes}</td>
-                    <td><code>{item.example}</code></td>
+    return <div>
+        <div>Available Sizes: {items[0].sizes}</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Keywords</th>
+                    <th>Description</th>
+                    <th>Example</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>;
+            </thead>
+            <tbody>
+                {items.map(item => (
+                    <tr key={item.name}>
+                        <td>{item.name}</td>
+                        <td>{item.keywords}</td>
+                        <td>{item.description}</td>
+                        <td><code>{item.example}</code></td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>;
 }
 
 export default Switcher;

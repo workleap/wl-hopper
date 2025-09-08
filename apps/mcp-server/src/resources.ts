@@ -17,14 +17,14 @@ export function resources(server: McpServer) {
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("hopper-full-documentation", {}, requestInfo);
 
-            const content = await getGuideDocumentation("all");
+            const doc = await getGuideDocumentation("all");
+            const content = Array.isArray(doc) ? doc : [doc];
 
             return {
-                df: true,
-                contents: [{
+                contents: content.map(content => ({
                     uri: uri.href,
                     ...content
-                }]
+                }))
             };
         }
     );

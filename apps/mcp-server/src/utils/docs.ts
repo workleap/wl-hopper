@@ -9,7 +9,9 @@ import { unified } from "unified";
 
 import { env } from "../env.js";
 
+import { TextContent } from "@modelcontextprotocol/sdk/types.js";
 import { content, errorContent } from "./content.js";
+import { PaginatedResult } from "./cursor-pagination.js";
 import { trackError } from "./logging.js";
 import { readMarkdownFile } from "./readMarkdownFile.js";
 
@@ -55,8 +57,20 @@ const guideFiles: Record<GuideSection | TokenCategory, typeof files.gettingStart
     all: files.tokens.index
 };
 
-export async function getComponentDocumentation(componentName: string, section: "usage" | "api", startLine?: number, endLine?: number) {
-    const docFilePath = join(env.DOCS_PATH, "components", section === "usage" ? `usage/${componentName}.md` : `api/${componentName}.json`);
+function getPaginatedContent(result: PaginatedResult): TextContent | TextContent[] {
+    const paginationInfo = result.totalPages && result.currentPage
+        ? `Page ${result.currentPage} of ${result.totalPages}`
+        : "";
+
+    return [content(result.content),
+        ...(result.hasMore ? [
+            content(`${paginationInfo}. You must call this tool again with the cursor "${result.nextCursor}" to fetch remaining content if what you are looking for is not in the current page.`)
+        ] : [])
+    ];
+}
+
+export async function getComponentDocumentation(componentName: string) {
+    const docFilePath = join(env.DOCS_PATH, "components", `usage/${componentName}.md`);
 
     if (!existsSync(docFilePath)) {
         const error = new Error(`${componentName}'s documentation not found: ${docFilePath}`);
@@ -65,17 +79,33 @@ export async function getComponentDocumentation(componentName: string, section: 
     }
 
     try {
-        const sectionContent = section === "usage"
-            ? await readMarkdownFile(docFilePath, startLine, endLine)
-            : await readFile(docFilePath, "utf-8");
-
-        return content(sectionContent);
+        return getPaginatedContent(
+            await readMarkdownFile(docFilePath)
+        );
     } catch (error) {
         return errorContent(error, `Error reading component props: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
 }
 
-export async function getGuideDocumentation(section: GuideSection | TokenCategory, startLine?: number, endLine?: number) {
+export async function getComponentApi(componentName: string, startLine?: number, endLine?: number) {
+    const docFilePath = join(env.DOCS_PATH, "components", `api/${componentName}.json`);
+
+    if (!existsSync(docFilePath)) {
+        const error = new Error(`${componentName}'s api not found: ${docFilePath}`);
+
+        return errorContent(error, "Error reading component api: File not found.");
+    }
+
+    try {
+        const sectionContent =  await readFile(docFilePath, "utf-8");
+
+        return content(sectionContent);
+    } catch (error) {
+        return errorContent(error, `Error reading component api: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
+}
+
+export async function getGuideDocumentation(section: GuideSection | TokenCategory, pageSize?: number, cursor?: string) {
     if (!Object.keys(guideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
@@ -91,9 +121,9 @@ export async function getGuideDocumentation(section: GuideSection | TokenCategor
     }
 
     try {
-        const sectionContent = await readMarkdownFile(guidePath, startLine, endLine);
-
-        return content(sectionContent);
+        return getPaginatedContent(
+            await readMarkdownFile(guidePath, pageSize, cursor)
+        );
     } catch (error) {
         return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
