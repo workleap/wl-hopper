@@ -1,4 +1,4 @@
-import { paginateContent } from './cursor-pagination.js';
+import { paginateContent } from "./cursor-pagination.js";
 
 // Example usage of the new cursor-based pagination
 function demonstratePagination() {

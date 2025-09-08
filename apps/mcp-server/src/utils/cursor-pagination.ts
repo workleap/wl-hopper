@@ -1,21 +1,22 @@
-import { Buffer } from 'buffer';
+import { Buffer } from "buffer";
 
-export type CursorData = {
+export interface CursorData {
     pageSize: number;
     position: number;
     contentHash: string; // To ensure we're still paginating the same content
-};
+}
 
 export function encodeCursor(data: CursorData): string {
-    return Buffer.from(JSON.stringify(data)).toString('base64');
+    return Buffer.from(JSON.stringify(data)).toString("base64");
 }
 
 export function decodeCursor(cursor: string): CursorData {
     try {
-        const json = Buffer.from(cursor, 'base64').toString('utf-8');
+        const json = Buffer.from(cursor, "base64").toString("utf-8");
+
         return JSON.parse(json) as CursorData;
     } catch (error) {
-        throw new Error('Invalid cursor format');
+        throw new Error("Invalid cursor format");
     }
 }
 
@@ -31,13 +32,13 @@ function tokenToChars(tokens: number): number {
     return Math.floor(tokens * 3.5);
 }
 
-export type PaginatedResult = {
+export interface PaginatedResult {
     content: string;
     hasMore: boolean;
     nextCursor?: string;
     totalPages?: number;
     currentPage?: number;
-};
+}
 
 export function paginateContent(
     fullContent: string,
@@ -62,7 +63,7 @@ export function paginateContent(
 
         // Verify we're still working with the same content
         if (cursorData.contentHash !== contentHash) {
-            throw new Error('Content has changed. Please start pagination from the beginning.');
+            throw new Error("Content has changed. Please start pagination from the beginning.");
         }
 
         actualPageSize = cursorData.pageSize;
@@ -77,7 +78,7 @@ export function paginateContent(
         actualPageSize = pageSize;
         position = 0;
     } else {
-        throw new Error('Either page_size (for first page) or cursor (for subsequent pages) must be provided');
+        throw new Error("Either page_size (for first page) or cursor (for subsequent pages) must be provided");
     }
 
     const maxCharacters = tokenToChars(actualPageSize);

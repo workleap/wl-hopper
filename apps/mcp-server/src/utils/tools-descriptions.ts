@@ -66,7 +66,7 @@ export function generateTokenCategoriesDescription(): string {
             description: "All core design tokens",
             tokenFile: files.tokens.core.index
         },
-        "all": {
+        all: {
             description: "All design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
             tokenFile: files.tokens.index
         }
@@ -84,11 +84,11 @@ export function generateTokenCategoriesDescription(): string {
 
 export function generateGuidesDescription(): string {
     const guideDescriptions: Record<string, { description: string; guideFile?: any }> = {
-        "installation": {
+        installation: {
             description: "How to install and set up the Hopper Design System",
             guideFile: files.gettingStarted.index
         },
-        "styles": {
+        styles: {
             description: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
             guideFile: files.styledSystem.index
         },
@@ -104,7 +104,7 @@ export function generateGuidesDescription(): string {
             description: "All available SVG icons with each icon description and usage examples",
             guideFile: files.icons.svgIcons.index
         },
-        "layout": {
+        layout: {
             description: "Building application layouts using Flex or Grid",
             guideFile: files.components.concepts.layout
         },
@@ -112,15 +112,15 @@ export function generateGuidesDescription(): string {
             description: "Using controlled and uncontrolled modes to customize components",
             guideFile: files.components.concepts.controlledMode
         },
-        "forms": {
+        forms: {
             description: "Best practices for building forms in Hopper Design System",
             guideFile: files.components.concepts.forms
         },
-        "slots": {
+        slots: {
             description: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
             guideFile: files.components.concepts.slots
         },
-        "internationalization": {
+        internationalization: {
             description: "Adapting components to respect languages and cultures",
             guideFile: files.components.concepts.internationalization
         }

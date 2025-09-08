@@ -286,7 +286,7 @@ function validateNoEmojis(code: string, result: ValidationResult): void {
     // Use the emoji-regex library for accurate emoji detection
     const regex = EMOJI_REGEX;
 
-    const lines = code.split('\n');
+    const lines = code.split("\n");
 
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
         const line = lines[lineIndex];
@@ -335,7 +335,7 @@ function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], re
                     const propName = attribute.name.name;
 
                     if (propName === "className") {
-                        const message = `Using "className" prop is **STRONGLY** prohibited. Use Hopper's styled system properties (like padding, margin, color, etc.) for styling. Check the Hopper "styles" guide (available through "get_guide" tool) for accurate details.`;
+                        const message = "Using \"className\" prop is **STRONGLY** prohibited. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
 
                         result.errors.push({
                             message,
@@ -345,7 +345,7 @@ function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], re
                     }
 
                     if (propName === "style") {
-                        const message = `Using "style" prop is **STRONGLY** discouraged. Most style props are DIRECTLY available as styled system properties. e.g. "<Div position='absolute' top='0'></Div>". Also, you can use "UNSAFE_*" version of the props (e.g. "UNSAFE_color") if its value is not supported. Check the Hopper "styles" guide (available through "get_guide" tool) for accurate details.`;
+                        const message = "Using \"style\" prop is **STRONGLY** discouraged. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
 
                         result.errors.push({
                             message,

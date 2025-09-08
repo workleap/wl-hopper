@@ -33,7 +33,7 @@ export function prompts(server: McpServer) {
     })
     );
 
-        server.registerPrompt("generate_code_from_figma_design", {
+    server.registerPrompt("generate_code_from_figma_design", {
         title: "Generate code from the provided figma design",
         description:
             "Use this prompt to properly generate code from figma design. This prompt relies on Figma MCP.",

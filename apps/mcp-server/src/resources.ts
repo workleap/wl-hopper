@@ -18,10 +18,10 @@ export function resources(server: McpServer) {
             trackEvent("hopper-full-documentation", {}, requestInfo);
 
             const doc = await getGuideDocumentation("all");
-            const content = Array.isArray(doc) ? doc : [doc];
+            const contents = Array.isArray(doc) ? doc : [doc];
 
             return {
-                contents: content.map(content => ({
+                contents: contents.map(content => ({
                     uri: uri.href,
                     ...content
                 }))

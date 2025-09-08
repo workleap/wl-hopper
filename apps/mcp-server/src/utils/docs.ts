@@ -9,9 +9,9 @@ import { unified } from "unified";
 
 import { env } from "../env.js";
 
-import { TextContent } from "@modelcontextprotocol/sdk/types.js";
+import type { TextContent } from "@modelcontextprotocol/sdk/types.js";
 import { content, errorContent } from "./content.js";
-import { PaginatedResult } from "./cursor-pagination.js";
+import type { PaginatedResult } from "./cursor-pagination.js";
 import { trackError } from "./logging.js";
 import { readMarkdownFile } from "./readMarkdownFile.js";
 
@@ -64,7 +64,7 @@ function getPaginatedContent(result: PaginatedResult): TextContent | TextContent
 
     return [content(result.content),
         ...(result.hasMore ? [
-            content(`${paginationInfo}. You must call this tool again with the cursor "${result.nextCursor}" to fetch remaining content if what you are looking for is not in the current page.`)
+            content(`${paginationInfo}. You MUST call this tool again with the cursor "${result.nextCursor}" to fetch remaining content if what you are looking for is not in the current page.`)
         ] : [])
     ];
 }
@@ -87,7 +87,7 @@ export async function getComponentDocumentation(componentName: string) {
     }
 }
 
-export async function getComponentApi(componentName: string, startLine?: number, endLine?: number) {
+export async function getComponentApi(componentName: string) {
     const docFilePath = join(env.DOCS_PATH, "components", `api/${componentName}.json`);
 
     if (!existsSync(docFilePath)) {
@@ -97,7 +97,7 @@ export async function getComponentApi(componentName: string, startLine?: number,
     }
 
     try {
-        const sectionContent =  await readFile(docFilePath, "utf-8");
+        const sectionContent = await readFile(docFilePath, "utf-8");
 
         return content(sectionContent);
     } catch (error) {
