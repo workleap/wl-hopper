@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.10
+
+### Patch Changes
+
+- b88be2b: Fix a small menu issue where the container padding was not taken into account
+
 ## 1.12.9
 
 ### Patch Changes
