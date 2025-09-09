@@ -74,8 +74,8 @@ export function tools(server: McpServer) {
 
         return toolContent(
             await getComponentDocumentation(component_name),
-            content(`Call ${toolsInfo.get_component_props.name} tool to get component's props if needed."`),
-            content(`**ALWAYS CALL ${toolsInfo.validate_component_structure.name} TOOL AFTER USING A COMPONENT.**`)
+            content(`Call "#${toolsInfo.get_component_props.name}" tool to get component's props if needed.`),
+            content(`**ALWAYS CALL "#${toolsInfo.validate_component_structure.name}" TOOL AFTER USING A COMPONENT.**`)
         );
     });
 

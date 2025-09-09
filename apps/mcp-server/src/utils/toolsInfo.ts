@@ -67,7 +67,7 @@ export function generateTokenCategoriesDescription(): string {
             tokenFile: files.tokens.core.index
         },
         all: {
-            description: "All available tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
+            description: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
             tokenFile: files.tokens.index
         }
     };

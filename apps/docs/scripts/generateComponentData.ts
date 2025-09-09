@@ -77,7 +77,7 @@ const tsConfigFullPropsParser = docgenTs.withCustomConfig(
             const result = parserConfig.propFilter(prop);
 
             // Get back StyledSystemProps and UnsafeStyledSystemProps
-            if (result == false && (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")) {
+            if (result === false && (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")) {
                 return true;
             }
 
