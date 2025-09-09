@@ -1,8 +1,10 @@
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
+import { useEffectEvent } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, useRef } from "react";
 import {
+    type Key,
     type TabsProps as RACTabsProps,
     Provider,
     Tabs as RACTabs,
@@ -51,6 +53,17 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const [value, setValue] = useControlledState(props.selectedKey, props.defaultSelectedKey ?? null!, props.onSelectionChange);
 
+    const tablistRef = useRef<HTMLDivElement | null>(null);
+    const prevRef = useRef<DOMRect | null>(null);
+
+    const onChange = useEffectEvent((val: Key) => {
+        console.log("AA onChange", val, tablistRef);
+        if (tablistRef.current) {
+            prevRef.current = tablistRef.current.querySelector("[role=tab][data-selected=true]")?.getBoundingClientRect() ?? null;
+        }
+        setValue(val);
+    });
+
     if (!props["aria-label"] && !props["aria-labelledby"]) {
         console.warn("An aria-label or aria-labelledby prop is required on Tabs for accessibility.");
     }
@@ -74,6 +87,7 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
             style={mergedStyles}
             isDisabled={isDisabled}
             disabledKeys={disabledKeys}
+            onSelectionChange={onChange}
             {...otherProps}
         >
             <Provider
@@ -82,12 +96,14 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
                         variant,
                         size,
                         selectedKey: value,
-                        onSelectionChange: setValue,
                         isFluid,
                         isDisabled,
                         disabledKeys,
                         "aria-label": props["aria-label"],
-                        "aria-labelledby": props["aria-labelledby"]
+                        "aria-labelledby": props["aria-labelledby"],
+                        tablistRef,
+                        prevRef,
+                        onSelectionChange: onChange
                     }]
                 ]}
             >

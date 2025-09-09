@@ -35,6 +35,8 @@
 
     cursor: var(--cursor, var(--hop-Tab-cursor));
 
+    position: relative;
+
     display: var(--hop-Tab-display);
     gap: var(--hop-Tab-gap);
     align-items: var(--hop-Tab-align-items);
@@ -94,4 +96,22 @@
 
 .hop-Tab__tag {
     order: 4;
+}
+
+.hop-Tab__selector {
+    position:absolute;
+
+    /** same value as --hop-TabList-padding-block */
+    inset-block-end: calc(-1 * (var(--hop-space-inset-xs) + var(--hop-space-10)));
+    inset-inline-start: 0;
+
+    inline-size: 100%;
+    block-size: 0.125rem;
+
+    background-color: var(--hop-neutral-border-selected);
+    border-style: none;
+}
+
+.hop-Tab__selector--disabled {
+    background-color: var(--hop-neutral-border-disabled);
 }
