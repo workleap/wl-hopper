@@ -1,11 +1,11 @@
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { useContext, useRef, type CSSProperties } from "react";
-import { TabList as RACTablist, useContextProps, type TabListProps as RACTablistProps } from "react-aria-components";
+import { TabList as RACTablist, type TabListProps as RACTablistProps } from "react-aria-components";
 
 import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import { InternalTabsContext, TabListContext } from "./TabsContext.ts";
+import { InternalTabsContext } from "./TabsContext.ts";
 
 import styles from "./TabList.module.css";
 
@@ -22,8 +22,6 @@ export interface TabListProps<T> extends
  */
 function TabList(props: TabListProps<object>) {
     const { variant, size, tablistRef } = useContext(InternalTabsContext) ?? {};
-    let ref = tablistRef;
-    [props, ref] = useContextProps(props, ref, TabListContext);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -55,7 +53,7 @@ function TabList(props: TabListProps<object>) {
         <div className={classNames} style={mergedStyles} ref={wrapperRef}>
             <RACTablist
                 {...otherProps}
-                ref={ref}
+                ref={tablistRef}
                 className={styles["hop-TabList__tablist"]}
             />
         </div>

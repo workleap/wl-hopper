@@ -1,7 +1,6 @@
 import { createContext, type MutableRefObject } from "react";
 import type { ContextValue, Key, TabProps } from "react-aria-components";
 
-import type { TabListProps } from "./TabList.tsx";
 import type { TabPanelProps } from "./TabPanel.tsx";
 import type { TabsProps } from "./Tabs.tsx";
 
@@ -16,10 +15,6 @@ TabContext.displayName = "TabContext";
 export const TabPanelContext = createContext<ContextValue<Partial<TabPanelProps>, HTMLDivElement>>({});
 
 TabPanelContext.displayName = "TabPanelContext";
-
-export const TabListContext = createContext<ContextValue<Partial<TabListProps<object>>, HTMLDivElement>>({});
-
-TabListContext.displayName = "TabListContext";
 
 export const InternalTabsContext = createContext<Partial<TabsProps>& {
     tablistRef?: MutableRefObject<HTMLDivElement | null>;

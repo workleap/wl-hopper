@@ -47,13 +47,12 @@ describe("Tabs", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        const tabListRef = createRef<HTMLDivElement>();
         const tabRef = createRef<HTMLDivElement>();
         const tabPanelRef = createRef<HTMLDivElement>();
 
         render(
             <Tabs ref={ref} aria-label="test">
-                <TabList ref={tabListRef}>
+                <TabList>
                     <Tab id="test" ref={tabRef}>Tab 1</Tab>
                 </TabList>
                 <TabPanel id="test" ref={tabPanelRef}>Panel 1</TabPanel>
@@ -62,9 +61,6 @@ describe("Tabs", () => {
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
-
-        expect(tabListRef.current).not.toBeNull();
-        expect(tabListRef.current instanceof HTMLDivElement).toBeTruthy();
 
         expect(tabRef.current).not.toBeNull();
         expect(tabRef.current instanceof HTMLDivElement).toBeTruthy();
