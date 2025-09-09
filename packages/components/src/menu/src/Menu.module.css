@@ -8,6 +8,7 @@
 
     overflow-y: var(--hop-Menu-overflow-y);
 
+    box-sizing: border-box;
     inline-size: var(--hop-Menu-inline-size);
     min-inline-size: var(--hop-Menu-min-inline-size);
     max-inline-size: var(--hop-Menu-max-inline-size);

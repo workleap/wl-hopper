@@ -112,6 +112,7 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
                 placement={initialPlacement}
                 shouldFlip={allowFlip}
                 outline="none"
+                containerPadding={16}
                 // For submenus, the offset from the edge of the popover should be 12px.
                 // Subtract 8px for the padding around the parent menu.
                 offset={isSubmenu ? 12 : 8}
