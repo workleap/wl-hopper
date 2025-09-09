@@ -6,7 +6,7 @@ const filePath = path.join(process.cwd(), "datas", "components");
 // Standalone version of getComponentProps that doesn't use Next.js aliases
 export const getComponentProps = async (componentName: string) => {
     try {
-        const componentPath = path.join(filePath, `${componentName}.json`);
+        const componentPath = path.join(filePath, `${componentName}-full.json`);
         const data = await fs.readFile(componentPath, "utf-8");
         const parsedData = JSON.parse(data);
 

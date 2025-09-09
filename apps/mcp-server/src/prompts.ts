@@ -1,5 +1,6 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
+import { toolsInfo } from "./utils/toolsInfo";
 
 export function prompts(server: McpServer) {
     server.registerPrompt("build_hopper_app", {
@@ -48,7 +49,7 @@ export function prompts(server: McpServer) {
                     Developer: # Objective
                     Generate a JSX implementation of the selected Figma frame using Hopper Design System components, ensuring visual and structural fidelity.
 
-                    Begin with a concise checklist (3-7 bullets) of what you will do; keep items conceptual, not implementation-level.
+                    Begin with a concise checklist (5-10 bullets) of what you will do; keep items conceptual, not implementation-level.
 
                     # Instructions
                     1. **Initial Code Generation**
@@ -59,20 +60,28 @@ export function prompts(server: McpServer) {
 
                     2. **Hopper Design System Refinement**
                     - The design is already based on the Hopper Design System; ensure strict use of Hopper patterns.
+                        - All styling must use Hopper design tokens—never raw CSS values or inline styles.
+                        - Prioritize proper design system usage over quick fixes
+                    - ALWAYS prioritize using higher-level components. For example prioritize using Input instead of HtmlInput.
+                        - CRITICAL: Always check component props/API before using any component.
+                        - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
                     - Refine generated code by consulting the Hopper Design System MCP server and documentation.
-                    - All styling must use Hopper design tokens—never raw CSS values or inline styles.
-                    - Before implementation, you MUST call 'get_design_tokens' and 'get_guide' tools to understand the design tokens and styles well.
 
-                    3. **Implementation and QA**
+                    3. **Implementation**
+                    - **CRITICAL: BEFORE STARTING,** review all relevant token categories (spacing, colors, typography, etc.) and styling, not just when you hit errors. Call '#${toolsInfo.get_design_tokens.name}' and '#${toolsInfo.get_guide.name}' tools provided by Hopper MCP to get them.
                     - Build out the implementation entirely with Hopper components and patterns.
                     - Use '#get_image' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
                     - Iterate as needed; after each adjustment, repeat the comparison.
-                    - After each tool call or code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
+                    - After each code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
                     - Run Typescript type-checking on the final code to ensure no type errors.
-                    - Run final validation with '#validate_component_structure' to ensure Hopper compliance.
+                    - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
+
+                    4. **QA**
+                    - Validate the component structure after major changes, not just at the end.
+                    - Use '#get_image' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 
                     # Output
-                    Return only the complete JSX implementation using Hopper components. No additional output, explanations, or validation reports are required.
+                    Return only the complete JSX implementation using Hopper components that perfectly matches the original Figma design. No additional output, explanations, or validation reports are required.
 
                     # Context
                     Figma design: '${figma_design_url}'

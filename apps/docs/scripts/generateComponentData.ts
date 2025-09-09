@@ -32,9 +32,7 @@ const ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src
 const RICH_ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "RichIcon.tsx");
 const COMPONENT_DATA = path.join(process.cwd(), "datas", "components");
 
-const tsConfigParser = docgenTs.withCustomConfig(
-    "./tsconfig.json",
-    {
+const parserConfig = {
         shouldRemoveUndefinedFromOptional: true,
         componentNameResolver: exp => {
             const name = exp.getName();
@@ -63,6 +61,27 @@ const tsConfigParser = docgenTs.withCustomConfig(
             }
 
             return true;
+        }
+    } satisfies docgenTs.ParserOptions;
+
+const tsConfigParser = docgenTs.withCustomConfig(
+    "./tsconfig.json",
+    parserConfig
+);
+
+const tsConfigFullPropsParser = docgenTs.withCustomConfig(
+    "./tsconfig.json",
+    {
+        ...parserConfig,
+        propFilter: prop => {
+            const result = parserConfig.propFilter(prop);
+
+            // Get back StyledSystemProps and UnsafeStyledSystemProps
+            if (result == false && (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")) {
+                return true;
+            }
+
+            return result;
         }
     }
 );
@@ -328,10 +347,11 @@ async function generateComponentData() {
 
             try {
                 const data = tsConfigParser.parse(tempFilePath);
+                const fullData = tsConfigFullPropsParser.parse(tempFilePath);
                 const { name } = component;
-                const formattedData = getFormattedData(data);
 
-                await writeFile(name, formattedData);
+                await writeFile(name, getFormattedData(data));
+                await writeFile(`${name}-full`, getFormattedData(fullData));
                 console.log(`${name} API is created!`);
             } catch (error) {
                 console.error(`Error generating documentation for ${component.name}:`, error);
