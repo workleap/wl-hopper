@@ -108,7 +108,7 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
             ref.current.animate(
                 [
                     { transform: `translateX(${deltaX}px)`, inlineSize: `${prevRef.current.width}px` },
-                    { transform: "translateX(0px)", inlineSize: "calc(100% - 2 * var(--padding))" }
+                    { transform: "translateX(0px)", inlineSize: "100%" }
                 ],
                 {
                     duration: 150,
@@ -122,7 +122,11 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
 
     return (
         <>
-            {isSelected && <div ref={ref} className={cssModule(styles, "hop-Tab__selector", isDisabled && "disabled")} />}
+            {isSelected && (
+                <div ref={ref} className={cssModule(styles, "hop-Tab__selector", isDisabled && "disabled")} >
+                    <div className={styles["hop-Tab__selector--inner"]} />
+                </div>
+            )}
             {children}
         </>
     );
