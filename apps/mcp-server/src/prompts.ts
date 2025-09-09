@@ -61,12 +61,14 @@ export function prompts(server: McpServer) {
                     - The design is already based on the Hopper Design System; ensure strict use of Hopper patterns.
                     - Refine generated code by consulting the Hopper Design System MCP server and documentation.
                     - All styling must use Hopper design tokens—never raw CSS values or inline styles.
+                    - Before implementation, you MUST call 'get_design_tokens' and 'get_guide' tools to understand the design tokens and styles well.
 
                     3. **Implementation and QA**
                     - Build out the implementation entirely with Hopper components and patterns.
                     - Use '#get_image' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
                     - Iterate as needed; after each adjustment, repeat the comparison.
                     - After each tool call or code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
+                    - Run Typescript type-checking on the final code to ensure no type errors.
                     - Run final validation with '#validate_component_structure' to ensure Hopper compliance.
 
                     # Output
