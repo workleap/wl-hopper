@@ -67,12 +67,12 @@ export function generateTokenCategoriesDescription(): string {
             tokenFile: files.tokens.core.index
         },
         all: {
-            description: "All design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
+            description: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
             tokenFile: files.tokens.index
         }
     };
 
-    let description = "Available tokens categories:\n";
+    let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
 
     for (const [category, info] of Object.entries(tokenDescriptions)) {
         const tokenCount = info.tokenFile?.estimatedTokens || 0;
@@ -127,7 +127,7 @@ export function generateGuidesDescription(): string {
     };
 
     let description = "Available guides:\n";
-    
+
     for (const [guide, info] of Object.entries(guideDescriptions)) {
         const tokenCount = info.guideFile?.estimatedTokens || 0;
         description += `        - ${guide}: ${info.description} (tokens: ${tokenCount})\n`;
@@ -135,3 +135,46 @@ export function generateGuidesDescription(): string {
 
     return description.trim();
 }
+
+export const toolsInfo = {
+    get_started: {
+        name: "get_started",
+        title: "Get Started",
+        description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
+    },
+    get_components_list: {
+        name: "get_components_list",
+        title: "List all available components",
+        description: "Get a list of all components in the Hopper Design System."
+    },
+    get_component_usage: {
+        name: "get_component_usage",
+        title: "Get component usage documentation",
+        description: "Includes component's anatomy, structure, examples, dos and don'ts, and best practices.\n**IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**"
+    },
+    get_component_props: {
+        name: "get_component_props",
+        title: "Get component props as JSON",
+        description: "Get properties, attributes, methods, events for a specific component.\n- This service returns a JSON API content.\n- Call this service after you have read the component usage."
+    },
+    get_design_tokens: {
+        name: "get_design_tokens",
+        title: "Get design system tokens",
+        description: generateTokenCategoriesDescription()
+    },
+    get_guide: {
+        name: "get_guide",
+        title: "Get guide or best practices",
+        description: generateGuidesDescription()
+    },
+    validate_component_structure: {
+        name: "validate_component_structure",
+        title: "Validate Component Structure",
+        description: "Validates if the component implementation follows the structure and best practices."
+    },
+    migrate_from_orbiter_to_hopper: {
+        name: "migrate_from_orbiter_to_hopper",
+        title: "Migrate a file or all files in the folder from Orbiter to Hopper",
+        description: "It migrates a file or all files in the folder from Orbiter to Hopper."
+    }
+} as const;

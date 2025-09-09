@@ -32,37 +32,56 @@ const ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src
 const RICH_ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "RichIcon.tsx");
 const COMPONENT_DATA = path.join(process.cwd(), "datas", "components");
 
+const parserConfig = {
+    shouldRemoveUndefinedFromOptional: true,
+    componentNameResolver: exp => {
+        const name = exp.getName();
+        if (name.startsWith("_")) {
+            return name.slice(1);
+        }
+
+        return name;
+    },
+    propFilter: prop => {
+        const alwaysIncludeProps = ["children", "className", "id", "style"];
+
+        // Always include these props
+        if (alwaysIncludeProps.includes(prop.name)) {
+            return true;
+        }
+
+        // Remove props from React
+        if (prop?.parent?.fileName.includes("node_modules/@types/react")) {
+            return false;
+        }
+
+        // Remove props from StyledSystemProps and UnsafeStyledSystemProps
+        if (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps") {
+            return false;
+        }
+
+        return true;
+    }
+} satisfies docgenTs.ParserOptions;
+
 const tsConfigParser = docgenTs.withCustomConfig(
     "./tsconfig.json",
+    parserConfig
+);
+
+const tsConfigFullPropsParser = docgenTs.withCustomConfig(
+    "./tsconfig.json",
     {
-        shouldRemoveUndefinedFromOptional: true,
-        componentNameResolver: exp => {
-            const name = exp.getName();
-            if (name.startsWith("_")) {
-                return name.slice(1);
-            }
-
-            return name;
-        },
+        ...parserConfig,
         propFilter: prop => {
-            const alwaysIncludeProps = ["children", "className", "id", "style"];
+            const result = parserConfig.propFilter(prop);
 
-            // Always include these props
-            if (alwaysIncludeProps.includes(prop.name)) {
+            // Get back StyledSystemProps and UnsafeStyledSystemProps
+            if (result === false && (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")) {
                 return true;
             }
 
-            // Remove props from React
-            if (prop?.parent?.fileName.includes("node_modules/@types/react")) {
-                return false;
-            }
-
-            // Remove props from StyledSystemProps and UnsafeStyledSystemProps
-            if (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps") {
-                return false;
-            }
-
-            return true;
+            return result;
         }
     }
 );
@@ -328,10 +347,11 @@ async function generateComponentData() {
 
             try {
                 const data = tsConfigParser.parse(tempFilePath);
+                const fullData = tsConfigFullPropsParser.parse(tempFilePath);
                 const { name } = component;
-                const formattedData = getFormattedData(data);
 
-                await writeFile(name, formattedData);
+                await writeFile(name, getFormattedData(data));
+                await writeFile(`${name}-full`, getFormattedData(fullData));
                 console.log(`${name} API is created!`);
             } catch (error) {
                 console.error(`Error generating documentation for ${component.name}:`, error);
