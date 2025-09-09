@@ -82,8 +82,8 @@ function TypographyTableRender({ items, showSize }: { items: Item[]; showSize: b
     return <table>
         <thead>
             <tr>
-                {showSize && <th>Size</th>}
-                <th>Property</th>
+                <th>Component Prop Name</th>
+                {showSize && <th>Component Prop Value</th>}
                 <th>Token Name</th>
                 <th>Value</th>
             </tr>
@@ -91,8 +91,8 @@ function TypographyTableRender({ items, showSize }: { items: Item[]; showSize: b
         <tbody>
             {items.map(item => (
                 <tr key={item.name + item.propertyName}>
-                    {showSize && <td>{item.name}</td>}
                     <td>{item.propertyName}</td>
+                    {showSize && <td>{item.name}</td>}
                     <td><code>{item.tokenName}</code></td>
                     <td>{item.value}</td>
                 </tr>

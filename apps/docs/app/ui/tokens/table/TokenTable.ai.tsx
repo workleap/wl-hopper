@@ -69,24 +69,27 @@ interface Item {
 }
 
 function TokenTableRender({ items, showStyledSystemValue }: { items: Item[]; showStyledSystemValue: boolean }) {
-    return <table>
-        <thead>
-            <tr>
-                {showStyledSystemValue && <th>Styled-System Value</th>}
-                <th>Token Name</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            {items.map(item => (
-                <tr key={item.name}>
-                    {showStyledSystemValue && <td>{item.styledSystemValue}</td>}
-                    <td><code>{`--${item.name}`}</code></td>
-                    <td>{item.value}</td>
+    return <div>
+        <div>Use the <strong>first column values</strong> directly in your Hopper components. The other columns are for reference only.</div>
+        <table>
+            <thead>
+                <tr>
+                    {showStyledSystemValue && <th>Component Prop Value</th>}
+                    <th>Token Name (CSS Variable Name)</th>
+                    <th>Value</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>;
+            </thead>
+            <tbody>
+                {items.map(item => (
+                    <tr key={item.name}>
+                        {showStyledSystemValue && <td>{item.styledSystemValue}</td>}
+                        <td><code>{`--${item.name}`}</code></td>
+                        <td>{item.value}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>;
 }
 
 export default TokenTable;

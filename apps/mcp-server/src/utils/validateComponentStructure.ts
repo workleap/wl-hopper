@@ -1,5 +1,6 @@
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
+import emojiRegex from "emoji-regex";
 
 interface ValidationError {
     message: string;
@@ -52,6 +53,15 @@ export function validateComponentStructure(code: string): ValidationResult {
             return result;
         }
 
+        // Check for emojis in the entire code
+        validateNoEmojis(code, result);
+
+        // Check for native HTML elements
+        validateNoNativeHTMLElements(jsxElements, result);
+
+        // Check for className and style props usage
+        validateNoClassNameAndStyleProps(jsxElements, result);
+
         // Group components by type for better validation reporting
         const componentInstances = new Map<string, TSESTree.JSXElement[]>();
 
@@ -96,7 +106,7 @@ export function validateComponentStructure(code: string): ValidationResult {
             // Check for common parsing issues and provide helpful messages
             let errorMessage = `Failed to parse code: ${error.message}`;
 
-            if (error.message.includes("Unexpected token")) {
+            if (error.message.includes("Identifier expected")) {
                 errorMessage += "\n\nPlease ensure the code is valid TypeScript/JSX syntax. Common issues include:";
                 errorMessage += "\n- Missing semicolons or brackets";
                 errorMessage += "\n- Invalid JSX syntax";
@@ -238,11 +248,6 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
     }
 }
 
-/**
- * Validates Modal component structure
- * Rule: If the component is Modal, the direct children should be Header, Content and ButtonGroup.
- * If other components live as direct children, it should be an error.
- */
 function validateModalComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
     const componentName = getComponentName(element);
 
@@ -272,5 +277,84 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
+    }
+}
+
+const EMOJI_REGEX = emojiRegex();
+
+function validateNoEmojis(code: string, result: ValidationResult): void {
+    // Use the emoji-regex library for accurate emoji detection
+    const regex = EMOJI_REGEX;
+
+    const lines = code.split("\n");
+
+    for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
+        const line = lines[lineIndex];
+        const matches = line.matchAll(regex);
+
+        for (const match of matches) {
+            result.errors.push({
+                message: `Emoji "${match[0]}" detected at position ${(match.index || 0) + 1}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.`,
+                line: lineIndex + 1,
+                column: (match.index || 0) + 1
+            });
+        }
+    }
+}
+
+// Move nativeHtmlElements to module scope to avoid recreating the Set on every function call
+const NATIVE_HTML_ELEMENTS = new Set([
+    "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
+    "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
+    "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot"
+]);
+
+function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    for (const element of jsxElements) {
+        const componentName = getComponentName(element);
+
+        if (componentName && NATIVE_HTML_ELEMENTS.has(componentName)) {
+            const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc.`;
+
+            result.errors.push({
+                message,
+                line: element.loc?.start.line,
+                column: element.loc?.start.column
+            });
+        }
+    }
+}
+
+function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    for (const element of jsxElements) {
+        const openingElement = element.openingElement;
+
+        if (openingElement.attributes) {
+            for (const attribute of openingElement.attributes) {
+                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
+                    const propName = attribute.name.name;
+
+                    if (propName === "className") {
+                        const message = "Using \"className\" prop is **STRONGLY** prohibited. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
+
+                        result.errors.push({
+                            message,
+                            line: attribute.loc?.start.line,
+                            column: attribute.loc?.start.column
+                        });
+                    }
+
+                    if (propName === "style") {
+                        const message = "Using \"style\" prop is **STRONGLY** discouraged. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
+
+                        result.errors.push({
+                            message,
+                            line: attribute.loc?.start.line,
+                            column: attribute.loc?.start.column
+                        });
+                    }
+                }
+            }
+        }
     }
 }
