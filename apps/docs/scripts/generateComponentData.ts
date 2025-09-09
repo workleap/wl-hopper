@@ -33,36 +33,36 @@ const RICH_ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons",
 const COMPONENT_DATA = path.join(process.cwd(), "datas", "components");
 
 const parserConfig = {
-        shouldRemoveUndefinedFromOptional: true,
-        componentNameResolver: exp => {
-            const name = exp.getName();
-            if (name.startsWith("_")) {
-                return name.slice(1);
-            }
+    shouldRemoveUndefinedFromOptional: true,
+    componentNameResolver: exp => {
+        const name = exp.getName();
+        if (name.startsWith("_")) {
+            return name.slice(1);
+        }
 
-            return name;
-        },
-        propFilter: prop => {
-            const alwaysIncludeProps = ["children", "className", "id", "style"];
+        return name;
+    },
+    propFilter: prop => {
+        const alwaysIncludeProps = ["children", "className", "id", "style"];
 
-            // Always include these props
-            if (alwaysIncludeProps.includes(prop.name)) {
-                return true;
-            }
-
-            // Remove props from React
-            if (prop?.parent?.fileName.includes("node_modules/@types/react")) {
-                return false;
-            }
-
-            // Remove props from StyledSystemProps and UnsafeStyledSystemProps
-            if (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps") {
-                return false;
-            }
-
+        // Always include these props
+        if (alwaysIncludeProps.includes(prop.name)) {
             return true;
         }
-    } satisfies docgenTs.ParserOptions;
+
+        // Remove props from React
+        if (prop?.parent?.fileName.includes("node_modules/@types/react")) {
+            return false;
+        }
+
+        // Remove props from StyledSystemProps and UnsafeStyledSystemProps
+        if (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps") {
+            return false;
+        }
+
+        return true;
+    }
+} satisfies docgenTs.ParserOptions;
 
 const tsConfigParser = docgenTs.withCustomConfig(
     "./tsconfig.json",
