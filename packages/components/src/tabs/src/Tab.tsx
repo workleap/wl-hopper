@@ -107,8 +107,8 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
             const deltaX = prevRef.current.left - currentItem.left;
             ref.current.animate(
                 [
-                    { transform: `translateX(${deltaX}px)`, width: `${prevRef.current.width}px` },
-                    { transform: "translateX(0px)", width: "100%" }
+                    { transform: `translateX(${deltaX}px)`, inlineSize: `${prevRef.current.width}px` },
+                    { transform: "translateX(0px)", inlineSize: "calc(100% - 2 * var(--padding))" }
                 ],
                 {
                     duration: 150,

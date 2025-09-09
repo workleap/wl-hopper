@@ -57,7 +57,6 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
     const prevRef = useRef<DOMRect | null>(null);
 
     const onChange = useEffectEvent((val: Key) => {
-        console.log("AA onChange", val, tablistRef);
         if (tablistRef.current) {
             prevRef.current = tablistRef.current.querySelector("[role=tab][data-selected=true]")?.getBoundingClientRect() ?? null;
         }
