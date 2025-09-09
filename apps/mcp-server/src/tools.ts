@@ -7,7 +7,7 @@ import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
 import { getComponentApi, getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
-import { generateGuidesDescription, generateTokenCategoriesDescription, toolsInfo } from "./utils/toolsInfo.js";
+import { toolsInfo } from "./utils/toolsInfo.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
 
 const paginationParams = {
