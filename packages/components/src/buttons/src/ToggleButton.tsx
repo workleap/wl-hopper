@@ -9,7 +9,7 @@ import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/index.ts";
-import { ClearProviders, cssModule, ensureTextWrapper, SlotProvider, useSlot, type SizeAdapter } from "../../utils/index.ts";
+import { ClearProviders, cssModule, ensureTextWrapper, SlotProvider, useProgressVisibility, useSlot, type SizeAdapter } from "../../utils/index.ts";
 
 import { ToggleButtonContext, type ToggleButtonContextValue } from "./ToggleButtonContext.ts";
 
@@ -85,6 +85,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
         ...otherProps
     } = ownProps;
 
+    const isProgressVisible = useProgressVisibility(isLoading);
     const size = useResponsiveValue(sizeProp) || "md";
 
     if (isHidden) {
@@ -99,7 +100,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
             variant,
             size,
             isFluid && "fluid",
-            isLoading && "loading",
+            isProgressVisible && "loading",
             !hasText && "icon-only"
         ),
         stylingProps.className,
@@ -169,7 +170,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
                     {buttonRenderProps => {
                         return <>
                             {children(buttonRenderProps)}
-                            {isLoading && (
+                            {isProgressVisible && (
                                 <Spinner
                                     aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
                                     size={iconSize}

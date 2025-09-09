@@ -27,6 +27,7 @@ import {
     ensureTextWrapper,
     type SizeAdapter,
     SlotProvider,
+    useProgressVisibility,
     useSlot
 } from "../../utils/index.ts";
 import { type ButtonSize, type ButtonVariant, useButtonProps } from "../utils/index.ts";
@@ -89,6 +90,8 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         ...otherProps
     } = ownProps;
 
+    const isProgressVisible = useProgressVisibility(isLoading);
+
     const [textRef, hasText] = useSlot();
 
     const size = useResponsiveValue(sizeProp) ?? "md";
@@ -107,7 +110,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
             variant,
             size,
             isFluid && "fluid",
-            isLoading && "loading",
+            isProgressVisible && "loading",
             !hasText && "icon-only"
         ),
         stylingProps.className
@@ -179,7 +182,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                     {buttonRenderProps => {
                         return <>
                             {children(buttonRenderProps)}
-                            {isLoading && (
+                            {isProgressVisible && (
                                 <Spinner
                                     aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
                                     size={iconSize}
