@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.11
+
+### Patch Changes
+
+- 499a99a: Update tabs animation
+
 ## 1.12.10
 
 ### Patch Changes
