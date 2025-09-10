@@ -5,6 +5,7 @@
     /* Focus */
     --hop-TabPanel-focus-outline: var(--hop-TabPanel-outline-width) solid var(--hop-primary-border-focus);
 
+    box-sizing: border-box;
     outline: var(--outline, var(--hop-TabPanel-outline));
     outline-offset: calc(-1 * var(--hop-TabPanel-outline-width));
 }

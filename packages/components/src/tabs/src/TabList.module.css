@@ -24,6 +24,7 @@
     overflow-y: var(--hop-TabList-overflow-y);
     display: var(--hop-TabList-display);
 
+    box-sizing: border-box;
     padding-block: var(--hop-TabList-padding-block);
     padding-inline: var(--padding-inline);
 

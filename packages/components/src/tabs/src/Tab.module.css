@@ -35,11 +35,14 @@
 
     cursor: var(--cursor, var(--hop-Tab-cursor));
 
+    position: relative;
+
     display: var(--hop-Tab-display);
     gap: var(--hop-Tab-gap);
     align-items: var(--hop-Tab-align-items);
     justify-content: var(--hop-Tab-justify-content);
 
+    box-sizing: border-box;
     padding: var(--padding);
 
     color: var(--color, var(--hop-Tab-color));
@@ -94,4 +97,29 @@
 
 .hop-Tab__tag {
     order: 4;
+}
+
+.hop-Tab__selector {
+    position:absolute;
+
+    /** same value as --hop-TabList-padding-block */
+    inset-block-end: calc(-1 * (var(--hop-space-inset-xs) + var(--hop-space-10)));
+    inset-inline-start:0;
+
+    box-sizing: border-box;
+    inline-size: 100%;
+    padding: 0 var(--padding)
+}
+
+.hop-Tab__selector--inner {
+    box-sizing: border-box;
+    inline-size: 100%;
+    block-size: 0.125rem;
+
+    background-color: var(--hop-neutral-border-selected);
+    border-style: none;
+}
+
+.hop-Tab__selector--disabled .hop-Tab__selector--inner {
+    background-color: var(--hop-neutral-border-disabled);
 }
