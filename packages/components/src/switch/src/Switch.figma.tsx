@@ -35,3 +35,30 @@ figma.connect(
     example: (props) => <Switch size={props.size} />,
   },
 )
+
+figma.connect(
+  Switch,
+  "https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8-Hopper-Design-System?node-id=647-2424",
+  {
+    props: {
+      // These props were automatically mapped based on your linked code:
+      size: figma.enum("Size", {
+        Small: "sm",
+      }),
+      // No matching props could be found for these Figma properties:
+      // "helperContent": figma.string('Helper content'),
+      // "helperText": figma.boolean('Helper text'),
+      // "label": figma.string('Label'),
+      // "tooltip": figma.boolean('Tooltip'),
+      // "state": figma.enum('State', {
+      //   "Default": "default",
+      //   "Hover": "hover",
+      //   "Focus": "focus",
+      //   "Disabled": "disabled",
+      //   "Press": "press"
+      // }),
+      // "toggle": figma.boolean('Toggle')
+    },
+    example: (props) => <Switch size={props.size} />,
+  },
+)
