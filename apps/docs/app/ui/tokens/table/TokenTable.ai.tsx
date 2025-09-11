@@ -70,7 +70,7 @@ interface Item {
 
 function TokenTableRender({ items, showStyledSystemValue }: { items: Item[]; showStyledSystemValue: boolean }) {
     return <div>
-        <div>⚠️ IMPORTANT: Only use values from the <strong>Component Prop Value</strong> column in your code. </div>
+        <div>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </div>
         <div>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find related <strong>Component Prop Value</strong> by searching this table.</div>
         <table>
             <thead>
