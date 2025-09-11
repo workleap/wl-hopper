@@ -60,13 +60,16 @@ export function prompts(server: McpServer) {
                     - **CRITICAL:** Preserve all text from Figma exactly, without alteration.
 
                     2. **Hopper Design System Refinement**
-                    - The design is already based on the Hopper Design System; ensure strict use of Hopper patterns.
-                        - All styling must use Hopper design tokens—never raw CSS values or inline styles.
-                        - **IMPORTANT** design system tokens ARE DIFFERENT from component style props values. You MUST NOT use the CSS variable names for style props directly. You have to find the correct mapping value in the tokens documentation provided by "#${toolsInfo.get_design_tokens.name}" tool.
-                        - Prioritize proper design system usage over quick fixes
-                    - ALWAYS prioritize using higher-level components. For example prioritize using Input instead of HtmlInput.
-                        - CRITICAL: Always check component props/API before using any component.
-                        - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
+
+                    2.1 **Component Selection**
+                    - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
+                    - CRITICAL: Always check component props/API before using any component.
+                    - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
+
+                    2.2 **Styling**
+                    - All styling must use Hopper design tokens—never raw CSS values or inline styles.
+                    - **IMPORTANT** design system tokens ARE DIFFERENT from component style props values. You MUST NOT use the CSS variable names for style props directly. Find the correct mapping value in the tokens documentation provided by "#${toolsInfo.get_design_tokens.name}" tool.
+                    - Prioritize proper design system usage over quick fixes
                     - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
                     3. **Implementation**
