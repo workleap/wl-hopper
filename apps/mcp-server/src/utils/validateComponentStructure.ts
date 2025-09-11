@@ -306,7 +306,8 @@ function validateNoEmojis(code: string, result: ValidationResult): void {
 const NATIVE_HTML_ELEMENTS = new Set([
     "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
     "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
-    "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot"
+    "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot",
+    "svg", "path"
 ]);
 
 function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {

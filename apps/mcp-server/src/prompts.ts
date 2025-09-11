@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import { toolsInfo } from "./utils/toolsInfo";
@@ -61,6 +62,7 @@ export function prompts(server: McpServer) {
                     2. **Hopper Design System Refinement**
                     - The design is already based on the Hopper Design System; ensure strict use of Hopper patterns.
                         - All styling must use Hopper design tokens—never raw CSS values or inline styles.
+                        - **IMPORTANT** design system tokens ARE DIFFERENT from component style props values. You MUST NOT use the CSS variable names for style props directly. You have to find the correct mapping value in the tokens documentation provided by "#${toolsInfo.get_design_tokens.name}" tool.
                         - Prioritize proper design system usage over quick fixes
                     - ALWAYS prioritize using higher-level components. For example prioritize using Input instead of HtmlInput.
                         - CRITICAL: Always check component props/API before using any component.

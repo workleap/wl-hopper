@@ -72,6 +72,28 @@ Tokens should be used whenever Hopper components do not suit your current use ca
 
 It should be noted that if your current stack prevents you from directly using Hopper components, it is recommended to use component tokens, once released, in priority as they are mapped 1:1 with Hopper implementation.
 
+<AI>
+
+#### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use styled-system prop value",
+                example: <code>{"<Div backgroundColor=\"neutral\" />"}</code>
+            },
+            dont: {
+                explanation: "Use design tokens directly in the component prop value",
+                example: <code>{"<Div backgroundColor=\"neutral-surface\" />"}</code>
+            }
+        },
+    ]}
+/>
+
+</AI>
+
 ### For Designers
 
 When developing features for Workleap, you may need to create new components or enhance existing ones. In this case, you should use semantic tokens to create your components. This ensures consistency with the rest of the design system. Only semantic tokens are available in Figma.
+
