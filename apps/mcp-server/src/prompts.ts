@@ -70,7 +70,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ### Styling
 - All styling must use Hopper design tokens—never raw CSS values or inline styles.
 - **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use CSS variable names for style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens.name}" tool and look for the "Component Prop Value" column in the tokens documentation.
-- When transferring any token value to a component prop, perform the following replacements on the token value: remove the substrings "hop-", "-border", "-surface", "-text", "-icon", "elevation-", "shape-", "space-", "border-", "radius-", "dataviz-", "shadow-", "font-family-", "font-size-", "font-weight-", and "line-height-". For example: "--hop-neutral-text-weak-active" becomes "neutral-weak-active", and "space-inset-md" becomes "inset-sm".
+- When transferring any token value to a component prop, perform the following replacements on the token value: remove the substrings "hop-", "-border", "-surface", "-text", "-icon", "elevation-", "shape-", "space-", "border-", "radius-", "dataviz-", "shadow-", "font-family-", "font-size-", "font-weight-", and "line-height-". For example: "--hop-neutral-text-weak-active" becomes "neutral-weak-active", and "space-inset-md" becomes "inset-md".
 - Prioritize proper design system usage over quick fixes
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
@@ -83,7 +83,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - Run Typescript type-checking on the final code to ensure no type errors.
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
-## 4. Q&A
+## 4. QA
 - Validate the component structure after major changes, not just at the end.
 - Use '#get_image' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 
