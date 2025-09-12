@@ -69,7 +69,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ### Styling
 - All styling must use Hopper design tokens—never raw CSS values or inline styles.
-- **IMPORTANT** design system tokens ARE DIFFERENT from component style props values. You MUST NOT use the CSS variable names for style props directly. Find the correct mapping value in the tokens documentation provided by "#${toolsInfo.get_design_tokens.name}" tool.
+- **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use CSS variable names for style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens.name}" tool and look for the "Component Prop Value" column in the tokens documentation.
 - When transferring any token value to a component prop, perform the following replacements on the token value: remove the substrings "hop-", "-border", "-surface", "-text", "-icon", "elevation-", "shape-", "space-", "border-", "radius-", "dataviz-", "shadow-", "font-family-", "font-size-", "font-weight-", and "line-height-". For example: "--hop-neutral-text-weak-active" becomes "neutral-weak-active", and "space-inset-md" becomes "inset-sm".
 - Prioritize proper design system usage over quick fixes
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
