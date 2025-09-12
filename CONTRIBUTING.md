@@ -1,23 +1,85 @@
-# Contributing
+# Contributing <!-- omit in toc -->
+
+The following documentation is only for the maintainers of this repository.
+
+- [Monorepo setup](#monorepo-setup)
+- [Installation](#installation)
+- [Commands](#commands)
+  - [storybook](#storybook)
+  - [test](#test)
+  - [lint](#lint)
+- [Adding a new icon](#adding-a-new-icon)
+- [Updating or removing an icon](#updating-or-removing-an-icon)
+- [Developing a new component](#developing-a-new-component)
+- [CSS Conventions](#css-conventions)
+  - [CSS Selector naming conventions](#css-selector-naming-conventions)
+  - [CSS Variables](#css-variables)
+- [Testing accessibility with axe via Storybook](#testing-accessibility-with-axe-via-storybook)
+- [Localization and Internationalization](#localization-and-internationalization)
+- [Exporting a component](#exporting-a-component)
+  - [Problem example](#problem-example)
+  - [Recommended approach](#recommended-approach)
+
+## Monorepo setup
+
+This repository is managed as a monorepo with [PNPM workspace](https://pnpm.io/workspaces) to handle the installation of the npm dependencies and manage the packages interdependencies.
+
+It's important to note that PNPM workspace doesn't hoist the npm dependencies at the root of the workspace as most package manager does. Instead, it uses an advanced [symlinked node_modules structure](https://pnpm.io/symlinked-node-modules-structure). This means that you'll find a `node_modules` directory inside the packages folders as well as at the root of the repository.
+
+The main difference to account for is that the `devDependencies` must now be installed locally in every package `package.json` file rather than in the root `package.json` file.
+
+### Turborepo <!-- omit in toc -->
+
+This repository use [Turborepo](https://turbo.build/repo/docs) to execute it's commands. Turborepo help saving time with it's built-in cache but also ensure the packages topological order is respected when executing commands.
+
+To be understand the relationships between the commands, have a look at this repository [turbo.json](./turbo.json) configuration file.
 
 ## Installation
 
-To install the project, open a terminal at the root of the workspace and execute the following command:
+This project uses PNPM, therefore, you must install [PNPM](https://pnpm.io/installation) v9+ first:
 
 ```bash
-pnpm
+npm install -g pnpm
 ```
 
-You must then run the following command to run the following command to build the tokens:
+To install the dependencies of this repository, open a terminal at the root of the workspace and execute the following commands:
 
 ```bash
-pnpm build:tokens
+pnpm i
 ```
+
+You must then run the following command to run the following command to build all the packages:
+
+```bash
+pnpm build:pkg
+```
+
+Then, use any of the available [commands](#commands) to start developing.
+
+## Commands
+
+### storybook 
 
 You can then run storybook to see the components in action:
 
 ```bash
 pnpm storybook
+```
+
+### test
+
+Run the unit tests.
+
+```bash
+pnpm test
+```
+
+### lint
+
+Lint the files.
+
+```bash
+pnpm lint
 ```
 
 ## Adding a new icon
@@ -84,8 +146,6 @@ You can follow the template for the changeset to ensure that you provide the cor
 - Steps 2-5 are the same as adding a new icon.
 
 ## Developing a new component
-
-### Checklist:
 
 - [ ] Every component should have a GlobalCssSelector that is unique to the component. This allows the targetting of the component in the global CSS file.
 ```
