@@ -43,8 +43,8 @@
         "storybook": "storybook dev -p 6006",
         "storybook-nolazy": "cross-env STORYBOOK_NO_LAZY=true pnpm run storybook",
         "build-storybook": "storybook build",
-        "list-outdated-deps": "pnpm outdated -r --format list \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react\" \"!@types/react\" \"!react-dom\" \"!@types/react-dom\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\" \"!@netlify/plugin-nextjs\"",
-        "update-outdated-deps": "pnpm update -r --latest \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react\" \"!@types/react\" \"!react-dom\" \"!@types/react-dom\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\" \"!@netlify/plugin-nextjs\"",
+        "list-outdated-deps": "pnpm outdated -r --format list \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react\" \"!@types/react\" \"!react-dom\" \"!@types/react-dom\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\" \"!@netlify/plugin-nextjs\" \"!svgo\"",
+        "update-outdated-deps": "pnpm update -r --latest \"!eslint\" \"!@types/eslint\" \"!style-dictionary\" \"!react\" \"!@types/react\" \"!react-dom\" \"!@types/react-dom\" \"!react-router-dom\" \"!next\" \"!eslint-config-next\" \"!@netlify/plugin-nextjs\" \"!svgo\"",
         "update-react-aria-deps": "pnpm update -r react-aria react-aria-components @react-aria/* @react-stately/*",
         "plop": "plop",
         "find-types": "pnpm --filter=components find-types"
