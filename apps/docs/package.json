@@ -47,7 +47,7 @@
         "@types/node": "22.10.1",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
-        "@workleap/browserslist-config": "2.0.1",
+        "@workleap/browserslist-config": "2.1.0",
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/postcss-configs": "1.0.4",
         "@workleap/typescript-configs": "3.0.2",
