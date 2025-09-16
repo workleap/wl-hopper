@@ -37,14 +37,14 @@
     },
     "devDependencies": {
         "@types/eslint": "8.56.12",
-        "@types/node": "22.10.1",
-        "@workleap/eslint-plugin": "3.2.3",
-        "@workleap/tsup-configs": "3.0.6",
-        "@workleap/typescript-configs": "3.0.2",
+        "@types/node": "24.5.0",
+        "@workleap/eslint-plugin": "3.5.0",
+        "@workleap/tsup-configs": "3.1.0",
+        "@workleap/typescript-configs": "3.0.4",
         "eslint": "8.57.1",
         "style-dictionary": "3.9.2",
-        "tsx": "4.19.2",
-        "typescript": "5.5.4"
+        "tsx": "4.20.5",
+        "typescript": "5.9.2"
     },
     "sideEffects": false
 }
