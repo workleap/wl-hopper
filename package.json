@@ -75,7 +75,7 @@
         "eslint-plugin-hopper-monorepo": "workspace:*",
         "eslint-plugin-storybook": "^9.1.6",
         "jest": "29.7.0",
-        "plop": "4.0.1",
+        "plop": "4.0.2",
         "prettier": "^3.6.2",
         "prop-types": "15.8.1",
         "react": "18.3.1",
