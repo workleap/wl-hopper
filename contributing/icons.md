@@ -52,8 +52,8 @@ pnpm changeset
 - Follow the prompts to describe the changes made and choose the appropriate version bump. Choose `patch` for minor changes, `minor` for new features, and `major` for breaking changes.
 
 You can follow the template for the changeset to ensure that you provide the correct information for the release. The templates are located in the `.changeset-templates` folder.
-1- For the icons release, you can follow [this template](.changeset-templates\icons-release.md)
-2- For the svg-icons release, you can follow [this template](.changeset-templates\svg-icons-release.md)
+1- For the icons release, you can follow [this template](../.changeset-templates/icons-release.md)
+2- For the svg-icons release, you can follow [this template](../.changeset-templates/svg-icons-release.md)
 
 ## Updating or removing an icon
 
