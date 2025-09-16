@@ -68,7 +68,7 @@
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/stylelint-configs": "2.1.0",
         "@workleap/typescript-configs": "3.0.2",
-        "axe-playwright": "2.0.3",
+        "axe-playwright": "2.2.2",
         "cross-env": "7.0.3",
         "eslint": "8.57.1",
         "eslint-plugin-hopper-monorepo": "workspace:*",
