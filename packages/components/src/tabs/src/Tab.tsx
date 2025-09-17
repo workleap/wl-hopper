@@ -116,7 +116,6 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
                 }
             );
 
-            // eslint-disable-next-line react-compiler/react-compiler
             prevRef.current = null;
         }
     }, [isSelected, reduceMotion, prevRef, tablistRef]);
