@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.12
+
+### Patch Changes
+
+- 42f473b: Tag are now less likely to overflow in a flex layout
+
 ## 1.12.11
 
 ### Patch Changes
