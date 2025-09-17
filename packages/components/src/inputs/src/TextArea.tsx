@@ -133,6 +133,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         inputRef: userProvidedInputRef = null,
         ...propsWithoutRef
     } = props;
+    // eslint-disable-next-line react-compiler/react-compiler
     [props, ref] = useContextProps(propsWithoutRef, ref, TextAreaContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);

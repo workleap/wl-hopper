@@ -26,7 +26,6 @@
     "dev": "pnpm dev:netlify",
     "test": "jest"
   },
-  "keywords": [],
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.18.0",
     "@typescript-eslint/parser": "8.17.0",

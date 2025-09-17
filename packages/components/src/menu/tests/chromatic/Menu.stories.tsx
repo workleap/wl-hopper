@@ -291,14 +291,14 @@ export const ItemDescriptionAvatar = {
                 <Avatar name="Poison Dart Frog" />
                 <Text>Poison Dart Frog</Text>
                 <Text slot="description">
-                        The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian
+                    The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian
                 </Text>
             </MenuItem>
             <MenuItem>
                 <Avatar name="Goliath Frog" />
                 <Text>Goliath Frog</Text>
                 <Text slot="description">
-                        The Goliath Frog (Conraua goliath) is the largest frog in the world
+                    The Goliath Frog (Conraua goliath) is the largest frog in the world
                 </Text>
             </MenuItem>
         </Menu>

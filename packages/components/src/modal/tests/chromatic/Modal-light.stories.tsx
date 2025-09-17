@@ -130,7 +130,7 @@ export const footer = {
                 </Text>
             </Content>
             <Footer>
-                    Copyright 2025
+                Copyright 2025
             </Footer>
         </Modal>
     )

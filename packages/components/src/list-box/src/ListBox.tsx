@@ -62,6 +62,7 @@ const ListBoxToTextSizeAdapter = {
 } as const satisfies SizeAdapter<ListBoxItemSize, TextSize>;
 
 function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTMLDivElement>) {
+    // eslint-disable-next-line react-compiler/react-compiler
     [props, ref] = useContextProps(props, ref, ListBoxContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {

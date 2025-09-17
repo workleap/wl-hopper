@@ -90,6 +90,7 @@ const SegmentedControlItem = (props: SegmentedControlItemProps, ref: ForwardedRe
             }
         );
 
+        // eslint-disable-next-line react-compiler/react-compiler
         prevRef.current = null;
     }, [currentSelectedRef, isReduced, itemSelected, prevRef]);
 

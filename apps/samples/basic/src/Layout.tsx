@@ -5,6 +5,7 @@ export function Layout() {
     const navigate = useNavigate();
 
     return (
+        // eslint-disable-next-line react-compiler/react-compiler
         <HopperProvider locale="en-US" navigate={navigate} useHref={useHref} withBodyStyle defaultColorScheme="dark">
             <InnerLayout />
         </HopperProvider>

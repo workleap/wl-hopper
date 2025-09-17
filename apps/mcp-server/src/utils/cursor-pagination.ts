@@ -16,7 +16,7 @@ export function decodeCursor(cursor: string): CursorData {
 
         return JSON.parse(json) as CursorData;
     } catch (error) {
-        throw new Error("Invalid cursor format");
+        throw new Error("Invalid cursor format", { cause: error });
     }
 }
 

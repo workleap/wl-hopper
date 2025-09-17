@@ -69,7 +69,7 @@ describe("Switch", () => {
                 isDisabled
                 onChange={handler}
             >
-            Disabled button
+                Disabled button
             </Switch>
         );
 
