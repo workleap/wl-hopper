@@ -33,7 +33,7 @@
         "shelljs": "0.10.0",
         "typescript": "5.5.4",
         "webpack": "5.101.3",
-        "webpack-cli": "5.1.4",
+        "webpack-cli": "6.0.1",
         "webpack-dev-server": "5.2.2"
     }
 }
