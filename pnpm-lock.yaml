@@ -330,8 +330,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@22.10.1)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
       '@workleap/typescript-configs':
         specifier: 3.0.2
         version: 3.0.2(typescript@5.5.4)
@@ -406,8 +406,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@24.5.0)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@24.5.0)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.24.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.24.2)
       '@workleap/typescript-configs':
         specifier: 3.0.2
         version: 3.0.2(typescript@5.5.4)
@@ -503,8 +503,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@24.5.0)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@24.5.0)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
       '@workleap/tsup-configs':
         specifier: 3.0.6
         version: 3.0.6(tsup@8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(jiti@1.21.7)(postcss@8.5.6)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.8.1))(typescript@5.5.4)
@@ -618,8 +618,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@22.10.1)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
       '@workleap/typescript-configs':
         specifier: 3.0.2
         version: 3.0.2(typescript@5.5.4)
@@ -712,8 +712,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@24.5.0)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@24.5.0)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
       '@workleap/tsup-configs':
         specifier: 3.0.6
         version: 3.0.6(tsup@8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(jiti@1.21.7)(postcss@8.5.6)(tsx@4.19.2)(typescript@5.5.4)(yaml@2.8.1))(typescript@5.5.4)
@@ -787,8 +787,8 @@ importers:
         specifier: 3.2.3
         version: 3.2.3(@typescript-eslint/parser@8.17.0(eslint@8.57.1)(typescript@5.5.4))(eslint@8.57.1)(jest@29.7.0(@types/node@22.10.1)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@22.10.1)(typescript@5.5.4)))(typescript@5.5.4)
       '@workleap/swc-configs':
-        specifier: 2.2.3
-        version: 2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
+        specifier: 2.3.0
+        version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)
       '@workleap/typescript-configs':
         specifier: 3.0.2
         version: 3.0.2(typescript@5.5.4)
@@ -4585,13 +4585,13 @@ packages:
       stylelint:
         optional: true
 
-  '@workleap/swc-configs@2.2.3':
-    resolution: {integrity: sha512-zrDsorHKxZY4/DlahkWucNm7kH9xAWxsq0WAWAKcCeFiYUX2TqZT+FNKn3Rl2a//MJgEQJlcYD0VaUIZP3J17A==}
+  '@workleap/swc-configs@2.3.0':
+    resolution: {integrity: sha512-UP7gum7j5AQsl/uJTwvAl4E1AasAilWfYFmc3Oi1Ix2ECq4hcyUwoiN5SNLDlwCaI0uAZcYatpzuapZl0DC6RA==}
     peerDependencies:
-      '@swc/core': '*'
-      '@swc/helpers': '*'
-      '@swc/jest': '*'
-      browserslist: '*'
+      '@swc/core': ^1.12.14
+      '@swc/helpers': ^0.5.17
+      '@swc/jest': ^0.2.39
+      browserslist: ^4.25.1
     peerDependenciesMeta:
       '@swc/jest':
         optional: true
@@ -15545,7 +15545,7 @@ snapshots:
       prettier: 3.6.2
       stylelint: 16.24.0(typescript@5.5.4)
 
-  '@workleap/swc-configs@2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.24.2)':
+  '@workleap/swc-configs@2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.24.2)':
     dependencies:
       '@swc/core': 1.13.5(@swc/helpers@0.5.17)
       '@swc/helpers': 0.5.17
@@ -15553,7 +15553,7 @@ snapshots:
       '@swc/jest': 0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17))
       browserslist: 4.24.2
 
-  '@workleap/swc-configs@2.2.3(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)':
+  '@workleap/swc-configs@2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.2)':
     dependencies:
       '@swc/core': 1.13.5(@swc/helpers@0.5.17)
       '@swc/helpers': 0.5.17

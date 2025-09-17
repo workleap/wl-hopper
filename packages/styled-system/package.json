@@ -63,7 +63,7 @@
         "@types/react-dom": "18.3.1",
         "@types/react-test-renderer": "18.3.0",
         "@workleap/eslint-plugin": "3.2.3",
-        "@workleap/swc-configs": "2.2.3",
+        "@workleap/swc-configs": "2.3.0",
         "@workleap/tsup-configs": "3.0.6",
         "@workleap/typescript-configs": "3.0.2",
         "eslint": "8.57.1",
