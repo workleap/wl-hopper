@@ -27,7 +27,7 @@
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
-        "@workleap/webpack-configs": "1.5.1",
+        "@workleap/webpack-configs": "1.6.0",
         "browserslist": "4.24.2",
         "eslint": "8.57.1",
         "shelljs": "0.8.5",
