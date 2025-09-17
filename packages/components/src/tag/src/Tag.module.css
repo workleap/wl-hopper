@@ -265,7 +265,6 @@
     --badge-secondary-margin-inline-start: calc(-1 * var(--column-gap));
     --focus-ring-color: var(--hop-Tag-focus-ring-color);
 
-    overflow: hidden;
     display: inline-flex;
     column-gap: var(--column-gap);
     align-items: center;

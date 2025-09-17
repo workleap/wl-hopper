@@ -365,6 +365,17 @@ export const Everything = {
     }
 } satisfies Story;
 
+export const TagNotTheFirstToOverflow = {
+    render: props => {
+        return (
+            <Inline UNSAFE_width="500px" wrap={false}>
+                <Text> Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
+                <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
+            </Inline>
+        );
+    }
+} satisfies Story;
+
 export const TagWithTooltip = {
     parameters: {
         ...hopperParameters({
