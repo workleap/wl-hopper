@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.18.0",
-    "@typescript-eslint/parser": "8.17.0",
+    "@typescript-eslint/parser": "8.44.0",
     "emoji-regex": "^10.5.0",
     "express": "5.1.0",
     "fetch-to-node": "2.1.0"
@@ -41,7 +41,7 @@
     "@types/express": "5.0.3",
     "@types/jest": "29.5.14",
     "@types/node": "22.10.1",
-    "@typescript-eslint/types": "8.39.0",
+    "@typescript-eslint/types": "8.44.0",
     "@workleap/eslint-plugin": "3.5.0",
     "@workleap/swc-configs": "2.3.0",
     "@workleap/typescript-configs": "3.0.4",

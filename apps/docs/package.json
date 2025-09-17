@@ -52,7 +52,7 @@
         "@workleap/postcss-configs": "1.1.0",
         "@workleap/typescript-configs": "3.0.4",
         "eslint": "8.57.1",
-        "eslint-config-next": "14.2.20",
+        "eslint-config-next": "15.5.3",
         "glob": "^11.0.3",
         "logrocket": "9.0.0",
         "mdast-util-mdx": "^3.0.0",
