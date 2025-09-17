@@ -54,7 +54,7 @@
         "eslint": "8.57.1",
         "eslint-config-next": "15.5.3",
         "glob": "^11.0.3",
-        "logrocket": "9.0.0",
+        "logrocket": "10.1.0",
         "mdast-util-mdx": "^3.0.0",
         "mdx-bundler": "^10.1.1",
         "react-docgen-typescript": "^2.2.2",
