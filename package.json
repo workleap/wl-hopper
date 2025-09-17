@@ -1,7 +1,7 @@
 {
     "name": "wl-hopper",
+    "description": "A React component library that provides accessible, customizable, and production-ready UI components.",
     "version": "0.0.0",
-    "keywords": [],
     "author": {
         "name": "Workleap"
     },
@@ -65,7 +65,7 @@
         "@types/jest": "29.5.14",
         "@types/node": "22.10.1",
         "@types/react": "18.3.13",
-        "@workleap/eslint-plugin": "3.2.3",
+        "@workleap/eslint-plugin": "3.5.0",
         "@workleap/stylelint-configs": "2.1.0",
         "@workleap/typescript-configs": "3.0.4",
         "axe-playwright": "2.2.2",

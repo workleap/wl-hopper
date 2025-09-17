@@ -43,7 +43,7 @@
     "@types/jest": "29.5.14",
     "@types/node": "22.10.1",
     "@typescript-eslint/types": "8.39.0",
-    "@workleap/eslint-plugin": "3.2.3",
+    "@workleap/eslint-plugin": "3.5.0",
     "@workleap/swc-configs": "2.3.0",
     "@workleap/typescript-configs": "3.0.4",
     "eslint": "8.57.1",
