@@ -40,7 +40,7 @@
         "@types/node": "22.10.1",
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/tsup-configs": "3.0.6",
-        "@workleap/typescript-configs": "3.0.2",
+        "@workleap/typescript-configs": "3.0.4",
         "eslint": "8.57.1",
         "style-dictionary": "3.9.2",
         "tsx": "4.19.2",

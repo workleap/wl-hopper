@@ -49,7 +49,7 @@
         "@types/node": "22.10.1",
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/swc-configs": "2.3.0",
-        "@workleap/typescript-configs": "3.0.2",
+        "@workleap/typescript-configs": "3.0.4",
         "copyfiles": "2.4.1",
         "eslint": "8.57.1",
         "hast-util-select": "6.0.4",

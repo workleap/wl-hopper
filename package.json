@@ -67,7 +67,7 @@
         "@types/react": "18.3.13",
         "@workleap/eslint-plugin": "3.2.3",
         "@workleap/stylelint-configs": "2.1.0",
-        "@workleap/typescript-configs": "3.0.2",
+        "@workleap/typescript-configs": "3.0.4",
         "axe-playwright": "2.2.2",
         "cross-env": "10.0.0",
         "eslint": "8.57.1",
