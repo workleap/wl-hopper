@@ -54,7 +54,7 @@
         "@hopper-ui/tokens": "workspace:*",
         "@internationalized/string-compiler": "3.2.6",
         "@netlify/plugin-nextjs": "5.9.0",
-        "@pmmmwh/react-refresh-webpack-plugin": "0.5.15",
+        "@pmmmwh/react-refresh-webpack-plugin": "0.6.1",
         "@storybook/addon-a11y": "^9.1.6",
         "@storybook/addon-docs": "^9.1.6",
         "@storybook/addon-links": "^9.1.6",
