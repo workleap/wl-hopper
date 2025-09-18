@@ -9,7 +9,7 @@ export const GithubButton = () => {
             variant="secondary"
             target="_blank"
         >
-                        Github
+            Github
             <Icon src={ExternalLinkIcon} slot="end-icon" />
         </LinkButton>
     );

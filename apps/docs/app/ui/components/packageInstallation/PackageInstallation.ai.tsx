@@ -14,9 +14,9 @@ const formatCode = (method: string, library: string, mode: string) => {
     const code = `${method} ${method === "npm" ? "install" : "add"} ${mode === "dev" ? "-D" : ""} @hopper-ui/${library}`;
 
     return <Mdx>
-```bash
-${code.replace(/\s{2,}/g, " ")}
-```
+        ```bash
+        ${code.replace(/\s{2,}/g, " ")}
+        ```
     </Mdx>;
 };
 

@@ -81,7 +81,7 @@ export const AccessToDisabledState: Story = {
             <CheckboxField {...props} isDisabled description="Value should be true">
                 {({ isDisabled }) => (
                     <Checkbox>
-                            Is disabled: {String(isDisabled)}
+                        Is disabled: {String(isDisabled)}
                     </Checkbox>
                 )}
             </CheckboxField>

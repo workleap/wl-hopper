@@ -80,7 +80,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
             slot={slot}
             {...otherProps}
         >
-            <RACModal onOpenChange={onOpenChange} {...otherProps} ref={ref} className={styles["hop-BaseModal__modal"]}>
+            <RACModal ref={ref} className={styles["hop-BaseModal__modal"]}>
                 {children}
             </RACModal>
         </ModalOverlay>

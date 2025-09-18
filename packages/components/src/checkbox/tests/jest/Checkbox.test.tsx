@@ -1,6 +1,6 @@
 /* eslint-disable testing-library/no-node-access */
 /* Using closest to get the label is the best way, even react-aria does this. */
-import { act, screen, waitFor, render } from "@hopper-ui/test-utils";
+import { act, render, screen, waitFor } from "@hopper-ui/test-utils";
 import { userEvent } from "@testing-library/user-event";
 import { createRef } from "react";
 
@@ -47,7 +47,7 @@ describe("Checkbox", () => {
 
         const checkbox = screen.getByRole("checkbox");
         const element = checkbox.closest("label");
-        
+
         expect(element).toHaveAttribute("slot", "test");
         expect(checkbox).toHaveAttribute("aria-label", "test");
     });
@@ -69,7 +69,7 @@ describe("Checkbox", () => {
                 isDisabled
                 onChange={handler}
             >
-            Disabled button
+                Disabled button
             </Checkbox>
         );
 

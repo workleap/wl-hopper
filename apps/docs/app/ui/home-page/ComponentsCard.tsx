@@ -16,7 +16,7 @@ export const ComponentsCard = () => {
                 <h3 className="hd-home-sample__title">Components <span className="hd-home-sample__title-tag">Preview</span> <ArrowIcon className="hd-home-sample__title-icon" /></h3>
             </div>
             <p className="hd-home-sample__tagline">An accessible suite of components powered by
-                        react-aria.</p>
+                react-aria.</p>
             <div className="hd-home-sample-components">
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
@@ -44,7 +44,7 @@ export const ComponentsCard = () => {
                             <div className="hd-home-sample-components__buttons">
                                 <HopperButton excludeFromTabOrder>Confirm</HopperButton>
                                 <HopperButton excludeFromTabOrder variant="secondary">I need
-                                            help</HopperButton>
+                                    help</HopperButton>
                             </div>
                         </HopperProvider>
                     </div>

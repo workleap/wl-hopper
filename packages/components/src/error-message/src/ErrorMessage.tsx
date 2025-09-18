@@ -1,5 +1,6 @@
 import { WarningIcon } from "@hopper-ui/icons";
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
+import type { GlobalDOMAttributes } from "@react-types/shared";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import {
     type FieldErrorProps as RACFieldErrorProps,
@@ -13,12 +14,11 @@ import { composeClassnameRenderProps, cssModule, useRenderProps } from "../../ut
 
 import { ErrorMessageContext } from "./ErrorMessageContext.ts";
 
-
 import styles from "./ErrorMessage.module.css";
 
 export const GlobalErrorMessageCssSelector = "hop-ErrorMessage";
 
-export interface ErrorMessageProps extends StyledComponentProps<RACFieldErrorProps>, Omit<TextProps, "style" | "className" | "children" | "color" | "content"> {
+export interface ErrorMessageProps extends StyledComponentProps<Omit<RACFieldErrorProps, keyof GlobalDOMAttributes<HTMLDivElement>>>, Omit<TextProps, "style" | "className" | "children" | "color" | "content"> {
     /**
      * Whether or not to hide the error message icon.
      */

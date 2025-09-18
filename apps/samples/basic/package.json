@@ -12,28 +12,28 @@
     "dependencies": {
         "@hopper-ui/components": "workspace:*",
         "react": "18.3.1",
+        "react-aria": "3.43.2",
+        "react-aria-components": "1.12.2",
         "react-dom": "18.3.1",
-        "react-router-dom": "^6.26.2",
-        "react-aria-components": "1.7.1",
-        "react-aria": "3.43.0"
+        "react-router-dom": "^7.9.1"
     },
     "devDependencies": {
-        "@swc/core": "1.10.0",
-        "@swc/helpers": "0.5.15",
+        "@swc/core": "1.13.5",
+        "@swc/helpers": "0.5.17",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
-        "@typescript-eslint/parser": "8.17.0",
-        "@workleap/browserslist-config": "2.0.1",
-        "@workleap/eslint-plugin": "3.2.3",
-        "@workleap/swc-configs": "2.2.3",
-        "@workleap/typescript-configs": "3.0.2",
-        "@workleap/webpack-configs": "1.5.1",
-        "browserslist": "4.24.2",
+        "@typescript-eslint/parser": "8.44.0",
+        "@workleap/browserslist-config": "2.1.0",
+        "@workleap/eslint-plugin": "3.5.0",
+        "@workleap/swc-configs": "2.3.0",
+        "@workleap/typescript-configs": "3.0.4",
+        "@workleap/webpack-configs": "1.6.0",
+        "browserslist": "4.26.2",
         "eslint": "8.57.1",
-        "shelljs": "0.8.5",
+        "shelljs": "0.10.0",
         "typescript": "5.5.4",
-        "webpack": "5.97.1",
-        "webpack-cli": "5.1.4",
-        "webpack-dev-server": "5.1.0"
+        "webpack": "5.101.3",
+        "webpack-cli": "6.0.1",
+        "webpack-dev-server": "5.2.2"
     }
 }

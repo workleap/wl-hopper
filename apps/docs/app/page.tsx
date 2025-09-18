@@ -24,7 +24,7 @@ export default function Home() {
                 <div className="hd-home__heading">
                     <h1 className="hd-home__header">Leap into creativity</h1>
                     <p className="hd-home__tagline">Explore Workleap&apos;s Design System, where icons, tokens, and components are
-                    handpicked for ultimate simplicity and accessibility.</p>
+                        handpicked for ultimate simplicity and accessibility.</p>
                 </div>
                 <div className="hd-home__ctas">
                     <LinkButton href="/getting-started/overview/installation">Getting Started</LinkButton>
@@ -35,7 +35,7 @@ export default function Home() {
                         <h2 className="hd-home__feature-title"><AccessibleIcon className="hd-home-feature-title__icon" />Accessible
                         </h2>
                         <p className="hd-home__feature-copy">
-                        Built with accessibility in mind Hopper is based on React Aria Components
+                            Built with accessibility in mind Hopper is based on React Aria Components
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
@@ -43,7 +43,7 @@ export default function Home() {
                             className="hd-home-feature-title__icon"
                         />International</h2>
                         <p className="hd-home__feature-copy">
-                        Experience is pushed further with internationalization.
+                            Experience is pushed further with internationalization.
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
@@ -51,14 +51,14 @@ export default function Home() {
                             className="hd-home-feature-title__icon hd-icon-fill"
                         />Typescript</h2>
                         <p className="hd-home__feature-copy">
-                        Typescript based for reduced learning curve and error detection.
+                            Typescript based for reduced learning curve and error detection.
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
                         <h2 className="hd-home__feature-title"><DarkModeIcon className="hd-home-feature-title__icon" />Dark
-                        mode</h2>
+                            mode</h2>
                         <p className="hd-home__feature-copy">
-                        Switching from light to dark mode couldn&apos;t be easier.
+                            Switching from light to dark mode couldn&apos;t be easier.
                         </p>
                     </div>
                 </div>

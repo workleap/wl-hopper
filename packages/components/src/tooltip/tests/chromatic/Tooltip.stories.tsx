@@ -274,7 +274,7 @@ export const TooltipOnStandaloneTag = {
                 maxWidth="100%"
                 size="sm"
             >
-                    alexandre.asselin@workleap.com
+                alexandre.asselin@workleap.com
             </Tag>
             <Tooltip {...args} />
         </TooltipTrigger>

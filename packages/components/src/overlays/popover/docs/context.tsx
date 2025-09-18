@@ -37,7 +37,7 @@ export default function Example() {
                 <Popover>
                     <Heading>ACME</Heading>
                     <Content>
-                    A tech company focusing on the development of software and hardware solutions.
+                        A tech company focusing on the development of software and hardware solutions.
                     </Content>
                 </Popover>
             </PopoverTrigger>

@@ -29,7 +29,7 @@ export const Default = {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
             <h1>Description</h1>
@@ -41,7 +41,7 @@ export const Default = {
                     </Inline>
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
             <h1>Icon</h1>
@@ -72,7 +72,7 @@ export const Default = {
             <Disclosure {...args}>
                 <Button slot="trigger">Custom Header</Button>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
             <h1>Style</h1>
@@ -81,7 +81,7 @@ export const Default = {
                     Disclosure Header
                 </DisclosureHeader>
                 <DisclosurePanel>
-                Disclosure Panel
+                    Disclosure Panel
                 </DisclosurePanel>
             </Disclosure>
             <h1>Zoom</h1>
