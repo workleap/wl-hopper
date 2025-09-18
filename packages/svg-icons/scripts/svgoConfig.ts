@@ -2,11 +2,11 @@ import type { Config } from "svgo";
 
 import { changeColorPlugin } from "./changeColorPlugin.ts";
 import {
-    PrimaryIconColor,
-    WarningWeakIconColor,
     DecorativeOption7IconColor,
     DecorativeOption7SurfaceColor,
     NeutralIconColor,
+    PrimaryIconColor,
+    WarningWeakIconColor,
     White,
     WhiteHexadecimal
 } from "./constants.ts";
@@ -62,7 +62,7 @@ const config: Config = {
          *
          * Since we're not using JavaScript in our SVGs, we can safely remove the script element.
          */
-        { name: "removeScriptElement" },
+        { name: "removeScripts" },
         /**
          * Removes the clip-rule attribute from all elements.
          * In the unit tests, we make sure that there is no clipPath in our svgs. Yet for some reason
