@@ -84,7 +84,7 @@ export const AccessToDisabledState: Story = {
             <SwitchField {...props} size="sm" isDisabled description="Value should be true">
                 {({ isDisabled }) => (
                     <Switch>
-                            Is disabled: {String(isDisabled)}
+                        Is disabled: {String(isDisabled)}
                     </Switch>
                 )}
             </SwitchField>

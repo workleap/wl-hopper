@@ -31,8 +31,8 @@ export const GlobalDecorativeRadioCssSelector = "hop-DecorativeRadio";
 
 export interface DecorativeRadioProps extends RadioProps, InteractionProps {}
 
-function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLElement>) {
-    [props, ref] = useContextProps(props, ref as ForwardedRef<HTMLLabelElement>, RadioContext);
+function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLLabelElement>) {
+    [props, ref] = useContextProps(props, ref, RadioContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
@@ -97,8 +97,8 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLElem
     const radioIconClassName = styles["hop-DecorativeRadio__bullet"];
 
     return (
-        <div
-            ref={ref as ForwardedRef<HTMLDivElement>}
+        <label
+            ref={ref}
             slot={slot || undefined}
             data-selected={isSelected || undefined}
             data-pressed={isPressed || undefined}
@@ -109,6 +109,7 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLElem
             data-readonly={isReadOnly || undefined}
             data-invalid={isInvalid || undefined}
             data-required={isRequired || undefined}
+            aria-hidden
             {...mergeProps(renderProps, otherProps)}
         >
             <div className={styles["hop-DecorativeRadio__box"]}>
@@ -134,14 +135,14 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLElem
                     {renderProps.children}
                 </SlotProvider>
             </ClearContainerSlots>
-        </div>
+        </label>
     );
 }
 
 /**
  * The DecorativeRadio component indicates the selection state of an option without using a native radio input. To be used for visual purposes only.
  */
-const _DecorativeRadio = forwardRef<HTMLElement, DecorativeRadioProps>(DecorativeRadio);
+const _DecorativeRadio = forwardRef<HTMLLabelElement, DecorativeRadioProps>(DecorativeRadio);
 _DecorativeRadio.displayName = "DecorativeRadio";
 
 export { _DecorativeRadio as DecorativeRadio };

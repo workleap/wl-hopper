@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { NewTabIcon } from "@hopper-ui/icons";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import Link from "./Link";
 
@@ -27,7 +27,7 @@ export const Inline: Story = {
             Built with accessibility in mind Hopper is based on <Link {...args}
                 href="https://react-spectrum.adobe.com/react-aria/Link.html"
             >React
-            Aria Components <NewTabIcon slot="end-icon" /></Link>
+                Aria Components <NewTabIcon slot="end-icon" /></Link>
         </p>
     )
 };

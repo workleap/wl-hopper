@@ -8,6 +8,7 @@ const environmentVariablesSchema = z.object({
 });
 
 // Extended schema: DOC_PATH is required and schema is named configSchema
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const configSchema = environmentVariablesSchema.extend({
     DOCS_PATH: z.string(),
     ENV: z.enum(["development", "production"])

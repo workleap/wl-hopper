@@ -1,4 +1,4 @@
-import type { XastElement } from "svgo/lib/types.js";
+import type { XastElement } from "svgo";
 
 import { colors } from "./svgoConfig.ts";
 

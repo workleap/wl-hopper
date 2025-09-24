@@ -31,8 +31,8 @@ export const GlobalDecorativeCheckboxCssSelector = "hop-DecorativeCheckbox";
 
 export interface DecorativeCheckboxProps extends Omit<CheckboxProps, "onChange">, InteractionProps {}
 
-function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HTMLElement>) {
-    [props, ref] = useContextProps(props, ref as ForwardedRef<HTMLLabelElement>, CheckboxContext);
+function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HTMLLabelElement>) {
+    [props, ref] = useContextProps(props, ref, CheckboxContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
@@ -102,8 +102,8 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
         <CheckmarkIcon size="sm" className={checkboxIconClassName} />;
 
     return (
-        <div
-            ref={ref as ForwardedRef<HTMLDivElement>}
+        <label
+            ref={ref}
             slot={slot || undefined}
             data-selected={isSelected || undefined}
             data-pressed={isPressed || undefined}
@@ -114,6 +114,7 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
             data-readonly={isReadOnly || undefined}
             data-invalid={isInvalid || undefined}
             data-required={isRequired || undefined}
+            aria-hidden
             {...mergeProps(renderProps, otherProps)}
         >
             <div className={styles["hop-DecorativeCheckbox__box"]}>{icon}</div>
@@ -137,14 +138,14 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
                     {renderProps.children}
                 </SlotProvider>
             </ClearContainerSlots>
-        </div>
+        </label>
     );
 }
 
 /**
  * The DecorativeCheckbox component indicates the selection state of an option without using a native radio input. To be used for visual purposes only.
  */
-const _DecorativeCheckbox = forwardRef<HTMLElement, DecorativeCheckboxProps>(DecorativeCheckbox);
+const _DecorativeCheckbox = forwardRef<HTMLLabelElement, DecorativeCheckboxProps>(DecorativeCheckbox);
 _DecorativeCheckbox.displayName = "DecorativeCheckbox";
 
 export { _DecorativeCheckbox as DecorativeCheckbox };

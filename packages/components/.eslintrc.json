@@ -4,6 +4,7 @@
     "plugins": ["hopper-monorepo"],
     "extends": ["plugin:@workleap/react-library", "plugin:hopper-monorepo/import-order"],
     "rules": {
+        "react-compiler/react-compiler": "off",
         "no-console": ["warn", { "allow": ["warn", "error"] }],
         "react/destructuring-assignment": "off",
         "no-param-reassign": "off",
