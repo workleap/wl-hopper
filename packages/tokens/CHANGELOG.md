@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 4.4.5
+
+### Patch Changes
+
+- 39d9c13: Update all dependencies
+
 ## 4.4.4
 
 ### Patch Changes
@@ -208,7 +214,6 @@
   | upsell-text-hover            |
 
   ## @hopper-ui/components
-
   - Added a press state to Links
   - Added a press state to Buttons
   - Added a press state to Checkbbox
@@ -257,7 +262,6 @@
 ### Minor Changes
 
 - ff7fed1: # Font Tokens
-
   - Swapped referenced token fonts for variable fonts.
   - Woff2 are now the defacto font extension.
 
@@ -322,7 +326,6 @@
 ### Minor Changes
 
 - 2c7f2ab: ### New Tokens
-
   - decorative-option2-surface-weak
   - decorative-option2-surface-weakest
   - decorative-option4-surface-weak
@@ -339,7 +342,6 @@
   - decorative-option9-surface-weakest
 
   ### Update
-
   - decorative-option1-text-weak
   - decorative-option2-text-weak
   - decorative-option3-text-weak
