@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.11
+
+### Patch Changes
+
+- 39d9c13: Update all dependencies
+
 ## 2.5.10
 
 ### Patch Changes

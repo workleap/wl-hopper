@@ -1,5 +1,11 @@
 # @hopper-ui/svg-icons
 
+## 2.19.1
+
+### Patch Changes
+
+- 39d9c13: Update all dependencies
+
 ## 2.19.0
 
 ### Minor Changes

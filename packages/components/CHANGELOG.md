@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.13
+
+### Patch Changes
+
+- 39d9c13: Update all dependencies
+
 ## 1.12.12
 
 ### Patch Changes
