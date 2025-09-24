@@ -4,8 +4,8 @@
     "tasks": {
         "build": {
             "dependsOn": ["^build"],
-            "outputs": ["dist/**", ".next/**", "**/datas/**"],
-            "cache": false
+            "inputs": ["$TURBO_DEFAULT$", "packages/components/**/docs/**/*.tsx"],
+            "outputs": ["dist/**", ".next/**", "**/datas/**"]
         },
         "lint": {
             "dependsOn": ["eslint", "typecheck", "stylelint"]
