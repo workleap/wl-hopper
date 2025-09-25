@@ -119,7 +119,7 @@ const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
                             ]}
                         >
                             {selectionMode !== "none" && !hasSubmenu && isSelected &&
-                                <CheckmarkIcon className={styles["hop-MenuItem__checkmark"]} />
+                                <CheckmarkIcon className={styles["hop-MenuItem__checkmark"]} size="sm" />
                             }
                             {typeof children === "string" ? <Text>{children}</Text> : children}
                             {renderProps.hasSubmenu && (
