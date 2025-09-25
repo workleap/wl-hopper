@@ -1,0 +1,27 @@
+.hop-Calendar  {
+    --hop-Calendar-display: flex;
+    --hop-Calendar-flex-direction: column;
+    --hop-Calendar-gap: var(--hop-space-stack-xs);
+    --hop-Calendar-inline-size: fit-content;
+
+    display: var(--hop-Calendar-display);
+    flex-direction: var(--hop-Calendar-flex-direction);
+    gap: var(--hop-Calendar-gap);
+    inline-size: var(--hop-Calendar-inline-size);
+}
+
+.hop-Calendar__header {
+    --hop-Calendar__header-display: flex;
+    --hop-Calendar__header-align-items: center;
+    --hop-Calendar__header-justify-content: space-between;
+    --hop-Calendar__header-inline-size: 100%;
+
+    display: var(--hop-Calendar__header-display);
+    align-items: var(--hop-Calendar__header-align-items);
+    justify-content: var(--hop-Calendar__header-justify-content);
+    inline-size: var(--hop-Calendar__header-inline-size);
+}
+
+.hop-Calendar__header-button {
+    --hop-Button-ghost-secondary-color: var(--hop-neutral-icon);
+}

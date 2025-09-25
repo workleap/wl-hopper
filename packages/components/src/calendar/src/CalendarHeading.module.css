@@ -1,0 +1,23 @@
+.hop-CalendarHeading {
+    --hop-CalendarHeading-display: flex;
+    --hop-CalendarHeading-align-items: center;
+    --hop-CalendarHeading-justify-content: center;
+    --hop-CalendarHeading-inline-size: 100%;
+    --hop-CalendarHeading-font-family: var(--hop-font-family-secondary);
+    --hop-CalendarHeading-font-size: var(--hop-font-size-180);
+    --hop-CalendarHeading-font-weight: var(--hop-font-weight-590);
+    --hop-CalendarHeading-line-height: var(--hop-line-height-1-50);
+    --hop-CalendarHeading-color: var(--hop-neutral-text);
+
+    display: var(--hop-CalendarHeading-display);
+    align-items: var(--hop-CalendarHeading-align-items);
+    justify-content: var(--hop-CalendarHeading-justify-content);
+
+    inline-size: var(--hop-CalendarHeading-inline-size);
+
+    font-family: var(--hop-CalendarHeading-font-family);
+    font-size: var(--hop-CalendarHeading-font-size);
+    font-weight: var(--hop-CalendarHeading-font-weight);
+    line-height: var(--hop-CalendarHeading-line-height);
+    color: var(--hop-CalendarHeading-color);
+}
