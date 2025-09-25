@@ -149,6 +149,7 @@ export const toolsInfo = {
         title: "Get Started",
         description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
     },
+
     get_components_list: {
         name: "get_components_list",
         title: "List all available components",
@@ -168,6 +169,7 @@ export const toolsInfo = {
         }
 
     },
+
     get_design_tokens: {
         name: "get_design_tokens",
         title: "Get design system tokens",
@@ -178,6 +180,7 @@ export const toolsInfo = {
         title: "Get guide or best practices",
         description: generateGuidesDescription()
     },
+
     validate_component_structure: {
         name: "validate_component_structure",
         title: "Validate Component Structure",
