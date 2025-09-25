@@ -23,6 +23,11 @@ interface ComponentPropsData {
 interface GeneratePropsJsonOptions {
     filesPath: string;
     outputPath: string;
+    options: {
+        // Whether to include full props data or only important fields
+        includeFullProps?: boolean;
+    }
+
 }
 
 // Raw prop data interface from getComponentProps
@@ -72,32 +77,22 @@ function extractPropTableComponents(content: string): string[] {
 }
 
 // Helper function to filter important props
-function filterImportantProps(rawProps: RawPropData[]): PropItem[] {
-    return rawProps.map((prop: RawPropData) => {
-        const propItem = prop as {
-            name: string;
-            required: boolean;
-            type?: { name?: string } | string;
-            defaultValue?: { value?: string } | string;
-            description?: string;
-        };
-
-        return {
-            name: propItem.name,
-            type: typeof propItem.type === "string" ? propItem.type : propItem.type?.name || "unknown",
-            required: propItem.required || false,
-            defaultValue: typeof propItem.defaultValue === "string"
-                ? propItem.defaultValue
-                : propItem.defaultValue?.value || undefined,
-            description: propItem.description || undefined
-        };
-    });
+function mapProps(rawProps: RawPropData[]): PropItem[] {
+    return rawProps.map((prop: RawPropData) => ({
+        name: prop.name,
+        type: typeof prop.type === "string" ? prop.type : prop.type?.name || "unknown",
+        required: prop.required || false,
+        defaultValue: typeof prop.defaultValue === "string"
+            ? prop.defaultValue
+            : prop.defaultValue?.value || undefined,
+        description: prop.description || undefined
+    }));
 }
 
 // Helper function to get filtered component props data
-async function getFilteredComponentProps(componentName: string): Promise<ComponentPropsData | null> {
+async function getFilteredComponentProps(componentName: string, options: GeneratePropsJsonOptions["options"]): Promise<ComponentPropsData | null> {
     try {
-        const data = await getComponentProps(componentName);
+        const data = await getComponentProps(componentName, options.includeFullProps);
 
         if (!data || !data.groups || data.groups.length === 0) {
             console.warn(`No props data found for component: ${componentName}`);
@@ -105,14 +100,14 @@ async function getFilteredComponentProps(componentName: string): Promise<Compone
             return null;
         }
 
-        const filteredGroups: PropGroup[] = data.groups.map((group: { name: string; props: unknown[] }) => ({
+        const groups = data.groups.map((group) => ({
             name: group.name,
-            props: filterImportantProps(group.props as RawPropData[])
-        })).filter((group: PropGroup) => group.props.length > 0);
+            props: mapProps(group.props as RawPropData[])
+        })).filter((group) => group.props.length > 0);
 
         return {
             componentName,
-            groups: filteredGroups
+            groups
         };
     } catch (error) {
         console.error(`Error getting props for component ${componentName}:`, error);
@@ -122,15 +117,15 @@ async function getFilteredComponentProps(componentName: string): Promise<Compone
 }
 
 // Main function to generate JSON files from MDX
-export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions): Promise<void> {
+export async function generatePropsJsonFromMdx({outputPath, filesPath, options}: GeneratePropsJsonOptions): Promise<void> {
     try {
         console.log("🚀 Starting Props JSON generation from MDX files...");
 
         // Ensure output directory exists
-        await fs.mkdir(options.outputPath, { recursive: true });
+        await fs.mkdir(outputPath, { recursive: true });
 
         // Find all MDX files
-        const mdxFiles = await findMdxFiles(options.filesPath);
+        const mdxFiles = await findMdxFiles(filesPath);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Set to track unique components (avoid duplicates)
@@ -158,10 +153,10 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
 
         for (const componentName of uniqueComponents) {
             try {
-                const componentData = await getFilteredComponentProps(componentName);
+                const componentData = await getFilteredComponentProps(componentName, options);
 
                 if (componentData) {
-                    const jsonPath = path.join(options.outputPath, `${componentName}.json`);
+                    const jsonPath = path.join(outputPath, `${componentName}.json`);
                     await fs.writeFile(jsonPath, JSON.stringify(componentData, null, 2));
 
                     console.log(`✅ Generated JSON for: ${componentName}`);
@@ -186,14 +181,14 @@ export async function generatePropsJsonFromMdx(options: GeneratePropsJsonOptions
             generatedAt: new Date().toISOString()
         };
 
-        const summaryPath = path.join(options.outputPath, "_summary.json");
+        const summaryPath = path.join(outputPath, "_summary.json");
         await fs.writeFile(summaryPath, JSON.stringify(summary, null, 2));
 
         console.log(`✅ Successfully generated JSON for ${successfulComponents.length} components`);
         if (failedComponents.length > 0) {
             console.log(`❌ Failed to generate JSON for ${failedComponents.length} components: ${failedComponents.join(", ")}`);
         }
-        console.log(`📦 Output directory: ${options.outputPath}`);
+        console.log(`📦 Output directory: ${outputPath}`);
     } catch (error) {
         console.error("❌ Error during Props JSON generation:", error);
         process.exit(1);

@@ -1,13 +1,12 @@
-/* eslint-disable max-len */
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type {
     CallToolResult
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentApi, getComponentDocumentation, getGuideDocumentation, GuideSections, TokenCategories } from "./utils/docs.js";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
-import { toolsInfo } from "./utils/toolsInfo.js";
+import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
 
 const paginationParams = {
@@ -15,11 +14,11 @@ const paginationParams = {
         .number()
         .min(15000)
         .optional()
-        .describe("Maximum number of tokens to return per page. **DEFAULT: Leave unset for full results.** ONLY specify this on the first call to start pagination. Once set, the page size is fixed for the entire pagination session. Use high values (e.g. 20000+) for better performance. Low limits may lead to suboptimal implementations."),
+        .describe(paginationParamsInfo.page_size),
     cursor: z
         .string()
         .optional()
-        .describe("Pagination cursor from the previous response. **DEFAULT: Leave unset for the first page.** Use the 'next_cursor' value from the previous response to get the next page. Do not modify this value manually - it encodes both position and page size information.")
+        .describe(paginationParamsInfo.cursor)
 };
 
 export function tools(server: McpServer) {
@@ -34,7 +33,7 @@ export function tools(server: McpServer) {
 
         return toolContent(content(`
             ALWAYS follow these steps:
-            1. Read "styles", "tokens" and "icons" guides to understand the design system concepts well.
+            1. Read "styles", "tokens", "layout", and "icons" guides to understand the design system concepts well.
                 - CRITICAL: Always check component props/API before using any component.
                 - Never assume standard CSS/HTML props work - each design system has its own API.
                 - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "${toolsInfo.get_component_usage.name}" tool.
@@ -57,7 +56,7 @@ export function tools(server: McpServer) {
     }, async (_, e) : Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_components_list.name, {}, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation("components-list"));
+        return toolContent(await getGuide("components-list"));
     });
 
     server.registerTool(toolsInfo.get_component_usage.name, {
@@ -73,7 +72,7 @@ export function tools(server: McpServer) {
         trackEvent(toolsInfo.get_component_usage.name, { componentName: component_name }, e?.requestInfo);
 
         return toolContent(
-            await getComponentDocumentation(component_name),
+            await getComponentUsage(component_name),
             content(`Call "#${toolsInfo.get_component_props.name}" tool to get component's props if needed.`),
             content(`**ALWAYS CALL "#${toolsInfo.validate_component_structure.name}" TOOL AFTER USING A COMPONENT.**`)
         );
@@ -83,16 +82,17 @@ export function tools(server: McpServer) {
         title: toolsInfo.get_component_props.title,
         description: toolsInfo.get_component_props.description,
         inputSchema: {
-            component_name: z.string()
+            component_name: z.string(),
+            include_full_props: z.boolean().optional().describe(toolsInfo.get_component_props.parameters.include_full_props)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_component_props.name, { componentName: component_name }, e?.requestInfo);
+    }, async ({ component_name, include_full_props }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_component_props.name, { componentName: component_name, includeFullProps: include_full_props }, e?.requestInfo);
 
         return toolContent(
-            await getComponentApi(component_name),
+            include_full_props ? await getComponentFullApi(component_name) : await getComponentBriefApi(component_name),
             content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
         );
     });
@@ -110,7 +110,7 @@ export function tools(server: McpServer) {
     }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(category, page_size, cursor));
+        return toolContent(await getGuide(category, page_size, cursor));
     });
 
     server.registerTool(toolsInfo.get_guide.name, {
@@ -126,7 +126,7 @@ export function tools(server: McpServer) {
     }, async ({ guide, page_size, cursor }, e) : Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_guide.name, { guide, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuideDocumentation(guide, page_size, cursor));
+        return toolContent(await getGuide(guide, page_size, cursor));
     });
 
     server.registerTool(toolsInfo.validate_component_structure.name, {

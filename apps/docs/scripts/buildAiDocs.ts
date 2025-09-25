@@ -115,7 +115,8 @@ async function main() {
         } else if (isPropsJsonBuild(buildInfo)) {
             await generatePropsJsonFromMdx({
                 filesPath: join(projectRoot, buildInfo.source),
-                outputPath: join(outputPath, fileKey)
+                outputPath: join(outputPath, fileKey),
+                options: buildInfo.options
             });
         } else {
             await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {

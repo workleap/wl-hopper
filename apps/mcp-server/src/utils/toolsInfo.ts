@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
+
 import { files } from "@docs/ai";
 
 export function generateTokenCategoriesDescription(): string {
-    const tokenDescriptions: Record<string, { description: string; tokenFile?: any }> = {
+    const tokenDescriptions: Record<string, { description: string; tokenFile?: any; parameters?: Record<string, string> }> = {
         "semantic-color": {
             description: "Semantic colors for text, surfaces, borders, and icons with interactive states",
             tokenFile: files.tokens.semantic.color
@@ -136,6 +138,11 @@ export function generateGuidesDescription(): string {
     return description.trim();
 }
 
+export const paginationParamsInfo = {
+    page_size: "Maximum number of tokens to return per page. **DEFAULT: Leave unset for full results.** ONLY specify this on the first call to start pagination. Once set, the page size is fixed for the entire pagination session. Use high values (e.g. 20000+) for better performance. Low limits may lead to suboptimal implementations.",
+    cursor: "Pagination cursor from the previous response. **DEFAULT: Leave unset for the first page.** Use the 'next_cursor' value from the previous response to get the next page. Do not modify this value manually - it encodes both position and page size information."
+};
+
 export const toolsInfo = {
     get_started: {
         name: "get_started",
@@ -155,7 +162,11 @@ export const toolsInfo = {
     get_component_props: {
         name: "get_component_props",
         title: "Get component props as JSON",
-        description: "Get properties, attributes, methods, events for a specific component.\n- This service returns a JSON API content.\n- Call this service after you have read the component usage."
+        description: "Get properties, attributes, methods, events for a specific component.\n- This service returns a JSON API content.\n- Call this service after you have read the component usage",
+        parameters: {
+            include_full_props: "Whether to include full props data or only important fields. **DEFAULT: false**"
+        }
+
     },
     get_design_tokens: {
         name: "get_design_tokens",
