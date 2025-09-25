@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.12.14
+
+### Patch Changes
+
+- 828e99a: Fix MenuItem size when selected
+
 ## 1.12.13
 
 ### Patch Changes
