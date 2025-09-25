@@ -27,7 +27,6 @@ interface GeneratePropsJsonOptions {
         // Whether to include full props data or only important fields
         includeFullProps?: boolean;
     }
-
 }
 
 // Raw prop data interface from getComponentProps
@@ -117,7 +116,7 @@ async function getFilteredComponentProps(componentName: string, options: Generat
 }
 
 // Main function to generate JSON files from MDX
-export async function generatePropsJsonFromMdx({outputPath, filesPath, options}: GeneratePropsJsonOptions): Promise<void> {
+export async function generatePropsJsonFromMdx({ outputPath, filesPath, options }: GeneratePropsJsonOptions): Promise<void> {
     try {
         console.log("🚀 Starting Props JSON generation from MDX files...");
 
