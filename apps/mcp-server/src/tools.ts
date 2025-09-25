@@ -180,7 +180,7 @@ export function tools(server: McpServer) {
                     - There are some added \`Migration TODO\`s comments in the code. Try to address them.
                     - There might also be \`migration-notes.md\` file generated. Review them for additional guidance.
                     - For each component you can check the Component documentation's Migration notes to manually adjust the code.
-                3. If some components are not migrated, you can use the \`get_component_documentation\` tool to get the component documentation and follow the migration notes.
+                3. If some components are not migrated, you can use the #${toolsInfo.get_component_usage.name} tool to get the component usage information and follow the migration notes.
                 4. Make sure the migrated code adheres to Hopper's design system standards.
                 `));
     });
