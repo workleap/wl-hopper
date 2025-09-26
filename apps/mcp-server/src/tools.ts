@@ -4,7 +4,7 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
@@ -97,20 +97,35 @@ export function tools(server: McpServer) {
         );
     });
 
-    server.registerTool(toolsInfo.get_design_tokens.name, {
-        title: toolsInfo.get_design_tokens.title,
-        description: toolsInfo.get_design_tokens.description,
+    // server.registerTool(toolsInfo.get_design_tokens.name, {
+    //     title: toolsInfo.get_design_tokens.title,
+    //     description: toolsInfo.get_design_tokens.description,
+    //     inputSchema: {
+    //         category: z.enum(TokenCategories),
+    //         ...paginationParams
+    //     },
+    //     annotations: {
+    //         readOnlyHint: true
+    //     }
+    // }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
+    //     trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
+
+    //     return toolContent(await getGuide(category, page_size, cursor));
+    // });
+
+    server.registerTool(toolsInfo.get_design_tokens_map.name, {
+        title: toolsInfo.get_design_tokens_map.title,
+        description: toolsInfo.get_design_tokens_map.description,
         inputSchema: {
             category: z.enum(TokenCategories),
-            ...paginationParams
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
+    }, async ({ category }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens_map.name, { category }, e?.requestInfo);
 
-        return toolContent(await getGuide(category, page_size, cursor));
+        return toolContent(await getDesignTokensMap(category));
     });
 
     server.registerTool(toolsInfo.get_guide.name, {

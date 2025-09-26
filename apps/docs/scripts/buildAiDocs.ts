@@ -1,5 +1,5 @@
 import { aiDocsConfig } from "@/ai-docs/ai-docs.config.js";
-import { isMdFromMdxBuild, isPropsJsonBuild } from "@/ai-docs/util.js";
+import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild } from "@/ai-docs/util.js";
 import { createWriteStream } from "fs";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
@@ -8,6 +8,7 @@ import { convertMdxToMd } from "./ai-utils/convertMdxToMd.js";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
 import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
+import { generateTokensMapJson } from "./ai-utils/generateTokensJson.ts";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
 
 async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }) {
@@ -118,7 +119,12 @@ async function main() {
                 outputPath: join(outputPath, fileKey),
                 options: buildInfo.options
             });
-        } else {
+        } else if (isTokensJsonBuild(buildInfo)) {
+            await generateTokensMapJson({
+                sourceFile: join(projectRoot, buildInfo.source),
+                outputFile: join(outputPath, fileKey),
+            });
+        }else {
             await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {
                 fileName: fileKey,
                 path: outputPath,

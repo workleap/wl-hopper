@@ -162,6 +162,18 @@ export async function getGuide(section: GuideSection | TokenCategory, pageSize?:
     }
 }
 
+export async function getDesignTokensMap(category: TokenCategory) {
+
+    const guidePath = join(env.DOCS_PATH, files.tokens.core.map);
+
+    if (!existsSync(guidePath)) {
+        const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
+
+        return errorContent(error, `Guide not found for section: ${section}`);
+    }
+
+}
+
 export async function getDocumentContentResult(url: string) {
     if (!url.startsWith("https://hopper.workleap.design")) {
         const error = new Error(`Invalid URL: ${url}. Please provide a URL from the hopper.workleap.design domain.`);

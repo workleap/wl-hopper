@@ -167,18 +167,22 @@ export const toolsInfo = {
         parameters: {
             include_full_props: "Whether to include full props data or only important fields. **DEFAULT: false**"
         }
-
     },
 
-    get_design_tokens: {
-        name: "get_design_tokens",
-        title: "Get design system tokens",
-        description: generateTokenCategoriesDescription()
-    },
     get_guide: {
         name: "get_guide",
         title: "Get guide or best practices",
         description: generateGuidesDescription()
+    },
+    // get_design_tokens: {
+    //     name: "get_design_tokens",
+    //     title: "Get design system tokens",
+    //     description: generateTokenCategoriesDescription()
+    // },
+    get_design_tokens_map: {
+        name: "get_design_tokens_map",
+        title: "Get design system tokens map to component props as JSON",
+        description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\""
     },
 
     validate_component_structure: {

@@ -24,13 +24,19 @@ export interface TemplateBasedBuild {
 
 export interface PropsJsonBuild {
     //it is a temporary type until we find a more generic solution
-    type: "json";
+    type: "props-json";
     source: string;
     options: {
         includeFullProps?: boolean;
     };
 }
-export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild;
+
+export interface TokensJsonBuild {
+    type: "tokens-json";
+    source: string;
+}
+
+export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild;
 
 interface ServeConfig {
     at?: string;
