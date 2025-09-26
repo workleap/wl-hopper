@@ -30,11 +30,25 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        // api (json)
-        "components/api": {
+        // api full (json)
+        "components/api/full": {
             build: {
-                type: "json",
+                type: "props-json",
                 source: "content/components",
+                options: {
+                    includeFullProps: true
+                }
+            }
+        },
+
+        // api brief(json)
+        "components/api/brief": {
+            build: {
+                type: "props-json",
+                source: "content/components",
+                options: {
+                    includeFullProps: false
+                }
             }
         },
 
@@ -160,6 +174,14 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/shadow.md"
                 ]
             },
+        },
+
+        // tokens map (json)
+        "tokens/map.json": {
+            build: {
+                type: "tokens-json",
+                source: "datas/tokens.json",
+            }
         },
 
         "tokens/semantic/index.md": {
