@@ -26,6 +26,9 @@ export interface PropsJsonBuild {
     //it is a temporary type until we find a more generic solution
     type: "json";
     source: string;
+    options: {
+        includeFullProps?: boolean;
+    };
 }
 export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild;
 

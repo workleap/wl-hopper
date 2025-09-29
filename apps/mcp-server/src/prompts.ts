@@ -36,7 +36,7 @@ export function prompts(server: McpServer) {
     );
 
     server.registerPrompt("generate_code_from_figma_design", {
-        title: "Generate code from the provided figma design",
+        title: "Generate code from the provided figma design url",
         description:
             "Use this prompt to properly generate code from figma design. This prompt relies on Figma MCP.",
         argsSchema: { figma_design_url: z.string() }
@@ -55,8 +55,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 # Instructions
 
 ## 1. Initial Code Generation
-- Utilize Figma MCP tools ('#get_image', '#get_code', '#get_variable_defs') for initial extraction.
-- Map visuals from '#get_image' directly to Hopper components.
+- Utilize Figma MCP tools ('#get_screenshot' and '#get_code') for initial extraction.
+- Map visuals from '#get_screenshot' directly to Hopper components.
 - Use '#get_code' mainly to extract styling values (colors, sizes, fonts), not for component structure.
 - **CRITICAL:** Preserve all text from Figma exactly, without alteration.
 
@@ -77,7 +77,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 3. Implementation
 - **CRITICAL: BEFORE STARTING,** review all relevant token categories (spacing, colors, typography, etc.) and styling, not just when you hit errors. Call '#${toolsInfo.get_design_tokens.name}' and '#${toolsInfo.get_guide.name}' tools provided by Hopper MCP to get them.
 - Build out the implementation entirely with Hopper components and patterns.
-- Use '#get_image' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
+- Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.
 - After each code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
 - Run Typescript type-checking on the final code to ensure no type errors.
@@ -85,7 +85,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ## 4. QA
 - Validate the component structure after major changes, not just at the end.
-- Use '#get_image' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
+- Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
+- The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 
 # Output
 Return only the complete JSX implementation using Hopper components that perfectly matches the original Figma design. No additional output, explanations, or validation reports are required.

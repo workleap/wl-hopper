@@ -69,8 +69,16 @@ function getPaginatedContent(result: PaginatedResult): TextContent | TextContent
     ];
 }
 
-export async function getComponentDocumentation(componentName: string) {
-    const docFilePath = join(env.DOCS_PATH, "components", `usage/${componentName}.md`);
+export async function getComponentUsage(componentName: string) {
+    const camelCaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
+
+    if (!(camelCaseName in files.components.usage)) {
+        const error = new Error(`Invalid component name requested: ${componentName}`);
+
+        return errorContent(error, `Invalid component name requested: ${componentName}`);
+    }
+
+    const docFilePath = join(env.DOCS_PATH, files.components.usage[camelCaseName as keyof typeof files.components.usage].path);
 
     if (!existsSync(docFilePath)) {
         const error = new Error(`${componentName}'s documentation not found: ${docFilePath}`);
@@ -87,11 +95,36 @@ export async function getComponentDocumentation(componentName: string) {
     }
 }
 
-export async function getComponentApi(componentName: string) {
-    const docFilePath = join(env.DOCS_PATH, "components", `api/${componentName}.json`);
+export async function getComponentBriefApi(componentName: string) {
+    const camelCaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
+
+    if (camelCaseName in files.components.api.brief) {
+        return readComponentApi(files.components.api.brief[camelCaseName as keyof typeof files.components.api.brief].path);
+    }
+
+    const error = new Error(`Invalid component name requested: ${componentName}`);
+
+    return errorContent(error, `Invalid component name requested: ${componentName}`);
+}
+
+export async function getComponentFullApi(componentName: string) {
+    const camelCaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
+
+    if (camelCaseName in files.components.api.full) {
+        return readComponentApi(files.components.api.full[camelCaseName as keyof typeof files.components.api.full].path);
+    }
+
+    const error = new Error(`Invalid component name requested: ${componentName}`);
+
+    return errorContent(error, `Invalid component name requested: ${componentName}`);
+}
+
+
+async function readComponentApi(relativePath: string) {
+    const docFilePath = join(env.DOCS_PATH, relativePath);
 
     if (!existsSync(docFilePath)) {
-        const error = new Error(`${componentName}'s api not found: ${docFilePath}`);
+        const error = new Error(`${relativePath}'s api not found: ${docFilePath}`);
 
         return errorContent(error, "Error reading component api: File not found.");
     }
@@ -105,7 +138,7 @@ export async function getComponentApi(componentName: string) {
     }
 }
 
-export async function getGuideDocumentation(section: GuideSection | TokenCategory, pageSize?: number, cursor?: string) {
+export async function getGuide(section: GuideSection | TokenCategory, pageSize?: number, cursor?: string) {
     if (!Object.keys(guideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
@@ -126,39 +159,6 @@ export async function getGuideDocumentation(section: GuideSection | TokenCategor
         );
     } catch (error) {
         return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
-    }
-}
-
-export async function getDocumentInfo(type: "component" | "guide", name: string) {
-    try {
-        let filePath: string;
-
-        if (type === "component") {
-            filePath = join(env.DOCS_PATH, "components", `usage/${name}.md`);
-        } else {
-            if (!(name in guideFiles)) {
-                const error = new Error(`Invalid guide name: ${name}`);
-
-                return errorContent(error, `Invalid guide name: ${name}`);
-            }
-
-            filePath = join(env.DOCS_PATH, guideFiles[name as GuideSection].path);
-        }
-
-        if (!existsSync(filePath)) {
-            const error = new Error(`File not found: ${filePath}`);
-
-            return errorContent(error, `Guide file not found: ${filePath}`);
-        }
-
-        const fileContent = await readFile(filePath, "utf-8");
-        const lines = fileContent.split("\n");
-        const totalLines = lines.length;
-        const fileSize = fileContent.length;
-
-        return content(JSON.stringify({ filePath, totalLines, fileSize }, null, 2));
-    } catch (error) {
-        return errorContent(error, `Error getting document info: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
 }
 

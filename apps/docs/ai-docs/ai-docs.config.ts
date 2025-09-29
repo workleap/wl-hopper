@@ -30,11 +30,25 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        // api (json)
-        "components/api": {
+        // api full (json)
+        "components/api/full": {
             build: {
                 type: "json",
                 source: "content/components",
+                options: {
+                    includeFullProps: true
+                }
+            }
+        },
+
+        // api brief(json)
+        "components/api/brief": {
+            build: {
+                type: "json",
+                source: "content/components",
+                options: {
+                    includeFullProps: false
+                }
             }
         },
 
