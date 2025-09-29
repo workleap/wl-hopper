@@ -1,3 +1,4 @@
+import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 
 interface TableProps {
     tokenType?: "core" | "semantic" | null;
@@ -5,37 +6,6 @@ interface TableProps {
         name: string;
         value: string;
     }[];
-}
-
-function formatStyledSystemName(name: string, tokenType: "core" | "semantic" | null) {
-    let prefix = "";
-    if (tokenType === "core") {
-        prefix = "core_";
-    } else if (name?.includes("dataviz")) {
-        prefix = "dataviz_";
-    }
-
-    const formattedName = name
-        .replace("hop-", "")
-        .replace("-border", "")
-        .replace("-surface", "")
-        .replace("-text", "")
-        .replace("-icon", "")
-        .replace("elevation-", "")
-        .replace("shape-", "")
-        .replace("space-", "")
-        .replace("border-", "")
-        .replace("radius-", "")
-        .replace("border-", "")
-        .replace("dataviz-", "")
-        .replace("shadow-", "")
-        .replace("font-family-", "")
-        .replace("font-size-", "")
-        .replace("font-weight-", "")
-        .replace("line-height-", "")
-    ;
-
-    return `${prefix}${formattedName}`;
 }
 
 const TokenTable = ({ data, tokenType }: TableProps) => {

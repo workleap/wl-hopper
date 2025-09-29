@@ -1,84 +1,47 @@
 /* eslint-disable max-len */
 
 import { files } from "@docs/ai";
+import { GUIDE_FILES, TOKEN_MAP_FILES } from "./docs.js";
+
+const CATEGORY_DESCRIPTIONS = {
+    "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
+    "semantic-elevation": "Box shadows for creating depth and hierarchy in interfaces",
+    "semantic-shape": "Border radius values for rounded corners and circular elements",
+    "semantic-space": "Spacing tokens for padding, margin, and layout gaps",
+    "semantic-typography": "Font styles, sizes, and weights for headings and body text",
+    "core-border-radius": "Fundamental border radius values from 0 to full circles",
+    "core-color": "Raw color palette values across all brand color scales",
+    "core-dimensions": "Base spacing units from 0 to 8rem for layouts",
+    "core-font-family": "Typography font stacks for primary, secondary, and monospace",
+    "core-font-size": "Font size scale from 0.75rem to 3rem",
+    "core-font-weight": "Font weight values from 400 to 690",
+    "core-line-height": "Line height ratios for consistent vertical rhythm",
+    "core-motion": "Animation durations and easing functions for transitions",
+    "core-shadow": "Box shadow values for elevation effects",
+    "all-semantic": "All semantic design tokens",
+    "all-core": "All core design tokens",
+    all: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible"
+} as const;
 
 export function generateTokenCategoriesDescription(): string {
-    const tokenDescriptions: Record<string, { description: string; tokenFile?: any; parameters?: Record<string, string> }> = {
-        "semantic-color": {
-            description: "Semantic colors for text, surfaces, borders, and icons with interactive states",
-            tokenFile: files.tokens.semantic.color
-        },
-        "semantic-elevation": {
-            description: "Box shadows for creating depth and hierarchy in interfaces",
-            tokenFile: files.tokens.semantic.elevation
-        },
-        "semantic-shape": {
-            description: "Border radius values for rounded corners and circular elements",
-            tokenFile: files.tokens.semantic.shape
-        },
-        "semantic-space": {
-            description: "Spacing tokens for padding, margin, and layout gaps",
-            tokenFile: files.tokens.semantic.space
-        },
-        "semantic-typography": {
-            description: "Font styles, sizes, and weights for headings and body text",
-            tokenFile: files.tokens.semantic.typography
-        },
-        "core-border-radius": {
-            description: "Fundamental border radius values from 0 to full circles",
-            tokenFile: files.tokens.core.borderRadius
-        },
-        "core-color": {
-            description: "Raw color palette values across all brand color scales",
-            tokenFile: files.tokens.core.color
-        },
-        "core-dimensions": {
-            description: "Base spacing units from 0 to 8rem for layouts",
-            tokenFile: files.tokens.core.dimensions
-        },
-        "core-font-family": {
-            description: "Typography font stacks for primary, secondary, and monospace",
-            tokenFile: files.tokens.core.fontFamily
-        },
-        "core-font-size": {
-            description: "Font size scale from 0.75rem to 3rem",
-            tokenFile: files.tokens.core.fontSize
-        },
-        "core-font-weight": {
-            description: "Font weight values from 400 to 690",
-            tokenFile: files.tokens.core.fontWeight
-        },
-        "core-line-height": {
-            description: "Line height ratios for consistent vertical rhythm",
-            tokenFile: files.tokens.core.lineHeight
-        },
-        "core-motion": {
-            description: "Animation durations and easing functions for transitions",
-            tokenFile: files.tokens.core.motion
-        },
-        "core-shadow": {
-            description: "Box shadow values for elevation effects",
-            tokenFile: files.tokens.core.shadow
-        },
-        "all-semantic": {
-            description: "All semantic design tokens",
-            tokenFile: files.tokens.semantic.index
-        },
-        "all-core": {
-            description: "All core design tokens",
-            tokenFile: files.tokens.core.index
-        },
-        all: {
-            description: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible",
-            tokenFile: files.tokens.index
-        }
-    };
-
     let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
 
-    for (const [category, info] of Object.entries(tokenDescriptions)) {
-        const tokenCount = info.tokenFile?.estimatedTokens || 0;
-        description += `        - ${category}: ${info.description} (tokens: ${tokenCount})\n`;
+    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
+        const fileInfo = GUIDE_FILES[category as keyof typeof GUIDE_FILES];
+        const tokenCount = fileInfo?.estimatedTokens || 0;
+        description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
+    }
+
+    return description.trim();
+}
+
+export function generateTokenMapDescription(): string {
+    let description = "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\"\n\nAvailable token categories:\n";
+
+    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
+        const mapFiles = TOKEN_MAP_FILES[category as keyof typeof TOKEN_MAP_FILES];
+        const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
+        description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
     }
 
     return description.trim();
@@ -167,18 +130,22 @@ export const toolsInfo = {
         parameters: {
             include_full_props: "Whether to include full props data or only important fields. **DEFAULT: false**"
         }
-
     },
 
+    get_guide: {
+        name: "get_guide",
+        title: "Get guide or best practices",
+        description: generateGuidesDescription()
+    },
     get_design_tokens: {
         name: "get_design_tokens",
         title: "Get design system tokens",
         description: generateTokenCategoriesDescription()
     },
-    get_guide: {
-        name: "get_guide",
-        title: "Get guide or best practices",
-        description: generateGuidesDescription()
+    get_design_tokens_map: {
+        name: "get_design_tokens_map",
+        title: "Get design system tokens map to component props as JSON",
+        description: generateTokenMapDescription()
     },
 
     validate_component_structure: {

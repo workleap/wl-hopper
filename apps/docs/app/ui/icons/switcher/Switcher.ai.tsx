@@ -65,7 +65,7 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
     const sizes: AvailableSizes[] = iconType === "richIcon" ? ["md", "lg", "xl"] : ["sm", "md", "lg"];
 
     const iconsData = iconList.map(name => ({
-        name: getRawName(name),
+        name: name,
         example: type === "react"
             ? `<${name} size="md" />`
             : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, "md", type)}";`,
@@ -106,17 +106,13 @@ function Icons({ items }: { items: Item[] }) {
                 <tr>
                     <th>Name</th>
                     <th>Keywords</th>
-                    <th>Description</th>
-                    <th>Example</th>
                 </tr>
             </thead>
             <tbody>
                 {items.map(item => (
                     <tr key={item.name}>
-                        <td>{item.name}</td>
+                        <td><code>{item.name}</code></td>
                         <td>{item.keywords}</td>
-                        <td>{item.description}</td>
-                        <td><code>{item.example}</code></td>
                     </tr>
                 ))}
             </tbody>

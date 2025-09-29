@@ -33,7 +33,7 @@ export const aiDocsConfig: AiDocsConfig = {
         // api full (json)
         "components/api/full": {
             build: {
-                type: "json",
+                type: "props-json",
                 source: "content/components",
                 options: {
                     includeFullProps: true
@@ -44,7 +44,7 @@ export const aiDocsConfig: AiDocsConfig = {
         // api brief(json)
         "components/api/brief": {
             build: {
-                type: "json",
+                type: "props-json",
                 source: "content/components",
                 options: {
                     includeFullProps: false
@@ -174,6 +174,27 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/shadow.md"
                 ]
             },
+        },
+
+        // tokens map (json)
+        "tokens/maps/brief": {
+            build: {
+                type: "tokens-json",
+                source: "datas/tokens.json",
+                options: {
+                    fullMap: false
+                }
+            }
+        },
+
+        "tokens/maps/full": {
+            build: {
+                type: "tokens-json",
+                source: "datas/tokens.json",
+                options: {
+                    fullMap: true
+                }
+            }
         },
 
         "tokens/semantic/index.md": {

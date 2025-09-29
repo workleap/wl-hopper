@@ -5,7 +5,6 @@ import { toolsInfo } from "./utils/toolsInfo";
 
 export function prompts(server: McpServer) {
     server.registerPrompt("build_hopper_app", {
-        title: "How to Use Component",
         description:
             "Use this prompt to build Hopper apps.",
         argsSchema: { query: z.string() }
@@ -36,7 +35,6 @@ export function prompts(server: McpServer) {
     );
 
     server.registerPrompt("generate_code_from_figma_design", {
-        title: "Generate code from the provided figma design url",
         description:
             "Use this prompt to properly generate code from figma design. This prompt relies on Figma MCP.",
         argsSchema: { figma_design_url: z.string() }
@@ -64,18 +62,20 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ### Component Selection
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
-- CRITICAL: Always check component props/API before using any component.
+- CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
 - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
 
 ### Styling
 - All styling must use Hopper design tokens—never raw CSS values or inline styles.
-- **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use CSS variable names for style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens.name}" tool and look for the "Component Prop Value" column in the tokens documentation.
-- When transferring any token value to a component prop, perform the following replacements on the token value: remove the substrings "hop-", "-border", "-surface", "-text", "-icon", "elevation-", "shape-", "space-", "border-", "radius-", "dataviz-", "shadow-", "font-family-", "font-size-", "font-weight-", and "line-height-". For example: "--hop-neutral-text-weak-active" becomes "neutral-weak-active", and "space-inset-md" becomes "inset-md".
+- **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use token names for component style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens_map.name}" tool to find the correct prop value.
 - Prioritize proper design system usage over quick fixes
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
 ## 3. Implementation
-- **CRITICAL: BEFORE STARTING,** review all relevant token categories (spacing, colors, typography, etc.) and styling, not just when you hit errors. Call '#${toolsInfo.get_design_tokens.name}' and '#${toolsInfo.get_guide.name}' tools provided by Hopper MCP to get them.
+- **CRITICAL: START WITH,** fetching all the following resources before start coding, not just when you hit errors.
+    - Call '#${toolsInfo.get_design_tokens_map.name}' to get the correct mapping from tokens to prop values.
+    - Call '#${toolsInfo.get_guide.name}(styles)' to get the relevant styling guidance.
+    - Call '#${toolsInfo.get_guide.name}(layout)' to understand correct layout practices.
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.

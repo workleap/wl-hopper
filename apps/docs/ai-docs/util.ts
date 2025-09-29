@@ -1,6 +1,6 @@
 import { dirname, join } from "path";
 import { aiDocsConfig } from "./ai-docs.config";
-import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild } from "./types";
+import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild } from "./types";
 
 function normalizePath(path: string): string {
     return path.startsWith('/') ? path : `/${path}`;
@@ -65,7 +65,13 @@ export function isMdFromMdxBuild(build: BuildConfig): build is MdFromMdxBuild {
 export function isPropsJsonBuild(build: BuildConfig): build is PropsJsonBuild {
     return (
         'type' in build &&
-        build.type === "json"
+        build.type === "props-json"
     );
 }
 
+export function isTokensJsonBuild(build: BuildConfig): build is TokensJsonBuild {
+    return (
+        'type' in build &&
+        build.type === "tokens-json"
+    );
+}
