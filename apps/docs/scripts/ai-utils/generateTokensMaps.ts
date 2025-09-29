@@ -12,10 +12,6 @@ interface TokenSubsection {
     [subsectionName: string]: TokenItem[];
 }
 
-interface TokenSection {
-    [sectionName: string]: TokenSubsection;
-}
-
 interface TokensData {
     [sectionName: string]: TokenSubsection;
 }
@@ -31,10 +27,6 @@ interface ProcessedTokens {
 
 interface ProcessedSubsection {
     [subsectionName: string]: ProcessedTokens;
-}
-
-interface ProcessedSection {
-    [sectionName: string]: ProcessedSubsection;
 }
 
 interface ProcessedTokensData {
@@ -61,16 +53,17 @@ function findTokenTypeInPath(currentPath: string[]): TokenType {
     if (topLevel === "core" || topLevel === "semantic") {
         return topLevel;
     }
+
     return null;
 }
 
 function isTokenItem(item: unknown): item is TokenItem {
     return (
         item !== null &&
-        typeof item === 'object' &&
-        'name' in item &&
-        'value' in item &&
-        typeof (item as TokenItem).name === 'string'
+        typeof item === "object" &&
+        "name" in item &&
+        "value" in item &&
+        typeof (item as TokenItem).name === "string"
     );
 }
 
@@ -89,10 +82,11 @@ function processTokenArray(
         if (isTokenItem(item) && item.name) {
             result[item.name] = fullMap ? {
                 propValue: formatStyledSystemName(item.name, tokenType),
-                rawValue: item.value,
+                rawValue: item.value
             } : formatStyledSystemName(item.name, tokenType);
         }
     }
+
     return result;
 }
 
@@ -104,17 +98,19 @@ function processNode(
     if (Array.isArray(node)) {
         if (isTokenArray(node)) {
             const tokenType = findTokenTypeInPath(currentPath);
+
             return processTokenArray(node, tokenType, fullMap);
         } else {
             // Regular array, process each element recursively
             return node.map((item, index) => processNode(item, [...currentPath, index.toString()], fullMap));
         }
-    } else if (node && typeof node === 'object') {
+    } else if (node && typeof node === "object") {
         // Process object properties recursively
         const result: Record<string, unknown> = {};
         for (const [key, value] of Object.entries(node)) {
             result[key] = processNode(value, [...currentPath, key], fullMap);
         }
+
         return result;
     }
 
@@ -126,9 +122,9 @@ function discoverStructure(data: TokensData): StructureInfo {
     const sections: string[] = [];
     const subsections = new Map<string, string[]>();
 
-    if (data && typeof data === 'object' && !Array.isArray(data)) {
+    if (data && typeof data === "object" && !Array.isArray(data)) {
         for (const [key, value] of Object.entries(data)) {
-            if (value && typeof value === 'object' && !Array.isArray(value)) {
+            if (value && typeof value === "object" && !Array.isArray(value)) {
                 sections.push(key);
                 const subSections: string[] = [];
 
@@ -149,10 +145,11 @@ function extractSection(data: TokensData, sectionKey: string): TokenSubsection {
 
 function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: string): TokenSubsection {
     const section = data[sectionKey];
-    if (section && typeof section === 'object') {
+    if (section && typeof section === "object") {
         // Return the subsection with its key wrapper
         return { [subsectionKey]: section[subsectionKey] || [] };
     }
+
     return {};
 }
 

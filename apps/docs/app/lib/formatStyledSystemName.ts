@@ -17,7 +17,6 @@ export function formatStyledSystemName(name: string, tokenType: "core" | "semant
         .replace("space-", "")
         .replace("border-", "")
         .replace("radius-", "")
-        .replace("border-", "")
         .replace("dataviz-", "")
         .replace("shadow-", "")
 

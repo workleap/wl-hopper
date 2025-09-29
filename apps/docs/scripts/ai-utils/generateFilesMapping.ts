@@ -22,6 +22,7 @@ function toCamelCase(input: string): string {
             if (part.toUpperCase() === part) {
                 return part.toLowerCase();
             }
+
             // Otherwise, keep the original casing (preserves camelCase like "fontSize")
             return part;
         });
