@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.13.0
+
+### Minor Changes
+
+- 643b6b7: Add Calendar component
+
 ## 1.12.14
 
 ### Patch Changes
