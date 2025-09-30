@@ -689,12 +689,10 @@ describe("validateComponentStructure", () => {
         it("should warn about tokens with hop- prefix", () => {
             const code = "<Button backgroundColor=\"hop-surface-neutral\">Click me</Button>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("The token value \"hop-surface-neutral\"");
-            expect(result.warnings[0].message).toContain("appears to be wrong");
-            expect(result.warnings[0].message).toContain("change it to \"surface-neutral\"");
-            expect(result.warnings[0].line).toBe(1);
-            expect(result.warnings[0].column).toBe(8);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"surface-neutral\"");
+            expect(result.errors[0].line).toBe(1);
+            expect(result.errors[0].column).toBe(8);
         });
 
         it("should warn about multiple incorrectly formatted tokens", () => {
@@ -703,17 +701,17 @@ describe("validateComponentStructure", () => {
                 color="hop-text-primary"
             >Content</Div>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(2);
-            expect(result.warnings[0].message).toContain("\"hop-surface-neutral\"");
-            expect(result.warnings[0].message).toContain("\"surface-neutral\"");
-            expect(result.warnings[1].message).toContain("\"hop-text-primary\"");
-            expect(result.warnings[1].message).toContain("\"text-primary\""); // -text is removed, not hop-
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("\"hop-surface-neutral\"");
+            expect(result.errors[0].message).toContain("\"surface-neutral\"");
+            expect(result.errors[1].message).toContain("\"hop-text-primary\"");
+            expect(result.errors[1].message).toContain("\"text-primary\""); // -text is removed, not hop-
         });
 
         it("should not warn about correctly formatted tokens", () => {
             const code = "<Button backgroundColor=\"surface-neutral\" color=\"primary\">Click me</Button>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should not warn about non-token string values", () => {
@@ -723,31 +721,31 @@ describe("validateComponentStructure", () => {
                 aria-label="Submit form"
             >Click</Button>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should handle tokens with -surface suffix", () => {
             const code = "<Div backgroundColor=\"neutral-surface\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"neutral-surface\"");
-            expect(result.warnings[0].message).toContain("\"neutral\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"neutral-surface\"");
+            expect(result.errors[0].message).toContain("\"neutral\"");
         });
 
         it("should handle tokens with -text suffix", () => {
             const code = "<Text color=\"primary-text-strong\">Hello</Text>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"primary-text-strong\"");
-            expect(result.warnings[0].message).toContain("\"primary-strong\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"primary-text-strong\"");
+            expect(result.errors[0].message).toContain("\"primary-strong\"");
         });
 
         it("should handle tokens with -border suffix", () => {
             const code = "<Div borderColor=\"neutral-border-weak\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"neutral-border-weak\"");
-            expect(result.warnings[0].message).toContain("\"neutral-weak\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"neutral-border-weak\"");
+            expect(result.errors[0].message).toContain("\"neutral-weak\"");
         });
 
         it("should handle tokens in nested components", () => {
@@ -758,12 +756,16 @@ describe("validateComponentStructure", () => {
                 <Content backgroundColor="elevation-surface-raised">
                     Content here
                 </Content>
+                <ButtonGroup>
+                    <Button>Cancel</Button>
+                    <Button variant="primary">Confirm</Button>
+                </ButtonGroup>
             </Modal>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(3);
-            expect(result.warnings[0].message).toContain("\"hop-surface-primary\"");
-            expect(result.warnings[1].message).toContain("\"hop-text-primary\"");
-            expect(result.warnings[2].message).toContain("\"elevation-surface-raised\"");
+            expect(result.errors).toHaveLength(3);
+            expect(result.errors[0].message).toContain("\"hop-surface-primary\"");
+            expect(result.errors[1].message).toContain("\"hop-text-primary\"");
+            expect(result.errors[2].message).toContain("\"elevation-surface-raised\"");
         });
 
         it("should not warn for non-literal values", () => {
@@ -773,15 +775,15 @@ describe("validateComponentStructure", () => {
                 borderColor={\`\${prefix}_surface\`}
             >Click</Button>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should handle self-closing components with token props", () => {
             const code = "<Icon color=\"hop-text-primary\" />";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"hop-text-primary\"");
-            expect(result.warnings[0].message).toContain("\"text-primary\""); // -text suffix is removed after hop- is removed
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"hop-text-primary\"");
+            expect(result.errors[0].message).toContain("\"text-primary\""); // -text suffix is removed after hop- is removed
         });
 
         it("should not warn for values that don't match token patterns", () => {
@@ -791,7 +793,7 @@ describe("validateComponentStructure", () => {
                 borderColor="rgb(255, 0, 0)"
             >Click</Button>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should provide accurate line and column information", () => {
@@ -805,9 +807,9 @@ describe("validateComponentStructure", () => {
                 </Button>
             </Div>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].line).toBe(4);
-            expect(result.warnings[0].column).toBe(20);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].line).toBe(4);
+            expect(result.errors[0].column).toBe(20);
         });
 
         it("should handle multiple attributes on the same element", () => {
@@ -817,11 +819,7 @@ describe("validateComponentStructure", () => {
                 borderColor="hop-border-primary"
             >Click</Button>`;
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(3);
-            result.warnings.forEach(warning => {
-                expect(warning.message).toContain("appears to be wrong");
-                expect(warning.message).toContain("If it is a design system token");
-            });
+            expect(result.errors).toHaveLength(3);
         });
 
         it("should only warn when formatted version is shorter", () => {
@@ -829,92 +827,92 @@ describe("validateComponentStructure", () => {
             // In practice, formatStyledSystemName should always return shorter versions for tokens
             const code = "<Button customProp=\"short\">Click</Button>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should handle empty string values", () => {
             const code = "<Button backgroundColor=\"\">Click</Button>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
 
         it("should validate tokens in JSX spread attributes", () => {
             // Note: spread attributes don't trigger validation as they're not JSXAttribute type
             const code = "<Button {...props} backgroundColor=\"hop-surface-neutral\">Click</Button>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"hop-surface-neutral\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"hop-surface-neutral\"");
         });
 
         it("should handle elevation- prefix", () => {
             const code = "<Div backgroundColor=\"elevation-surface-raised\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"elevation-surface-raised\"");
-            expect(result.warnings[0].message).toContain("\"raised\""); // both elevation- and -surface are removed
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"elevation-surface-raised\"");
+            expect(result.errors[0].message).toContain("\"raised\""); // both elevation- and -surface are removed
         });
 
         it("should handle shape- prefix", () => {
             const code = "<Div borderRadius=\"shape-rounded-md\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"shape-rounded-md\"");
-            expect(result.warnings[0].message).toContain("\"rounded-md\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"shape-rounded-md\"");
+            expect(result.errors[0].message).toContain("\"rounded-md\"");
         });
 
         it("should handle space- prefix", () => {
             const code = "<Div padding=\"space-inset-md\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"space-inset-md\"");
-            expect(result.warnings[0].message).toContain("\"inset-md\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"space-inset-md\"");
+            expect(result.errors[0].message).toContain("\"inset-md\"");
         });
 
         it("should handle shadow- prefix", () => {
             const code = "<Div boxShadow=\"shadow-lg\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"shadow-lg\"");
-            expect(result.warnings[0].message).toContain("\"lg\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"shadow-lg\"");
+            expect(result.errors[0].message).toContain("\"lg\"");
         });
 
         it("should handle radius- prefix", () => {
             const code = "<Div borderRadius=\"radius-md\">Content</Div>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"radius-md\"");
-            expect(result.warnings[0].message).toContain("\"md\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"radius-md\"");
+            expect(result.errors[0].message).toContain("\"md\"");
         });
 
         it("should handle semantic font suffixes", () => {
             const code = "<Text fontFamily=\"body-font-family\">Text</Text>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"body-font-family\"");
-            expect(result.warnings[0].message).toContain("\"body\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"body-font-family\"");
+            expect(result.errors[0].message).toContain("\"body\"");
         });
 
         it("should handle core font prefixes", () => {
             const code = "<Text fontSize=\"font-size-100\">Text</Text>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"font-size-100\"");
-            expect(result.warnings[0].message).toContain("\"100\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"font-size-100\"");
+            expect(result.errors[0].message).toContain("\"100\"");
         });
 
         it("should handle -icon suffix", () => {
             const code = "<Icon fill=\"primary-icon-strong\">Icon</Icon>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("\"primary-icon-strong\"");
-            expect(result.warnings[0].message).toContain("\"primary-strong\"");
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("\"primary-icon-strong\"");
+            expect(result.errors[0].message).toContain("\"primary-strong\"");
         });
 
         it("should not warn for dataviz tokens as they don't get shorter", () => {
             // dataviz- prefix becomes dataviz_ prefix, so the length doesn't decrease
             const code = "<Chart color=\"dataviz-categorical-1\">Chart</Chart>";
             const result = validateComponentStructure(code);
-            expect(result.warnings).toHaveLength(0);
+            expect(result.errors).toHaveLength(0);
         });
     });
 });
