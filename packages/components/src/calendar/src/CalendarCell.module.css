@@ -35,7 +35,7 @@
     display: var(--hop-CalendarCell-data-outside-month-display);
 }
 
-.hop-CalendarCell[data-hovered] {
+.hop-CalendarCell[data-hovered]:not([data-unavailable]) {
     --hop-CalendarCell-data-hovered-background: var(--hop-neutral-surface-hover);
     --hop-CalendarCell-data-hovered-color: var(--hop-neutral-text-hover);
 
@@ -71,10 +71,20 @@
     color: var(--hop-CalendarCell-data-disabled-color);
 }
 
+.hop-CalendarCell[data-invalid] {
+    --hop-CalendarCell-data-invalid-color: var(--hop-danger-text-strong);
+    --hop-CalendarCell-data-invalid-background: var(--hop-danger-surface-strong);
+
+    color: var(--hop-CalendarCell-data-invalid-color);
+    background: var(--hop-CalendarCell-data-invalid-background);
+}
+
 .hop-CalendarCell[data-unavailable] {
     --hop-CalendarCell-data-unavailable-color: var(--hop-danger-text-weak);
+    --hop-CalendarCell-data-unavailable-text-decoration: line-through;
 
     color: var(--hop-CalendarCell-data-unavailable-color);
+    text-decoration: var(--hop-CalendarCell-data-unavailable-text-decoration);
 }
 
 .hop-CalendarCell[data-today] {

@@ -2,18 +2,19 @@ import { AngleLeftIcon, AngleRightIcon } from "@hopper-ui/icons";
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import type { GlobalDOMAttributes } from "@react-types/shared";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Calendar as AriaCalendar, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
+import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
+import { Calendar as AriaCalendar, FieldErrorContext, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
+import { ErrorMessage } from "../../error-message/index.ts";
 import { Header, HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { HeadingContext } from "../../typography/index.ts";
+import { Heading, HeadingContext } from "../../typography/index.ts";
 import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import { CalendarContext } from "./CalendarContext.ts";
 import { CalendarGrid } from "./CalendarGrid.tsx";
-import { CalendarHeading } from "./CalendarHeading.tsx";
+
 
 import styles from "./Calendar.module.css";
 
@@ -21,7 +22,17 @@ export const GlobalCalendarCssSelector = "hop-Calendar";
 
 type OmittedCalendarProps = "visibleDuration" | "style" | "className" | "children" | keyof GlobalDOMAttributes;
 
-export interface CalendarProps<T extends DateValue> extends Omit<AriaCalendarProps<T>, OmittedCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {}
+export interface CalendarProps<T extends DateValue> extends Omit<AriaCalendarProps<T>, OmittedCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
+    /**
+   * The error message to display when the calendar is invalid.
+   */
+    errorMessage?: ReactNode;
+    /**
+   * The number of months to display at once.
+   * @default 1
+   */
+    visibleMonths?: number;
+}
 
 const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, CalendarContext);
@@ -30,7 +41,9 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
+        errorMessage,
         style,
+        visibleMonths = 1,
         ...otherProps
     } = ownProps;
 
@@ -53,36 +66,61 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
         <AriaCalendar
             {...otherProps}
             ref={ref}
+            visibleDuration={{ months: visibleMonths }}
             style={mergedStyles}
             className={classNames}
         >
-            <SlotProvider
-                values={[
-                    [HeaderContext, null],
-                    [HeadingContext, null]
-                ]}
-            >
-                <Header className={styles["hop-Calendar__header"]}>
-                    <Button
-                        aria-label={stringFormatter.format("Calendar.previousButtonAriaLabel")}
-                        className={styles["hop-Calendar__header-button"]}
-                        slot="previous"
-                        variant="ghost-secondary"
+            {({ isInvalid }) => (
+                <>
+                    <SlotProvider
+                        values={[
+                            [HeaderContext, null],
+                            [HeadingContext, null]
+                        ]}
                     >
-                        <AngleLeftIcon />
-                    </Button>
-                    <CalendarHeading />
-                    <Button
-                        aria-label={stringFormatter.format("Calendar.nextButtonAriaLabel")}
-                        className={styles["hop-Calendar__header-button"]}
-                        slot="next"
-                        variant="ghost-secondary"
+                        <Header className={styles["hop-Calendar__header"]}>
+                            <Button
+                                aria-label={stringFormatter.format("Calendar.previousButtonAriaLabel")}
+                                className={styles["hop-Calendar__header-button"]}
+                                slot="previous"
+                                variant="ghost-secondary"
+                            >
+                                <AngleLeftIcon />
+                            </Button>
+                            <Heading className={styles["hop-Calendar__header-heading"]}>
+                                {props.children}
+                            </Heading>
+                            <Button
+                                aria-label={stringFormatter.format("Calendar.nextButtonAriaLabel")}
+                                className={styles["hop-Calendar__header-button"]}
+                                slot="next"
+                                variant="ghost-secondary"
+                            >
+                                <AngleRightIcon />
+                            </Button>
+                        </Header>
+                    </SlotProvider>
+                    <div className={styles["hop-Calendar__grids"]}>
+                        {Array.from({ length: visibleMonths }).map((_, i) => (
+                            // eslint-disable-next-line react/no-array-index-key
+                            <CalendarGrid months={i} key={i} />
+                        ))}
+                    </div>
+                    <SlotProvider
+                        values={[
+                            [FieldErrorContext, {
+                                isInvalid,
+                                validationErrors: [] as never[],
+                                validationDetails: {} as never
+                            }]
+                        ]}
                     >
-                        <AngleRightIcon />
-                    </Button>
-                </Header>
-            </SlotProvider>
-            <CalendarGrid />
+                        <ErrorMessage className={styles["hop-Calendar__error-message"]}>
+                            {errorMessage || stringFormatter.format("Calendar.invalidSelection")}
+                        </ErrorMessage>
+                    </SlotProvider>
+                </>
+            )}
         </AriaCalendar>
     );
 };

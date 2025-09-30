@@ -2,12 +2,16 @@
     --hop-CalendarGrid-isolation: isolate;
     --hop-CalendarGrid-border-spacing: 0;
     --hop-CalendarGrid-border-collapse: collapse;
-    --hop-CalendarGrid-inline-size: 100%;
+    --hop-CalendarGrid-inline-size: 18rem;
 
     isolation: var(--hop-CalendarGrid-isolation);
     border-spacing: var(--hop-CalendarGrid-border-spacing);
     border-collapse: var(--hop-CalendarGrid-border-collapse);
     inline-size: var(--hop-CalendarGrid-inline-size);
+}
+
+.hop-CalendarGrid[aria-readonly="true"] {
+    pointer-events: none;
 }
 
 .hop-CalendarGrid__body {
