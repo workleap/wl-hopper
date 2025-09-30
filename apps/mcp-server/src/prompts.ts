@@ -77,8 +77,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - **CRITICAL: START WITH,** fetching all the following resources before start coding, not just when you hit errors.
     - Call '#${toolsInfo.get_design_tokens_map.name}(${"all" satisfies TokenCategory})' to get the mapping from semantic and core tokens to prop values.
     - Call '#${toolsInfo.get_guide.name}(${"styles" satisfies GuideSection})' to get the relevant styling guidance.
-    - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
     - Call '#${toolsInfo.get_guide.name}(${"escape-hatches" satisfies GuideSection})' to get a COMPLETE WHITELIST of available UNSAFE_* props. Any prop not in that list should be used WITHOUT the UNSAFE_ prefix.
+    - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.
