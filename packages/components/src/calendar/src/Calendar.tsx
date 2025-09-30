@@ -2,14 +2,14 @@ import { AngleLeftIcon, AngleRightIcon } from "@hopper-ui/icons";
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { Calendar as AriaCalendar, composeRenderProps, FieldErrorContext, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
+import { Calendar as AriaCalendar, FieldErrorContext, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { Header, HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Heading, HeadingContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
 
 import { CalendarContext } from "./CalendarContext.ts";
 import { CalendarGrid } from "./CalendarGrid.tsx";
@@ -19,7 +19,9 @@ import styles from "./Calendar.module.css";
 
 export const GlobalCalendarCssSelector = "hop-Calendar";
 
-export interface CalendarProps<T extends DateValue> extends StyledComponentProps<Omit<AriaCalendarProps<T>, "visibleDuration">> {
+type OmittedCalendarProps = "visibleDuration" | "style" | "className" | "children";
+
+export interface CalendarProps<T extends DateValue> extends Omit<AriaCalendarProps<T>, OmittedCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
     /**
    * The error message to display when the calendar is invalid.
    */
@@ -38,16 +40,11 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         className,
-        children: childrenProp,
         errorMessage,
         style,
         visibleMonths = 1,
         ...otherProps
     } = ownProps;
-
-    const children = composeRenderProps(childrenProp, prev => {
-        return prev;
-    });
 
     const classNames = clsx(
         GlobalCalendarCssSelector,
@@ -72,7 +69,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
             style={mergedStyles}
             className={classNames}
         >
-            {renderProps => (
+            {({ isInvalid }) => (
                 <>
                     <SlotProvider
                         values={[
@@ -90,7 +87,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                                 <AngleLeftIcon />
                             </Button>
                             <Heading className={styles["hop-Calendar__header-heading"]}>
-                                {children(renderProps)}
+                                {props.children}
                             </Heading>
                             <Button
                                 aria-label={stringFormatter.format("Calendar.nextButtonAriaLabel")}
@@ -111,7 +108,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                     <SlotProvider
                         values={[
                             [FieldErrorContext, {
-                                isInvalid: renderProps.isInvalid,
+                                isInvalid,
                                 validationErrors: [] as never[],
                                 validationDetails: {} as never
                             }]
