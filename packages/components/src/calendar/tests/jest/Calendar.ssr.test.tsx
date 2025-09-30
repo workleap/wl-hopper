@@ -9,7 +9,7 @@ describe("Calendar", () => {
     it("should render on the server", () => {
         const renderOnServer = () =>
             renderToString(
-                <Calendar>Text</Calendar>
+                <Calendar />
             );
 
         expect(renderOnServer).not.toThrow();
