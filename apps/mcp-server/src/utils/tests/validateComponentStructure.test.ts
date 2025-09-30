@@ -1,5 +1,5 @@
-import { validateComponentStructure } from "../validateComponentStructure";
-import { MOCK_UNSAFE_PROPS } from "./mocks/unsafePropsData";
+import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData.ts";
+import { validateComponentStructure } from "../validateComponentStructure.ts";
 
 // Mock the fs module to return our mock data
 jest.mock("fs", () => ({

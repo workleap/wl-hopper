@@ -8,7 +8,7 @@ const config: Config = {
         "^.+\\.(js|ts|tsx)$": ["@swc/jest", swcConfig as Record<string, unknown>]
     },
     moduleNameMapper: {
-        "^@docs/ai$": "<rootDir>/src/.docs/index.ts",
+        "^@docs/ai$": "<rootDir>/src/tests/mocks/aiFiles.ts",
         "^(\\.{1,2}/.*)\\.js$": "$1"
     },
     cacheDirectory: "./node_modules/.cache/jest",
