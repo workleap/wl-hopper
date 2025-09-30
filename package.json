@@ -43,7 +43,7 @@
         "storybook-nolazy": "cross-env STORYBOOK_NO_LAZY=true pnpm run storybook",
         "build-storybook": "storybook build",
         "list-outdated-deps": "pnpm outdated -r --format list !eslint !@types/eslint !style-dictionary !react !@types/react !react-dom !@types/react-dom !next !@netlify/plugin-nextjs !eslint-plugin-import !stylelint-config-clean-order !jest !@types/jest !ts-jest !typescript !react-test-renderer !@types/react-test-renderer !@types/node !@testing-library/jest-dom",
-        "update-outdated-deps": "pnpm update -r --latest !eslint !@types/eslint !style-dictionary !react !@types/react !react-dom !@types/react-dom !next !@netlify/plugin-nextjs !eslint-plugin-import !stylelint-config-clean-order !jest !@types/jest !ts-jest !typescript !react-test-renderer !@types/react-test-renderer !@types/node @testing-library/jest-dom",
+        "update-outdated-deps": "pnpm update -r --latest !eslint !@types/eslint !style-dictionary !react !@types/react !react-dom !@types/react-dom !next !@netlify/plugin-nextjs !eslint-plugin-import !stylelint-config-clean-order !jest !@types/jest !ts-jest !typescript !react-test-renderer !@types/react-test-renderer !@types/node !@testing-library/jest-dom",
         "update-react-aria-deps": "pnpm update -r react-aria react-aria-components @react-aria/* @react-stately/*",
         "plop": "plop",
         "find-types": "pnpm --filter=components find-types"
