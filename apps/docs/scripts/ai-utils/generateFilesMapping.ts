@@ -17,9 +17,21 @@ function toCamelCase(input: string): string {
     const base = input.replace(/\.[^.]+$/, "");
     if (/[-_\s]/.test(base)) {
         const parts = base.split(/[-_\s]+/);
-        const norm = parts.map(p => (p.toUpperCase() === p ? p.toLowerCase() : p));
-        const first = norm[0].toLowerCase();
-        const rest = norm.slice(1).map(s => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase());
+        const normalized = parts.map(part => {
+            // If the part is all uppercase, convert it to lowercase
+            if (part.toUpperCase() === part) {
+                return part.toLowerCase();
+            }
+
+            // Otherwise, keep the original casing (preserves camelCase like "fontSize")
+            return part;
+        });
+
+        const first = normalized[0].toLowerCase();
+        const rest = normalized.slice(1).map(part => {
+            // Capitalize first letter but preserve the rest of the casing
+            return part.charAt(0).toUpperCase() + part.slice(1);
+        });
 
         return [first, ...rest].join("");
     }

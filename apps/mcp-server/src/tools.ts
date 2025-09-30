@@ -4,7 +4,7 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
 import { trackError, trackEvent } from "./utils/logging.js";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
@@ -33,7 +33,7 @@ export function tools(server: McpServer) {
 
         return toolContent(content(`
             ALWAYS follow these steps:
-            1. Read "styles", "tokens", "layout", and "icons" guides to understand the design system concepts well.
+            1. Read "tokens", "styles", "layout", and "icons" guides to understand the design system concepts well.
                 - CRITICAL: Always check component props/API before using any component.
                 - Never assume standard CSS/HTML props work - each design system has its own API.
                 - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "${toolsInfo.get_component_usage.name}" tool.
@@ -111,6 +111,25 @@ export function tools(server: McpServer) {
         trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
 
         return toolContent(await getGuide(category, page_size, cursor));
+    });
+
+    server.registerTool(toolsInfo.get_design_tokens_map.name, {
+        title: toolsInfo.get_design_tokens_map.title,
+        description: toolsInfo.get_design_tokens_map.description,
+        inputSchema: {
+            category: z.enum(TokenCategories),
+            include_raw_values: z.boolean().optional().default(false).describe("Whether to include raw token values along with prop values. **DEFAULT: false**")
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ category, include_raw_values }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_raw_values }, e?.requestInfo);
+
+        return toolContent(
+            await getDesignTokensMap(category, include_raw_values ? "full" : "brief"),
+            content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**")
+        );
     });
 
     server.registerTool(toolsInfo.get_guide.name, {

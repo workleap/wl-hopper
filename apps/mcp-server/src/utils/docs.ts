@@ -24,7 +24,7 @@ export const GuideSections = ["installation", "styles", "color-schemes", "compon
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-const guideFiles: Record<GuideSection | TokenCategory, typeof files.gettingStarted.index> = {
+export const GUIDE_FILES: Record<GuideSection | TokenCategory, typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
@@ -55,6 +55,88 @@ const guideFiles: Record<GuideSection | TokenCategory, typeof files.gettingStart
     "all-semantic": files.tokens.semantic.index,
     "all-core": files.tokens.core.index,
     all: files.tokens.index
+};
+
+export const TOKEN_MAP_FILES: Record<TokenCategory, { brief: typeof files.gettingStarted.index[]; full: typeof files.gettingStarted.index[] }> = {
+    all: {
+        brief: [files.tokens.maps.brief.all],
+        full: [files.tokens.maps.full.all]
+    },
+    "all-core": {
+        brief: [files.tokens.maps.brief.core],
+        full: [files.tokens.maps.full.core]
+    },
+    "all-semantic": {
+        brief: [files.tokens.maps.brief.semantic],
+        full: [files.tokens.maps.full.semantic]
+    },
+    "core-border-radius": {
+        brief: [files.tokens.maps.brief.coreBorderRadius],
+        full: [files.tokens.maps.full.coreBorderRadius]
+    },
+    "core-color": {
+        brief: [files.tokens.maps.brief.coreColor],
+        full: [files.tokens.maps.full.coreColor]
+    },
+    "core-dimensions": {
+        brief: [files.tokens.maps.brief.coreSize],
+        full: [files.tokens.maps.full.coreSize]
+    },
+    "core-font-family": {
+        brief: [files.tokens.maps.brief.coreFontFamily],
+        full: [files.tokens.maps.full.coreFontFamily]
+    },
+    "core-font-size": {
+        brief: [files.tokens.maps.brief.coreFontSize],
+        full: [files.tokens.maps.full.coreFontSize]
+    },
+    "core-font-weight": {
+        brief: [files.tokens.maps.brief.coreFontWeight],
+        full: [files.tokens.maps.full.coreFontWeight]
+    },
+    "core-line-height": {
+        brief: [files.tokens.maps.brief.coreLineHeight],
+        full: [files.tokens.maps.full.coreLineHeight]
+    },
+    "core-motion": {
+        brief: [files.tokens.maps.brief.coreDuration, files.tokens.maps.brief.coreTimingFunction],
+        full: [files.tokens.maps.full.coreDuration, files.tokens.maps.full.coreTimingFunction]
+    },
+    "core-shadow": {
+        brief: [files.tokens.maps.brief.coreShadow],
+        full: [files.tokens.maps.full.coreShadow]
+    },
+    "semantic-shape": {
+        brief: [files.tokens.maps.brief.semanticBorderRadius],
+        full: [files.tokens.maps.full.semanticBorderRadius]
+    },
+    "semantic-space": {
+        brief: [files.tokens.maps.brief.semanticSize],
+        full: [files.tokens.maps.full.semanticSize]
+    },
+    "semantic-typography": {
+        brief: [
+            files.tokens.maps.brief.semanticFontFamily,
+            files.tokens.maps.brief.semanticFontSize,
+            files.tokens.maps.brief.semanticFontWeight,
+            files.tokens.maps.brief.semanticLineHeight,
+            files.tokens.maps.brief.semanticTopOffset,
+            files.tokens.maps.brief.semanticBottomOffset
+        ], full: [
+            files.tokens.maps.full.semanticFontFamily,
+            files.tokens.maps.full.semanticFontSize,
+            files.tokens.maps.full.semanticFontWeight,
+            files.tokens.maps.full.semanticLineHeight,
+            files.tokens.maps.full.semanticTopOffset
+        ] },
+    "semantic-color": {
+        brief: [files.tokens.maps.brief.semanticColor],
+        full: [files.tokens.maps.full.semanticColor]
+    },
+    "semantic-elevation": {
+        brief: [files.tokens.maps.brief.semanticShadow],
+        full: [files.tokens.maps.full.semanticShadow]
+    }
 };
 
 function getPaginatedContent(result: PaginatedResult): TextContent | TextContent[] {
@@ -95,7 +177,7 @@ export async function getComponentUsage(componentName: string) {
     }
 }
 
-export async function getComponentBriefApi(componentName: string) {
+export function getComponentBriefApi(componentName: string) {
     const camelCaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
 
     if (camelCaseName in files.components.api.brief) {
@@ -107,7 +189,7 @@ export async function getComponentBriefApi(componentName: string) {
     return errorContent(error, `Invalid component name requested: ${componentName}`);
 }
 
-export async function getComponentFullApi(componentName: string) {
+export function getComponentFullApi(componentName: string) {
     const camelCaseName = componentName.charAt(0).toLowerCase() + componentName.slice(1);
 
     if (camelCaseName in files.components.api.full) {
@@ -139,13 +221,13 @@ async function readComponentApi(relativePath: string) {
 }
 
 export async function getGuide(section: GuideSection | TokenCategory, pageSize?: number, cursor?: string) {
-    if (!Object.keys(guideFiles).includes(section)) {
+    if (!Object.keys(GUIDE_FILES).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
         return errorContent(error);
     }
 
-    const guidePath = join(env.DOCS_PATH, guideFiles[section].path);
+    const guidePath = join(env.DOCS_PATH, GUIDE_FILES[section].path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
@@ -160,6 +242,21 @@ export async function getGuide(section: GuideSection | TokenCategory, pageSize?:
     } catch (error) {
         return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
+}
+
+export async function getDesignTokensMap(category: TokenCategory, mode: "brief" | "full") {
+    return await Promise.all(TOKEN_MAP_FILES[category][mode].map(async map => {
+        const tokensMap = join(env.DOCS_PATH, map.path);
+
+        if (!existsSync(tokensMap)) {
+            const error = new Error(`Tokens map not found for category: ${category}, path: ${tokensMap}`);
+
+            return errorContent(error, `Tokens map not found for category: ${category}`);
+        }
+        const fileContent = await readFile(tokensMap, "utf-8");
+
+        return content(fileContent);
+    }));
 }
 
 export async function getDocumentContentResult(url: string) {

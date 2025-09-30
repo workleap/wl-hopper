@@ -26,7 +26,7 @@ interface GeneratePropsJsonOptions {
     options: {
         // Whether to include full props data or only important fields
         includeFullProps?: boolean;
-    }
+    };
 }
 
 // Raw prop data interface from getComponentProps
@@ -99,10 +99,10 @@ async function getFilteredComponentProps(componentName: string, options: Generat
             return null;
         }
 
-        const groups = data.groups.map((group) => ({
+        const groups = data.groups.map(group => ({
             name: group.name,
             props: mapProps(group.props as RawPropData[])
-        })).filter((group) => group.props.length > 0);
+        })).filter(group => group.props.length > 0);
 
         return {
             componentName,

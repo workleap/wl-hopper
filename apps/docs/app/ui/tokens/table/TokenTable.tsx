@@ -3,6 +3,7 @@ import Table from "@/components/table/Table";
 import Preview from "@/app/ui/tokens/preview/Preview";
 import Code from "@/components/code/Code";
 
+import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 import type { ReactNode } from "react";
 import "./tokenTable.css";
 
@@ -14,37 +15,6 @@ interface TableProps {
         name: string;
         value: string;
     }[];
-}
-
-function formatStyledSystemName(name: string, tokenType: "core" | "semantic" | null) {
-    let prefix = "";
-    if (tokenType === "core") {
-        prefix = "core_";
-    } else if (name?.includes("dataviz")) {
-        prefix = "dataviz_";
-    }
-
-    const formattedName = name
-        .replace("hop-", "")
-        .replace("-border", "")
-        .replace("-surface", "")
-        .replace("-text", "")
-        .replace("-icon", "")
-        .replace("elevation-", "")
-        .replace("shape-", "")
-        .replace("space-", "")
-        .replace("border-", "")
-        .replace("radius-", "")
-        .replace("border-", "")
-        .replace("dataviz-", "")
-        .replace("shadow-", "")
-        .replace("font-family-", "")
-        .replace("font-size-", "")
-        .replace("font-weight-", "")
-        .replace("line-height-", "")
-    ;
-
-    return `${prefix}${formattedName}`;
 }
 
 const TokenTable = ({ category, data, noPreview = false, tokenType }: TableProps) => {
