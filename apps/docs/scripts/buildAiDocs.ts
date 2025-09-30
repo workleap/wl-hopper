@@ -50,7 +50,7 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
     }
 
     const outputPath = join(path, fileName);
-    mergeContents(contents, outputPath, headingFile);
+    await mergeContents(contents, outputPath, headingFile);
 
     console.log(`✅ Merged successfully: ${outputPath}`);
 }
@@ -115,13 +115,13 @@ async function main() {
                 fullMap: buildInfo.options?.fullMap ?? false
             });
         } else if (isUnsafePropsJsonBuild(buildInfo)) {
-            generateUnsafePropsJson({
+            await generateUnsafePropsJson({
                 outputPath: join(outputPath, fileKey)
             });
         } else if (isUnsafePropsMarkdownBuild(buildInfo)) {
-            generateUnsafePropsMarkdown({
+            await generateUnsafePropsMarkdown({
                 outputPath: join(outputPath, fileKey),
-                headingFile:  join(projectRoot, buildInfo.template)
+                headingFile: join(projectRoot, buildInfo.template)
             });
         } else {
             await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {
