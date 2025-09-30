@@ -87,8 +87,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 4. QA
-- [ ] Validate the component structure after major changes, not just at the end.
 - [ ] Verify all UNSAFE_* props are in the "${"escape-hatches" satisfies GuideSection}" whitelist.
+- [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 
