@@ -1,10 +1,11 @@
 import type { AriaCalendarGridProps } from "@react-aria/calendar";
 import clsx from "clsx";
-import type { PropsWithChildren } from "react";
+import { useCallback, type PropsWithChildren } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
     CalendarHeaderCell as AriaCalendarHeaderCell,
-    CalendarGridBody, CalendarGridHeader
+    CalendarGridBody,
+    CalendarGridHeader
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -20,7 +21,7 @@ interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, Pro
 }
 
 export const CalendarGrid = (props: CalendarGridProps) => {
-    const { months } = props;
+    const { months, weekdayStyle = "short" } = props;
     const classNames = clsx(
         GlobalCalendarGridCssSelector,
         cssModule(
@@ -29,9 +30,18 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         )
     );
 
+    const formatMonthName = useCallback((day: string) => {
+        if (weekdayStyle === "short") {
+            // Removes the last letter of weekday style "short", from 3 letters to 2. E.g. "Mon" -> "Mo"
+            return day.slice(0, -1);
+        }
+
+        return day;
+    }, [weekdayStyle]);
+
     return (
         <AriaCalendarGrid
-            weekdayStyle="short"
+            weekdayStyle={weekdayStyle}
             className={classNames}
             offset={{ months }}
             {...props}
@@ -40,7 +50,7 @@ export const CalendarGrid = (props: CalendarGridProps) => {
                 {day => (
                     <AriaCalendarHeaderCell className={styles["hop-CalendarGrid__header-cell"]}>
                         {/* Removes the last letter of weekday style "short", from 3 letters to 2. E.g. "Mon" -> "Mo" */}
-                        {day.slice(0, -1)}
+                        {formatMonthName(day)}
                     </AriaCalendarHeaderCell>
                 )}
             </CalendarGridHeader>

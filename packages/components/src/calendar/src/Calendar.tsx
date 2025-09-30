@@ -9,19 +9,18 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { Header, HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Heading, HeadingContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { cssModule, SlotProvider } from "../../utils/index.ts";
 
 import { CalendarContext } from "./CalendarContext.ts";
 import { CalendarGrid } from "./CalendarGrid.tsx";
-
 
 import styles from "./Calendar.module.css";
 
 export const GlobalCalendarCssSelector = "hop-Calendar";
 
-type OmittedCalendarProps = "visibleDuration" | "style" | "className" | "children";
+type OmittedCalendarProps = "visibleDuration" | "children";
 
-export interface CalendarProps<T extends DateValue> extends Omit<AriaCalendarProps<T>, OmittedCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
+export interface CalendarProps<T extends DateValue> extends StyledComponentProps<Omit<AriaCalendarProps<T>, OmittedCalendarProps>> {
     /**
    * The error message to display when the calendar is invalid.
    */
@@ -86,9 +85,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                             >
                                 <AngleLeftIcon />
                             </Button>
-                            <Heading className={styles["hop-Calendar__header-heading"]}>
-                                {props.children}
-                            </Heading>
+                            <Heading className={styles["hop-Calendar__header-heading"]} />
                             <Button
                                 aria-label={stringFormatter.format("Calendar.nextButtonAriaLabel")}
                                 className={styles["hop-Calendar__header-button"]}
