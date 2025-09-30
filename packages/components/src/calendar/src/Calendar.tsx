@@ -126,10 +126,11 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
 };
 
 /**
- * Calendar that will be used for the DateField component
+ * A calendar displays one or more date grids and allows users to select a single date.
+ *
+ * [View Documentation](https://hopper.workleap.design/components/Calendar)
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const _Calendar = forwardRef<HTMLDivElement, CalendarProps<any>>(Calendar);
+const _Calendar = forwardRef<HTMLDivElement, CalendarProps<DateValue>>(Calendar);
 _Calendar.displayName = "Calendar";
 
 export { _Calendar as Calendar };

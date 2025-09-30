@@ -13,6 +13,7 @@ async function ComponentsLayout({ children }: { children: ReactNode }) {
             "layout",
             "buttons",
             "collections",
+            "date-and-time",
             "forms",
             "icons",
             "navigation",

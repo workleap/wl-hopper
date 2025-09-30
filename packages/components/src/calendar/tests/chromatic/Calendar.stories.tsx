@@ -1,5 +1,5 @@
 import { hopperParameters } from "@hopper-ui/storybook-addon";
-import { CalendarDate, isWeekend, type DateValue } from "@internationalized/date";
+import { isWeekend, parseDate, type DateValue } from "@internationalized/date";
 import type { Meta, StoryObj } from "@storybook/react";
 import { userEvent, within } from "storybook/test";
 
@@ -17,7 +17,7 @@ type Story = StoryObj<typeof meta>;
 export const Default = {
     args: {
         // The rebrand from GSoft to Workleap took place on June 26, 2023
-        defaultValue: new CalendarDate(2023, 6, 26)
+        defaultValue: parseDate("2023-06-26")
     }
 } satisfies Story;
 
@@ -38,8 +38,8 @@ export const CustomFirstDayOfWeek = {
 export const MinMax = {
     args: {
         ...Default.args,
-        minValue: new CalendarDate(2023, 6, 10),
-        maxValue: new CalendarDate(2023, 6, 28)
+        minValue: parseDate("2023-06-10"),
+        maxValue: parseDate("2023-06-28")
     }
 } satisfies Story;
 

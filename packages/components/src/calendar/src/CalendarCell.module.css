@@ -11,6 +11,9 @@
     --hop-CalendarCell-font-size: var(--hop-body-sm-font-size);
     --hop-CalendarCell-font-weight: var(--hop-body-sm-font-weight);
     --hop-CalendarCell-line-height: var(--hop-body-sm-line-height);
+    --hop-CalendarCell-cursor: default;
+
+    cursor: var(--hop-CalendarCell-cursor);
 
     display: var(--hop-CalendarCell-display);
     align-items: var(--hop-CalendarCell-align-items);

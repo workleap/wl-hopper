@@ -1,0 +1,96 @@
+---
+title: Calendar
+description: A calendar displays one or more date grids and allows users to select a single date.
+category: "forms"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/calendar/src/Calendar.tsx
+    aria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
+---
+
+<Example src="calendar/docs/preview" isOpen />
+
+## Usage
+
+### Value
+
+A Calendar has no selection by default. An initial, uncontrolled value can be provided to the Calendar using the defaultValue prop. Alternatively, a controlled value can be provided using the value prop.
+
+Date values are provided using objects in the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package. This library handles correct international date manipulation across calendars, time zones, and other localization concerns.
+
+Calendar supports values with both date and time components, but only allows users to modify the date. By default, Calendar will emit `CalendarDate` objects in the onChange event, but if a `CalendarDateTime` or `ZonedDateTime` object is passed as the value or defaultValue, values of that type will be emitted, changing only the date and preserving the time components.
+
+<Example src="calendar/docs/value" />
+
+### Controlled
+
+A calendar can handle value state in controlled mode.
+
+<Example src="calendar/docs/controlled" />
+
+### Multi-month
+
+Multiple CalendarGrid elements can be rendered to show multiple months at once.
+The `visibleMonths` prop should be provided to the Calendar component to specify how many months are visible.
+
+<Example src="calendar/docs/multi-month" />
+
+#### Page Behaviour
+
+The `pageBehavior` prop allows you to control how the calendar navigates between months.
+By default, the calendar will navigate by `visibleMonths`, but by setting `pageBehavior` to `single`, pagination will be by one month.
+
+<Example src="calendar/docs/page-behavior" />
+
+### Validation
+
+#### Min and Max
+
+The `minValue` and `maxValue` props can be used to limit the range of dates that a user can select.
+
+<Example src="calendar/docs/min-max" />
+
+#### Unavailable Dates
+
+Calendar supports marking certain dates as unavailable.
+These dates remain focusable with the keyboard so that navigation is consistent, but cannot be selected by the user.
+The isDateUnavailable prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
+This example includes multiple unavailable date ranges, e.g. dates when no appointments are available.
+In addition, all weekends are unavailable. The minValue prop is also used to prevent selecting dates before today.
+
+<Example src="calendar/docs/unavailable" />
+
+#### Error message
+
+Calendar tries to avoid allowing the user to select invalid dates in the first place.
+However, if according to application logic a selected date is invalid, the isInvalid prop can be set.
+This alerts assistive technology users that the selection is invalid, and can be used for styling purposes as well.
+In addition, the errorMessage slot may be used to help the user fix the issue.
+
+This example validates that the selected date is a weekday and not a weekend according to the current locale.
+
+<Example src="calendar/docs/error-message" />
+
+### Disabled
+
+A calendar can be disabled.
+
+<Example src="calendar/docs/disabled" />
+
+### Read-only
+
+A calendar can be read-only.
+
+<Example src="calendar/docs/readonly" />
+
+
+### Custom First Day of the Week
+
+By default, the first day of the week is automatically set based on the current locale.
+This can be changed by setting the firstDayOfWeek prop to "sun", "mon", "tue", "wed", "thu", "fri", or "sat".
+
+<Example src="calendar/docs/custom-first-day" />
+
+## Props
+
+<PropTable component="Calendar" />
