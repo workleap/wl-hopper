@@ -1,4 +1,5 @@
 import { files } from "@docs/ai";
+import type { TextContent } from "@modelcontextprotocol/sdk/types.js";
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
@@ -6,10 +7,7 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-
 import { env } from "../env.js";
-
-import type { TextContent } from "@modelcontextprotocol/sdk/types.js";
 import { content, errorContent } from "./content.js";
 import type { PaginatedResult } from "./cursor-pagination.js";
 import { trackError } from "./logging.js";
@@ -24,7 +22,7 @@ export const GuideSections = ["installation", "styles", "color-schemes", "compon
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-export const GUIDE_FILES: Record<GuideSection | "all", typeof files.gettingStarted.index> = {
+export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
@@ -41,7 +39,7 @@ export const GUIDE_FILES: Record<GuideSection | "all", typeof files.gettingStart
     all: files.llmsFull
 };
 
-export const TOKEN_GUIDE_FILES: Record<TokenCategory, typeof files.gettingStarted.index> = {
+export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
     "semantic-color": files.tokens.semantic.color,
     "semantic-elevation": files.tokens.semantic.elevation,
     "semantic-shape": files.tokens.semantic.shape,
@@ -61,7 +59,7 @@ export const TOKEN_GUIDE_FILES: Record<TokenCategory, typeof files.gettingStarte
     all: files.tokens.index
 };
 
-export const TOKEN_MAP_FILES: Record<TokenCategory, { brief: typeof files.gettingStarted.index[]; full: typeof files.gettingStarted.index[] }> = {
+export const TokenMapFiles: Record<TokenCategory, { brief: typeof files.gettingStarted.index[]; full: typeof files.gettingStarted.index[] }> = {
     all: {
         brief: [files.tokens.maps.brief.all],
         full: [files.tokens.maps.full.all]
@@ -225,13 +223,13 @@ async function readComponentApi(relativePath: string) {
 }
 
 export async function getGuide(section: GuideSection | "all", pageSize?: number, cursor?: string) {
-    if (!Object.keys(GUIDE_FILES).includes(section)) {
+    if (!Object.keys(GuideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
         return errorContent(error);
     }
 
-    const guidePath = join(env.DOCS_PATH, GUIDE_FILES[section].path);
+    const guidePath = join(env.DOCS_PATH, GuideFiles[section].path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
@@ -249,13 +247,13 @@ export async function getGuide(section: GuideSection | "all", pageSize?: number,
 }
 
 export async function getDesignTokenGuide(section: TokenCategory, pageSize?: number, cursor?: string) {
-    if (!Object.keys(GUIDE_FILES).includes(section)) {
+    if (!Object.keys(GuideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
         return errorContent(error);
     }
 
-    const guidePath = join(env.DOCS_PATH, TOKEN_GUIDE_FILES[section].path);
+    const guidePath = join(env.DOCS_PATH, TokenGuideFiles[section].path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
@@ -273,7 +271,7 @@ export async function getDesignTokenGuide(section: TokenCategory, pageSize?: num
 }
 
 export async function getDesignTokensMap(category: TokenCategory, mode: "brief" | "full") {
-    return await Promise.all(TOKEN_MAP_FILES[category][mode].map(async map => {
+    return await Promise.all(TokenMapFiles[category][mode].map(async map => {
         const tokensMap = join(env.DOCS_PATH, map.path);
 
         if (!existsSync(tokensMap)) {

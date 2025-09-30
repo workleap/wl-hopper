@@ -375,7 +375,7 @@ function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], re
 }
 
 function loadAllowedUnsafeProps(): string[] {
-        try {
+    try {
         // Get the path to the unsafe props data file
         const unsafePropsDataPath = join(env.DOCS_PATH, files.styledSystem.unsafePropsData.path);
         const fileContents = readFileSync(unsafePropsDataPath, "utf-8");
@@ -392,7 +392,7 @@ function loadAllowedUnsafeProps(): string[] {
 
 function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
-    let allowedUnsafeProps = loadAllowedUnsafeProps();
+    const allowedUnsafeProps = loadAllowedUnsafeProps();
 
     // Check each JSX element for UNSAFE_ props
     for (const element of jsxElements) {
@@ -423,8 +423,8 @@ function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: Va
 }
 
 function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
-        // Load the allowed unsafe props list
-    let tokenizedProps = loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", ""));
+    // Load the allowed unsafe props list
+    const tokenizedProps = loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", ""));
 
     for (const element of jsxElements) {
         const openingElement = element.openingElement;

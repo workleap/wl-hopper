@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 
-import { GUIDE_FILES, type GuideSection, TOKEN_GUIDE_FILES, TOKEN_MAP_FILES, type TokenCategory } from "./docs.js";
+import { GuideFiles, type GuideSection, type TokenCategory, TokenGuideFiles, TokenMapFiles } from "./docs.js";
 
-const CATEGORY_DESCRIPTIONS: { [key in TokenCategory]: string } = {
+const CategoryDescriptions: { [key in TokenCategory]: string } = {
     "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
     "semantic-elevation": "Box shadows for creating depth and hierarchy in interfaces",
     "semantic-shape": "Border radius values for rounded corners and circular elements",
@@ -22,7 +22,7 @@ const CATEGORY_DESCRIPTIONS: { [key in TokenCategory]: string } = {
     all: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible"
 } as const;
 
-const GUIDE_DESCRIPTIONS: { [key in GuideSection]: string } = {
+const GuideDescriptions: { [key in GuideSection]: string } = {
     installation: "How to install and set up the Hopper Design System",
     "components-list": "Get a list of all components in the Hopper Design System.",
     styles: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
@@ -40,8 +40,8 @@ const GUIDE_DESCRIPTIONS: { [key in GuideSection]: string } = {
 export function generateDesignTokensDescription(): string {
     let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
-        const fileInfo = TOKEN_GUIDE_FILES[category as keyof typeof TOKEN_GUIDE_FILES];
+    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+        const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
         const tokenCount = fileInfo?.estimatedTokens || 0;
         description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
     }
@@ -52,8 +52,8 @@ export function generateDesignTokensDescription(): string {
 export function generateTokenMapsDescription(): string {
     let description = "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\"\n\nAvailable token categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
-        const mapFiles = TOKEN_MAP_FILES[category as keyof typeof TOKEN_MAP_FILES];
+    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+        const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
         const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
         description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
     }
@@ -64,8 +64,8 @@ export function generateTokenMapsDescription(): string {
 export function generateGuidesDescription(): string {
     let description = "Available guides:\n";
 
-    for (const [guide, guideDescription] of Object.entries(GUIDE_DESCRIPTIONS)) {
-        const tokenCount = GUIDE_FILES[guide as GuideSection]?.estimatedTokens || 0;
+    for (const [guide, guideDescription] of Object.entries(GuideDescriptions)) {
+        const tokenCount = GuideFiles[guide as GuideSection]?.estimatedTokens || 0;
         description += `        - ${guide}: ${guideDescription} (tokens: ${tokenCount})\n`;
     }
 
