@@ -39,7 +39,16 @@ export interface TokensJsonBuild {
     };
 }
 
-export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild;
+export interface UnsafePropsJsonBuild {
+    type: "unsafe-props-json";
+}
+
+export interface UnsafePropsMarkdownBuild {
+    type: "unsafe-props-markdown";
+    template: string;
+}
+
+export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild | UnsafePropsJsonBuild | UnsafePropsMarkdownBuild;
 
 interface ServeConfig {
     at?: string;

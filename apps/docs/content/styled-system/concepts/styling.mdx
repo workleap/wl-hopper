@@ -42,6 +42,10 @@ It will also help you to search for these usages when you want to update them, o
 
 <CodeOnlyExample src="hopper-provider/docs/styling/escape-hatch" />
 
+<AI>
+⚠️ **CRITICAL**: Props with a "Tokens Group" of "none" should be used directly. These props do not support design tokens, so you should not use the `UNSAFE_` prefix or attempt to apply tokens to them.
+</AI>
+
 ### Pseudo-classes
 
 Style props doesn't support every CSS pseudo-classes. [Location pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#location_pseudo-classes), [input pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#the_input_pseudo-classes), [tree-structural pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#tree-structural_pseudo-classes), ::before and ::after are not supported and will most likely never be.

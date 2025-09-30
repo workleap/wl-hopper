@@ -1,6 +1,6 @@
 import { dirname, join } from "path";
 import { aiDocsConfig } from "./ai-docs.config";
-import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild } from "./types";
+import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types";
 
 function normalizePath(path: string): string {
     return path.startsWith('/') ? path : `/${path}`;
@@ -73,5 +73,19 @@ export function isTokensJsonBuild(build: BuildConfig): build is TokensJsonBuild 
     return (
         'type' in build &&
         build.type === "tokens-json"
+    );
+}
+
+export function isUnsafePropsJsonBuild(build: BuildConfig): build is UnsafePropsJsonBuild {
+    return (
+        'type' in build &&
+        build.type === "unsafe-props-json"
+    );
+}
+
+export function isUnsafePropsMarkdownBuild(build: BuildConfig): build is UnsafePropsMarkdownBuild {
+    return (
+        'type' in build &&
+        build.type === "unsafe-props-markdown"
     );
 }

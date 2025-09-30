@@ -254,6 +254,20 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
+        "styled-system/unsafe-props-data.json": {
+            build: {
+                type: "unsafe-props-json",
+            },
+        },
+
+        "styled-system/unsafe-props.md": {
+            build: {
+                type: "unsafe-props-markdown",
+                template: "/content/ai-templates/unsafe-props-list.mdx",
+            },
+        },
+
+        // llms.txt
         "llms.md": {
             build: {
                 template: "/content/ai-templates/llms.mdx",

@@ -40,7 +40,7 @@ function PropsReferenceTableRender({ items }: { items: Item[] }) {
             <tr>
                 <th>Property Name</th>
                 <th>CSS Property</th>
-                <th>Scale</th>
+                <th>Tokens Group</th>
                 <th>Supports</th>
             </tr>
         </thead>

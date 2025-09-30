@@ -1,16 +1,22 @@
+import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
+import { readFileSync } from "fs";
+import { join } from "path";
+import { formatStyledSystemName } from "./formatStyledSystemName";
 
-interface ValidationError {
+import { env } from "../env.js";
+
+interface ValidationMessage {
     message: string;
     line?: number;
     column?: number;
 }
-
 interface ValidationResult {
     isValid: boolean;
-    errors: ValidationError[];
+    errors: ValidationMessage[];
+    warnings: ValidationMessage[];
 }
 
 /**
@@ -19,7 +25,8 @@ interface ValidationResult {
 export function validateComponentStructure(code: string): ValidationResult {
     const result: ValidationResult = {
         isValid: true,
-        errors: []
+        errors: [],
+        warnings: []
     };
 
     // First, check if the code is empty or whitespace only
@@ -62,8 +69,15 @@ export function validateComponentStructure(code: string): ValidationResult {
         // Check for className and style props usage
         validateNoClassNameAndStyleProps(jsxElements, result);
 
+        // Check for unsafe props usage
+        validateUnsafePropsUsage(jsxElements, result);
+
+        // Check for design system tokens usage
+        validateDesignSystemTokensUsage(jsxElements, result);
+
         // Group components by type for better validation reporting
         const componentInstances = new Map<string, TSESTree.JSXElement[]>();
+
 
         for (const element of jsxElements) {
             const componentName = getComponentName(element);
@@ -353,6 +367,82 @@ function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], re
                             line: attribute.loc?.start.line,
                             column: attribute.loc?.start.column
                         });
+                    }
+                }
+            }
+        }
+    }
+}
+
+function loadAllowedUnsafeProps(): string[] {
+        try {
+        // Get the path to the unsafe props data file
+        const unsafePropsDataPath = join(env.DOCS_PATH, files.styledSystem.unsafePropsData.path);
+        const fileContents = readFileSync(unsafePropsDataPath, "utf-8");
+        const unsafePropsData = JSON.parse(fileContents);
+
+        if (Array.isArray(unsafePropsData)) {
+            return unsafePropsData;
+        }
+        throw new Error("Invalid format for unsafe props data.");
+    } catch {
+        throw new Error("Failed to load the list of allowed UNSAFE_ props for validation.");
+    }
+}
+
+function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+    // Load the allowed unsafe props list
+    let allowedUnsafeProps = loadAllowedUnsafeProps();
+
+    // Check each JSX element for UNSAFE_ props
+    for (const element of jsxElements) {
+        const openingElement = element.openingElement;
+
+        if (openingElement.attributes) {
+            for (const attribute of openingElement.attributes) {
+                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
+                    const propName = attribute.name.name;
+
+                    // Check if prop starts with UNSAFE_
+                    if (propName.startsWith("UNSAFE_")) {
+                        // Check if it's in the allowed list
+                        if (!allowedUnsafeProps.includes(propName)) {
+                            const message = `The prop "${propName}" is not a valid UNSAFE_ prop. You can use '${propName.replace("UNSAFE_", "")}' directly instead.`;
+
+                            result.errors.push({
+                                message,
+                                line: attribute.loc?.start.line,
+                                column: attribute.loc?.start.column
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+        // Load the allowed unsafe props list
+    let tokenizedProps = loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", ""));
+
+    for (const element of jsxElements) {
+        const openingElement = element.openingElement;
+        if (openingElement.attributes) {
+            for (const attribute of openingElement.attributes) {
+                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
+                    const propName = attribute.name.name;
+                    if (attribute.value && attribute.value.type === "Literal" && typeof attribute.value.value === "string" && tokenizedProps.includes(propName)) {
+                        const originalValue = attribute.value.value;
+                        const formatted = formatStyledSystemName(originalValue, null);
+                        if (formatted !== originalValue && formatted.length < originalValue.length) {
+                            const message = `The token value "${originalValue}" for prop "${propName}" is wrong. Change it to "${formatted}".`;
+                            result.errors.push({
+                                message,
+                                line: attribute.loc?.start.line,
+                                column: attribute.loc?.start.column
+                            });
+                        }
                     }
                 }
             }

@@ -1,14 +1,14 @@
 import { aiDocsConfig } from "@/ai-docs/ai-docs.config.js";
-import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild } from "@/ai-docs/util.js";
-import { createWriteStream } from "fs";
+import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-docs/util.js";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
 import { isAbsolute, join } from "path";
-import { convertMdxToMd } from "./ai-utils/convertMdxToMd.js";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
 import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
 import { generateTokensMaps } from "./ai-utils/generateTokensMaps.ts";
+import { generateUnsafePropsJson, generateUnsafePropsMarkdown } from "./ai-utils/generateUnsafePropsList.ts";
+import { mergeContents } from "./ai-utils/mergeContents.ts";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
 
 async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }) {
@@ -34,21 +34,7 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
         }
     }
 
-    const outputPath = join(path, fileName);
-    const writeStream = createWriteStream(outputPath);
-
-    //read the heading file if provided
-    if (headingFile) {
-        try {
-            let headingContent = await readFile(headingFile, "utf8");
-            if (headingFile.trim().endsWith(".mdx")) {
-                headingContent = await convertMdxToMd(headingContent);
-            }
-            writeStream.write(headingContent + "\n");
-        } catch (error) {
-            throw new Error(`Error reading heading file ${headingFile}: ${error}`);
-        }
-    }
+    const contents: string[] = [];
 
     // Keep the original order of files as passed
     for (const file of allFiles) {
@@ -57,15 +43,18 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
             const fileContent = await readFile(filePath, "utf8");
             const updateLevel = headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
 
-            writeStream.write(updateLevel + "\n");
+            contents.push(updateLevel);
         } catch (error) {
             throw new Error(`Error: Could not read file ${filePath}: ${error}`);
         }
     }
 
-    writeStream.end();
+    const outputPath = join(path, fileName);
+    mergeContents(contents, outputPath, headingFile);
+
     console.log(`✅ Merged successfully: ${outputPath}`);
 }
+
 
 function fixRelativeLink(link: string, extension: "txt" | "md"): string {
     // Don't modify full links
@@ -124,6 +113,15 @@ async function main() {
                 sourceFile: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
                 fullMap: buildInfo.options?.fullMap ?? false
+            });
+        } else if (isUnsafePropsJsonBuild(buildInfo)) {
+            generateUnsafePropsJson({
+                outputPath: join(outputPath, fileKey)
+            });
+        } else if (isUnsafePropsMarkdownBuild(buildInfo)) {
+            generateUnsafePropsMarkdown({
+                outputPath: join(outputPath, fileKey),
+                headingFile:  join(projectRoot, buildInfo.template)
             });
         } else {
             await mergeFiles(buildInfo.merge?.map(file => join(outputPath, file)) ?? [], {

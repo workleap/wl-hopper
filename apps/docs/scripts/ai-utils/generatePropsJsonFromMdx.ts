@@ -1,6 +1,6 @@
 import fs from "fs/promises";
 import path from "path";
-import { getComponentProps } from "./getComponentPropsStandalone.js";
+import { getComponentProps } from "./getComponentProps.js";
 
 interface PropItem {
     name: string;

@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
+import type { GuideSection, TokenCategory } from "./utils/docs";
 import { toolsInfo } from "./utils/toolsInfo";
 
 export function prompts(server: McpServer) {
@@ -66,16 +67,18 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
 
 ### Styling
-- All styling must use Hopper design tokens—never raw CSS values or inline styles.
+- All styling must use Hopper design semantic or core tokens—never raw CSS values or inline styles.
 - **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use token names for component style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens_map.name}" tool to find the correct prop value.
-- Prioritize proper design system usage over quick fixes
+- **CRITICAL**: Check the '${"escape-hatches" satisfies GuideSection}' guide. ONLY props listed there have UNSAFE_ versions. All other props use regular values WITHOUT UNSAFE_ prefix
+- Prioritize proper design system usage over quick fixes.
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
 ## 3. Implementation
 - **CRITICAL: START WITH,** fetching all the following resources before start coding, not just when you hit errors.
-    - Call '#${toolsInfo.get_design_tokens_map.name}' to get the correct mapping from tokens to prop values.
-    - Call '#${toolsInfo.get_guide.name}(styles)' to get the relevant styling guidance.
-    - Call '#${toolsInfo.get_guide.name}(layout)' to understand correct layout practices.
+    - Call '#${toolsInfo.get_design_tokens_map.name}(${"all" satisfies TokenCategory})' to get the mapping from semantic and core tokens to prop values.
+    - Call '#${toolsInfo.get_guide.name}(${"styles" satisfies GuideSection})' to get the relevant styling guidance.
+    - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
+    - Call '#${toolsInfo.get_guide.name}(${"escape-hatches" satisfies GuideSection})' to get a COMPLETE WHITELIST of available UNSAFE_* props. Any prop not in that list should be used WITHOUT the UNSAFE_ prefix.
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.
@@ -84,9 +87,10 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 4. QA
-- Validate the component structure after major changes, not just at the end.
-- Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
-- The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
+- [ ] Validate the component structure after major changes, not just at the end.
+- [ ] Verify all UNSAFE_* props are in the "${"escape-hatches" satisfies GuideSection}" whitelist.
+- [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
+- [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 
 # Output
 Return only the complete JSX implementation using Hopper components that perfectly matches the original Figma design. No additional output, explanations, or validation reports are required.

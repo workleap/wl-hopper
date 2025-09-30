@@ -51,6 +51,10 @@ async function setDeep(obj: Record<string, FileMapping | FileInfo>, filePathFrom
 
         if (isLast) {
             const relPath = `/${filePathFromRoot}`; // leading slash, include folder and file with extension
+
+            if (cursor[key]) {
+                throw new Error(`Duplicate key detected while generating AI docs mapping: ${key} for path ${filePathFromRoot}. Rename the filename to avoid conflicts.`);
+            }
             cursor[key] = {
                 path: relPath.replaceAll("\\", "/"),
                 size: fileSize,
