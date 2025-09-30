@@ -4,8 +4,7 @@ import type { PropsWithChildren } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
     CalendarHeaderCell as AriaCalendarHeaderCell,
-    CalendarGridBody, CalendarGridHeader,
-    type CalendarHeaderCellProps as AriaCalendarHeaderCellProps
+    CalendarGridBody, CalendarGridHeader
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -39,10 +38,10 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         >
             <CalendarGridHeader>
                 {day => (
-                    <CalendarHeaderCell>
+                    <AriaCalendarHeaderCell className={styles["hop-CalendarGrid__header-cell"]}>
                         {/* Removes the last letter of weekday style "short", from 3 letters to 2. E.g. "Mon" -> "Mo" */}
                         {day.slice(0, -1)}
-                    </CalendarHeaderCell>
+                    </AriaCalendarHeaderCell>
                 )}
             </CalendarGridHeader>
             <CalendarGridBody className={styles["hop-CalendarGrid__body"]}>
@@ -53,15 +52,3 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         </AriaCalendarGrid>
     );
 };
-
-interface CalendarHeaderCellProps extends Omit<AriaCalendarHeaderCellProps, "children">, PropsWithChildren { }
-
-const CalendarHeaderCell = (props: CalendarHeaderCellProps) => {
-    return (
-        <AriaCalendarHeaderCell className={styles["hop-CalendarGrid__header-cell"]}>
-            {props.children}
-        </AriaCalendarHeaderCell>
-    );
-};
-
-
