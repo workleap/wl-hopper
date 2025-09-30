@@ -10,5 +10,8 @@
     "ListBoxItem.indicatorAriaLabel": "List Item Selection Indicator",
     "FieldLabel.necessityLabel.required": "Required",
     "FieldLabel.necessityLabel.optional": "Optional",
-    "Select.placeholder": "Select an item"
+    "Select.placeholder": "Select an item",
+    "Calendar.previousButtonAriaLabel": "Previous month",
+    "Calendar.nextButtonAriaLabel": "Next month",
+    "Calendar.invalidSelection": "Invalid date selection"
 }

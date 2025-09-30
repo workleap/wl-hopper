@@ -1,0 +1,58 @@
+.hop-CalendarGrid {
+    --hop-CalendarGrid-isolation: isolate;
+    --hop-CalendarGrid-border-spacing: 0;
+    --hop-CalendarGrid-border-collapse: collapse;
+    --hop-CalendarGrid-inline-size: 18rem;
+
+    isolation: var(--hop-CalendarGrid-isolation);
+    border-spacing: var(--hop-CalendarGrid-border-spacing);
+    border-collapse: var(--hop-CalendarGrid-border-collapse);
+    inline-size: var(--hop-CalendarGrid-inline-size);
+}
+
+.hop-CalendarGrid[aria-readonly="true"] {
+    pointer-events: none;
+}
+
+.hop-CalendarGrid__body {
+    --hop-CalendarGrid__body-border-radius: var(--hop-shape-rounded-md);
+
+    border-radius: var(--hop-CalendarGrid__body-border-radius);
+    box-shadow: 0 0 0 0.0625rem var(--hop-neutral-border);
+}
+
+.hop-CalendarGrid__body tr:first-child td {
+    padding-block-start: var(--hop-space-inset-xs);
+}
+
+.hop-CalendarGrid__body td:first-child {
+    padding-inline-start: var(--hop-space-inset-xs);
+}
+
+.hop-CalendarGrid__body td:last-child {
+    padding-inline-end: var(--hop-space-inset-xs);
+}
+
+.hop-CalendarGrid__body tr:last-child td {
+    padding-block-end: var(--hop-space-inset-xs);
+}
+
+.hop-CalendarGrid__header-cell {
+    --hop-CalendarGrid__header-cell-text-color: var(--hop-neutral-text);
+    --hop-CalendarGrid__header-cell-text-text-align: center;
+    --hop-CalendarGrid__header-cell-text-font-size: var(--hop-body-sm-font-size);
+    --hop-CalendarGrid__header-cell-text-font-weight: var(--hop-body-sm-font-weight);
+    --hop-CalendarGrid__header-cell-text-line-height: var(--hop-body-sm-line-height);
+    --hop-CalendarGrid__header-cell-text-font-family: var(--hop-body-sm-font-family);
+    --hop-CalendarGrid__header-cell-text-padding-block-end: var(--hop-space-stack-sm);
+
+
+    padding-block-end: var(--hop-CalendarGrid__header-cell-text-padding-block-end);
+
+    font-family: var(--hop-CalendarGrid__header-cell-text-font-family);
+    font-size: var(--hop-CalendarGrid__header-cell-text-font-size);
+    font-weight: var(--hop-CalendarGrid__header-cell-text-font-weight);
+    line-height: var(--hop-CalendarGrid__header-cell-text-line-height);
+    color: var(--hop-CalendarGrid__header-cell-text-color);
+    text-align: var(--hop-CalendarGrid__header-cell-text-text-align);
+}
