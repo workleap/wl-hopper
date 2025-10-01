@@ -4,7 +4,8 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
+import { formatValidationMessages } from "./utils/formatValidationMessages.js";
 import { trackError, trackEvent } from "./utils/logging.js";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo.js";
 import { validateComponentStructure } from "./utils/validateComponentStructure.js";
@@ -44,19 +45,6 @@ export function tools(server: McpServer) {
             4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
             5. ALWAYS Use "${toolsInfo.validate_component_structure.name}" tool when you used a component to ensure its structure is correct.
             `));
-    });
-
-    server.registerTool(toolsInfo.get_components_list.name, {
-        title: toolsInfo.get_components_list.title,
-        description: toolsInfo.get_components_list.description,
-        inputSchema: {},
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async (_, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_components_list.name, {}, e?.requestInfo);
-
-        return toolContent(await getGuide("components-list"));
     });
 
     server.registerTool(toolsInfo.get_component_usage.name, {
@@ -110,7 +98,7 @@ export function tools(server: McpServer) {
     }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuide(category, page_size, cursor));
+        return toolContent(await getDesignTokenGuide(category, page_size, cursor));
     });
 
     server.registerTool(toolsInfo.get_design_tokens_map.name, {
@@ -128,7 +116,7 @@ export function tools(server: McpServer) {
 
         return toolContent(
             await getDesignTokensMap(category, include_raw_values ? "full" : "brief"),
-            content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**")
+            include_raw_values ? content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**") : undefined
         );
     });
 
@@ -162,19 +150,18 @@ export function tools(server: McpServer) {
             const validationResult = validateComponentStructure(code);
             trackEvent(toolsInfo.validate_component_structure.name, { code, validationResult }, e?.requestInfo);
 
-            if (validationResult.isValid) {
+            if (validationResult.isValid && validationResult.warnings.length === 0) {
                 return toolContent(content("Component structure validation passed!"));
-            } else {
-                let message = "Component structure validation failed!\nErrors:";
-                validationResult.errors.forEach((error, index) => {
-                    message += `\n${index + 1}. ${error.message}`;
-                    if (error.line) {
-                        message += ` (line ${error.line})`;
-                    }
-                });
-
-                return toolContent(content(message));
             }
+
+            let message = validationResult.isValid
+                ? "Component structure validation passed with warnings!"
+                : "Component structure validation failed!";
+
+            message += formatValidationMessages(validationResult.errors, "Errors");
+            message += formatValidationMessages(validationResult.warnings, "Warnings");
+
+            return toolContent(content(message));
         } catch (error) {
             trackError(error, e?.requestInfo);
 

@@ -9,10 +9,13 @@
         "rootDir": "./src",
         "paths": {
             "@docs/ai": [
-                "./src/.docs/index.ts"
-            ],
+                "./src/.docs/index.ts",
+            ]
         },
     },
+    "include": [
+        "src/**/*"
+    ],
     "exclude": [
         "dist",
         "node_modules",

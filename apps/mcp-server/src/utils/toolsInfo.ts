@@ -1,9 +1,8 @@
 /* eslint-disable max-len */
 
-import { files } from "@docs/ai";
-import { GUIDE_FILES, TOKEN_MAP_FILES } from "./docs.js";
+import { GuideFiles, type GuideSection, type TokenCategory, TokenGuideFiles, TokenMapFiles } from "./docs.js";
 
-const CATEGORY_DESCRIPTIONS = {
+const CategoryDescriptions: { [key in TokenCategory]: string } = {
     "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
     "semantic-elevation": "Box shadows for creating depth and hierarchy in interfaces",
     "semantic-shape": "Border radius values for rounded corners and circular elements",
@@ -23,11 +22,26 @@ const CATEGORY_DESCRIPTIONS = {
     all: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible"
 } as const;
 
-export function generateTokenCategoriesDescription(): string {
+const GuideDescriptions: { [key in GuideSection]: string } = {
+    installation: "How to install and set up the Hopper Design System",
+    "components-list": "Get a list of all components in the Hopper Design System.",
+    styles: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
+    layout: "Building application layouts using Flex or Grid",
+    "escape-hatches": "It lists the ONLY available UNSAFE_* props in JSON format.",
+    "color-schemes": "Applying light mode, dark mode, or adapt to operating system's dark mode",
+    "react-icons": "All available react icons with each icon description and usage examples",
+    "svg-icons": "All available SVG icons with each icon description and usage examples",
+    "controlled-mode": "Using controlled and uncontrolled modes to customize components",
+    forms: "Best practices for building forms in Hopper Design System",
+    slots: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
+    internationalization: "Adapting components to respect languages and cultures"
+} as const;
+
+export function generateDesignTokensDescription(): string {
     let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
-        const fileInfo = GUIDE_FILES[category as keyof typeof GUIDE_FILES];
+    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+        const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
         const tokenCount = fileInfo?.estimatedTokens || 0;
         description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
     }
@@ -35,11 +49,11 @@ export function generateTokenCategoriesDescription(): string {
     return description.trim();
 }
 
-export function generateTokenMapDescription(): string {
+export function generateTokenMapsDescription(): string {
     let description = "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\"\n\nAvailable token categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CATEGORY_DESCRIPTIONS)) {
-        const mapFiles = TOKEN_MAP_FILES[category as keyof typeof TOKEN_MAP_FILES];
+    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+        const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
         const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
         description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
     }
@@ -48,54 +62,11 @@ export function generateTokenMapDescription(): string {
 }
 
 export function generateGuidesDescription(): string {
-    const guideDescriptions: Record<string, { description: string; guideFile?: any }> = {
-        installation: {
-            description: "How to install and set up the Hopper Design System",
-            guideFile: files.gettingStarted.index
-        },
-        styles: {
-            description: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
-            guideFile: files.styledSystem.index
-        },
-        "color-schemes": {
-            description: "Applying light mode, dark mode, or adapt to operating system's dark mode",
-            guideFile: files.components.concepts.colorSchemes
-        },
-        "react-icons": {
-            description: "All available react icons with each icon description and usage examples",
-            guideFile: files.icons.reactIcons.index
-        },
-        "svg-icons": {
-            description: "All available SVG icons with each icon description and usage examples",
-            guideFile: files.icons.svgIcons.index
-        },
-        layout: {
-            description: "Building application layouts using Flex or Grid",
-            guideFile: files.components.concepts.layout
-        },
-        "controlled-mode": {
-            description: "Using controlled and uncontrolled modes to customize components",
-            guideFile: files.components.concepts.controlledMode
-        },
-        forms: {
-            description: "Best practices for building forms in Hopper Design System",
-            guideFile: files.components.concepts.forms
-        },
-        slots: {
-            description: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
-            guideFile: files.components.concepts.slots
-        },
-        internationalization: {
-            description: "Adapting components to respect languages and cultures",
-            guideFile: files.components.concepts.internationalization
-        }
-    };
-
     let description = "Available guides:\n";
 
-    for (const [guide, info] of Object.entries(guideDescriptions)) {
-        const tokenCount = info.guideFile?.estimatedTokens || 0;
-        description += `        - ${guide}: ${info.description} (tokens: ${tokenCount})\n`;
+    for (const [guide, guideDescription] of Object.entries(GuideDescriptions)) {
+        const tokenCount = GuideFiles[guide as GuideSection]?.estimatedTokens || 0;
+        description += `        - ${guide}: ${guideDescription} (tokens: ${tokenCount})\n`;
     }
 
     return description.trim();
@@ -113,11 +84,6 @@ export const toolsInfo = {
         description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
     },
 
-    get_components_list: {
-        name: "get_components_list",
-        title: "List all available components",
-        description: "Get a list of all components in the Hopper Design System."
-    },
     get_component_usage: {
         name: "get_component_usage",
         title: "Get component usage documentation",
@@ -140,12 +106,12 @@ export const toolsInfo = {
     get_design_tokens: {
         name: "get_design_tokens",
         title: "Get design system tokens",
-        description: generateTokenCategoriesDescription()
+        description: generateDesignTokensDescription()
     },
     get_design_tokens_map: {
         name: "get_design_tokens_map",
         title: "Get design system tokens map to component props as JSON",
-        description: generateTokenMapDescription()
+        description: generateTokenMapsDescription()
     },
 
     validate_component_structure: {

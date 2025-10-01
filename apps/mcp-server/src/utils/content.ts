@@ -22,9 +22,9 @@ export function errorContent(error: unknown, customErrorMessage?: string): { typ
     };
 }
 
-export function toolContent(...rawContent: (TextContent | TextContent[])[]): { content: TextContent[] } {
+export function toolContent(...rawContent: (TextContent | TextContent[] | undefined)[]): { content: TextContent[] } {
     return {
-        content: rawContent.flat()
+        content: rawContent.flat().filter(c => !!c)
     };
 }
 

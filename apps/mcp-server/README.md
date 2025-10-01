@@ -60,7 +60,6 @@ src/
 - `get_started` - Setup guidance
 - `get_guide` - Design system guides
 - `get_design_tokens` - Design tokens
-- `get_components_list` - List Hopper components
 - `get_component_usage` - Component usage docs
 - `get_component_props` - Component API/props
 - `migrate_code_to_hopper` - Migrate existing code to Hopper
