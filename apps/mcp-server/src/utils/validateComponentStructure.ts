@@ -5,6 +5,7 @@ import emojiRegex from "emoji-regex";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { env } from "../env";
+import { GuideSection } from "./docs";
 import { formatStyledSystemName } from "./formatStyledSystemName";
 
 interface ValidationMessage {
@@ -65,8 +66,8 @@ export function validateComponentStructure(code: string): ValidationResult {
         // Check for native HTML elements
         validateNoNativeHTMLElements(jsxElements, result);
 
-        // Check for className and style props usage
-        validateNoClassNameAndStyleProps(jsxElements, result);
+        // Check for prohibited props usage
+        validateProhibitedProps(jsxElements, result);
 
         // Check for unsafe props usage
         validateUnsafePropsUsage(jsxElements, result);
@@ -185,6 +186,23 @@ function getComponentName(element: TSESTree.JSXElement): string | null {
     }
 
     return null;
+}
+
+/**
+ * Generator function that yields JSX attributes from a list of JSX elements
+ */
+function* getAllProps(jsxElements: TSESTree.JSXElement[]) {
+    for (const element of jsxElements) {
+        const openingElement = element.openingElement;
+        if (openingElement.attributes) {
+            for (const attribute of openingElement.attributes) {
+                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
+                    const propName = attribute.name.name;
+                    yield { propValue: attribute.value, propName, loc: attribute.loc };
+                }
+            }
+        }
+    }
 }
 
 /**
@@ -323,6 +341,8 @@ const NATIVE_HTML_ELEMENTS = new Set([
     "svg", "path"
 ]);
 
+const PROHIBITED_PROPS = ["className", "style"];
+
 function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
     for (const element of jsxElements) {
         const componentName = getComponentName(element);
@@ -339,36 +359,17 @@ function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result
     }
 }
 
-function validateNoClassNameAndStyleProps(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
-    for (const element of jsxElements) {
-        const openingElement = element.openingElement;
+function validateProhibitedProps(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    for (const { loc, propName } of getAllProps(jsxElements)) {
+        // Check if the prop is in the prohibited list
+        if (PROHIBITED_PROPS.includes(propName)) {
+            const message = `Using "${propName}" prop is **STRONGLY** discouraged. Check the Hopper "styles" guide for details.`;
 
-        if (openingElement.attributes) {
-            for (const attribute of openingElement.attributes) {
-                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
-                    const propName = attribute.name.name;
-
-                    if (propName === "className") {
-                        const message = "Using \"className\" prop is **STRONGLY** prohibited. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
-
-                        result.errors.push({
-                            message,
-                            line: attribute.loc?.start.line,
-                            column: attribute.loc?.start.column
-                        });
-                    }
-
-                    if (propName === "style") {
-                        const message = "Using \"style\" prop is **STRONGLY** discouraged. Check the Hopper \"styles\" guide (available through \"get_guide\" tool) for details.";
-
-                        result.errors.push({
-                            message,
-                            line: attribute.loc?.start.line,
-                            column: attribute.loc?.start.column
-                        });
-                    }
-                }
-            }
+            result.errors.push({
+                message,
+                line: loc?.start.line,
+                column: loc?.start.column
+            });
         }
     }
 }
@@ -389,33 +390,66 @@ function loadAllowedUnsafeProps(): string[] {
     }
 }
 
+function loadAllowedTokens(): Set<string> {
+    try {
+        // Get the path to the tokens data file
+        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.brief.all.path);
+        const fileContents = readFileSync(tokensDataPath, "utf-8");
+        const tokensData = JSON.parse(fileContents);
+
+        // Recursively extract all values from the nested object structure
+        const extractValues = (obj: unknown): string[] => {
+            const values: string[] = [];
+
+            if (typeof obj === "string") {
+                values.push(obj);
+            } else if (Array.isArray(obj)) {
+                for (const item of obj) {
+                    values.push(...extractValues(item));
+                }
+            } else if (obj !== null && typeof obj === "object") {
+                for (const value of Object.values(obj)) {
+                    values.push(...extractValues(value));
+                }
+            }
+
+            return values;
+        };
+
+        const allValues = extractValues(tokensData);
+
+        return new Set(allValues);
+    } catch (e) {
+        console.error("error:", e);
+        throw new Error("Failed to load the list of allowed design tokens for validation.", { cause: e });
+    }
+}
+
 function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
-    const allowedUnsafeProps = loadAllowedUnsafeProps();
+    const allowedUnsafeProps = new Set(loadAllowedUnsafeProps());
 
     // Check each JSX element for UNSAFE_ props
-    for (const element of jsxElements) {
-        const openingElement = element.openingElement;
+    for (const { loc, propName } of getAllProps(jsxElements)) {
+        // Check if prop starts with UNSAFE_
+        if (propName.startsWith("UNSAFE_")) {
+            // Check if it's in the allowed list
+            if (!allowedUnsafeProps.has(propName)) {
+                const suggestedProp = propName.replace("UNSAFE_", "");
+                let message: string;
 
-        if (openingElement.attributes) {
-            for (const attribute of openingElement.attributes) {
-                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
-                    const propName = attribute.name.name;
-
-                    // Check if prop starts with UNSAFE_
-                    if (propName.startsWith("UNSAFE_")) {
-                        // Check if it's in the allowed list
-                        if (!allowedUnsafeProps.includes(propName)) {
-                            const message = `The prop "${propName}" is not a valid UNSAFE_ prop. You can use '${propName.replace("UNSAFE_", "")}' directly instead.`;
-
-                            result.errors.push({
-                                message,
-                                line: attribute.loc?.start.line,
-                                column: attribute.loc?.start.column
-                            });
-                        }
-                    }
+                // Check if the suggested prop is in the prohibited list
+                if (PROHIBITED_PROPS.includes(suggestedProp)) {
+                    message = `The prop "${propName}" is not a valid UNSAFE_ prop, and "${suggestedProp}" is prohibited in Hopper. Check the Hopper "${"styles" satisfies GuideSection}" guide for proper styling alternatives.`;
+                } else {
+                    message = `The prop "${propName}" is not a valid UNSAFE_ prop. You can use "${suggestedProp}" directly instead.`;
                 }
+
+                result.errors.push({
+                    message,
+                    line: loc?.start.line,
+                    column: loc?.start.column
+                });
             }
         }
     }
@@ -423,28 +457,75 @@ function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: Va
 
 function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
-    const tokenizedProps = loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", ""));
+    const tokenSupportedProps = new Set(loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", "")));
+    const allowedTokens = loadAllowedTokens();
 
-    for (const element of jsxElements) {
-        const openingElement = element.openingElement;
-        if (openingElement.attributes) {
-            for (const attribute of openingElement.attributes) {
-                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
-                    const propName = attribute.name.name;
-                    if (attribute.value && attribute.value.type === "Literal" && typeof attribute.value.value === "string" && tokenizedProps.includes(propName)) {
-                        const originalValue = attribute.value.value;
-                        const formatted = formatStyledSystemName(originalValue, null);
-                        if (formatted !== originalValue && formatted.length < originalValue.length) {
-                            const message = `The token value "${originalValue}" for prop "${propName}" is wrong. Change it to "${formatted}".`;
-                            result.errors.push({
-                                message,
-                                line: attribute.loc?.start.line,
-                                column: attribute.loc?.start.column
-                            });
-                        }
-                    }
-                }
-            }
+    for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
+        // Skip invalid UNSAFE_ props as they are handled in another validation
+        const safePropName = propName.replace("UNSAFE_", "");
+        if (propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName)) {
+            continue;
         }
+
+        // Only process string literal values
+        if (!propValue || propValue.type !== "Literal" || typeof propValue.value !== "string") {
+            continue;
+        }
+
+        const originalValue = propValue.value;
+
+        // Validate token format for token-supported props
+        if (tokenSupportedProps.has(propName)) {
+            validateTokenFormat(originalValue, propName, loc, result);
+            continue;
+        }
+
+        // Ensure tokens are not used on unsupported props
+        if (allowedTokens.has(originalValue)) {
+            validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
+        }
+    }
+}
+
+function validateTokenFormat(
+    originalValue: string,
+    propName: string,
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): void {
+    const formatted = formatStyledSystemName(originalValue, null);
+    if (formatted !== originalValue && formatted.length < originalValue.length) {
+        const message = `The token value "${originalValue}" for prop "${propName}" is wrong. Change it to "${formatted}".`;
+        result.errors.push({
+            message,
+            line: loc?.start.line,
+            column: loc?.start.column
+        });
+    }
+}
+
+function validateTokenUsageOnUnsupportedProp(
+    originalValue: string,
+    propName: string,
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): void {
+    // If the prop is not in the token-supported list, make sure tokens are not used
+    // (e.g. top="core_0", or UNSAFE_color="danger-selected")
+    if (propName.startsWith("UNSAFE_")) {
+        const suggestedProp = propName.replace("UNSAFE_", "");
+        const message = `The token value "${originalValue}" is not allowed for prop "${propName}". You have to use the safe prop "${suggestedProp}" directly when tokens are available. Check the Hopper "${"styles" satisfies GuideSection}" guide for details.`;
+        result.errors.push({
+            message,
+            line: loc?.start.line,
+            column: loc?.start.column
+        });
+    } else {
+        const message = `The token value "${originalValue}" is not allowed for prop "${propName}". Only certain props support design tokens. Check the Hopper "${"styles" satisfies GuideSection}" guide for details.`;
+        result.errors.push({
+            message,
+            line: loc?.start.line,
+            column: loc?.start.column
+        });
     }
 }

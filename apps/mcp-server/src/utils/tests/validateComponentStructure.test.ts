@@ -1,3 +1,4 @@
+import { MOCK_TOKENS } from "../../tests/mocks/tokensData.ts";
 import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData.ts";
 import { validateComponentStructure } from "../validateComponentStructure.ts";
 
@@ -7,6 +8,8 @@ jest.mock("fs", () => ({
     readFileSync: jest.fn((path: string) => {
         if (path.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
+        } else if (path.includes("tokens-data.json")) {
+            return JSON.stringify(MOCK_TOKENS);
         }
 
         return jest.requireActual("fs").readFileSync(path);
@@ -476,7 +479,7 @@ describe("validateComponentStructure", () => {
             const result = validateComponentStructure("<Button className=\"my-button\">Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Using \"className\" prop is **STRONGLY** prohibited");
+            expect(result.errors[0].message).toContain("Using \"className\" prop is **STRONGLY** discouraged");
             expect(result.errors[0].message).toContain("Check the Hopper \"styles\" guide");
         });
 
@@ -682,6 +685,30 @@ describe("validateComponentStructure", () => {
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("UNSAFE_invalidProp");
+        });
+
+        it("should detect invalid UNSAFE_className", () => {
+            const code = "<Div UNSAFE_className=\"test\">Hello</Div>";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("prohibited");
+        });
+
+        it("should detect invalid UNSAFE_style", () => {
+            const code = "<Div UNSAFE_style={{color: \"red\"}}>Hello</Div>";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("prohibited");
+        });
+
+        it("should provide different message for invalid UNSAFE_ props that are not prohibited", () => {
+            const code = "<Div UNSAFE_invalidProp=\"value\">Hello</Div>";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).not.toContain("prohibited");
         });
     });
 
@@ -913,6 +940,207 @@ describe("validateComponentStructure", () => {
             const code = "<Chart color=\"dataviz-categorical-1\">Chart</Chart>";
             const result = validateComponentStructure(code);
             expect(result.errors).toHaveLength(0);
+        });
+    });
+
+    describe("Token usage on non-token-supported props", () => {
+        it("should error when token is used on non-supported prop", () => {
+            const code = "<Div top=\"danger-active\">Content</Div>";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("The token value \"danger-active\" is not allowed for prop \"top\"");
+            expect(result.errors[0].message).toContain("Only certain props support design tokens");
+            expect(result.errors[0].message).toContain("Check the Hopper \"styles\" guide");
+        });
+
+        it("should error for multiple tokens on non-supported props", () => {
+            const code = `<Div
+                left="danger-active"
+                right="core_coastal-25"
+                top="core_120"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(3);
+            expect(result.errors[0].message).toContain("left");
+            expect(result.errors[0].message).toContain("danger-active");
+            expect(result.errors[1].message).toContain("right");
+            expect(result.errors[1].message).toContain("core_coastal-25");
+            expect(result.errors[2].message).toContain("top");
+            expect(result.errors[2].message).toContain("core_120");
+        });
+
+        it("should allow non-token values on non-supported props", () => {
+            const code = `<Div
+                top="10px"
+                left="0"
+                right="auto"
+                bottom="5rem"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should allow token values on token-supported props", () => {
+            const code = `<Div
+                backgroundColor="danger-active"
+                color="core_coastal-25"
+                fontSize="core_120"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should error for tokens on props with common names that don't support tokens", () => {
+            const code = `<Button
+                id="danger-active"
+                name="core_coastal-25"
+                value="core_120"
+            >Click</Button>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(3);
+            expect(result.errors[0].message).toContain("id");
+            expect(result.errors[1].message).toContain("name");
+            expect(result.errors[2].message).toContain("value");
+        });
+
+        it("should error for semantic tokens on non-supported props", () => {
+            const code = "<Icon top=\"core_120\" position=\"inset-xs\" />";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("top");
+            expect(result.errors[0].message).toContain("core_120");
+            expect(result.errors[1].message).toContain("position");
+            expect(result.errors[1].message).toContain("inset-xs");
+        });
+
+        it("should error for core tokens on non-supported props", () => {
+            const code = "<Text maxWidth=\"core_coastal-25\" minWidth=\"core_120\">Text</Text>";
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("maxWidth");
+            expect(result.errors[0].message).toContain("core_coastal-25");
+            expect(result.errors[1].message).toContain("minWidth");
+            expect(result.errors[1].message).toContain("core_120");
+        });
+
+        it("should provide accurate line and column information for token errors", () => {
+            const code = `<Div>
+                <Button
+                    id="test"
+                    position="core_120"
+                    onClick={handleClick}
+                >
+                    Click
+                </Button>
+            </Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].line).toBe(4);
+            expect(result.errors[0].column).toBe(20);
+        });
+
+        it("should handle mix of UNSAFE_ and regular props with tokens", () => {
+            const code = `<Div
+                top="core_120"
+                UNSAFE_height="core_coastal-25"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+
+            expect(result.isValid).toBe(false);
+            // We get 2 errors:
+            // 1. Invalid UNSAFE_ prop error for UNSAFE_height (it's not in the allowed list)
+            // 2. Token on non-supported prop error for width (width doesn't support tokens)
+            // Note: Token validation for UNSAFE_height doesn't trigger because it's already
+            // caught as an invalid UNSAFE_ prop before the token validation runs
+            expect(result.errors).toHaveLength(2);
+
+            // Check for the width error
+            const topError = result.errors.find(e => e.message.includes("top") && !e.message.includes("height"));
+            expect(topError).toBeDefined();
+            expect(topError?.message).toContain("The token value \"core_120\" is not allowed for prop \"top\"");
+            expect(topError?.message).toContain("Only certain props support design tokens");
+
+            // Check for the UNSAFE_height error (invalid UNSAFE_ prop)
+            const heightError = result.errors.find(e => e.message.includes("UNSAFE_height"));
+            expect(heightError).toBeDefined();
+            expect(heightError?.message).toContain("You have to use the safe prop \"height\" directly when tokens are available");
+        });
+
+        it("should not error when prop value is not a token but looks similar", () => {
+            const code = `<Div
+                className="danger-active-class"
+                data-attribute="core_coastal-25"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            // Should error for className being prohibited AND for data-attribute using a token value
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("className");
+            expect(result.errors[0].message).toContain("**STRONGLY** discouraged");
+            expect(result.errors[1].message).toContain("data-attribute");
+            expect(result.errors[1].message).toContain("core_coastal-25");
+        });
+
+        it("should handle nested components with token errors on non-supported props", () => {
+            const code = `<Modal>
+                <Heading left="core_120">
+                    <Text overflow="core_120">Title</Text>
+                </Heading>
+                <Content>
+                    <Div unknown-prop="core_coastal-25">Content</Div>
+                </Content>
+            </Modal>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors.length).toBeGreaterThanOrEqual(3);
+            const leftError = result.errors.find(e => e.message.includes("left"));
+            const overflowError = result.errors.find(e => e.message.includes("overflow"));
+            const unknownPropError = result.errors.find(e => e.message.includes("unknown-prop"));
+            expect(leftError).toBeDefined();
+            expect(overflowError).toBeDefined();
+            expect(unknownPropError).toBeDefined();
+        });
+
+        it("should only validate literal string values", () => {
+            const code = `<Div
+                width={tokenValue}
+                height={\`\${danger}-active\`}
+                top={getToken()}
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should error for tokens on aria attributes that don't support tokens", () => {
+            const code = `<Button
+                aria-label="danger-active"
+                aria-describedby="core_coastal-25"
+            >Click</Button>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("aria-label");
+            expect(result.errors[1].message).toContain("aria-describedby");
+        });
+
+        it("should error for tokens on data attributes", () => {
+            const code = `<Div
+                data-testid="danger-active"
+                data-value="core_120"
+            >Content</Div>`;
+            const result = validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("data-testid");
+            expect(result.errors[1].message).toContain("data-value");
         });
     });
 });
