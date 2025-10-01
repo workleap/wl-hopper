@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.13.1
+
+### Patch Changes
+
+- 3297b20: Update dependencies
+
 ## 1.13.0
 
 ### Minor Changes
