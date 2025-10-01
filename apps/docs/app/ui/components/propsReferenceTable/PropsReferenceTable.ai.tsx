@@ -51,7 +51,7 @@ function PropsReferenceTableRender({ items }: { items: Item[] }) {
                     <td>{item.propertyName}</td>
                     <td>{item.cssPropertyName}</td>
                     <td>{item.scale}</td>
-                    <th>{item.scale == "none" ? "✗": "✓"}</th>
+                    <td>{item.scale == "none" ? "✗": "✓"}</td>
                     <td>{item.supports}</td>
                 </tr>
             ))}
