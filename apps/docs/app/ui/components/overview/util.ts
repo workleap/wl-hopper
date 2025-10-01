@@ -5,6 +5,7 @@ const sortOrder = [
     "layout",
     "buttons",
     "collections",
+    "date and time",
     "forms",
     "icons",
     "navigation",

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
-import { isScaleLink, ScaleLinks } from "./util";
+import { getScaleCategory, isScaleLink, ScaleLinks } from "./util";
 
 function toScaleLink(scale: string) {
-    return isScaleLink(scale) ? <a href={ScaleLinks[scale].link} target="_blank" >{ScaleLinks[scale].title}</a> : scale;
+    return isScaleLink(scale) ? <a href={ScaleLinks[scale].link} target="_blank" >{`${getScaleCategory(scale)} ${ScaleLinks[scale].title}`}</a> : scale;
 }
 
 function toRowValues([propName, cssProperty, scale, supports]: string[]): Item {
@@ -40,7 +40,8 @@ function PropsReferenceTableRender({ items }: { items: Item[] }) {
             <tr>
                 <th>Property Name</th>
                 <th>CSS Property</th>
-                <th>Tokens Group</th>
+                <th>Tokens Category</th>
+                <th>UNSAFE_</th>
                 <th>Supports</th>
             </tr>
         </thead>
@@ -50,6 +51,7 @@ function PropsReferenceTableRender({ items }: { items: Item[] }) {
                     <td>{item.propertyName}</td>
                     <td>{item.cssPropertyName}</td>
                     <td>{item.scale}</td>
+                    <th>{item.scale == "none" ? "✗": "✓"}</th>
                     <td>{item.supports}</td>
                 </tr>
             ))}

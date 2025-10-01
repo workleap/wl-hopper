@@ -1,10 +1,7 @@
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
-import type {
-    JSONRPCError
-} from "@modelcontextprotocol/sdk/types.js";
+import type { JSONRPCError } from "@modelcontextprotocol/sdk/types.js";
 import { toFetchResponse, toReqRes } from "fetch-to-node";
-
-import { getServer } from "../../server.js";
+import { getServer } from "../../server";
 
 // Netlify serverless function handler which handles all inbound requests
 export default async (req: Request) => {

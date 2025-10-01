@@ -260,10 +260,10 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        "styled-system/unsafe-props.md": {
+        "styled-system/escape-hatches.md": {
             build: {
                 type: "unsafe-props-markdown",
-                template: "/content/ai-templates/unsafe-props-list.mdx",
+                template: "/content/ai-templates/escape-hatches.mdx",
             },
         },
 
