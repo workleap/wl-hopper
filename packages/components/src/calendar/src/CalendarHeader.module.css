@@ -14,7 +14,7 @@
     --hop-Button-ghost-secondary-color: var(--hop-neutral-icon);
 }
 
-.hop-CalendarHeader-heading{
+.hop-CalendarHeader-heading {
     --hop-CalendarHeader-heading-display: flex;
     --hop-CalendarHeader-heading-align-items: center;
     --hop-CalendarHeader-heading-justify-content: center;
