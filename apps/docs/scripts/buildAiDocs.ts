@@ -1,15 +1,15 @@
-import { aiDocsConfig } from "@/ai-docs/ai-docs.config.js";
-import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-docs/util.js";
+import { aiDocsConfig } from "@/ai-docs/ai-docs.config.ts";
+import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-docs/util.ts";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
 import { isAbsolute, join } from "path";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
-import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.js";
-import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.js";
+import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.ts";
+import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.ts";
 import { generateTokensMaps } from "./ai-utils/generateTokensMaps.ts";
 import { generateUnsafePropsJson, generateUnsafePropsMarkdown } from "./ai-utils/generateUnsafePropsList.ts";
 import { mergeContents } from "./ai-utils/mergeContents.ts";
-import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.js";
+import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.ts";
 
 async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }) {
     // Expand all patterns and collect matching files
@@ -98,7 +98,7 @@ async function main() {
                 flattenOutput: buildInfo.flatten,
                 excludedPaths: buildInfo.excludedPaths,
                 markdown: {
-                    replaceLinks: (link: string) => fixRelativeLink(link, "txt"),
+                    replaceLinks: (link: string) => fixRelativeLink(link, "md"),
                     ...buildInfo.markdown
                 }
             });

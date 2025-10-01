@@ -33,6 +33,28 @@ All style props support responsive values. You can pass an object with breakpoin
 
 ### Escape hatches
 
+<AI>
+**CRITICAL: NOT ALL PROPS SUPPORT THE `UNSAFE_` PREFIX.** Only a specific set of props (listed in the [escape-hatches guide](/styled-system/escape-hatches)) have `UNSAFE_` versions available.
+
+For these whitelisted props, you can bypass the token system by prefixing the prop name with `UNSAFE_`:
+```tsx
+  <Div
+      position="absolute"           // ✅ position is NOT in the whitelist, use position directly
+      top="10px"                    // ✅ top is NOT in the whitelist, use top directly
+      overflow="hidden"             // ✅ overflow is NOT in the whitelist, use overflow directly
+      flex="1"                      // ✅ flex is NOT in the whitelist, use flex directly
+      UNSAFE_fontSize="1.5rem"      // ✅ fontSize is in the whitelist
+      UNSAFE_width="100px"          // ✅ width is in the whitelist
+  >
+```
+
+Critical Rules:
+1. Check the [escape-hatches guide](/styled-system/escape-hatches) FIRST - it contains the complete whitelist.
+2. If a prop is in the whitelist → use UNSAFE_propName for custom values
+3. If a prop is not in the whitelist → use propName directly (no `UNSAFE_` prefix)
+4. Props with "Tokens Category" of "none" (like `overflow`, `flex`, `position`) are used directly
+</AI>
+
 While we encourage teams to utilize Hopper styles as it is, we do realize that sometimes product specific customizations may be needed. In these cases, we encourage you or your designers to talk to us. We may be able to suggest an alternative implementation strategy, or perhaps your design can help inform future Hopper additions.
 
 While the traditional className and style props are always supported in Hopper components, we also provide an escape hatch for passing custom values to style props. This is done by prefixing the prop name with `UNSAFE_`.
@@ -41,10 +63,6 @@ The `UNSAFE_` prefix might look scary, but it's there to remind you that you're 
 It will also help you to search for these usages when you want to update them, or help us to provide missing tokens.
 
 <CodeOnlyExample src="hopper-provider/docs/styling/escape-hatch" />
-
-<AI>
-⚠️ **CRITICAL**: Props with a "Tokens Group" of "none" should be used directly. These props do not support design tokens, so you should not use the `UNSAFE_` prefix or attempt to apply tokens to them.
-</AI>
 
 ### Pseudo-classes
 
@@ -155,7 +173,7 @@ The following tables provide a list of all available style props by category.
         ["overflow", "overflow", "none", "breakpoints"],
         ["overflowX", "overflow-x", "none", "breakpoints"],
         ["overflowY", "overflow-y", "none", "breakpoints"],
-        ["gap", "gap", "none", "breakpoints"],
+        ["gap", "gap", "spacing-scale", "breakpoints"],
         ["alignSelf", "align-self" , "none", "breakpoints"],
         ["aspectRatio", "aspect-ratio", "none", "breakpoints"],
         ["justifyContent", "justify-content", "none", "breakpoints"],

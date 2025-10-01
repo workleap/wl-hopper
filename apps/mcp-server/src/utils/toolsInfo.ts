@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { GuideFiles, type GuideSection, type TokenCategory, TokenGuideFiles, TokenMapFiles } from "./docs.js";
+import { GuideFiles, type GuideSection, type TokenCategory, TokenGuideFiles, TokenMapFiles } from "./docs";
 
 const CategoryDescriptions: { [key in TokenCategory]: string } = {
     "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",

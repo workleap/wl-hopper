@@ -4,9 +4,8 @@ import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
 import { readFileSync } from "fs";
 import { join } from "path";
+import { env } from "../env";
 import { formatStyledSystemName } from "./formatStyledSystemName";
-
-import { env } from "../env.js";
 
 interface ValidationMessage {
     message: string;

@@ -3,12 +3,12 @@ import type {
     CallToolResult
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { content, errorContent, toolContent } from "./utils/content.js";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs.js";
-import { formatValidationMessages } from "./utils/formatValidationMessages.js";
-import { trackError, trackEvent } from "./utils/logging.js";
-import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo.js";
-import { validateComponentStructure } from "./utils/validateComponentStructure.js";
+import { content, errorContent, toolContent } from "./utils/content";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs";
+import { formatValidationMessages } from "./utils/formatValidationMessages";
+import { trackError, trackEvent } from "./utils/logging";
+import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo";
+import { validateComponentStructure } from "./utils/validateComponentStructure";
 
 const paginationParams = {
     page_size: z

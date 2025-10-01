@@ -2,13 +2,10 @@ import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/
 import { isInitializeRequest } from "@modelcontextprotocol/sdk/types.js";
 import express from "express";
 import { randomUUID } from "node:crypto";
-
-import { env } from "../env.js";
-import { getServer } from "../server.js";
-import { trackEvent } from "../utils/logging.js";
-
-import { getAllowedHosts } from "./utils.js";
-
+import { env } from "../env";
+import { getServer } from "../server";
+import { trackEvent } from "../utils/logging";
+import { getAllowedHosts } from "./utils";
 
 console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);
 const app = express();

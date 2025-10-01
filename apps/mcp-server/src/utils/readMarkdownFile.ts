@@ -1,6 +1,6 @@
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
-import { paginateContent, type PaginatedResult } from "./cursor-pagination.js";
+import { paginateContent, type PaginatedResult } from "./cursor-pagination";
 
 export async function readMarkdownFile(filePath: string, pageSize?: number, cursor?: string): Promise<PaginatedResult> {
     if (!existsSync(filePath)) {

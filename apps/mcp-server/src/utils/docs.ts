@@ -7,11 +7,11 @@ import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
-import { env } from "../env.js";
-import { content, errorContent } from "./content.js";
-import type { PaginatedResult } from "./cursor-pagination.js";
-import { trackError } from "./logging.js";
-import { readMarkdownFile } from "./readMarkdownFile.js";
+import { env } from "../env";
+import { content, errorContent } from "./content";
+import type { PaginatedResult } from "./cursor-pagination";
+import { trackError } from "./logging";
+import { readMarkdownFile } from "./readMarkdownFile";
 
 export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
@@ -35,7 +35,7 @@ export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarte
     forms: files.components.concepts.forms,
     slots: files.components.concepts.slots,
     internationalization: files.components.concepts.internationalization,
-    "escape-hatches": files.styledSystem.unsafeProps,
+    "escape-hatches": files.styledSystem.escapeHatches,
     all: files.llmsFull
 };
 
@@ -246,19 +246,19 @@ export async function getGuide(section: GuideSection | "all", pageSize?: number,
     }
 }
 
-export async function getDesignTokenGuide(section: TokenCategory, pageSize?: number, cursor?: string) {
-    if (!Object.keys(GuideFiles).includes(section)) {
-        const error = new Error(`Invalid guide section requested: ${section}`);
+export async function getDesignTokenGuide(category: TokenCategory, pageSize?: number, cursor?: string) {
+    if (!Object.keys(TokenGuideFiles).includes(category)) {
+        const error = new Error(`Invalid design token category requested: ${category}`);
 
         return errorContent(error);
     }
 
-    const guidePath = join(env.DOCS_PATH, TokenGuideFiles[section].path);
+    const guidePath = join(env.DOCS_PATH, TokenGuideFiles[category].path);
 
     if (!existsSync(guidePath)) {
-        const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
+        const error = new Error(`Guide not found for category: ${category}, path: ${guidePath}`);
 
-        return errorContent(error, `Guide not found for section: ${section}`);
+        return errorContent(error, `Guide not found for category: ${category}`);
     }
 
     try {
