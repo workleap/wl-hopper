@@ -5,7 +5,7 @@ import emojiRegex from "emoji-regex";
 import { readFileSync } from "fs";
 import { join } from "path";
 import { env } from "../env";
-import { GuideSection } from "./docs";
+import type { GuideSection } from "./docs";
 import { formatStyledSystemName } from "./formatStyledSystemName";
 
 interface ValidationMessage {
