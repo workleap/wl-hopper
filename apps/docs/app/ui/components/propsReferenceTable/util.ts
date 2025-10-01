@@ -28,7 +28,7 @@ export const ScaleLinks = {
 };
 
 export function getScaleCategory(scale: string) {
-    if (isScaleLink(scale))  {
+    if (isScaleLink(scale)) {
         return ScaleLinks[scale].link.startsWith("/tokens/core") ? "Core" : "Semantic";
     }
     return "";
