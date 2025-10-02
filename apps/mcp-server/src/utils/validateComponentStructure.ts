@@ -592,6 +592,22 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
     }
 }
 
+/**
+ * Checks if a prop value is a string literal
+ */
+function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
+    return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
+}
+
+/**
+ * Checks if an UNSAFE_ prop should be skipped from token validation
+ * Returns true if the prop is an UNSAFE_ prop without token support
+ */
+function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
+    const safePropName = propName.replace("UNSAFE_", "");
+    return propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName);
+}
+
 async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
     const tokenSupportedProps = await getTokenSupportedProps();
@@ -599,26 +615,19 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
 
     for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
         // Skip invalid UNSAFE_ props as they are handled in another validation
-        const safePropName = propName.replace("UNSAFE_", "");
-        if (propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName)) {
+         // Only process string literal values
+        if (!isStringValue(propValue) || isInvalidUnsafeProp(propName, tokenSupportedProps)) {
             continue;
         }
 
-        // Only process string literal values
-        if (!propValue || propValue.type !== "Literal" || typeof propValue.value !== "string") {
-            continue;
-        }
 
         const originalValue = propValue.value;
 
         // Validate token format for token-supported props
         if (tokenSupportedProps.has(propName)) {
             validateTokenFormat(originalValue, propName, loc, result);
-            continue;
-        }
 
-        // Ensure tokens are not used on unsupported props
-        if (allowedTokens.has(originalValue)) {
+        } else if (allowedTokens.has(originalValue)) {// Ensure tokens are not used for not token-supported props
             validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
         }
     }
@@ -647,6 +656,13 @@ function validateTokenUsageOnUnsupportedProp(
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): void {
+
+    //this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
+    //for example variant="primary" is valid. So, we only check for tokens with "-" or "_" which are unlikely to be valid non-token values
+    if (!originalValue.includes("-") && !originalValue.includes("_")) {
+        return;
+    }
+
     // If the prop is not in the token-supported list, make sure tokens are not used
     // (e.g. top="core_0", or UNSAFE_color="danger-selected")
     if (propName.startsWith("UNSAFE_")) {

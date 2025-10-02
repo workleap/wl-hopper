@@ -1251,6 +1251,36 @@ describe("validateComponentStructure", () => {
             expect(result.errors[0].message).toContain("data-testid");
             expect(result.errors[1].message).toContain("data-value");
         });
+
+        it("should NOT error for valid non-token values that coincidentally exist in the token list but have no dashes or underscores", async () => {
+            // This test addresses the case mentioned in the comment:
+            // "this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
+            // for example variant='primary' is valid. So, we only check for tokens with '-' or '_'"
+            const code = `<Button
+                variant="primary"
+                size="md"
+                type="submit"
+                type="none"
+            >Click</Button>`;
+            const result = await validateComponentStructure(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should error for token-like values with dashes or underscores on non-supported props", async () => {
+            // This verifies that the filter (dash/underscore check) works correctly
+            const code = `<Button
+                variant="danger-active"
+                size="core_120"
+            >Click</Button>`;
+            const result = await validateComponentStructure(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("variant");
+            expect(result.errors[0].message).toContain("danger-active");
+            expect(result.errors[1].message).toContain("size");
+            expect(result.errors[1].message).toContain("core_120");
+        });
     });
 
     describe("Layout component validation", () => {
