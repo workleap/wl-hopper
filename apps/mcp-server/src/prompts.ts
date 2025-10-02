@@ -62,7 +62,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 2. Hopper Design System Refinement
 
 ### Component Selection
-- Check the provided 'Figma elements to Hopper components' mapping table to see how 'data-name' attribute is translated to Hopper components.
+- Check the provided 'Figma elements → Hopper components/icons' mapping table to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
 - CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
 - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
@@ -74,12 +74,18 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - Prioritize proper design system usage over quick fixes.
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
-## 3. Implementation
-- **CRITICAL: START WITH,** fetching all the following resources before start coding, not just when you hit errors.
+## 3. Before Writing Any Code
+**CRITICAL: Complete this checklist FIRST:**
+- [ ] Fetch all the following resources before start coding, not just when you hit errors:
     - Call '#${toolsInfo.get_design_tokens_map.name}(${"all" satisfies TokenCategory})' to get the mapping from semantic and core tokens to prop values.
     - Call '#${toolsInfo.get_guide.name}(${"styles" satisfies GuideSection})' to get the relevant styling guidance.
     - Call '#${toolsInfo.get_guide.name}(${"escape-hatches" satisfies GuideSection})' to get a COMPLETE WHITELIST of available UNSAFE_* props. Any prop not in that list should be used WITHOUT the UNSAFE_ prefix.
     - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
+- [ ] Extract ALL component and icon names from Figma data (i.e. data-name attributes from '#get_code' tool).
+- [ ] Create a mapping table: Figma component/icon name → Hopper component/icon name
+
+
+## 4. Implementation
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.
@@ -87,7 +93,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - Run Typescript type-checking on the final code to ensure no type errors.
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
-## 4. QA
+## 5. QA
 - [ ] Verify all UNSAFE_* props are in the "${"escape-hatches" satisfies GuideSection}" whitelist.
 - [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
@@ -99,14 +105,17 @@ Return only the complete JSX implementation using Hopper components that perfect
 # Context
 Figma design: '${figma_design_url}'
 
-## Figma elements to Hopper components mapping
-As a general rule, if data-name format is X/Y, it means X is the component name and Y is the name if it. The only exception is when X is "Icon", which means it's always an icon from Hopper icons library.
+## Figma elements → Hopper components/icons mapping
+As a general rule:
+- If 'data-name' attribute value format is {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
+- If 'data-name' attribute value format is Icon/{Y}, it means it's always '{Y}Icon' from Hopper icons library. e.g 'Icon/Plus' → 'PlusIcon'.
+
 Some examples:
 
-| Figma Element (data-name) | Hopper Component                  |
+| Figma Element (data-name) | Hopper Component/Icon             |
 |---------------------------|-----------------------------------|
 | Button/*                  | Button                            |
-| Icon/*                    | An icon from Hopper icons library |
+| Icon/*                    | {*}Icon from Hopper icons library |
 | Select/*                  | Select                            |
 
 # Deliverable
