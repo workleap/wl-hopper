@@ -305,7 +305,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should handle components with attributes", async () => {
-            const result = await validateComponentStructure("<Button variant=\"primary\" size=\"large\">Text<Icon/></Button>");
+            const result = await validateComponentStructure("<Button variant='primary' size='large'>Text<Icon/></Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("must include a Text component");
@@ -349,7 +349,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should handle components with complex JSX expressions", async () => {
-            const code = "<Button>{isLoading ? \"Loading...\" : \"Submit\"}<Icon/></Button>";
+            const code = "<Button>{isLoading ? 'Loading...' : 'Submit'}<Icon/></Button>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -370,7 +370,7 @@ describe("validateComponentStructure", () => {
             const result = await validateComponentStructure("<Button>Submit 🚀</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Emoji \"🚀\" detected");
+            expect(result.errors[0].message).toContain("Emoji '🚀' detected");
             expect(result.errors[0].message).toContain("Emojis are not allowed in Hopper components");
             expect(result.errors[0].line).toBe(1);
             expect(result.errors[0].column).toBe(16);
@@ -380,8 +380,8 @@ describe("validateComponentStructure", () => {
             const result = await validateComponentStructure("<Button>Submit 🚀 Done ✅</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
-            expect(result.errors[0].message).toContain("Emoji \"🚀\" detected");
-            expect(result.errors[1].message).toContain("Emoji \"✅\" detected");
+            expect(result.errors[0].message).toContain("Emoji '🚀' detected");
+            expect(result.errors[1].message).toContain("Emoji '✅' detected");
         });
 
         it("should detect emojis in multiple lines", async () => {
@@ -397,17 +397,17 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect emojis in component attributes", async () => {
-            const result = await validateComponentStructure("<Button aria-label=\"Submit 🚀\">Click</Button>");
+            const result = await validateComponentStructure("<Button aria-label='Submit 🚀'>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Emoji \"🚀\" detected");
+            expect(result.errors[0].message).toContain("Emoji '🚀' detected");
         });
 
         it("should detect complex emojis and combinations", async () => {
             const result = await validateComponentStructure("<Button>Family 👨‍👩‍👧‍👦</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Emoji \"👨‍👩‍👧‍👦\" detected");
+            expect(result.errors[0].message).toContain("Emoji '👨‍👩‍👧‍👦' detected");
         });
 
         it("should pass for code without emojis", async () => {
@@ -422,7 +422,7 @@ describe("validateComponentStructure", () => {
             const result = await validateComponentStructure("<div><Button>Click</Button></div>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Native HTML element \"<div>\" is not allowed");
+            expect(result.errors[0].message).toContain("Native HTML element '<div>' is not allowed");
             expect(result.errors[0].message).toContain("Use Hopper components instead");
         });
 
@@ -430,7 +430,7 @@ describe("validateComponentStructure", () => {
             const result = await validateComponentStructure("<Button><span>Text</span></Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Native HTML element \"<span>\" is not allowed");
+            expect(result.errors[0].message).toContain("Native HTML element '<span>' is not allowed");
         });
 
         it("should detect multiple native HTML elements", async () => {
@@ -441,9 +441,9 @@ describe("validateComponentStructure", () => {
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(3);
-            expect(result.errors[0].message).toContain("Native HTML element \"<div>\"");
-            expect(result.errors[1].message).toContain("Native HTML element \"<button>\"");
-            expect(result.errors[2].message).toContain("Native HTML element \"<p>\"");
+            expect(result.errors[0].message).toContain("Native HTML element '<div>'");
+            expect(result.errors[1].message).toContain("Native HTML element '<button>'");
+            expect(result.errors[2].message).toContain("Native HTML element '<p>'");
         });
 
         it("should detect common HTML elements", async () => {
@@ -453,7 +453,7 @@ describe("validateComponentStructure", () => {
                 const result = await validateComponentStructure(`<${element}>Content</${element}>`);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain(`Native HTML element "<${element}>" is not allowed`);
+                expect(result.errors[0].message).toContain(`Native HTML element '<${element}>' is not allowed`);
             }
         });
 
@@ -481,30 +481,30 @@ describe("validateComponentStructure", () => {
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
             expect(result.warnings).toHaveLength(1);
-            expect(result.warnings[0].message).toContain("Using \"<Box>\" is STRONGLY discouraged");
-            expect(result.warnings[0].message).toContain("Use \"<Div>\" or \"<Span>\" directly");
+            expect(result.warnings[0].message).toContain("Using '<Box>' is STRONGLY discouraged");
+            expect(result.warnings[0].message).toContain("Use '<Div>' or '<Span>' directly");
         });
     });
 
     describe("className and style props validation", () => {
         it("should detect className prop usage", async () => {
-            const result = await validateComponentStructure("<Button className=\"my-button\">Click</Button>");
+            const result = await validateComponentStructure("<Button className='my-button'>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Using \"className\" prop is **STRONGLY** discouraged");
-            expect(result.errors[0].message).toContain("Check the Hopper \"styles\" guide");
+            expect(result.errors[0].message).toContain("Using 'className' prop is **STRONGLY** discouraged");
+            expect(result.errors[0].message).toContain("Check the Hopper 'styles' guide");
         });
 
         it("should detect style prop usage", async () => {
-            const result = await validateComponentStructure("<Button style={{color: \"red\"}}>Click</Button>");
+            const result = await validateComponentStructure("<Button style={{color: 'red'}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("Using \"style\" prop is **STRONGLY** discouraged");
-            expect(result.errors[0].message).toContain("Check the Hopper \"styles\" guide");
+            expect(result.errors[0].message).toContain("Using 'style' prop is **STRONGLY** discouraged");
+            expect(result.errors[0].message).toContain("Check the Hopper 'styles' guide");
         });
 
         it("should detect both className and style props", async () => {
-            const result = await validateComponentStructure("<Button className=\"btn\" style={{margin: \"10px\"}}>Click</Button>");
+            const result = await validateComponentStructure("<Button className='btn' style={{margin: '10px'}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("className");
@@ -538,13 +538,13 @@ describe("validateComponentStructure", () => {
         });
 
         it("should allow other valid props", async () => {
-            const result = await validateComponentStructure("<Button variant=\"primary\" size=\"large\" onClick={handleClick}>Click</Button>");
+            const result = await validateComponentStructure("<Button variant='primary' size='large' onClick={handleClick}>Click</Button>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should detect props in self-closing components", async () => {
-            const result = await validateComponentStructure("<Icon className=\"icon\" />");
+            const result = await validateComponentStructure("<Icon className='icon' />");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("className");
@@ -645,14 +645,14 @@ describe("validateComponentStructure", () => {
         // Note: These tests pass for valid props because when the unsafe-props-data.json file
         // is not available (like in test environment), the validation is skipped
         it("should pass for valid UNSAFE_ props", async () => {
-            const code = "<Div UNSAFE_backgroundColor=\"red\">Hello</Div>";
+            const code = "<Div UNSAFE_backgroundColor='red'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should pass for multiple valid UNSAFE_ props", async () => {
-            const code = "<Div UNSAFE_backgroundColor=\"red\" UNSAFE_padding=\"10px\">Hello</Div>";
+            const code = "<Div UNSAFE_backgroundColor='red' UNSAFE_padding='10px'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
@@ -661,7 +661,7 @@ describe("validateComponentStructure", () => {
         // The following tests are skipped because they require the unsafe-props-data.json file
         // which is not available in the test environment. In production, these validations work correctly.
         it("should fail for invalid UNSAFE_ prop", async () => {
-            const code = "<Div UNSAFE_invalidProp=\"value\">Hello</Div>";
+            const code = "<Div UNSAFE_invalidProp='value'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -670,7 +670,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should fail for multiple invalid UNSAFE_ props", async () => {
-            const code = "<Div UNSAFE_invalidProp=\"value\" UNSAFE_anotherInvalidProp=\"value2\">Hello</Div>";
+            const code = "<Div UNSAFE_invalidProp='value' UNSAFE_anotherInvalidProp='value2'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors.length).toBeGreaterThanOrEqual(2);
@@ -679,7 +679,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should allow mixing valid UNSAFE_ props with regular props", async () => {
-            const code = "<Div UNSAFE_backgroundColor=\"red\" id=\"myDiv\" className=\"test\">Hello</Div>";
+            const code = "<Div UNSAFE_backgroundColor='red' id='myDiv' className='test'>Hello</Div>";
             const result = await validateComponentStructure(code);
             // Should fail due to className, but UNSAFE_ prop should be valid
             expect(result.isValid).toBe(false);
@@ -700,7 +700,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect invalid UNSAFE_className", async () => {
-            const code = "<Div UNSAFE_className=\"test\">Hello</Div>";
+            const code = "<Div UNSAFE_className='test'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -708,7 +708,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect invalid UNSAFE_style", async () => {
-            const code = "<Div UNSAFE_style={{color: \"red\"}}>Hello</Div>";
+            const code = "<Div UNSAFE_style={{color: 'red'}}>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -716,7 +716,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should provide different message for invalid UNSAFE_ props that are not prohibited", async () => {
-            const code = "<Div UNSAFE_invalidProp=\"value\">Hello</Div>";
+            const code = "<Div UNSAFE_invalidProp='value'>Hello</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -726,10 +726,10 @@ describe("validateComponentStructure", () => {
 
     describe("Design system tokens validation", () => {
         it("should warn about tokens with hop- prefix", async () => {
-            const code = "<Button backgroundColor=\"hop-surface-neutral\">Click me</Button>";
+            const code = "<Button backgroundColor='hop-surface-neutral'>Click me</Button>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"surface-neutral\"");
+            expect(result.errors[0].message).toContain("'surface-neutral'");
             expect(result.errors[0].line).toBe(1);
             expect(result.errors[0].column).toBe(8);
         });
@@ -741,14 +741,14 @@ describe("validateComponentStructure", () => {
             >Content</Div>`;
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(2);
-            expect(result.errors[0].message).toContain("\"hop-surface-neutral\"");
-            expect(result.errors[0].message).toContain("\"surface-neutral\"");
-            expect(result.errors[1].message).toContain("\"hop-text-primary\"");
-            expect(result.errors[1].message).toContain("\"text-primary\""); // -text is removed, not hop-
+            expect(result.errors[0].message).toContain("'hop-surface-neutral'");
+            expect(result.errors[0].message).toContain("'surface-neutral'");
+            expect(result.errors[1].message).toContain("'hop-text-primary'");
+            expect(result.errors[1].message).toContain("'text-primary'"); // -text is removed, not hop-
         });
 
         it("should not warn about correctly formatted tokens", async () => {
-            const code = "<Button backgroundColor=\"surface-neutral\" color=\"primary\">Click me</Button>";
+            const code = "<Button backgroundColor='surface-neutral' color='primary'>Click me</Button>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(0);
         });
@@ -764,27 +764,27 @@ describe("validateComponentStructure", () => {
         });
 
         it("should handle tokens with -surface suffix", async () => {
-            const code = "<Div backgroundColor=\"neutral-surface\">Content</Div>";
+            const code = "<Div backgroundColor='neutral-surface'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"neutral-surface\"");
-            expect(result.errors[0].message).toContain("\"neutral\"");
+            expect(result.errors[0].message).toContain("'neutral-surface'");
+            expect(result.errors[0].message).toContain("'neutral'");
         });
 
         it("should handle tokens with -text suffix", async () => {
-            const code = "<Text color=\"primary-text-strong\">Hello</Text>";
+            const code = "<Text color='primary-text-strong'>Hello</Text>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"primary-text-strong\"");
-            expect(result.errors[0].message).toContain("\"primary-strong\"");
+            expect(result.errors[0].message).toContain("'primary-text-strong'");
+            expect(result.errors[0].message).toContain("'primary-strong'");
         });
 
         it("should handle tokens with -border suffix", async () => {
-            const code = "<Div borderColor=\"neutral-border-weak\">Content</Div>";
+            const code = "<Div borderColor='neutral-border-weak'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"neutral-border-weak\"");
-            expect(result.errors[0].message).toContain("\"neutral-weak\"");
+            expect(result.errors[0].message).toContain("'neutral-border-weak'");
+            expect(result.errors[0].message).toContain("'neutral-weak'");
         });
 
         it("should handle tokens in nested components", async () => {
@@ -802,9 +802,9 @@ describe("validateComponentStructure", () => {
             </Modal>`;
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(3);
-            expect(result.errors[0].message).toContain("\"hop-surface-primary\"");
-            expect(result.errors[1].message).toContain("\"hop-text-primary\"");
-            expect(result.errors[2].message).toContain("\"elevation-surface-raised\"");
+            expect(result.errors[0].message).toContain("'hop-surface-primary'");
+            expect(result.errors[1].message).toContain("'hop-text-primary'");
+            expect(result.errors[2].message).toContain("'elevation-surface-raised'");
         });
 
         it("should not warn for non-literal values", async () => {
@@ -818,11 +818,11 @@ describe("validateComponentStructure", () => {
         });
 
         it("should handle self-closing components with token props", async () => {
-            const code = "<Icon color=\"hop-text-primary\" />";
+            const code = "<Icon color='hop-text-primary' />";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"hop-text-primary\"");
-            expect(result.errors[0].message).toContain("\"text-primary\""); // -text suffix is removed after hop- is removed
+            expect(result.errors[0].message).toContain("'hop-text-primary'");
+            expect(result.errors[0].message).toContain("'text-primary'"); // -text suffix is removed after hop- is removed
         });
 
         it("should not warn for values that don't match token patterns", async () => {
@@ -864,92 +864,92 @@ describe("validateComponentStructure", () => {
         it("should only warn when formatted version is shorter", async () => {
             // This simulates a case where the formatted version might not be shorter
             // In practice, formatStyledSystemName should always return shorter versions for tokens
-            const code = "<Button customProp=\"short\">Click</Button>";
+            const code = "<Button customProp='short'>Click</Button>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should handle empty string values", async () => {
-            const code = "<Button backgroundColor=\"\">Click</Button>";
+            const code = "<Button backgroundColor=''>Click</Button>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should validate tokens in JSX spread attributes", async () => {
             // Note: spread attributes don't trigger validation as they're not JSXAttribute type
-            const code = "<Button {...props} backgroundColor=\"hop-surface-neutral\">Click</Button>";
+            const code = "<Button {...props} backgroundColor='hop-surface-neutral'>Click</Button>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"hop-surface-neutral\"");
+            expect(result.errors[0].message).toContain("'hop-surface-neutral'");
         });
 
         it("should handle elevation- prefix", async () => {
-            const code = "<Div backgroundColor=\"elevation-surface-raised\">Content</Div>";
+            const code = "<Div backgroundColor='elevation-surface-raised'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"elevation-surface-raised\"");
-            expect(result.errors[0].message).toContain("\"raised\""); // both elevation- and -surface are removed
+            expect(result.errors[0].message).toContain("'elevation-surface-raised'");
+            expect(result.errors[0].message).toContain("'raised'"); // both elevation- and -surface are removed
         });
 
         it("should handle shape- prefix", async () => {
-            const code = "<Div borderRadius=\"shape-rounded-md\">Content</Div>";
+            const code = "<Div borderRadius='shape-rounded-md'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"shape-rounded-md\"");
-            expect(result.errors[0].message).toContain("\"rounded-md\"");
+            expect(result.errors[0].message).toContain("'shape-rounded-md'");
+            expect(result.errors[0].message).toContain("'rounded-md'");
         });
 
         it("should handle space- prefix", async () => {
-            const code = "<Div padding=\"space-inset-md\">Content</Div>";
+            const code = "<Div padding='space-inset-md'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"space-inset-md\"");
-            expect(result.errors[0].message).toContain("\"inset-md\"");
+            expect(result.errors[0].message).toContain("'space-inset-md'");
+            expect(result.errors[0].message).toContain("'inset-md'");
         });
 
         it("should handle shadow- prefix", async () => {
-            const code = "<Div boxShadow=\"shadow-lg\">Content</Div>";
+            const code = "<Div boxShadow='shadow-lg'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"shadow-lg\"");
-            expect(result.errors[0].message).toContain("\"lg\"");
+            expect(result.errors[0].message).toContain("'shadow-lg'");
+            expect(result.errors[0].message).toContain("'lg'");
         });
 
         it("should handle radius- prefix", async () => {
-            const code = "<Div borderRadius=\"radius-md\">Content</Div>";
+            const code = "<Div borderRadius='radius-md'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"radius-md\"");
-            expect(result.errors[0].message).toContain("\"md\"");
+            expect(result.errors[0].message).toContain("'radius-md'");
+            expect(result.errors[0].message).toContain("'md'");
         });
 
         it("should handle semantic font suffixes", async () => {
-            const code = "<Text fontFamily=\"body-font-family\">Text</Text>";
+            const code = "<Text fontFamily='body-font-family'>Text</Text>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"body-font-family\"");
-            expect(result.errors[0].message).toContain("\"body\"");
+            expect(result.errors[0].message).toContain("'body-font-family'");
+            expect(result.errors[0].message).toContain("'body'");
         });
 
         it("should handle core font prefixes", async () => {
-            const code = "<Text fontSize=\"font-size-100\">Text</Text>";
+            const code = "<Text fontSize='font-size-100'>Text</Text>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"font-size-100\"");
-            expect(result.errors[0].message).toContain("\"100\"");
+            expect(result.errors[0].message).toContain("'font-size-100'");
+            expect(result.errors[0].message).toContain("'100'");
         });
 
         it("should handle -icon suffix", async () => {
-            const code = "<Icon fill=\"primary-icon-strong\">Icon</Icon>";
+            const code = "<Icon fill='primary-icon-strong'>Icon</Icon>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("\"primary-icon-strong\"");
-            expect(result.errors[0].message).toContain("\"primary-strong\"");
+            expect(result.errors[0].message).toContain("'primary-icon-strong'");
+            expect(result.errors[0].message).toContain("'primary-strong'");
         });
 
         it("should not warn for dataviz tokens as they don't get shorter", async () => {
             // dataviz- prefix becomes dataviz_ prefix, so the length doesn't decrease
-            const code = "<Chart color=\"dataviz-categorical-1\">Chart</Chart>";
+            const code = "<Chart color='dataviz-categorical-1'>Chart</Chart>";
             const result = await validateComponentStructure(code);
             expect(result.errors).toHaveLength(0);
         });
@@ -957,13 +957,13 @@ describe("validateComponentStructure", () => {
 
     describe("Token usage on non-token-supported props", () => {
         it("should error when token is used on non-supported prop", async () => {
-            const code = "<Div top=\"danger-active\">Content</Div>";
+            const code = "<Div top='danger-active'>Content</Div>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("The token value \"danger-active\" is not allowed for prop \"top\"");
+            expect(result.errors[0].message).toContain("The token value 'danger-active' is not allowed for prop 'top'");
             expect(result.errors[0].message).toContain("Only certain props support design tokens");
-            expect(result.errors[0].message).toContain("Check the Hopper \"styles\" guide");
+            expect(result.errors[0].message).toContain("Check the Hopper 'styles' guide");
         });
 
         it("should error for multiple tokens on non-supported props", async () => {
@@ -1021,7 +1021,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should error for semantic tokens on non-supported props", async () => {
-            const code = "<Icon top=\"core_120\" position=\"inset-xs\" />";
+            const code = "<Icon top='core_120' position='inset-xs' />";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
@@ -1032,7 +1032,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should error for core tokens on non-supported props", async () => {
-            const code = "<Text maxWidth=\"core_coastal-25\" minWidth=\"core_120\">Text</Text>";
+            const code = "<Text maxWidth='core_coastal-25' minWidth='core_120'>Text</Text>";
             const result = await validateComponentStructure(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
@@ -1077,13 +1077,13 @@ describe("validateComponentStructure", () => {
             // Check for the width error
             const topError = result.errors.find(e => e.message.includes("top") && !e.message.includes("height"));
             expect(topError).toBeDefined();
-            expect(topError?.message).toContain("The token value \"core_120\" is not allowed for prop \"top\"");
+            expect(topError?.message).toContain("The token value 'core_120' is not allowed for prop 'top'");
             expect(topError?.message).toContain("Only certain props support design tokens");
 
             // Check for the UNSAFE_height error (invalid UNSAFE_ prop)
             const heightError = result.errors.find(e => e.message.includes("UNSAFE_height"));
             expect(heightError).toBeDefined();
-            expect(heightError?.message).toContain("You have to use the safe prop \"height\" directly when tokens are available");
+            expect(heightError?.message).toContain("You have to use the safe prop 'height' directly when tokens are available");
         });
 
         it("should not error when prop value is not a token but looks similar", async () => {

@@ -327,7 +327,7 @@ function validateNoEmojis(code: string, result: ValidationResult): void {
 
         for (const match of matches) {
             result.errors.push({
-                message: `Emoji "${match[0]}" detected at position ${(match.index || 0) + 1}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.`,
+                message: `Emoji '${match[0]}' detected at position ${(match.index || 0) + 1}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.`,
                 line: lineIndex + 1,
                 column: (match.index || 0) + 1
             });
@@ -357,7 +357,7 @@ function validateTagNames(jsxElements: TSESTree.JSXElement[], result: Validation
         }
 
         if (NATIVE_HTML_ELEMENTS.has(componentName)) {
-            const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc. If no direct equivalent exists, consider using the "htmlElement" function. Check the '${"styles" as GuideSection}' guide for more details.`;
+            const message = `Native HTML element '<${componentName}>' is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc. If no direct equivalent exists, consider using the 'htmlElement' function. Check the '${"styles" as GuideSection}' guide for more details.`;
 
             result.errors.push({
                 message,
@@ -381,7 +381,7 @@ function validateProhibitedProps(jsxElements: TSESTree.JSXElement[], result: Val
     for (const { loc, propName } of getAllProps(jsxElements)) {
         // Check if the prop is in the prohibited list
         if (PROHIBITED_PROPS.includes(propName)) {
-            const message = `Using "${propName}" prop is **STRONGLY** discouraged. Check the Hopper "styles" guide for details.`;
+            const message = `Using '${propName}' prop is **STRONGLY** discouraged. Check the Hopper 'styles' guide for details.`;
 
             result.errors.push({
                 message,
@@ -486,9 +486,9 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
 
                 // Check if the suggested prop is in the prohibited list
                 if (PROHIBITED_PROPS.includes(suggestedProp)) {
-                    message = `The prop "${propName}" is not a valid UNSAFE_ prop, and "${suggestedProp}" is prohibited in Hopper. Check the Hopper "${"styles" satisfies GuideSection}" guide for proper styling alternatives.`;
+                    message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${suggestedProp}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
                 } else {
-                    message = `The prop "${propName}" is not a valid UNSAFE_ prop. You can use "${suggestedProp}" directly instead.`;
+                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. You can use ${suggestedProp}' directly instead.`;
                 }
 
                 result.errors.push({
@@ -541,7 +541,7 @@ function validateTokenFormat(
 ): void {
     const formatted = formatStyledSystemName(originalValue, null);
     if (formatted !== originalValue && formatted.length < originalValue.length) {
-        const message = `The token value "${originalValue}" for prop "${propName}" is wrong. Change it to "${formatted}".`;
+        const message = `The token value '${originalValue}' for prop '${propName}' is wrong. Change it to '${formatted}'.`;
         result.errors.push({
             message,
             line: loc?.start.line,
@@ -560,14 +560,14 @@ function validateTokenUsageOnUnsupportedProp(
     // (e.g. top="core_0", or UNSAFE_color="danger-selected")
     if (propName.startsWith("UNSAFE_")) {
         const suggestedProp = propName.replace("UNSAFE_", "");
-        const message = `The token value "${originalValue}" is not allowed for prop "${propName}". You have to use the safe prop "${suggestedProp}" directly when tokens are available. Check the Hopper "${"styles" satisfies GuideSection}" guide for details.`;
+        const message = `The token value '${originalValue}' is not allowed for prop '${propName}'. You have to use the safe prop '${suggestedProp}' directly when tokens are available. Check the Hopper '${"styles" satisfies GuideSection}' guide for details.`;
         result.errors.push({
             message,
             line: loc?.start.line,
             column: loc?.start.column
         });
     } else {
-        const message = `The token value "${originalValue}" is not allowed for prop "${propName}". Only certain props support design tokens. Check the Hopper "${"styles" satisfies GuideSection}" guide for details.`;
+        const message = `The token value '${originalValue}' is not allowed for prop '${propName}'. Only certain props support design tokens. Check the Hopper '${"styles" satisfies GuideSection}' guide for details.`;
         result.errors.push({
             message,
             line: loc?.start.line,
