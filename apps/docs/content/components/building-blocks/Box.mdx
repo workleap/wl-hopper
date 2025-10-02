@@ -8,6 +8,56 @@ links:
 
 <Example src="box/docs/preview" isOpen />
 
+## Best Practices
+
+The `Box` component should not be used in place of standard HTML elements. Use `Div` or `Span` directly for that purpose. `Box` is meant to provide styled system properties to components that already accept `style` and `className`, such as third-party components.
+
+`Box` should:
+
+- Be used to **augment** components (often third-party) with layout/spacing/visual props when those components accept `className`/`style`.
+- Keep the DOM **semantic**: always prefer the correct native element, or [use `htmlElement()` function](/styled-system/concepts/html-elements) for missing tags, instead of forcing `Box`.
+- Use the `as` prop **sparingly**, and typically only to target non-native components (e.g., `as={RACButton}`) or in rare conditional cases where semantics truly change.
+- Avoid introducing conflicting layout: prefer composing spacing on the **outermost** appropriate element.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Box to add spacing/layout to a third-party component that accepts className/style",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/third-party-do" />
+            },
+            dont: {
+                explanation: "Use Box as a generic <Inline> or <Stack> substitute",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/box-as-inline-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Create missing HTML elements with htmlElement() (e.g., IFrame) and use them directly",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/htmlelement-do" />
+            },
+            dont: {
+                explanation: "Render missing HTML tags via Box (e.g., <Box as='iframe'>)",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/box-as-iframe-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Use the 'as' prop to flip between components",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/as-toggle-do" />
+            }
+        },
+        {
+            dont: {
+                explanation: "Wrap everything in Box or use it to override intrinsic spacing/styles of the child component",
+                example: <CodeOnlyExample src="box/docs/dos-and-donts/overwrap-dont" />
+            }
+        },
+    ]}
+/>
+
 ## Props
 
 <PropTable component="Box" />

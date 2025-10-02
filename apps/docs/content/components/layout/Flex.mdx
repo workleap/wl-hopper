@@ -45,6 +45,44 @@ Flex layouts can be nested.
 
 <Example src="layout/docs/flex/nesting" />
 
+## Best Practices
+
+Flex should be used for general-purpose flexible layouts when you need more control than `Inline` or `Stack` provide. For simple horizontal rows with centered items, use `Inline`. For simple vertical stacks, use `Stack`. Use `Flex` when you need to customize multiple layout properties, use responsive direction changes, or apply flex properties to individual children.
+
+Flex should:
+
+- Be used when you need to customize two or more layout properties (e.g., both `alignItems` and `justifyContent`).
+- Handle responsive layouts where `direction` changes based on breakpoints.
+- Be preferred over `Inline` or `Stack` when children need individual flex properties like `flex`, `order`, or custom alignment.
+- Use [Hopper space tokens](/tokens/semantic/space) for `gap`, `rowGap`, and `columnGap` to ensure consistency.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Inline for simple horizontal layouts with centered items",
+                example: <CodeOnlyExample src="layout/docs/flex/dos-and-donts/inline-do" />
+            },
+            dont: {
+                explanation: "Use Flex with default direction='row' and alignItems='center' when Inline is sufficient",
+                example: <CodeOnlyExample src="layout/docs/flex/dos-and-donts/inline-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Use Stack for simple vertical layouts with consistent spacing",
+                example: <CodeOnlyExample src="layout/docs/flex/dos-and-donts/stack-do" />
+            },
+            dont: {
+                explanation: "Use Flex with direction='column' when Stack is sufficient",
+                example: <CodeOnlyExample src="layout/docs/flex/dos-and-donts/stack-dont" />
+            }
+        },
+    ]}
+/>
+
 ## Props
 
 <PropTable component="Flex" />

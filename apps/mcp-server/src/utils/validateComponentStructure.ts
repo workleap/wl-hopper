@@ -256,10 +256,6 @@ function validateComponentSpecificRules(jsxElements: TSESTree.JSXElement[], resu
                 case "Div":
                     validateDivComponent(element, result, instanceInfo);
                     break;
-                // Add more component validations here as needed
-                default:
-                    // For now, we only validate Button and Modal components
-                    break;
             }
         }
     }
@@ -331,7 +327,6 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
  * Rule: If Div has display="flex" or display="grid", suggest using appropriate layout components
  */
 function validateDivComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
-
     // Check if the Div has display="flex" or display="grid" prop
     const openingElement = element.openingElement;
     if (openingElement.attributes) {
@@ -339,12 +334,10 @@ function validateDivComponent(element: TSESTree.JSXElement, result: ValidationRe
             if (attribute.type === "JSXAttribute" &&
                 attribute.name.type === "JSXIdentifier" &&
                 attribute.name.name === "display") {
-
                 // Check if the value is "flex" or "grid"
                 if (attribute.value &&
                     attribute.value.type === "Literal" &&
                     typeof attribute.value.value === "string") {
-
                     const displayValue = attribute.value.value;
 
                     if (displayValue === "flex") {
@@ -390,8 +383,8 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
                 result.warnings.push({
                     message: `${componentName} component has only one child. This might be unnecessary - consider merging the ${componentName}'s props directly into the child component if possible.`,
                     line: element.loc?.start.line,
-                        column: element.loc?.start.column
-                    });
+                    column: element.loc?.start.column
+                });
             }
         } else {
             // Error for other layout components
@@ -403,7 +396,6 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
                 });
             }
         }
-
     }
 }
 

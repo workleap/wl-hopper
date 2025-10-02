@@ -84,7 +84,6 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - [ ] Extract ALL component and icon names from Figma data (i.e. data-name attributes from '#get_code' tool).
 - [ ] Create a mapping table: Figma component/icon name → Hopper component/icon name
 
-
 ## 4. Implementation
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
@@ -94,7 +93,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 5. QA
-- [ ] Verify all UNSAFE_* props are in the "${"escape-hatches" satisfies GuideSection}" whitelist.
+- [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
+- [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.

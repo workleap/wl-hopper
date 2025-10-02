@@ -256,14 +256,14 @@ describe("validateComponentStructure", () => {
             });
 
             it("should pass for Div with display prop other than flex or grid", async () => {
-                const result = await validateComponentStructure('<Div display="block"><Text>Content 1</Text><Text>Content 2</Text></Div>');
+                const result = await validateComponentStructure("<Div display=\"block\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should pass for Div with display inline-block", async () => {
-                const result = await validateComponentStructure('<Div display="inline-block"><Text>Item 1</Text><Text>Item 2</Text></Div>');
+                const result = await validateComponentStructure("<Div display=\"inline-block\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
@@ -272,7 +272,7 @@ describe("validateComponentStructure", () => {
 
         describe("Div with display=flex", () => {
             it("should warn for Div with display=flex", async () => {
-                const result = await validateComponentStructure('<Div display="flex"><Text>Item 1</Text><Text>Item 2</Text></Div>');
+                const result = await validateComponentStructure("<Div display=\"flex\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
@@ -283,7 +283,7 @@ describe("validateComponentStructure", () => {
             });
 
             it("should include line and column information in warning", async () => {
-                const result = await validateComponentStructure('<Div display="flex"><Text>Content 1</Text><Text>Content 2</Text></Div>');
+                const result = await validateComponentStructure("<Div display=\"flex\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
                 expect(result.warnings.length).toBeGreaterThanOrEqual(1);
                 const flexWarning = result.warnings.find(w => w.message.includes("display=\"flex\""));
                 expect(flexWarning).toBeDefined();
@@ -294,7 +294,7 @@ describe("validateComponentStructure", () => {
 
         describe("Div with display=grid", () => {
             it("should warn for Div with display=grid", async () => {
-                const result = await validateComponentStructure('<Div display="grid"><Text>Item 1</Text><Text>Item 2</Text></Div>');
+                const result = await validateComponentStructure("<Div display=\"grid\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
@@ -1256,7 +1256,7 @@ describe("validateComponentStructure", () => {
     describe("Layout component validation", () => {
         describe("Div component with single child", () => {
             it("should warn when Div has only one component child", async () => {
-                const code = `<Div><Text>Hello</Text></Div>`;
+                const code = "<Div><Text>Hello</Text></Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true); // Warnings don't make it invalid
                 expect(result.errors).toHaveLength(0);
@@ -1266,35 +1266,35 @@ describe("validateComponentStructure", () => {
             });
 
             it("should warn when Div has only text content", async () => {
-                const code = `<Div>Hello World</Div>`;
+                const code = "<Div>Hello World</Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should warn when Div has only an expression", async () => {
-                const code = `<Div>{someValue}</Div>`;
+                const code = "<Div>{someValue}</Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should NOT warn when Div has text content and one component", async () => {
-                const code = `<Div>Hello World<Component/></Div>`;
+                const code = "<Div>Hello World<Component/></Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should not warn when Div has multiple children", async () => {
-                const code = `<Div><Text>Hello</Text><Text>World</Text></Div>`;
+                const code = "<Div><Text>Hello</Text><Text>World</Text></Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should not warn when Div has only whitespace (no real children)", async () => {
-                const code = `<Div>   \n\t   </Div>`;
+                const code = "<Div>   \n\t   </Div>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
@@ -1303,7 +1303,7 @@ describe("validateComponentStructure", () => {
 
         describe("Stack component with single child", () => {
             it("should error when Stack has only one component child", async () => {
-                const code = `<Stack><Text>Hello</Text></Stack>`;
+                const code = "<Stack><Text>Hello</Text></Stack>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
@@ -1312,7 +1312,7 @@ describe("validateComponentStructure", () => {
             });
 
             it("should error when Stack has only text content", async () => {
-                const code = `<Stack>Hello World</Stack>`;
+                const code = "<Stack>Hello World</Stack>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
@@ -1320,7 +1320,7 @@ describe("validateComponentStructure", () => {
             });
 
             it("should not error when Stack has multiple children", async () => {
-                const code = `<Stack><Text>Hello</Text><Text>World</Text></Stack>`;
+                const code = "<Stack><Text>Hello</Text><Text>World</Text></Stack>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
@@ -1375,7 +1375,7 @@ describe("validateComponentStructure", () => {
 
         describe("Edge cases", () => {
             it("should error for layout component with mixed text and expression", async () => {
-                const code = `<Stack>Hello {world}<Text>X</Text></Stack>`;
+                const code = "<Stack>Hello {world}<Text>X</Text></Stack>";
                 const result = await validateComponentStructure(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
