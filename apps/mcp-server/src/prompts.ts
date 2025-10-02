@@ -62,6 +62,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 2. Hopper Design System Refinement
 
 ### Component Selection
+- Check the provided 'Figma elements to Hopper components' mapping table to see how 'data-name' attribute is translated to Hopper components.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
 - CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
 - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
@@ -98,7 +99,17 @@ Return only the complete JSX implementation using Hopper components that perfect
 # Context
 Figma design: '${figma_design_url}'
 
-## Deliverable
+## Figma elements to Hopper components mapping
+As a general rule, if data-name format is X/Y, it means X is the component name and Y is the name if it. The only exception is when X is "Icon", which means it's always an icon from Hopper icons library.
+Some examples:
+
+| Figma Element (data-name) | Hopper Component                  |
+|---------------------------|-----------------------------------|
+| Button/*                  | Button                            |
+| Icon/*                    | An icon from Hopper icons library |
+| Select/*                  | Select                            |
+
+# Deliverable
 A pixel-perfect, structurally sound Hopper Design System implementation matching the selected Figma frame.
 `
             }
