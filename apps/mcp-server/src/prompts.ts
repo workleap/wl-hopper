@@ -62,7 +62,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 2. Hopper Design System Refinement
 
 ### Component Selection
-- Check the provided 'Figma Elements Mapping Table' section below to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
+- Check the '${"figma-conventions" satisfies GuideSection}' guide to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
 - CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
 - Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
@@ -82,11 +82,15 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
     - Call '#${toolsInfo.get_guide.name}(${"styles" satisfies GuideSection})' to get the relevant styling guidance.
     - Call '#${toolsInfo.get_guide.name}(${"escape-hatches" satisfies GuideSection})' to get a COMPLETE WHITELIST of available 'UNSAFE_*' props. Any prop not in that list **MUST** be used WITHOUT the UNSAFE_ prefix.
     - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
+    - Call '#${toolsInfo.get_guide.name}(${"figma-conventions" satisfies GuideSection})' to understand how to interpret Figma elements → Hopper Component/ Hopper Icon/ Product Icon.
 - [ ] Create a complete map of design tokens → component prop values for every token actually used in the #get_code response by calling '#${toolsInfo.get_design_tokens_map.name}' and passing ONLY those token names via its filtering parameter. This optimizes token usage and response size.
     - Call '#${toolsInfo.get_design_tokens_map.name}(${"all" satisfies TokenCategory})' without filtering parameter if needed to fill any gaps in the above mapping.
-- [ ] Create a complete map of ALL data-name attributes from Figma #get_code response by following 'Figma Elements Mapping Table' section below, and show it to me.
+- [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
+    - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
+    - **List every Product Icons/Logos/Images/Avatars occurrence with its image URL from #get_code**
 
 ## 4. Implementation
+- Implement **ALL** Product Icons/Logos/Images/Avatars from your product icon map created in previous step.
 - Build out the implementation entirely with Hopper components and patterns.
 - ENSURE you don't guess UNSAFE_ props. ONLY use UNSAFE_ props listed in the '${"escape-hatches" satisfies GuideSection}' guide.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
@@ -98,7 +102,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 5. QA
 - [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
-- [ ] Verify all Product Icons are preserved from the Figma design.
+- [ ] Verify **ALL Product Icons/Logos/Avatars** are preserved from the Figma design.
 - [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
@@ -108,24 +112,6 @@ Return only the complete JSX implementation using Hopper components that perfect
 
 # Context
 Figma design: '${figma_design_url}'
-
-## Figma Elements Mapping Table
-
-General rules on how to interpret 'data-name' attribute in Figma elements:
-- {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
-- Icon/{Y}, it means it's always '{Y}Icon' from Hopper Icons library. e.g 'Icon/Plus' → 'PlusIcon'.
-- RichIcon/{Y}, it means it's always '{Y}RichIcon' from Hopper Icons library. e.g 'RichIcon/Rocket' → 'RocketRichIcon'.
-- ProductIcon/{Y}, it is a product-specific icon. preserve the exact structure from '#get_code' tool (including img src URLs).
-
-Mapping table:
-
-| Figma Element (data-name) | Hopper Component/ Hopper Icon/ Product Icon                       |
-|---------------------------|-------------------------------------------------------------------|
-| Button/*                  | Button                                                            |
-| Select/*                  | Select                                                            |
-| Icon/*                    | {*}Icon from Hopper Icons library                                 |
-| RichIcon/*                | {*}RichIcon from Hopper Rich Icons library                        |
-| ProductIcon/*             | Preserve them as EXACTLY as what you got from '#get_code' tool.   |
 
 # Deliverable
 A pixel-perfect, structurally sound Hopper Design System implementation matching the selected Figma frame.

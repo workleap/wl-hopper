@@ -39,11 +39,11 @@ The route key can be either:
 
 ### 2. Build Configuration
 
-There are three types of build configurations:
+There are several types of build configurations:
 
-#### A. Markdown from MDX Build
+#### A. MDX & Markdown Build
 
-For processing MDX content into markdown:
+For processing MDX content into markdown and copying existing markdown files:
 
 ```typescript
 "route-key": {
@@ -60,6 +60,11 @@ For processing MDX content into markdown:
 }
 ```
 
+**Behavior:**
+
+- **`.mdx` files**: Converted to `.md` format with optional transformations
+- **`.md` files**: Copied post processed markdown files to the output directory
+
 #### B. Template-Based Build
 
 For merging multiple **already generated files** using a template:
@@ -67,44 +72,94 @@ For merging multiple **already generated files** using a template:
 ```typescript
 "route-key": {
     build: {
-        template: "/content/ai-templates/your-template.mdx",
+        template: "/content/ai/templates/your-template.mdx",
         merge: [
             "/path/to/file1.md",
             "/path/to/file2.md",
             "/folder/*.md" // glob patterns supported
         ],
-        keepOriginalLeveling: true //if you like to keep the original levels
+        keepOriginalLeveling?: true // Keep original heading levels instead of adjusting them
     }
 }
 ```
 
-**Note 1** The files or paths inside the `merge` are relative to the `buildRootPath` as we use this tool to merge them.
+**Template Options:**
 
-**Note 2** The items in `merge` should be listed based on the order in the final file.
+- **`template`**: Path to the template file (optional)
+- **`merge`**: Array of file paths or glob patterns to merge (relative to `buildRootPath`)
+- **`keepOriginalLeveling`**: When `true`, preserves the original heading levels in merged files instead of adjusting them to fit the document structure
 
-#### C. JSON Build
+**Note 1**: The files or paths inside the `merge` are relative to the `buildRootPath` as we use this tool to merge them.
 
-> It is temporary and it only works for components properties. We will replace it with more robust and flexible approach.
+**Note 2**: The items in `merge` should be listed based on the order in the final file.
 
-For generating JSON from source content:
+#### C. Component Props JSON Build
+
+For generating JSON documentation of component properties:
 
 ```typescript
 "route-key": {
     build: {
-        type: "json",
-        source: "content/source-folder"
+        type: "props-json",
+        source: "content/components",
+        options: {
+            includeFullProps?: boolean // Include full property details
+        }
+    }
+}
+```
+
+**Note**: This is a temporary type specific to component properties. A more generic solution is planned for the future.
+
+#### D. Tokens JSON Build
+
+For generating JSON from design token data:
+
+```typescript
+"route-key": {
+    build: {
+        type: "tokens-json",
+        source: "datas/tokens.json",
+        options: {
+            fullMap?: boolean // Include full token mapping details
+        }
+    }
+}
+```
+
+#### E. Unsafe Props JSON Build
+
+For generating JSON documentation of unsafe/escape hatch props:
+
+```typescript
+"route-key": {
+    build: {
+        type: "unsafe-props-json"
+    }
+}
+```
+
+#### F. Unsafe Props Markdown Build
+
+For generating markdown documentation of unsafe/escape hatch props using a template:
+
+```typescript
+"route-key": {
+    build: {
+        type: "unsafe-props-markdown",
+        template: "/ai-pipeline/templates/escape-hatches.mdx"
     }
 }
 ```
 
 ### 3. Serve Configuration (Optional)
 
-All the generated markdown files could be served from the same route. But if your route needs custom URL path mapping use this feature. For example `\components\full\Button.md` file is being served from `/components/Button.md` url. If we don't set it, the requests to this URL will be resolved from `/components` folder instead of `components\full` which is wrong.
+All generated markdown files can be served from the same route. However, if your route needs custom URL path mapping, use this feature. For example, `/components/full/Button.md` file can be served from `/components/Button.md` URL. Without this configuration, requests to this URL would be resolved from the `/components` folder instead of `components/full`, which would be incorrect.
 
 ```typescript
 "route-key": {
     serve: {
-        at: "/custom-path",
+        at?: "/custom-path",
         filesInRoot?: boolean
     }
 }
@@ -113,7 +168,7 @@ All the generated markdown files could be served from the same route. But if you
 #### Serve Options
 
 - **`at`**: Custom URL path mapping for the route
-- **`filesInRoot`**: Whether to only check the root directory when resolving paths. This is useful if the URL has paths but files are located in the root folder, mostly because of `flatten: true` during build time.
+- **`filesInRoot`**: When `true`, only checks the root directory when resolving paths. This is useful if the URL has paths but files are located in the root folder, typically because `flatten: true` was used during build time.
 
 **Serve Logic**: The serve logic is set for `.txt|.md` paths and is served from the [txt](/apps/docs/app/txt/) route handler.
 
@@ -135,17 +190,46 @@ All the generated markdown files could be served from the same route. But if you
 ```typescript
 "api/complete-guide.md": {
     build: {
-        template: "/content/ai-templates/api-guide.mdx",
+        template: "/content/ai/templates/api-guide.mdx",
         merge: [
             "/api/introduction.md",
             "/api/authentication.md", 
             "/api/endpoints/*.md"
-        ]
+        ],
+        keepOriginalLeveling: true
     }
 }
 ```
 
-### Example 3: Complex Component Documentation
+### Example 3: Component Props JSON
+
+```typescript
+"components/api/full": {
+    build: {
+        type: "props-json",
+        source: "content/components",
+        options: {
+            includeFullProps: true
+        }
+    }
+}
+```
+
+### Example 4: Tokens JSON
+
+```typescript
+"tokens/maps/full": {
+    build: {
+        type: "tokens-json",
+        source: "datas/tokens.json",
+        options: {
+            fullMap: true
+        }
+    }
+}
+```
+
+### Example 5: Complex Component Documentation
 
 ```typescript
 "components/advanced": {
@@ -159,7 +243,8 @@ All the generated markdown files could be served from the same route. But if you
         }
     },
     serve: {
-        baseUrlPath: "/components/advanced"
+        at: "/components/advanced",
+        filesInRoot: true
     }
 }
 ```
@@ -231,7 +316,7 @@ The transformation ensures that:
 - **Source paths**: Always relative to the content root
 - **Flatten**: Use `true` when you want all files in a single directory
 - **Excluded paths**: Use to skip internal or draft content, or when you want to serve them in different route.
-- **Templates**: Store in `/content/ai-templates/` for organization
+- **Templates**: Store in `/content/ai/templates/` for organization
 
 ## How the System Works
 
@@ -246,5 +331,5 @@ The transformation ensures that:
 
 1. Incoming URL request arrives
 2. System reverse-lookups the configuration
-3. Finds matching route with `serve.baseUrlPath` or route key (through the [txt](/apps/docs/app/txt/) router)
+3. Finds matching route with `serve.at` or route key (through the [txt](/apps/docs/app/txt/) router)
 4. Serves the corresponding generated content

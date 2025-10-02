@@ -1,5 +1,5 @@
-import { aiDocsConfig } from "@/ai-docs/ai-docs.config";
-import { findPossibleFilePaths } from "@/ai-docs/util";
+import { aiDocsConfig } from "@/ai-pipeline/ai-docs.config";
+import { findPossibleFilePaths } from "@/ai-pipeline/util";
 import { existsSync } from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";

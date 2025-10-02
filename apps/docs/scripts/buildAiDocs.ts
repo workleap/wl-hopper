@@ -1,10 +1,10 @@
-import { aiDocsConfig } from "@/ai-docs/ai-docs.config.ts";
-import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-docs/util.ts";
+import { aiDocsConfig } from "@/ai-pipeline/ai-docs.config.ts";
+import { isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-pipeline/util.ts";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
 import { isAbsolute, join } from "path";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
-import { generateMarkdownFromMdx } from "./ai-utils/generateMarkdownFromMdx.ts";
+import { copyMarkdownFiles, generateMarkdownFromMdx, GenerateMarkdownOptions } from "./ai-utils/generateMarkdownFromMdx.ts";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.ts";
 import { generateTokensMaps } from "./ai-utils/generateTokensMaps.ts";
 import { generateUnsafePropsJson, generateUnsafePropsMarkdown } from "./ai-utils/generateUnsafePropsList.ts";
@@ -92,7 +92,7 @@ async function main() {
         const buildInfo = fileConfig.build;
 
         if (isMdFromMdxBuild(buildInfo)) {
-            await generateMarkdownFromMdx({
+            const options: GenerateMarkdownOptions = {
                 filesPath: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
                 flattenOutput: buildInfo.flatten,
@@ -101,7 +101,11 @@ async function main() {
                     replaceLinks: (link: string) => fixRelativeLink(link, "md"),
                     ...buildInfo.markdown
                 }
-            });
+            };
+
+            await generateMarkdownFromMdx(options);
+            await copyMarkdownFiles(options);
+
         } else if (isPropsJsonBuild(buildInfo)) {
             await generatePropsJsonFromMdx({
                 filesPath: join(projectRoot, buildInfo.source),
