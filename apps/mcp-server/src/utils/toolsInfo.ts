@@ -43,19 +43,19 @@ export function generateDesignTokensDescription(): string {
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
         const tokenCount = fileInfo?.estimatedTokens || 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${category}: ${categoryDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
 }
 
 export function generateTokenMapsDescription(): string {
-    let description = "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\"\n\nAvailable token categories:\n";
+    let description = "Available token categories:\n";
 
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
         const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
+        description += `        - ${category}: ${categoryDescription} (size: ${totalTokens} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -66,7 +66,7 @@ export function generateGuidesDescription(): string {
 
     for (const [guide, guideDescription] of Object.entries(GuideDescriptions)) {
         const tokenCount = GuideFiles[guide as GuideSection]?.estimatedTokens || 0;
-        description += `        - ${guide}: ${guideDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${guide}: ${guideDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -111,7 +111,12 @@ export const toolsInfo = {
     get_design_tokens_map: {
         name: "get_design_tokens_map",
         title: "Get design system tokens map to component props as JSON",
-        description: generateTokenMapsDescription()
+        description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> information-weak",
+        parameters: {
+            category: generateTokenMapsDescription(),
+            filter_by_names: "Filter tokens by name (case-insensitive, partial match). E.g. ['hop-neutral-text', 'hop-primary-surface']",
+            include_raw_values: "Whether to include raw token values in the response. **DEFAULT: false**"
+        }
     },
 
     validate_component_structure: {
