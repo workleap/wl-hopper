@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
