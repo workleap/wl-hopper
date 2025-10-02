@@ -342,7 +342,7 @@ const NATIVE_HTML_ELEMENTS = new Set([
 ]);
 
 const NOT_RECOMMENDED_COMPONENTS = new Map<string, string>([
-    ["Box", 'Using "<Box>" is STRONGLY discouraged. The "<Box>" component should not be used in place of standard HTML elements. Use "<Div>" or "<Span>" directly for that purpose.']
+    ["Box", "Using '<Box>' is STRONGLY discouraged. The '<Box>' component should not be used in place of standard HTML elements. Use '<Div>' or '<Span>' directly for that purpose."]
 ]);
 
 const PROHIBITED_PROPS = ["className", "style"];
@@ -368,10 +368,10 @@ function validateTagNames(jsxElements: TSESTree.JSXElement[], result: Validation
                 result.warnings.push({
                     message,
                     line: element.loc?.start.line,
-                column: element.loc?.start.column
-            });
+                    column: element.loc?.start.column
+                });
+            }
         }
-    }
     }
 }
 
@@ -408,6 +408,7 @@ async function getUnsafeProps() {
         if (Array.isArray(unsafePropsData)) {
             // Cache the result before returning
             _unsafePropsCache = new Set(unsafePropsData);
+
             return _unsafePropsCache;
         }
         throw new Error("Invalid format for unsafe props data.");
@@ -418,6 +419,7 @@ async function getUnsafeProps() {
 
 async function getTokenSupportedProps(): Promise<Set<string>> {
     const unsafeProps = await getUnsafeProps();
+
     return new Set(Array.from(unsafeProps).map(prop => prop.replace("UNSAFE_", "")));
 }
 

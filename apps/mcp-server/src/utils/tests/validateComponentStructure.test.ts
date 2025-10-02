@@ -12,6 +12,7 @@ jest.mock("fs/promises", () => ({
         }
 
         const fs = jest.requireActual("fs");
+
         return fs.readFileSync(path, "utf-8");
     })
 }));
