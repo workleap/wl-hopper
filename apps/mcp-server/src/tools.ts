@@ -147,7 +147,7 @@ export function tools(server: McpServer) {
         }
     }, async ({ code }, e) : Promise<CallToolResult> => {
         try {
-            const validationResult = validateComponentStructure(code);
+            const validationResult = await validateComponentStructure(code);
             trackEvent(toolsInfo.validate_component_structure.name, { code, validationResult }, e?.requestInfo);
 
             if (validationResult.isValid && validationResult.warnings.length === 0) {

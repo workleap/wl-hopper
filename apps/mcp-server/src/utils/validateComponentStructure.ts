@@ -2,7 +2,7 @@ import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
-import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 import { join } from "path";
 import { env } from "../env";
 import type { GuideSection } from "./docs";
@@ -22,7 +22,7 @@ interface ValidationResult {
 /**
  * Validates component structure according to Hopper Design System rules
  */
-export function validateComponentStructure(code: string): ValidationResult {
+export async function validateComponentStructure(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {
         isValid: true,
         errors: [],
@@ -64,16 +64,16 @@ export function validateComponentStructure(code: string): ValidationResult {
         validateNoEmojis(code, result);
 
         // Check for native HTML elements
-        validateNoNativeHTMLElements(jsxElements, result);
+        validateTagNames(jsxElements, result);
 
         // Check for prohibited props usage
         validateProhibitedProps(jsxElements, result);
 
         // Check for unsafe props usage
-        validateUnsafePropsUsage(jsxElements, result);
+        await validateUnsafePropsUsage(jsxElements, result);
 
         // Check for design system tokens usage
-        validateDesignSystemTokensUsage(jsxElements, result);
+        await validateDesignSystemTokensUsage(jsxElements, result);
 
         // Group components by type for better validation reporting
         const componentInstances = new Map<string, TSESTree.JSXElement[]>();
@@ -338,24 +338,40 @@ const NATIVE_HTML_ELEMENTS = new Set([
     "div", "span", "button", "input", "p", "h1", "h2", "h3", "h4", "h5", "h6",
     "a", "img", "ul", "ol", "li", "form", "section", "article", "header",
     "footer", "nav", "table", "tr", "td", "th", "tbody", "thead", "tfoot",
-    "svg", "path"
+    "svg", "path", "iframe"
+]);
+
+const NOT_RECOMMENDED_COMPONENTS = new Map<string, string>([
+    ["Box", 'Using "<Box>" is STRONGLY discouraged. The "<Box>" component should not be used in place of standard HTML elements. Use "<Div>" or "<Span>" directly for that purpose.']
 ]);
 
 const PROHIBITED_PROPS = ["className", "style"];
 
-function validateNoNativeHTMLElements(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+function validateTagNames(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
     for (const element of jsxElements) {
         const componentName = getComponentName(element);
+        if (!componentName) {
+            continue;
+        }
 
-        if (componentName && NATIVE_HTML_ELEMENTS.has(componentName)) {
-            const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc.`;
+        if (NATIVE_HTML_ELEMENTS.has(componentName)) {
+            const message = `Native HTML element "<${componentName}>" is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc. If no direct equivalent exists, consider using the "htmlElement" function. Check the '${"styles" as GuideSection}' guide for more details.`;
 
             result.errors.push({
                 message,
                 line: element.loc?.start.line,
                 column: element.loc?.start.column
             });
+        } else if (NOT_RECOMMENDED_COMPONENTS.has(componentName)) {
+            const message = NOT_RECOMMENDED_COMPONENTS.get(componentName);
+            if (message) {
+                result.warnings.push({
+                    message,
+                    line: element.loc?.start.line,
+                column: element.loc?.start.column
+            });
         }
+    }
     }
 }
 
@@ -374,15 +390,25 @@ function validateProhibitedProps(jsxElements: TSESTree.JSXElement[], result: Val
     }
 }
 
-function loadAllowedUnsafeProps(): string[] {
+// Cache for allowed unsafe props to avoid repeated file I/O
+let _unsafePropsCache: Set<string> | null = null;
+
+async function getUnsafeProps() {
+    // Return cached value if available
+    if (_unsafePropsCache !== null) {
+        return _unsafePropsCache;
+    }
+
     try {
         // Get the path to the unsafe props data file
         const unsafePropsDataPath = join(env.DOCS_PATH, files.styledSystem.unsafePropsData.path);
-        const fileContents = readFileSync(unsafePropsDataPath, "utf-8");
+        const fileContents = await readFile(unsafePropsDataPath, "utf-8");
         const unsafePropsData = JSON.parse(fileContents);
 
         if (Array.isArray(unsafePropsData)) {
-            return unsafePropsData;
+            // Cache the result before returning
+            _unsafePropsCache = new Set(unsafePropsData);
+            return _unsafePropsCache;
         }
         throw new Error("Invalid format for unsafe props data.");
     } catch {
@@ -390,11 +416,24 @@ function loadAllowedUnsafeProps(): string[] {
     }
 }
 
-function loadAllowedTokens(): Set<string> {
+async function getTokenSupportedProps(): Promise<Set<string>> {
+    const unsafeProps = await getUnsafeProps();
+    return new Set(Array.from(unsafeProps).map(prop => prop.replace("UNSAFE_", "")));
+}
+
+// Cache for allowed tokens to avoid repeated file I/O
+let _allTokensCache: Set<string> | null = null;
+
+async function getAllTokens(): Promise<Set<string>> {
+    // Return cached value if available
+    if (_allTokensCache !== null) {
+        return _allTokensCache;
+    }
+
     try {
         // Get the path to the tokens data file
         const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.brief.all.path);
-        const fileContents = readFileSync(tokensDataPath, "utf-8");
+        const fileContents = await readFile(tokensDataPath, "utf-8");
         const tokensData = JSON.parse(fileContents);
 
         // Recursively extract all values from the nested object structure
@@ -418,16 +457,19 @@ function loadAllowedTokens(): Set<string> {
 
         const allValues = extractValues(tokensData);
 
-        return new Set(allValues);
+        // Cache the result before returning
+        _allTokensCache = new Set(allValues);
+
+        return _allTokensCache;
     } catch (e) {
         console.error("error:", e);
         throw new Error("Failed to load the list of allowed design tokens for validation.", { cause: e });
     }
 }
 
-function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
-    const allowedUnsafeProps = new Set(loadAllowedUnsafeProps());
+    const allowedUnsafeProps = new Set(await getUnsafeProps());
 
     // Check each JSX element for UNSAFE_ props
     for (const { loc, propName } of getAllProps(jsxElements)) {
@@ -455,10 +497,10 @@ function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: Va
     }
 }
 
-function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
-    const tokenSupportedProps = new Set(loadAllowedUnsafeProps().map(prop => prop.replace("UNSAFE_", "")));
-    const allowedTokens = loadAllowedTokens();
+    const tokenSupportedProps = await getTokenSupportedProps();
+    const allowedTokens = await getAllTokens();
 
     for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
         // Skip invalid UNSAFE_ props as they are handled in another validation
