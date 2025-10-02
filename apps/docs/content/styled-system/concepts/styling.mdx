@@ -41,6 +41,7 @@ For these whitelisted props, you can bypass the token system by prefixing the pr
   <Div
       position="absolute"           // ✅ position is NOT in the whitelist, use position directly
       top="10px"                    // ✅ top is NOT in the whitelist, use top directly
+      top="core_640"                // ❌ Do NOT use tokens for top
       overflow="hidden"             // ✅ overflow is NOT in the whitelist, use overflow directly
       flex="1"                      // ✅ flex is NOT in the whitelist, use flex directly
       UNSAFE_fontSize="1.5rem"      // ✅ fontSize is in the whitelist
@@ -51,8 +52,10 @@ For these whitelisted props, you can bypass the token system by prefixing the pr
 Critical Rules:
 1. Check the [escape-hatches guide](/styled-system/escape-hatches) FIRST - it contains the complete whitelist.
 2. If a prop is in the whitelist → use UNSAFE_propName for custom values
-3. If a prop is not in the whitelist → use propName directly (no `UNSAFE_` prefix)
-4. Props with "Tokens Category" of "none" (like `overflow`, `flex`, `position`) are used directly
+3. If a prop is not in the whitelist:
+  - Use propName directly (no `UNSAFE_` prefix)
+  - NEVER use tokens for it (`top="core_640"` or `left="core_0"` are invalid)
+5. Props with "Tokens Category" of "none" (like `overflow`, `flex`, `position`) are used directly
 </AI>
 
 While we encourage teams to utilize Hopper styles as it is, we do realize that sometimes product specific customizations may be needed. In these cases, we encourage you or your designers to talk to us. We may be able to suggest an alternative implementation strategy, or perhaps your design can help inform future Hopper additions.

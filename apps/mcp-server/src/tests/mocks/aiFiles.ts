@@ -8,6 +8,15 @@ const files = {
       "path": "/styled-system/unsafe-props-data.json",
     },
   },
+  "tokens": {
+    "maps": {
+    "brief": {
+        "all": {
+            "path": "/tokens/brief/tokens-data.json",
+        },
+      }
+    },
+  },
 };
 
 export { files };
