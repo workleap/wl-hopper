@@ -1,5 +1,11 @@
 # @hopper-ui/icons
 
+## 2.10.3
+
+### Patch Changes
+
+- 3297b20: Update dependencies
+
 ## 2.10.2
 
 ### Patch Changes
