@@ -71,8 +71,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - All styling must use Hopper design semantic or core tokens—never raw CSS values or inline styles.
 - **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use token names for component style props directly. To find the correct mapping value: use the "#${toolsInfo.get_design_tokens_map.name}" tool to find the correct prop value.
 - **CRITICAL**: Check the '${"escape-hatches" satisfies GuideSection}' guide for a COMPLETE WHITELIST of UNSAFE_* props.
-    - If a prop IS in the whitelist (e.g., width, fontSize) → use "UNSAFE_propName" only for CUSTOM values, otherwise use the prop directly WITHOUT UNSAFE_ prefix.
-    - If a prop is NOT in the whitelist (e.g., position, overflow, cursor, opacity, left, top, inset) → ALWAYS use the prop directly WITHOUT UNSAFE_ prefix.
+    - If a prop IS in the whitelist (e.g., width, fontSize) → use "UNSAFE_propName" ONLY for CUSTOM values, otherwise use the propName directly WITHOUT UNSAFE_ prefix.
+    - If a prop is NOT in the whitelist (e.g., position, overflow, cursor, opacity, left, top, inset) → ALWAYS use the propName directly WITHOUT UNSAFE_ prefix.
 - Prioritize proper design system usage over quick fixes.
 - Refine generated code by consulting the Hopper Design System MCP server and documentation.
 
