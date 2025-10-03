@@ -14,5 +14,7 @@
     "Calendar.previousButtonAriaLabel": "Mois précédent",
     "Calendar.nextButtonAriaLabel": "Mois suivant",
     "Calendar.invalidSelection": "Sélection de date invalide",
-    "DatePicker.openCalendarButtonAriaLabel": "Ouvrir le calendrier"
+    "DatePicker.openCalendarButtonAriaLabel": "Ouvrir le calendrier",
+    "DateRangePicker.toSeparator": "à",
+    "DateRangePicker.openCalendarButtonAriaLabel": "Ouvrir le calendrier"
 }

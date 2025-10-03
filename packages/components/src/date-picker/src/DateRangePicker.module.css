@@ -1,3 +1,88 @@
 .hop-DateRangePicker  {
-    /* TODO */
+    --hop-DateRangePicker-sm-block-size: 1.875rem; /** calc(2rem - 0.125rem) account for border */
+    --hop-DateRangePicker-md-block-size: 2.375rem; /** calc(2.5rem - 0.125rem) account for border */
+    --hop-DateRangePicker-display: flex;
+    --hop-DateRangePicker-flex-direction: column;
+    --hop-DateRangePicker-gap: var(--hop-space-stack-xs);
+    --hop-DateRangePicker-inline-size: 23rem;
+    --hop-DateRangePicker-inline-size-fluid: 100%;
+
+    /* Internal Variables */
+    --inline-size: var(--hop-DateRangePicker-inline-size);
+
+    display: var(--hop-DateRangePicker-display);
+    flex-direction: var(--hop-DateRangePicker-flex-direction);
+    gap: var(--hop-DateRangePicker-gap);
+    inline-size: var(--inline-size);
+}
+
+.hop-DateRangePicker--fluid {
+    --inline-size: var(--hop-DateRangePicker-inline-size-fluid);
+}
+
+.hop-DateRangePicker__InputGroup {
+    --hop-DateRangePicker__InputGroup-padding-inline-end: 0;
+
+    padding-inline-end: var(--hop-DateRangePicker__InputGroup-padding-inline-end);
+}
+
+.hop-DateRangePicker__Separator {
+    --hop-DateRangePicker__Separator-inline-size: 2.875rem;
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    inline-size: var(--hop-DateRangePicker__Separator-inline-size);
+    block-size: var(--hop-DateRangePicker-md-block-size);
+
+    background: var(--hop-neutral-surface-weak);
+    border-inline: 0.0625rem solid var(--hop-neutral-border);
+}
+
+.hop-DateRangePicker--sm .hop-DateRangePicker__Separator {
+    block-size: var(--hop-DateRangePicker-sm-block-size);
+}
+
+.hop-DateRangePicker__InputGroup[data-disabled] .hop-DateRangePicker__Separator {
+    --hop-DateRangePicker__Separator-border-color: var(--hop-neutral-border-disabled);
+    --hop-DateRangePicker__Separator-text-color: var(--hop-neutral-text-disabled);
+
+    color: var(--hop-DateRangePicker__Separator-text-color);
+    border-inline-color: var(--hop-DateRangePicker__Separator-border-color);
+}
+
+button.hop-DateRangePicker__Button {
+    --hop-DateRangePicker__Button-border-inline-start: 0.0625rem solid var(--hop-neutral-border);
+    --hop-DateRangePicker__Button-border-left-radius: 0;
+    --hop-DateRangePicker__Button-flex-shrink: 0;
+
+    flex-shrink: var(--hop-DateRangePicker__Button-flex-shrink);
+
+    block-size: var(--hop-DateRangePicker-md-block-size);
+
+    border-inline-start: var(--hop-DateRangePicker__Button-border-inline-start);
+    border-start-start-radius: var(--hop-DateRangePicker__Button-border-left-radius);
+    border-end-start-radius: var(--hop-DateRangePicker__Button-border-left-radius);
+}
+
+.hop-DateRangePicker__Button {
+    --hop-Button-ghost-secondary-background-color: var(--hop-neutral-surface);
+}
+
+.hop-DateRangePicker__InputGroup[data-disabled] button.hop-DateRangePicker__Button {
+    --hop-DateRangePicker__Button-border-inline-start-color: var(--hop-neutral-border-disabled);
+
+    border-inline-start-color: var(--hop-DateRangePicker__Button-border-inline-start-color);
+}
+
+.hop-DateRangePicker--sm .hop-DateRangePicker__Button {
+    block-size: var(--hop-DateRangePicker-sm-block-size);
+}
+
+.hop-DateRangePicker__Popover {
+    --hop-DateRangePicker__Popover-padding: var(--hop-space-inset-lg);
+
+    padding: var(--hop-DateRangePicker__Popover-padding);
 }

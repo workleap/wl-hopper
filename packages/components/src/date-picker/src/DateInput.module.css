@@ -2,7 +2,8 @@
     --hop-DateInput-display: flex;
     --hop-DateInput-align-items: center;
     --hop-DateInput-gap: var(--hop-space-inline-xs);
-    --hop-DateInput-padding-inline-start: var(--hop-space-inset-xs);
+    --hop-DateInput-padding-inline-start: var(--hop-space-inline-xs);
+    --hop-DateInput-padding-inline-end: var(--hop-space-inline-md);
 
     /* Placeholder */
     --hop-DateInput-placeholder-color: var(--hop-neutral-text-weakest);
@@ -14,7 +15,7 @@
     gap: var(--hop-DateInput-gap);
     align-items: var(--hop-DateInput-align-items);
 
-    padding-inline-start: var(--hop-DateInput-padding-inline-start);
+    padding-inline: var(--hop-DateInput-padding-inline-start) var(--hop-Input-padding-inline-end);
 }
 
 .hop-DateInput--sm {
