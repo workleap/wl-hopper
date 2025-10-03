@@ -3,8 +3,9 @@
 import LinkList, { type Links } from "@/app/ui/components/linkList/LinkList.tsx";
 import Tag from "@/app/ui/components/tag/Tag";
 import Title from "@/app/ui/components/title/Title";
+import Link from "@/components/link/Link";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Callout, type ColorScheme, Content, Heading as HopperHeading, HopperProvider } from "@hopper-ui/components";
+import { Content, Callout as HopperCallout, Heading as HopperHeading, HopperProvider, type ColorScheme } from "@hopper-ui/components";
 import clsx from "clsx";
 import { useContext } from "react";
 import "./heading.css";
@@ -27,13 +28,16 @@ const Heading = ({ title, tag, alpha, className, description, links }: HeadingPr
                 <Title level={1}>{title}</Title>
                 {tag && <Tag>{tag}</Tag>}
             </div>
+            <div className="hd-heading__ai">
+                <span className="hd-heading__ai-tag">AI Tip</span> Want to skip the docs? Use the <Link underline href="/getting-started/ai-for-agents/mcp-server">MCP Server</Link>
+            </div>
             {alpha && (
                 <div className="hd-heading__alpha">
                     <HopperProvider colorScheme={colorMode as ColorScheme}>
-                        <Callout variant="warning">
+                        <HopperCallout variant="warning">
                             <HopperHeading>Alpha component</HopperHeading>
                             <Content>{alpha}</Content>
-                        </Callout>
+                        </HopperCallout>
                     </HopperProvider>
                 </div>
             )}
