@@ -2,6 +2,7 @@ import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getStyledSystemSlugs } from "@/app/lib/getSlugs";
 import Title from "@/app/ui/components/title/Title";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
+import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { allStyledSystems } from "contentlayer/generated";
 import { notFound } from "next/navigation";
@@ -32,6 +33,7 @@ export default function StyledSystemPage({ params }: PageProps) {
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
                 <Title level={1}>{title}</Title>
+                <AICallout />
                 <Mdx code={code} />
             </article>
         </BasePageLayout>

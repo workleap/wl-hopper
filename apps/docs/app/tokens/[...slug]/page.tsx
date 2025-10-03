@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getTokensSlugs } from "@/app/lib/getSlugs";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
+import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 
 interface PageProps {
@@ -31,6 +32,7 @@ export default function TokenPage({ params }: PageProps) {
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={designToken._id}>
                 <h1 className="hd-title hd-title--level1">{designToken.title}</h1>
+                <AICallout />
                 <Mdx code={designToken.body.code} />
             </article>
         </BasePageLayout>
