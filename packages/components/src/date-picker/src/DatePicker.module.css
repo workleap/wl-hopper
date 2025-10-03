@@ -1,0 +1,55 @@
+.hop-DatePicker  {
+    --hop-DatePicker-display: flex;
+    --hop-DatePicker-flex-direction: column;
+    --hop-DatePicker-gap: var(--hop-space-stack-xs);
+    --hop-DatePicker-inline-size: 20rem;
+    --hop-DatePicker-inline-size-fluid: 100%;
+
+    /* Internal Variables */
+    --inline-size: var(--hop-DatePicker-inline-size);
+
+    display: var(--hop-DatePicker-display);
+    flex-direction: var(--hop-DatePicker-flex-direction);
+    gap: var(--hop-DatePicker-gap);
+    inline-size: var(--inline-size);
+}
+
+.hop-DatePicker--fluid {
+    --inline-size: var(--hop-DatePicker-inline-size-fluid);
+}
+
+.hop-DatePicker__InputGroup {
+    --hop-DatePicker__InputGroup-padding-inline-end: 0;
+
+    padding-inline-end: var(--hop-DatePicker__InputGroup-padding-inline-end);
+}
+
+button.hop-DatePicker__Button {
+    --hop-DatePicker__Button-sm-block-size: 1.875rem; /** calc(2rem - 0.125rem) account for border */
+    --hop-DatePicker__Button-md-block-size: 2.375rem; /** calc(2.5rem - 0.125rem) account for border */
+    --hop-DatePicker__Button-border-inline-start: 0.0625rem solid var(--hop-neutral-border);
+    --hop-DatePicker__Button-border-left-radius: 0;
+
+    block-size: var(--hop-DatePicker__Button-md-block-size);
+    border-inline-start: var(--hop-DatePicker__Button-border-inline-start);
+    border-start-start-radius: var(--hop-DatePicker__Button-border-left-radius);
+    border-end-start-radius: var(--hop-DatePicker__Button-border-left-radius);
+}
+
+.hop-DatePicker__Button {
+    --hop-Button-ghost-secondary-background-color: var(--hop-neutral-surface);
+}
+
+.hop-DatePicker__InputGroup[data-disabled] button.hop-DatePicker__Button {
+    border-inline-start-color: var(--hop-neutral-border-disabled);
+}
+
+.hop-DatePicker--sm .hop-DatePicker__Button {
+    block-size: var(--hop-DatePicker__Button-sm-block-size);
+}
+
+.hop-DatePicker__Popover {
+    --hop-DatePicker__Popover-padding: var(--hop-space-inset-lg);
+
+    padding: var(--hop-DatePicker__Popover-padding);
+}
