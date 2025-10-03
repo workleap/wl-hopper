@@ -1,0 +1,69 @@
+---
+title: DatePicker
+description: A date picker allows users to select a single date from a calendar.
+category: "date and time"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/date-picker/src/DatePicker.tsx
+---
+
+<Example src="date-picker/docs/preview" isOpen />
+
+## Usage
+
+### Value
+
+A DatePicker displays a placeholder by default. An initial, uncontrolled value can be provided to the DatePicker using the `defaultValue` prop. Alternatively, a controlled value can be provided using the `value` prop.
+
+Date values are provided using objects in the [@internationalized/date](https://react-spectrum.adobe.com/internationalized/date/index.html) package. This library handles correct international date manipulation across calendars, time zones, and other localization concerns. DatePicker supports values of the following types:
+
+- `CalendarDate` – a date without any time components. May be parsed from a string representation using the parseDate function. Use this type to represent dates where the time is not important, such as a birthday or an all day calendar event.
+- `CalendarDateTime` – a date with a time, but not in any specific time zone. May be parsed from a string representation using the parseDateTime function. Use this type to represent times that occur at the same local time regardless of the time zone, such as the time of New Years Eve fireworks which always occur at midnight. Most times are better stored as a `ZonedDateTime`.
+- `ZonedDateTime` – a date with a time in a specific time zone. May be parsed from a string representation using the parseZonedDateTime, parseAbsolute, or parseAbsoluteToLocal functions. Use this type to represent an exact moment in time at a particular location on Earth.
+
+<Example src="date-picker/docs/value" />
+
+### Controlled
+
+A DatePicker can handle value state in controlled mode.
+
+<Example src="date-picker/docs/controlled" />
+
+### Validation
+
+#### Invalid
+
+A DatePicker can be marked as invalid.
+
+<Example src="date-picker/docs/invalid" />
+
+#### Min and Max
+
+The `minValue` and `maxValue` props can be used to limit the range of dates that a user can select.
+
+<Example src="date-picker/docs/min-max" />
+
+#### Unavailable Dates
+
+DatePicker supports marking certain dates as unavailable. These dates remain focusable with the keyboard in the calendar so that navigation is consistent, but cannot be selected by the user. When an unavailable date is entered into the date field, it is marked as invalid. The `isDateUnavailable` prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
+This example includes multiple unavailable date ranges, e.g. dates when no appointments are available. In addition, all weekends are unavailable. The `minValue` prop is also used to prevent selecting dates before today.
+
+<Example src="date-picker/docs/unavailable" />
+
+#### Custom Validation
+
+The `validate` function can be used to perform custom validation logic. It receives the current date value, and should return a string or array of strings representing one or more error messages if the value is invalid.
+
+This example validates that the selected date is a weekday and not a weekend according to the current locale.
+
+<Example src="date-picker/docs/custom-validation" />
+
+### Description
+
+The `description` prop can be used to provide additional context about the DatePicker.
+
+<Example src="date-picker/docs/description" />
+
+## Props
+
+<PropTable component="DatePicker" />

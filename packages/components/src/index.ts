@@ -10,6 +10,7 @@ export * from "./card/index.ts";
 export * from "./checkbox/index.ts";
 export * from "./combobox/index.ts";
 export * from "./contextual-help/index.ts";
+export * from "./date-picker/index.ts";
 export * from "./disclosure/index.ts";
 export * from "./divider/index.ts";
 export * from "./error-message/index.ts";
@@ -74,7 +75,8 @@ export {
     useContextProps,
     useLocale,
     useSlottedContext,
-    type ContextValue
+    type ContextValue,
+    type DateValue
 } from "react-aria-components";
 
 import "./index.css";
