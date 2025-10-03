@@ -1,0 +1,53 @@
+.hop-RangeCalendarCell {
+    --hop-RangeCalendarCell-position: relative;
+    --hop-RangeCalendarCell-border-radius: var(--hop-shape-circle);
+
+    composes: hop-CalendarCell from "./CalendarCell.module.css";
+    position: var(--hop-RangeCalendarCell-position);
+    z-index: 0;
+}
+
+.hop-RangeCalendarCell[data-selected] {
+    --hop-RangeCalendarCell-data-selected-background: var(--hop-neutral-surface-weak-selected);
+    --hop-RangeCalendarCell-data-selected-border-radius: 0;
+    --hop-RangeCalendarCell-data-selected-color: var(--hop-neutral-text);
+
+    color: var(--hop-RangeCalendarCell-data-selected-color);
+    background: var(--hop-RangeCalendarCell-data-selected-background);
+    border-radius: var(--hop-RangeCalendarCell-data-selected-border-radius);
+}
+
+.hop-RangeCalendarCell[data-selection-start] {
+    border-start-start-radius: var(--hop-RangeCalendarCell-border-radius);
+    border-end-start-radius: var(--hop-RangeCalendarCell-border-radius);
+}
+
+.hop-RangeCalendarCell[data-selection-end] {
+    border-start-end-radius: var(--hop-RangeCalendarCell-border-radius);
+    border-end-end-radius: var(--hop-RangeCalendarCell-border-radius);
+}
+
+.hop-RangeCalendarCell[data-selection-start]:not([data-disabled])::before, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled])::before {
+    --hop-RangeCalendarCell-data-selected-edge-background: var(--hop-neutral-surface-selected);
+
+    content: "";
+
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    transform: translate(-50%, -50%);
+
+    inline-size: 100%;
+    block-size: 100%;
+
+    background: var(--hop-RangeCalendarCell-data-selected-edge-background);
+    border-radius: var(--hop-RangeCalendarCell-border-radius);
+}
+
+.hop-RangeCalendarCell[data-selection-start]:not([data-disabled]) span, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled]) span {
+    --hop-RangeCalendarCell-data-edge-selected-color: var(--hop-neutral-text-selected);
+
+    z-index: 2;
+    color: var(--hop-RangeCalendarCell-data-edge-selected-color);
+}

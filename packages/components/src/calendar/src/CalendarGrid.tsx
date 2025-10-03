@@ -11,6 +11,7 @@ import {
 import { cssModule } from "../../utils/index.ts";
 
 import { CalendarCell } from "./CalendarCell.tsx";
+import { RangeCalendarCell } from "./RangeCalendarCell.tsx";
 
 import styles from "./CalendarGrid.module.css";
 
@@ -18,10 +19,11 @@ export const GlobalCalendarGridCssSelector = "hop-CalendarGrid";
 
 interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, PropsWithChildren {
     months: number;
+    isRangeCalendar?: boolean;
 }
 
 export const CalendarGrid = (props: CalendarGridProps) => {
-    const { months, weekdayStyle = "short" } = props;
+    const { months, weekdayStyle = "short", isRangeCalendar } = props;
     const classNames = clsx(
         GlobalCalendarGridCssSelector,
         cssModule(
@@ -56,7 +58,7 @@ export const CalendarGrid = (props: CalendarGridProps) => {
             </CalendarGridHeader>
             <CalendarGridBody className={styles["hop-CalendarGrid__body"]}>
                 {date => (
-                    <CalendarCell date={date} />
+                    isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />
                 )}
             </CalendarGridBody>
         </AriaCalendarGrid>

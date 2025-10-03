@@ -38,7 +38,7 @@
     display: var(--hop-CalendarCell-data-outside-month-display);
 }
 
-.hop-CalendarCell[data-hovered]:not([data-unavailable]) {
+.hop-CalendarCell[data-hovered]:not([data-unavailable], [data-selected]) {
     --hop-CalendarCell-data-hovered-background: var(--hop-neutral-surface-hover);
     --hop-CalendarCell-data-hovered-color: var(--hop-neutral-text-hover);
 
@@ -90,7 +90,7 @@
     text-decoration: var(--hop-CalendarCell-data-unavailable-text-decoration);
 }
 
-.hop-CalendarCell[data-today] {
+.hop-CalendarCell[data-today]:not([data-selected]) {
     --hop-CalendarCell-data-today-border: 0.125rem solid var(--hop-neutral-border-strong);
 
     border: var(--hop-CalendarCell-data-today-border);
