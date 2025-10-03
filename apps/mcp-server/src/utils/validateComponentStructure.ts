@@ -605,6 +605,7 @@ function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is 
  */
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
     const safePropName = propName.replace("UNSAFE_", "");
+
     return propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName);
 }
 
@@ -615,7 +616,7 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
 
     for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
         // Skip invalid UNSAFE_ props as they are handled in another validation
-         // Only process string literal values
+        // Only process string literal values
         if (!isStringValue(propValue) || isInvalidUnsafeProp(propName, tokenSupportedProps)) {
             continue;
         }
@@ -626,7 +627,6 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
         // Validate token format for token-supported props
         if (tokenSupportedProps.has(propName)) {
             validateTokenFormat(originalValue, propName, loc, result);
-
         } else if (allowedTokens.has(originalValue)) {// Ensure tokens are not used for not token-supported props
             validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
         }
@@ -656,7 +656,6 @@ function validateTokenUsageOnUnsupportedProp(
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): void {
-
     //this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
     //for example variant="primary" is valid. So, we only check for tokens with "-" or "_" which are unlikely to be valid non-token values
     if (!originalValue.includes("-") && !originalValue.includes("_")) {
