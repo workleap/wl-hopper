@@ -3,7 +3,7 @@
 import LinkList, { type Links } from "@/app/ui/components/linkList/LinkList.tsx";
 import Tag from "@/app/ui/components/tag/Tag";
 import Title from "@/app/ui/components/title/Title";
-import Link from "@/components/link/Link";
+import AICallout from "@/components/ai-callout/AICallout";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { Content, Callout as HopperCallout, Heading as HopperHeading, HopperProvider, type ColorScheme } from "@hopper-ui/components";
 import clsx from "clsx";
@@ -28,9 +28,7 @@ const Heading = ({ title, tag, alpha, className, description, links }: HeadingPr
                 <Title level={1}>{title}</Title>
                 {tag && <Tag>{tag}</Tag>}
             </div>
-            <div className="hd-heading__ai">
-                <span className="hd-heading__ai-tag">AI Tip</span> Want to skip the docs? Use the <Link underline href="/getting-started/ai-for-agents/mcp-server">MCP Server</Link>
-            </div>
+            <AICallout />
             {alpha && (
                 <div className="hd-heading__alpha">
                     <HopperProvider colorScheme={colorMode as ColorScheme}>

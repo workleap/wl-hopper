@@ -2,6 +2,7 @@ import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getIconsSlugs } from "@/app/lib/getSlugs";
 import Title from "@/app/ui/components/title/Title";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
+import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { allIcons } from "contentlayer/generated";
 import { notFound } from "next/navigation";
@@ -32,6 +33,7 @@ export default function IconPage({ params }: PageProps) {
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
                 <Title level={1}>{icons.title}</Title>
+                <AICallout />
                 <Mdx code={icons.body.code} />
             </article>
         </BasePageLayout>
