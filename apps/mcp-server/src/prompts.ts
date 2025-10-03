@@ -106,17 +106,22 @@ Return only the complete JSX implementation using Hopper components that perfect
 Figma design: '${figma_design_url}'
 
 ## Figma elements → Hopper components/icons mapping
-As a general rule:
-- If 'data-name' attribute value format is {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
-- If 'data-name' attribute value format is Icon/{Y}, it means it's always '{Y}Icon' from Hopper icons library. e.g 'Icon/Plus' → 'PlusIcon'.
 
-Some examples:
+General rules on how to interpret 'data-name' attribute in Figma elements:
+- {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
+- Icon/{Y}, it means it's always '{Y}Icon' from Hopper icons library. e.g 'Icon/Plus' → 'PlusIcon'.
+- RichIcon/{Y}, it means it's always '{Y}RichIcon' from Hopper icons library. e.g 'RichIcon/Rocket' → 'RocketRichIcon'.
+- ProductIcon/{Y}, it is a product-specific icon. Use them as-is without mapping.
 
-| Figma Element (data-name) | Hopper Component/Icon             |
-|---------------------------|-----------------------------------|
-| Button/*                  | Button                            |
-| Icon/*                    | {*}Icon from Hopper icons library |
-| Select/*                  | Select                            |
+Mapping table:
+
+| Figma Element (data-name) | Hopper Component/Icon                         |
+|---------------------------|-----------------------------------------------|
+| Button/*                  | Button                                        |
+| Select/*                  | Select                                        |
+| Icon/*                    | {*}Icon from Hopper Icons library             |
+| RichIcon/*                | {*}RichIcon from Hopper Rich Icons library    |
+| ProductIcon/*             | N/A - use it as-is                            |
 
 # Deliverable
 A pixel-perfect, structurally sound Hopper Design System implementation matching the selected Figma frame.

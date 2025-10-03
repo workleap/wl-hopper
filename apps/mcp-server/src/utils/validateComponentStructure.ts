@@ -579,7 +579,7 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
                 if (PROHIBITED_PROPS.includes(suggestedProp)) {
                     message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${suggestedProp}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
                 } else {
-                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. You can use ${suggestedProp}' directly instead.`;
+                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. Use ${suggestedProp}' directly instead.`;
                 }
 
                 result.errors.push({
