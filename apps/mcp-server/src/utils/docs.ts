@@ -270,7 +270,50 @@ export async function getDesignTokenGuide(category: TokenCategory, pageSize?: nu
     }
 }
 
-export async function getDesignTokensMap(category: TokenCategory, mode: "brief" | "full") {
+/**
+ * Recursively filters a tokens object by the specified keys.
+ * Only includes tokens whose keys contain any of the filter keys.
+ * Filtering only happens at the leaf level (actual design tokens), not at category levels.
+ */
+function filterTokensByKeys(obj: unknown, filterKeys: string[]): unknown {
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+
+    if (Array.isArray(obj)) {
+        return obj.map(item => filterTokensByKeys(item, filterKeys));
+    }
+
+    const result: Record<string, unknown> = {};
+    const objRecord = obj as Record<string, unknown>;
+
+    for (const [key, value] of Object.entries(objRecord)) {
+        // Check if this is a leaf node (value is a string, not an object)
+        const isLeafNode = typeof value === "string";
+
+        if (isLeafNode) {
+            // Only at leaf level, check if the key matches the filter
+            const shouldInclude = filterKeys.some(filterKey =>
+                key.includes(filterKey)
+            );
+
+            if (shouldInclude) {
+                result[key] = value;
+            }
+        } else if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+            // For category nodes, recursively filter and include if children match
+            const filtered = filterTokensByKeys(value, filterKeys);
+            // Only include if the filtered result has keys
+            if (Object.keys(filtered as Record<string, unknown>).length > 0) {
+                result[key] = filtered;
+            }
+        }
+    }
+
+    return result;
+}
+
+export async function getDesignTokensMap(category: TokenCategory, filter_by_names: string[] | undefined, mode: "brief" | "full") {
     return await Promise.all(TokenMapFiles[category][mode].map(async map => {
         const tokensMap = join(env.DOCS_PATH, map.path);
 
@@ -280,6 +323,25 @@ export async function getDesignTokensMap(category: TokenCategory, mode: "brief" 
             return errorContent(error, `Tokens map not found for category: ${category}`);
         }
         const fileContent = await readFile(tokensMap, "utf-8");
+
+        // Apply filtering if filter_by_names is provided
+        if (filter_by_names && filter_by_names.length > 0) {
+            try {
+                const tokensData = JSON.parse(fileContent);
+
+                // Normalize filter keys by removing leading dashes
+                const normalizedFilterKeys = filter_by_names.map(key =>
+                    key.replace(/^-+/, "").replace("hop-", "")
+                );
+
+                // Filter the tokens recursively
+                const filteredData = filterTokensByKeys(tokensData, normalizedFilterKeys);
+
+                return content(JSON.stringify(filteredData, null, 2));
+            } catch (error) {
+                return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
+            }
+        }
 
         return content(fileContent);
     }));

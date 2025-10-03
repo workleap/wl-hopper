@@ -43,7 +43,7 @@ export function generateDesignTokensDescription(): string {
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
         const tokenCount = fileInfo?.estimatedTokens || 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${category}: ${categoryDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -55,7 +55,7 @@ export function generateTokenMapsDescription(): string {
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
         const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
+        description += `        - ${category}: ${categoryDescription} (size: ${totalTokens} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -66,7 +66,7 @@ export function generateGuidesDescription(): string {
 
     for (const [guide, guideDescription] of Object.entries(GuideDescriptions)) {
         const tokenCount = GuideFiles[guide as GuideSection]?.estimatedTokens || 0;
-        description += `        - ${guide}: ${guideDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${guide}: ${guideDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -111,7 +111,11 @@ export const toolsInfo = {
     get_design_tokens_map: {
         name: "get_design_tokens_map",
         title: "Get design system tokens map to component props as JSON",
-        description: generateTokenMapsDescription()
+        description: generateTokenMapsDescription(),
+        parameters: {
+            filter_by_names: "Filter tokens by name (case-insensitive, partial match).",
+            include_raw_values: "Whether to include raw token values in the response. **DEFAULT: false**"
+        }
     },
 
     validate_component_structure: {
