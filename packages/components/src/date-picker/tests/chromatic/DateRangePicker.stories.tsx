@@ -29,7 +29,7 @@ export const Default: Story = {
             <DateRangePicker isDisabled {...args} />
             <DateRangePicker isReadOnly {...args} />
             <DateRangePicker isFluid {...args} />
-            <Div width="10%">
+            <Div width="30%">
                 <DateRangePicker isFluid {...args} />
             </Div>
         </Stack>

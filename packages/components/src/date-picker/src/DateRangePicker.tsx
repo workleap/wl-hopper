@@ -11,7 +11,7 @@ import {
 } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
-import { Calendar, type CalendarProps } from "../../calendar/index.ts";
+import { RangeCalendar, type RangeCalendarProps } from "../../calendar/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
@@ -29,7 +29,7 @@ export const GlobalDateRangePickerCssSelector = "hop-DateRangePicker";
 
 export interface DateRangePickerProps<T extends DateValue> extends
     StyledComponentProps<Omit<AriaDateRangePickerProps<T>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<CalendarProps<T>, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+    Pick<RangeCalendarProps<T>, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
     FieldProps {
     /**
      * If `true`, the DateRangePicker will take all available width.
@@ -128,9 +128,10 @@ const DateRangePicker = <T extends DateValue>(props: DateRangePickerProps<T>, re
                             {...otherInputGroupProps}
                         >
                             <DateInput slot="start" size={size} ref={inputStartRef} />
+                            <div className={styles["hop-DateRangePicker__Separator"]}>{stringFormatter.format("DateRangePicker.toSeparator")}</div>
                             <DateInput slot="end" size={size} ref={inputEndRef} />
                             <Button
-                                aria-label={stringFormatter.format("DatePicker.openCalendarButtonAriaLabel")}
+                                aria-label={stringFormatter.format("DateRangePicker.openCalendarButtonAriaLabel")}
                                 variant="ghost-secondary"
                                 size={size}
                                 className={styles["hop-DateRangePicker__Button"]}
@@ -155,8 +156,7 @@ const DateRangePicker = <T extends DateValue>(props: DateRangePickerProps<T>, re
                         {description && <HelperMessage className={styles["hop-DateRangePicker__HelperMessage"]}>{description}</HelperMessage>}
                         <ErrorMessage className={styles["hop-DateRangePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
                         <PopoverBase className={styles["hop-DateRangePicker__Popover"]}>
-                            <Calendar
-                                aria-label={props["aria-label"] ?? props["aria-labelledby"]}
+                            <RangeCalendar
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}
                             />

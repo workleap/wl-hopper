@@ -1,0 +1,79 @@
+---
+title: DateRangePicker
+description: A date range picker allows users to select a range of dates from a calendar.
+category: "date and time"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/date-picker/src/DateRangePicker.tsx
+---
+
+<Example src="date-picker/docs/date-range-picker/preview" isOpen />
+
+## Usage
+
+### Value
+
+A DateRangePicker displays a placeholder by default. An initial, uncontrolled value can be provided to the DateRangePicker using the `defaultValue` prop. Alternatively, a controlled value can be provided using the `value` prop.
+
+Date ranges are objects with start and end properties containing date values, which are provided using objects in the [@internationalized/date](https://github.com/adobe/react-spectrum/tree/main/packages/@internationalized/date) package. This library handles correct international date manipulation across calendars, time zones, and other localization concerns. DateRangePicker supports values of the following types:
+
+- `CalendarDate` – a date without any time components. May be parsed from a string representation using the parseDate function. Use this type to represent dates where the time is not important, such as a birthday or an all day calendar event.
+- `CalendarDateTime` – a date with a time, but not in any specific time zone. May be parsed from a string representation using the parseDateTime function. Use this type to represent times that occur at the same local time regardless of the time zone, such as the time of New Years Eve fireworks which always occur at midnight. Most times are better stored as a ZonedDateTime.
+- `ZonedDateTime` – a date with a time in a specific time zone. May be parsed from a string representation using the `parseZonedDateTime`, `parseAbsolute`, or `parseAbsoluteToLocal` functions. Use this type to represent an exact moment in time at a particular location on Earth.
+
+<Example src="date-picker/docs/date-range-picker/value" />
+
+### Controlled
+
+A DateRangePicker can handle value state in controlled mode.
+
+<Example src="date-picker/docs/date-range-picker/controlled" />
+
+### Validation
+
+#### Invalid
+
+A DateRangePicker can be marked as invalid.
+
+<Example src="date-picker/docs/date-range-picker/invalid" />
+
+#### Min and Max
+
+The `minValue` and `maxValue` props can be used to limit the range of dates that a user can select.
+
+<Example src="date-picker/docs/date-range-picker/min-max" />
+
+#### Unavailable Dates
+
+DateRangePicker supports marking certain dates as unavailable. These dates remain focusable with the keyboard in the calendar so that navigation is consistent, but cannot be selected by the user. The `isDateUnavailable` prop accepts a callback that is called to evaluate whether each visible date is unavailable.
+
+Note that by default, users may not select non-contiguous ranges, i.e. ranges that contain unavailable dates within them. Once a start date is selected in the calendar, enabled dates will be restricted to subsequent dates until an unavailable date is hit. While this is handled automatically in the calendar, additional validation logic must be provided to ensure an invalid state is displayed in the date field. This can be achieved using the `validate` prop. See below for an example of how to allow non-contiguous ranges.
+
+This example includes multiple unavailable date ranges, e.g. dates when a rental house is not available. The `minValue` prop is also used to prevent selecting dates before today. The `validate` prop is used to mark selected date ranges with unavailable dates in the middle as invalid.
+
+<Example src="date-picker/docs/date-range-picker/unavailable" />
+
+#### Non-Contiguous Ranges
+
+The `allowsNonContiguousRanges` prop enables a range to be selected even if there are unavailable dates in the middle. The value emitted in the onChange event will still be a single range with a start and end property, but unavailable dates will not be displayed as selected. It is up to applications to split the full selected range into multiple as needed for business logic.
+
+This example prevents selecting weekends, but allows selecting ranges that span multiple weeks.
+
+<Example src="date-picker/docs/date-range-picker/non-contiguous" />
+
+#### Custom Validation
+
+The `validate` function can be used to perform custom validation logic. It receives the current date range, and should return a string or array of strings representing one or more error messages if the value is invalid.
+
+This example validates that the selected date range is a maximum of 1 week in duration.
+
+<Example src="date-picker/docs/date-range-picker/custom-validation" />
+
+### Description
+
+The `description` prop can be used to provide additional context about the DateRangePicker.
+
+<Example src="date-picker/docs/date-range-picker/description" />
+
+## Props
+
+<PropTable component="DateRangePicker" />
