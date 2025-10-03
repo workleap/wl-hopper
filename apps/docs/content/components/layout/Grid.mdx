@@ -55,6 +55,34 @@ A custom `fit-content` function is available to support Hopper spacing scale val
 
 <Example src="layout/docs/grid/fitContent" />
 
+## Best Practices
+
+Grid is a powerful layout component for creating two-dimensional layouts with rows and columns. It's ideal for complex application layouts, data tables, card grids, and any scenario where precise control over both horizontal and vertical positioning is needed.
+
+Grid should:
+
+- Be used for two-dimensional layouts where items need to align both horizontally and vertically.
+- Use Hopper dimension tokens for `templateColumns`, `templateRows`, and spacing properties to ensure consistency.
+- Leverage named grid areas for semantic and maintainable layout definitions.
+- Use the custom `repeat()`, `minmax()`, and `fitContent()` functions to support Hopper tokens.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Grid for two-dimensional layouts with named areas for clarity",
+                example: <CodeOnlyExample src="layout/docs/grid/dos-and-donts/areas-do" />
+            },
+            dont: {
+                explanation: "Use nested Flex components when a single Grid would be simpler and more semantic",
+                example: <CodeOnlyExample src="layout/docs/grid/dos-and-donts/areas-dont" />
+            }
+        },
+    ]}
+/>
+
 ## Props
 
 <PropTable component="Grid" />

@@ -87,6 +87,72 @@ properties supported by grid.
 * [The Difference Between Explicit and Implicit Grids](https://css-tricks.com/difference-explicit-implicit-grids/) — an
 article that discusses the various ways of defining grids.
 
+## Choosing Inline, Stack, or Flex
+
+Use Inline or Stack by default when your layout matches their intent. They are opinionated Flex presets that keep code shorter and more consistent:
+
+- `Inline` is `Flex` with `flex-direction: row`, `align-items: center`, and a default gap token for horizontal spacing.
+- `Stack` is `Flex` with `flex-direction: column` and a default gap token for vertical spacing.
+
+### When to use Inline
+
+You have items in a single horizontal row and shared cross axis alignment: Typical header actions, icon plus label, button groups.
+It is fine to tweak one thing such as `gap`, `justifyContent`, or `wrap`. If you also need a different cross axis alignment and another structural change, prefer `Flex`.
+
+Example:
+```tsx
+<Inline gap="inline-sm" justifyContent="space-between">
+  <Title />
+  <Actions />
+</Inline>
+```
+
+### When to use Stack
+
+You are arranging elements vertically with consistent spacing: Forms, card content, dialog body.
+It is fine to tweak one thing such as `gap` or `alignItems`. If you also need direction to flip at a breakpoint or multiple alignment rules, prefer `Flex`.
+
+Example:
+```tsx
+<Stack gap="stack-md">
+  <Field />
+  <Field />
+  <HelpText />
+</Stack>
+```
+
+### When to use Flex
+
+You are doing more than a light tweak or you need per child control. Any two or more of the following is a good signal to switch:
+
+- Changing `alignItems` and `justifyContent` together,
+- Mixing `wrap` with custom alignment,
+- Using `order`, `flex grow` or `shrink` on children,
+- Flipping `flex-direction` responsively,
+- Aligning some children differently from others,
+- Asymmetric or breakpoint specific gaps,
+- Baseline alignment for text heavy rows.
+
+Example:
+```tsx
+<Flex alignItems="flex-start" justifyContent="space-between" gap="inline-lg">
+  <Avatar size="lg" name="Alexandre" />
+  <Stack gap="stack-sm" flex={1}>
+    <H3>Alexandre Asselin</H3>
+    <Text variant="body-sm" color="text-secondary">
+      Staff Software Engineer
+    </Text>
+  </Stack>
+  <Inline gap="inline-sm">
+    <Button variant="secondary">Message</Button>
+    <Button variant="primary">Connect</Button>
+  </Inline>
+</Flex>
+```
+
+**Practical Rule**
+Start with `Inline` for horizontal rows and `Stack` for vertical stacks. If you find yourself changing more than one core knob or applying flex properties to individual children, move to `Flex`. One override is fine. Two or more usually means `Flex`.
+
 ## Responsive layout
 
 All props of the Flex and Grid components support object syntax to specify different values for the prop depending on a responsive breakpoint.

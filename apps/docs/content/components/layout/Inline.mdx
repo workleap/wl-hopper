@@ -25,6 +25,34 @@ Inline items can be aligned on the vertical axis.
 
 <Example src="layout/docs/inline/alignY" />
 
+## Best Practices
+
+Inline is a specialized layout component for arranging items horizontally with consistent spacing and vertical alignment. It's a preset of `Flex` with `direction="row"` and `alignItems="center"`, designed for common horizontal layouts like button groups, icon-label pairs, and navigation items.
+
+Inline should:
+
+- Be used for simple horizontal layouts where items should be vertically centered.
+- Use [Hopper space tokens](/tokens/semantic/space) for the `gap` property to ensure consistency.
+- Be the default choice for horizontal layouts unless you need custom alignment or other flex properties.
+- Keep layouts simple and semantic without unnecessary wrapper elements.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Inline for simple horizontal layouts with centered items",
+                example: <CodeOnlyExample src="layout/docs/inline/dos-and-donts/simple-do" />
+            },
+            dont: {
+                explanation: "Use Flex with direction='row' and alignItems='center' when Inline is sufficient",
+                example: <CodeOnlyExample src="layout/docs/inline/dos-and-donts/simple-dont" />
+            }
+        }
+    ]}
+/>
+
 ## Props
 
 <PropTable component="Inline" />

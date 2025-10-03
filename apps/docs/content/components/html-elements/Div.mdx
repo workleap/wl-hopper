@@ -9,3 +9,41 @@ category: "html elements"
 ## Usage
 
 A div component accepts all the [div HTML element attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/div) and [Hopper styled component props](/styled-system/concepts/styling).
+
+## Best Practices
+
+`Div` is a low-level primitive that provides styled system props to a standard HTML `div` element. However, **it should not be your first choice** for layouts. Hopper provides specialized layout components (`Flex`, `Inline`, `Stack`, `Grid`) that are more semantic, maintainable, and expressive for common layout patterns.
+
+Div should:
+
+- Be used sparingly, only when layout components don't fit your needs.
+- Not be used as a wrapper just to add spacing or styling when you can apply those props directly to the child component.
+- Not be used for layouts that can be achieved with `Flex`, `Inline`, `Stack`, or `Grid`.
+- Be used for semantic grouping or when you need a generic container with styled system props.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Inline, Stack, or Flex for layouts instead of Div",
+                example: <CodeOnlyExample src="html-elements/docs/div/dos-and-donts/layout-do" />
+            },
+            dont: {
+                explanation: "Use Div with display flex when layout components are more semantic",
+                example: <CodeOnlyExample src="html-elements/docs/div/dos-and-donts/layout-dont" />
+            }
+        },
+        {
+            do: {
+                explanation: "Apply styling props directly to components that support them",
+                example: <CodeOnlyExample src="html-elements/docs/div/dos-and-donts/nesting-do" />
+            },
+            dont: {
+                explanation: "Wrap components in Div just to add spacing or styling",
+                example: <CodeOnlyExample src="html-elements/docs/div/dos-and-donts/nesting-dont" />
+            }
+        },
+    ]}
+/>

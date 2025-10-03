@@ -84,7 +84,6 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - [ ] Extract ALL component and icon names from Figma data (i.e. data-name attributes from '#get_code' tool).
 - [ ] Create a mapping table: Figma component/icon name → Hopper component/icon name
 
-
 ## 4. Implementation
 - Build out the implementation entirely with Hopper components and patterns.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
@@ -94,7 +93,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 - CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 5. QA
-- [ ] Verify all UNSAFE_* props are in the "${"escape-hatches" satisfies GuideSection}" whitelist.
+- [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
+- [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
@@ -106,17 +106,22 @@ Return only the complete JSX implementation using Hopper components that perfect
 Figma design: '${figma_design_url}'
 
 ## Figma elements → Hopper components/icons mapping
-As a general rule:
-- If 'data-name' attribute value format is {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
-- If 'data-name' attribute value format is Icon/{Y}, it means it's always '{Y}Icon' from Hopper icons library. e.g 'Icon/Plus' → 'PlusIcon'.
 
-Some examples:
+General rules on how to interpret 'data-name' attribute in Figma elements:
+- {X}/{Y}, it means X is the component name and Y is the name if it. E.g. 'Button/Primary' → 'Button' component.
+- Icon/{Y}, it means it's always '{Y}Icon' from Hopper icons library. e.g 'Icon/Plus' → 'PlusIcon'.
+- RichIcon/{Y}, it means it's always '{Y}RichIcon' from Hopper icons library. e.g 'RichIcon/Rocket' → 'RocketRichIcon'.
+- ProductIcon/{Y}, it is a product-specific icon. Use them as-is without mapping.
 
-| Figma Element (data-name) | Hopper Component/Icon             |
-|---------------------------|-----------------------------------|
-| Button/*                  | Button                            |
-| Icon/*                    | {*}Icon from Hopper icons library |
-| Select/*                  | Select                            |
+Mapping table:
+
+| Figma Element (data-name) | Hopper Component/Icon                         |
+|---------------------------|-----------------------------------------------|
+| Button/*                  | Button                                        |
+| Select/*                  | Select                                        |
+| Icon/*                    | {*}Icon from Hopper Icons library             |
+| RichIcon/*                | {*}RichIcon from Hopper Rich Icons library    |
+| ProductIcon/*             | N/A - use it as-is                            |
 
 # Deliverable
 A pixel-perfect, structurally sound Hopper Design System implementation matching the selected Figma frame.
