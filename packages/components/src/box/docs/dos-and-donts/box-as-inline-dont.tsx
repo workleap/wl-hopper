@@ -10,6 +10,5 @@ export function Example() {
                 This should just be a <code>&lt;Stack&gt;</code>
             </Box>
         </>
-
     );
 }

@@ -18,8 +18,8 @@ function DosAndDonts({ items }: DosAndDontsProps) {
     const doAndDontItem = ({ example, explanation }: DosAndDontsItem) => {
         return (
             <>
-                <div>{explanation}</div>
                 <div>{example}</div>
+                <div>{explanation}</div>
             </>
         );
     };

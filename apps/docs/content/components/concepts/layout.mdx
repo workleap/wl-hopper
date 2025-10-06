@@ -91,17 +91,29 @@ article that discusses the various ways of defining grids.
 
 Use Inline or Stack by default when your layout matches their intent. They are opinionated Flex presets that keep code shorter and more consistent:
 
-- `Inline` is `Flex` with `flex-direction: row`, `align-items: center`, and a default gap token for horizontal spacing.
+**Important:** `Inline` and `Stack` do **not** support the raw `justifyContent` or `alignItems` props. Instead they expose semantic aliases:
+
+```ts
+/** An alias for the CSS justify-content property. */
+alignX?: FlexProps["justifyContent"];
+
+/** An alias for the CSS align-items property. */
+alignY?: FlexProps["alignItems"];
+```
+
+Use `alignX` where you would normally use `justifyContent`, and `alignY` where you would use `alignItems` when working with `Inline` or `Stack`. The underlying `Flex` component still uses `justifyContent` and `alignItems` directly.
+
+- `Inline` is `Flex` with `flex-direction: row`, `align-items: center`, and a default gap token for horizontal spacing (exposed as `alignY="center"`).
 - `Stack` is `Flex` with `flex-direction: column` and a default gap token for vertical spacing.
 
 ### When to use Inline
 
 You have items in a single horizontal row and shared cross axis alignment: Typical header actions, icon plus label, button groups.
-It is fine to tweak one thing such as `gap`, `justifyContent`, or `wrap`. If you also need a different cross axis alignment and another structural change, prefer `Flex`.
+It is fine to tweak one thing such as `gap`, `alignX` (was `justifyContent` in raw flex), or `wrap`. If you also need a different cross axis alignment (`alignY`) and another structural change, prefer `Flex`.
 
 Example:
 ```tsx
-<Inline gap="inline-sm" justifyContent="space-between">
+<Inline gap="inline-sm" alignX="space-between">
   <Title />
   <Actions />
 </Inline>
@@ -110,7 +122,7 @@ Example:
 ### When to use Stack
 
 You are arranging elements vertically with consistent spacing: Forms, card content, dialog body.
-It is fine to tweak one thing such as `gap` or `alignItems`. If you also need direction to flip at a breakpoint or multiple alignment rules, prefer `Flex`.
+It is fine to tweak one thing such as `gap` or `alignY` (alias for `alignItems`). If you also need direction to flip at a breakpoint or multiple alignment rules, prefer `Flex`.
 
 Example:
 ```tsx
@@ -125,7 +137,7 @@ Example:
 
 You are doing more than a light tweak or you need per child control. Any two or more of the following is a good signal to switch:
 
-- Changing `alignItems` and `justifyContent` together,
+- Changing `alignItems` and `justifyContent` together (for `Inline`/`Stack` this would be changing both `alignX` and `alignY`),
 - Mixing `wrap` with custom alignment,
 - Using `order`, `flex grow` or `shrink` on children,
 - Flipping `flex-direction` responsively,
