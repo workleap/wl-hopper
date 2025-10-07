@@ -128,7 +128,6 @@
 }
 
 .hop-ToggleButton--ghost-primary[data-selected] {
-    --text-underline: normal;
     --background-color: var(--hop-ToggleButton-ghost-primary-background-color-selected);
     --color: var(--hop-ToggleButton-ghost-primary-color-selected);
     --border: var(--hop-ToggleButton-ghost-primary-border-selected);
@@ -139,7 +138,6 @@
 }
 
 .hop-ToggleButton--ghost-secondary[data-selected] {
-    --text-underline: normal;
     --background-color: var(--hop-ToggleButton-ghost-secondary-background-color-selected);
     --color: var(--hop-ToggleButton-ghost-secondary-color-selected);
     --border: var(--hop-ToggleButton-ghost-secondary-border-selected);
@@ -150,7 +148,6 @@
 }
 
 .hop-ToggleButton--ghost-danger[data-selected] {
-    --text-underline: normal;
     --background-color: var(--hop-ToggleButton-ghost-danger-background-color-selected);
     --color: var(--hop-ToggleButton-ghost-danger-color-selected);
     --border: var(--hop-ToggleButton-ghost-danger-border-selected);
@@ -185,21 +182,18 @@
     --background-color: var(--hop-ToggleButton-ghost-primary-background-color);
     --color: var(--hop-ToggleButton-ghost-primary-color);
     --border: var(--hop-ToggleButton-ghost-primary-border);
-    --text-underline: none;
 }
 
 .hop-ToggleButton--loading.hop-ToggleButton--ghost-secondary {
     --background-color: var(--hop-ToggleButton-ghost-secondary-background-color);
     --color: var(--hop-ToggleButton-ghost-secondary-color);
     --border: var(--hop-ToggleButton-ghost-secondary-border);
-    --text-underline: none;
 }
 
 .hop-ToggleButton--loading.hop-ToggleButton--ghost-danger {
     --background-color: var(--hop-ToggleButton-ghost-danger-background-color);
     --color: var(--hop-ToggleButton-ghost-danger-color);
     --border: var(--hop-ToggleButton-ghost-danger-border);
-    --text-underline: none;
 }
 
 /** Elements */
