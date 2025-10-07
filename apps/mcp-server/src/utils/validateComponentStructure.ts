@@ -71,47 +71,17 @@ export async function validateComponentStructure(code: string): Promise<Validati
         // Check for prohibited props usage
         validateProhibitedProps(jsxElements, result);
 
+        // Check for layout components with single child
+        validateLayoutComponents(jsxElements, result);
+
         // Check for unsafe props usage
         await validateUnsafePropsUsage(jsxElements, result);
 
         // Check for design system tokens usage
         await validateDesignSystemTokensUsage(jsxElements, result);
 
-        // Group components by type for better validation reporting
-        const componentInstances = new Map<string, TSESTree.JSXElement[]>();
-
-
-        for (const element of jsxElements) {
-            const componentName = getComponentName(element);
-            if (componentName) {
-                if (!componentInstances.has(componentName)) {
-                    componentInstances.set(componentName, []);
-                }
-                componentInstances.get(componentName)!.push(element);
-            }
-        }
-
-        // Apply validation rules to all instances of each component type
-        for (const [componentName, instances] of componentInstances) {
-            for (let i = 0; i < instances.length; i++) {
-                const element = instances[i];
-                const instanceInfo = instances.length > 1 ? ` (instance ${i + 1} of ${instances.length})` : "";
-
-                // Validate based on component type
-                switch (componentName) {
-                    case "Button":
-                        validateButtonComponent(element, result, instanceInfo);
-                        break;
-                    case "Modal":
-                        validateModalComponent(element, result, instanceInfo);
-                        break;
-                    // Add more component validations here as needed
-                    default:
-                        // For now, we only validate Button and Modal components
-                        break;
-                }
-            }
-        }
+        // Validate component-specific rules
+        validateComponentSpecificRules(jsxElements, result);
 
         result.isValid = result.errors.length === 0;
     } catch (error) {
@@ -208,9 +178,9 @@ function* getAllProps(jsxElements: TSESTree.JSXElement[]) {
 }
 
 /**
- * Gets direct children components from a JSX element
+ * Gets direct children components from a JSX element (excludes text nodes and expressions)
  */
-function getDirectChildren(element: TSESTree.JSXElement): string[] {
+function getDirectComponentChildren(element: TSESTree.JSXElement): string[] {
     const children: string[] = [];
 
     for (const child of element.children) {
@@ -253,6 +223,45 @@ function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: "comp
 }
 
 /**
+ * Validates component-specific rules by grouping components by type and applying appropriate validation
+ */
+function validateComponentSpecificRules(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    // Group components by type for better validation reporting
+    const componentInstances = new Map<string, TSESTree.JSXElement[]>();
+
+    for (const element of jsxElements) {
+        const componentName = getComponentName(element);
+        if (componentName) {
+            if (!componentInstances.has(componentName)) {
+                componentInstances.set(componentName, []);
+            }
+            componentInstances.get(componentName)!.push(element);
+        }
+    }
+
+    // Apply validation rules to all instances of each component type
+    for (const [componentName, instances] of componentInstances) {
+        for (let i = 0; i < instances.length; i++) {
+            const element = instances[i];
+            const instanceInfo = instances.length > 1 ? ` (instance ${i + 1} of ${instances.length})` : "";
+
+            // Validate based on component type
+            switch (componentName) {
+                case "Button":
+                    validateButtonComponent(element, result, instanceInfo);
+                    break;
+                case "Modal":
+                    validateModalComponent(element, result, instanceInfo);
+                    break;
+                case "Div":
+                    validateDivComponent(element, result, instanceInfo);
+                    break;
+            }
+        }
+    }
+}
+
+/**
  * Validates Button component structure
  * Rule: If the component is Button and if it has 2 children, one of them should be Text component.
  */
@@ -264,7 +273,7 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
     }
 
     const allChildren = getAllDirectChildren(element);
-    const componentChildren = getDirectChildren(element);
+    const componentChildren = getDirectComponentChildren(element);
 
     // If Button has 2 total children (text + components), one of the components should be Text
     if (allChildren.length === 2) {
@@ -288,7 +297,7 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
         return;
     }
 
-    const children = getDirectChildren(element);
+    const children = getDirectComponentChildren(element);
     const allowedChildren = ["Heading", "Content", "ButtonGroup"];
 
     // Check for invalid children
@@ -310,6 +319,83 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
+    }
+}
+
+/**
+ * Validates Div component structure
+ * Rule: If Div has display="flex" or display="grid", suggest using appropriate layout components
+ */
+function validateDivComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
+    // Check if the Div has display="flex" or display="grid" prop
+    const openingElement = element.openingElement;
+    if (openingElement.attributes) {
+        for (const attribute of openingElement.attributes) {
+            if (attribute.type === "JSXAttribute" &&
+                attribute.name.type === "JSXIdentifier" &&
+                attribute.name.name === "display") {
+                // Check if the value is "flex" or "grid"
+                if (attribute.value &&
+                    attribute.value.type === "Literal" &&
+                    typeof attribute.value.value === "string") {
+                    const displayValue = attribute.value.value;
+
+                    if (displayValue === "flex") {
+                        result.warnings.push({
+                            message: `Div component${instanceInfo} with display="flex" should probably be replaced with a more semantic layout component. Consider using <Stack> for vertical layouts, <Inline> for horizontal layouts with wrapping, or <Flex> for custom flex layouts.`,
+                            line: element.loc?.start.line,
+                            column: element.loc?.start.column
+                        });
+                    } else if (displayValue === "grid") {
+                        result.warnings.push({
+                            message: `Div component${instanceInfo} with display="grid" should probably be replaced with the <Grid> component for better design consistency and built-in grid functionality.`,
+                            line: element.loc?.start.line,
+                            column: element.loc?.start.column
+                        });
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Validates layout components to ensure they have more than one child
+ * Rule: Layout components (Stack, Inline, Flex, Grid, Div, Box) should typically have multiple children
+ * - Only validates when there's exactly one COMPONENT child AND no other content
+ * - Div gets a warning (could be intentional)
+ * - Other layout components get an error (should not be used for single child)
+ */
+function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
+    for (const element of jsxElements) {
+        const componentName = getComponentName(element);
+
+        if (!componentName || !LAYOUT_COMPONENTS.has(componentName)) {
+            continue;
+        }
+
+        const componentChildren = getDirectComponentChildren(element);
+        const allChildren = getAllDirectChildren(element);
+
+        if (componentName === "Div" || componentName === "Box") {
+            // Warning for Div and Box
+            if (componentChildren.length === 1 && allChildren.length === 1) {
+                result.warnings.push({
+                    message: `${componentName} component has only one child. This might be unnecessary - consider merging the ${componentName}'s props directly into the child component if possible.`,
+                    line: element.loc?.start.line,
+                    column: element.loc?.start.column
+                });
+            }
+        } else {
+            // Error for other layout components
+            if (componentChildren.length <= 1) {
+                result.errors.push({
+                    message: `${componentName} component has only one child. Layout components should not be used for single children. Consider removing the ${componentName} wrapper or using a more appropriate component.`,
+                    line: element.loc?.start.line,
+                    column: element.loc?.start.column
+                });
+            }
+        }
     }
 }
 
@@ -348,6 +434,11 @@ const NOT_RECOMMENDED_COMPONENTS = new Map<string, string>([
 ]);
 
 const PROHIBITED_PROPS = ["className", "style"];
+
+// Layout components that should typically have multiple children
+const LAYOUT_COMPONENTS = new Set([
+    "Stack", "Inline", "Flex", "Grid", "Div", "Box"
+]);
 
 function validateTagNames(jsxElements: TSESTree.JSXElement[], result: ValidationResult): void {
     for (const element of jsxElements) {
@@ -488,7 +579,7 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
                 if (PROHIBITED_PROPS.includes(suggestedProp)) {
                     message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${suggestedProp}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
                 } else {
-                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. You can use ${suggestedProp}' directly instead.`;
+                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. Use ${suggestedProp}' directly instead.`;
                 }
 
                 result.errors.push({
@@ -501,6 +592,23 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
     }
 }
 
+/**
+ * Checks if a prop value is a string literal
+ */
+function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
+    return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
+}
+
+/**
+ * Checks if an UNSAFE_ prop should be skipped from token validation
+ * Returns true if the prop is an UNSAFE_ prop without token support
+ */
+function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
+    const safePropName = propName.replace("UNSAFE_", "");
+
+    return propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName);
+}
+
 async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
     const tokenSupportedProps = await getTokenSupportedProps();
@@ -508,26 +616,18 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
 
     for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
         // Skip invalid UNSAFE_ props as they are handled in another validation
-        const safePropName = propName.replace("UNSAFE_", "");
-        if (propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName)) {
+        // Only process string literal values
+        if (!isStringValue(propValue) || isInvalidUnsafeProp(propName, tokenSupportedProps)) {
             continue;
         }
 
-        // Only process string literal values
-        if (!propValue || propValue.type !== "Literal" || typeof propValue.value !== "string") {
-            continue;
-        }
 
         const originalValue = propValue.value;
 
         // Validate token format for token-supported props
         if (tokenSupportedProps.has(propName)) {
             validateTokenFormat(originalValue, propName, loc, result);
-            continue;
-        }
-
-        // Ensure tokens are not used on unsupported props
-        if (allowedTokens.has(originalValue)) {
+        } else if (allowedTokens.has(originalValue)) {// Ensure tokens are not used for not token-supported props
             validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
         }
     }
@@ -556,6 +656,12 @@ function validateTokenUsageOnUnsupportedProp(
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): void {
+    //this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
+    //for example variant="primary" is valid. So, we only check for tokens with "-" or "_" which are unlikely to be valid non-token values
+    if (!originalValue.includes("-") && !originalValue.includes("_")) {
+        return;
+    }
+
     // If the prop is not in the token-supported list, make sure tokens are not used
     // (e.g. top="core_0", or UNSAFE_color="danger-selected")
     if (propName.startsWith("UNSAFE_")) {
