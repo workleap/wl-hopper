@@ -71,7 +71,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                     <div className={styles["hop-Calendar__grids"]}>
                         {Array.from({ length: visibleMonths }).map((_, i) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <CalendarGrid months={i} key={i} />
+                            <CalendarGrid offset={{ months: i }} key={i} />
                         ))}
                     </div>
                     <SlotProvider

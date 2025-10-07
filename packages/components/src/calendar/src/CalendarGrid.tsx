@@ -1,11 +1,12 @@
-import type { AriaCalendarGridProps } from "@react-aria/calendar";
 import clsx from "clsx";
-import { useCallback, type PropsWithChildren } from "react";
+import { useCallback, useContext, type PropsWithChildren } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
     CalendarHeaderCell as AriaCalendarHeaderCell,
     CalendarGridBody,
-    CalendarGridHeader
+    CalendarGridHeader,
+    RangeCalendarStateContext,
+    type CalendarGridProps as AriaCalendarGridProps
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -17,13 +18,13 @@ import styles from "./CalendarGrid.module.css";
 
 export const GlobalCalendarGridCssSelector = "hop-CalendarGrid";
 
-interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, PropsWithChildren {
-    months: number;
-    isRangeCalendar?: boolean;
-}
+type CalendarGridProps = Omit<AriaCalendarGridProps, "children"> & PropsWithChildren;
 
 export const CalendarGrid = (props: CalendarGridProps) => {
-    const { months, weekdayStyle = "short", isRangeCalendar } = props;
+    const { weekdayStyle = "short" } = props;
+
+    const isRangeCalendar = !!useContext(RangeCalendarStateContext);
+
     const classNames = clsx(
         GlobalCalendarGridCssSelector,
         cssModule(
@@ -45,7 +46,6 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         <AriaCalendarGrid
             weekdayStyle={weekdayStyle}
             className={classNames}
-            offset={{ months }}
             {...props}
         >
             <CalendarGridHeader>
