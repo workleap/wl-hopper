@@ -621,7 +621,6 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
             continue;
         }
 
-
         const originalValue = propValue.value;
 
         // Validate token format for token-supported props

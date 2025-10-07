@@ -1,6 +1,6 @@
 import { dirname, join } from "path";
-import { aiDocsConfig } from "./ai-docs.config";
-import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types";
+import { aiDocsConfig } from "./ai-docs.config.ts";
+import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
 
 function normalizePath(path: string): string {
     return path.startsWith('/') ? path : `/${path}`;

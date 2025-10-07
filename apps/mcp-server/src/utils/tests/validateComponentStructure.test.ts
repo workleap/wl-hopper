@@ -7,7 +7,7 @@ jest.mock("fs/promises", () => ({
     readFile: jest.fn(async (path: string) => {
         if (path.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
-        } else if (path.includes("tokens-data.json")) {
+        } else if (path.includes("/tokens/maps/brief/all.json")) {
             return JSON.stringify(MOCK_TOKENS);
         }
 

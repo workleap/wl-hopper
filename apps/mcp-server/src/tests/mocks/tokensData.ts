@@ -7,7 +7,7 @@ export const MOCK_TOKENS =
   "core": {
     "color": {
       "hop-coastal-25": "core_coastal-25",
-      "hop-primary-surface": "primary",
+      "hop-primary-surface": "primary"
     },
     "fontSize": {
       "hop-font-size-120": "core_120"
@@ -17,7 +17,7 @@ export const MOCK_TOKENS =
     "color": {
       "hop-danger-border-active": "danger-active",
       "hop-danger-icon-active": "danger-active",
-      "hop-success-border": "success",
+      "hop-success-border": "success"
     },
     "size": {
       "hop-space-inset-xs": "inset-xs"
