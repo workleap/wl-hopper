@@ -35,7 +35,7 @@ const GuideDescriptions: { [key in GuideSection]: string } = {
     forms: "Best practices for building forms in Hopper Design System",
     slots: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
     internationalization: "Adapting components to respect languages and cultures",
-    "figma-conventions": "Figma → Hopper Translation Guide",
+    "figma-conventions": "Figma → Hopper Translation Guide"
 } as const;
 
 export function generateDesignTokensDescription(): string {

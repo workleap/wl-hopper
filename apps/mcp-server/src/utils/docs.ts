@@ -247,13 +247,12 @@ export async function getGuide(section: GuideSection, pageSize?: number, cursor?
 }
 
 export async function getLlmsFull(pageSize?: number, cursor?: string) {
-
     const guidePath = join(env.DOCS_PATH, files.llmsFull.path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`llms-full.txt not found, path: ${guidePath}`);
 
-        return errorContent(error, `llms-full.txt not found`);
+        return errorContent(error, "llms-full.txt not found");
     }
 
     try {
