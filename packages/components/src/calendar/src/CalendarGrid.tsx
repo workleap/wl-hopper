@@ -1,27 +1,30 @@
-import type { AriaCalendarGridProps } from "@react-aria/calendar";
 import clsx from "clsx";
-import { useCallback, type PropsWithChildren } from "react";
+import { useCallback, useContext, type PropsWithChildren } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
     CalendarHeaderCell as AriaCalendarHeaderCell,
     CalendarGridBody,
-    CalendarGridHeader
+    CalendarGridHeader,
+    RangeCalendarStateContext,
+    type CalendarGridProps as AriaCalendarGridProps
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
 import { CalendarCell } from "./CalendarCell.tsx";
+import { RangeCalendarCell } from "./RangeCalendarCell.tsx";
 
 import styles from "./CalendarGrid.module.css";
 
 export const GlobalCalendarGridCssSelector = "hop-CalendarGrid";
 
-interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, PropsWithChildren {
-    months: number;
-}
+type CalendarGridProps = Omit<AriaCalendarGridProps, "children"> & PropsWithChildren;
 
 export const CalendarGrid = (props: CalendarGridProps) => {
-    const { months, weekdayStyle = "short" } = props;
+    const { weekdayStyle = "short" } = props;
+
+    const isRangeCalendar = !!useContext(RangeCalendarStateContext);
+
     const classNames = clsx(
         GlobalCalendarGridCssSelector,
         cssModule(
@@ -43,7 +46,6 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         <AriaCalendarGrid
             weekdayStyle={weekdayStyle}
             className={classNames}
-            offset={{ months }}
             {...props}
         >
             <CalendarGridHeader>
@@ -56,7 +58,7 @@ export const CalendarGrid = (props: CalendarGridProps) => {
             </CalendarGridHeader>
             <CalendarGridBody className={styles["hop-CalendarGrid__body"]}>
                 {date => (
-                    <CalendarCell date={date} />
+                    isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />
                 )}
             </CalendarGridBody>
         </AriaCalendarGrid>

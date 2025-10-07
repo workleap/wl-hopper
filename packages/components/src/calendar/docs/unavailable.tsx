@@ -10,11 +10,11 @@ export default function Example() {
     ];
 
     const { locale } = useLocale();
-    const isDateUnavailable = (date: DateValue) =>
+    const getIsDateUnavailable = (date: DateValue) =>
         isWeekend(date, locale) ||
         disabledRanges.some(interval => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0);
 
     return (
-        <Calendar aria-label="Appointment date" minValue={today(getLocalTimeZone())} isDateUnavailable={isDateUnavailable} />
+        <Calendar aria-label="Appointment date" minValue={today(getLocalTimeZone())} isDateUnavailable={getIsDateUnavailable} />
     );
 }

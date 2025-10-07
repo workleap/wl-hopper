@@ -10,50 +10,11 @@
     inline-size: var(--hop-Calendar-inline-size);
 }
 
-.hop-Calendar__header {
-    --hop-Calendar__header-display: flex;
-    --hop-Calendar__header-align-items: center;
-    --hop-Calendar__header-justify-content: space-between;
-    --hop-Calendar__header-inline-size: 100%;
-
-    display: var(--hop-Calendar__header-display);
-    align-items: var(--hop-Calendar__header-align-items);
-    justify-content: var(--hop-Calendar__header-justify-content);
-    inline-size: var(--hop-Calendar__header-inline-size);
-}
-
-.hop-Calendar__header-button {
-    --hop-Button-ghost-secondary-color: var(--hop-neutral-icon);
-}
-
-.hop-Calendar__header-heading{
-    --hop-Calendar__header-heading-display: flex;
-    --hop-Calendar__header-heading-align-items: center;
-    --hop-Calendar__header-heading-justify-content: center;
-    --hop-Calendar__header-heading-inline-size: 100%;
-    --hop-Calendar__header-heading-font-family: var(--hop-font-family-secondary);
-    --hop-Calendar__header-heading-font-size: var(--hop-font-size-180);
-    --hop-Calendar__header-heading-font-weight: var(--hop-font-weight-590);
-    --hop-Calendar__header-heading-line-height: var(--hop-line-height-1-50);
-    --hop-Calendar__header-heading-color: var(--hop-neutral-text);
-
-    display: var(--hop-Calendar__header-heading-display);
-    align-items: var(--hop-Calendar__header-heading-align-items);
-    justify-content: var(--hop-Calendar__header-heading-justify-content);
-
-    inline-size: var(--hop-Calendar__header-heading-inline-size);
-
-    font-family: var(--hop-Calendar__header-heading-font-family);
-    font-size: var(--hop-Calendar__header-heading-font-size);
-    font-weight: var(--hop-Calendar__header-heading-font-weight);
-    line-height: var(--hop-Calendar__header-heading-line-height);
-    color: var(--hop-Calendar__header-heading-color);
-}
-
 .hop-Calendar__grids {
     --hop-Calendar__grids-display: flex;
     --hop-Calendar__grids-flex-direction: row;
-    --hop-Calendar__grids-gap: var(--hop-space-stack-sm);
+    --hop-Calendar__grids-row-gap: var(--hop-space-stack-lg);
+    --hop-Calendar__grids-column-gap: var(--hop-space-stack-md);
     --hop-Calendar__grids-align-items: start;
     --hop-Calendar__grids-inline-size: 100%;
     --hop-Calendar__grids-flex-wrap: wrap;
@@ -61,7 +22,7 @@
 
     display: var(--hop-Calendar__grids-display);
     flex-flow: var(--hop-Calendar__grids-flex-direction) var(--hop-Calendar__grids-flex-wrap);
-    gap: var(--hop-Calendar__grids-gap);
+    gap: var(--hop-Calendar__grids-row-gap) var(--hop-Calendar__grids-column-gap);
     align-items: var(--hop-Calendar__grids-align-items);
     justify-content: var(--hop-Calendar__grids-justify-content);
 

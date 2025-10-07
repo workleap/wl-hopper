@@ -1,25 +1,26 @@
 import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import type { GlobalDOMAttributes } from "@react-types/shared";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { Calendar as AriaCalendar, FieldErrorContext, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
+import { RangeCalendar as AriaRangeCalendar, FieldErrorContext, useContextProps, type RangeCalendarProps as AriaRangeCalendarProps, type DateValue } from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
 
-import { CalendarContext } from "./CalendarContext.ts";
 import { CalendarGrid } from "./CalendarGrid.tsx";
 import { CalendarHeader } from "./CalendarHeader.tsx";
+import { RangeCalendarContext } from "./RangeCalendarContext.ts";
 
-import styles from "./Calendar.module.css";
+import styles from "./RangeCalendar.module.css";
 
-export const GlobalCalendarCssSelector = "hop-Calendar";
+export const GlobalRangeCalendarCssSelector = "hop-RangeCalendar";
 
-type OmittedCalendarProps = "visibleDuration" | "children";
+type OmittedRangeCalendarProps = "visibleDuration" | "style" | "className" | "children" | keyof GlobalDOMAttributes;
 
-export interface CalendarProps<T extends DateValue> extends StyledComponentProps<Omit<AriaCalendarProps<T>, OmittedCalendarProps>> {
+export interface RangeCalendarProps<T extends DateValue> extends Omit<AriaRangeCalendarProps<T>, OmittedRangeCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
     /**
-   * The error message to display when the calendar is invalid.
+   * The error message to display when the range calendar is invalid.
    */
     errorMessage?: ReactNode;
     /**
@@ -29,8 +30,8 @@ export interface CalendarProps<T extends DateValue> extends StyledComponentProps
     visibleMonths?: number;
 }
 
-const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
-    [props, ref] = useContextProps(props, ref, CalendarContext);
+const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
+    [props, ref] = useContextProps(props, ref, RangeCalendarContext);
 
     const stringFormatter = useLocalizedString();
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -43,10 +44,10 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
     } = ownProps;
 
     const classNames = clsx(
-        GlobalCalendarCssSelector,
+        GlobalRangeCalendarCssSelector,
         cssModule(
             styles,
-            GlobalCalendarCssSelector
+            GlobalRangeCalendarCssSelector
         ),
         stylingProps.className,
         className
@@ -58,7 +59,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
     };
 
     return (
-        <AriaCalendar
+        <AriaRangeCalendar
             {...otherProps}
             ref={ref}
             visibleDuration={{ months: visibleMonths }}
@@ -68,7 +69,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
             {({ isInvalid }) => (
                 <>
                     <CalendarHeader />
-                    <div className={styles["hop-Calendar__grids"]}>
+                    <div className={styles["hop-RangeCalendar__grids"]}>
                         {Array.from({ length: visibleMonths }).map((_, i) => (
                             // eslint-disable-next-line react/no-array-index-key
                             <CalendarGrid offset={{ months: i }} key={i} />
@@ -83,22 +84,22 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                             }]
                         ]}
                     >
-                        <ErrorMessage className={styles["hop-Calendar__error-message"]}>
+                        <ErrorMessage className={styles["hop-RangeCalendar__error-message"]}>
                             {errorMessage || stringFormatter.format("Calendar.invalidSelection")}
                         </ErrorMessage>
                     </SlotProvider>
                 </>
             )}
-        </AriaCalendar>
+        </AriaRangeCalendar>
     );
 };
 
 /**
- * A calendar displays one or more date grids and allows users to select a single date.
+ * A range calendar displays one or more date grids and allows users to select a contiguous range of dates.
  *
- * [View Documentation](https://hopper.workleap.design/components/Calendar)
+ * [View Documentation](https://hopper.workleap.design/components/RangeCalendar)
  */
-const _Calendar = forwardRef<HTMLDivElement, CalendarProps<DateValue>>(Calendar);
-_Calendar.displayName = "Calendar";
+const _RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps<DateValue>>(RangeCalendar);
+_RangeCalendar.displayName = "RangeCalendar";
 
-export { _Calendar as Calendar };
+export { _RangeCalendar as RangeCalendar };

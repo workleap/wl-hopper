@@ -1,0 +1,11 @@
+.hop-RangeCalendar  {
+    composes: hop-Calendar from "./Calendar.module.css";
+}
+
+.hop-RangeCalendar__grids {
+    composes: hop-Calendar__grids from "./Calendar.module.css";
+}
+
+.hop-RangeCalendar__error-message {
+    composes: hop-Calendar__error-message from "./Calendar.module.css";
+}
