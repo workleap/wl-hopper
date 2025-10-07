@@ -180,7 +180,9 @@ describe("getDesignTokensMap", () => {
 
             expect(content).toEqual({});
         });
-    }); describe("Nested structure preservation", () => {
+    });
+
+    describe("Nested structure preservation", () => {
         it("should preserve parent objects when child tokens match", async () => {
             const result = await getDesignTokensMap("all", ["coastal"], "brief");
 
