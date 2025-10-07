@@ -1,4 +1,4 @@
-import { aiDocsConfig } from "@/ai-docs/ai-docs.config.ts";
+import { aiDocsConfig } from "@/ai-pipeline/ai-docs.config";
 import { readdir, stat, writeFile } from "fs/promises";
 import { join, relative } from "path";
 

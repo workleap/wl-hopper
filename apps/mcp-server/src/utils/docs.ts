@@ -17,12 +17,12 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches"] as const;
+export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarted.index> = {
+export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
@@ -36,7 +36,7 @@ export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarte
     slots: files.components.concepts.slots,
     internationalization: files.components.concepts.internationalization,
     "escape-hatches": files.styledSystem.escapeHatches,
-    all: files.llmsFull
+    "figma-conventions": files.ai.figmaConventions
 };
 
 export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
@@ -222,7 +222,7 @@ async function readComponentApi(relativePath: string) {
     }
 }
 
-export async function getGuide(section: GuideSection | "all", pageSize?: number, cursor?: string) {
+export async function getGuide(section: GuideSection, pageSize?: number, cursor?: string) {
     if (!Object.keys(GuideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
@@ -235,6 +235,24 @@ export async function getGuide(section: GuideSection | "all", pageSize?: number,
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
 
         return errorContent(error, `Guide not found for section: ${section}`);
+    }
+
+    try {
+        return getPaginatedContent(
+            await readMarkdownFile(guidePath, pageSize, cursor)
+        );
+    } catch (error) {
+        return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
+}
+
+export async function getLlmsFull(pageSize?: number, cursor?: string) {
+    const guidePath = join(env.DOCS_PATH, files.llmsFull.path);
+
+    if (!existsSync(guidePath)) {
+        const error = new Error(`llms-full.txt not found, path: ${guidePath}`);
+
+        return errorContent(error, "llms-full.txt not found");
     }
 
     try {

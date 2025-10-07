@@ -3,7 +3,15 @@
 // This approach is flaky and should be replaced with a more robust solution in the future.
 
 // Auto-generated file - do not edit manually
+// Auto-generated file - do not edit manually
 const files = {
+  "ai": {
+    "figmaConventions": {
+      "path": "/ai/figma-conventions.md",
+      "size": 1911,
+      "estimatedTokens": 546
+    }
+  },
   "components": {
     "api": {
       "brief": {
@@ -894,8 +902,8 @@ const files = {
       },
       "index": {
         "path": "/components/concepts/index.md",
-        "size": 46982,
-        "estimatedTokens": 13424
+        "size": 47700,
+        "estimatedTokens": 13629
       },
       "internationalization": {
         "path": "/components/concepts/internationalization.md",
@@ -904,8 +912,8 @@ const files = {
       },
       "layout": {
         "path": "/components/concepts/layout.md",
-        "size": 9092,
-        "estimatedTokens": 2598
+        "size": 9810,
+        "estimatedTokens": 2803
       },
       "slots": {
         "path": "/components/concepts/slots.md",
@@ -961,7 +969,7 @@ const files = {
       },
       "box": {
         "path": "/components/full/Box.md",
-        "size": 3971,
+        "size": 3970,
         "estimatedTokens": 1135
       },
       "button": {
@@ -1026,8 +1034,8 @@ const files = {
       },
       "div": {
         "path": "/components/full/Div.md",
-        "size": 2997,
-        "estimatedTokens": 857
+        "size": 2989,
+        "estimatedTokens": 854
       },
       "divider": {
         "path": "/components/full/Divider.md",
@@ -1041,8 +1049,8 @@ const files = {
       },
       "flex": {
         "path": "/components/full/Flex.md",
-        "size": 12257,
-        "estimatedTokens": 3502
+        "size": 12405,
+        "estimatedTokens": 3545
       },
       "floatingBadge": {
         "path": "/components/full/FloatingBadge.md",
@@ -1327,8 +1335,8 @@ const files = {
     },
     "index": {
       "path": "/components/index.md",
-      "size": 1864562,
-      "estimatedTokens": 532732
+      "size": 1864701,
+      "estimatedTokens": 532772
     },
     "usage": {
       "a": {
@@ -1373,8 +1381,8 @@ const files = {
       },
       "box": {
         "path": "/components/usage/Box.md",
-        "size": 3655,
-        "estimatedTokens": 1045
+        "size": 3654,
+        "estimatedTokens": 1044
       },
       "button": {
         "path": "/components/usage/Button.md",
@@ -1438,8 +1446,8 @@ const files = {
       },
       "div": {
         "path": "/components/usage/Div.md",
-        "size": 2997,
-        "estimatedTokens": 857
+        "size": 2989,
+        "estimatedTokens": 854
       },
       "divider": {
         "path": "/components/usage/Divider.md",
@@ -1453,8 +1461,8 @@ const files = {
       },
       "flex": {
         "path": "/components/usage/Flex.md",
-        "size": 10288,
-        "estimatedTokens": 2940
+        "size": 10436,
+        "estimatedTokens": 2982
       },
       "floatingBadge": {
         "path": "/components/usage/FloatingBadge.md",
@@ -1766,8 +1774,8 @@ const files = {
     },
     "mcpServer": {
       "path": "/getting-started/mcp-server.md",
-      "size": 2735,
-      "estimatedTokens": 782
+      "size": 2958,
+      "estimatedTokens": 846
     },
     "react": {
       "path": "/getting-started/react.md",
@@ -1835,8 +1843,8 @@ const files = {
   },
   "llmsFull": {
     "path": "/llms-full.md",
-    "size": 2359558,
-    "estimatedTokens": 674160
+    "size": 2360415,
+    "estimatedTokens": 674405
   },
   "llms": {
     "path": "/llms.md",
@@ -2266,4 +2274,7 @@ const files = {
 };
 
 export { files };
+
+
+    export { files };
 
