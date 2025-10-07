@@ -2,4 +2,4 @@
 "@hopper-ui/components": patch
 ---
 
-Ghost button are no longer underlined when hovered and selected
+Ghost buttons are no longer underlined when hovered and selected
