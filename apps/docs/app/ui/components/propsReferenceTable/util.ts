@@ -17,6 +17,14 @@ export const ScaleLinks = {
         title: "Spacing",
         link: "/tokens/semantic/space"
     },
+    "spacing-padding-scale": {
+        title: "Spacing > Padding",
+        link: "/tokens/semantic/space#tokens-padding"
+    },
+    "spacing-margin-scale": {
+        title: "Spacing > Margin",
+        link: "/tokens/semantic/space#tokens-margin"
+    },
     "shape-scale": {
         title: "Shape",
         link: "/tokens/semantic/shape"

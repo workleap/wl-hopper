@@ -31,6 +31,7 @@ const VariantToCard: Record<Variant, DosAndDontsCardProps> = {
 };
 
 interface DosAndDontsItem {
+    isForAiOnly?: boolean;
     explanation?: string;
     example?: ReactNode;
 }
@@ -47,7 +48,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
     const theme = colorMode as ColorScheme;
 
     const renderCard = (variant: Variant, item?: DosAndDontsItem) => {
-        if (!item) {
+        if (!item || item.isForAiOnly) {
             return null;
         }
 

@@ -2275,6 +2275,3 @@ const files = {
 
 export { files };
 
-
-    export { files };
-

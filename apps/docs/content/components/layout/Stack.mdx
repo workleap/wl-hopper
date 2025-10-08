@@ -49,6 +49,24 @@ Stack should:
                 explanation: "Use Flex with direction='column' when Stack is sufficient",
                 example: <CodeOnlyExample src="layout/docs/stack/dos-and-donts/simple-dont" />
             }
+        },
+        {
+            isForAiOnly: true,
+            do: {
+                explanation: "Use `alignY` to adjust vertical alignment of items",
+            },
+            dont: {
+                explanation: "Use `alignItems` which is not supported by `Stack`",
+            }
+        },
+        {
+            isForAiOnly: true,
+            do: {
+                explanation: "Use `alignX` to adjust horizontal alignment of items",
+            },
+            dont: {
+                explanation: "Use `justifyContent` which is not supported by `Stack`",
+            }
         }
     ]}
 />
