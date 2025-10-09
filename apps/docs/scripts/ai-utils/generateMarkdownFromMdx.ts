@@ -1,3 +1,4 @@
+import type { components } from "@/components/mdx/components.ai.tsx";
 import fs from "fs/promises";
 import type { Heading, Node, Parent, Root } from "mdast";
 import path from "path";
@@ -8,10 +9,10 @@ import { visit } from "unist-util-visit";
 import { convertMdxToMd, type FrontMatterConvertOptions } from "./convertMdxToMd.ts";
 
 
-async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions): Promise<string> {
+async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions, customComponents: Record<string, React.ComponentType> = {}): Promise<string> {
     const mdxSource = await fs.readFile(filePath, "utf-8");
 
-    const mdContent = convertMdxToMd(mdxSource, options);
+    const mdContent = convertMdxToMd(mdxSource, options, customComponents);
 
     //replace <!-- --> comments with empty string
     return (await mdContent).replace(/<!--[\s\S]*?-->/g, "");
@@ -48,7 +49,13 @@ export interface GenerateMarkdownOptions {
          * A function to replace links in the generated Markdown.
          */
         replaceLinks?: (link: string) => string;
+    };
 
+    /**
+     * Custom MDX components to support during conversion (e.g., for rendering previews).
+     */
+    renderer? : {
+        customComponents?: Partial<Record<keyof typeof components, React.ComponentType>>;
     };
 }
 
@@ -130,14 +137,16 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         const mdxFiles = await findFiles(options.filesPath, options.deep ?? true, [".mdx"], options.excludedPaths);
         const mdFiles = await findFiles(options.filesPath, options.deep ?? true, [".md"], options.excludedPaths);
 
-        if (mdxFiles.length > 0) console.log(`📁 Found ${mdxFiles.length} MDX files`);
-        if (mdFiles.length > 0) console.log(`📁 Found ${mdFiles.length} MD files`);
+        if (mdxFiles.length > 0) {console.log(`📁 Found ${mdxFiles.length} MDX files`);}
+        if (mdFiles.length > 0) {console.log(`📁 Found ${mdFiles.length} MD files`);}
 
         // Process files
         const processedFiles: ProcessedFile[] = [];
 
+        const customComponents = options.renderer?.customComponents ?? {};
+
         for (const filePath of mdxFiles) {
-            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false });
+            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false }, customComponents);
             if (mdContent) {
                 const processedFile = await processMarkdownContent(filePath, mdContent, options);
                 processedFiles.push(processedFile);

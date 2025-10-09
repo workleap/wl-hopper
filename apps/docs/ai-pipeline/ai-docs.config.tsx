@@ -107,49 +107,105 @@ export const aiDocsConfig: AiDocsConfig = {
             },
         },
 
-        //icons
-        "icons": {
+        //icons (full)
+        "icons/full": {
             build: {
                 source: "content/icons",
                 flatten: false,
             },
             serve: {
-                 filesInRoot: true
+                 at: "/icons",
+                 //filesInRoot: true
             }
         },
 
-        "icons/index.md": {
+        "icons/full/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons.mdx",
                 merge: [
-                    "/icons/overview/introduction.md",
-                    "/icons/overview/designing-an-icon.md",
-                    "/icons/react-icons/icon-library.md",
-                    "/icons/react-icons/rich-icon-library.md",
-                    "/icons/SVG-icons/icon-library.md",
-                    "/icons/SVG-icons/rich-icon-library.md"
+                    "/icons/full/overview/introduction.md",
+                    "/icons/full/react-icons/icon-library.md",
+                    "/icons/full/react-icons/rich-icon-library.md",
+                    "/icons/full/SVG-icons/icon-library.md",
+                    "/icons/full/SVG-icons/rich-icon-library.md",
+                    "/icons/full/advanced/designing-an-icon.md"
+
                 ]
             },
         },
 
-        "icons/react-icons/index.md": {
+        "icons/full/react-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-react.mdx",
                 merge: [
-                    "/icons/react-icons/icon-library.md",
-                    "/icons/react-icons/rich-icon-library.md"
+                    "/icons/full/react-icons/icon-library.md",
+                    "/icons/full/react-icons/rich-icon-library.md"
                 ]
             },
         },
 
-        "icons/SVG-icons/index.md": {
+        "icons/full/SVG-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-svg.mdx",
                 merge: [
-                    "/icons/SVG-icons/icon-library.md",
-                    "/icons/SVG-icons/rich-icon-library.md"
+                    "/icons/full/SVG-icons/icon-library.md",
+                    "/icons/full/SVG-icons/rich-icon-library.md"
                 ]
             },
+        },
+
+        //icons (brief): same as full but without icons lists
+        "icons/brief": {
+            build: {
+                source: "content/icons",
+                flatten: false,
+                renderer: {
+                    customComponents: {
+                        Switcher: () => <div/>
+                    }
+                }
+            },
+        },
+
+        "icons/brief/index.md": {
+            build: {
+                template: "/ai-pipeline/templates/icons.mdx",
+                merge: [
+                    "/icons/brief/overview/introduction.md",
+                    "/icons/brief/react-icons/icon-library.md",
+                    "/icons/brief/react-icons/rich-icon-library.md",
+                    "/icons/brief/SVG-icons/icon-library.md",
+                    "/icons/brief/SVG-icons/rich-icon-library.md",
+                    "/icons/brief/advanced/designing-an-icon.md"
+                ]
+            },
+        },
+
+        "icons/brief/react-icons/index.md": {
+            build: {
+                template: "/ai-pipeline/templates/icons-react.mdx",
+                merge: [
+                    "/icons/brief/react-icons/icon-library.md",
+                    "/icons/brief/react-icons/rich-icon-library.md"
+                ]
+            },
+        },
+
+        "icons/brief/SVG-icons/index.md": {
+            build: {
+                template: "/ai-pipeline/templates/icons-svg.mdx",
+                merge: [
+                    "/icons/brief/SVG-icons/icon-library.md",
+                    "/icons/brief/SVG-icons/rich-icon-library.md"
+                ]
+            },
+        },
+
+        //icons (data)
+        "icons/data.json": {
+            build: {
+                type: "icons-json",
+            }
         },
 
         //tokens
@@ -290,7 +346,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "tokens/index.md",
                     "components/index.md",
                     "components/concepts/index.md",
-                    "icons/index.md"
+                    "icons/full/index.md"
                 ]
             },
         }

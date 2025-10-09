@@ -29,8 +29,7 @@ const GuideDescriptions: { [key in GuideSection]: string } = {
     layout: "Building application layouts using Flex or Grid",
     "escape-hatches": "It lists the ONLY available UNSAFE_* props in JSON format.",
     "color-schemes": "Applying light mode, dark mode, or adapt to operating system's dark mode",
-    "react-icons": "All available react icons with each icon description and usage examples",
-    "svg-icons": "All available SVG icons with each icon description and usage examples",
+    icons: "Using and designing standard, rich, and SVG icons in Hopper for React and other frameworks",
     "controlled-mode": "Using controlled and uncontrolled modes to customize components",
     forms: "Best practices for building forms in Hopper Design System",
     slots: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
@@ -129,5 +128,15 @@ export const toolsInfo = {
         name: "migrate_from_orbiter_to_hopper",
         title: "Migrate a file or all files in the folder from Orbiter to Hopper",
         description: "It migrates a file or all files in the folder from Orbiter to Hopper."
+    },
+    get_icons: {
+        name: "get_icons",
+        title: "Search for Hopper icons",
+        description: "Search for Hopper icons with multiple queries. Each query can contain multiple keywords separated by space (treated as AND). Returns a map of query to results. When all queries are missed, returns all icons under the type key.",
+        parameters: {
+            queries: "Optional. Array of search queries (e.g., ['add', 'new product']). Each query can have multiple keywords separated by space. Empty/whitespace-only queries are ignored.",
+            type: "Filter by icon type (default: 'all')",
+            limit: "Optional. Max results to return per query. If omitted, returns all matching results. **Recommended:** Use limit=5 when providing queries to get focused results."
+        }
     }
 } as const;

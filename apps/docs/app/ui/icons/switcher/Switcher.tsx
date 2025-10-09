@@ -11,11 +11,12 @@ import "./switcher.css";
 interface SwitcherProps {
     type: "react" | "svg";
     iconType: "icon" | "richIcon";
+    headLine: string;
 }
 
 type AvailableSizes = "sm"| "md" | "lg" | "xl";
 
-const Switcher = memo(({ type, iconType = "icon" }: SwitcherProps) => {
+const Switcher = memo(({ type, headLine, iconType = "icon" }: SwitcherProps) => {
     const { colorMode } = useContext(ThemeContext);
     const [filter, setFilter] = useState("");
     const [selectedSize, setSelectedSize] = useState<AvailableSizes>(iconType === "icon" ? "md" : "lg");
@@ -28,18 +29,21 @@ const Switcher = memo(({ type, iconType = "icon" }: SwitcherProps) => {
     };
 
     return (
-        <div className="hd-switcher__wrapper">
-            <RadioGroup className="hd-switcher-picker" defaultValue={selectedSize} onChange={value => setSelectedSize(value as AvailableSizes)}>
-                {iconType === "icon" && <SwitcherChoice value="sm" preview={<SparklesIcon size="sm" />} />}
-                <SwitcherChoice value="md" preview={<Icon size="md" />} />
-                <SwitcherChoice value="lg" preview={<Icon size="lg" />} />
-                {iconType === "richIcon" && <SwitcherChoice value="xl" preview={<SparklesRichIcon size="xl" />} />}
-            </RadioGroup>
-            <HopperProvider colorScheme={colorMode}>
-                <SearchField aria-label="Filter icons" placeholder="Search" value={filter} onChange={onTextFieldChange} />
-            </HopperProvider>
-            <IconTable type={type} size={selectedSize} filter={filter} items={iconList} />
-        </div>
+        <>
+            <div>{headLine}</div>
+            <div className="hd-switcher__wrapper">
+                <RadioGroup className="hd-switcher-picker" defaultValue={selectedSize} onChange={value => setSelectedSize(value as AvailableSizes)}>
+                    {iconType === "icon" && <SwitcherChoice value="sm" preview={<SparklesIcon size="sm" />} />}
+                    <SwitcherChoice value="md" preview={<Icon size="md" />} />
+                    <SwitcherChoice value="lg" preview={<Icon size="lg" />} />
+                    {iconType === "richIcon" && <SwitcherChoice value="xl" preview={<SparklesRichIcon size="xl" />} />}
+                </RadioGroup>
+                <HopperProvider colorScheme={colorMode}>
+                    <SearchField aria-label="Filter icons" placeholder="Search" value={filter} onChange={onTextFieldChange} />
+                </HopperProvider>
+                <IconTable type={type} size={selectedSize} filter={filter} items={iconList} />
+            </div>
+        </>
     );
 });
 

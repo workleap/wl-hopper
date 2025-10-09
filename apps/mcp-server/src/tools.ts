@@ -6,6 +6,7 @@ import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content";
 import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs";
 import { formatValidationMessages } from "./utils/formatValidationMessages";
+import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackError, trackEvent } from "./utils/logging";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo";
 import { validateComponentStructure } from "./utils/validateComponentStructure";
@@ -136,6 +137,38 @@ export function tools(server: McpServer) {
 
         return toolContent(await getGuide(guide, page_size, cursor));
     });
+
+    server.registerTool(toolsInfo.get_icons.name, {
+        title: toolsInfo.get_icons.title,
+        description: toolsInfo.get_icons.description,
+        inputSchema: {
+            queries: z.array(z.string()).optional().describe(toolsInfo.get_icons.parameters.queries),
+            type: z.enum(IconTypes).optional().default("all").describe(toolsInfo.get_icons.parameters.type),
+            limit: z.number().optional().describe(toolsInfo.get_icons.parameters.limit)
+        },
+        annotations: {
+            readOnlyHint: true
+        }
+    }, async ({ queries, type, limit }, e) : Promise<CallToolResult> => {
+        try {
+            trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
+
+            const results = await getIcons(queries, type, limit);
+
+            if (Object.keys(results).length === 0) {
+                return toolContent(content("No queries provided."));
+            }
+
+            return toolContent(
+                content(JSON.stringify(results, null, 2))
+            );
+        } catch (error) {
+            trackError(error, e?.requestInfo);
+
+            return toolContent(errorContent(error, "Failed to search icons. Please try again with different keywords."));
+        }
+    });
+
 
     server.registerTool(toolsInfo.validate_component_structure.name, {
         title: toolsInfo.validate_component_structure.title,

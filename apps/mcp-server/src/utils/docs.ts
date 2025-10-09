@@ -17,7 +17,7 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
+export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
@@ -25,10 +25,8 @@ export type TokenCategory = typeof TokenCategories[number];
 export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
-    "react-icons": files.icons.reactIcons.index,
-    "svg-icons": files.icons.svgIcons.index,
+    icons: files.icons.brief.index,
     "components-list": files.components.full.componentList,
-
     "color-schemes": files.components.concepts.colorSchemes,
     layout: files.components.concepts.layout,
     "controlled-mode": files.components.concepts.controlledMode,

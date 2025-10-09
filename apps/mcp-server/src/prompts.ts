@@ -78,19 +78,26 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ## 3. Before Writing ANY Code
 **CRITICAL: Complete this checklist FIRST:**
+
+## 3.1 Understanding
 - [ ] Fetch all the following resources before start coding, not just when you hit errors:
     - Call '#${toolsInfo.get_guide.name}(${"styles" satisfies GuideSection})' to get the relevant styling guidance.
     - Call '#${toolsInfo.get_guide.name}(${"escape-hatches" satisfies GuideSection})' to get a COMPLETE WHITELIST of available 'UNSAFE_*' props. Any prop not in that list **MUST** be used WITHOUT the UNSAFE_ prefix.
     - Call '#${toolsInfo.get_guide.name}(${"layout" satisfies GuideSection})' to understand correct layout practices.
+    - Call '#${toolsInfo.get_guide.name}(${"icons" satisfies GuideSection})' to understand different icon type and their usage.
     - Call '#${toolsInfo.get_guide.name}(${"figma-conventions" satisfies GuideSection})' to understand how to interpret Figma elements → Hopper Component/ Hopper Icon/ Product Icon.
-- [ ] Create a complete map of design tokens → component prop values for every token actually used in the #get_code response by calling '#${toolsInfo.get_design_tokens_map.name}' and passing ONLY those token names via its filtering parameter. This optimizes token usage and response size.
-    - Call '#${toolsInfo.get_design_tokens_map.name}(${"all" satisfies TokenCategory})' without filtering parameter if needed to fill any gaps in the above mapping.
+
+## 3.2 Component, Icon & Token Mapping
+You MUST NOT proceed to implementation until you:
+- [ ] Extract all unique token names from #get_code response. List them here: hop-neutral-text, hop-primary-surface, ...
+- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}' and passing ONLY those token names via its 'filter_by_names' parameter. This optimizes token usage and response size.
 - [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
     - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
     - **List every Product Icons/Logos/Images/Avatars occurrence with its image URL from #get_code**
 
 ## 4. Implementation
 - Implement **ALL** Product Icons/Logos/Images/Avatars from your product icon map created in previous step.
+- **Proactively** refer to your design token and component maps to ensure correct usage.
 - Build out the implementation entirely with Hopper components and patterns.
 - ENSURE you don't guess UNSAFE_ props. ONLY use UNSAFE_ props listed in the '${"escape-hatches" satisfies GuideSection}' guide.
 - Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
@@ -102,8 +109,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 5. QA
 - [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
-- [ ] Verify **ALL Product Icons/Logos/Avatars** are preserved from the Figma design.
-- [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end.
+- [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
+- [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 
