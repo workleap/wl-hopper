@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { getScaleCategory, isScaleLink, ScaleLinks } from "./util";
 
 function toScaleLink(scale: string) {
-    return isScaleLink(scale) ? <a href={ScaleLinks[scale].link} target="_blank" >{`${getScaleCategory(scale)} ${ScaleLinks[scale].title}`}</a> : scale;
+    return isScaleLink(scale) ? <a href={ScaleLinks[scale].link} target="_blank" >{`${getScaleCategory(scale)} > ${ScaleLinks[scale].title}`}</a> : scale;
 }
 
 function toRowValues([propName, cssProperty, scale, supports]: string[]): Item {

@@ -2,8 +2,7 @@
 
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
-
-import { getGuide } from "./utils/docs";
+import { getLlmsFull } from "./utils/docs";
 import { trackEvent } from "./utils/logging";
 
 export function resources(server: McpServer) {
@@ -17,7 +16,7 @@ export function resources(server: McpServer) {
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("hopper-full-documentation", {}, requestInfo);
 
-            const doc = await getGuide("all");
+            const doc = await getLlmsFull();
             const contents = Array.isArray(doc) ? doc : [doc];
 
             return {

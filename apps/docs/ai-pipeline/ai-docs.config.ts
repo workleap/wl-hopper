@@ -1,4 +1,4 @@
-import { AiDocsConfig } from "./types";
+import { AiDocsConfig } from "./types.ts";
 
 export const aiDocsConfig: AiDocsConfig = {
     buildRootPath: "dist",
@@ -54,7 +54,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "components/index.md": {
             build: {
-                template: "/content/ai-templates/components.mdx",
+                template: "/ai-pipeline/templates/components.mdx",
                 merge: [
                     "/components/full/component-list.md",
                     "/components/full/*.md"
@@ -75,7 +75,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "components/concepts/index.md": {
             build: {
-                template: "/content/ai-templates/components-concepts.mdx",
+                template: "/ai-pipeline/templates/components-concepts.mdx",
                 merge: [
                     "/components/concepts/*.md",
                 ]
@@ -96,7 +96,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "getting-started/index.md": {
             build: {
-                template: "/content/ai-templates/getting-started.mdx",
+                template: "/ai-pipeline/templates/getting-started.mdx",
                 merge: [
                     "/getting-started/installation.md",
                     "/getting-started/react.md",
@@ -120,7 +120,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "icons/index.md": {
             build: {
-                template: "/content/ai-templates/icons.mdx",
+                template: "/ai-pipeline/templates/icons.mdx",
                 merge: [
                     "/icons/overview/introduction.md",
                     "/icons/overview/designing-an-icon.md",
@@ -134,7 +134,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "icons/react-icons/index.md": {
             build: {
-                template: "/content/ai-templates/icons-react.mdx",
+                template: "/ai-pipeline/templates/icons-react.mdx",
                 merge: [
                     "/icons/react-icons/icon-library.md",
                     "/icons/react-icons/rich-icon-library.md"
@@ -144,7 +144,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "icons/SVG-icons/index.md": {
             build: {
-                template: "/content/ai-templates/icons-svg.mdx",
+                template: "/ai-pipeline/templates/icons-svg.mdx",
                 merge: [
                     "/icons/SVG-icons/icon-library.md",
                     "/icons/SVG-icons/rich-icon-library.md"
@@ -162,7 +162,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "tokens/core/index.md": {
             build: {
-                template: "/content/ai-templates/tokens-core.mdx",
+                template: "/ai-pipeline/templates/tokens-core.mdx",
                 merge: [
                     "/tokens/core/color.md",
                     "/tokens/core/dimensions.md",
@@ -199,7 +199,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "tokens/semantic/index.md": {
             build: {
-                template: "/content/ai-templates/tokens-semantic.mdx",
+                template: "/ai-pipeline/templates/tokens-semantic.mdx",
                 merge: [
                     "/tokens/semantic/color.md",
                     "/tokens/semantic/elevation.md",
@@ -212,7 +212,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "tokens/index.md": {
             build: {
-                template: "/content/ai-templates/tokens.mdx",
+                template: "/ai-pipeline/templates/tokens.mdx",
                 merge: [
                     "/tokens/overview/introduction.md",
                     "/tokens/semantic/color.md",
@@ -243,7 +243,7 @@ export const aiDocsConfig: AiDocsConfig = {
 
         "styled-system/index.md": {
             build: {
-                template: "/content/ai-templates/styled-system.mdx",
+                template: "/ai-pipeline/templates/styled-system.mdx",
                 merge: [
                     "/styled-system/overview/introduction.md",
                     "/styled-system/concepts/styling.md",
@@ -263,20 +263,27 @@ export const aiDocsConfig: AiDocsConfig = {
         "styled-system/escape-hatches.md": {
             build: {
                 type: "unsafe-props-markdown",
-                template: "/content/ai-templates/escape-hatches.mdx",
+                template: "/ai-pipeline/templates/escape-hatches.mdx",
             },
+        },
+
+        //ai docs
+        "ai": {
+            build: {
+                source: "content/ai",
+            }
         },
 
         // llms.txt
         "llms.md": {
             build: {
-                template: "/content/ai-templates/llms.mdx",
+                template: "/ai-pipeline/templates/llms.mdx",
             },
         },
 
         "llms-full.md": {
             build: {
-                template: "/content/ai-templates/llms-full.mdx",
+                template: "/ai-pipeline/templates/llms-full.mdx",
                 merge: [
                     "getting-started/index.md",
                     "styled-system/index.md",

@@ -5,7 +5,6 @@
     --hop-Button-icon-only-column-gap: 0;
     --hop-Button-outline-size: var(--hop-space-20);
     --hop-Button-border-size: var(--hop-space-10);
-    --hop-Button-text-underline-offset: var(--hop-space-20);
 
     /* Sizes */
     --hop-Button-icon-only-padding: 0; /* Since the content is centered, no need for padding */
@@ -122,7 +121,6 @@
     --spinner: var(--hop-primary-icon-strong);
     --border: 0;
     --padding: var(--hop-Button-md-padding);
-    --text-underline: none;
 
     /** styles */
     cursor: pointer;
@@ -285,14 +283,12 @@
     --background-color: var(--hop-Button-ghost-primary-background-color-hover);
     --color: var(--hop-Button-ghost-primary-color-hover);
     --border: var(--hop-Button-ghost-primary-border-hover);
-    --text-underline: underline;
 }
 
 .hop-Button--ghost-primary[data-pressed] {
     --background-color: var(--hop-Button-ghost-primary-background-color-pressed);
     --color: var(--hop-Button-ghost-primary-color-pressed);
     --border: var(--hop-Button-ghost-primary-border-pressed);
-    --text-underline: underline;
 }
 
 .hop-Button--ghost-secondary {
@@ -307,14 +303,12 @@
     --background-color: var(--hop-Button-ghost-secondary-background-color-hover);
     --color: var(--hop-Button-ghost-secondary-color-hover);
     --border: var(--hop-Button-ghost-secondary-border-hover);
-    --text-underline: underline;
 }
 
 .hop-Button--ghost-secondary[data-pressed] {
     --background-color: var(--hop-Button-ghost-secondary-background-color-pressed);
     --color: var(--hop-Button-ghost-secondary-color-pressed);
     --border: var(--hop-Button-ghost-secondary-border-pressed);
-    --text-underline: underline;
 }
 
 .hop-Button--ghost-danger {
@@ -329,14 +323,12 @@
     --background-color: var(--hop-Button-ghost-danger-background-color-hover);
     --color: var(--hop-Button-ghost-danger-color-hover);
     --border: var(--hop-Button-ghost-danger-border-hover);
-    --text-underline: underline;
 }
 
 .hop-Button--ghost-danger[data-pressed] {
     --background-color: var(--hop-Button-ghost-danger-background-color-pressed);
     --color: var(--hop-Button-ghost-danger-color-pressed);
     --border: var(--hop-Button-ghost-danger-border-pressed);
-    --text-underline: underline;
 }
 
 /** Focus Ring */
@@ -392,21 +384,18 @@
     --background-color: var(--hop-Button-ghost-primary-background-color);
     --color: var(--hop-Button-ghost-primary-color);
     --border: var(--hop-Button-ghost-primary-border);
-    --text-underline: none;
 }
 
 .hop-Button--loading.hop-Button--ghost-secondary {
     --background-color: var(--hop-Button-ghost-secondary-background-color);
     --color: var(--hop-Button-ghost-secondary-color);
     --border: var(--hop-Button-ghost-secondary-border);
-    --text-underline: none;
 }
 
 .hop-Button--loading.hop-Button--ghost-danger {
     --background-color: var(--hop-Button-ghost-danger-background-color);
     --color: var(--hop-Button-ghost-danger-color);
     --border: var(--hop-Button-ghost-danger-border);
-    --text-underline: none;
 }
 
 /** Elements */
@@ -430,8 +419,7 @@
     order: 2;
 
     font-weight: var(--hop-font-weight-505);
-    text-decoration: var(--text-underline);
-    text-underline-offset: 0.125rem;
+    text-decoration: none;
     text-wrap: nowrap;
 }
 

@@ -105,17 +105,18 @@ export function tools(server: McpServer) {
         title: toolsInfo.get_design_tokens_map.title,
         description: toolsInfo.get_design_tokens_map.description,
         inputSchema: {
-            category: z.enum(TokenCategories),
-            include_raw_values: z.boolean().optional().default(false).describe("Whether to include raw token values along with prop values. **DEFAULT: false**")
+            category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens_map.parameters.category),
+            filter_by_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens_map.parameters.filter_by_names),
+            include_raw_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens_map.parameters.include_raw_values)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_raw_values }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_raw_values }, e?.requestInfo);
+    }, async ({ category, include_raw_values, filter_by_names }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_raw_values, filter_by_names }, e?.requestInfo);
 
         return toolContent(
-            await getDesignTokensMap(category, include_raw_values ? "full" : "brief"),
+            await getDesignTokensMap(category, filter_by_names, include_raw_values ? "full" : "brief"),
             include_raw_values ? content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**") : undefined
         );
     });

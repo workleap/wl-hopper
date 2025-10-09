@@ -1,5 +1,15 @@
 # @hopper-ui/components
 
+## 1.14.0
+
+### Minor Changes
+
+- 62fe803: Add RangeCalendar component
+
+### Patch Changes
+
+- 660de97: Ghost buttons are no longer underlined when hovered and selected
+
 ## 1.13.1
 
 ### Patch Changes

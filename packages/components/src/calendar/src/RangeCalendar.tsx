@@ -72,7 +72,7 @@ const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: F
                     <div className={styles["hop-RangeCalendar__grids"]}>
                         {Array.from({ length: visibleMonths }).map((_, i) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <CalendarGrid isRangeCalendar months={i} key={i} />
+                            <CalendarGrid offset={{ months: i }} key={i} />
                         ))}
                     </div>
                     <SlotProvider

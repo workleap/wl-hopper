@@ -17,12 +17,12 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches"] as const;
+export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "react-icons", "svg-icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarted.index> = {
+export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     "react-icons": files.icons.reactIcons.index,
@@ -36,7 +36,7 @@ export const GuideFiles: Record<GuideSection | "all", typeof files.gettingStarte
     slots: files.components.concepts.slots,
     internationalization: files.components.concepts.internationalization,
     "escape-hatches": files.styledSystem.escapeHatches,
-    all: files.llmsFull
+    "figma-conventions": files.ai.figmaConventions
 };
 
 export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
@@ -222,7 +222,7 @@ async function readComponentApi(relativePath: string) {
     }
 }
 
-export async function getGuide(section: GuideSection | "all", pageSize?: number, cursor?: string) {
+export async function getGuide(section: GuideSection, pageSize?: number, cursor?: string) {
     if (!Object.keys(GuideFiles).includes(section)) {
         const error = new Error(`Invalid guide section requested: ${section}`);
 
@@ -235,6 +235,24 @@ export async function getGuide(section: GuideSection | "all", pageSize?: number,
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
 
         return errorContent(error, `Guide not found for section: ${section}`);
+    }
+
+    try {
+        return getPaginatedContent(
+            await readMarkdownFile(guidePath, pageSize, cursor)
+        );
+    } catch (error) {
+        return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
+}
+
+export async function getLlmsFull(pageSize?: number, cursor?: string) {
+    const guidePath = join(env.DOCS_PATH, files.llmsFull.path);
+
+    if (!existsSync(guidePath)) {
+        const error = new Error(`llms-full.txt not found, path: ${guidePath}`);
+
+        return errorContent(error, "llms-full.txt not found");
     }
 
     try {
@@ -270,7 +288,50 @@ export async function getDesignTokenGuide(category: TokenCategory, pageSize?: nu
     }
 }
 
-export async function getDesignTokensMap(category: TokenCategory, mode: "brief" | "full") {
+/**
+ * Recursively filters a tokens object by the specified keys.
+ * Only includes tokens whose keys contain any of the filter keys.
+ * Filtering only happens at the leaf level (actual design tokens), not at category levels.
+ */
+function filterTokensByKeys(obj: unknown, filterKeys: string[]): unknown {
+    if (typeof obj !== "object" || obj === null) {
+        return obj;
+    }
+
+    if (Array.isArray(obj)) {
+        return obj.map(item => filterTokensByKeys(item, filterKeys));
+    }
+
+    const result: Record<string, unknown> = {};
+    const objRecord = obj as Record<string, unknown>;
+
+    for (const [key, value] of Object.entries(objRecord)) {
+        // Check if this is a leaf node (value is a string, not an object)
+        const isLeafNode = typeof value === "string";
+
+        if (isLeafNode) {
+            // Only at leaf level, check if the key matches the filter
+            const shouldInclude = filterKeys.some(filterKey =>
+                key.includes(filterKey)
+            );
+
+            if (shouldInclude) {
+                result[key] = value;
+            }
+        } else if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+            // For category nodes, recursively filter and include if children match
+            const filtered = filterTokensByKeys(value, filterKeys);
+            // Only include if the filtered result has keys
+            if (Object.keys(filtered as Record<string, unknown>).length > 0) {
+                result[key] = filtered;
+            }
+        }
+    }
+
+    return result;
+}
+
+export async function getDesignTokensMap(category: TokenCategory, filter_by_names: string[] | undefined, mode: "brief" | "full") {
     return await Promise.all(TokenMapFiles[category][mode].map(async map => {
         const tokensMap = join(env.DOCS_PATH, map.path);
 
@@ -280,6 +341,25 @@ export async function getDesignTokensMap(category: TokenCategory, mode: "brief" 
             return errorContent(error, `Tokens map not found for category: ${category}`);
         }
         const fileContent = await readFile(tokensMap, "utf-8");
+
+        // Apply filtering if filter_by_names is provided
+        if (filter_by_names && filter_by_names.length > 0) {
+            try {
+                const tokensData = JSON.parse(fileContent);
+
+                // Normalize filter keys by removing leading dashes
+                const normalizedFilterKeys = filter_by_names.map(key =>
+                    key.replace(/^-+/, "").replace("hop-", "")
+                );
+
+                // Filter the tokens recursively
+                const filteredData = filterTokensByKeys(tokensData, normalizedFilterKeys);
+
+                return content(JSON.stringify(filteredData, null, 2));
+            } catch (error) {
+                return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
+            }
+        }
 
         return content(fileContent);
     }));
