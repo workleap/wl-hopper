@@ -5,6 +5,7 @@ import type {
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content";
 import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs";
+import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/formatStyledSystemName";
 import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackError, trackEvent } from "./utils/logging";
@@ -118,7 +119,8 @@ export function tools(server: McpServer) {
 
         return toolContent(
             await getDesignTokensMap(category, filter_by_names, include_raw_values ? "full" : "brief"),
-            include_raw_values ? content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**") : undefined
+            include_raw_values ? content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**") : undefined,
+            content("**Golden Rule**, Remove these substrings from token names to get the correct prop value: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
         );
     });
 
