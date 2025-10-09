@@ -89,8 +89,9 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ## 3.2 Component, Icon & Token Mapping
 You MUST NOT proceed to implementation until you:
-- [ ] Extract all unique token names from #get_code response. List them here: hop-neutral-text, hop-primary-surface, ...
-- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}' and passing ONLY those token names via its 'filter_by_names' parameter. This optimizes token usage and response size.
+- [ ] Extract all unique token names(from ALL token categories) from #get_code response, and list them.
+- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. This optimizes token usage and response size.
+    - IF needed: Call '#${toolsInfo.get_design_tokens_map.name}("all")' without <filter_by_names> to cover ALL tokens.
 - [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
     - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
     - **List every Product Icons/Logos/Images/Avatars occurrence with its image URL from #get_code**
