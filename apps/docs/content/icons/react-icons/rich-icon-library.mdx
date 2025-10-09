@@ -12,11 +12,13 @@ To integrate a rich icon into your project, simply import it from `@hopper-ui/ic
 import { ActionListRichIcon } from "@hopper-ui/icons"
 ```
 
-The color of the rich icons can be changed by using the `variant` prop. The following [decorative colors](/tokens/semantic/color#decorative) are available as variants: `option1` to `option8`.
+The color of the rich icons can be changed by using the `variant` prop. The following [decorative semantic colors](/tokens/semantic/color#decorative) are available as variants: `option1` to `option8`.
 The following status colors are available as well: `success`, `warning`, `danger`, `information` and `upsell`.
 
 ```tsx
+<ActionListRichIcon /> // default variant
 <ActionListRichIcon variant="option3" />
+<ActionListRichIcon variant="information" />
 ```
 
 <Switcher
