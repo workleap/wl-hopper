@@ -68,7 +68,9 @@ function fixRelativeLink(link: string, extension: "txt" | "md"): string {
     }
 
     // Skip hash-only links
-    if (link.startsWith("#")) {return link;}
+    if (link.startsWith("#")) {
+        return link;
+    }
 
     //NOTE: we cannot use URL as it resolves the relative paths start with "../" wrongly.
     // Split query and hash from path

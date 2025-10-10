@@ -54,7 +54,7 @@ export interface GenerateMarkdownOptions {
     /**
      * Custom MDX components to support during conversion (e.g., for rendering previews).
      */
-    renderer? : {
+    renderer?: {
         customComponents?: Partial<Record<keyof typeof components, React.ComponentType>>;
     };
 }
@@ -133,23 +133,17 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         // Ensure output directory exists
         await fs.mkdir(options.outputPath, { recursive: true });
 
-        // Find all MDX files
         const mdxFiles = await findFiles(options.filesPath, options.deep ?? true, [".mdx"], options.excludedPaths);
-        const mdFiles = await findFiles(options.filesPath, options.deep ?? true, [".md"], options.excludedPaths);
-
-        if (mdxFiles.length > 0) {console.log(`📁 Found ${mdxFiles.length} MDX files`);}
-        if (mdFiles.length > 0) {console.log(`📁 Found ${mdFiles.length} MD files`);}
+        console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Process files
         const processedFiles: ProcessedFile[] = [];
-
         const customComponents = options.renderer?.customComponents ?? {};
 
         for (const filePath of mdxFiles) {
             const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false }, customComponents);
             if (mdContent) {
-                const processedFile = await processMarkdownContent(filePath, mdContent, options);
-                processedFiles.push(processedFile);
+                processedFiles.push(await processMarkdownContent(filePath, mdContent, options));
             }
         }
 
@@ -173,9 +167,7 @@ export async function copyMarkdownFiles(options: GenerateMarkdownOptions): Promi
         // Ensure output directory exists
         await fs.mkdir(options.outputPath, { recursive: true });
 
-        // Find all MD files
         const mdFiles = await findFiles(options.filesPath, options.deep ?? true, [".md"], options.excludedPaths);
-
         console.log(`📁 Found ${mdFiles.length} MD files`);
 
         // Process files
@@ -183,7 +175,6 @@ export async function copyMarkdownFiles(options: GenerateMarkdownOptions): Promi
 
         for (const filePath of mdFiles) {
             const mdContent = await fs.readFile(filePath, "utf-8");
-
             processedFiles.push(await processMarkdownContent(filePath, mdContent, options));
         }
 

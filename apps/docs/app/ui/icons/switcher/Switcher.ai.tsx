@@ -84,7 +84,7 @@ const Switcher = ({ type, headLine, iconType = "icon" }: SwitcherProps) => {
 
     return <>
         <div>{headLine}</div>
-        <Icons items={iconsData} />;
+        <Icons items={iconsData} />
     </>;
 };
 
