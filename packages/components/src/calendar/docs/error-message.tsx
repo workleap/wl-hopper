@@ -1,5 +1,5 @@
-import { Calendar, useLocale } from "@hopper-ui/components";
-import { type DateValue, isWeekend, parseDate } from "@internationalized/date";
+import { Calendar, useLocale, type DateValue } from "@hopper-ui/components";
+import { isWeekend, parseDate } from "@internationalized/date";
 import { useState } from "react";
 
 export default function Example() {

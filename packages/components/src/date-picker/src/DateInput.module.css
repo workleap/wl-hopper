@@ -1,0 +1,46 @@
+.hop-DateInput  {
+    --hop-DateInput-display: flex;
+    --hop-DateInput-align-items: center;
+    --hop-DateInput-gap: var(--hop-space-inline-xs);
+    --hop-DateInput-padding-inline-start: var(--hop-space-inset-xs);
+
+    /* Placeholder */
+    --hop-DateInput-placeholder-color: var(--hop-neutral-text-weakest);
+    --hop-DateInput-placeholder-color-disabled: var(--hop-neutral-text-disabled);
+
+    composes: hop-Input from "../../inputs/src/Input.module.css";
+
+    display: var(--hop-DateInput-display);
+    gap: var(--hop-DateInput-gap);
+    align-items: var(--hop-DateInput-align-items);
+
+    padding-inline-start: var(--hop-DateInput-padding-inline-start);
+}
+
+.hop-DateInput--sm {
+    composes: hop-Input--sm from "../../inputs/src/Input.module.css";
+}
+
+.hop-DateInput span[data-focused] {
+    --hop-DateInput-focused-outline: none;
+    --hop-DateInput-focused-background: var(--hop-neutral-surface-weak);
+
+    background: var(--hop-DateInput-focused-background);
+    outline: var(--hop-DateInput-focused-outline);
+}
+
+.hop-DateInput span[data-placeholder] {
+    color: var(--hop-DateInput-placeholder-color);
+}
+
+.hop-DateInput--disabled span[data-placeholder] {
+    color: var(--hop-DateInput-placeholder-color-disabled);
+}
+
+.hop-DateInput span[data-placeholder] + span[data-readonly] {
+    color: var(--hop-DateInput-placeholder-color);
+}
+
+.hop-DateInput--disabled span[data-placeholder] + span[data-readonly] {
+    color: var(--hop-DateInput-placeholder-color-disabled);
+}

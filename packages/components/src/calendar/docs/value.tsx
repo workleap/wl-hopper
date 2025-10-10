@@ -1,5 +1,5 @@
-import { Calendar, Inline } from "@hopper-ui/components";
-import { type DateValue, parseDate } from "@internationalized/date";
+import { Calendar, Inline, type DateValue } from "@hopper-ui/components";
+import { parseDate } from "@internationalized/date";
 import { useState } from "react";
 
 export default function Example() {
