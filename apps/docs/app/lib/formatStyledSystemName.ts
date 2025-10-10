@@ -1,3 +1,28 @@
+export const DESIGN_TOKEN_PREFIXES_AND_SUFFIXES = [
+    "hop-",
+    "-border",
+    "-surface",
+    "-text",
+    "-icon",
+    "elevation-",
+    "shape-",
+    "space-",
+    "border-",
+    "radius-",
+    "dataviz-",
+    "shadow-",
+    // for semantic values
+    "-font-family",
+    "-font-size",
+    "-font-weight",
+    "-line-height",
+    // for core values
+    "font-family-",
+    "font-size-",
+    "font-weight-",
+    "line-height-"
+] as const;
+
 export function formatStyledSystemName(name: string, tokenType: "core" | "semantic" | null) {
     let prefix = "";
     if (tokenType === "core") {
@@ -6,32 +31,10 @@ export function formatStyledSystemName(name: string, tokenType: "core" | "semant
         prefix = "dataviz_";
     }
 
-    const formattedName = name
-        .replace("hop-", "")
-        .replace("-border", "")
-        .replace("-surface", "")
-        .replace("-text", "")
-        .replace("-icon", "")
-        .replace("elevation-", "")
-        .replace("shape-", "")
-        .replace("space-", "")
-        .replace("border-", "")
-        .replace("radius-", "")
-        .replace("dataviz-", "")
-        .replace("shadow-", "")
-
-        //for semantic values
-        .replace("-font-family", "")
-        .replace("-font-size", "")
-        .replace("-font-weight", "")
-        .replace("-line-height", "")
-
-        //for core values
-        .replace("font-family-", "")
-        .replace("font-size-", "")
-        .replace("font-weight-", "")
-        .replace("line-height-", "")
-    ;
+    let formattedName = name;
+    for (const replacement of DESIGN_TOKEN_PREFIXES_AND_SUFFIXES) {
+        formattedName = formattedName.replace(replacement, "");
+    }
 
     return `${prefix}${formattedName}`;
 }

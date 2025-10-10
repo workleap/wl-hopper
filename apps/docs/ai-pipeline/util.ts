@@ -1,6 +1,6 @@
 import { dirname, join } from "path";
-import { aiDocsConfig } from "./ai-docs.config.ts";
-import type { BuildConfig, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
+import { aiDocsConfig } from "./ai-docs.config.tsx";
+import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TemplateBasedBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
 
 function normalizePath(path: string): string {
     return path.startsWith('/') ? path : `/${path}`;
@@ -80,6 +80,13 @@ export function isUnsafePropsJsonBuild(build: BuildConfig): build is UnsafeProps
     return (
         'type' in build &&
         build.type === "unsafe-props-json"
+    );
+}
+
+export function isIconsJsonBuild(build: BuildConfig): build is IconsJsonBuild {
+    return (
+        'type' in build &&
+        build.type === "icons-json"
     );
 }
 

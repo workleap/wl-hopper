@@ -8,6 +8,7 @@ import richIconsMetadata from "../../../../../../packages/svg-icons/dist/metadat
 interface SwitcherProps {
     type: "react" | "svg";
     iconType: "icon" | "richIcon";
+    headLine: string;
 }
 
 type AvailableSizes = "sm"| "md" | "lg" | "xl";
@@ -59,7 +60,7 @@ function getIconFileKeywords(name: string, type: "icon" | "richIcon") {
     return keywords.join(", ");
 }
 
-const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
+const Switcher = ({ type, headLine, iconType = "icon" }: SwitcherProps) => {
     const iconList = iconType === "icon" ? iconNames : richIconNames;
 
     const sizes: AvailableSizes[] = iconType === "richIcon" ? ["md", "lg", "xl"] : ["sm", "md", "lg"];
@@ -81,7 +82,10 @@ const Switcher = ({ type, iconType = "icon" }: SwitcherProps) => {
         keywords: getIconFileKeywords(name, iconType)
     }));
 
-    return <Icons items={iconsData} />;
+    return <>
+        <div>{headLine}</div>
+        <Icons items={iconsData} />
+    </>;
 };
 
 const iconTypeFolderMap = {

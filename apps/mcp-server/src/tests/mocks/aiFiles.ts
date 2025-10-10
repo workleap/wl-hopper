@@ -315,6 +315,11 @@ const files = {
           "size": 18332,
           "estimatedTokens": 5238
         },
+        "rangeCalendar": {
+          "path": "/components/api/brief/RangeCalendar.json",
+          "size": 6871,
+          "estimatedTokens": 1964
+        },
         "richIcon": {
           "path": "/components/api/brief/RichIcon.json",
           "size": 2100,
@@ -442,8 +447,8 @@ const files = {
         },
         "Summary": {
           "path": "/components/api/brief/_summary.json",
-          "size": 1598,
-          "estimatedTokens": 457
+          "size": 1619,
+          "estimatedTokens": 463
         }
       },
       "full": {
@@ -747,6 +752,11 @@ const files = {
           "size": 94094,
           "estimatedTokens": 26884
         },
+        "rangeCalendar": {
+          "path": "/components/api/full/RangeCalendar.json",
+          "size": 82699,
+          "estimatedTokens": 23629
+        },
         "richIcon": {
           "path": "/components/api/full/RichIcon.json",
           "size": 77928,
@@ -874,8 +884,8 @@ const files = {
         },
         "Summary": {
           "path": "/components/api/full/_summary.json",
-          "size": 1598,
-          "estimatedTokens": 457
+          "size": 1619,
+          "estimatedTokens": 463
         }
       }
     },
@@ -984,8 +994,8 @@ const files = {
       },
       "calendar": {
         "path": "/components/full/Calendar.md",
-        "size": 27240,
-        "estimatedTokens": 7783
+        "size": 27184,
+        "estimatedTokens": 7767
       },
       "callout": {
         "path": "/components/full/Callout.md",
@@ -1149,8 +1159,8 @@ const files = {
       },
       "inline": {
         "path": "/components/full/Inline.md",
-        "size": 6818,
-        "estimatedTokens": 1948
+        "size": 7130,
+        "estimatedTokens": 2038
       },
       "label": {
         "path": "/components/full/Label.md",
@@ -1222,6 +1232,11 @@ const files = {
         "size": 65446,
         "estimatedTokens": 18699
       },
+      "rangeCalendar": {
+        "path": "/components/full/RangeCalendar.md",
+        "size": 19509,
+        "estimatedTokens": 5574
+      },
       "richIcon": {
         "path": "/components/full/RichIcon.md",
         "size": 7290,
@@ -1254,8 +1269,8 @@ const files = {
       },
       "stack": {
         "path": "/components/full/Stack.md",
-        "size": 6629,
-        "estimatedTokens": 1894
+        "size": 6939,
+        "estimatedTokens": 1983
       },
       "switch": {
         "path": "/components/full/Switch.md",
@@ -1324,8 +1339,8 @@ const files = {
       },
       "componentList": {
         "path": "/components/full/component-list.md",
-        "size": 17443,
-        "estimatedTokens": 4984
+        "size": 17633,
+        "estimatedTokens": 5038
       },
       "hopperToOrbiter": {
         "path": "/components/full/hopper-to-orbiter.md",
@@ -1335,8 +1350,8 @@ const files = {
     },
     "index": {
       "path": "/components/index.md",
-      "size": 1864701,
-      "estimatedTokens": 532772
+      "size": 1884985,
+      "estimatedTokens": 538568
     },
     "usage": {
       "a": {
@@ -1396,8 +1411,8 @@ const files = {
       },
       "calendar": {
         "path": "/components/usage/Calendar.md",
-        "size": 7208,
-        "estimatedTokens": 2060
+        "size": 7214,
+        "estimatedTokens": 2062
       },
       "callout": {
         "path": "/components/usage/Callout.md",
@@ -1561,8 +1576,8 @@ const files = {
       },
       "inline": {
         "path": "/components/usage/Inline.md",
-        "size": 4783,
-        "estimatedTokens": 1367
+        "size": 5095,
+        "estimatedTokens": 1456
       },
       "label": {
         "path": "/components/usage/Label.md",
@@ -1634,6 +1649,11 @@ const files = {
         "size": 12519,
         "estimatedTokens": 3577
       },
+      "rangeCalendar": {
+        "path": "/components/usage/RangeCalendar.md",
+        "size": 9280,
+        "estimatedTokens": 2652
+      },
       "richIcon": {
         "path": "/components/usage/RichIcon.md",
         "size": 4859,
@@ -1666,8 +1686,8 @@ const files = {
       },
       "stack": {
         "path": "/components/usage/Stack.md",
-        "size": 4595,
-        "estimatedTokens": 1313
+        "size": 4905,
+        "estimatedTokens": 1402
       },
       "switch": {
         "path": "/components/usage/Switch.md",
@@ -1736,8 +1756,8 @@ const files = {
       },
       "componentList": {
         "path": "/components/usage/component-list.md",
-        "size": 17443,
-        "estimatedTokens": 4984
+        "size": 17633,
+        "estimatedTokens": 5038
       },
       "hopperToOrbiter": {
         "path": "/components/usage/hopper-to-orbiter.md",
@@ -1789,62 +1809,126 @@ const files = {
     }
   },
   "icons": {
-    "svgIcons": {
-      "iconLibrary": {
-        "path": "/icons/SVG-icons/icon-library.md",
-        "size": 79566,
-        "estimatedTokens": 22734
+    "brief": {
+      "svgIcons": {
+        "iconLibrary": {
+          "path": "/icons/brief/SVG-icons/icon-library.md",
+          "size": 968,
+          "estimatedTokens": 277
+        },
+        "index": {
+          "path": "/icons/brief/SVG-icons/index.md",
+          "size": 2390,
+          "estimatedTokens": 683
+        },
+        "richIconLibrary": {
+          "path": "/icons/brief/SVG-icons/rich-icon-library.md",
+          "size": 1272,
+          "estimatedTokens": 364
+        }
+      },
+      "advanced": {
+        "designingAnIcon": {
+          "path": "/icons/brief/advanced/designing-an-icon.md",
+          "size": 2550,
+          "estimatedTokens": 729
+        }
       },
       "index": {
-        "path": "/icons/SVG-icons/index.md",
-        "size": 93280,
-        "estimatedTokens": 26652
+        "path": "/icons/brief/index.md",
+        "size": 7685,
+        "estimatedTokens": 2196
       },
-      "richIconLibrary": {
-        "path": "/icons/SVG-icons/rich-icon-library.md",
-        "size": 13564,
-        "estimatedTokens": 3876
+      "overview": {
+        "introduction": {
+          "path": "/icons/brief/overview/introduction.md",
+          "size": 1496,
+          "estimatedTokens": 428
+        }
+      },
+      "reactIcons": {
+        "iconLibrary": {
+          "path": "/icons/brief/react-icons/icon-library.md",
+          "size": 434,
+          "estimatedTokens": 124
+        },
+        "index": {
+          "path": "/icons/brief/react-icons/index.md",
+          "size": 1400,
+          "estimatedTokens": 400
+        },
+        "richIconLibrary": {
+          "path": "/icons/brief/react-icons/rich-icon-library.md",
+          "size": 817,
+          "estimatedTokens": 234
+        }
       }
     },
-    "index": {
-      "path": "/icons/index.md",
-      "size": 189444,
-      "estimatedTokens": 54127
+    "data": {
+      "path": "/icons/data.json",
+      "size": 153337,
+      "estimatedTokens": 43811
     },
-    "overview": {
-      "designingAnIcon": {
-        "path": "/icons/overview/designing-an-icon.md",
-        "size": 2550,
-        "estimatedTokens": 729
+    "full": {
+      "svgIcons": {
+        "iconLibrary": {
+          "path": "/icons/full/SVG-icons/icon-library.md",
+          "size": 79575,
+          "estimatedTokens": 22736
+        },
+        "index": {
+          "path": "/icons/full/SVG-icons/index.md",
+          "size": 93296,
+          "estimatedTokens": 26656
+        },
+        "richIconLibrary": {
+          "path": "/icons/full/SVG-icons/rich-icon-library.md",
+          "size": 13571,
+          "estimatedTokens": 3878
+        }
       },
-      "introduction": {
-        "path": "/icons/overview/introduction.md",
-        "size": 1487,
-        "estimatedTokens": 425
-      }
-    },
-    "reactIcons": {
-      "iconLibrary": {
-        "path": "/icons/react-icons/icon-library.md",
-        "size": 79022,
-        "estimatedTokens": 22578
+      "advanced": {
+        "designingAnIcon": {
+          "path": "/icons/full/advanced/designing-an-icon.md",
+          "size": 2550,
+          "estimatedTokens": 729
+        }
       },
       "index": {
-        "path": "/icons/react-icons/index.md",
-        "size": 92278,
-        "estimatedTokens": 26366
+        "path": "/icons/full/index.md",
+        "size": 189475,
+        "estimatedTokens": 54136
       },
-      "richIconLibrary": {
-        "path": "/icons/react-icons/rich-icon-library.md",
-        "size": 13107,
-        "estimatedTokens": 3745
+      "overview": {
+        "introduction": {
+          "path": "/icons/full/overview/introduction.md",
+          "size": 1496,
+          "estimatedTokens": 428
+        }
+      },
+      "reactIcons": {
+        "iconLibrary": {
+          "path": "/icons/full/react-icons/icon-library.md",
+          "size": 79025,
+          "estimatedTokens": 22579
+        },
+        "index": {
+          "path": "/icons/full/react-icons/index.md",
+          "size": 92284,
+          "estimatedTokens": 26367
+        },
+        "richIconLibrary": {
+          "path": "/icons/full/react-icons/rich-icon-library.md",
+          "size": 13110,
+          "estimatedTokens": 3746
+        }
       }
     }
   },
   "llmsFull": {
     "path": "/llms-full.md",
-    "size": 2360415,
-    "estimatedTokens": 674405
+    "size": 2382379,
+    "estimatedTokens": 680680
   },
   "llms": {
     "path": "/llms.md",
@@ -1870,8 +1954,8 @@ const files = {
       },
       "styling": {
         "path": "/styled-system/concepts/styling.md",
-        "size": 22664,
-        "estimatedTokens": 6476
+        "size": 24295,
+        "estimatedTokens": 6942
       }
     },
     "escapeHatches": {
@@ -1881,8 +1965,8 @@ const files = {
     },
     "index": {
       "path": "/styled-system/index.md",
-      "size": 31710,
-      "estimatedTokens": 9060
+      "size": 33341,
+      "estimatedTokens": 9526
     },
     "overview": {
       "introduction": {

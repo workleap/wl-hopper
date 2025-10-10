@@ -1,3 +1,4 @@
+import { components } from "@/components/mdx/components.ai";
 
 interface MdxOptions {
     includeFrontMatterLinks?: boolean;
@@ -5,11 +6,16 @@ interface MdxOptions {
     replaceLinks?: (text: string) => string;
 }
 
+interface MdxRendererOptions {
+    customComponents?: Partial<Record<keyof typeof components, React.ComponentType>>;
+}
+
 export interface MdFromMdxBuild {
     source: string;
     excludedPaths?: string[];
     flatten?: boolean;
     markdown?: MdxOptions;
+    renderer?: MdxRendererOptions;
 }
 
 export interface TemplateBasedBuild {
@@ -48,7 +54,11 @@ export interface UnsafePropsMarkdownBuild {
     template: string;
 }
 
-export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild | UnsafePropsJsonBuild | UnsafePropsMarkdownBuild;
+export interface IconsJsonBuild {
+    type: "icons-json"
+}
+
+export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild | UnsafePropsJsonBuild | UnsafePropsMarkdownBuild | IconsJsonBuild;
 
 interface ServeConfig {
     at?: string;

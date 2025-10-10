@@ -55,6 +55,11 @@ For processing MDX content into markdown and copying existing markdown files:
             includeFrontMatterLinks?: true,
             excludedSections?: ["## Props", "## API"],
             replaceLinks?: (link: string) => string // Custom link transformation
+        },
+        renderer?: {
+            customComponents?: {
+                ComponentName: () => <div /> // Replace component with custom implementation
+            }
         }
     }
 }
@@ -64,6 +69,10 @@ For processing MDX content into markdown and copying existing markdown files:
 
 - **`.mdx` files**: Converted to `.md` format with optional transformations
 - **`.md` files**: Copied post processed markdown files to the output directory
+
+**Renderer Options:**
+
+- **`customComponents`**: Override specific MDX components during conversion. This is useful when you want to render different versions of components for different contexts (e.g., hiding interactive elements in AI documentation).
 
 #### B. Template-Based Build
 
@@ -152,6 +161,20 @@ For generating markdown documentation of unsafe/escape hatch props using a templ
 }
 ```
 
+#### G. Icons JSON Build
+
+For generating JSON documentation of icon libraries (standard and rich icons):
+
+```typescript
+"route-key": {
+    build: {
+        type: "icons-json"
+    }
+}
+```
+
+**Note**: This build type generates a comprehensive JSON file containing metadata for all available icons, including their names, descriptions, keywords, and type information. The generated JSON includes both standard icons and rich icons, making it useful for search functionality and icon discovery tools.
+
 ### 3. Serve Configuration (Optional)
 
 All generated markdown files can be served from the same route. However, if your route needs custom URL path mapping, use this feature. For example, `/components/full/Button.md` file can be served from `/components/Button.md` URL. Without this configuration, requests to this URL would be resolved from the `/components` folder instead of `components/full`, which would be incorrect.
@@ -229,7 +252,33 @@ All generated markdown files can be served from the same route. However, if your
 }
 ```
 
-### Example 5: Complex Component Documentation
+### Example 5: Icons Data JSON
+
+```typescript
+"icons/data.json": {
+    build: {
+        type: "icons-json"
+    }
+}
+```
+
+### Example 6: MDX Build with Custom Renderer
+
+```typescript
+"icons/brief": {
+    build: {
+        source: "content/icons",
+        flatten: false,
+        renderer: {
+            customComponents: {
+                Switcher: () => <div /> // Replace interactive switcher with empty div
+            }
+        }
+    }
+}
+```
+
+### Example 7: Complex Component Documentation
 
 ```typescript
 "components/advanced": {
@@ -257,11 +306,12 @@ The system automatically transforms relative links in markdown content to ensure
 
 By default, the system applies these transformations to relative links:
 
-1. **Preserves full URLs**: Links with protocols (http:, https:, ftp:, mailto:, etc.) remain unchanged
+1. **Preserves full URLs**: Links with valid URI schemes (http:, https:, ftp:, mailto:, etc.) remain unchanged
 2. **Preserves hash-only links**: Internal document references like `#section` remain unchanged  
 3. **Transforms relative links**: Adds `.txt` extension to relative links while preserving:
    - Query parameters (`?param=value`)
    - Hash fragments (`#section`)
+   - Relative path structures (including `../` patterns)
 
 ### Examples of Default Transformations
 
@@ -272,7 +322,11 @@ By default, the system applies these transformations to relative links:
 [Relative link](../components/button)          → ../components/button.txt
 [With hash](../guide#installation)            → ../guide.txt#installation
 [With query](./api?version=2)                 → ./api.txt?version=2
+[Complex relative](../../tokens/core)         → ../../tokens/core.txt
+[Trailing slash](./components/)               → ./components.txt
 ```
+
+**Important**: The link transformation now uses improved URL parsing that correctly handles complex relative paths starting with `../` without incorrectly resolving them, ensuring that the original path structure is preserved.
 
 ### Custom Link Transformation
 

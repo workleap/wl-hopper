@@ -63,7 +63,7 @@ export const components = {
     Card: ({ children }: { children: React.ReactNode }) => (
         <div>{children}</div>
     )
-};
+} as const;
 
 export function isValidComponentName(name: string): boolean {
     return Object.keys(components).includes(name);

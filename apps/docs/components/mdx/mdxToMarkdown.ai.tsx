@@ -37,7 +37,7 @@ async function renderToStringAsync(element: React.ReactElement): Promise<string>
     });
 }
 
-export async function mdxToReact(mdxSource: string): Promise<React.ReactElement> {
+export async function mdxToReact(mdxSource: string, customComponents: Record<string, React.ComponentType> = {}): Promise<React.ReactElement> {
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
@@ -49,15 +49,15 @@ export async function mdxToReact(mdxSource: string): Promise<React.ReactElement>
             parseFrontmatter: false,
             mdxOptions: { remarkPlugins: [], rehypePlugins: [] }
         },
-        components: components
+        components: { ...components, ...customComponents }
     });
 
     return compiled.content;
 }
 
 
-export async function mdxToMarkdown(mdxSource: string): Promise<string> {
-    const compiled = await mdxToReact(mdxSource);
+export async function mdxToMarkdown(mdxSource: string, customComponents: Record<string, React.ComponentType>): Promise<string> {
+    const compiled = await mdxToReact(mdxSource, customComponents);
     const html = await renderToStringAsync(compiled);
 
     return String(await htmlToMarkdown(html));
