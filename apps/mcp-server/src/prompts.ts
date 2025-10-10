@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import type { GuideSection, TokenCategory } from "./utils/docs";
+import type { GuideSection } from "./utils/docs";
 import { toolsInfo } from "./utils/toolsInfo";
 
 export function prompts(server: McpServer) {
