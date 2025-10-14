@@ -4,7 +4,7 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSection, GuideSections, TokenCategories } from "./utils/docs";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, type GuideSection, GuideSections, TokenCategories } from "./utils/docs";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/formatStyledSystemName";
 import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
@@ -191,6 +191,6 @@ export function tools(server: McpServer) {
                 3. If some components are not migrated, you can use the #${toolsInfo.get_component_doc.name} tool to get the component usage information and follow the migration notes.
                 4. Make sure the migrated code adheres to Hopper's design system standards.
                 `)
-            );
+        );
     });
 }
