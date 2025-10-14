@@ -22,7 +22,13 @@ export const GuideSections = ["installation", "styles", "tokens", "color-schemes
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index | { url: string; size?: number; estimatedTokens?: number }> = {
+export interface UrlGuideFile {
+    url: string;
+    size?: number;
+    estimatedTokens?: number;
+}
+
+export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index | UrlGuideFile> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     icons: files.icons.brief.index,
