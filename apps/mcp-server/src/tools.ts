@@ -4,7 +4,7 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSections, TokenCategories } from "./utils/docs";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, GuideSection, GuideSections, TokenCategories } from "./utils/docs";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/formatStyledSystemName";
 import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
@@ -39,7 +39,6 @@ export function tools(server: McpServer) {
         trackEvent(toolsInfo.get_component_doc.name, { componentName: component_name, docType: doc_type }, e?.requestInfo);
 
         let docContent;
-        let additionalMessages = [];
 
         if (doc_type === "usage") {
             docContent = await getComponentUsage(component_name);
@@ -49,9 +48,11 @@ export function tools(server: McpServer) {
             docContent = await getComponentFullApi(component_name);
         }
 
-        additionalMessages.push(content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`));
 
-        return toolContent(docContent, ...additionalMessages);
+        return toolContent(
+            docContent,
+            content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
+        );
     });
 
 
@@ -94,11 +95,11 @@ export function tools(server: McpServer) {
             if (!category) {
                 return toolContent(errorContent(new Error("Category is required when guide is 'tokens'.")));
             }
+
             return toolContent(await getDesignTokenGuide(category, page_size, cursor));
         } else {
-            return toolContent(await getGuide(guide,  page_size, cursor));
+            return toolContent(await getGuide(guide, page_size, cursor));
         }
-
     });
 
     server.registerTool(toolsInfo.get_icons.name, {
@@ -176,8 +177,10 @@ export function tools(server: McpServer) {
     }, async ({ file_or_folder_path }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.migrate_from_orbiter_to_hopper.name, { filePath: file_or_folder_path }, e?.requestInfo);
 
-        return toolContent(content(`
-                1. Run \`pnpx "@workleap/migrations"@latest -t ${file_or_folder_path}\` in terminal to migrate the file/folder from Orbiter to Hopper.
+        return toolContent(
+            content(`
+                1. Read the '#get_guide(${"tooling-cli" satisfies GuideSection})' guide to understand how to use the related tooling CLI.
+                1. Generate an appropriate command to run the tool for "${file_or_folder_path}" in terminal to perform the migration.
                 2. Review the files for errors:
                     - Update the Hopper packages if they are not up-to-date and if it is required (e.g. the component is missing).
                     - There are some added \`Migration TODO\`s comments in the code. Try to address them.
@@ -185,6 +188,7 @@ export function tools(server: McpServer) {
                     - For each component you can check the Component documentation's Migration notes to manually adjust the code.
                 3. If some components are not migrated, you can use the #${toolsInfo.get_component_doc.name} tool to get the component usage information and follow the migration notes.
                 4. Make sure the migrated code adheres to Hopper's design system standards.
-                `));
+                `)
+            );
     });
 }

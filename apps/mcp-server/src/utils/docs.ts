@@ -17,12 +17,12 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
+export const GuideSections = ["installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions", "tooling-cli"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
 
-export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index> = {
+export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index | { url: string; size?: number; estimatedTokens?: number }> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     icons: files.icons.brief.index,
@@ -35,7 +35,10 @@ export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index>
     internationalization: files.components.concepts.internationalization,
     "escape-hatches": files.styledSystem.escapeHatches,
     "figma-conventions": files.ai.figmaConventions,
-    tokens: files.tokens.overview.introduction
+    tokens: files.tokens.overview.introduction,
+    "tooling-cli": {
+        url: "https://raw.githubusercontent.com/workleap/wl-design-systems-migrations/refs/heads/main/README.md"
+    }
 };
 
 export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
@@ -221,14 +224,8 @@ async function readComponentApi(relativePath: string) {
     }
 }
 
-export async function getGuide(section: GuideSection, pageSize?: number, cursor?: string) {
-    if (!Object.keys(GuideFiles).includes(section)) {
-        const error = new Error(`Invalid guide section requested: ${section}`);
-
-        return errorContent(error);
-    }
-
-    const guidePath = join(env.DOCS_PATH, GuideFiles[section].path);
+async function getLocalGuide(path: string, section: GuideSection, pageSize?: number, cursor?: string) {
+    const guidePath = join(env.DOCS_PATH, path);
 
     if (!existsSync(guidePath)) {
         const error = new Error(`Guide not found for section: ${section}, path: ${guidePath}`);
@@ -243,6 +240,40 @@ export async function getGuide(section: GuideSection, pageSize?: number, cursor?
     } catch (error) {
         return errorContent(error, `Error reading guide: ${error instanceof Error ? error.message : "Unknown error"}`);
     }
+}
+
+async function getRemoteGuide(url: string) {
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            const error = new Error(`Failed to fetch guide: ${response.statusText}, URL: ${url}`);
+            trackError(error);
+            throw error;
+        }
+
+        const markdownContent = await response.text();
+
+        return content(markdownContent);
+    } catch (error) {
+        return errorContent(error, `Error fetching guide from URL: ${error instanceof Error ? error.message : "Unknown error"}`);
+    }
+}
+
+export async function getGuide(section: GuideSection, pageSize?: number, cursor?: string) {
+    if (!Object.keys(GuideFiles).includes(section)) {
+        const error = new Error(`Invalid guide section requested: ${section}`);
+
+        return errorContent(error);
+    }
+
+    const guideFile = GuideFiles[section];
+
+    if ("url" in guideFile) {
+        return getRemoteGuide(guideFile.url);
+    }
+
+    return getLocalGuide(guideFile.path, section, pageSize, cursor);
 }
 
 export async function getLlmsFull(pageSize?: number, cursor?: string) {

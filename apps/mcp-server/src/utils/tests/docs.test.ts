@@ -13,14 +13,11 @@ jest.mock("fs/promises", () => ({
     readFile: jest.fn(async (path: string) => {
         if (path.includes("/tokens/maps/brief/all.json")) {
             return JSON.stringify(MOCK_TOKENS);
-        }
-        else if (path.includes("/tokens/maps/full/all.json")) {
+        } else if (path.includes("/tokens/maps/full/all.json")) {
             return JSON.stringify(MOCK_TOKENS_FULL);
-        }
-        else if (path.includes("/tokens/maps/brief/semantic-shadow.json")) {
+        } else if (path.includes("/tokens/maps/brief/semantic-shadow.json")) {
             return JSON.stringify(MOCK_TOKENS_SEMANTIC_SHADOW_BRIEF);
-        }
-        else if (path.includes("/tokens/maps/full/semantic-shadow.json")) {
+        } else if (path.includes("/tokens/maps/full/semantic-shadow.json")) {
             return JSON.stringify(MOCK_TOKENS_SEMANTIC_SHADOW_FULL);
         }
 
