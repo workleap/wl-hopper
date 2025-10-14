@@ -45,7 +45,7 @@ export function tools(server: McpServer) {
                 - DO NOT GO TO NEXT STEP UNTIL YOU ARE SURE THAT PACKAGES ARE INSTALLED AND CONFIGURED CORRECTLY.
             3. Setup light/dark mode by following "color-schemes" guide if it is not already done.
             4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
-            5. ALWAYS Use "${toolsInfo.validate_component_structure.name}" tool when you used a component to ensure its structure is correct.
+            5. ALWAYS Use "${toolsInfo.validate_hopper_code.name}" tool when you used a component to ensure its structure is correct.
             `));
     });
 
@@ -64,7 +64,7 @@ export function tools(server: McpServer) {
         return toolContent(
             await getComponentUsage(component_name),
             content(`Call "#${toolsInfo.get_component_props.name}" tool to get component's props if needed.`),
-            content(`**ALWAYS CALL "#${toolsInfo.validate_component_structure.name}" TOOL AFTER USING A COMPONENT.**`)
+            content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
         );
     });
 
@@ -87,21 +87,6 @@ export function tools(server: McpServer) {
         );
     });
 
-    server.registerTool(toolsInfo.get_design_tokens.name, {
-        title: toolsInfo.get_design_tokens.title,
-        description: toolsInfo.get_design_tokens.description,
-        inputSchema: {
-            category: z.enum(TokenCategories),
-            ...paginationParams
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ category, page_size, cursor }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens.name, { category, page_size, cursor }, e?.requestInfo);
-
-        return toolContent(await getDesignTokenGuide(category, page_size, cursor));
-    });
 
     server.registerTool(toolsInfo.get_design_tokens_map.name, {
         title: toolsInfo.get_design_tokens_map.title,
@@ -109,17 +94,17 @@ export function tools(server: McpServer) {
         inputSchema: {
             category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens_map.parameters.category),
             filter_by_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens_map.parameters.filter_by_names),
-            include_raw_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens_map.parameters.include_raw_values)
+            include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens_map.parameters.include_css_values)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_raw_values, filter_by_names }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_raw_values, filter_by_names }, e?.requestInfo);
+    }, async ({ category, include_css_values, filter_by_names }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_css_values, filter_by_names }, e?.requestInfo);
 
         return toolContent(
-            await getDesignTokensMap(category, filter_by_names, include_raw_values ? "full" : "brief"),
-            include_raw_values ? content("**Use 'propValue' in your code, not 'rawValue'. Design tokens ensure consistency.**") : undefined,
+            ...(await getDesignTokensMap(category, filter_by_names, include_css_values ? "full" : "brief")),
+            include_css_values ? content("**Use 'propValue' in your code, not 'cssValue'. Design tokens ensure consistency.**") : undefined,
             content("**Golden Rule**, Remove these substrings from token names to get the correct prop value: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
         );
     });
@@ -129,15 +114,24 @@ export function tools(server: McpServer) {
         description: toolsInfo.get_guide.description,
         inputSchema: {
             guide: z.enum(GuideSections),
+            category: z.enum(TokenCategories).optional().describe(toolsInfo.get_guide.parameters.category),
             ...paginationParams
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide, page_size, cursor }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_guide.name, { guide, page_size, cursor }, e?.requestInfo);
+    }, async ({ guide, category, page_size, cursor }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_guide.name, { guide, category, page_size, cursor }, e?.requestInfo);
 
-        return toolContent(await getGuide(guide, page_size, cursor));
+        if (guide === "tokens") {
+            if (!category) {
+                return toolContent(errorContent(new Error("Category is required when guide is 'tokens'.")));
+            }
+            return toolContent(await getDesignTokenGuide(category, page_size, cursor));
+        } else {
+            return toolContent(await getGuide(guide,  page_size, cursor));
+        }
+
     });
 
     server.registerTool(toolsInfo.get_icons.name, {
@@ -172,9 +166,9 @@ export function tools(server: McpServer) {
     });
 
 
-    server.registerTool(toolsInfo.validate_component_structure.name, {
-        title: toolsInfo.validate_component_structure.title,
-        description: toolsInfo.validate_component_structure.description,
+    server.registerTool(toolsInfo.validate_hopper_code.name, {
+        title: toolsInfo.validate_hopper_code.title,
+        description: toolsInfo.validate_hopper_code.description,
         inputSchema: {
             code: z.string()
         },
@@ -184,7 +178,7 @@ export function tools(server: McpServer) {
     }, async ({ code }, e) : Promise<CallToolResult> => {
         try {
             const validationResult = await validateComponentStructure(code);
-            trackEvent(toolsInfo.validate_component_structure.name, { code, validationResult }, e?.requestInfo);
+            trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
 
             if (validationResult.isValid && validationResult.warnings.length === 0) {
                 return toolContent(content("Component structure validation passed!"));

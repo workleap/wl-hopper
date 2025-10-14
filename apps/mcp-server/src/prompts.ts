@@ -90,7 +90,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 3.2 Component, Icon & Token Mapping
 You MUST NOT proceed to implementation until you:
 - [ ] Extract all unique token names(from ALL token categories) from #get_code response, and list them.
-- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. This optimizes token usage and response size.
+- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. List the mapping when you are done.
     - IF needed: Call '#${toolsInfo.get_design_tokens_map.name}("all")' without <filter_by_names> to cover ALL tokens.
 - [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
     - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
@@ -105,13 +105,13 @@ You MUST NOT proceed to implementation until you:
 - Iterate as needed; after each adjustment, repeat the comparison.
 - After each code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
 - Run Typescript type-checking on the final code to ensure no type errors.
-- CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
+- CRITICAL: Run final validation with '#${toolsInfo.validate_hopper_code.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 5. QA
 - [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
-- [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
+- [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 

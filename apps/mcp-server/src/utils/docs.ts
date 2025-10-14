@@ -17,7 +17,7 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
+export const GuideSections = ["installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
@@ -34,7 +34,8 @@ export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index>
     slots: files.components.concepts.slots,
     internationalization: files.components.concepts.internationalization,
     "escape-hatches": files.styledSystem.escapeHatches,
-    "figma-conventions": files.ai.figmaConventions
+    "figma-conventions": files.ai.figmaConventions,
+    tokens: files.tokens.overview.introduction
 };
 
 export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
@@ -290,25 +291,30 @@ export async function getDesignTokenGuide(category: TokenCategory, pageSize?: nu
  * Recursively filters a tokens object by the specified keys.
  * Only includes tokens whose keys contain any of the filter keys.
  * Filtering only happens at the leaf level (actual design tokens), not at category levels.
+ *
+ * Token structure:
+ * - Level 1: semantic/core (top level categories)
+ * - Level 2: category (e.g., color, typography, etc.)
+ * - Level 3: token (the actual leaf nodes)
  */
-function filterTokensByKeys(obj: unknown, filterKeys: string[]): unknown {
+function filterTokensByKeys(obj: unknown, filterKeys: string[], depth = 1): unknown {
     if (typeof obj !== "object" || obj === null) {
         return obj;
     }
 
     if (Array.isArray(obj)) {
-        return obj.map(item => filterTokensByKeys(item, filterKeys));
+        return obj.map(item => filterTokensByKeys(item, filterKeys, depth));
     }
 
     const result: Record<string, unknown> = {};
     const objRecord = obj as Record<string, unknown>;
 
     for (const [key, value] of Object.entries(objRecord)) {
-        // Check if this is a leaf node (value is a string, not an object)
-        const isLeafNode = typeof value === "string";
+        // Check if this is a leaf node (token at level 3)
+        const isLeafNode = depth === 3;
 
         if (isLeafNode) {
-            // Only at leaf level, check if the key matches the filter
+            // Only at leaf level (level 3), check if the key matches the filter
             const shouldInclude = filterKeys.some(filterKey =>
                 key.includes(filterKey)
             );
@@ -317,8 +323,8 @@ function filterTokensByKeys(obj: unknown, filterKeys: string[]): unknown {
                 result[key] = value;
             }
         } else if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-            // For category nodes, recursively filter and include if children match
-            const filtered = filterTokensByKeys(value, filterKeys);
+            // For category nodes (level 1 and 2), recursively filter and include if children match
+            const filtered = filterTokensByKeys(value, filterKeys, depth + 1);
             // Only include if the filtered result has keys
             if (Object.keys(filtered as Record<string, unknown>).length > 0) {
                 result[key] = filtered;
@@ -336,7 +342,7 @@ export async function getDesignTokensMap(category: TokenCategory, filter_by_name
         if (!existsSync(tokensMap)) {
             const error = new Error(`Tokens map not found for category: ${category}, path: ${tokensMap}`);
 
-            return errorContent(error, `Tokens map not found for category: ${category}`);
+            return errorContent(error, `Tokens map not found for category: ${category}, path: ${tokensMap}`);
         }
         const fileContent = await readFile(tokensMap, "utf-8");
 

@@ -64,8 +64,9 @@ The Hopper MCP server exposes the following tools to AI agents:
 
 ### Guide Tools
 
-- **`get_design_tokens`**: Retrieve design tokens used in the Hopper Design System.
-- **`get_guide`**: Access comprehensive guides and best practices.
+- **`get_guide`**: Access comprehensive guides, best practices, and design tokens for the Hopper Design System.
+  - For regular guides: `get_guide("styles")`, `get_guide("layout")`
+  - For design tokens: `get_guide("tokens", category="semantic-color")` - category parameter is required
 
 ### Migration Tools
 

@@ -17,7 +17,7 @@ export const MOCK_TOKENS =
     "color": {
       "hop-danger-border-active": "danger-active",
       "hop-danger-icon-active": "danger-active",
-      "hop-success-border": "success"
+      "hop-success-border": "success",
     },
     "size": {
       "hop-space-inset-xs": "inset-xs"
@@ -30,3 +30,39 @@ export const MOCK_TOKENS =
     }
   }
 };
+
+export const MOCK_TOKENS_FULL = {
+    "semantic": {
+        "color": {
+            "hop-neutral-surface-weak": {
+                "propValue": "neutral-weak",
+                "cssValue": "#ba2d2d"
+            }
+        },
+        "shadow": {
+            "hop-elevation-none": {
+                "propValue": "none",
+                "cssValue": "none"
+            }
+        }
+    }
+}
+
+export const MOCK_TOKENS_SEMANTIC_SHADOW_BRIEF = {
+    "semantic": {
+        "shadow": {
+            "hop-elevation-none": "none"
+        }
+    }
+}
+
+export const MOCK_TOKENS_SEMANTIC_SHADOW_FULL = {
+    "semantic": {
+        "shadow": {
+            "hop-elevation-none": {
+                "propValue": "none",
+                "cssValue": "none"
+            }
+        }
+    }
+}

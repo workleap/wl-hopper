@@ -17,7 +17,7 @@ interface TokensData {
 }
 
 interface ProcessedTokenValue {
-    rawValue: string;
+    cssValue: string;
     propValue: string;
 }
 
@@ -82,7 +82,7 @@ function processTokenArray(
         if (isTokenItem(item) && item.name) {
             result[item.name] = fullMap ? {
                 propValue: formatStyledSystemName(item.name, tokenType),
-                rawValue: item.value
+                cssValue: item.value
             } : formatStyledSystemName(item.name, tokenType);
         }
     }
@@ -186,7 +186,7 @@ export async function generateTokensMaps({
             const transformedSectionData = processNode(sectionData, [sectionKey], fullMap) as ProcessedSubsection;
             filesToGenerate.push({
                 fileName: `${sectionKey}.json`,
-                data: transformedSectionData
+                data: { [sectionKey]: transformedSectionData }
             });
 
             // 3. Generate subsection files (e.g., core-color.json, semantic-shadow.json)
@@ -196,7 +196,7 @@ export async function generateTokensMaps({
                 const transformedSubsectionData = processNode(subsectionData, [sectionKey, subsectionKey], fullMap) as ProcessedSubsection;
                 filesToGenerate.push({
                     fileName: `${sectionKey}-${subsectionKey}.json`,
-                    data: transformedSubsectionData
+                    data: { [sectionKey]: transformedSubsectionData }
                 });
             }
         }

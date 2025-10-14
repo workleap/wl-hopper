@@ -34,11 +34,12 @@ const GuideDescriptions: { [key in GuideSection]: string } = {
     forms: "Best practices for building forms in Hopper Design System",
     slots: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
     internationalization: "Adapting components to respect languages and cultures",
-    "figma-conventions": "Figma → Hopper Translation Guide"
+    "figma-conventions": "Figma → Hopper Translation Guide",
+    tokens: "Get design system tokens, their component props value, and their raw values by category. You must provide the category parameter.",
 } as const;
 
 export function generateDesignTokensDescription(): string {
-    let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
+    let description = "Available token categories:\n";
 
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
@@ -101,12 +102,10 @@ export const toolsInfo = {
     get_guide: {
         name: "get_guide",
         title: "Get guide or best practices",
-        description: generateGuidesDescription()
-    },
-    get_design_tokens: {
-        name: "get_design_tokens",
-        title: "Get design system tokens",
-        description: generateDesignTokensDescription()
+        description: generateGuidesDescription(),
+        parameters: {
+            category:  generateDesignTokensDescription()
+        }
     },
     get_design_tokens_map: {
         name: "get_design_tokens_map",
@@ -115,14 +114,14 @@ export const toolsInfo = {
         parameters: {
             category: generateTokenMapsDescription(),
             filter_by_names: "Filter tokens by name (case-insensitive, partial match). E.g. ['hop-neutral-text', 'hop-primary-surface']",
-            include_raw_values: "Whether to include raw token values in the response. **DEFAULT: false**"
+            include_css_values: "Whether to include token css values in the response. **DEFAULT: false**"
         }
     },
 
-    validate_component_structure: {
-        name: "validate_component_structure",
-        title: "Validate Component Structure",
-        description: "Validates if the component implementation follows the structure and best practices."
+    validate_hopper_code: {
+        name: "validate_hopper_code",
+        title: "Validate & lint Hopper Code",
+        description: "Validates Hopper component implementation including design tokens, prop values, UNSAFE_ usage, component structure, and layout patterns. Returns errors and warnings. Use after implementing or changing Hopper components."
     },
     migrate_from_orbiter_to_hopper: {
         name: "migrate_from_orbiter_to_hopper",

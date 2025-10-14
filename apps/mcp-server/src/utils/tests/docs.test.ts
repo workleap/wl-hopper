@@ -1,4 +1,4 @@
-import { MOCK_TOKENS } from "../../tests/mocks/tokensData.ts";
+import { MOCK_TOKENS, MOCK_TOKENS_FULL, MOCK_TOKENS_SEMANTIC_SHADOW_BRIEF, MOCK_TOKENS_SEMANTIC_SHADOW_FULL } from "../../tests/mocks/tokensData.ts";
 
 // Mock the rehype and remark dependencies before importing docs
 jest.mock("rehype-parse", () => jest.fn());
@@ -14,6 +14,15 @@ jest.mock("fs/promises", () => ({
         if (path.includes("/tokens/maps/brief/all.json")) {
             return JSON.stringify(MOCK_TOKENS);
         }
+        else if (path.includes("/tokens/maps/full/all.json")) {
+            return JSON.stringify(MOCK_TOKENS_FULL);
+        }
+        else if (path.includes("/tokens/maps/brief/semantic-shadow.json")) {
+            return JSON.stringify(MOCK_TOKENS_SEMANTIC_SHADOW_BRIEF);
+        }
+        else if (path.includes("/tokens/maps/full/semantic-shadow.json")) {
+            return JSON.stringify(MOCK_TOKENS_SEMANTIC_SHADOW_FULL);
+        }
 
         const fs = jest.requireActual("fs");
 
@@ -25,6 +34,12 @@ jest.mock("fs/promises", () => ({
 jest.mock("fs", () => ({
     existsSync: jest.fn((path: string) => {
         if (path.includes("/tokens/maps/brief/all.json")) {
+            return true;
+        } else if (path.includes("/tokens/maps/full/all.json")) {
+            return true;
+        } else if (path.includes("/tokens/maps/brief/semantic-shadow.json")) {
+            return true;
+        } else if (path.includes("/tokens/maps/full/semantic-shadow.json")) {
             return true;
         }
 
@@ -206,6 +221,47 @@ describe("getDesignTokensMap", () => {
             expect(content.semantic).toHaveProperty("color");
             expect(Object.keys(content.semantic.color)).toHaveLength(2);
             expect(content).not.toHaveProperty("core");
+        });
+    });
+
+    describe("Full vs Brief modes", () => {
+        it("should return tokens with cssValue and propValue in full mode", async () => {
+            const result = await getDesignTokensMap("all", [], "full");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            expect(Object.keys(content.semantic)).toHaveLength(2);
+            expect(content.semantic.color["hop-neutral-surface-weak"]).toHaveProperty("cssValue");
+        });
+        it("should apply filters and return full token structure in full mode", async () => {
+            const result = await getDesignTokensMap("all", ["neutral-surface-weak"], "full");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            expect(content.semantic.color).toHaveProperty("hop-neutral-surface-weak");
+            expect(content.semantic.color["hop-neutral-surface-weak"]).toHaveProperty("cssValue");
+            expect(Object.keys(content.semantic)).toHaveLength(1);
+        });
+        it("should return tokens with cssValue and propValue for specific category in full mode", async () => {
+            const result = await getDesignTokensMap("semantic-elevation", [], "full");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            expect(content.semantic.shadow).toHaveProperty("hop-elevation-none");
+            expect(content.semantic.shadow["hop-elevation-none"]).toHaveProperty("cssValue", "none");
+            expect(content.semantic.shadow["hop-elevation-none"]).toHaveProperty("propValue", "none");
+        });
+        it("should return tokens for specific category in brief mode", async () => {
+            const result = await getDesignTokensMap("semantic-elevation", [], "brief");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            expect(content.semantic.shadow).toHaveProperty("hop-elevation-none", "none");
+            expect(typeof content.semantic.shadow["hop-elevation-none"]).toBe("string");
         });
     });
 
