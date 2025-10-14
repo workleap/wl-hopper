@@ -70,8 +70,10 @@ export function tools(server: McpServer) {
     }, async ({ category, include_css_values, token_names }, e) : Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_css_values, token_names }, e?.requestInfo);
 
+        const result = await getDesignTokensMap(category, token_names, include_css_values ? "full" : "brief");
+
         return toolContent(
-            ...(await getDesignTokensMap(category, token_names, include_css_values ? "full" : "brief")),
+            ...result,
             include_css_values ? content("**Use 'propValue' in your code, not 'cssValue'. Design tokens ensure consistency.**") : undefined,
             content("**Golden Rule**, Remove these substrings from token names to get the correct prop value: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
         );
