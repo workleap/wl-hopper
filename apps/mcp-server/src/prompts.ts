@@ -19,12 +19,23 @@ export function prompts(server: McpServer) {
                     Your role:
                     Assume you are an expert UI/UX designer and an experienced frontend developer who is picky on design details. Follow modern industry standards for spacing, layout, and visual hierarchy.
 
+                    Essential workflow to follow:
+                    1. Read "tokens", "styles", "layout", and "icons" guides to understand the design system concepts well.
+                        - CRITICAL: Always check component props/API before using any component.
+                        - Never assume standard CSS/HTML props work - each design system has its own API.
+                        - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "#${toolsInfo.get_component_doc.name}" tool.
+                        - NEVER EVER USE emojis. The "icons" guide lists all available icons.
+                    2. Read "installation" guide CAREFULLY and setup CSS correctly if Hopper is not already installed.
+                        - DO NOT GO TO NEXT STEP UNTIL YOU ARE SURE THAT PACKAGES ARE INSTALLED AND CONFIGURED CORRECTLY.
+                    3. Setup light/dark mode by following "color-schemes" guide if it is not already done.
+                    4. AVOID trial-and-error and guessing approach. Use provided tools AS MUCH AS POSSIBLE.
+                    5. ALWAYS Use "#${toolsInfo.validate_hopper_code.name}" tool when you used a component to ensure its structure is correct.
+
                     Rules to follow:
                     - **Important** Follow styling, tokens, icons, and components.
                     - ALWAYS prioritize using semantic tokens when possible.
                     - NEVER EVER use emojis or special characters as icons. USE PROVIDED ICONS.
                     - NEVER EVER use raw HTML(e.g. div, span, table, etx.) or Style(e.g. style={margin: 13px}). Use Hopper components and styles.
-
                     - Always consider responsiveness and accessibility.
 
                     Task:
@@ -64,8 +75,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ### Component Selection
 - Check the '${"figma-conventions" satisfies GuideSection}' guide to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
-- CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
-- Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
+- CRITICAL: Always call '#${toolsInfo.get_component_doc.name}("usage")' before diving into props - it shows real-world patterns.
+- Always call '#${toolsInfo.get_component_doc.name}("props")' tool provided by MCP for ANY component you haven't used before.
 
 ### Styling
 - All styling must use Hopper design semantic or core tokens—never raw CSS values or inline styles.
@@ -90,7 +101,7 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ## 3.2 Component, Icon & Token Mapping
 You MUST NOT proceed to implementation until you:
 - [ ] Extract all unique token names(from ALL token categories) from #get_code response, and list them.
-- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. This optimizes token usage and response size.
+- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. List the mapping when you are done.
     - IF needed: Call '#${toolsInfo.get_design_tokens_map.name}("all")' without <filter_by_names> to cover ALL tokens.
 - [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
     - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
@@ -105,13 +116,13 @@ You MUST NOT proceed to implementation until you:
 - Iterate as needed; after each adjustment, repeat the comparison.
 - After each code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
 - Run Typescript type-checking on the final code to ensure no type errors.
-- CRITICAL: Run final validation with '#${toolsInfo.validate_component_structure.name}' tool provided by Hopper MCP before considering task complete.
+- CRITICAL: Run final validation with '#${toolsInfo.validate_hopper_code.name}' tool provided by Hopper MCP before considering task complete.
 
 ## 5. QA
 - [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
-- [ ] Call '#${toolsInfo.validate_component_structure.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
+- [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
 - [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 

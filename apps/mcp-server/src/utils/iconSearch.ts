@@ -112,7 +112,7 @@ export async function getIcons(
             name: result.item.name,
             description: result.item.description,
             type: result.item.type,
-            score: result.score ?? 0 // Use nullish coalescing in case score is undefined
+            score: result.score ?? 0
         }));
 
         results[query] = limit !== undefined ? mappedResults.slice(0, limit) : mappedResults;

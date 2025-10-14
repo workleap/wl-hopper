@@ -14,12 +14,15 @@ General rules on how to interpret `data-name` attribute in Figma elements:
 - **RichIcon/{Y}**, it means it's always `{Y}RichIcon` from Hopper Icons library. e.g `RichIcon/Rocket` → `RocketRichIcon`.
 - **ProductIcon/{Y}**, This is a product-specific icon, logo, image or avatar. you MUST PRESERVE them in final output.
 
-The following table maps Figma elements to their corresponding Hopper components, icons, or product icons:
+**Example mapping of Figma elements based on the above rules:**
 
-| Figma Element (data-name) | Hopper Component, Hopper Icon, Product Icon/Logo/Image/Avatar         |
-|---------------------------|-----------------------------------------------------------------------|
-| `Button/*`                | `Button`                                                              |
-| `Select/*`                | `Select`                                                              |
-| `Icon/*`                  | `{*}Icon` from Hopper Icons library                                   |
-| `RichIcon/*`              | `{*}RichIcon` from Hopper Rich Icons library                          |
-| `ProductIcon/*`           | `Img`                                                                 |
+| Figma Element (data-name)    | Hopper Component, Hopper Icon, Product Icon/Logo/Image/Avatar |
+|------------------------------|---------------------------------------------------------------|
+| `Button/submit`              | `Button`                                                      |
+| `Select/filter by group`     | `Select`                                                      |
+| `Tag`                        | `Tag`                                                         |
+| `Tag/Warning`                | `Tag`                                                         |
+| `Icon/Plus`                  | `PlusIcon` from Hopper Icons library                          |
+| `Icon/AddUser/Add customer`  | `AddIcon` from Hopper Icons library                           |
+| `RichIcon/Rocket`            | `RocketRichIcon` from Hopper Rich Icons library               |
+| `ProductIcon/ShareGate logo` | `Img`                                                         |

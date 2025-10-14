@@ -115,7 +115,6 @@ export const aiDocsConfig: AiDocsConfig = {
             },
             serve: {
                  at: "/icons",
-                 //filesInRoot: true
             }
         },
 
