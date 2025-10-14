@@ -39,7 +39,7 @@ export function tools(server: McpServer) {
             1. Read "tokens", "styles", "layout", and "icons" guides to understand the design system concepts well.
                 - CRITICAL: Always check component props/API before using any component.
                 - Never assume standard CSS/HTML props work - each design system has its own API.
-                - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "${toolsInfo.get_component_usage.name}" tool.
+                - Read each component's documentation CAREFULLY to follow its usage guidelines. Use "${toolsInfo.get_component_doc.name}" tool.
                 - NEVER EVER USE emojis. The "icons" guide lists all available icons.
             2. Read "installation" guide CAREFULLY and setup CSS correctly if Hopper is not already installed.
                 - DO NOT GO TO NEXT STEP UNTIL YOU ARE SURE THAT PACKAGES ARE INSTALLED AND CONFIGURED CORRECTLY.
@@ -49,42 +49,33 @@ export function tools(server: McpServer) {
             `));
     });
 
-    server.registerTool(toolsInfo.get_component_usage.name, {
-        title: toolsInfo.get_component_usage.title,
-        description: toolsInfo.get_component_usage.description,
-        inputSchema: {
-            component_name: z.string()
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ component_name }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_component_usage.name, { componentName: component_name }, e?.requestInfo);
-
-        return toolContent(
-            await getComponentUsage(component_name),
-            content(`Call "#${toolsInfo.get_component_props.name}" tool to get component's props if needed.`),
-            content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
-        );
-    });
-
-    server.registerTool(toolsInfo.get_component_props.name, {
-        title: toolsInfo.get_component_props.title,
-        description: toolsInfo.get_component_props.description,
+    server.registerTool(toolsInfo.get_component_doc.name, {
+        title: toolsInfo.get_component_doc.title,
+        description: toolsInfo.get_component_doc.description,
         inputSchema: {
             component_name: z.string(),
-            include_full_props: z.boolean().optional().describe(toolsInfo.get_component_props.parameters.include_full_props)
+            doc_type: z.enum(["usage", "props", "props-full"]).describe(toolsInfo.get_component_doc.parameters.doc_type)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ component_name, include_full_props }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_component_props.name, { componentName: component_name, includeFullProps: include_full_props }, e?.requestInfo);
+    }, async ({ component_name, doc_type }, e): Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_component_doc.name, { componentName: component_name, docType: doc_type }, e?.requestInfo);
 
-        return toolContent(
-            include_full_props ? await getComponentFullApi(component_name) : await getComponentBriefApi(component_name),
-            content("**ALWAYS CALL validate_component_structure TOOL AFTER USING A COMPONENT.**")
-        );
+        let docContent;
+        let additionalMessages = [];
+
+        if (doc_type === "usage") {
+            docContent = await getComponentUsage(component_name);
+        } else if (doc_type === "props") {
+            docContent = await getComponentBriefApi(component_name);
+        } else { // props-full
+            docContent = await getComponentFullApi(component_name);
+        }
+
+        additionalMessages.push(content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`));
+
+        return toolContent(docContent, ...additionalMessages);
     });
 
 
@@ -216,7 +207,7 @@ export function tools(server: McpServer) {
                     - There are some added \`Migration TODO\`s comments in the code. Try to address them.
                     - There might also be \`migration-notes.md\` file generated. Review them for additional guidance.
                     - For each component you can check the Component documentation's Migration notes to manually adjust the code.
-                3. If some components are not migrated, you can use the #${toolsInfo.get_component_usage.name} tool to get the component usage information and follow the migration notes.
+                3. If some components are not migrated, you can use the #${toolsInfo.get_component_doc.name} tool to get the component usage information and follow the migration notes.
                 4. Make sure the migrated code adheres to Hopper's design system standards.
                 `));
     });

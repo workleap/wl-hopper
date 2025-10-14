@@ -85,17 +85,15 @@ export const toolsInfo = {
         description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
     },
 
-    get_component_usage: {
-        name: "get_component_usage",
-        title: "Get component usage documentation",
-        description: "Includes component's anatomy, structure, examples, dos and don'ts, and best practices.\n**IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**"
-    },
-    get_component_props: {
-        name: "get_component_props",
-        title: "Get component props as JSON",
-        description: "Get properties, attributes, methods, events for a specific component.\n- This service returns a JSON API content.\n- Call this service after you have read the component usage",
+    get_component_doc: {
+        name: "get_component_doc",
+        title: "Get component documentation",
+        description: "Get component documentation including usage, anatomy, structure, props, and best practices.\n**IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**",
         parameters: {
-            include_full_props: "Whether to include full props data or only important fields. **DEFAULT: false**"
+            doc_type: `Type of documentation to retrieve:
+                - 'usage': Component anatomy, structure, examples, dos and don'ts, and best practices
+                - 'props': Brief component props/API as JSON (important fields only)
+                - 'props-full': Full component props/API as JSON (all fields)`
         }
     },
 

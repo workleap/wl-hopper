@@ -64,8 +64,8 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 ### Component Selection
 - Check the '${"figma-conventions" satisfies GuideSection}' guide to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
-- CRITICAL: Always call '#${toolsInfo.get_component_usage.name}' before diving into props - it shows real-world patterns.
-- Always call '#${toolsInfo.get_component_props.name}' tool provided by MCP for ANY component you haven't used before.
+- CRITICAL: Always call '#${toolsInfo.get_component_doc.name}("usage")' before diving into props - it shows real-world patterns.
+- Always call '#${toolsInfo.get_component_doc.name}("props")' tool provided by MCP for ANY component you haven't used before.
 
 ### Styling
 - All styling must use Hopper design semantic or core tokens—never raw CSS values or inline styles.
