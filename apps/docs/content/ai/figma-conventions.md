@@ -20,6 +20,8 @@ General rules on how to interpret `data-name` attribute in Figma elements:
 |------------------------------|---------------------------------------------------------------|
 | `Button/submit`              | `Button`                                                      |
 | `Select/filter by group`     | `Select`                                                      |
+| `Tag`                        | `Tag`                                                         |
+| `Tag/Warning`                | `Tag`                                                         |
 | `Icon/Plus`                  | `PlusIcon` from Hopper Icons library                          |
 | `Icon/AddUser/Add customer`  | `AddIcon` from Hopper Icons library                           |
 | `RichIcon/Rocket`            | `RocketRichIcon` from Hopper Rich Icons library               |

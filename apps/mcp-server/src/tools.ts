@@ -61,17 +61,17 @@ export function tools(server: McpServer) {
         description: toolsInfo.get_design_tokens_map.description,
         inputSchema: {
             category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens_map.parameters.category),
-            filter_by_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens_map.parameters.filter_by_names),
+            token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens_map.parameters.token_names),
             include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens_map.parameters.include_css_values)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_css_values, filter_by_names }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_css_values, filter_by_names }, e?.requestInfo);
+    }, async ({ category, include_css_values, token_names }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_css_values, token_names }, e?.requestInfo);
 
         return toolContent(
-            ...(await getDesignTokensMap(category, filter_by_names, include_css_values ? "full" : "brief")),
+            ...(await getDesignTokensMap(category, token_names, include_css_values ? "full" : "brief")),
             include_css_values ? content("**Use 'propValue' in your code, not 'cssValue'. Design tokens ensure consistency.**") : undefined,
             content("**Golden Rule**, Remove these substrings from token names to get the correct prop value: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
         );

@@ -106,7 +106,7 @@ export const toolsInfo = {
         description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> information-weak",
         parameters: {
             category: generateTokenMapsDescription(),
-            filter_by_names: "Filter tokens by name (case-insensitive, partial match). E.g. ['hop-neutral-text', 'hop-primary-surface']",
+            token_names: "Filter tokens by their Hopper token names (case-insensitive, partial match). Pass actual token names like 'hop-neutral-text', NOT CSS values like '#3c3c3c'. Examples: ['hop-neutral-text', 'hop-primary-surface', 'hop-space-stack-md']",
             include_css_values: "Whether to include token css values in the response. **DEFAULT: false**"
         }
     },
