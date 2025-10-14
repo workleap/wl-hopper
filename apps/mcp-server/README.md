@@ -57,7 +57,6 @@ src/
 
 ## Available Tools
 
-- `get_started` - Setup guidance
 - `get_guide` - Design system guides and design tokens (use `category` param for tokens)
 - `get_component_doc` - Component documentation (usage, props, or props-full via `doc_type` param)
 - `migrate_code_to_hopper` - Migrate existing code to Hopper

@@ -79,12 +79,6 @@ export const paginationParamsInfo = {
 };
 
 export const toolsInfo = {
-    get_started: {
-        name: "get_started",
-        title: "Get Started",
-        description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
-    },
-
     get_component_doc: {
         name: "get_component_doc",
         title: "Get component documentation",
