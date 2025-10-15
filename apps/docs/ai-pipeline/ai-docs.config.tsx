@@ -232,17 +232,7 @@ export const aiDocsConfig: AiDocsConfig = {
         },
 
         // tokens map (json)
-        "tokens/maps/brief": {
-            build: {
-                type: "tokens-json",
-                source: "datas/tokens.json",
-                options: {
-                    fullMap: false
-                }
-            }
-        },
-
-        "tokens/maps/full": {
+        "tokens/maps": {
             build: {
                 type: "tokens-json",
                 source: "datas/tokens.json",

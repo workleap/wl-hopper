@@ -56,7 +56,7 @@ export function generateTokenMapsDescription(): string {
 
     for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
         const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
-        const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
+        const totalTokens = mapFiles ? mapFiles.reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
         description += `        - ${category}: ${categoryDescription} (size: ${totalTokens} LLM tokens)\n`;
     }
 
@@ -100,14 +100,24 @@ export const toolsInfo = {
             category:  generateDesignTokensDescription()
         }
     },
-    get_design_tokens_map: {
-        name: "get_design_tokens_map",
-        title: "Get design system tokens map to component props as JSON",
+    get_design_tokens: {
+        name: "get_design_tokens",
+        title: "Search design system tokens and get their map to component props as JSON",
         description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> information-weak",
         parameters: {
             category: generateTokenMapsDescription(),
-            token_names: "Filter tokens by their Hopper token names (case-insensitive, partial match). Pass actual token names like 'hop-neutral-text', NOT CSS values like '#3c3c3c'. Examples: ['hop-neutral-text', 'hop-primary-surface', 'hop-space-stack-md']",
-            include_css_values: "Whether to include token css values in the response. **DEFAULT: false**"
+            search_token_names: {
+                name: "search_token_names",
+                description: "Filter tokens by their Hopper token names (case-insensitive, partial match). Pass actual token names like 'hop-neutral-text', NOT CSS values like '#3c3c3c'. Examples: ['hop-neutral-text', 'hop-primary-surface', 'hop-space-stack-md']"
+            },
+            search_css_values: {
+                name: "search_css_values",
+                description: "Filter tokens by their CSS values (fuzzy match). Pass actual CSS values, NOT Hopper token names. Examples: ['#3c3c3c', '16px', '2rem', '400', 'Arial', '500ms']"
+            },
+            include_css_values: {
+                name: "include_css_values",
+                description: "Whether to include token css values in the response. **DEFAULT: false**"
+            }
         }
     },
 

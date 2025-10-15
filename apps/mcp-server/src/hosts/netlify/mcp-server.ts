@@ -14,7 +14,8 @@ export default async (req: Request) => {
             const server = getServer();
 
             const transport = new StreamableHTTPServerTransport({
-                sessionIdGenerator: undefined
+                sessionIdGenerator: undefined,
+                enableJsonResponse: true
             });
 
             await server.connect(transport);

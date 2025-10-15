@@ -8,8 +8,8 @@ const files = {
   "ai": {
     "figmaConventions": {
       "path": "/ai/figma-conventions.md",
-      "size": 1911,
-      "estimatedTokens": 546
+      "size": 2124,
+      "estimatedTokens": 607
     }
   },
   "components": {
@@ -892,43 +892,43 @@ const files = {
     "concepts": {
       "clientSideRouting": {
         "path": "/components/concepts/client-side-routing.md",
-        "size": 5967,
-        "estimatedTokens": 1705
+        "size": 5968,
+        "estimatedTokens": 1706
       },
       "colorSchemes": {
         "path": "/components/concepts/color-schemes.md",
-        "size": 4953,
+        "size": 4954,
         "estimatedTokens": 1416
       },
       "controlledMode": {
         "path": "/components/concepts/controlled-mode.md",
-        "size": 3845,
+        "size": 3846,
         "estimatedTokens": 1099
       },
       "forms": {
         "path": "/components/concepts/forms.md",
-        "size": 10963,
+        "size": 10964,
         "estimatedTokens": 3133
       },
       "index": {
         "path": "/components/concepts/index.md",
-        "size": 47700,
-        "estimatedTokens": 13629
+        "size": 47716,
+        "estimatedTokens": 13634
       },
       "internationalization": {
         "path": "/components/concepts/internationalization.md",
-        "size": 2269,
+        "size": 2270,
         "estimatedTokens": 649
       },
       "layout": {
         "path": "/components/concepts/layout.md",
-        "size": 9810,
-        "estimatedTokens": 2803
+        "size": 9817,
+        "estimatedTokens": 2805
       },
       "slots": {
         "path": "/components/concepts/slots.md",
-        "size": 8577,
-        "estimatedTokens": 2451
+        "size": 8581,
+        "estimatedTokens": 2452
       },
       "styledSystem": {
         "path": "/components/concepts/styled-system.md",
@@ -1039,8 +1039,8 @@ const files = {
       },
       "disclosure": {
         "path": "/components/full/Disclosure.md",
-        "size": 35308,
-        "estimatedTokens": 10088
+        "size": 35309,
+        "estimatedTokens": 10089
       },
       "div": {
         "path": "/components/full/Div.md",
@@ -1099,7 +1099,7 @@ const files = {
       },
       "hopperProvider": {
         "path": "/components/full/HopperProvider.md",
-        "size": 5115,
+        "size": 5117,
         "estimatedTokens": 1462
       },
       "htmlButton": {
@@ -1174,7 +1174,7 @@ const files = {
       },
       "linkButton": {
         "path": "/components/full/LinkButton.md",
-        "size": 41773,
+        "size": 41775,
         "estimatedTokens": 11936
       },
       "listbox": {
@@ -1289,7 +1289,7 @@ const files = {
       },
       "tag": {
         "path": "/components/full/Tag.md",
-        "size": 37810,
+        "size": 37809,
         "estimatedTokens": 10803
       },
       "tagGroup": {
@@ -1304,13 +1304,13 @@ const files = {
       },
       "textArea": {
         "path": "/components/full/TextArea.md",
-        "size": 56005,
+        "size": 56004,
         "estimatedTokens": 16002
       },
       "textField": {
         "path": "/components/full/TextField.md",
-        "size": 54064,
-        "estimatedTokens": 15447
+        "size": 54066,
+        "estimatedTokens": 15448
       },
       "tile": {
         "path": "/components/full/Tile.md",
@@ -1350,8 +1350,8 @@ const files = {
     },
     "index": {
       "path": "/components/index.md",
-      "size": 1884985,
-      "estimatedTokens": 538568
+      "size": 1884990,
+      "estimatedTokens": 538569
     },
     "usage": {
       "a": {
@@ -1456,7 +1456,7 @@ const files = {
       },
       "disclosure": {
         "path": "/components/usage/Disclosure.md",
-        "size": 9412,
+        "size": 9413,
         "estimatedTokens": 2690
       },
       "div": {
@@ -1516,7 +1516,7 @@ const files = {
       },
       "hopperProvider": {
         "path": "/components/usage/HopperProvider.md",
-        "size": 4981,
+        "size": 4983,
         "estimatedTokens": 1424
       },
       "htmlButton": {
@@ -1591,7 +1591,7 @@ const files = {
       },
       "linkButton": {
         "path": "/components/usage/LinkButton.md",
-        "size": 9783,
+        "size": 9785,
         "estimatedTokens": 2796
       },
       "listbox": {
@@ -1706,7 +1706,7 @@ const files = {
       },
       "tag": {
         "path": "/components/usage/Tag.md",
-        "size": 8274,
+        "size": 8273,
         "estimatedTokens": 2364
       },
       "tagGroup": {
@@ -1721,12 +1721,12 @@ const files = {
       },
       "textArea": {
         "path": "/components/usage/TextArea.md",
-        "size": 7699,
+        "size": 7698,
         "estimatedTokens": 2200
       },
       "textField": {
         "path": "/components/usage/TextField.md",
-        "size": 6578,
+        "size": 6580,
         "estimatedTokens": 1880
       },
       "tile": {
@@ -1769,18 +1769,18 @@ const files = {
   "gettingStarted": {
     "components": {
       "path": "/getting-started/components.md",
-      "size": 11871,
-      "estimatedTokens": 3392
+      "size": 11896,
+      "estimatedTokens": 3399
     },
     "index": {
       "path": "/getting-started/index.md",
-      "size": 21619,
-      "estimatedTokens": 6177
+      "size": 21667,
+      "estimatedTokens": 6191
     },
     "installation": {
       "path": "/getting-started/installation.md",
-      "size": 2248,
-      "estimatedTokens": 643
+      "size": 2256,
+      "estimatedTokens": 645
     },
     "javascript": {
       "path": "/getting-started/javascript.md",
@@ -1794,13 +1794,13 @@ const files = {
     },
     "mcpServer": {
       "path": "/getting-started/mcp-server.md",
-      "size": 2958,
-      "estimatedTokens": 846
+      "size": 3424,
+      "estimatedTokens": 979
     },
     "react": {
       "path": "/getting-started/react.md",
-      "size": 2797,
-      "estimatedTokens": 800
+      "size": 2812,
+      "estimatedTokens": 804
     },
     "textCrop": {
       "path": "/getting-started/text-crop.md",
@@ -1836,14 +1836,14 @@ const files = {
       },
       "index": {
         "path": "/icons/brief/index.md",
-        "size": 7685,
-        "estimatedTokens": 2196
+        "size": 7791,
+        "estimatedTokens": 2226
       },
       "overview": {
         "introduction": {
           "path": "/icons/brief/overview/introduction.md",
-          "size": 1496,
-          "estimatedTokens": 428
+          "size": 1506,
+          "estimatedTokens": 431
         }
       },
       "reactIcons": {
@@ -1854,13 +1854,13 @@ const files = {
         },
         "index": {
           "path": "/icons/brief/react-icons/index.md",
-          "size": 1400,
-          "estimatedTokens": 400
+          "size": 1496,
+          "estimatedTokens": 428
         },
         "richIconLibrary": {
           "path": "/icons/brief/react-icons/rich-icon-library.md",
-          "size": 817,
-          "estimatedTokens": 234
+          "size": 913,
+          "estimatedTokens": 261
         }
       }
     },
@@ -1873,18 +1873,18 @@ const files = {
       "svgIcons": {
         "iconLibrary": {
           "path": "/icons/full/SVG-icons/icon-library.md",
-          "size": 79575,
-          "estimatedTokens": 22736
+          "size": 79572,
+          "estimatedTokens": 22735
         },
         "index": {
           "path": "/icons/full/SVG-icons/index.md",
-          "size": 93296,
-          "estimatedTokens": 26656
+          "size": 93290,
+          "estimatedTokens": 26655
         },
         "richIconLibrary": {
           "path": "/icons/full/SVG-icons/rich-icon-library.md",
-          "size": 13571,
-          "estimatedTokens": 3878
+          "size": 13568,
+          "estimatedTokens": 3877
         }
       },
       "advanced": {
@@ -1896,39 +1896,39 @@ const files = {
       },
       "index": {
         "path": "/icons/full/index.md",
-        "size": 189475,
-        "estimatedTokens": 54136
+        "size": 189569,
+        "estimatedTokens": 54163
       },
       "overview": {
         "introduction": {
           "path": "/icons/full/overview/introduction.md",
-          "size": 1496,
-          "estimatedTokens": 428
+          "size": 1506,
+          "estimatedTokens": 431
         }
       },
       "reactIcons": {
         "iconLibrary": {
           "path": "/icons/full/react-icons/icon-library.md",
-          "size": 79025,
-          "estimatedTokens": 22579
+          "size": 79022,
+          "estimatedTokens": 22578
         },
         "index": {
           "path": "/icons/full/react-icons/index.md",
-          "size": 92284,
-          "estimatedTokens": 26367
+          "size": 92374,
+          "estimatedTokens": 26393
         },
         "richIconLibrary": {
           "path": "/icons/full/react-icons/rich-icon-library.md",
-          "size": 13110,
-          "estimatedTokens": 3746
+          "size": 13203,
+          "estimatedTokens": 3773
         }
       }
     }
   },
   "llmsFull": {
     "path": "/llms-full.md",
-    "size": 2382379,
-    "estimatedTokens": 680680
+    "size": 2382543,
+    "estimatedTokens": 680727
   },
   "llms": {
     "path": "/llms.md",
@@ -1954,7 +1954,7 @@ const files = {
       },
       "styling": {
         "path": "/styled-system/concepts/styling.md",
-        "size": 24295,
+        "size": 24296,
         "estimatedTokens": 6942
       }
     },
@@ -1965,8 +1965,8 @@ const files = {
     },
     "index": {
       "path": "/styled-system/index.md",
-      "size": 33341,
-      "estimatedTokens": 9526
+      "size": 33342,
+      "estimatedTokens": 9527
     },
     "overview": {
       "introduction": {
@@ -2040,279 +2040,140 @@ const files = {
       "estimatedTokens": 58129
     },
     "maps": {
-      "brief": {
-        "all": {
-          "path": "/tokens/maps/brief/all.json",
-          "size": 78258,
-          "estimatedTokens": 22360
-        },
-        "coreBorderRadius": {
-          "path": "/tokens/maps/brief/core-borderRadius.json",
-          "size": 254,
-          "estimatedTokens": 73
-        },
-        "coreBottomOffset": {
-          "path": "/tokens/maps/brief/core-bottomOffset.json",
-          "size": 24,
-          "estimatedTokens": 7
-        },
-        "coreColor": {
-          "path": "/tokens/maps/brief/core-color.json",
-          "size": 5658,
-          "estimatedTokens": 1617
-        },
-        "coreDuration": {
-          "path": "/tokens/maps/brief/core-duration.json",
-          "size": 297,
-          "estimatedTokens": 85
-        },
-        "coreFontFamily": {
-          "path": "/tokens/maps/brief/core-fontFamily.json",
-          "size": 171,
-          "estimatedTokens": 49
-        },
-        "coreFontSize": {
-          "path": "/tokens/maps/brief/core-fontSize.json",
-          "size": 392,
-          "estimatedTokens": 112
-        },
-        "coreFontWeight": {
-          "path": "/tokens/maps/brief/core-fontWeight.json",
-          "size": 297,
-          "estimatedTokens": 85
-        },
-        "coreLineHeight": {
-          "path": "/tokens/maps/brief/core-lineHeight.json",
-          "size": 317,
-          "estimatedTokens": 91
-        },
-        "coreShadow": {
-          "path": "/tokens/maps/brief/core-shadow.json",
-          "size": 152,
-          "estimatedTokens": 44
-        },
-        "coreSize": {
-          "path": "/tokens/maps/brief/core-size.json",
-          "size": 470,
-          "estimatedTokens": 135
-        },
-        "coreTimingFunction": {
-          "path": "/tokens/maps/brief/core-timingFunction.json",
-          "size": 183,
-          "estimatedTokens": 53
-        },
-        "coreTopOffset": {
-          "path": "/tokens/maps/brief/core-topOffset.json",
-          "size": 21,
-          "estimatedTokens": 6
-        },
-        "core": {
-          "path": "/tokens/maps/brief/core.json",
-          "size": 8214,
-          "estimatedTokens": 2347
-        },
-        "semanticBorderRadius": {
-          "path": "/tokens/maps/brief/semantic-borderRadius.json",
-          "size": 216,
-          "estimatedTokens": 62
-        },
-        "semanticBottomOffset": {
-          "path": "/tokens/maps/brief/semantic-bottomOffset.json",
-          "size": 616,
-          "estimatedTokens": 176
-        },
-        "semanticColor": {
-          "path": "/tokens/maps/brief/semantic-color.json",
-          "size": 58193,
-          "estimatedTokens": 16627
-        },
-        "semanticDuration": {
-          "path": "/tokens/maps/brief/semantic-duration.json",
-          "size": 20,
-          "estimatedTokens": 6
-        },
-        "semanticFontFamily": {
-          "path": "/tokens/maps/brief/semantic-fontFamily.json",
-          "size": 1736,
-          "estimatedTokens": 496
-        },
-        "semanticFontSize": {
-          "path": "/tokens/maps/brief/semantic-fontSize.json",
-          "size": 1668,
-          "estimatedTokens": 477
-        },
-        "semanticFontWeight": {
-          "path": "/tokens/maps/brief/semantic-fontWeight.json",
-          "size": 1736,
-          "estimatedTokens": 496
-        },
-        "semanticLineHeight": {
-          "path": "/tokens/maps/brief/semantic-lineHeight.json",
-          "size": 1736,
-          "estimatedTokens": 496
-        },
-        "semanticShadow": {
-          "path": "/tokens/maps/brief/semantic-shadow.json",
-          "size": 172,
-          "estimatedTokens": 50
-        },
-        "semanticSize": {
-          "path": "/tokens/maps/brief/semantic-size.json",
-          "size": 916,
-          "estimatedTokens": 262
-        },
-        "semanticTimingFunction": {
-          "path": "/tokens/maps/brief/semantic-timingFunction.json",
-          "size": 26,
-          "estimatedTokens": 8
-        },
-        "semanticTopOffset": {
-          "path": "/tokens/maps/brief/semantic-topOffset.json",
-          "size": 559,
-          "estimatedTokens": 160
-        },
-        "semantic": {
-          "path": "/tokens/maps/brief/semantic.json",
-          "size": 67572,
-          "estimatedTokens": 19307
-        }
+      "all": {
+        "path": "/tokens/maps/all.json",
+        "size": 152342,
+        "estimatedTokens": 43527
       },
-      "full": {
-        "all": {
-          "path": "/tokens/maps/full/all.json",
-          "size": 152338,
-          "estimatedTokens": 43526
-        },
-        "coreBorderRadius": {
-          "path": "/tokens/maps/full/core-borderRadius.json",
-          "size": 581,
-          "estimatedTokens": 166
-        },
-        "coreBottomOffset": {
-          "path": "/tokens/maps/full/core-bottomOffset.json",
-          "size": 24,
-          "estimatedTokens": 7
-        },
-        "coreColor": {
-          "path": "/tokens/maps/full/core-color.json",
-          "size": 13218,
-          "estimatedTokens": 3777
-        },
-        "coreDuration": {
-          "path": "/tokens/maps/full/core-duration.json",
-          "size": 567,
-          "estimatedTokens": 162
-        },
-        "coreFontFamily": {
-          "path": "/tokens/maps/full/core-fontFamily.json",
-          "size": 448,
-          "estimatedTokens": 128
-        },
-        "coreFontSize": {
-          "path": "/tokens/maps/full/core-fontSize.json",
-          "size": 944,
-          "estimatedTokens": 270
-        },
-        "coreFontWeight": {
-          "path": "/tokens/maps/full/core-fontWeight.json",
-          "size": 661,
-          "estimatedTokens": 189
-        },
-        "coreLineHeight": {
-          "path": "/tokens/maps/full/core-lineHeight.json",
-          "size": 702,
-          "estimatedTokens": 201
-        },
-        "coreShadow": {
-          "path": "/tokens/maps/full/core-shadow.json",
-          "size": 461,
-          "estimatedTokens": 132
-        },
-        "coreSize": {
-          "path": "/tokens/maps/full/core-size.json",
-          "size": 1225,
-          "estimatedTokens": 350
-        },
-        "coreTimingFunction": {
-          "path": "/tokens/maps/full/core-timingFunction.json",
-          "size": 435,
-          "estimatedTokens": 125
-        },
-        "coreTopOffset": {
-          "path": "/tokens/maps/full/core-topOffset.json",
-          "size": 21,
-          "estimatedTokens": 6
-        },
-        "core": {
-          "path": "/tokens/maps/full/core.json",
-          "size": 19265,
-          "estimatedTokens": 5505
-        },
-        "semanticBorderRadius": {
-          "path": "/tokens/maps/full/semantic-borderRadius.json",
-          "size": 495,
-          "estimatedTokens": 142
-        },
-        "semanticBottomOffset": {
-          "path": "/tokens/maps/full/semantic-bottomOffset.json",
-          "size": 1140,
-          "estimatedTokens": 326
-        },
-        "semanticColor": {
-          "path": "/tokens/maps/full/semantic-color.json",
-          "size": 103049,
-          "estimatedTokens": 29443
-        },
-        "semanticDuration": {
-          "path": "/tokens/maps/full/semantic-duration.json",
-          "size": 20,
-          "estimatedTokens": 6
-        },
-        "semanticFontFamily": {
-          "path": "/tokens/maps/full/semantic-fontFamily.json",
-          "size": 4647,
-          "estimatedTokens": 1328
-        },
-        "semanticFontSize": {
-          "path": "/tokens/maps/full/semantic-fontSize.json",
-          "size": 3497,
-          "estimatedTokens": 1000
-        },
-        "semanticFontWeight": {
-          "path": "/tokens/maps/full/semantic-fontWeight.json",
-          "size": 3452,
-          "estimatedTokens": 987
-        },
-        "semanticLineHeight": {
-          "path": "/tokens/maps/full/semantic-lineHeight.json",
-          "size": 3589,
-          "estimatedTokens": 1026
-        },
-        "semanticShadow": {
-          "path": "/tokens/maps/full/semantic-shadow.json",
-          "size": 481,
-          "estimatedTokens": 138
-        },
-        "semanticSize": {
-          "path": "/tokens/maps/full/semantic-size.json",
-          "size": 2093,
-          "estimatedTokens": 598
-        },
-        "semanticTimingFunction": {
-          "path": "/tokens/maps/full/semantic-timingFunction.json",
-          "size": 26,
-          "estimatedTokens": 8
-        },
-        "semanticTopOffset": {
-          "path": "/tokens/maps/full/semantic-topOffset.json",
-          "size": 1084,
-          "estimatedTokens": 310
-        },
-        "semantic": {
-          "path": "/tokens/maps/full/semantic.json",
-          "size": 123551,
-          "estimatedTokens": 35301
-        }
+      "coreBorderRadius": {
+        "path": "/tokens/maps/core-borderRadius.json",
+        "size": 651,
+        "estimatedTokens": 186
+      },
+      "coreBottomOffset": {
+        "path": "/tokens/maps/core-bottomOffset.json",
+        "size": 42,
+        "estimatedTokens": 12
+      },
+      "coreColor": {
+        "path": "/tokens/maps/core-color.json",
+        "size": 14318,
+        "estimatedTokens": 4091
+      },
+      "coreDuration": {
+        "path": "/tokens/maps/core-duration.json",
+        "size": 627,
+        "estimatedTokens": 180
+      },
+      "coreFontFamily": {
+        "path": "/tokens/maps/core-fontFamily.json",
+        "size": 492,
+        "estimatedTokens": 141
+      },
+      "coreFontSize": {
+        "path": "/tokens/maps/core-fontSize.json",
+        "size": 1044,
+        "estimatedTokens": 299
+      },
+      "coreFontWeight": {
+        "path": "/tokens/maps/core-fontWeight.json",
+        "size": 737,
+        "estimatedTokens": 211
+      },
+      "coreLineHeight": {
+        "path": "/tokens/maps/core-lineHeight.json",
+        "size": 778,
+        "estimatedTokens": 223
+      },
+      "coreShadow": {
+        "path": "/tokens/maps/core-shadow.json",
+        "size": 513,
+        "estimatedTokens": 147
+      },
+      "coreSize": {
+        "path": "/tokens/maps/core-size.json",
+        "size": 1359,
+        "estimatedTokens": 389
+      },
+      "coreTimingFunction": {
+        "path": "/tokens/maps/core-timingFunction.json",
+        "size": 479,
+        "estimatedTokens": 137
+      },
+      "coreTopOffset": {
+        "path": "/tokens/maps/core-topOffset.json",
+        "size": 39,
+        "estimatedTokens": 12
+      },
+      "core": {
+        "path": "/tokens/maps/core.json",
+        "size": 20881,
+        "estimatedTokens": 5966
+      },
+      "semanticBorderRadius": {
+        "path": "/tokens/maps/semantic-borderRadius.json",
+        "size": 559,
+        "estimatedTokens": 160
+      },
+      "semanticBottomOffset": {
+        "path": "/tokens/maps/semantic-bottomOffset.json",
+        "size": 1236,
+        "estimatedTokens": 354
+      },
+      "semanticColor": {
+        "path": "/tokens/maps/semantic-color.json",
+        "size": 109481,
+        "estimatedTokens": 31281
+      },
+      "semanticDuration": {
+        "path": "/tokens/maps/semantic-duration.json",
+        "size": 42,
+        "estimatedTokens": 12
+      },
+      "semanticFontFamily": {
+        "path": "/tokens/maps/semantic-fontFamily.json",
+        "size": 4935,
+        "estimatedTokens": 1410
+      },
+      "semanticFontSize": {
+        "path": "/tokens/maps/semantic-fontSize.json",
+        "size": 3785,
+        "estimatedTokens": 1082
+      },
+      "semanticFontWeight": {
+        "path": "/tokens/maps/semantic-fontWeight.json",
+        "size": 3740,
+        "estimatedTokens": 1069
+      },
+      "semanticLineHeight": {
+        "path": "/tokens/maps/semantic-lineHeight.json",
+        "size": 3877,
+        "estimatedTokens": 1108
+      },
+      "semanticShadow": {
+        "path": "/tokens/maps/semantic-shadow.json",
+        "size": 537,
+        "estimatedTokens": 154
+      },
+      "semanticSize": {
+        "path": "/tokens/maps/semantic-size.json",
+        "size": 2285,
+        "estimatedTokens": 653
+      },
+      "semanticTimingFunction": {
+        "path": "/tokens/maps/semantic-timingFunction.json",
+        "size": 48,
+        "estimatedTokens": 14
+      },
+      "semanticTopOffset": {
+        "path": "/tokens/maps/semantic-topOffset.json",
+        "size": 1180,
+        "estimatedTokens": 338
+      },
+      "semantic": {
+        "path": "/tokens/maps/semantic.json",
+        "size": 131463,
+        "estimatedTokens": 37561
       }
     },
     "overview": {

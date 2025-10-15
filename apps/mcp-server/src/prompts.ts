@@ -4,6 +4,9 @@ import { z } from "zod";
 import type { GuideSection } from "./utils/docs";
 import { toolsInfo } from "./utils/toolsInfo";
 
+const figma_get_code = "'#get_design_context'";
+const figma_get_screenshot = "'#get_screenshot'";
+
 export function prompts(server: McpServer) {
     server.registerPrompt("build_hopper_app", {
         description:
@@ -60,27 +63,27 @@ export function prompts(server: McpServer) {
 # Objective
 Generate a JSX implementation of the selected Figma frame using Hopper Design System components, ensuring visual and structural fidelity.
 
-Begin with a concise checklist (5-10 bullets) of what you will do; keep items conceptual, not implementation-level.
+Begin with a concise checklist (min. 5-10 bullets) of what you will do; keep items conceptual, not implementation-level.
 
 # Instructions
 
 ## 1. Initial Code Generation
-- Utilize Figma MCP tools ('#get_screenshot' and '#get_code') for initial extraction.
-- Map visuals from '#get_screenshot' directly to Hopper components.
-- Use '#get_code' mainly to extract styling values (colors, sizes, fonts), not for component structure.
+- Utilize Figma MCP tools (${figma_get_code} and ${figma_get_screenshot}) for initial extraction.
+- Map visuals from ${figma_get_screenshot} directly to Hopper components.
+- Use ${figma_get_code} mainly to extract styling values (colors, sizes, fonts), not for component structure.
 - **CRITICAL:** Preserve all text from Figma exactly, without alteration.
 
 ## 2. Hopper Design System Refinement
 
 ### Component Selection
-- Check the '${"figma-conventions" satisfies GuideSection}' guide to see how 'data-name' attribute (returned from '#get_code' tool) is mapped to a Hopper component.
+- Check the '${"figma-conventions" satisfies GuideSection}' guide to see how 'data-name' attribute (returned from ${figma_get_code} tool) is mapped to a Hopper component.
 - ALWAYS prioritize using higher-level/semantic components. For example prioritize using TextField instead of HtmlInput, or Grid instead of Div when appropriate.
 - CRITICAL: Always call '#${toolsInfo.get_component_doc.name}("usage")' before diving into props - it shows real-world patterns.
 - Always call '#${toolsInfo.get_component_doc.name}("props")' tool provided by MCP for ANY component you haven't used before.
 
 ### Styling
 - All styling must use Hopper design semantic or core tokens—never raw CSS values or inline styles.
-- **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use token names for component style props directly. To find the correct mapping value use the "#${toolsInfo.get_design_tokens_map.name}" tool to find the correct prop value.
+- **IMPORTANT** Design system tokens ARE DIFFERENT from component style props values. You MUST NOT use token names for component style props directly. To find the correct mapping value use the "#${toolsInfo.get_design_tokens.name}" tool to find the correct prop value.
 - **CRITICAL**: Check the '${"escape-hatches" satisfies GuideSection}' guide for a COMPLETE WHITELIST of UNSAFE_* props.
     - If a prop IS in the whitelist (e.g., width, fontSize) → use "UNSAFE_propName" ONLY for CUSTOM values, otherwise use the propName directly WITHOUT UNSAFE_ prefix.
     - If a prop is NOT in the whitelist (e.g., position, overflow, cursor, opacity, left, top, inset) → ALWAYS use the propName directly WITHOUT UNSAFE_ prefix.
@@ -100,19 +103,27 @@ Begin with a concise checklist (5-10 bullets) of what you will do; keep items co
 
 ## 3.2 Component, Icon & Token Mapping
 You MUST NOT proceed to implementation until you:
-- [ ] Extract all unique token names(from ALL token categories) from #get_code response, and list them.
-- [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens_map.name}("all",<filter_by_names>)' and passing ONLY those token names via its 'filter_by_names' parameter. List the mapping when you are done.
-    - IF needed: Call '#${toolsInfo.get_design_tokens_map.name}("all")' without <filter_by_names> to cover ALL tokens.
-- [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma #get_code response by following '${"figma-conventions" satisfies GuideSection}' guide.
+- [ ] Extract all unique token names(from ALL token categories) from ${figma_get_code} response.
+    - [ ] Create a COMPLETE map of design tokens → component prop values for every token extracted by calling '#${toolsInfo.get_design_tokens.name}("all",<${toolsInfo.get_design_tokens.parameters.search_token_names.name}>)' and passing ONLY those token names via its '${toolsInfo.get_design_tokens.parameters.search_token_names.name}' parameter.
+    - [ ] IF needed: Call '#${toolsInfo.get_design_tokens.name}("all")' without <${toolsInfo.get_design_tokens.parameters.search_token_names.name}> to cover ALL tokens.
+    - [ ] Show the mapping to me when you are done.
+- [ ] Extract all unique CSS values (e.g., "16px", "24px", "32px", "2rem", "3rem", "400", etc.) from ${figma_get_code} response.
+    - [ ] Search for these CSS values in tokens by calling '#${toolsInfo.get_design_tokens.name}' and setting '${toolsInfo.get_design_tokens.parameters.search_token_names.name}' to fetched values to find matching tokens. e.g ["16px", "1rem","400", "Times"])
+    - [ ] Create a map of CSS values → prop values (e.g., "16px" → "core_160", "24px" → "core_240")
+    - [ ] Show the mapping to me when you are done.
+- [ ] Create a COMPLETE map of ALL 'data-name' attributes → "Hopper Component, Hopper Icon, Product Icons/Logos/Images/Avatars" from Figma ${figma_get_code} response by following '${"figma-conventions" satisfies GuideSection}' guide.
     - **CRITICAL:** Product Icons are PRESERVED as EXACTLY as what you got.
-    - **List every Product Icons/Logos/Images/Avatars occurrence with its image URL from #get_code**
+    - **List every Product Icons/Logos/Images/Avatars occurrence with its image URL from ${figma_get_code}**
+    - [ ] Show the mapping to me when you are done.
 
 ## 4. Implementation
+- **CRITICAL:** Use tokens for ALL values (e.g. width, height, padding) that match available tokens. Never use UNSAFE_ for values that have tokens.
 - Implement **ALL** Product Icons/Logos/Images/Avatars from your product icon map created in previous step.
 - **Proactively** refer to your design token and component maps to ensure correct usage.
 - Build out the implementation entirely with Hopper components and patterns.
 - ENSURE you don't guess UNSAFE_ props. ONLY use UNSAFE_ props listed in the '${"escape-hatches" satisfies GuideSection}' guide.
-- Use '#get_screenshot' again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
+- **CRITICAL**: Don't use Core_* tokens when you have **Semantic** tokens available. For example: gap, padding and margin props all support semantic tokens, and gap="core_80" is incorrect.
+- Use ${figma_get_screenshot} again to compare your result with the original Figma frame until a pixel-perfect match is achieved.
 - Iterate as needed; after each adjustment, repeat the comparison.
 - After each code edit, validate result in 1-2 lines and proceed or self-correct if validation fails.
 - Run Typescript type-checking on the final code to ensure no type errors.
@@ -122,8 +133,9 @@ You MUST NOT proceed to implementation until you:
 - [ ] Verify all UNSAFE_* props are in the '${"escape-hatches" satisfies GuideSection}' whitelist.
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
+- [ ] **CRITICAL** Verify Core_* tokens are NOT used when Semantic tokens are available.
 - [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
-- [ ] Use '#get_screenshot' for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
+- [ ] Use ${figma_get_screenshot} for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 
 # Output

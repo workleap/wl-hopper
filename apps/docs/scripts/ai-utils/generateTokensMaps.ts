@@ -5,7 +5,7 @@ import path from "path";
 // Type definitions based on tokens.json structure
 interface TokenItem {
     name: string;
-    value: string;
+    value: unknown;
 }
 
 interface TokenSubsection {
@@ -82,7 +82,7 @@ function processTokenArray(
         if (isTokenItem(item) && item.name) {
             result[item.name] = fullMap ? {
                 propValue: formatStyledSystemName(item.name, tokenType),
-                cssValue: item.value
+                cssValue: String(item.value)
             } : formatStyledSystemName(item.name, tokenType);
         }
     }

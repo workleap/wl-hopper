@@ -12,6 +12,7 @@ import { content, errorContent } from "./content";
 import type { PaginatedResult } from "./cursor-pagination";
 import { trackError } from "./logging";
 import { readMarkdownFile } from "./readMarkdownFile";
+import { convertToBriefFormat, filterTokensByCssValues, filterTokensByKeys } from "./tokenUtils";
 
 export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
@@ -67,86 +68,30 @@ export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.
     all: files.tokens.index
 };
 
-export const TokenMapFiles: Record<TokenCategory, { brief: typeof files.gettingStarted.index[]; full: typeof files.gettingStarted.index[] }> = {
-    all: {
-        brief: [files.tokens.maps.brief.all],
-        full: [files.tokens.maps.full.all]
-    },
-    "all-core": {
-        brief: [files.tokens.maps.brief.core],
-        full: [files.tokens.maps.full.core]
-    },
-    "all-semantic": {
-        brief: [files.tokens.maps.brief.semantic],
-        full: [files.tokens.maps.full.semantic]
-    },
-    "core-border-radius": {
-        brief: [files.tokens.maps.brief.coreBorderRadius],
-        full: [files.tokens.maps.full.coreBorderRadius]
-    },
-    "core-color": {
-        brief: [files.tokens.maps.brief.coreColor],
-        full: [files.tokens.maps.full.coreColor]
-    },
-    "core-dimensions": {
-        brief: [files.tokens.maps.brief.coreSize],
-        full: [files.tokens.maps.full.coreSize]
-    },
-    "core-font-family": {
-        brief: [files.tokens.maps.brief.coreFontFamily],
-        full: [files.tokens.maps.full.coreFontFamily]
-    },
-    "core-font-size": {
-        brief: [files.tokens.maps.brief.coreFontSize],
-        full: [files.tokens.maps.full.coreFontSize]
-    },
-    "core-font-weight": {
-        brief: [files.tokens.maps.brief.coreFontWeight],
-        full: [files.tokens.maps.full.coreFontWeight]
-    },
-    "core-line-height": {
-        brief: [files.tokens.maps.brief.coreLineHeight],
-        full: [files.tokens.maps.full.coreLineHeight]
-    },
-    "core-motion": {
-        brief: [files.tokens.maps.brief.coreDuration, files.tokens.maps.brief.coreTimingFunction],
-        full: [files.tokens.maps.full.coreDuration, files.tokens.maps.full.coreTimingFunction]
-    },
-    "core-shadow": {
-        brief: [files.tokens.maps.brief.coreShadow],
-        full: [files.tokens.maps.full.coreShadow]
-    },
-    "semantic-shape": {
-        brief: [files.tokens.maps.brief.semanticBorderRadius],
-        full: [files.tokens.maps.full.semanticBorderRadius]
-    },
-    "semantic-space": {
-        brief: [files.tokens.maps.brief.semanticSize],
-        full: [files.tokens.maps.full.semanticSize]
-    },
-    "semantic-typography": {
-        brief: [
-            files.tokens.maps.brief.semanticFontFamily,
-            files.tokens.maps.brief.semanticFontSize,
-            files.tokens.maps.brief.semanticFontWeight,
-            files.tokens.maps.brief.semanticLineHeight,
-            files.tokens.maps.brief.semanticTopOffset,
-            files.tokens.maps.brief.semanticBottomOffset
-        ], full: [
-            files.tokens.maps.full.semanticFontFamily,
-            files.tokens.maps.full.semanticFontSize,
-            files.tokens.maps.full.semanticFontWeight,
-            files.tokens.maps.full.semanticLineHeight,
-            files.tokens.maps.full.semanticTopOffset
-        ] },
-    "semantic-color": {
-        brief: [files.tokens.maps.brief.semanticColor],
-        full: [files.tokens.maps.full.semanticColor]
-    },
-    "semantic-elevation": {
-        brief: [files.tokens.maps.brief.semanticShadow],
-        full: [files.tokens.maps.full.semanticShadow]
-    }
+export const TokenMapFiles: Record<TokenCategory, typeof files.gettingStarted.index[]> = {
+    all: [files.tokens.maps.all],
+    "all-core": [files.tokens.maps.core],
+    "all-semantic": [files.tokens.maps.semantic],
+    "core-border-radius": [files.tokens.maps.coreBorderRadius],
+    "core-color": [files.tokens.maps.coreColor],
+    "core-dimensions": [files.tokens.maps.coreSize],
+    "core-font-family": [files.tokens.maps.coreFontFamily],
+    "core-font-size": [files.tokens.maps.coreFontSize],
+    "core-font-weight": [files.tokens.maps.coreFontWeight],
+    "core-line-height": [files.tokens.maps.coreLineHeight],
+    "core-motion": [files.tokens.maps.coreDuration, files.tokens.maps.coreTimingFunction],
+    "core-shadow": [files.tokens.maps.coreShadow],
+    "semantic-shape": [files.tokens.maps.semanticBorderRadius],
+    "semantic-space": [files.tokens.maps.semanticSize],
+    "semantic-typography": [
+        files.tokens.maps.semanticFontFamily,
+        files.tokens.maps.semanticFontSize,
+        files.tokens.maps.semanticFontWeight,
+        files.tokens.maps.semanticLineHeight,
+        files.tokens.maps.semanticTopOffset
+    ],
+    "semantic-color": [files.tokens.maps.semanticColor],
+    "semantic-elevation": [files.tokens.maps.semanticShadow]
 };
 
 function getPaginatedContent(result: PaginatedResult): TextContent | TextContent[] {
@@ -324,85 +269,69 @@ export async function getDesignTokenGuide(category: TokenCategory, pageSize?: nu
     }
 }
 
-/**
- * Recursively filters a tokens object by the specified keys.
- * Only includes tokens whose keys contain any of the filter keys.
- * Filtering only happens at the leaf level (actual design tokens), not at category levels.
- *
- * Token structure:
- * - Level 1: semantic/core (top level categories)
- * - Level 2: category (e.g., color, typography, etc.)
- * - Level 3: token (the actual leaf nodes)
- */
-function filterTokensByKeys(obj: unknown, filterKeys: string[], depth = 1): unknown {
-    if (typeof obj !== "object" || obj === null) {
-        return obj;
-    }
+// Cache for token data by file path
+const tokenDataCache: Map<string, unknown> = new Map();
 
-    if (Array.isArray(obj)) {
-        return obj.map(item => filterTokensByKeys(item, filterKeys, depth));
-    }
-
-    const result: Record<string, unknown> = {};
-    const objRecord = obj as Record<string, unknown>;
-
-    for (const [key, value] of Object.entries(objRecord)) {
-        // Check if this is a leaf node (token at level 3)
-        const isLeafNode = depth === 3;
-
-        if (isLeafNode) {
-            // Only at leaf level (level 3), check if the key matches the filter
-            const shouldInclude = filterKeys.some(filterKey =>
-                key.includes(filterKey)
-            );
-
-            if (shouldInclude) {
-                result[key] = value;
-            }
-        } else if (typeof value === "object" && value !== null && !Array.isArray(value)) {
-            // For category nodes (level 1 and 2), recursively filter and include if children match
-            const filtered = filterTokensByKeys(value, filterKeys, depth + 1);
-            // Only include if the filtered result has keys
-            if (Object.keys(filtered as Record<string, unknown>).length > 0) {
-                result[key] = filtered;
-            }
-        }
-    }
-
-    return result;
-}
-
-export async function getDesignTokensMap(category: TokenCategory, filter_by_names: string[] | undefined, mode: "brief" | "full") {
-    return await Promise.all(TokenMapFiles[category][mode].map(async map => {
-        const tokensMap = join(env.DOCS_PATH, map.path);
-
+async function loadTokenData(path: string, category: TokenCategory): Promise<unknown> {
+    if (!tokenDataCache.has(path)) {
+        const tokensMap = join(env.DOCS_PATH, path);
         if (!existsSync(tokensMap)) {
             const error = new Error(`Tokens map not found for category: ${category}, path: ${tokensMap}`);
-
-            return errorContent(error, `Tokens map not found for category: ${category}, path: ${tokensMap}`);
+            throw error;
         }
+
         const fileContent = await readFile(tokensMap, "utf-8");
+        const tokensData = JSON.parse(fileContent);
+        tokenDataCache.set(path, tokensData);
+    }
 
-        // Apply filtering if filter_by_names is provided
-        if (filter_by_names && filter_by_names.length > 0) {
-            try {
-                const tokensData = JSON.parse(fileContent);
+    return tokenDataCache.get(path)!;
+}
 
+export function clearTokenDataCache() {
+    tokenDataCache.clear();
+}
+
+export async function getDesignTokens(
+    category: TokenCategory,
+    filter_by_names: string[] | undefined,
+    filter_by_css_values: string[] | undefined,
+    include_css_values: boolean
+) {
+    const mapFiles = TokenMapFiles[category];
+
+    return await Promise.all(mapFiles.map(async map => {
+        try {
+            let tokensData = await loadTokenData(map.path, category);
+
+            // Apply name-based filtering if provided
+            if (filter_by_names && filter_by_names.length > 0) {
                 // Normalize filter keys by removing leading dashes
                 const normalizedFilterKeys = filter_by_names.map(key =>
                     key.replace(/^-+/, "").replace("hop-", "")
                 );
 
-                // Filter the tokens recursively
-                const filteredData = filterTokensByKeys(tokensData, normalizedFilterKeys);
-
-                return content(JSON.stringify(filteredData, null, 2));
-            } catch (error) {
-                return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
+                tokensData = filterTokensByKeys(tokensData, normalizedFilterKeys);
             }
-        }
 
-        return content(fileContent);
+            // Apply CSS value filtering if provided
+            if (filter_by_css_values && filter_by_css_values.length > 0) {
+                tokensData = filterTokensByCssValues(tokensData, filter_by_css_values);
+            }
+
+            // Convert to brief format if CSS values are not requested
+            if (!include_css_values) {
+                tokensData = convertToBriefFormat(tokensData);
+            }
+
+            return content(JSON.stringify(tokensData, null, 2));
+        } catch (error) {
+            if (error instanceof Error && error.message.includes("Tokens map not found")) {
+                return errorContent(error, error.message);
+            }
+
+            return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
+        }
     }));
 }
 

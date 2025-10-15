@@ -1,4 +1,4 @@
-import { MOCK_TOKENS } from "../../tests/mocks/tokensData.ts";
+import { MOCK_TOKENS_FULL } from "../../tests/mocks/tokensData.ts";
 import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData.ts";
 import { validateComponentStructure } from "../validateComponentStructure.ts";
 
@@ -7,8 +7,8 @@ jest.mock("fs/promises", () => ({
     readFile: jest.fn(async (path: string) => {
         if (path.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
-        } else if (path.includes("/tokens/maps/brief/all.json")) {
-            return JSON.stringify(MOCK_TOKENS);
+        } else if (path.includes("/tokens/maps/all.json")) {
+            return JSON.stringify(MOCK_TOKENS_FULL);
         }
 
         const fs = jest.requireActual("fs");
@@ -818,6 +818,90 @@ describe("validateComponentStructure", () => {
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).not.toContain("prohibited");
+        });
+    });
+
+    describe("Percentage values on width/height props", () => {
+        describe("Valid usage", () => {
+            it("should pass for multiple percentage-based size props", async () => {
+                const code = "<Div width='100%' height='50%' maxWidth='80%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(true);
+                expect(result.errors).toHaveLength(0);
+            });
+
+            it("should pass for UNSAFE_ with non-percentage values", async () => {
+                const code = "<Div UNSAFE_width='500px' UNSAFE_height='300px'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(true);
+                expect(result.errors).toHaveLength(0);
+            });
+        });
+
+        describe("Invalid usage - UNSAFE_ prefix with percentage values", () => {
+            it("should fail for UNSAFE_width with percentage value", async () => {
+                const code = "<Div UNSAFE_width='100%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors).toHaveLength(1);
+                expect(result.errors[0].message).toContain("UNSAFE_width");
+                expect(result.errors[0].message).toContain("100%");
+                expect(result.errors[0].message).toContain("width=\"100%\"");
+                expect(result.errors[0].message).toContain("should not use the UNSAFE_ prefix");
+            });
+
+            it("should fail for multiple UNSAFE_ props with percentage values", async () => {
+                const code = "<Div UNSAFE_width='100%' UNSAFE_height='50%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors).toHaveLength(2);
+                expect(result.errors[0].message).toContain("UNSAFE_width");
+                expect(result.errors[1].message).toContain("UNSAFE_height");
+            });
+
+            it("should fail for nested components with UNSAFE_ percentage props", async () => {
+                const code = `
+                    <Div width='100%'>
+                        <Div UNSAFE_height='50%'>Content</Div>
+                    </Div>
+                `;
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors).toHaveLength(1);
+                expect(result.errors[0].message).toContain("UNSAFE_height");
+            });
+
+            it("should handle mixed valid and invalid props", async () => {
+                const code = "<Div width='100%' UNSAFE_height='50%' maxWidth='80%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors).toHaveLength(1);
+                expect(result.errors[0].message).toContain("UNSAFE_height");
+            });
+        });
+
+        describe("Edge cases", () => {
+            it("should not flag UNSAFE_ props with percentage-like but non-percentage values", async () => {
+                const code = "<Div UNSAFE_width='100'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                // UNSAFE_width is a valid prop, so this should pass
+                expect(result.isValid).toBe(true);
+                expect(result.errors).toHaveLength(0);
+            });
+
+            it("should work with various percentage values", async () => {
+                const code = "<Div UNSAFE_width='0%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors[0].message).toContain("0%");
+            });
+
+            it("should work with decimal percentage values", async () => {
+                const code = "<Div UNSAFE_width='50.5%'>Content</Div>";
+                const result = await validateComponentStructure(code);
+                expect(result.isValid).toBe(false);
+                expect(result.errors[0].message).toContain("50.5%");
+            });
         });
     });
 
