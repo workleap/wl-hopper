@@ -13,5 +13,6 @@
     "Select.placeholder": "Sélectionner un élément",
     "Calendar.previousButtonAriaLabel": "Mois précédent",
     "Calendar.nextButtonAriaLabel": "Mois suivant",
-    "Calendar.invalidSelection": "Sélection de date invalide"
+    "Calendar.invalidSelection": "Sélection de date invalide",
+    "DatePicker.openCalendarButtonAriaLabel": "Ouvrir le calendrier"
 }

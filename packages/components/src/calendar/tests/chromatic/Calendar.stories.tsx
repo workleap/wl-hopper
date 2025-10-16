@@ -26,7 +26,14 @@ export const MultiMonth = {
         ...Default.args,
         visibleMonths: 3
     }
-};
+} satisfies Story;
+
+export const MultiMonthFixed = {
+    args: {
+        ...MultiMonth.args,
+        isFixedWeeks: true
+    }
+} satisfies Story;
 
 export const CustomFirstDayOfWeek = {
     args: {

@@ -1,11 +1,15 @@
+import type { CalendarDate } from "@internationalized/date";
+import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
-import { useCallback, useContext, type PropsWithChildren } from "react";
+import { cloneElement, useCallback, useContext, type PropsWithChildren } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
+    CalendarGridBody as AriaCalendarGridBody,
     CalendarHeaderCell as AriaCalendarHeaderCell,
-    CalendarGridBody,
     CalendarGridHeader,
+    CalendarStateContext,
     RangeCalendarStateContext,
+    type CalendarGridBodyProps as AriaCalendarGridBodyProps,
     type CalendarGridProps as AriaCalendarGridProps
 } from "react-aria-components";
 
@@ -18,12 +22,25 @@ import styles from "./CalendarGrid.module.css";
 
 export const GlobalCalendarGridCssSelector = "hop-CalendarGrid";
 
-type CalendarGridProps = Omit<AriaCalendarGridProps, "children"> & PropsWithChildren;
+export interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, PropsWithChildren {
+    /**
+   * Whether the calendar should always display 6 weeks.
+   * @default false
+   */
+    isFixedWeeks?: boolean;
+}
 
 export const CalendarGrid = (props: CalendarGridProps) => {
-    const { weekdayStyle = "short" } = props;
+    const { weekdayStyle = "short", isFixedWeeks } = props;
+    const calendarState = useContext(CalendarStateContext);
+    const rangeCalendarState = useContext(RangeCalendarStateContext);
+    const state = calendarState ?? rangeCalendarState!;
+    let startDate = state.visibleRange.start;
+    if (props.offset) {
+        startDate = startDate.add(props.offset);
+    }
 
-    const isRangeCalendar = !!useContext(RangeCalendarStateContext);
+    const isRangeCalendar = !!rangeCalendarState;
 
     const classNames = clsx(
         GlobalCalendarGridCssSelector,
@@ -42,6 +59,10 @@ export const CalendarGrid = (props: CalendarGridProps) => {
         return day;
     }, [weekdayStyle]);
 
+    const renderDate = (date: CalendarDate) => (
+        isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />
+    );
+
     return (
         <AriaCalendarGrid
             weekdayStyle={weekdayStyle}
@@ -56,11 +77,61 @@ export const CalendarGrid = (props: CalendarGridProps) => {
                     </AriaCalendarHeaderCell>
                 )}
             </CalendarGridHeader>
-            <CalendarGridBody className={styles["hop-CalendarGrid__body"]}>
-                {date => (
-                    isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />
-                )}
-            </CalendarGridBody>
+            {isFixedWeeks ? (
+                <CalendarGridBody startDate={startDate} className={styles["hop-CalendarGrid__body"]}>
+                    {renderDate}
+                </CalendarGridBody>
+            ) : (
+                <AriaCalendarGridBody className={styles["hop-CalendarGrid__body"]}>
+                    {renderDate}
+                </AriaCalendarGridBody>
+            )}
+
         </AriaCalendarGrid>
     );
 };
+
+export interface CalendarGridBodyProps extends AriaCalendarGridBodyProps {
+    startDate: CalendarDate;
+}
+
+/**
+ * We always render 6 weeks (6 rows), to avoid the popover resizing when switching. It's impossible to have more than 6 weeks in a month.
+ */
+const FIXED_WEEKS_IN_MONTH = 6;
+
+/**
+ * We overwrite the CalendarGridBody, and we are not using the one from react-aria, because
+ * we want to always render 6 weeks (6 rows), to avoid the popover resizing when switching
+ * between months with different number of weeks (e.g. February vs March).
+ *
+ * It's basically the same as the one from react-aria, but startDate is taken from props instead of the Internal Context + we hardcode 6 weeks.
+ */
+function CalendarGridBody(props: CalendarGridBodyProps) {
+    const { children, style, className, startDate } = props;
+
+    const calendarState = useContext(CalendarStateContext);
+    const rangeCalendarState = useContext(RangeCalendarStateContext);
+    const state = calendarState ?? rangeCalendarState!;
+
+    return (
+        <tbody
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {...filterDOMProps(props as any)}
+            style={style}
+            className={className}
+        >
+            {[...new Array(FIXED_WEEKS_IN_MONTH).keys()].map(weekIndex => (
+                <tr key={weekIndex}>
+                    {state.getDatesInWeek(weekIndex, startDate).map((date, i) => (
+                        date
+                            // eslint-disable-next-line react/no-array-index-key
+                            ? cloneElement(children(date), { key: i })
+                            // eslint-disable-next-line react/no-array-index-key
+                            : <td key={i} />
+                    ))}
+                </tr>
+            ))}
+        </tbody>
+    );
+}
