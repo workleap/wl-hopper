@@ -6,21 +6,13 @@ links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/utils/src/useDebounce.ts
 ---
 
-The `useDebounce` utility provides two React hooks for debouncing functionality: `useDebounce` for debouncing state updates and `useDebounceCallback` for debouncing callback functions. This is particularly useful for optimizing performance in scenarios like search inputs, API calls, or any situation where you want to delay execution until after a pause in user activity.
+This documentation covers both `useDebounce` and `useDebounceCallback` hooks for debouncing functionality. These hooks are particularly useful for optimizing performance in scenarios like search inputs, API calls, or any situation where you want to delay execution until after a pause in user activity.
 
-## Features
-
-- **State debouncing**: Delay state updates until after a specified wait period
-- **Callback debouncing**: Delay function execution with customizable timing
-- **Predefined timing options**: Use `sm` (100ms), `md` (400ms), `lg` (1000ms), or custom milliseconds
-- **Leading edge support**: Execute immediately on the first call, then debounce subsequent calls
-- **Immediate state updates**: Access both debounced and immediate state setters
-
-## Usage
+## Functions
 
 ### useDebounce
 
-A hook that acts like `React.useState`, but with debounced state updates.
+A hook that acts like `useState`, but with debounced state updates.
 
 ```tsx
 const [state, setStateDebounced, setStateImmediate] = useDebounce(
@@ -30,20 +22,15 @@ const [state, setStateDebounced, setStateImmediate] = useDebounce(
 )
 ```
 
-<SimpleTable
-    headers={["Parameter", "Type", "Default", "Description"]}
-    data={[
-        { "Parameter": "initialState", "Type": "TState | (() => TState)", "Default": "—", "Description": "The initial state value or a function that returns the initial state" },
-        { "Parameter": "wait", "Type": "'sm' | 'md' | 'lg' | number", "Default": "'sm'", "Description": "The debounce delay. Use predefined values (sm: 100ms, md: 400ms, lg: 1000ms) or custom milliseconds" },
-        { "Parameter": "leading", "Type": "boolean", "Default": "false", "Description": "When true, executes immediately on the first call, then debounces subsequent calls" }
-    ]}
-/>
+**Parameters:**
+- `initialState: TState | (() => TState)` — The initial state value or a function that returns the initial state
+- `wait: number` (default: `100`) — The debounce delay in milliseconds
+- `leading: boolean` (default: `false`) — When true, executes immediately on the first call, then debounces subsequent calls
 
 **Returns:** `[state, setStateDebounced, setStateImmediate]`
-
-- `state` - The current state value
-- `setStateDebounced` - A debounced version of setState that waits for the specified delay
-- `setStateImmediate` - The regular, immediate setState function
+- `state` — The current state value
+- `setStateDebounced` — A debounced version of setState that waits for the specified delay
+- `setStateImmediate` — The regular, immediate setState function
 
 ### useDebounceCallback
 
@@ -53,46 +40,57 @@ A hook that debounces callback function execution.
 const debouncedCallback = useDebounceCallback(callback, wait?, leading?)
 ```
 
-<SimpleTable
-    headers={["Parameter", "Type", "Default", "Description"]}
-    data={[
-        { "Parameter": "callback", "Type": "(...args: CallbackArgs) => void", "Default": "—", "Description": "The callback function to debounce. Wrap unstable callbacks in useCallback()" },
-        { "Parameter": "wait", "Type": "'sm' | 'md' | 'lg' | number", "Default": "'sm'", "Description": "The debounce delay" },
-        { "Parameter": "leading", "Type": "boolean", "Default": "false", "Description": "When true, executes immediately on the first call" }
-    ]}
-/>
+**Parameters:**
+- `callback: (...args: CallbackArgs) => void` — The callback function to debounce. Wrap unstable callbacks in useCallback()
+- `wait: number` (default: `100`) — The debounce delay in milliseconds
+- `leading: boolean` (default: `false`) — When true, executes immediately on the first call
 
 **Returns:** A debounced version of the original callback
 
-### Basic State Debouncing
+## Usage
 
-Perfect for search inputs where you want to delay API calls until the user stops typing:
+### Responsive Search with Debounced API Calls
+
+Show immediate feedback while debouncing expensive operations:
 
 ```tsx
-import { useDebounce } from "@hopper-ui/components";
+import { SearchField, useDebounce, Stack } from "@hopper-ui/components";
 
 function SearchComponent() {
-  const [searchTerm, setSearchTermDebounced, setSearchTermImmediate] = useDebounce("", "md");
+  const [inputValue, setInputValue] = useState(""); // Immediate UI updates
+  const [debouncedQuery, setDebouncedQuery] = useDebounce("", 400); // Debounced API calls
   const [results, setResults] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  // Update search immediately for UI responsiveness
-  const handleInputChange = (e) => {
-    setSearchTermImmediate(e.target.value); // Update UI immediately
-    setSearchTermDebounced(e.target.value); // Debounced for API calls
+  const handleInputChange = (value) => {
+    setInputValue(value); // Update input immediately for responsiveness
+    setDebouncedQuery(value); // Trigger debounced search
+    if (value.trim()) setIsSearching(true);
   };
 
   // Effect runs only after user stops typing for 400ms
   useEffect(() => {
-    if (searchTerm.trim()) {
-      searchAPI(searchTerm).then(setResults);
+    if (debouncedQuery.trim()) {
+      searchAPI(debouncedQuery).then((data) => {
+        setResults(data);
+        setIsSearching(false);
+      });
+    } else {
+      setResults([]);
+      setIsSearching(false);
     }
-  }, [searchTerm]);
+  }, [debouncedQuery]);
 
   return (
-    <div>
-      <input onChange={handleInputChange} placeholder="Search..." />
-      <SearchResults results={results} />
-    </div>
+    <Stack>
+      <SearchField
+        value={inputValue}
+        onChange={handleInputChange}
+        placeholder="Search..."
+      />
+      {isSearching && <div>Searching...</div>}
+      {/* <SearchResults results={results} /> */}
+    </Stack>
   );
 }
 ```
@@ -112,7 +110,7 @@ function ResizableComponent() {
       width: window.innerWidth,
       height: window.innerHeight
     });
-  }, "sm"); // 100ms delay
+  }, 100); // 100ms delay
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
@@ -132,84 +130,73 @@ function ResizableComponent() {
 Execute immediately on the first call, then debounce subsequent calls:
 
 ```tsx
-import { useDebounceCallback } from "@hopper-ui/components";
+import { Button, useDebounceCallback } from "@hopper-ui/components";
 
 function ButtonComponent() {
-  const handleClick = useDebounceCallback(
+  const handlePress = useDebounceCallback(
     () => {
       console.log("Button clicked!");
       // Expensive operation here
     },
-    "md", // 400ms delay
+    400, // 400ms delay
     true   // Leading edge - executes immediately on first click
   );
 
-  return <button onClick={handleClick}>Click me</button>;
+  return <Button onPress={handlePress}>Click me</Button>;
 }
 ```
 
 ### Form Validation
 
-Debounce validation to reduce unnecessary checks while typing:
+Show immediate UI feedback but debounce expensive validation:
 
 ```tsx
 import { useDebounce } from "@hopper-ui/components";
 
 function EmailInput() {
-  const [email, setEmailDebounced, setEmailImmediate] = useDebounce("", "lg");
+  const [inputValue, setInputValue] = useState("");
+  const [debouncedEmail, setDebouncedEmail] = useDebounce("", 400);
   const [isValid, setIsValid] = useState(true);
   const [isValidating, setIsValidating] = useState(false);
 
   const handleInputChange = (e) => {
-    setEmailImmediate(e.target.value); // Update input immediately
-    setEmailDebounced(e.target.value); // Debounced validation
-    setIsValidating(true);
+    const value = e.target.value;
+    setInputValue(value); // Update input immediately for responsiveness
+    setDebouncedEmail(value); // Trigger debounced validation
+    if (value) setIsValidating(true);
   };
 
   useEffect(() => {
-    if (email) {
-      // Validation runs 1 second after user stops typing
-      const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (debouncedEmail) {
+      // Expensive validation runs 1 second after user stops typing
+      const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(debouncedEmail);
       setIsValid(isEmailValid);
     }
     setIsValidating(false);
-  }, [email]);
+  }, [debouncedEmail]);
 
   return (
     <div>
       <input
         type="email"
+        value={inputValue}
         onChange={handleInputChange}
         placeholder="Enter your email"
       />
       {isValidating && <span>Validating...</span>}
-      {!isValidating && !isValid && <span>Invalid email</span>}
+      {!isValidating && inputValue && !isValid && <span>Invalid email</span>}
     </div>
   );
 }
 ```
 
-### Timing Options
-
-The hooks support both predefined and custom timing values:
-
-```tsx
-// Predefined options
-useDebounce(initialState, "sm")  // 100ms - good for UI feedback
-useDebounce(initialState, "md")  // 400ms - good for search/API calls
-useDebounce(initialState, "lg")  // 1000ms - good for heavy operations
-
-// Custom timing
-useDebounce(initialState, 250)   // Custom 250ms delay
-```
-
 ## Best Practices
 
+- **Timing guidelines**: Choose appropriate timing values based on use case:
+  ```tsx
+  useDebounce(initialState, 100)   // 100ms - good for UI feedback
+  useDebounce(initialState, 400)   // 400ms - good for search/API calls
+  useDebounce(initialState, 1000)  // 1000ms - good for heavy operations
+  ```
+
 - **Stable callbacks**: When using `useDebounceCallback`, wrap unstable callbacks (those that depend on props or state) in `useCallback()` to prevent debouncing from breaking between renders.
-
-- **Immediate vs Debounced**: The `useDebounce` hook returns both debounced and immediate setters. Use the immediate setter for UI updates and the debounced setter for expensive operations.
-
-- **Leading edge behavior**: When `leading` is `true`, the function executes immediately on the first call, then subsequent calls are debounced.
-
-- **Cleanup**: The hooks automatically handle cleanup when components unmount, preventing memory leaks from pending timeouts.
-
