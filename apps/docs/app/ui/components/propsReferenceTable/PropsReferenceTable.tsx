@@ -1,13 +1,13 @@
+import { getPropsTableRows, hasScaleLink, PropsTableRow, TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
 import Table, { type TableProps } from "@/components/table/Table";
 import Link from "next/link";
 import "./propsReferenceTable.css";
-import { isScaleLink, ScaleLinks } from "./util";
 
-function toScaleLink(scale: string) {
-    return isScaleLink(scale) ? <Link href={ScaleLinks[scale].link} target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>{ScaleLinks[scale].title}</Link> : scale;
+function toScaleLink(scale: TokenScale) {
+    return hasScaleLink(scale) ? <Link href={TokenScales[scale].link} target="_blank" style={{ color: "var(--hd-color-accent-text)" }}>{TokenScales[scale].title}</Link> : scale;
 }
 
-function toRowValues([propName, cssProperty, scale, supports]: string[]): TableProps["data"][number] {
+function toRowValues([propName, cssProperty, scale, supports]: PropsTableRow): TableProps["data"][number] {
     return {
         "Prop": propName,
         "CSS property": cssProperty,
@@ -17,10 +17,12 @@ function toRowValues([propName, cssProperty, scale, supports]: string[]): TableP
 }
 
 export interface PropsReferenceTableProps {
-    rows: string[][];
+    group?: StyleGroup;
 }
 
-export default function PropsReferenceTable({ rows }: PropsReferenceTableProps) {
+export default function PropsReferenceTable({ group }: PropsReferenceTableProps) {
+    let rows = getPropsTableRows(group);
+
     return (
         <Table
             className="hd-props-reference-table"
