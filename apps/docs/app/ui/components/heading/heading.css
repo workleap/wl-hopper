@@ -15,6 +15,7 @@
 
 .hd-heading__links {
     margin-inline: calc(var(--hd-space-1) * -1);
+    margin-block-end: calc(var(--hd-space-2));
 }
 
 .hd-heading__alpha {

@@ -28,7 +28,6 @@ const Heading = ({ title, tag, alpha, className, description, links }: HeadingPr
                 <Title level={1}>{title}</Title>
                 {tag && <Tag>{tag}</Tag>}
             </div>
-            <AICallout />
             {alpha && (
                 <div className="hd-heading__alpha">
                     <HopperProvider colorScheme={colorMode as ColorScheme}>
@@ -41,6 +40,7 @@ const Heading = ({ title, tag, alpha, className, description, links }: HeadingPr
             )}
             {description && <p className="hd-heading__description">{description}</p>}
             {links && <LinkList className="hd-heading__links" links={links} />}
+            <AICallout />
         </div>
     );
 };
