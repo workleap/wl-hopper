@@ -19,6 +19,7 @@
     align-items: var(--hop-CalendarCell-align-items);
     justify-content: var(--hop-CalendarCell-justify-content);
 
+    box-sizing: border-box;
     inline-size: var(--hop-CalendarCell-inline-size);
     block-size: var(--hop-CalendarCell-block-size);
 
