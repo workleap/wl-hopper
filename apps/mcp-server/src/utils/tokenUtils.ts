@@ -24,6 +24,37 @@ export interface TokenFileBriefRootNode {
     semantic?: Record<string, TokenCategoryBriefNode>;
 }
 
+function filterBySupportedProps(root: TokenFileRootNode, supportedProps: string[]): TokenFileRootNode {
+    const result: TokenFileRootNode = {} as TokenFileRootNode;
+
+    // Iterate through top-level keys (core/semantic)
+    for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileRootNode, Record<string, TokenCategoryNode>][]) {
+        const filteredCategories: Record<string, TokenCategoryNode> = {};
+
+        // Iterate through categories
+        for (const [categoryKey, categoryNode] of Object.entries(categories)) {
+            // Check if this category supports any of the requested props
+            if (categoryNode.supportedProps) {
+                const hasMatchingProp = categoryNode.supportedProps.some(prop =>
+                    supportedProps.includes(prop)
+                );
+
+                if (hasMatchingProp) {
+                    // Include the entire category with all its tokens
+                    filteredCategories[categoryKey] = categoryNode;
+                }
+            }
+        }
+
+        // Only include top-level key if it has matching categories
+        if (Object.keys(filteredCategories).length > 0) {
+            result[topLevelKey] = filteredCategories;
+        }
+    }
+
+    return result;
+}
+
 function filterByCssValues(root: TokenFileRootNode, cssValues: string[]): TokenFileRootNode {
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
@@ -104,8 +135,17 @@ function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): Toke
     return result;
 }
 
-export function filterTokens(tokensData: TokenFileRootNode, tokenNames: string[] = [], cssValues: string[] = []) {
+export function filterTokens(
+    tokensData: TokenFileRootNode,
+    tokenNames: string[] = [],
+    cssValues: string[] = [],
+    supportedProps: string[] = []
+) {
     let filteredTokensData = tokensData;
+
+    if (supportedProps.length > 0) {
+        filteredTokensData = filterBySupportedProps(filteredTokensData, supportedProps);
+    }
 
     if (tokenNames.length > 0) {
         filteredTokensData = filterByTokenNames(filteredTokensData, tokenNames);

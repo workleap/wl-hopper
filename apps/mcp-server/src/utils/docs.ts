@@ -296,6 +296,7 @@ export async function getDesignTokens(
     category: TokenCategory,
     filter_by_token_names: string[] | undefined = [],
     filter_by_css_values: string[] | undefined = [],
+    filter_by_supported_props: string[] | undefined = [],
     include_css_values: boolean
 ) {
     const mapFiles = TokenMapFiles[category];
@@ -306,7 +307,7 @@ export async function getDesignTokens(
     return await Promise.all(mapFiles.map(async map => {
         try {
             const tokensData = await loadTokenData(map.path, category);
-            const filteredTokensData = filterTokens(tokensData, normalizedTokenNames, filter_by_css_values);
+            const filteredTokensData = filterTokens(tokensData, normalizedTokenNames, filter_by_css_values, filter_by_supported_props);
 
             const result = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
 

@@ -114,6 +114,10 @@ export const toolsInfo = {
                 name: "search_css_values",
                 description: "Filter tokens by their CSS values (fuzzy match). Pass actual CSS values, NOT Hopper token names. Examples: ['#3c3c3c', '16px', '2rem', '400', 'Arial', '500ms']"
             },
+            search_supported_props: {
+                name: "search_supported_props",
+                description: "Filter token categories that support specific component style props. Only returns token categories that can be used with the specified properties. Examples: ['backgroundColor', 'color', 'borderColor', 'padding', 'margin']"
+            },
             include_css_values: {
                 name: "include_css_values",
                 description: "Whether to include token css values in the response. **DEFAULT: false**"

@@ -15,11 +15,11 @@ export type StyleGroup =
     | "Miscellaneous";
 
 export const TokenCategories = [
-    "semantic-borderRadius", "semantic-bottomOffset", "semantic-color", "semantic-duration", "semantic-fontFamily",
-    "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight", "semantic-shadow", "semantic-size",
-    "semantic-timingFunction", "semantic-topOffset",
-    "core-borderRadius", "core-bottomOffset", "core-color", "core-duration", "core-fontFamily", "core-fontSize",
-    "core-fontWeight", "core-lineHeight", "core-shadow", "core-size", "core-timingFunction", "core-topOffset"
+    "semantic-color", "semantic-shadow",  "semantic-fontFamily",
+    "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight", "semantic-topOffset", "semantic-bottomOffset",
+    "semantic-borderRadius", "semantic-size",
+    "core-color", "core-shadow", "core-fontFamily", "core-fontSize",
+    "core-fontWeight", "core-lineHeight","core-borderRadius",  "core-size","core-duration", "core-timingFunction",
 ] as const;
 
 export type TokenCategory = typeof TokenCategories[number];
@@ -43,23 +43,37 @@ export const TokenScales = {
     "dimension-scale": {
         title: "Dimensions",
         link: "/tokens/core/dimensions",
-        tokenCategories: ["core-size", "core-bottomOffset", "core-topOffset"]
+        tokenCategories: ["core-size"]
     },
     "spacing-padding-scale": {
         title: "Spacing > Padding",
         link: "/tokens/semantic/space#tokens-padding",
-        tokenCategories: ["semantic-size", "semantic-bottomOffset", "semantic-topOffset", "core-size", "core-bottomOffset", "core-topOffset"]
+        tokenCategories: ["semantic-size", "core-size"]
     },
     "spacing-margin-scale": {
         title: "Spacing > Margin",
         link: "/tokens/semantic/space#tokens-margin",
-        tokenCategories: ["semantic-size", "semantic-bottomOffset", "semantic-topOffset", "core-size", "core-bottomOffset", "core-topOffset"]
+        tokenCategories: ["semantic-size", "core-size"]
     },
-    "typography-scale": {
+    "typography-fontFamily-scale": {
         title: "Typography",
         link: "/tokens/semantic/typography",
-        tokenCategories: ["semantic-fontFamily", "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight",
-            "core-fontFamily", "core-fontSize", "core-fontWeight", "core-lineHeight"]
+        tokenCategories: ["semantic-fontFamily", "core-fontFamily"]
+    },
+    "typography-fontSize-scale": {
+        title: "Typography",
+        link: "/tokens/semantic/typography",
+        tokenCategories: ["semantic-fontSize", "core-fontSize"]
+    },
+    "typography-fontWeight-scale": {
+        title: "Typography",
+        link: "/tokens/semantic/typography",
+        tokenCategories: ["semantic-fontWeight", "core-fontWeight"]
+    },
+    "typography-lineHeight-scale": {
+        title: "Typography",
+        link: "/tokens/semantic/typography",
+        tokenCategories: ["semantic-lineHeight", "core-lineHeight"]
     },
     "none": {
         title: "none",
@@ -106,9 +120,10 @@ export const stylePropDefinitions: StylePropDefinition[] = [
     { propName: "filter", cssProperty: "filter", tokenScale: "none", supportedFeatures: "breakpoints", group: "Color" },
 
     // Typography
-    { propName: "fontSize", cssProperty: "font-size", tokenScale: "typography-scale", supportedFeatures: "breakpoints", group: "Typography" },
-    { propName: "fontWeight", cssProperty: "font-weight", tokenScale: "typography-scale", supportedFeatures: "breakpoints", group: "Typography" },
-    { propName: "lineHeight", cssProperty: "line-height", tokenScale: "typography-scale", supportedFeatures: "breakpoints", group: "Typography" },
+    { propName: "fontFamily", cssProperty: "font-family", tokenScale: "typography-fontFamily-scale", supportedFeatures: "breakpoints", group: "Typography" },
+    { propName: "fontSize", cssProperty: "font-size", tokenScale: "typography-fontSize-scale", supportedFeatures: "breakpoints", group: "Typography" },
+    { propName: "fontWeight", cssProperty: "font-weight", tokenScale: "typography-fontWeight-scale", supportedFeatures: "breakpoints", group: "Typography" },
+    { propName: "lineHeight", cssProperty: "line-height", tokenScale: "typography-lineHeight-scale", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "letterSpacing", cssProperty: "letter-spacing", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "textAlign", cssProperty: "text-align", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "textTransform", cssProperty: "text-transform", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },

@@ -56,7 +56,7 @@ import { clearTokenDataCache, getDesignTokens } from "../docs.ts";
 describe("getDesignTokens", () => {
     describe("Basic functionality", () => {
         it("should return all tokens when no filter is provided", async () => {
-            const result = await getDesignTokens("all", undefined, undefined, false);
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
@@ -66,7 +66,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should return all tokens when filter array is empty", async () => {
-            const result = await getDesignTokens("all", [], undefined, false);
+            const result = await getDesignTokens("all", [], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
@@ -78,7 +78,7 @@ describe("getDesignTokens", () => {
 
     describe("Filter normalization", () => {
         it("should normalize filter keys by removing leading dashes", async () => {
-            const result = await getDesignTokens("all", ["--coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["--coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -88,7 +88,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should normalize filter keys by removing multiple leading dashes", async () => {
-            const result = await getDesignTokens("all", ["----coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["----coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -97,7 +97,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should normalize filter keys by removing hop- prefix", async () => {
-            const result = await getDesignTokens("all", ["hop-coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["hop-coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -106,7 +106,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should normalize filter keys by removing both leading dashes and hop- prefix", async () => {
-            const result = await getDesignTokens("all", ["--hop-coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["--hop-coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -117,7 +117,7 @@ describe("getDesignTokens", () => {
 
     describe("Filtering by contains (leaf level only)", () => {
         it("should filter tokens by partial key match at leaf level", async () => {
-            const result = await getDesignTokens("all", ["coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -131,7 +131,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter tokens by multiple filter keys", async () => {
-            const result = await getDesignTokens("all", ["coastal", "primary"], undefined, false);
+            const result = await getDesignTokens("all", ["coastal", "primary"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -144,7 +144,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter tokens across different categories", async () => {
-            const result = await getDesignTokens("all", ["danger"], undefined, false);
+            const result = await getDesignTokens("all", ["danger"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -159,7 +159,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter tokens by common prefix", async () => {
-            const result = await getDesignTokens("all", ["space-inset"], undefined, false);
+            const result = await getDesignTokens("all", ["space-inset"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -171,7 +171,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should NOT filter by category names (only leaf tokens)", async () => {
-            const result = await getDesignTokens("all", ["color"], undefined, false);
+            const result = await getDesignTokens("all", ["color"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -181,7 +181,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should NOT filter by intermediate category names", async () => {
-            const result = await getDesignTokens("all", ["core"], undefined, false);
+            const result = await getDesignTokens("all", ["core"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -191,7 +191,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should return empty object when no matches found", async () => {
-            const result = await getDesignTokens("all", ["nonexistent"], undefined, false);
+            const result = await getDesignTokens("all", ["nonexistent"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -202,7 +202,7 @@ describe("getDesignTokens", () => {
 
     describe("Nested structure preservation", () => {
         it("should preserve parent objects when child tokens match", async () => {
-            const result = await getDesignTokens("all", ["coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -214,7 +214,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should only include parent objects that have matching children", async () => {
-            const result = await getDesignTokens("all", ["danger"], undefined, false);
+            const result = await getDesignTokens("all", ["danger"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -229,7 +229,7 @@ describe("getDesignTokens", () => {
 
     describe("Full vs Brief modes", () => {
         it("should return tokens with cssValue and propValue in full mode", async () => {
-            const result = await getDesignTokens("all", [], undefined, true);
+            const result = await getDesignTokens("all", [], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -241,7 +241,7 @@ describe("getDesignTokens", () => {
             expect(firstColorToken).toHaveProperty("propValue");
         });
         it("should apply filters and return full token structure in full mode", async () => {
-            const result = await getDesignTokens("all", ["danger"], undefined, true);
+            const result = await getDesignTokens("all", ["danger"], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -253,7 +253,7 @@ describe("getDesignTokens", () => {
             expect(Object.keys(content.semantic)).toHaveLength(1);
         });
         it("should return tokens with cssValue and propValue for specific category in full mode", async () => {
-            const result = await getDesignTokens("semantic-elevation", [], undefined, true);
+            const result = await getDesignTokens("semantic-elevation", [], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -263,7 +263,7 @@ describe("getDesignTokens", () => {
             expect(content.semantic.shadow.tokens["hop-elevation-none"]).toHaveProperty("propValue", "none");
         });
         it("should return tokens for specific category in brief mode", async () => {
-            const result = await getDesignTokens("semantic-elevation", [], undefined, false);
+            const result = await getDesignTokens("semantic-elevation", [], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -275,7 +275,7 @@ describe("getDesignTokens", () => {
 
     describe("Edge cases", () => {
         it("should handle case-sensitive matching", async () => {
-            const result = await getDesignTokens("all", ["COASTAL"], undefined, false);
+            const result = await getDesignTokens("all", ["COASTAL"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -285,7 +285,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should handle special characters in filter keys", async () => {
-            const result = await getDesignTokens("all", ["space-inset"], undefined, false);
+            const result = await getDesignTokens("all", ["space-inset"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -295,7 +295,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should handle filter key that matches parent category", async () => {
-            const result = await getDesignTokens("all", ["color"], undefined, false);
+            const result = await getDesignTokens("all", ["color"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -314,7 +314,7 @@ describe("getDesignTokens", () => {
             const fs = await import("fs");
             jest.spyOn(fs, "existsSync").mockReturnValueOnce(false);
 
-            const result = await getDesignTokens("all", undefined, undefined, false);
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
@@ -326,7 +326,7 @@ describe("getDesignTokens", () => {
             const fsPromises = await import("fs/promises");
             jest.spyOn(fsPromises, "readFile").mockResolvedValueOnce("invalid json {" as never);
 
-            const result = await getDesignTokens("all", ["coastal"], undefined, false);
+            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
@@ -336,7 +336,7 @@ describe("getDesignTokens", () => {
 
     describe("Multiple filters combination", () => {
         it("should combine multiple filters with OR logic", async () => {
-            const result = await getDesignTokens("all", ["coastal", "font-size"], undefined, false);
+            const result = await getDesignTokens("all", ["coastal", "font-size"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -349,7 +349,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter with overlapping matches", async () => {
-            const result = await getDesignTokens("all", ["danger-border", "danger-icon"], undefined, false);
+            const result = await getDesignTokens("all", ["danger-border", "danger-icon"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -360,9 +360,32 @@ describe("getDesignTokens", () => {
         });
     });
 
+    describe("Supported Props Filtering", () => {
+        it("should return empty when no categories have supportedProps", async () => {
+            // The default mock data doesn't have supportedProps defined
+            const result = await getDesignTokens("all", undefined, undefined, ["backgroundColor"], false);
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            // Should be empty since no categories have supportedProps defined
+            expect(content).toEqual({});
+        });
+
+        it("should handle supportedProps filter with empty array", async () => {
+            const result = await getDesignTokens("all", undefined, undefined, [], false);
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text as string);
+
+            // Should return all tokens when supportedProps filter is empty
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+    });
+
     describe("CSS Value Filtering", () => {
         it("should filter tokens by exact CSS color value", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], false);
+            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -375,7 +398,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter tokens by similar CSS color value (fuzzy match)", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#bb2d2d"], false);
+            const result = await getDesignTokens("semantic-color", undefined, ["#bb2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -386,7 +409,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should return full format when include_css_values is true", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], true);
+            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, true);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -398,7 +421,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter by pure numbers (font-weight)", async () => {
-            const result = await getDesignTokens("core-font-weight", undefined, ["400"], false);
+            const result = await getDesignTokens("core-font-weight", undefined, ["400"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -409,7 +432,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should combine name and fuzzy CSS value filters", async () => {
-            const result = await getDesignTokens("semantic-color", ["danger"], ["#bb2d2d"], false);
+            const result = await getDesignTokens("semantic-color", ["danger"], ["#bb2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -423,7 +446,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should return empty result when no CSS values match", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#zzzzzz"], false);
+            const result = await getDesignTokens("semantic-color", undefined, ["#zzzzzz"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
@@ -433,7 +456,7 @@ describe("getDesignTokens", () => {
         });
 
         it("should handle multiple CSS value filters", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d", "#ffffff"], false);
+            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d", "#ffffff"], undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
