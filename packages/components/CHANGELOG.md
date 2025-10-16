@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.0
+
+### Minor Changes
+
+- ad15359: Added the DatePicker component
+
 ## 1.14.0
 
 ### Minor Changes
