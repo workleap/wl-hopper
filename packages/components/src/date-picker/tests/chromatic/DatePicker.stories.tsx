@@ -7,7 +7,7 @@ import { Inline, Stack } from "../../../layout/index.ts";
 import { DatePicker } from "../../src/DatePicker.tsx";
 
 const meta = {
-    title: "Components/Forms/DatePicker",
+    title: "Components/DatePicker",
     component: DatePicker,
     args: {
         "aria-label": "Select a date"
@@ -117,4 +117,3 @@ export const Styling: Story = {
         </Inline>
     )
 };
-
