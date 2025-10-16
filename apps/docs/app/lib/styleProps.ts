@@ -15,11 +15,11 @@ export type StyleGroup =
     | "Miscellaneous";
 
 export const TokenCategories = [
-    "semantic-color", "semantic-shadow",  "semantic-fontFamily",
+    "semantic-color", "semantic-shadow", "semantic-fontFamily",
     "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight", "semantic-topOffset", "semantic-bottomOffset",
     "semantic-borderRadius", "semantic-size",
     "core-color", "core-shadow", "core-fontFamily", "core-fontSize",
-    "core-fontWeight", "core-lineHeight","core-borderRadius",  "core-size","core-duration", "core-timingFunction",
+    "core-fontWeight", "core-lineHeight", "core-borderRadius", "core-size", "core-duration", "core-timingFunction"
 ] as const;
 
 export type TokenCategory = typeof TokenCategories[number];
@@ -225,7 +225,7 @@ export const stylePropDefinitions: StylePropDefinition[] = [
     { propName: "cursor", cssProperty: "cursor", tokenScale: "none", supportedFeatures: "breakpoint & hover", group: "Miscellaneous" },
     { propName: "pointerEvents", cssProperty: "pointer-events", tokenScale: "none", supportedFeatures: "breakpoint", group: "Miscellaneous" },
     { propName: "resize", cssProperty: "resize", tokenScale: "none", supportedFeatures: "breakpoint", group: "Miscellaneous" },
-    { propName: "willChange", cssProperty: "will-change", tokenScale: "none", supportedFeatures: "breakpoint", group: "Miscellaneous" },
+    { propName: "willChange", cssProperty: "will-change", tokenScale: "none", supportedFeatures: "breakpoint", group: "Miscellaneous" }
 ];
 
 /**
@@ -261,13 +261,15 @@ export function getPropsGroupedByCategory(): Record<StyleGroup, StylePropDefinit
             grouped[prop.group] = [];
         }
         grouped[prop.group].push(prop);
+
         return grouped;
     }, {} as Record<StyleGroup, StylePropDefinition[]>);
 }
 
 
 export function getScaleLinkCategory(scale: TokenScale) {
-    if (scale == "none") return ""
+    if (scale == "none") {return "";}
+
     return TokenScales[scale].link.startsWith("/tokens/core") ? "Core" : "Semantic";
 }
 

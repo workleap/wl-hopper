@@ -1,4 +1,4 @@
-import { getPropsTableRows, getScaleLinkCategory, hasScaleLink, PropsTableRow, TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
+import { getPropsTableRows, getScaleLinkCategory, hasScaleLink, type PropsTableRow, type TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
 import type { ReactNode } from "react";
 
 function toScaleLink(scale: TokenScale) {
@@ -26,7 +26,7 @@ interface Item {
 }
 
 export default function PropsReferenceTable({ group }: PropsReferenceTableProps) {
-    let rows = getPropsTableRows(group);
+    const rows = getPropsTableRows(group);
 
     return (
         <PropsReferenceTableRender

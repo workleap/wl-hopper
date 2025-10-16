@@ -1,4 +1,4 @@
-import { getPropsTableRows, hasScaleLink, PropsTableRow, TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
+import { getPropsTableRows, hasScaleLink, type PropsTableRow, type TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
 import Table, { type TableProps } from "@/components/table/Table";
 import Link from "next/link";
 import "./propsReferenceTable.css";
@@ -21,7 +21,7 @@ export interface PropsReferenceTableProps {
 }
 
 export default function PropsReferenceTable({ group }: PropsReferenceTableProps) {
-    let rows = getPropsTableRows(group);
+    const rows = getPropsTableRows(group);
 
     return (
         <Table

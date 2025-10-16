@@ -46,7 +46,7 @@ interface StructureInfo {
 
 interface FileSpec {
     fileName: string;
-    data:  ProcessedRootData;
+    data: ProcessedRootData;
 }
 
 type TokenType = "core" | "semantic" | null;
@@ -97,7 +97,7 @@ function processTokenArray(
 
 function processNode(
     node: unknown,
-    currentPath: string[] = [],
+    currentPath: string[] = []
 ): ProcessedTokens | ProcessedSubsection | ProcessedRootData | unknown[] | unknown {
     if (Array.isArray(node)) {
         if (isTokenArray(node)) {
@@ -180,7 +180,7 @@ function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: 
 
 export async function generateTokensMaps({
     outputPath,
-    sourceFile,
+    sourceFile
 }: {
     outputPath: string;
     sourceFile: string;
