@@ -60,6 +60,10 @@ const DateInput = (props: DateInputProps, ref: ForwardedRef<HTMLDivElement>) => 
         <AriaDateInput {...otherProps} ref={ref} className={classNames} style={mergedStyles}>
             {segment => (
                 <DateSegment
+                    className={cssModule(
+                        styles,
+                        "hop-DateSegment"
+                    )}
                     segment={segment}
                 />
             )}

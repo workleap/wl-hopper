@@ -52,6 +52,12 @@ export interface DatePickerProps<T extends DateValue> extends
      * @default 1
      */
     maxVisibleMonths?: number;
+
+    /**
+   * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
+   * @default true
+   */
+    isFixedWeeks?: boolean;
 }
 
 const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
@@ -69,7 +75,7 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
         description,
         errorMessage,
         isRequired,
-        size,
+        size: sizeProp,
         necessityIndicator,
         style,
         className,
@@ -77,6 +83,7 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
         isFluid: isFluidProp,
         maxVisibleMonths = 1,
         createCalendar,
+        isFixedWeeks = true,
         ...otherProps
     } = ownProps;
 
@@ -84,6 +91,7 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const { className: inputGroupClassName, ...otherInputGroupProps } = inputGroupProps ?? {};
+    const size = useResponsiveValue(sizeProp) ?? "md";
     const inputGroupClassNames = clsx(styles["hop-DatePicker__InputGroup"], inputGroupClassName);
 
     const classNames = clsx(
@@ -150,6 +158,7 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
                             <Calendar
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}
+                                isFixedWeeks={isFixedWeeks}
                             />
                         </PopoverBase>
                     </>

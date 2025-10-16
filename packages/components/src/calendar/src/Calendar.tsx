@@ -27,6 +27,11 @@ export interface CalendarProps<T extends DateValue> extends StyledComponentProps
    * @default 1
    */
     visibleMonths?: number;
+    /**
+   * Whether the calendar should always display 6 weeks.
+   * @default false
+   */
+    isFixedWeeks?: boolean;
 }
 
 const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
@@ -39,6 +44,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
         errorMessage,
         style,
         visibleMonths = 1,
+        isFixedWeeks = false,
         ...otherProps
     } = ownProps;
 
@@ -71,7 +77,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
                     <div className={styles["hop-Calendar__grids"]}>
                         {Array.from({ length: visibleMonths }).map((_, i) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <CalendarGrid offset={{ months: i }} key={i} />
+                            <CalendarGrid offset={{ months: i }} key={i} isFixedWeeks={isFixedWeeks} />
                         ))}
                     </div>
                     <SlotProvider
