@@ -12,7 +12,7 @@ import { content, errorContent } from "./content";
 import type { PaginatedResult } from "./cursor-pagination";
 import { trackError } from "./logging";
 import { readMarkdownFile } from "./readMarkdownFile";
-import { convertToBriefFormat, filterTokensByCssValues, filterTokensByKeys } from "./tokenUtils";
+import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "./tokenUtils";
 
 export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
@@ -270,9 +270,9 @@ export async function getDesignTokenGuide(category: TokenCategory, pageSize?: nu
 }
 
 // Cache for token data by file path
-const tokenDataCache: Map<string, unknown> = new Map();
+const tokenDataCache: Map<string, TokenFileRootNode> = new Map();
 
-async function loadTokenData(path: string, category: TokenCategory): Promise<unknown> {
+async function loadTokenData(path: string, category: TokenCategory): Promise<TokenFileRootNode> {
     if (!tokenDataCache.has(path)) {
         const tokensMap = join(env.DOCS_PATH, path);
         if (!existsSync(tokensMap)) {
@@ -281,7 +281,7 @@ async function loadTokenData(path: string, category: TokenCategory): Promise<unk
         }
 
         const fileContent = await readFile(tokensMap, "utf-8");
-        const tokensData = JSON.parse(fileContent);
+        const tokensData = JSON.parse(fileContent) as TokenFileRootNode;
         tokenDataCache.set(path, tokensData);
     }
 
@@ -294,37 +294,24 @@ export function clearTokenDataCache() {
 
 export async function getDesignTokens(
     category: TokenCategory,
-    filter_by_names: string[] | undefined,
-    filter_by_css_values: string[] | undefined,
+    filter_by_token_names: string[] | undefined = [],
+    filter_by_css_values: string[] | undefined = [],
+    filter_by_supported_props: string[] | undefined = [],
     include_css_values: boolean
 ) {
     const mapFiles = TokenMapFiles[category];
+    const normalizedTokenNames = filter_by_token_names.map(key =>
+        key.replace(/^-+/, "").replace("hop-", "")
+    );
 
     return await Promise.all(mapFiles.map(async map => {
         try {
-            let tokensData = await loadTokenData(map.path, category);
+            const tokensData = await loadTokenData(map.path, category);
+            const filteredTokensData = filterTokens(tokensData, normalizedTokenNames, filter_by_css_values, filter_by_supported_props);
 
-            // Apply name-based filtering if provided
-            if (filter_by_names && filter_by_names.length > 0) {
-                // Normalize filter keys by removing leading dashes
-                const normalizedFilterKeys = filter_by_names.map(key =>
-                    key.replace(/^-+/, "").replace("hop-", "")
-                );
+            const result = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
 
-                tokensData = filterTokensByKeys(tokensData, normalizedFilterKeys);
-            }
-
-            // Apply CSS value filtering if provided
-            if (filter_by_css_values && filter_by_css_values.length > 0) {
-                tokensData = filterTokensByCssValues(tokensData, filter_by_css_values);
-            }
-
-            // Convert to brief format if CSS values are not requested
-            if (!include_css_values) {
-                tokensData = convertToBriefFormat(tokensData);
-            }
-
-            return content(JSON.stringify(tokensData, null, 2));
+            return content(JSON.stringify(result, null, 2));
         } catch (error) {
             if (error instanceof Error && error.message.includes("Tokens map not found")) {
                 return errorContent(error, error.message);

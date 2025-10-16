@@ -129,9 +129,6 @@ For generating JSON from design token data:
     build: {
         type: "tokens-json",
         source: "datas/tokens.json",
-        options: {
-            fullMap?: boolean // Include full token mapping details
-        }
     }
 }
 ```
@@ -245,9 +242,6 @@ All generated markdown files can be served from the same route. However, if your
     build: {
         type: "tokens-json",
         source: "datas/tokens.json",
-        options: {
-            fullMap: true
-        }
     }
 }
 ```

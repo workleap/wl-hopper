@@ -645,14 +645,14 @@ function isDisallowedUnsafeProp(
 
     // Check if the safe version would be prohibited
     if (PROHIBITED_PROPS.includes(safePropName)) {
-        const message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${safePropName}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
+        const message = `The prop '${propName}' is not a valid UNSAFE_ prop, and '${safePropName}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
         result.errors.push({
             message,
             line: loc?.start.line,
             column: loc?.start.column
         });
     } else {
-        const message = `The prop ${propName}' is not a valid UNSAFE_ prop. Use ${safePropName}' directly instead.`;
+        const message = `The prop '${propName}' is not a valid UNSAFE_ prop. Use '${safePropName}' directly instead.`;
         result.errors.push({
             message,
             line: loc?.start.line,
