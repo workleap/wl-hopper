@@ -33,9 +33,7 @@
 }
 
 .hop-CalendarCell[data-outside-month] {
-    --hop-CalendarCell-data-outside-month-display: none;
-
-    display: var(--hop-CalendarCell-data-outside-month-display);
+    visibility: hidden;
 }
 
 .hop-CalendarCell[data-hovered]:not([data-unavailable], [data-selected]) {

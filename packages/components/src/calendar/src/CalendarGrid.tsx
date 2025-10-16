@@ -119,7 +119,7 @@ function CalendarGridBody(props: CalendarGridBodyProps) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {...filterDOMProps(props as any)}
             style={style}
-            className={className || "react-aria-CalendarGridBody"}
+            className={className}
         >
             {[...new Array(FIXED_WEEKS_IN_MONTH).keys()].map(weekIndex => (
                 <tr key={weekIndex}>
