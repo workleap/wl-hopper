@@ -7,6 +7,7 @@ import type {
 
 import type { CalendarProps } from "../../calendar/index.ts";
 import type { InputGroupProps } from "../../inputs/index.ts";
+import type { PopoverBaseProps } from "../../overlays/index.ts";
 import type { FieldProps } from "../../utils/index.ts";
 
 
@@ -42,4 +43,20 @@ export interface DateRangePickerProps extends
      * @default 1
      */
     maxVisibleMonths?: number;
+
+    /**
+   * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
+   * @default true
+   */
+    isFixedWeeks?: boolean;
+
+    /**
+     * The props for the popover.
+     */
+    popoverProps?: PopoverBaseProps;
+
+    /**
+     * The props for the calendar.
+     */
+    calendarProps?: CalendarProps;
 }
