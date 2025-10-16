@@ -218,7 +218,7 @@ export const stylePropDefinitions: StylePropDefinition[] = [
     { propName: "objectPosition", cssProperty: "object-position", tokenScale: "none", supportedFeatures: "breakpoints", group: "Position" },
 
     // Shadow
-    { propName: "boxShadow", cssProperty: "box-shadow", tokenScale: "shape-scale", supportedFeatures: "breakpoints & focus/hover/active", group: "Shadow" },
+    { propName: "boxShadow", cssProperty: "box-shadow", tokenScale: "elevation-scale", supportedFeatures: "breakpoints & focus/hover/active", group: "Shadow" },
 
     // Miscellaneous
     { propName: "content", cssProperty: "content", tokenScale: "none", supportedFeatures: "breakpoint", group: "Miscellaneous" },
