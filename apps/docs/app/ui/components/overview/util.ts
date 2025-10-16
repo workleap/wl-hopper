@@ -1,6 +1,6 @@
 import { allComponents } from "@/.contentlayer/generated";
 
-const ignoreCategories = ["application"];
+const ignoreCategories = ["application", "utilities"];
 const sortOrder = [
     "layout",
     "buttons",
@@ -14,6 +14,8 @@ const sortOrder = [
     "status",
     "content",
     "placeholders",
+    "utilities",
+    "html elements",
     "building blocks"
 ];
 

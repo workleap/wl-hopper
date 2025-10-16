@@ -21,12 +21,12 @@ export const useDebounceCallback = <CallbackArgs extends unknown[]>(
         storedCallback.current = callback;
     });
 
-    const timeout = useRef<ReturnType<typeof setTimeout>>();
+    const timeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(
         () => () => {
             timeout.current && clearTimeout(timeout.current);
-            timeout.current = undefined;
+            timeout.current = null;
         },
         [wait, leading, storedCallback]
     );
@@ -34,9 +34,9 @@ export const useDebounceCallback = <CallbackArgs extends unknown[]>(
     return useCallback((...args: CallbackArgs) => {
         const { current } = timeout;
         const waitInMs = typeof wait === "number" ? wait : DebounceTimeouts[wait];
-        if (current === undefined && leading) {
+        if (current === null && leading) {
             timeout.current = setTimeout(() => {
-                timeout.current = undefined;
+                timeout.current = null;
             }, waitInMs);
 
             return storedCallback.current.apply(null, args);
@@ -45,7 +45,7 @@ export const useDebounceCallback = <CallbackArgs extends unknown[]>(
         current && clearTimeout(current);
 
         timeout.current = setTimeout(() => {
-            timeout.current = undefined;
+            timeout.current = null;
             storedCallback.current.apply(null, args);
         }, waitInMs);
     }, [wait, leading, storedCallback]);
@@ -60,5 +60,5 @@ export type UseDebounceResult<TState> = [
 export function useDebounce<TState>(initialState: TState | (() => TState), wait?: SuggestedDebouncedWaitTimes, leading?: boolean): UseDebounceResult<TState> {
     const state = useState(initialState);
 
-    return [state[0], useDebounceCallback(state[1], wait, leading), state[1]] ;
+    return [state[0], useDebounceCallback(state[1], wait, leading), state[1]];
 }
