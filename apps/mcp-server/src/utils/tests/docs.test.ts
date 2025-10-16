@@ -1,5 +1,5 @@
 import {
-    MOCK_TOKENS,
+    MOCK_TOKENS_BRIEF,
     MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
     MOCK_TOKENS_FULL,
     MOCK_TOKENS_SEMANTIC_COLOR_FULL,
@@ -62,7 +62,7 @@ describe("getDesignTokens", () => {
             expect(result[0]).toHaveProperty("type", "text");
 
             const content = JSON.parse(result[0].text as string);
-            expect(content).toEqual(MOCK_TOKENS);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
         });
 
         it("should return all tokens when filter array is empty", async () => {
@@ -72,7 +72,7 @@ describe("getDesignTokens", () => {
             expect(result[0]).toHaveProperty("type", "text");
 
             const content = JSON.parse(result[0].text as string);
-            expect(content).toEqual(MOCK_TOKENS);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
         });
     });
 
@@ -83,8 +83,8 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
-            expect(content.core.color).not.toHaveProperty("hop-primary-surface");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).not.toHaveProperty("hop-primary-surface");
         });
 
         it("should normalize filter keys by removing multiple leading dashes", async () => {
@@ -93,7 +93,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
         it("should normalize filter keys by removing hop- prefix", async () => {
@@ -102,7 +102,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
         it("should normalize filter keys by removing both leading dashes and hop- prefix", async () => {
@@ -111,7 +111,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
     });
 
@@ -123,9 +123,9 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include coastal token
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
             // Should not include primary token
-            expect(content.core.color).not.toHaveProperty("hop-primary-surface");
+            expect(content.core.color.tokens).not.toHaveProperty("hop-primary-surface");
             // Should not include other categories
             expect(content.core).not.toHaveProperty("fontSize");
         });
@@ -137,8 +137,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include both coastal and primary tokens
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
-            expect(content.core.color).toHaveProperty("hop-primary-surface");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-primary-surface");
             // Should not include fontSize
             expect(content.core).not.toHaveProperty("fontSize");
         });
@@ -150,10 +150,10 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include danger tokens
-            expect(content.semantic.color).toHaveProperty("hop-danger-border-active");
-            expect(content.semantic.color).toHaveProperty("hop-danger-icon-active");
+            expect(content.semantic.color.tokens).toHaveProperty("hop-danger-border-active");
+            expect(content.semantic.color.tokens).toHaveProperty("hop-danger-icon-active");
             // Should not include success tokens
-            expect(content.semantic.color).not.toHaveProperty("hop-success-border");
+            expect(content.semantic.color.tokens).not.toHaveProperty("hop-success-border");
             // Should not include core tokens
             expect(content).not.toHaveProperty("core");
         });
@@ -165,7 +165,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include inset token
-            expect(content.semantic.size).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.size.tokens).toHaveProperty("hop-space-inset-xs");
             // Should not include other categories
             expect(content.semantic).not.toHaveProperty("color");
         });
@@ -210,7 +210,7 @@ describe("getDesignTokens", () => {
             // Should have the full nested structure
             expect(content).toHaveProperty("core");
             expect(content.core).toHaveProperty("color");
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
         it("should only include parent objects that have matching children", async () => {
@@ -222,7 +222,7 @@ describe("getDesignTokens", () => {
             // Should have semantic.color but not core
             expect(content).toHaveProperty("semantic");
             expect(content.semantic).toHaveProperty("color");
-            expect(Object.keys(content.semantic.color)).toHaveLength(2);
+            expect(Object.keys(content.semantic.color.tokens)).toHaveLength(2);
             expect(content).not.toHaveProperty("core");
         });
     });
@@ -236,7 +236,7 @@ describe("getDesignTokens", () => {
 
             expect(Object.keys(content.semantic).length).toBeGreaterThan(0);
             // Check a specific token has both properties
-            const firstColorToken = Object.values(content.semantic.color)[0];
+            const firstColorToken = Object.values(content.semantic.color.tokens)[0];
             expect(firstColorToken).toHaveProperty("cssValue");
             expect(firstColorToken).toHaveProperty("propValue");
         });
@@ -246,10 +246,10 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.semantic.color).toBeDefined();
+            expect(content.semantic.color.tokens).toBeDefined();
             // Check that filtered tokens have both cssValue and propValue
-            expect(content.semantic.color["hop-danger-border-active"]).toHaveProperty("cssValue");
-            expect(content.semantic.color["hop-danger-border-active"]).toHaveProperty("propValue");
+            expect(content.semantic.color.tokens["hop-danger-border-active"]).toHaveProperty("cssValue");
+            expect(content.semantic.color.tokens["hop-danger-border-active"]).toHaveProperty("propValue");
             expect(Object.keys(content.semantic)).toHaveLength(1);
         });
         it("should return tokens with cssValue and propValue for specific category in full mode", async () => {
@@ -258,9 +258,9 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.semantic.shadow).toHaveProperty("hop-elevation-none");
-            expect(content.semantic.shadow["hop-elevation-none"]).toHaveProperty("cssValue", "none");
-            expect(content.semantic.shadow["hop-elevation-none"]).toHaveProperty("propValue", "none");
+            expect(content.semantic.shadow.tokens).toHaveProperty("hop-elevation-none");
+            expect(content.semantic.shadow.tokens["hop-elevation-none"]).toHaveProperty("cssValue", "none");
+            expect(content.semantic.shadow.tokens["hop-elevation-none"]).toHaveProperty("propValue", "none");
         });
         it("should return tokens for specific category in brief mode", async () => {
             const result = await getDesignTokens("semantic-elevation", [], undefined, false);
@@ -268,8 +268,8 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
 
-            expect(content.semantic.shadow).toHaveProperty("hop-elevation-none", "none");
-            expect(typeof content.semantic.shadow["hop-elevation-none"]).toBe("string");
+            expect(content.semantic.shadow.tokens).toHaveProperty("hop-elevation-none", "none");
+            expect(typeof content.semantic.shadow.tokens["hop-elevation-none"]).toBe("string");
         });
     });
 
@@ -291,7 +291,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should match tokens containing "space-inset"
-            expect(content.semantic.size).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.size.tokens).toHaveProperty("hop-space-inset-xs");
         });
 
         it("should handle filter key that matches parent category", async () => {
@@ -342,10 +342,10 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include both matching tokens
-            expect(content.core.color).toHaveProperty("hop-coastal-25");
-            expect(content.core.fontSize).toHaveProperty("hop-font-size-120");
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
+            expect(content.core.fontSize.tokens).toHaveProperty("hop-font-size-120");
             // Should not include non-matching tokens
-            expect(content.core.color).not.toHaveProperty("hop-primary-surface");
+            expect(content.core.color.tokens).not.toHaveProperty("hop-primary-surface");
         });
 
         it("should filter with overlapping matches", async () => {
@@ -355,8 +355,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include both tokens
-            expect(content.semantic.color).toHaveProperty("hop-danger-border-active");
-            expect(content.semantic.color).toHaveProperty("hop-danger-icon-active");
+            expect(content.semantic.color.tokens).toHaveProperty("hop-danger-border-active");
+            expect(content.semantic.color.tokens).toHaveProperty("hop-danger-icon-active");
         });
     });
 
@@ -368,9 +368,9 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should find tokens with this exact color
-            expect(content.semantic.color).toBeDefined();
+            expect(content.semantic.color.tokens).toBeDefined();
             // In brief mode, should only have propValue
-            const firstToken = Object.values(content.semantic.color)[0];
+            const firstToken = Object.values(content.semantic.color.tokens)[0];
             expect(typeof firstToken).toBe("string");
         });
 
@@ -381,8 +381,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should find tokens with similar color (#ba2d2d is close to #bb2d2d)
-            expect(content.semantic.color).toBeDefined();
-            expect(Object.keys(content.semantic.color).length).toBeGreaterThan(0);
+            expect(content.semantic.color.tokens).toBeDefined();
+            expect(Object.keys(content.semantic.color.tokens).length).toBeGreaterThan(0);
         });
 
         it("should return full format when include_css_values is true", async () => {
@@ -392,7 +392,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // In full mode, should have both propValue and cssValue
-            const firstToken = Object.values(content.semantic.color)[0];
+            const firstToken = Object.values(content.semantic.color.tokens)[0];
             expect(firstToken).toHaveProperty("propValue");
             expect(firstToken).toHaveProperty("cssValue");
         });
@@ -404,8 +404,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should find exact match for font-weight 400
-            expect(content.core.fontWeight).toBeDefined();
-            expect(content.core.fontWeight).toHaveProperty("hop-font-weight-400");
+            expect(content.core.fontWeight.tokens).toBeDefined();
+            expect(content.core.fontWeight.tokens).toHaveProperty("hop-font-weight-400");
         });
 
         it("should combine name and fuzzy CSS value filters", async () => {
@@ -415,8 +415,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should only include tokens that match both filters
-            expect(content.semantic.color).toBeDefined();
-            const tokenNames = Object.keys(content.semantic.color);
+            expect(content.semantic.color.tokens).toBeDefined();
+            const tokenNames = Object.keys(content.semantic.color.tokens);
             tokenNames.forEach(name => {
                 expect(name).toContain("danger");
             });
@@ -439,8 +439,8 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should find tokens matching either color
-            expect(content.semantic.color).toBeDefined();
-            expect(Object.keys(content.semantic.color).length).toBe(3);
+            expect(content.semantic.color.tokens).toBeDefined();
+            expect(Object.keys(content.semantic.color.tokens).length).toBe(3);
         });
     });
 });

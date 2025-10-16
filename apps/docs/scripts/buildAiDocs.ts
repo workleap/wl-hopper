@@ -127,7 +127,6 @@ async function main() {
             await generateTokensMaps({
                 sourceFile: join(projectRoot, buildInfo.source),
                 outputPath: join(outputPath, fileKey),
-                fullMap: buildInfo.options?.fullMap ?? false
             });
         } else if (isUnsafePropsJsonBuild(buildInfo)) {
             await generateUnsafePropsJson({

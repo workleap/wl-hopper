@@ -125,7 +125,15 @@ function processNode(
         // Process object properties recursively
         const result: Record<string, unknown> = {};
         for (const [key, value] of Object.entries(node)) {
-            result[key] = processNode(value, [...currentPath, key]);
+            const processedValue = processNode(value, [...currentPath, key]);
+            // Skip empty arrays and empty objects
+            if (Array.isArray(processedValue) && processedValue.length === 0) {
+                continue;
+            }
+            if (processedValue && typeof processedValue === "object" && !Array.isArray(processedValue) && Object.keys(processedValue).length === 0) {
+                continue;
+            }
+            result[key] = processedValue;
         }
 
         return result;
@@ -173,11 +181,9 @@ function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: 
 export async function generateTokensMaps({
     outputPath,
     sourceFile,
-    fullMap
 }: {
     outputPath: string;
     sourceFile: string;
-    fullMap?: boolean;
 }) {
     try {
         // Read the source JSON file
