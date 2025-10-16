@@ -30,9 +30,8 @@ export const MultiMonth = {
 
 export const MultiMonthFixed = {
     args: {
-        ...Default.args,
-        isFixedWeeks: true,
-        visibleMonths: 3
+        ...MultiMonth.args,
+        isFixedWeeks: true
     }
 } satisfies Story;
 

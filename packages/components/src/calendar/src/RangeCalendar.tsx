@@ -28,6 +28,12 @@ export interface RangeCalendarProps<T extends DateValue> extends Omit<AriaRangeC
    * @default 1
    */
     visibleMonths?: number;
+
+    /**
+   * Whether the calendar should always display 6 weeks.
+   * @default false
+   */
+    isFixedWeeks?: boolean;
 }
 
 const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
@@ -40,6 +46,7 @@ const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: F
         errorMessage,
         style,
         visibleMonths = 1,
+        isFixedWeeks = false,
         ...otherProps
     } = ownProps;
 
@@ -72,7 +79,7 @@ const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: F
                     <div className={styles["hop-RangeCalendar__grids"]}>
                         {Array.from({ length: visibleMonths }).map((_, i) => (
                             // eslint-disable-next-line react/no-array-index-key
-                            <CalendarGrid offset={{ months: i }} key={i} />
+                            <CalendarGrid offset={{ months: i }} key={i} isFixedWeeks={isFixedWeeks} />
                         ))}
                     </div>
                     <SlotProvider
