@@ -4,7 +4,7 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { content, errorContent, toolContent } from "./utils/content";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokensMap, getGuide, type GuideSection, GuideSections, TokenCategories } from "./utils/docs";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokens, getGuide, type GuideSection, GuideSections, TokenCategories } from "./utils/docs";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/formatStyledSystemName";
 import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
@@ -56,26 +56,27 @@ export function tools(server: McpServer) {
     });
 
 
-    server.registerTool(toolsInfo.get_design_tokens_map.name, {
-        title: toolsInfo.get_design_tokens_map.title,
-        description: toolsInfo.get_design_tokens_map.description,
+    server.registerTool(toolsInfo.get_design_tokens.name, {
+        title: toolsInfo.get_design_tokens.title,
+        description: toolsInfo.get_design_tokens.description,
         inputSchema: {
-            category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens_map.parameters.category),
-            token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens_map.parameters.token_names),
-            include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens_map.parameters.include_css_values)
+            category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens.parameters.category),
+            search_token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
+            search_css_values: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
+            include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens.parameters.include_css_values.description)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_css_values, token_names }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens_map.name, { category, include_css_values, token_names }, e?.requestInfo);
+    }, async ({ category, include_css_values, search_token_names, search_css_values }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values }, e?.requestInfo);
 
-        const result = await getDesignTokensMap(category, token_names, include_css_values ? "full" : "brief");
+        const result = await getDesignTokens(category, search_token_names, search_css_values, include_css_values);
 
         return toolContent(
             ...result,
-            include_css_values ? content("**Use 'propValue' in your code, not 'cssValue'. Design tokens ensure consistency.**") : undefined,
-            content("**Golden Rule**, Remove these substrings from token names to get the correct prop value: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
+            include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
+            content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
         );
     });
 

@@ -27,9 +27,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.18.2",
+    "@modelcontextprotocol/sdk": "1.20.0",
     "@typescript-eslint/parser": "8.45.0",
-    "emoji-regex": "10.5.0",
+    "emoji-regex": "10.6.0",
     "express": "5.1.0",
     "fetch-to-node": "2.1.0",
     "fuse.js": "7.1.0"
@@ -38,10 +38,10 @@
     "@swc/core": "1.13.5",
     "@swc/helpers": "0.5.17",
     "@swc/jest": "0.2.39",
-    "@testing-library/jest-dom": "6.8.0",
+    "@testing-library/jest-dom": "6.9.1",
     "@types/express": "5.0.3",
     "@types/jest": "29.5.14",
-    "@types/node": "22.10.1",
+    "@types/node": "22.18.10",
     "@typescript-eslint/types": "8.45.0",
     "@workleap/eslint-plugin": "3.5.0",
     "@workleap/swc-configs": "2.3.0",
@@ -51,7 +51,7 @@
     "nodemon": "3.1.10",
     "rehype-remark": "10.0.1",
     "remark": "15.0.1",
-    "ts-jest": "29.2.5",
+    "ts-jest": "29.4.5",
     "tsx": "4.20.6",
     "typescript": "5.5.4",
     "unist-util-visit": "5.0.0"

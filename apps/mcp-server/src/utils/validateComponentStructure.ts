@@ -526,31 +526,38 @@ async function getAllTokens(): Promise<Set<string>> {
     }
 
     try {
-        // Get the path to the tokens data file
-        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.brief.all.path);
+        // Get the path to the tokens data file (use full version)
+        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.all.path);
         const fileContents = await readFile(tokensDataPath, "utf-8");
         const tokensData = JSON.parse(fileContents);
 
-        // Recursively extract all values from the nested object structure
-        const extractValues = (obj: unknown): string[] => {
+        // Recursively extract all propValue fields from the nested object structure
+        const extractPropValues = (obj: unknown): string[] => {
             const values: string[] = [];
 
             if (typeof obj === "string") {
                 values.push(obj);
             } else if (Array.isArray(obj)) {
                 for (const item of obj) {
-                    values.push(...extractValues(item));
+                    values.push(...extractPropValues(item));
                 }
             } else if (obj !== null && typeof obj === "object") {
-                for (const value of Object.values(obj)) {
-                    values.push(...extractValues(value));
+                const record = obj as Record<string, unknown>;
+                // Check if this is a token object with propValue
+                if ("propValue" in record && typeof record.propValue === "string") {
+                    values.push(record.propValue);
+                } else {
+                    // Recursively process nested objects
+                    for (const value of Object.values(record)) {
+                        values.push(...extractPropValues(value));
+                    }
                 }
             }
 
             return values;
         };
 
-        const allValues = extractValues(tokensData);
+        const allValues = extractPropValues(tokensData);
 
         // Cache the result before returning
         _allTokensCache = new Set(allValues);
@@ -562,37 +569,124 @@ async function getAllTokens(): Promise<Set<string>> {
     }
 }
 
+// Props that accept percentage values without requiring UNSAFE_ prefix
+const PERCENTAGE_SAFE_PROPS = new Set([
+    "width",
+    "height",
+    "maxWidth",
+    "minWidth",
+    "maxHeight",
+    "minHeight"
+]);
+
+/**
+ * Checks if a prop is an invalid UNSAFE_ usage with percentage values
+ * Returns true if this is an invalid UNSAFE_ percentage prop (error already reported)
+ * Returns false if this is not a percentage-related issue (needs further validation)
+ */
+function isInvalidUnsafePercentageProp(
+    propName: string,
+    propValue: TSESTree.JSXAttribute["value"],
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): boolean {
+    // Only check UNSAFE_ props
+    if (!propName.startsWith("UNSAFE_")) {
+        return false;
+    }
+
+    const safePropName = propName.replace("UNSAFE_", "");
+
+    // Not a percentage-safe prop - not our concern
+    if (!PERCENTAGE_SAFE_PROPS.has(safePropName)) {
+        return false;
+    }
+
+    // Percentage-safe prop but not a string value - not our concern
+    if (!isStringValue(propValue)) {
+        return false;
+    }
+
+    // Percentage-safe prop with string value but not a percentage - not our concern
+    if (!propValue.value.endsWith("%")) {
+        return false;
+    }
+
+    // This is an invalid case: UNSAFE_ prefix used with percentage on a percentage-safe prop
+    const message = `The prop '${propName}' with percentage value '${propValue.value}' should not use the UNSAFE_ prefix. Change it to '${safePropName}="${propValue.value}"' instead. Width and height properties accept percentage values directly.`;
+
+    result.errors.push({
+        message,
+        line: loc?.start.line,
+        column: loc?.start.column
+    });
+
+    return true; // This is invalid and error was reported
+}
+
+/**
+ * Checks if an UNSAFE_ prop is not in the allowed list and reports an error
+ * Returns true if this is an invalid UNSAFE_ prop (error already reported)
+ * Returns false if this is a valid UNSAFE_ prop (no error)
+ */
+function isDisallowedUnsafeProp(
+    propName: string,
+    allowedUnsafeProps: Set<string>,
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): boolean {
+    // Check if the UNSAFE_ prop is in the allowed list
+    if (allowedUnsafeProps.has(propName)) {
+        return false; // Valid UNSAFE_ prop
+    }
+
+    // Invalid UNSAFE_ prop - generate appropriate error message
+    const safePropName = propName.replace("UNSAFE_", "");
+
+    // Check if the safe version would be prohibited
+    if (PROHIBITED_PROPS.includes(safePropName)) {
+        const message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${safePropName}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
+        result.errors.push({
+            message,
+            line: loc?.start.line,
+            column: loc?.start.column
+        });
+    } else {
+        const message = `The prop ${propName}' is not a valid UNSAFE_ prop. Use ${safePropName}' directly instead.`;
+        result.errors.push({
+            message,
+            line: loc?.start.line,
+            column: loc?.start.column
+        });
+    }
+
+    return true; // This is invalid and error was reported
+}
+
 async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
     const allowedUnsafeProps = new Set(await getUnsafeProps());
 
     // Check each JSX element for UNSAFE_ props
-    for (const { loc, propName } of getAllProps(jsxElements)) {
-        // Check if prop starts with UNSAFE_
-        if (propName.startsWith("UNSAFE_")) {
-            // Check if it's in the allowed list
-            if (!allowedUnsafeProps.has(propName)) {
-                const suggestedProp = propName.replace("UNSAFE_", "");
-                let message: string;
+    for (const { propValue, loc, propName } of getAllProps(jsxElements)) {
+        // Skip non-UNSAFE props
+        if (!propName.startsWith("UNSAFE_")) {
+            continue;
+        }
 
-                // Check if the suggested prop is in the prohibited list
-                if (PROHIBITED_PROPS.includes(suggestedProp)) {
-                    message = `The prop ${propName}' is not a valid UNSAFE_ prop, and ${suggestedProp}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
-                } else {
-                    message = `The prop ${propName}' is not a valid UNSAFE_ prop. Use ${suggestedProp}' directly instead.`;
-                }
+        // Check if this is an invalid percentage-safe prop with percentage value
+        // If so, error is already reported and we skip further validation
+        if (isInvalidUnsafePercentageProp(propName, propValue, loc, result)) {
+            continue;
+        }
 
-                result.errors.push({
-                    message,
-                    line: loc?.start.line,
-                    column: loc?.start.column
-                });
-            }
+        // Check if this is a disallowed UNSAFE_ prop
+        // If so, error is already reported and we skip further validation
+        if (isDisallowedUnsafeProp(propName, allowedUnsafeProps, loc, result)) {
+            continue;
         }
     }
-}
-
-/**
+}/**
  * Checks if a prop value is a string literal
  */
 function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {

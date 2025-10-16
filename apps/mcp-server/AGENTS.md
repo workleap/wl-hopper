@@ -8,6 +8,7 @@
 - Start dev server: `pnpm dev`
 - Type check: `pnpm tsc --noEmit`
 - Lint: `pnpm lint`
+- Test: `pnpm test`
 
 ## Code Style Rules
 

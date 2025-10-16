@@ -1,4 +1,5 @@
 
+import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 import {
     type FontProperties,
     groupItemsByProperties,
@@ -92,7 +93,7 @@ function TypographyTableRender({ items, showSize }: { items: Item[]; showSize: b
             {items.map(item => (
                 <tr key={item.name + item.propertyName}>
                     <td>{item.propertyName}</td>
-                    {showSize && <td>{item.name}</td>}
+                    {showSize && <td>{formatStyledSystemName(item.tokenName)}</td>}
                     <td><code>{item.tokenName}</code></td>
                     <td>{item.value}</td>
                 </tr>
