@@ -16,7 +16,7 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { InputGroup, type InputGroupProps } from "../../inputs/index.ts";
-import { PopoverBase } from "../../overlays/index.ts";
+import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, cssModule, type FieldProps } from "../../utils/index.ts";
 
@@ -27,9 +27,9 @@ import styles from "./DatePicker.module.css";
 
 export const GlobalDatePickerCssSelector = "hop-DatePicker";
 
-export interface DatePickerProps<T extends DateValue> extends
-    StyledComponentProps<Omit<AriaDatePickerProps<T>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<CalendarProps<T>, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+export interface DatePickerProps extends
+    StyledComponentProps<Omit<AriaDatePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
+    Pick<CalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
     FieldProps {
     /**
      * If `true`, the DatePicker will take all available width.
@@ -58,9 +58,19 @@ export interface DatePickerProps<T extends DateValue> extends
    * @default true
    */
     isFixedWeeks?: boolean;
+
+    /**
+     * The props for the popover.
+     */
+    popoverProps?: PopoverBaseProps;
+
+    /**
+     * The props for the calendar.
+     */
+    calendarProps?: CalendarProps;
 }
 
-const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
+const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) => {
     // we extract the inputRef props, since we want to manually merge it with the context props.
     const {
         inputRef: userProvidedInputRef = null,
@@ -84,6 +94,8 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
         maxVisibleMonths = 1,
         createCalendar,
         isFixedWeeks = true,
+        popoverProps,
+        calendarProps,
         ...otherProps
     } = ownProps;
 
@@ -154,11 +166,12 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
                         {inputMarkup}
                         {description && <HelperMessage className={styles["hop-DatePicker__HelperMessage"]}>{description}</HelperMessage>}
                         <ErrorMessage className={styles["hop-DatePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
-                        <PopoverBase className={styles["hop-DatePicker__Popover"]}>
+                        <PopoverBase {...popoverProps} className={clsx(styles["hop-DatePicker__Popover"], popoverProps?.className)} >
                             <Calendar
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}
                                 isFixedWeeks={isFixedWeeks}
+                                {...calendarProps}
                             />
                         </PopoverBase>
                     </>
@@ -173,7 +186,7 @@ const DatePicker = <T extends DateValue>(props: DatePickerProps<T>, ref: Forward
  *
  * [View Documentation](https://hopper.workleap.design/components/DatePicker)
  */
-const _DatePicker = forwardRef<HTMLDivElement, DatePickerProps<DateValue>>(DatePicker);
+const _DatePicker = forwardRef<HTMLDivElement, DatePickerProps>(DatePicker);
 _DatePicker.displayName = "DatePicker";
 
 export { _DatePicker as DatePicker };

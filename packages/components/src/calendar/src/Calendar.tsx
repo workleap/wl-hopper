@@ -17,7 +17,7 @@ export const GlobalCalendarCssSelector = "hop-Calendar";
 
 type OmittedCalendarProps = "visibleDuration" | "children";
 
-export interface CalendarProps<T extends DateValue> extends StyledComponentProps<Omit<AriaCalendarProps<T>, OmittedCalendarProps>> {
+export interface CalendarProps extends StyledComponentProps<Omit<AriaCalendarProps<DateValue>, OmittedCalendarProps>> {
     /**
    * The error message to display when the calendar is invalid.
    */
@@ -34,7 +34,7 @@ export interface CalendarProps<T extends DateValue> extends StyledComponentProps
     isFixedWeeks?: boolean;
 }
 
-const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
+const Calendar = (props: CalendarProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, CalendarContext);
 
     const stringFormatter = useLocalizedString();
@@ -104,7 +104,7 @@ const Calendar = <T extends DateValue>(props: CalendarProps<T>, ref: ForwardedRe
  *
  * [View Documentation](https://hopper.workleap.design/components/Calendar)
  */
-const _Calendar = forwardRef<HTMLDivElement, CalendarProps<DateValue>>(Calendar);
+const _Calendar = forwardRef<HTMLDivElement, CalendarProps>(Calendar);
 _Calendar.displayName = "Calendar";
 
 export { _Calendar as Calendar };

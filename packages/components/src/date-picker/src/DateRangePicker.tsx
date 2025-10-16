@@ -12,9 +12,9 @@ import type { FieldProps } from "../../utils/index.ts";
 
 export const GlobalDateRangePickerCssSelector = "hop-DateRangePicker";
 
-export interface DateRangePickerProps<T extends DateValue> extends
-    StyledComponentProps<Omit<AriaDateRangePickerProps<T>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<CalendarProps<T>, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+export interface DateRangePickerProps extends
+    StyledComponentProps<Omit<AriaDateRangePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
+    Pick<CalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
     FieldProps {
     /**
      * If `true`, the DateRangePicker will take all available width.

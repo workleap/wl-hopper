@@ -18,7 +18,7 @@ export const GlobalRangeCalendarCssSelector = "hop-RangeCalendar";
 
 type OmittedRangeCalendarProps = "visibleDuration" | "style" | "className" | "children" | keyof GlobalDOMAttributes;
 
-export interface RangeCalendarProps<T extends DateValue> extends Omit<AriaRangeCalendarProps<T>, OmittedRangeCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
+export interface RangeCalendarProps extends Omit<AriaRangeCalendarProps<DateValue>, OmittedRangeCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
     /**
    * The error message to display when the range calendar is invalid.
    */
@@ -36,7 +36,7 @@ export interface RangeCalendarProps<T extends DateValue> extends Omit<AriaRangeC
     isFixedWeeks?: boolean;
 }
 
-const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
+const RangeCalendar = (props: RangeCalendarProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, RangeCalendarContext);
 
     const stringFormatter = useLocalizedString();
@@ -106,7 +106,7 @@ const RangeCalendar = <T extends DateValue>(props: RangeCalendarProps<T>, ref: F
  *
  * [View Documentation](https://hopper.workleap.design/components/RangeCalendar)
  */
-const _RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps<DateValue>>(RangeCalendar);
+const _RangeCalendar = forwardRef<HTMLDivElement, RangeCalendarProps>(RangeCalendar);
 _RangeCalendar.displayName = "RangeCalendar";
 
 export { _RangeCalendar as RangeCalendar };
