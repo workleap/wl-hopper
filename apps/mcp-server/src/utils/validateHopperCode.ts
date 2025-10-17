@@ -776,17 +776,14 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
         // Only check string literal values
         await checkUnsafePropHasTokenEquivalent(propName, propValue, loc, result);
     }
-}/**
- * Checks if a prop value is a string literal
- */
+}
+
+
 function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
     return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
 }
 
-/**
- * Checks if an UNSAFE_ prop should be skipped from token validation
- * Returns true if the prop is an UNSAFE_ prop without token support
- */
+
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
     const safePropName = propName.replace("UNSAFE_", "");
 
