@@ -74,3 +74,15 @@ The Hopper MCP server exposes the following tools to AI agents:
 
 - **`build_hopper_app`**: Provides essential workflow and best practices for building applications with the Hopper Design System. Includes guidance on design tokens, component usage, styling, layout, and validation.
 - **`generate_code_from_figma_design`**: Generate Hopper code from Figma designs (Required: [Figma MCP server](https://www.figma.com/mcp-catalog/)).
+
+## Resources
+
+The Hopper MCP server exposes documentation through structured resource URIs:
+
+- **`hopper://llms-full`**: Complete documentation with all components, APIs, tokens, styles, and icons
+- **`hopper://components/{name}/usage`**: Component usage documentation and best practices
+- **`hopper://components/{name}/props`**: Component API (brief or full)
+- **`hopper://tokens/{category}`**: Design tokens by category (e.g., `semantic-color`, `core-dimensions`)
+- **`hopper://guides/{section}`**: Guides for installation, styles, layout, forms, etc.
+- **`hopper://icons/{type}`**: Icon collections (`react` or `svg`)
+- **`hopper://component-list`**: List of all available components
