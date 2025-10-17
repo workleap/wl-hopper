@@ -11,7 +11,7 @@ export default function Example() {
     const handleInputChange = (value: string) => {
         setInputValue(value); // Update input immediately for responsiveness
         setDebouncedEmail(value); // Trigger debounced validation
-        if (value)  {
+        if (value) {
             setIsValidating(true);
         }
     };
@@ -31,7 +31,7 @@ export default function Example() {
             onChange={handleInputChange}
             placeholder="Enter your email"
             description={isValidating ? "Validating..." : undefined}
-            errorMessage={"Invalid email"}
+            errorMessage="Invalid email"
             isInvalid={!isValid && !isValidating && !!inputValue}
         />
     );

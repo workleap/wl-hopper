@@ -1,4 +1,4 @@
-import { useDebounceCallback } from "@hopper-ui/components";
+import { Div, useDebounceCallback } from "@hopper-ui/components";
 import { useEffect, useState } from "react";
 
 export default function Example() {
@@ -13,12 +13,13 @@ export default function Example() {
 
     useEffect(() => {
         window.addEventListener("resize", handleResize);
+
         return () => window.removeEventListener("resize", handleResize);
     }, [handleResize]);
 
     return (
-        <div>
+        <Div>
             Window size: {dimensions.width} x {dimensions.height}
-        </div>
+        </Div>
     );
 }

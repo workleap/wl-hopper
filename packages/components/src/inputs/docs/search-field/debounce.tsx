@@ -1,4 +1,4 @@
-import { SearchField, Stack, useDebounce } from "@hopper-ui/components";
+import { Paragraph, SearchField, Stack, useDebounce } from "@hopper-ui/components";
 import { useEffect, useState } from "react";
 
 export default function Example() {
@@ -32,7 +32,7 @@ export default function Example() {
                 placeholder="Search fruits..."
                 label="Search"
             />
-            <p>Results: {results.join(", ")}</p>
+            <Paragraph>Results: {results.join(", ")}</Paragraph>
         </Stack>
     );
 }

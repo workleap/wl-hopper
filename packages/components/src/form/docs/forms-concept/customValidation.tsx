@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Form, TextField } from "@hopper-ui/components";
+import { Button, ButtonGroup, Div, Form, TextField } from "@hopper-ui/components";
 import { useState, type FormEvent } from "react";
 
 export default function Example() {
@@ -23,9 +23,9 @@ export default function Example() {
                 <Button type="reset" variant="secondary">Reset</Button>
             </ButtonGroup>
             {submitted && (
-                <div>
+                <Div>
                     You submitted: <code>{JSON.stringify(submitted)}</code>
-                </div>
+                </Div>
             )}
         </Form>
     );

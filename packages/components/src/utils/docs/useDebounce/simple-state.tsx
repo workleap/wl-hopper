@@ -11,6 +11,7 @@ export default function Example() {
     // This effect will only run 100ms after the user stops typing
     useEffect(() => {
         if (message) {
+            // eslint-disable-next-line no-console
             console.log("Debounced message:", message);
             // Perform some action with the debounced value
         }
