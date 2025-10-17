@@ -3,6 +3,7 @@ import { Button, useDebounceCallback } from "@hopper-ui/components";
 export default function Example() {
     const handlePress = useDebounceCallback(
         () => {
+            // eslint-disable-next-line no-console
             console.log("Button clicked!");
             // Expensive operation here
         },
