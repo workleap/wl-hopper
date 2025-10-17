@@ -1,6 +1,6 @@
-import { MOCK_TOKENS_FULL } from "../../tests/mocks/tokensData.ts";
-import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData.ts";
-import { validateComponentStructure } from "../validateComponentStructure.ts";
+import { MOCK_TOKENS_FULL } from "../../tests/mocks/tokensData";
+import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData";
+import { validateHopperCode } from "../validateHopperCode";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
@@ -17,38 +17,38 @@ jest.mock("fs/promises", () => ({
     })
 }));
 
-describe("validateComponentStructure", () => {
+describe("validateHopperCode", () => {
     describe("Basic functionality", () => {
         it("should return error for empty code", async () => {
-            const result = await validateComponentStructure("");
+            const result = await validateHopperCode("");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("No code provided");
         });
 
         it("should return error for whitespace-only code", async () => {
-            const result = await validateComponentStructure("   \n\t  ");
+            const result = await validateHopperCode("   \n\t  ");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("No code provided");
         });
 
         it("should return error for code without JSX", async () => {
-            const result = await validateComponentStructure("const x = 5;");
+            const result = await validateHopperCode("const x = 5;");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("No JSX components found");
         });
 
         it("should return error for invalid syntax", async () => {
-            const result = await validateComponentStructure("<Button>Invalid JSX<");
+            const result = await validateHopperCode("<Button>Invalid JSX<");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Failed to parse code");
         });
 
         it("should return valid for non-validated components", async () => {
-            const result = await validateComponentStructure("<Div>Hello World</Div>");
+            const result = await validateHopperCode("<Div>Hello World</Div>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -57,44 +57,44 @@ describe("validateComponentStructure", () => {
     describe("Button component validation", () => {
         describe("Valid Button configurations", () => {
             it("should pass for Button with only text content", async () => {
-                const result = await validateComponentStructure("<Button>Submit</Button>");
+                const result = await validateHopperCode("<Button>Submit</Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should pass for Button with only one component child", async () => {
-                const result = await validateComponentStructure("<Button><Icon/></Button>");
+                const result = await validateHopperCode("<Button><Icon/></Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should pass for Button with Text component", async () => {
-                const result = await validateComponentStructure("<Button><Text>Submit</Text></Button>");
+                const result = await validateHopperCode("<Button><Text>Submit</Text></Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should pass for Button with Text component and Icon", async () => {
-                const result = await validateComponentStructure("<Button><Text>Submit</Text><Icon/></Button>");
+                const result = await validateHopperCode("<Button><Text>Submit</Text><Icon/></Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should pass for Button with Icon and Text component", async () => {
-                const result = await validateComponentStructure("<Button><Icon/><Text>Submit</Text></Button>");
+                const result = await validateHopperCode("<Button><Icon/><Text>Submit</Text></Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should fail for Button with JSX expression and component", async () => {
-                const result = await validateComponentStructure("<Button>{buttonText}<Icon/></Button>");
+                const result = await validateHopperCode("<Button>{buttonText}<Icon/></Button>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("must include a Text component");
             });
 
             it("should pass for Button with three or more children", async () => {
-                const result = await validateComponentStructure("<Button>Submit<Icon/><Spinner/></Button>");
+                const result = await validateHopperCode("<Button>Submit<Icon/><Spinner/></Button>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
@@ -102,7 +102,7 @@ describe("validateComponentStructure", () => {
 
         describe("Invalid Button configurations", () => {
             it("should fail for Button with text content and non-Text component", async () => {
-                const result = await validateComponentStructure("<Button>Submit<Icon/></Button>");
+                const result = await validateHopperCode("<Button>Submit<Icon/></Button>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("must include a Text component");
@@ -112,19 +112,19 @@ describe("validateComponentStructure", () => {
             });
 
             it("should fail for Button with text content and multiple non-Text components", async () => {
-                const result = await validateComponentStructure("<Button>Submit<Icon/><Spinner/></Button>");
+                const result = await validateHopperCode("<Button>Submit<Icon/><Spinner/></Button>");
                 expect(result.isValid).toBe(true); // This should pass as it has 3 children, rule only applies to 2
             });
 
             it("should handle whitespace correctly in text content", async () => {
-                const result = await validateComponentStructure("<Button>   Submit   <Icon/></Button>");
+                const result = await validateHopperCode("<Button>   Submit   <Icon/></Button>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("must include a Text component");
             });
 
             it("should ignore empty text nodes", async () => {
-                const result = await validateComponentStructure("<Button>   \n\t   <Icon/></Button>");
+                const result = await validateHopperCode("<Button>   \n\t   <Icon/></Button>");
                 expect(result.isValid).toBe(true); // Only 1 child (Icon), whitespace ignored
                 expect(result.errors).toHaveLength(0);
             });
@@ -139,7 +139,7 @@ describe("validateComponentStructure", () => {
             <Button><Text>Valid</Text><Icon/></Button>
           </Div>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("(instance 2 of 3)");
@@ -152,7 +152,7 @@ describe("validateComponentStructure", () => {
             <Button>Second Invalid<Spinner/></Button>
           </Div>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("(instance 1 of 2)");
@@ -172,7 +172,7 @@ describe("validateComponentStructure", () => {
             </Modal>
           </Div>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("Button component");
@@ -186,7 +186,7 @@ describe("validateComponentStructure", () => {
     describe("Modal component validation", () => {
         describe("Valid Modal configurations", () => {
             it("should pass for Modal with all allowed children", async () => {
-                const result = await validateComponentStructure(
+                const result = await validateHopperCode(
                     "<Modal><Heading/><Content/><ButtonGroup/></Modal>"
                 );
                 expect(result.isValid).toBe(true);
@@ -194,14 +194,14 @@ describe("validateComponentStructure", () => {
             });
 
             it("should pass for Modal with subset of allowed children", async () => {
-                const result = await validateComponentStructure("<Modal><Content/></Modal>");
+                const result = await validateHopperCode("<Modal><Content/></Modal>");
                 expect(result.isValid).toBe(false); // Missing required children
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("missing recommended children");
             });
 
             it("should pass for empty Modal", async () => {
-                const result = await validateComponentStructure("<Modal></Modal>");
+                const result = await validateHopperCode("<Modal></Modal>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("missing recommended children: Heading, Content, ButtonGroup");
@@ -210,7 +210,7 @@ describe("validateComponentStructure", () => {
 
         describe("Invalid Modal configurations", () => {
             it("should fail for Modal with invalid children", async () => {
-                const result = await validateComponentStructure("<Modal><Heading/><InvalidChild/><Content/></Modal>");
+                const result = await validateHopperCode("<Modal><Heading/><InvalidChild/><Content/></Modal>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("Found invalid children: InvalidChild");
@@ -218,7 +218,7 @@ describe("validateComponentStructure", () => {
             });
 
             it("should fail for Modal with multiple invalid children", async () => {
-                const result = await validateComponentStructure(
+                const result = await validateHopperCode(
                     "<Modal><InvalidChild1/><InvalidChild2/><Heading/></Modal>"
                 );
                 expect(result.isValid).toBe(false);
@@ -235,7 +235,7 @@ describe("validateComponentStructure", () => {
             <Modal><Heading/><InvalidChild/></Modal>
           </Div>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("(instance 2 of 2)");
@@ -249,21 +249,21 @@ describe("validateComponentStructure", () => {
     describe("Div component validation", () => {
         describe("Valid Div configurations", () => {
             it("should pass for Div without display prop and multiple children", async () => {
-                const result = await validateComponentStructure("<Div><Text>Content 1</Text><Text>Content 2</Text></Div>");
+                const result = await validateHopperCode("<Div><Text>Content 1</Text><Text>Content 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should pass for Div with display prop other than flex or grid", async () => {
-                const result = await validateComponentStructure("<Div display=\"block\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
+                const result = await validateHopperCode("<Div display=\"block\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should pass for Div with display inline-block", async () => {
-                const result = await validateComponentStructure("<Div display=\"inline-block\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode("<Div display=\"inline-block\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
@@ -272,7 +272,7 @@ describe("validateComponentStructure", () => {
 
         describe("Div with display=flex", () => {
             it("should warn for Div with display=flex", async () => {
-                const result = await validateComponentStructure("<Div display=\"flex\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode("<Div display=\"flex\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
@@ -283,7 +283,7 @@ describe("validateComponentStructure", () => {
             });
 
             it("should include line and column information in warning", async () => {
-                const result = await validateComponentStructure("<Div display=\"flex\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
+                const result = await validateHopperCode("<Div display=\"flex\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
                 expect(result.warnings.length).toBeGreaterThanOrEqual(1);
                 const flexWarning = result.warnings.find(w => w.message.includes("display=\"flex\""));
                 expect(flexWarning).toBeDefined();
@@ -294,7 +294,7 @@ describe("validateComponentStructure", () => {
 
         describe("Div with display=grid", () => {
             it("should warn for Div with display=grid", async () => {
-                const result = await validateComponentStructure("<Div display=\"grid\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode("<Div display=\"grid\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
@@ -312,7 +312,7 @@ describe("validateComponentStructure", () => {
             <Div display="flex"><Text>Third</Text><Text>Fourth</Text></Div>
           </Stack>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 const flexWarnings = result.warnings.filter(w => w.message.includes("display=\"flex\""));
@@ -329,7 +329,7 @@ describe("validateComponentStructure", () => {
             <Div><Text>Normal 1</Text><Text>Normal 2</Text></Div>
           </Stack>
         `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(2);
@@ -351,7 +351,7 @@ describe("validateComponentStructure", () => {
           <Modal><Heading/><InvalidChild/><Content/></Modal>
         </Div>
       `;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(3);
 
@@ -380,7 +380,7 @@ describe("validateComponentStructure", () => {
           </ButtonGroup>
         </Modal>
       `;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
 
@@ -396,13 +396,13 @@ describe("validateComponentStructure", () => {
 
     describe("Edge cases", () => {
         it("should handle self-closing components", async () => {
-            const result = await validateComponentStructure("<Button/>");
+            const result = await validateHopperCode("<Button/>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should handle components with attributes", async () => {
-            const result = await validateComponentStructure("<Button variant='primary' size='large'>Text<Icon/></Button>");
+            const result = await validateHopperCode("<Button variant='primary' size='large'>Text<Icon/></Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("must include a Text component");
@@ -415,7 +415,7 @@ describe("validateComponentStructure", () => {
           <Modal><Heading/><Content/><ButtonGroup/></Modal>
         </>
       `;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Button component");
@@ -439,7 +439,7 @@ describe("validateComponentStructure", () => {
           </Section>
         </Div>
       `;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Button component");
@@ -447,7 +447,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle components with complex JSX expressions", async () => {
             const code = "<Button>{isLoading ? 'Loading...' : 'Submit'}<Icon/></Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("must include a Text component");
@@ -455,7 +455,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle mixed content types correctly", async () => {
             const code = "<Button>  \n\t  {getText()}  \n  <Icon/>  \n  </Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("must include a Text component");
@@ -464,7 +464,7 @@ describe("validateComponentStructure", () => {
 
     describe("Emoji validation", () => {
         it("should detect emojis in JSX text content", async () => {
-            const result = await validateComponentStructure("<Button>Submit 🚀</Button>");
+            const result = await validateHopperCode("<Button>Submit 🚀</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Emoji '🚀' detected");
@@ -474,7 +474,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect multiple emojis in the same line", async () => {
-            const result = await validateComponentStructure("<Button>Submit 🚀 Done ✅</Button>");
+            const result = await validateHopperCode("<Button>Submit 🚀 Done ✅</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("Emoji '🚀' detected");
@@ -486,7 +486,7 @@ describe("validateComponentStructure", () => {
   <Button>Submit 🚀</Button>
   <Text>Done ✅</Text>
 </Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].line).toBe(2);
@@ -494,21 +494,21 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect emojis in component attributes", async () => {
-            const result = await validateComponentStructure("<Button aria-label='Submit 🚀'>Click</Button>");
+            const result = await validateHopperCode("<Button aria-label='Submit 🚀'>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Emoji '🚀' detected");
         });
 
         it("should detect complex emojis and combinations", async () => {
-            const result = await validateComponentStructure("<Button>Family 👨‍👩‍👧‍👦</Button>");
+            const result = await validateHopperCode("<Button>Family 👨‍👩‍👧‍👦</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Emoji '👨‍👩‍👧‍👦' detected");
         });
 
         it("should pass for code without emojis", async () => {
-            const result = await validateComponentStructure("<Button>Submit</Button>");
+            const result = await validateHopperCode("<Button>Submit</Button>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -516,7 +516,7 @@ describe("validateComponentStructure", () => {
 
     describe("Native HTML element validation", () => {
         it("should detect native HTML div element", async () => {
-            const result = await validateComponentStructure("<div><Button>Click</Button></div>");
+            const result = await validateHopperCode("<div><Button>Click</Button></div>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Native HTML element '<div>' is not allowed");
@@ -524,7 +524,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect native HTML span element", async () => {
-            const result = await validateComponentStructure("<Button><span>Text</span></Button>");
+            const result = await validateHopperCode("<Button><span>Text</span></Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Native HTML element '<span>' is not allowed");
@@ -535,7 +535,7 @@ describe("validateComponentStructure", () => {
   <button>Click</button>
   <p>Description</p>
 </div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(3);
             expect(result.errors[0].message).toContain("Native HTML element '<div>'");
@@ -547,7 +547,7 @@ describe("validateComponentStructure", () => {
             const htmlElements = ["h1", "h2", "h3", "a", "img", "form", "input", "table", "ul", "li"];
 
             for (const element of htmlElements) {
-                const result = await validateComponentStructure(`<${element}>Content</${element}>`);
+                const result = await validateHopperCode(`<${element}>Content</${element}>`);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain(`Native HTML element '<${element}>' is not allowed`);
@@ -555,7 +555,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should pass for Hopper components", async () => {
-            const result = await validateComponentStructure("<Div><Button>Click</Button></Div>");
+            const result = await validateHopperCode("<Div><Button>Click</Button></Div>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -564,7 +564,7 @@ describe("validateComponentStructure", () => {
             const code = `<Div>
   <div>Invalid</div>
 </Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].line).toBe(2);
@@ -574,7 +574,7 @@ describe("validateComponentStructure", () => {
 
     describe("Box component validation", () => {
         it("should warn when Box component is used", async () => {
-            const result = await validateComponentStructure("<Box><Text>Content</Text><Text>More</Text></Box>");
+            const result = await validateHopperCode("<Box><Text>Content</Text><Text>More</Text></Box>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
             expect(result.warnings).toHaveLength(1);
@@ -585,7 +585,7 @@ describe("validateComponentStructure", () => {
 
     describe("className and style props validation", () => {
         it("should detect className prop usage", async () => {
-            const result = await validateComponentStructure("<Button className='my-button'>Click</Button>");
+            const result = await validateHopperCode("<Button className='my-button'>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Using 'className' prop is **STRONGLY** discouraged");
@@ -593,7 +593,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect style prop usage", async () => {
-            const result = await validateComponentStructure("<Button style={{color: 'red'}}>Click</Button>");
+            const result = await validateHopperCode("<Button style={{color: 'red'}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Using 'style' prop is **STRONGLY** discouraged");
@@ -601,7 +601,7 @@ describe("validateComponentStructure", () => {
         });
 
         it("should detect both className and style props", async () => {
-            const result = await validateComponentStructure("<Button className='btn' style={{margin: '10px'}}>Click</Button>");
+            const result = await validateHopperCode("<Button className='btn' style={{margin: '10px'}}>Click</Button>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("className");
@@ -613,7 +613,7 @@ describe("validateComponentStructure", () => {
   <Button className="btn1">Button 1</Button>
   <Button style={{color: "blue"}}>Button 2</Button>
 </Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("className");
@@ -627,7 +627,7 @@ describe("validateComponentStructure", () => {
 >
   Click
 </Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].line).toBe(2);
@@ -635,13 +635,13 @@ describe("validateComponentStructure", () => {
         });
 
         it("should allow other valid props", async () => {
-            const result = await validateComponentStructure("<Button variant='primary' size='large' onClick={handleClick}>Click</Button>");
+            const result = await validateHopperCode("<Button variant='primary' size='large' onClick={handleClick}>Click</Button>");
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should detect props in self-closing components", async () => {
-            const result = await validateComponentStructure("<Icon className='icon' />");
+            const result = await validateHopperCode("<Icon className='icon' />");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("className");
@@ -650,7 +650,7 @@ describe("validateComponentStructure", () => {
 
     describe("Enhanced error reporting", () => {
         it("should provide detailed error for unexpected token", async () => {
-            const result = await validateComponentStructure("<Button>Invalid JSX<");
+            const result = await validateHopperCode("<Button>Invalid JSX<");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Failed to parse code");
@@ -661,7 +661,7 @@ describe("validateComponentStructure", () => {
         it("should provide detailed error for incomplete code", async () => {
             // This might not trigger "Unexpected end of file" in all cases,
             // but testing the error handling structure
-            const result = await validateComponentStructure("<Button");
+            const result = await validateHopperCode("<Button");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Failed to parse code");
@@ -669,7 +669,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle unknown parsing errors gracefully", async () => {
             // Test with severely malformed code
-            const result = await validateComponentStructure("<<>>");
+            const result = await validateHopperCode("<<>>");
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("Failed to parse code");
@@ -682,7 +682,7 @@ describe("validateComponentStructure", () => {
   <Button>Submit 🚀<Icon/></Button>
   <p>Description with emoji ✅</p>
 </div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
 
             // Should detect: native HTML (div, p), className, style, emojis, Button validation
@@ -701,7 +701,7 @@ describe("validateComponentStructure", () => {
             const code = `<div>
   <Button className="btn">Submit 🚀</Button>
 </div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
 
             // All errors should have line information
@@ -732,7 +732,7 @@ describe("validateComponentStructure", () => {
     </Button>
   </ButtonGroup>
 </Modal>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -743,14 +743,15 @@ describe("validateComponentStructure", () => {
         // is not available (like in test environment), the validation is skipped
         it("should pass for valid UNSAFE_ props", async () => {
             const code = "<Div UNSAFE_backgroundColor='red'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
 
-        it("should pass for multiple valid UNSAFE_ props", async () => {
-            const code = "<Div UNSAFE_backgroundColor='red' UNSAFE_padding='10px'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+        it("should pass for multiple valid UNSAFE_ props with CSS values", async () => {
+            // Using CSS values that have no token equivalents in our mock data
+            const code = "<Div UNSAFE_backgroundColor='rgb(255, 0, 0)' UNSAFE_padding='25px'>Hello</Div>";
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -759,7 +760,7 @@ describe("validateComponentStructure", () => {
         // which is not available in the test environment. In production, these validations work correctly.
         it("should fail for invalid UNSAFE_ prop", async () => {
             const code = "<Div UNSAFE_invalidProp='value'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("UNSAFE_invalidProp");
@@ -768,7 +769,7 @@ describe("validateComponentStructure", () => {
 
         it("should fail for multiple invalid UNSAFE_ props", async () => {
             const code = "<Div UNSAFE_invalidProp='value' UNSAFE_anotherInvalidProp='value2'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors.length).toBeGreaterThanOrEqual(2);
             expect(result.errors[0].message).toContain("not a valid UNSAFE_ prop");
@@ -777,7 +778,7 @@ describe("validateComponentStructure", () => {
 
         it("should allow mixing valid UNSAFE_ props with regular props", async () => {
             const code = "<Div UNSAFE_backgroundColor='red' id='myDiv' className='test'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             // Should fail due to className, but UNSAFE_ prop should be valid
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
@@ -786,19 +787,22 @@ describe("validateComponentStructure", () => {
 
         it("should validate UNSAFE_ props on nested components", async () => {
             const code = `
-                <Div UNSAFE_backgroundColor="red">
+                <Div UNSAFE_backgroundColor="danger-active">
                     <Span UNSAFE_invalidProp="value">Hello</Span>
                 </Div>
             `;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
-            expect(result.errors).toHaveLength(1);
-            expect(result.errors[0].message).toContain("UNSAFE_invalidProp");
+            // Should have 2 errors:
+            // 1. UNSAFE_backgroundColor using a valid token (caught by validateDesignSystemTokensUsage)
+            // 2. UNSAFE_invalidProp not being a valid UNSAFE_ prop
+            expect(result.errors.length).toBeGreaterThanOrEqual(1);
+            expect(result.errors.some(e => e.message.includes("UNSAFE_invalidProp"))).toBe(true);
         });
 
         it("should detect invalid UNSAFE_className", async () => {
             const code = "<Div UNSAFE_className='test'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("prohibited");
@@ -806,7 +810,7 @@ describe("validateComponentStructure", () => {
 
         it("should detect invalid UNSAFE_style", async () => {
             const code = "<Div UNSAFE_style={{color: 'red'}}>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("prohibited");
@@ -814,10 +818,75 @@ describe("validateComponentStructure", () => {
 
         it("should provide different message for invalid UNSAFE_ props that are not prohibited", async () => {
             const code = "<Div UNSAFE_invalidProp='value'>Hello</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).not.toContain("prohibited");
+        });
+    });
+
+    describe("UNSAFE_ prop token equivalent validation", () => {
+        it("should pass when UNSAFE_ prop uses CSS values without token equivalents", async () => {
+            // Using a CSS value that has no token equivalent in our mock data
+            const code = "<Div UNSAFE_backgroundColor='blue'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should fail when UNSAFE_ prop uses CSS value that has a token equivalent", async () => {
+            // Using CSS value '#ba2d2d' which has token equivalent 'danger-active'
+            const code = "<Div UNSAFE_backgroundColor='#ba2d2d'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("#ba2d2d");
+            expect(result.errors[0].message).toContain("has equivalent design tokens");
+            expect(result.errors[0].message).toContain("UNSAFE_backgroundColor");
+            expect(result.errors[0].message).toContain("backgroundColor");
+            expect(result.errors[0].message).toContain("danger-active");
+        });
+
+        it("should validate multiple UNSAFE_ props with token equivalents", async () => {
+            const code = "<Div UNSAFE_backgroundColor='#ba2d2d' UNSAFE_color='#2e7d32'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("UNSAFE_backgroundColor");
+            expect(result.errors[0].message).toContain("#ba2d2d");
+            expect(result.errors[1].message).toContain("UNSAFE_color");
+            expect(result.errors[1].message).toContain("#2e7d32");
+        });
+
+        it("should not check UNSAFE_ props that use token values (caught by existing validation)", async () => {
+            const code = `<Div
+                UNSAFE_fontSize='core_120'
+                UNSAFE_fontWeight='400'
+                UNSAFE_backgroundColor='danger-active'
+            >Hello</Div>`;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            // These should be caught by validateDesignSystemTokensUsage, not by our new validation
+            expect(result.errors.length).toBeGreaterThan(0);
+            // The error should be about using tokens with UNSAFE_ props
+            expect(result.errors[0].message).toContain("You have to use the safe prop");
+        });
+
+        it("should handle nested components with token equivalent values", async () => {
+            const code = `
+                <Div UNSAFE_backgroundColor="rgb(0, 0, 255)" UNSAFE_padding="0.5rem">
+                    <Span UNSAFE_color="#ba2d2d">Hello</Span>
+                </Div>
+            `;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("UNSAFE_padding");
+            expect(result.errors[0].message).toContain("0.5rem");
+            expect(result.errors[0].message).toContain("inset-xs");
+            expect(result.errors[1].message).toContain("UNSAFE_color");
+            expect(result.errors[1].message).toContain("#ba2d2d");
+            expect(result.errors[1].message).toContain("danger-active");
         });
     });
 
@@ -825,14 +894,14 @@ describe("validateComponentStructure", () => {
         describe("Valid usage", () => {
             it("should pass for multiple percentage-based size props", async () => {
                 const code = "<Div width='100%' height='50%' maxWidth='80%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
 
             it("should pass for UNSAFE_ with non-percentage values", async () => {
                 const code = "<Div UNSAFE_width='500px' UNSAFE_height='300px'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
@@ -841,7 +910,7 @@ describe("validateComponentStructure", () => {
         describe("Invalid usage - UNSAFE_ prefix with percentage values", () => {
             it("should fail for UNSAFE_width with percentage value", async () => {
                 const code = "<Div UNSAFE_width='100%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("UNSAFE_width");
@@ -852,7 +921,7 @@ describe("validateComponentStructure", () => {
 
             it("should fail for multiple UNSAFE_ props with percentage values", async () => {
                 const code = "<Div UNSAFE_width='100%' UNSAFE_height='50%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("UNSAFE_width");
@@ -865,7 +934,7 @@ describe("validateComponentStructure", () => {
                         <Div UNSAFE_height='50%'>Content</Div>
                     </Div>
                 `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("UNSAFE_height");
@@ -873,7 +942,7 @@ describe("validateComponentStructure", () => {
 
             it("should handle mixed valid and invalid props", async () => {
                 const code = "<Div width='100%' UNSAFE_height='50%' maxWidth='80%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("UNSAFE_height");
@@ -883,7 +952,7 @@ describe("validateComponentStructure", () => {
         describe("Edge cases", () => {
             it("should not flag UNSAFE_ props with percentage-like but non-percentage values", async () => {
                 const code = "<Div UNSAFE_width='100'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 // UNSAFE_width is a valid prop, so this should pass
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
@@ -891,14 +960,14 @@ describe("validateComponentStructure", () => {
 
             it("should work with various percentage values", async () => {
                 const code = "<Div UNSAFE_width='0%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors[0].message).toContain("0%");
             });
 
             it("should work with decimal percentage values", async () => {
                 const code = "<Div UNSAFE_width='50.5%'>Content</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors[0].message).toContain("50.5%");
             });
@@ -908,7 +977,7 @@ describe("validateComponentStructure", () => {
     describe("Design system tokens validation", () => {
         it("should warn about tokens with hop- prefix", async () => {
             const code = "<Button backgroundColor='hop-surface-neutral'>Click me</Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'surface-neutral'");
             expect(result.errors[0].line).toBe(1);
@@ -920,7 +989,7 @@ describe("validateComponentStructure", () => {
                 backgroundColor="hop-surface-neutral"
                 color="hop-text-primary"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("'hop-surface-neutral'");
             expect(result.errors[0].message).toContain("'surface-neutral'");
@@ -930,7 +999,7 @@ describe("validateComponentStructure", () => {
 
         it("should not warn about correctly formatted tokens", async () => {
             const code = "<Button backgroundColor='surface-neutral' color='primary'>Click me</Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
@@ -940,13 +1009,13 @@ describe("validateComponentStructure", () => {
                 data-test="test_value"
                 aria-label="Submit form"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should handle tokens with -surface suffix", async () => {
             const code = "<Div backgroundColor='neutral-surface'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'neutral-surface'");
             expect(result.errors[0].message).toContain("'neutral'");
@@ -954,7 +1023,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle tokens with -text suffix", async () => {
             const code = "<Text color='primary-text-strong'>Hello</Text>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'primary-text-strong'");
             expect(result.errors[0].message).toContain("'primary-strong'");
@@ -962,7 +1031,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle tokens with -border suffix", async () => {
             const code = "<Div borderColor='neutral-border-weak'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'neutral-border-weak'");
             expect(result.errors[0].message).toContain("'neutral-weak'");
@@ -981,7 +1050,7 @@ describe("validateComponentStructure", () => {
                     <Button variant="primary">Confirm</Button>
                 </ButtonGroup>
             </Modal>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(3);
             expect(result.errors[0].message).toContain("'hop-surface-primary'");
             expect(result.errors[1].message).toContain("'hop-text-primary'");
@@ -994,13 +1063,13 @@ describe("validateComponentStructure", () => {
                 color={getColor()}
                 borderColor={\`\${prefix}_surface\`}
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should handle self-closing components with token props", async () => {
             const code = "<Icon color='hop-text-primary' />";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'hop-text-primary'");
             expect(result.errors[0].message).toContain("'text-primary'"); // -text suffix is removed after hop- is removed
@@ -1012,7 +1081,7 @@ describe("validateComponentStructure", () => {
                 color="#FF0000"
                 borderColor="rgb(255, 0, 0)"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
@@ -1026,7 +1095,7 @@ describe("validateComponentStructure", () => {
                     Click
                 </Button>
             </Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].line).toBe(4);
             expect(result.errors[0].column).toBe(20);
@@ -1038,7 +1107,7 @@ describe("validateComponentStructure", () => {
                 color="hop-text-white"
                 borderColor="hop-border-primary"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(3);
         });
 
@@ -1046,27 +1115,27 @@ describe("validateComponentStructure", () => {
             // This simulates a case where the formatted version might not be shorter
             // In practice, formatStyledSystemName should always return shorter versions for tokens
             const code = "<Button customProp='short'>Click</Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should handle empty string values", async () => {
             const code = "<Button backgroundColor=''>Click</Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
 
         it("should validate tokens in JSX spread attributes", async () => {
             // Note: spread attributes don't trigger validation as they're not JSXAttribute type
             const code = "<Button {...props} backgroundColor='hop-surface-neutral'>Click</Button>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'hop-surface-neutral'");
         });
 
         it("should handle elevation- prefix", async () => {
             const code = "<Div backgroundColor='elevation-surface-raised'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'elevation-surface-raised'");
             expect(result.errors[0].message).toContain("'raised'"); // both elevation- and -surface are removed
@@ -1074,7 +1143,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle shape- prefix", async () => {
             const code = "<Div borderRadius='shape-rounded-md'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'shape-rounded-md'");
             expect(result.errors[0].message).toContain("'rounded-md'");
@@ -1082,7 +1151,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle space- prefix", async () => {
             const code = "<Div padding='space-inset-md'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'space-inset-md'");
             expect(result.errors[0].message).toContain("'inset-md'");
@@ -1090,7 +1159,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle shadow- prefix", async () => {
             const code = "<Div boxShadow='shadow-lg'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'shadow-lg'");
             expect(result.errors[0].message).toContain("'lg'");
@@ -1098,7 +1167,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle radius- prefix", async () => {
             const code = "<Div borderRadius='radius-md'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'radius-md'");
             expect(result.errors[0].message).toContain("'md'");
@@ -1106,7 +1175,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle semantic font suffixes", async () => {
             const code = "<Text fontFamily='body-font-family'>Text</Text>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'body-font-family'");
             expect(result.errors[0].message).toContain("'body'");
@@ -1114,7 +1183,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle core font prefixes", async () => {
             const code = "<Text fontSize='font-size-100'>Text</Text>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'font-size-100'");
             expect(result.errors[0].message).toContain("'100'");
@@ -1122,7 +1191,7 @@ describe("validateComponentStructure", () => {
 
         it("should handle -icon suffix", async () => {
             const code = "<Icon fill='primary-icon-strong'>Icon</Icon>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("'primary-icon-strong'");
             expect(result.errors[0].message).toContain("'primary-strong'");
@@ -1131,7 +1200,7 @@ describe("validateComponentStructure", () => {
         it("should not warn for dataviz tokens as they don't get shorter", async () => {
             // dataviz- prefix becomes dataviz_ prefix, so the length doesn't decrease
             const code = "<Chart color='dataviz-categorical-1'>Chart</Chart>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.errors).toHaveLength(0);
         });
     });
@@ -1139,7 +1208,7 @@ describe("validateComponentStructure", () => {
     describe("Token usage on non-token-supported props", () => {
         it("should error when token is used on non-supported prop", async () => {
             const code = "<Div top='danger-active'>Content</Div>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].message).toContain("The token value 'danger-active' is not allowed for prop 'top'");
@@ -1153,7 +1222,7 @@ describe("validateComponentStructure", () => {
                 right="core_coastal-25"
                 top="core_120"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(3);
             expect(result.errors[0].message).toContain("left");
@@ -1171,7 +1240,7 @@ describe("validateComponentStructure", () => {
                 right="auto"
                 bottom="5rem"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -1182,7 +1251,7 @@ describe("validateComponentStructure", () => {
                 color="core_coastal-25"
                 fontSize="core_120"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -1193,7 +1262,7 @@ describe("validateComponentStructure", () => {
                 name="core_coastal-25"
                 value="core_120"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(3);
             expect(result.errors[0].message).toContain("id");
@@ -1203,7 +1272,7 @@ describe("validateComponentStructure", () => {
 
         it("should error for semantic tokens on non-supported props", async () => {
             const code = "<Icon top='core_120' position='inset-xs' />";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("top");
@@ -1214,7 +1283,7 @@ describe("validateComponentStructure", () => {
 
         it("should error for core tokens on non-supported props", async () => {
             const code = "<Text maxWidth='core_coastal-25' minWidth='core_120'>Text</Text>";
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("maxWidth");
@@ -1233,7 +1302,7 @@ describe("validateComponentStructure", () => {
                     Click
                 </Button>
             </Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(1);
             expect(result.errors[0].line).toBe(4);
@@ -1245,7 +1314,7 @@ describe("validateComponentStructure", () => {
                 top="core_120"
                 UNSAFE_height="core_coastal-25"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
 
             expect(result.isValid).toBe(false);
             // We get 2 errors:
@@ -1272,7 +1341,7 @@ describe("validateComponentStructure", () => {
                 className="danger-active-class"
                 data-attribute="core_coastal-25"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             // Should error for className being prohibited AND for data-attribute using a token value
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("className");
@@ -1290,7 +1359,7 @@ describe("validateComponentStructure", () => {
                     <Div unknown-prop="core_coastal-25">Content</Div>
                 </Content>
             </Modal>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors.length).toBeGreaterThanOrEqual(3);
             const leftError = result.errors.find(e => e.message.includes("left"));
@@ -1307,7 +1376,7 @@ describe("validateComponentStructure", () => {
                 height={\`\${danger}-active\`}
                 top={getToken()}
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -1317,7 +1386,7 @@ describe("validateComponentStructure", () => {
                 aria-label="danger-active"
                 aria-describedby="core_coastal-25"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("aria-label");
@@ -1329,7 +1398,7 @@ describe("validateComponentStructure", () => {
                 data-testid="danger-active"
                 data-value="core_120"
             >Content</Div>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("data-testid");
@@ -1346,7 +1415,7 @@ describe("validateComponentStructure", () => {
                 type="submit"
                 type="none"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -1357,7 +1426,7 @@ describe("validateComponentStructure", () => {
                 variant="danger-active"
                 size="core_120"
             >Click</Button>`;
-            const result = await validateComponentStructure(code);
+            const result = await validateHopperCode(code);
             expect(result.isValid).toBe(false);
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("variant");
@@ -1371,45 +1440,45 @@ describe("validateComponentStructure", () => {
         describe("Div component with single child", () => {
             it("should warn when Div has only one component child", async () => {
                 const code = "<Div><Text>Hello</Text></Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true); // Warnings don't make it invalid
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
-                expect(result.warnings[0].message).toContain("Div component has only one child");
+                expect(result.warnings[0].message).toContain("'Div' component has only one child");
                 expect(result.warnings[0].message).toContain("consider merging");
             });
 
             it("should warn when Div has only text content", async () => {
                 const code = "<Div>Hello World</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should warn when Div has only an expression", async () => {
                 const code = "<Div>{someValue}</Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should NOT warn when Div has text content and one component", async () => {
                 const code = "<Div>Hello World<Component/></Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should not warn when Div has multiple children", async () => {
                 const code = "<Div><Text>Hello</Text><Text>World</Text></Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should not warn when Div has only whitespace (no real children)", async () => {
                 const code = "<Div>   \n\t   </Div>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.warnings).toHaveLength(0);
             });
@@ -1418,24 +1487,24 @@ describe("validateComponentStructure", () => {
         describe("Stack component with single child", () => {
             it("should error when Stack has only one component child", async () => {
                 const code = "<Stack><Text>Hello</Text></Stack>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain("Stack component has only one child");
-                expect(result.errors[0].message).toContain("Layout components should not be used for single children");
+                expect(result.errors[0].message).toContain("'Stack' component has only one child");
+                expect(result.errors[0].message).toContain("Layout components MUST not be used with only one child");
             });
 
             it("should error when Stack has only text content", async () => {
                 const code = "<Stack>Hello World</Stack>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain("Stack component has only one child");
+                expect(result.errors[0].message).toContain("'Stack' component has only one child");
             });
 
             it("should not error when Stack has multiple children", async () => {
                 const code = "<Stack><Text>Hello</Text><Text>World</Text></Stack>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
@@ -1450,7 +1519,7 @@ describe("validateComponentStructure", () => {
                         <Flex><Text>Single</Text></Flex>
                     </Div>
                 `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(3);
                 expect(result.errors[0].message).toContain("Stack");
@@ -1465,7 +1534,7 @@ describe("validateComponentStructure", () => {
                         <Text>Valid second child</Text>
                     </Stack>
                 `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true); // Stack is valid, Div gets a warning
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
@@ -1480,7 +1549,7 @@ describe("validateComponentStructure", () => {
                         <Flex><Text>X</Text><Text>Y</Text><Text>Z</Text></Flex>
                     </Div>
                 `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("Inline");
@@ -1490,7 +1559,7 @@ describe("validateComponentStructure", () => {
         describe("Edge cases", () => {
             it("should error for layout component with mixed text and expression", async () => {
                 const code = "<Stack>Hello {world}<Text>X</Text></Stack>";
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
             });
@@ -1499,10 +1568,10 @@ describe("validateComponentStructure", () => {
                 const code = `<Stack>
                     <Text>Content</Text>
                 </Stack>`;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain("Stack component has only one child");
+                expect(result.errors[0].message).toContain("'Stack' component has only one child");
             });
 
             it("should provide correct line numbers for errors", async () => {
@@ -1513,7 +1582,7 @@ describe("validateComponentStructure", () => {
                         </Stack>
                     </Div>
                 `;
-                const result = await validateComponentStructure(code);
+                const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].line).toBe(3); // Stack is on line 3

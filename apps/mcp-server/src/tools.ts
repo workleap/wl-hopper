@@ -10,7 +10,7 @@ import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackError, trackEvent } from "./utils/logging";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo";
-import { validateComponentStructure } from "./utils/validateComponentStructure";
+import { validateHopperCode } from "./utils/validateHopperCode";
 
 const paginationParams = {
     page_size: z
@@ -149,7 +149,7 @@ export function tools(server: McpServer) {
         }
     }, async ({ code }, e) : Promise<CallToolResult> => {
         try {
-            const validationResult = await validateComponentStructure(code);
+            const validationResult = await validateHopperCode(code);
             trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
 
             if (validationResult.isValid && validationResult.warnings.length === 0) {

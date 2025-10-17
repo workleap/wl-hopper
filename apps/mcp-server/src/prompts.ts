@@ -134,9 +134,10 @@ You MUST NOT proceed to implementation until you:
 - [ ] Verify all selected Hopper icons are matched correctly with provided data-name attributes.
 - [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
 - [ ] **CRITICAL** Verify Core_* tokens are NOT used when Semantic tokens are available.
-- [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end. **CRITICAL**: The tool MUST return ZERO ERRORS before considering the task complete.
+- [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end.
 - [ ] Use ${figma_get_screenshot} for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
+- [ ] **SUPER CRITICAL**: The '#${toolsInfo.validate_hopper_code.name}' tool MUST return ZERO ERRORS before considering this task DONE. If there are ANY ERRORS, you MUST fix them ALL and re-validate until there are ZERO ERRORS.
 
 # Output
 Return only the complete JSX implementation using Hopper components that perfectly matches the original Figma design. No additional output, explanations, or validation reports are required.
