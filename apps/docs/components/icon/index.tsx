@@ -16,7 +16,6 @@ import LineHeightIcon from "./assets/line-height.svg";
 import MarginIcon from "./assets/margin.svg";
 import MessageIcon from "./assets/message.svg";
 import NpmIcon from "./assets/npm.svg";
-import ProductMenuIcon from "./assets/product-menu.svg";
 import RightAngleIcon from "./assets/right-angle.svg";
 import SelectArrowIcon from "./assets/select-arrow.svg";
 import StackblitzIcon from "./assets/stackblitz.svg";
@@ -34,7 +33,7 @@ export {
     FontSizeIcon,
     GithubIcon, Icon, IconProps, InfoIcon, InternationalIcon,
     LineHeightIcon,
-    MarginIcon, MessageIcon, NpmIcon, ProductMenuIcon, RightAngleIcon, SelectArrowIcon,
+    MarginIcon, MessageIcon, NpmIcon, RightAngleIcon, SelectArrowIcon,
     StackblitzIcon,
     TokenIcon, TypescriptIcon, WaiAriaIcon, WarningIcon
 };
