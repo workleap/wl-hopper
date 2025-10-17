@@ -14,7 +14,6 @@ const sortOrder = [
     "status",
     "content",
     "placeholders",
-    "utilities",
     "html elements",
     "building blocks"
 ];
