@@ -1,4 +1,4 @@
-import { type DivProps, useStyledSystem } from "@hopper-ui/components";
+import { Div, type DivProps, useStyledSystem } from "@hopper-ui/components";
 
 interface MyCustomComponentProps extends Omit<DivProps, "children"> {
     // your custom props here
@@ -12,9 +12,9 @@ function MyCustomComponent(props: MyCustomComponentProps) {
     const mergedStyles = { ...stylingProps.style, ...style };
 
     return (
-        <div style={mergedStyles} className={classNames} >
+        <Div style={mergedStyles} className={classNames} >
             My Custom component
-        </div>
+        </Div>
     );
 }
 

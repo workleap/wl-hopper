@@ -1,4 +1,4 @@
-import { Button, Stack, Tooltip, TooltipTrigger } from "@hopper-ui/components";
+import { Button, Div, Stack, Tooltip, TooltipTrigger } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 
 export default function Example() {
@@ -15,7 +15,7 @@ export default function Example() {
                 <Tooltip>Frogs can breathe through their skin</Tooltip>
             </TooltipTrigger>
             <TooltipTrigger>
-                <div>Just a normal div</div>
+                <Div>Just a normal div</Div>
                 <Tooltip>Frogs can breathe through their skin</Tooltip>
             </TooltipTrigger>
         </Stack>

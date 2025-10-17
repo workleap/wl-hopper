@@ -1,4 +1,5 @@
 import { components } from "@/components/mdx/components.ai";
+import type { ComponentType } from "react";
 
 interface MdxOptions {
     includeFrontMatterLinks?: boolean;
@@ -7,7 +8,7 @@ interface MdxOptions {
 }
 
 interface MdxRendererOptions {
-    customComponents?: Partial<Record<keyof typeof components, React.ComponentType>>;
+    customComponents?: Partial<Record<keyof typeof components, ComponentType>>;
 }
 
 export interface MdFromMdxBuild {

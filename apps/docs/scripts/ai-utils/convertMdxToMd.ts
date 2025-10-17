@@ -1,4 +1,5 @@
 import type { Heading, List, ListItem, Paragraph, Root } from "mdast";
+import type { ComponentType } from "react";
 import { remark } from "remark";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdx from "remark-mdx";
@@ -7,7 +8,7 @@ import type { VFile } from "vfile";
 import { matter } from "vfile-matter";
 import { mdxToMarkdown } from "../../components/mdx/mdxToMarkdown.ai.tsx";
 
-export async function convertMdxToMd(mdxSource: string, options?: FrontMatterConvertOptions, customComponents: Record<string, React.ComponentType> = {}): Promise<string> {
+export async function convertMdxToMd(mdxSource: string, options?: FrontMatterConvertOptions, customComponents: Record<string, ComponentType> = {}): Promise<string> {
     const markdown = await remark()
         .use(remarkFrontmatter, ["yaml"])
         .use(yamlMatterReader)

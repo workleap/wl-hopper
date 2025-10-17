@@ -1,18 +1,14 @@
 "use client";
 
-import { SlotProvider } from "@hopper-ui/components";
 import Link from "next/link";
-import { useContext, useEffect, useState, type ReactNode } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import MobileMenu from "@/app/ui/layout/mobileMenu/MobileMenu";
 import MobileMenuTrigger from "@/app/ui/layout/mobileMenu/MobileMenuTrigger";
 import Nav from "@/app/ui/layout/nav/Nav";
 import Wrapper from "@/app/ui/layout/wrapper/Wrapper";
-import { Icon, ProductMenuIcon } from "@/components/icon";
 import LinkIconButton from "@/components/iconButton/LinkIconButton";
-import { Popover, PopoverContext, PopoverTrigger } from "@/components/popover/Popover.tsx";
 import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
-import { ToggleButton, ToggleButtonContext } from "@/components/toggleButton/ToggleButton.tsx";
 import { navigation } from "@/configs/navigation";
 import { ThemeContext, type ColorScheme } from "@/context/theme/ThemeProvider.tsx";
 import { useIsMobile } from "@/hooks/useIsMobile";
@@ -22,76 +18,24 @@ import { useEnvironmentContext } from "@/context/env/EnvironmentProvider";
 import HopperLogo from "./assets/hopper-logo.svg";
 import "./header.css";
 
-const designSystemLinks = [
-    {
-        title: "Orbit",
-        url: "https://orbit.sharegate.design/?path=/docs/installation--page"
-    },
-    {
-        title: "Orbiter",
-        url: "https://wl-orbiter-website.netlify.app/?path=/docs/installation--page"
-    },
-    {
-        title: "Igloo",
-        url: "https://igloo.officevibe.design"
-    }
-];
-
-const ToggleTrigger = ({ children }: { children: ReactNode }) => {
-    const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-
-    return (
-        <SlotProvider values={[
-            [PopoverContext, {
-                isOpen: isPopoverOpen,
-                onOpenChange: setIsPopoverOpen,
-                placement: "bottom start",
-                offset: 20
-            }],
-            [ToggleButtonContext, {
-                onPress: () => setIsPopoverOpen(!isPopoverOpen),
-                isSelected: isPopoverOpen
-            }]
-        ]}
-        >
-            {children}
-        </SlotProvider>
-    );
-};
-
-const ProductMenuAndBrand = () => {
+const BackAndBrand = () => {
     return (
         <span className="hd-product">
-            <ToggleTrigger>
-                <PopoverTrigger>
-                    <ToggleButton aria-label="Open other libraries menu">
-                        <Icon src={ProductMenuIcon} />
-                    </ToggleButton>
-                    <Popover
-                        className="hd-product__menu"
-                        aria-label="product menu link"
-                    >
-                        <span className="hd-product__title">Frontend tools</span>
-                        <Link className="hd-product__link"
-                            href="https://workleap.github.io/wl-idp-docs-hub/"
-                        >IDP Hub</Link>
-                        <ul className="hd-product__items">
-                            <span className="hd-product__title">Design Systems</span>
-                            {designSystemLinks.map(link => (
-                                <li className="hd-product__item" key={link.title}>
-                                    <Link className="hd-product__link" href={link.url}>{link.title}</Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </Popover>
-                    <Link href="/" className="hd-brand" aria-label="Hopper Brand">
-                        <HopperLogo />
-                    </Link>
-                </PopoverTrigger>
-            </ToggleTrigger>
+            <LinkIconButton className="hd-back-button" aria-label="Workleap's Frontend Platform homepage" href="https://workleap.github.io/wl-idp-docs-hub/">
+                <BackIcon />
+            </LinkIconButton>
+            <Link href="/" className="hd-brand" aria-label="Hopper Brand">
+                <HopperLogo />
+                <span className="hd-brand__text">Hopper</span>
+            </Link>
         </span>
     );
 };
+
+const BackIcon = () => (
+    // eslint-disable-next-line max-len
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="30" viewBox="0 0 12 30" fill="currentColor" aria-label="Home" focusable="false" role="img"><path d="M10.6763 23.0822C10.4303 23.328 10.0967 23.4661 9.74885 23.4661C9.40103 23.4661 9.06744 23.328 8.82135 23.0822L1.38384 15.6447C1.13806 15.3986 1 15.065 1 14.7172C1 14.3694 1.13806 14.0358 1.38384 13.7897L8.82135 6.35222C9.0703 6.1205 9.39939 5.99432 9.73945 6.0002C10.0795 6.00607 10.404 6.14354 10.6448 6.38372C10.885 6.62452 11.0225 6.94906 11.0284 7.28912C11.0342 7.62917 10.9081 7.95826 10.6763 8.20722L4.16635 14.7172L10.6763 21.2272C10.9221 21.4733 11.0602 21.8069 11.0602 22.1547C11.0602 22.5025 10.9221 22.8361 10.6763 23.0822Z"></path></svg>
+);
 
 const Header = () => {
     const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -136,7 +80,7 @@ const Header = () => {
             <header className="hd-header" id="hd-header">
                 <Wrapper className="hd-flex">
                     <div className="hd-header__nav">
-                        <ProductMenuAndBrand />
+                        <BackAndBrand />
                         <Nav items={navigation} />
                     </div>
                     <div className="hd-header__quick-actions">

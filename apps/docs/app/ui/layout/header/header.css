@@ -3,7 +3,7 @@
     --hd-header-background-color: rgb(252 251 251 / 50%);
     --hd-header-border-color: var(--hd-color-neutral-border-weak);
     --hd-header-height: var(--hd-space-8);
-    --hd-header-shadow-1-block-color: rgba(175 182 225 / 80%);
+    --hd-header-shadow-1-block-color: rgb(175 182 225 / 80%);
     --hd-header-shadow-2-block-color: #F0E9E1;
     --hd-header-shadow-3-block-color: var(--hd-accent-100);
     --hd-header-shadow-1-top-position: -18.75rem;
@@ -13,7 +13,7 @@
 
 [data-theme="dark"] {
     --hd-header-background-color: rgb(41 40 41 / 80%);
-    --hd-header-shadow-1-block-color: rgba(175 182 225 / 70%);
+    --hd-header-shadow-1-block-color: rgb(175 182 225 / 70%);
     --hd-header-shadow-2-block-color: #F0E9E1;
     --hd-header-shadow-3-block-color: var(--hd-accent-900);
     --hd-header-shadow-1-top-position: -18.75rem;
@@ -30,6 +30,12 @@
 .hd-product__menu {
     width: 11.5rem;
     box-sizing: border-box;
+}
+
+.hd-back-button {
+    padding-inline: 0.125rem;
+    aspect-ratio: unset !important;
+    width: unset !important;
 }
 
 .hd-product__menu [role="dialog"] {
@@ -119,6 +125,8 @@
 
 .hd-brand {
     display: flex;
+    align-items: center;
+    gap: var(--hd-space-1);
 }
 
 .hd-brand:focus-visible {
@@ -129,6 +137,16 @@
 
 .hd-brand__logo {
     fill: var(--hd-color-neutral-icon);
+}
+
+/* we want to copy Retype's style */
+.hd-brand__text {
+    text-size-adjust: 100%;
+    font-size: 1.5rem;
+    font-variation-settings: normal;
+    font-weight: 700;
+    /* stylelint-disable-next-line unit-allowed-list */
+    line-height: 33px;
 }
 
 .hd-header__quick-actions {

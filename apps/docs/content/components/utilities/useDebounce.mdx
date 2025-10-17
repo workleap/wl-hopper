@@ -1,0 +1,87 @@
+---
+title: useDebounce
+description: Delay the execution of function or state update with useDebounce.
+category: "utilities"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/utils/src/useDebounce.ts
+---
+
+This documentation covers both `useDebounce` and `useDebounceCallback` hooks for debouncing functionality. These hooks are particularly useful for optimizing performance in scenarios like search inputs, API calls, or any situation where you want to delay execution until after a pause in user activity.
+
+## Functions
+
+### useDebounce
+
+A hook that acts like `useState`, but with debounced state updates.
+
+```tsx
+const [state, setStateDebounced, setStateImmediate] = useDebounce(initialState, wait?, leading?);
+```
+
+**Parameters:**
+- `initialState` : The initial state value or a function that returns the initial state
+- `wait` : The debounce delay in milliseconds (default: `100`)
+- `leading` : When true, executes immediately on the first call, then debounces subsequent calls (default: `false`)
+
+**Returns:**
+- `state` : The current state value
+- `setStateDebounced` : A debounced version of setState that waits for the specified delay
+- `setStateImmediate` : The regular, immediate setState function
+
+### useDebounceCallback
+
+A hook that debounces callback function execution.
+
+```tsx
+const debouncedCallback = useDebounceCallback(callback, wait?, leading?)
+```
+
+**Parameters:**
+- `callback` : The callback function to debounce. Wrap unstable callbacks in useCallback()
+- `wait` : The debounce delay in milliseconds (default: `100`)
+- `leading` : When true, executes immediately on the first call (default: `false`)
+
+**Returns:** A debounced version of the original callback
+
+## Usage
+
+### Simple State Debouncing
+
+Use `useDebounce` just like `useState`, but with automatic debouncing:
+
+<CodeOnlyExample src="utils/docs/useDebounce/simple-state" />
+
+### Responsive Search with Debounced API Calls
+
+Show immediate feedback while debouncing expensive operations:
+
+<CodeOnlyExample src="utils/docs/useDebounce/api-calls" />
+
+### Callback Debouncing
+
+Useful for expensive operations like window resize handlers or form validation:
+
+<CodeOnlyExample src="utils/docs/useDebounce/callback" />
+
+### Leading Edge Execution
+
+Execute immediately on the first call, then debounce subsequent calls:
+
+<CodeOnlyExample src="utils/docs/useDebounce/leading" />
+
+### Form Validation
+
+Show immediate UI feedback but debounce expensive validation:
+
+<CodeOnlyExample src="utils/docs/useDebounce/form" />
+
+## Best Practices
+
+- **Timing guidelines**: Choose appropriate timing values based on use case:
+  ```tsx
+  useDebounce(initialState, 100)   // 100ms - good for UI feedback
+  useDebounce(initialState, 400)   // 400ms - good for search/API calls
+  useDebounce(initialState, 1000)  // 1000ms - good for heavy operations
+  ```
+
+- **Stable callbacks**: When using `useDebounceCallback`, wrap unstable callbacks (those that depend on props or state) in `useCallback()` to prevent debouncing from breaking between renders.

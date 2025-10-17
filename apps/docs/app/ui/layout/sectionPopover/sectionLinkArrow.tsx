@@ -1,6 +1,6 @@
 import { Icon } from "@/components/icon";
 import clsx from "clsx";
-import type { ElementType, RefAttributes, SVGProps } from "react";
+import type { ElementType, FC, RefAttributes, SVGProps } from "react";
 import { UseArrowContext } from "./sectionLinkArrowContext";
 
 import "./sectionLinkArrow.css";
@@ -11,7 +11,7 @@ interface SectionLinkArrowProps {
     src: ElementType<Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>>;
 }
 
-const SectionLinkArrow: React.FC<SectionLinkArrowProps> = ({ slot, className, src }) => {
+const SectionLinkArrow: FC<SectionLinkArrowProps> = ({ slot, className, src }) => {
     const { isOpen } = UseArrowContext();
 
     return (
