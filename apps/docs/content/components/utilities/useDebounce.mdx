@@ -15,22 +15,18 @@ This documentation covers both `useDebounce` and `useDebounceCallback` hooks for
 A hook that acts like `useState`, but with debounced state updates.
 
 ```tsx
-const [state, setStateDebounced, setStateImmediate] = useDebounce(
-  initialState,
-  wait?,
-  leading?
-)
+const [state, setStateDebounced, setStateImmediate] = useDebounce(initialState, wait?, leading?);
 ```
 
 **Parameters:**
-- `initialState: TState | (() => TState)` — The initial state value or a function that returns the initial state
-- `wait: number` (default: `100`) — The debounce delay in milliseconds
-- `leading: boolean` (default: `false`) — When true, executes immediately on the first call, then debounces subsequent calls
+- `initialState` : The initial state value or a function that returns the initial state
+- `wait` : The debounce delay in milliseconds (default: `100`)
+- `leading` : When true, executes immediately on the first call, then debounces subsequent calls (default: `false`)
 
-**Returns:** `[state, setStateDebounced, setStateImmediate]`
-- `state` — The current state value
-- `setStateDebounced` — A debounced version of setState that waits for the specified delay
-- `setStateImmediate` — The regular, immediate setState function
+**Returns:**
+- `state` : The current state value
+- `setStateDebounced` : A debounced version of setState that waits for the specified delay
+- `setStateImmediate` : The regular, immediate setState function
 
 ### useDebounceCallback
 
@@ -41,154 +37,43 @@ const debouncedCallback = useDebounceCallback(callback, wait?, leading?)
 ```
 
 **Parameters:**
-- `callback: (...args: CallbackArgs) => void` — The callback function to debounce. Wrap unstable callbacks in useCallback()
-- `wait: number` (default: `100`) — The debounce delay in milliseconds
-- `leading: boolean` (default: `false`) — When true, executes immediately on the first call
+- `callback` : The callback function to debounce. Wrap unstable callbacks in useCallback()
+- `wait` : The debounce delay in milliseconds (default: `100`)
+- `leading` : When true, executes immediately on the first call (default: `false`)
 
 **Returns:** A debounced version of the original callback
 
 ## Usage
 
+### Simple State Debouncing
+
+Use `useDebounce` just like `useState`, but with automatic debouncing:
+
+<CodeOnlyExample src="utils/docs/useDebounce/simple-state" />
+
 ### Responsive Search with Debounced API Calls
 
 Show immediate feedback while debouncing expensive operations:
 
-```tsx
-import { SearchField, useDebounce, Stack } from "@hopper-ui/components";
-
-function SearchComponent() {
-  const [inputValue, setInputValue] = useState(""); // Immediate UI updates
-  const [debouncedQuery, setDebouncedQuery] = useDebounce("", 400); // Debounced API calls
-  const [results, setResults] = useState([]);
-  const [isSearching, setIsSearching] = useState(false);
-
-  const handleInputChange = (value) => {
-    setInputValue(value); // Update input immediately for responsiveness
-    setDebouncedQuery(value); // Trigger debounced search
-    if (value.trim()) setIsSearching(true);
-  };
-
-  // Effect runs only after user stops typing for 400ms
-  useEffect(() => {
-    if (debouncedQuery.trim()) {
-      searchAPI(debouncedQuery).then((data) => {
-        setResults(data);
-        setIsSearching(false);
-      });
-    } else {
-      setResults([]);
-      setIsSearching(false);
-    }
-  }, [debouncedQuery]);
-
-  return (
-    <Stack>
-      <SearchField
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Search..."
-      />
-      {isSearching && <div>Searching...</div>}
-      {/* <SearchResults results={results} /> */}
-    </Stack>
-  );
-}
-```
+<CodeOnlyExample src="utils/docs/useDebounce/api-calls" />
 
 ### Callback Debouncing
 
 Useful for expensive operations like window resize handlers or form validation:
 
-```tsx
-import { useDebounceCallback } from "@hopper-ui/components";
-
-function ResizableComponent() {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-  const handleResize = useDebounceCallback(() => {
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
-    });
-  }, 100); // 100ms delay
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [handleResize]);
-
-  return (
-    <div>
-      Window size: {dimensions.width} x {dimensions.height}
-    </div>
-  );
-}
-```
+<CodeOnlyExample src="utils/docs/useDebounce/callback" />
 
 ### Leading Edge Execution
 
 Execute immediately on the first call, then debounce subsequent calls:
 
-```tsx
-import { Button, useDebounceCallback } from "@hopper-ui/components";
-
-function ButtonComponent() {
-  const handlePress = useDebounceCallback(
-    () => {
-      console.log("Button clicked!");
-      // Expensive operation here
-    },
-    400, // 400ms delay
-    true   // Leading edge - executes immediately on first click
-  );
-
-  return <Button onPress={handlePress}>Click me</Button>;
-}
-```
+<CodeOnlyExample src="utils/docs/useDebounce/leading" />
 
 ### Form Validation
 
 Show immediate UI feedback but debounce expensive validation:
 
-```tsx
-import { useDebounce } from "@hopper-ui/components";
-
-function EmailInput() {
-  const [inputValue, setInputValue] = useState("");
-  const [debouncedEmail, setDebouncedEmail] = useDebounce("", 400);
-  const [isValid, setIsValid] = useState(true);
-  const [isValidating, setIsValidating] = useState(false);
-
-  const handleInputChange = (e) => {
-    const value = e.target.value;
-    setInputValue(value); // Update input immediately for responsiveness
-    setDebouncedEmail(value); // Trigger debounced validation
-    if (value) setIsValidating(true);
-  };
-
-  useEffect(() => {
-    if (debouncedEmail) {
-      // Expensive validation runs 1 second after user stops typing
-      const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(debouncedEmail);
-      setIsValid(isEmailValid);
-    }
-    setIsValidating(false);
-  }, [debouncedEmail]);
-
-  return (
-    <div>
-      <input
-        type="email"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Enter your email"
-      />
-      {isValidating && <span>Validating...</span>}
-      {!isValidating && inputValue && !isValid && <span>Invalid email</span>}
-    </div>
-  );
-}
-```
+<CodeOnlyExample src="utils/docs/useDebounce/form" />
 
 ## Best Practices
 

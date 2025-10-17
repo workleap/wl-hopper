@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@hopper-ui/test-utils";
 
 import { useDebounce, useDebounceCallback } from "../../src/useDebounce.ts";
 
