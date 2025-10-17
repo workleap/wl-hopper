@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.1
+
+### Patch Changes
+
+- 90f5c55: Added useDebounce and useDebounceCallback hooks
+
 ## 1.15.0
 
 ### Minor Changes
