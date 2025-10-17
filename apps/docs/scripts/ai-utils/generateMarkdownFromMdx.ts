@@ -2,14 +2,14 @@ import type { components } from "@/components/mdx/components.ai.tsx";
 import fs from "fs/promises";
 import type { Heading, Node, Parent, Root } from "mdast";
 import path from "path";
+import type { ComponentType } from "react";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
 import { convertMdxToMd, type FrontMatterConvertOptions } from "./convertMdxToMd.ts";
 
-
-async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions, customComponents: Record<string, React.ComponentType> = {}): Promise<string> {
+async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions, customComponents: Record<string, ComponentType> = {}): Promise<string> {
     const mdxSource = await fs.readFile(filePath, "utf-8");
 
     const mdContent = convertMdxToMd(mdxSource, options, customComponents);
@@ -55,7 +55,7 @@ export interface GenerateMarkdownOptions {
      * Custom MDX components to support during conversion (e.g., for rendering previews).
      */
     renderer?: {
-        customComponents?: Partial<Record<keyof typeof components, React.ComponentType>>;
+        customComponents?: Partial<Record<keyof typeof components, ComponentType>>;
     };
 }
 

@@ -94,7 +94,7 @@ import { type LabelProps, LabelContext, useContextProps } from "@hopper-ui/compo
 import { forwardRef } from "react";
 
 export const MyCustomLabel = forwardRef(
-    (props: LabelProps, ref: React.ForwardedRef<HTMLLabelElement>) => {
+    (props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) => {
     // Merge the local props and ref with the ones provided via context.
         [props, ref] = useContextProps(props, ref, LabelContext);
 

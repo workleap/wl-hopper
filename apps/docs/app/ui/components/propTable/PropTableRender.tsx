@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-table";
 import clsx from "clsx";
 
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 
 export interface Item {
     id: string;
@@ -23,7 +23,7 @@ interface ColoredDefaultValueProps {
     defaultValue: string;
 }
 
-const ColoredDefaultValue: React.FC<ColoredDefaultValueProps> = ({ defaultValue }) => {
+const ColoredDefaultValue: FC<ColoredDefaultValueProps> = ({ defaultValue }) => {
     const isBoolean = defaultValue === "true" || defaultValue === "false";
     const formattedValue = defaultValue.toString();
 

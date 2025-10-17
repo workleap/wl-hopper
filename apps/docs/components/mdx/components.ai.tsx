@@ -20,6 +20,7 @@ import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 import TypographyTable from "@/app/ui/tokens/table/TypographyTable.ai";
 import TypographyVariantTable from "@/app/ui/tokens/table/TypographyVariantTable.ai";
 import TableSection from "@/app/ui/tokens/tableSection/TableSection.ai";
+import type { ReactNode } from "react";
 import Link from "../link/Link.ai";
 
 export const components = {
@@ -60,7 +61,7 @@ export const components = {
     SvgIconLibIcon: () => <div />,
     SvgRichIconLibIcon: () => <div />,
 
-    Card: ({ children }: { children: React.ReactNode }) => (
+    Card: ({ children }: { children: ReactNode }) => (
         <div>{children}</div>
     )
 } as const;

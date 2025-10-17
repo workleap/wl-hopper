@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { FC, ReactNode } from "react";
 import { UseSectionLinkContext } from "./sectionLinkContext";
 
 interface SectionLinkProps {
@@ -7,7 +7,7 @@ interface SectionLinkProps {
     href: string;
 }
 
-const SectionLink: React.FC<SectionLinkProps> = ({ children, className, href }) => {
+const SectionLink: FC<SectionLinkProps> = ({ children, className, href }) => {
     const { onClick } = UseSectionLinkContext();
 
 
