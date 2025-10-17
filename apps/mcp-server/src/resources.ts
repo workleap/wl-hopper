@@ -3,7 +3,8 @@
 import { files } from "@docs/ai";
 import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
-import { content, errorContent } from "./utils/content";
+import { errorContent } from "./utils/content";
+import { GuideDescriptions, TokenCategoryDescriptions } from "./utils/descriptions";
 import {
     getComponentBriefApi,
     getComponentFullApi,
@@ -21,13 +22,13 @@ import {
 } from "./utils/docs";
 import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackEvent } from "./utils/logging";
-import { GuideDescriptions, TokenCategoryDescriptions } from "./utils/descriptions";
 
 // Get all component names dynamically from the files structure
 // This ensures the resource list stays in sync with available documentation
 // without manual maintenance when new components are added
 function getComponentNames(): string[] {
     const componentKeys = Object.keys(files.components.full);
+
     return componentKeys
         .map(key => {
             // Convert camelCase to PascalCase (e.g., "accordion" -> "Accordion", "avatarGroup" -> "AvatarGroup")
@@ -206,6 +207,7 @@ export function resources(server: McpServer) {
                 resources: TokenCategories.map(category => {
                     const guideFile = TokenGuideFiles[category as TokenCategory];
                     const estimatedTokens = guideFile?.estimatedTokens || 0;
+
                     return {
                         uri: `hopper://tokens/${category}`,
                         name: `${category} tokens`,
@@ -252,6 +254,7 @@ export function resources(server: McpServer) {
                 resources: TokenCategories.map(category => {
                     const guideFile = TokenGuideFiles[category as TokenCategory];
                     const estimatedTokens = guideFile?.estimatedTokens || 0;
+
                     return {
                         uri: `hopper://token-guides/${category}`,
                         name: `${category} token guide`,
