@@ -10,7 +10,7 @@ import { formatValidationMessages } from "./utils/formatValidationMessages";
 import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackError, trackEvent } from "./utils/logging";
 import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo";
-import { validateComponentStructure } from "./utils/validateComponentStructure";
+import { validateHopperCode } from "./utils/validateHopperCode";
 
 const paginationParams = {
     page_size: z
@@ -63,15 +63,16 @@ export function tools(server: McpServer) {
             category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens.parameters.category),
             search_token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
             search_css_values: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
+            search_supported_props: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
             include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens.parameters.include_css_values.description)
         },
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_css_values, search_token_names, search_css_values }, e) : Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values }, e?.requestInfo);
+    }, async ({ category, include_css_values, search_token_names, search_css_values, search_supported_props }, e) : Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
 
-        const result = await getDesignTokens(category, search_token_names, search_css_values, include_css_values);
+        const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
 
         return toolContent(
             ...result,
@@ -148,7 +149,7 @@ export function tools(server: McpServer) {
         }
     }, async ({ code }, e) : Promise<CallToolResult> => {
         try {
-            const validationResult = await validateComponentStructure(code);
+            const validationResult = await validateHopperCode(code);
             trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
 
             if (validationResult.isValid && validationResult.warnings.length === 0) {

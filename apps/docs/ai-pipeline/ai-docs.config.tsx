@@ -236,9 +236,6 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 type: "tokens-json",
                 source: "datas/tokens.json",
-                options: {
-                    fullMap: true
-                }
             }
         },
 

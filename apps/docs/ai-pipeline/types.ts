@@ -41,9 +41,6 @@ export interface PropsJsonBuild {
 export interface TokensJsonBuild {
     type: "tokens-json";
     source: string;
-    options: {
-        fullMap?: boolean;
-    };
 }
 
 export interface UnsafePropsJsonBuild {

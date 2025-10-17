@@ -7,16 +7,44 @@
 - NEVER use `UNSAFE_` for props that have a valid token mapping
 - If a prop accepts `%`, use it normally WITHOUT the `UNSAFE_` prefix
 
-Examples:
+**IMPORTANT:** NEVER use UNSAFE_ prefix with standard CSS keyword values (they're already allowed without it), such as `auto`, `inherit`, `initial`, `unset`, `fit-content`, `normal`, etc.
 
-- ❌ `UNSAFE_overflow="hidden"` - ERROR: this doesn't exist, use `overflow="hidden"` normally
-- ❌ `UNSAFE_style={...}` - ERROR: this doesn't exist, use `style={...}` normally
-- ❌ `UNSAFE_top="5x"` - ERROR: this doesn't exist, use `top="5px"` normally
-- ❌ `UNSAFE_flex="1"` - ERROR: this doesn't exist, use `flex="1"` normally
-- ❌ `UNSAFE_width="32px"` - ERROR: core token is available, use `width=core_320`
-- ❌ `UNSAFE_height="50%"` - ERROR: `%` is allowed, use `height="50%"` normally
-- ✅ `UNSAFE_width="100px"` - width is in the following list, so `UNSAFE_` version exists
+## When to use UNSAFE_ props
+
+Only use `UNSAFE_` when:
+1. The prop is listed below in "Available UNSAFE_* props"
+2. AND you need a custom value that isn't covered by tokens
+3. AND the value isn't a standard CSS keyword or percentage
 
 
-Available `UNSAFE_*` props:
+## Examples
+
+### ❌ Props that don't have UNSAFE_ versions
+These props should be used normally without the `UNSAFE_` prefix:
+
+- ❌ `UNSAFE_overflow="hidden"` - use `overflow="hidden"`
+- ❌ `UNSAFE_style={...}` - use `style={...}`
+- ❌ `UNSAFE_top="5px"` - use `top="5px"`
+- ❌ `UNSAFE_flex="1"` - use `flex="1"`
+
+### ❌ When tokens should be used instead
+Use the appropriate token instead of UNSAFE_:
+
+- ❌ `UNSAFE_width="32px"` - use `width="core_320"` (token available)
+
+### ❌ Values that are already allowed
+Percentages and CSS keywords work without UNSAFE_:
+
+- ❌ `UNSAFE_height="50%"` - use `height="50%"` (percentages allowed)
+- ❌ `UNSAFE_height="auto"` - use `height="auto"` (CSS keyword allowed)
+- ❌ `UNSAFE_gap="normal"` - use `gap="normal"` (CSS keyword allowed)
+
+### ✅ Correct usage
+Only use UNSAFE_ for props listed below when you need custom values:
+
+- ✅ `UNSAFE_width="100px"` - correct (width is in the list below, custom value needed)
+
+
+
+## Available `UNSAFE_*` props
 
