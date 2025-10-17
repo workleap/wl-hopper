@@ -9,6 +9,7 @@ import { join } from "path";
 import { env } from "../env";
 import type { GuideSection } from "./docs";
 import { formatStyledSystemName } from "./formatStyledSystemName";
+import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "./tokenUtils";
 
 interface ValidationMessage {
     message: string;
@@ -24,7 +25,7 @@ interface ValidationResult {
 /**
  * Validates component structure according to Hopper Design System rules
  */
-export async function validateComponentStructure(code: string): Promise<ValidationResult> {
+export async function validateHopperCode(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {
         isValid: true,
         errors: [],
@@ -381,7 +382,7 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
             // Warning for Div and Box
             if (componentChildren.length === 1 && allChildren.length === 1) {
                 result.warnings.push({
-                    message: `${componentName} component has only one child. This might be unnecessary - consider merging the ${componentName}'s props directly into the child component if possible.`,
+                    message: `'${componentName}' component has only one child. This might be unnecessary — consider merging the '${componentName}' props directly into the child component if possible.`,
                     line: element.loc?.start.line,
                     column: element.loc?.start.column
                 });
@@ -390,7 +391,7 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
             // Error for other layout components
             if (componentChildren.length <= 1) {
                 result.errors.push({
-                    message: `${componentName} component has only one child. Layout components should not be used for single children. Consider removing the ${componentName} wrapper or using a more appropriate component.`,
+                    message: `'${componentName}' component has only one child. Layout components MUST not be used with only one child. Consider removing it or replacing it with a more appropriate component.`,
                     line: element.loc?.start.line,
                     column: element.loc?.start.column
                 });
@@ -569,6 +570,31 @@ async function getAllTokens(): Promise<Set<string>> {
     }
 }
 
+// Cache for all tokens data to avoid repeated file I/O
+let _allTokensDataCache: TokenFileRootNode | null = null;
+
+async function getAllTokensData(): Promise<TokenFileRootNode> {
+    // Return cached value if available
+    if (_allTokensDataCache !== null) {
+        return _allTokensDataCache;
+    }
+
+    try {
+        // Get the path to the tokens data file (use full version)
+        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.all.path);
+        const fileContents = await readFile(tokensDataPath, "utf-8");
+        const tokensData = JSON.parse(fileContents) as TokenFileRootNode;
+
+        // Cache the result before returning
+        _allTokensDataCache = tokensData;
+
+        return _allTokensDataCache;
+    } catch (e) {
+        console.error("error:", e);
+        throw new Error("Failed to load the full token data for validation.", { cause: e });
+    }
+}
+
 // Props that accept percentage values without requiring UNSAFE_ prefix
 const PERCENTAGE_SAFE_PROPS = new Set([
     "width",
@@ -663,6 +689,66 @@ function isDisallowedUnsafeProp(
     return true; // This is invalid and error was reported
 }
 
+/**
+ * Checks if an UNSAFE_ prop value has an equivalent design token
+ * If equivalent tokens exist, suggests using them instead of the raw CSS value
+ */
+async function checkUnsafePropHasTokenEquivalent(
+    propName: string,
+    propValue: TSESTree.JSXAttribute["value"],
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): Promise<void> {
+    if (!isStringValue(propValue)) {
+        return;
+    }
+
+    const safePropName = propName.replace("UNSAFE_", "");
+
+    try {
+        // First check if the value is already a valid token propValue
+        // If it is, the existing validation (validateDesignSystemTokensUsage) will handle it
+        const allTokens = await getAllTokens();
+        if (allTokens.has(propValue.value)) {
+            // This is a valid token value. It is not this function's job to validate it.
+            return;
+        }
+
+        const allTokensData = await getAllTokensData();
+        const filteredTokens = filterTokens(allTokensData, [], [propValue.value], [safePropName]);
+        const equivalentTokens = new Set<string>();
+
+        for (const categories of Object.values(filteredTokens) as Record<string, TokenCategoryNode>[]) {
+            // Iterate through categories
+            for (const categoryNode of Object.values(categories)) {
+                // Extract propValues from tokens
+                for (const tokenValue of Object.values(categoryNode.tokens)) {
+                    equivalentTokens.add(tokenValue.propValue);
+                }
+            }
+        }
+
+        // If equivalent tokens exist, suggest using them instead
+        if (equivalentTokens.size > 0) {
+            // Generate suggestions - limit to a reasonable number for readability
+            const suggestions = Array.from(equivalentTokens).slice(0, 10);
+            const moreSuggestions = equivalentTokens.size > 10 ? ` (and ${equivalentTokens.size - 10} more)` : "";
+
+            const message = `The CSS value '${propValue.value}' for '${propName}' has equivalent design tokens. Consider using the safe prop '${safePropName}' with one of these token values: ${suggestions.join(", ")}${moreSuggestions}.`;
+
+            result.errors.push({
+                message,
+                line: loc?.start.line,
+                column: loc?.start.column
+            });
+        }
+    } catch (error) {
+        // If we can't load token data, just skip this validation
+        // Don't fail the entire validation because of this
+        console.error("Failed to check for token equivalents:", error);
+    }
+}
+
 async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
     // Load the allowed unsafe props list
     const allowedUnsafeProps = new Set(await getUnsafeProps());
@@ -685,18 +771,19 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
         if (isDisallowedUnsafeProp(propName, allowedUnsafeProps, loc, result)) {
             continue;
         }
+
+        // At this point, the UNSAFE_ prop is valid, now check if the CSS value has a token equivalent
+        // Only check string literal values
+        await checkUnsafePropHasTokenEquivalent(propName, propValue, loc, result);
     }
-}/**
- * Checks if a prop value is a string literal
- */
+}
+
+
 function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
     return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
 }
 
-/**
- * Checks if an UNSAFE_ prop should be skipped from token validation
- * Returns true if the prop is an UNSAFE_ prop without token support
- */
+
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
     const safePropName = propName.replace("UNSAFE_", "");
 

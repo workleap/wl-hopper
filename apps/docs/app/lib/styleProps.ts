@@ -268,7 +268,7 @@ export function getPropsGroupedByCategory(): Record<StyleGroup, StylePropDefinit
 
 
 export function getScaleLinkCategory(scale: TokenScale) {
-    if (scale == "none") {return "";}
+    if (scale === "none") {return "";}
 
     return TokenScales[scale].link.startsWith("/tokens/core") ? "Core" : "Semantic";
 }
@@ -285,7 +285,7 @@ export function hasScaleLink(key: TokenScale): boolean {
 export function getSupportedPropsByTokenCategory(tokenCategory: TokenCategory): string[] {
     // Find all token scales that include this category
     const relevantScales = (Object.entries(TokenScales) as [TokenScale, typeof TokenScales[TokenScale]][])
-        .filter(([_, scaleInfo]) => (scaleInfo.tokenCategories as readonly TokenCategory[]).includes(tokenCategory))
+        .filter(([, scaleInfo]) => (scaleInfo.tokenCategories as readonly TokenCategory[]).includes(tokenCategory))
         .map(([scaleName]) => scaleName);
 
     // Find all props that use any of these scales

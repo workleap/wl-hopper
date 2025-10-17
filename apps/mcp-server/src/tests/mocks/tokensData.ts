@@ -15,7 +15,8 @@ const CORE_TOKENS_FULL: Record<string, TokenCategoryNode> = {
                 propValue: "primary",
                 cssValue: "#1a73e8"
             }
-        }
+        },
+        supportedProps: ["backgroundColor", "color", "borderColor"]
     },
     fontSize: {
         tokens: {
@@ -23,7 +24,8 @@ const CORE_TOKENS_FULL: Record<string, TokenCategoryNode> = {
                 propValue: "core_120",
                 cssValue: "1.2rem"
             }
-        }
+        },
+        supportedProps: ["fontSize"]
     },
     fontWeight: {
         tokens: {
@@ -35,9 +37,10 @@ const CORE_TOKENS_FULL: Record<string, TokenCategoryNode> = {
                 propValue: "500",
                 cssValue: "500"
             }
-        }
+        },
+        supportedProps: ["fontWeight"]
     }
-} as const;
+};
 
 // ============================================================================
 // SEMANTIC TOKENS
@@ -62,7 +65,8 @@ const SEMANTIC_TOKENS_FULL = {
                 propValue: "neutral",
                 cssValue: "#ffffff"
             }
-        }
+        },
+        supportedProps: ["backgroundColor", "color", "borderColor", "fill", "stroke"]
     },
     size: {
         tokens: {
@@ -70,7 +74,8 @@ const SEMANTIC_TOKENS_FULL = {
                 propValue: "inset-xs",
                 cssValue: "0.5rem"
             }
-        }
+        },
+        supportedProps: ["padding", "margin", "gap"]
     },
     shadow: {
         tokens: {
@@ -78,7 +83,8 @@ const SEMANTIC_TOKENS_FULL = {
                 propValue: "none",
                 cssValue: "none"
             }
-        }
+        },
+        supportedProps: ["boxShadow"]
     },
     fontFamily: {
         tokens: {
@@ -86,9 +92,10 @@ const SEMANTIC_TOKENS_FULL = {
                 propValue: "overline",
                 cssValue: "Arial, sans-serif"
             }
-        }
+        },
+        supportedProps: ["fontFamily"]
     }
-} as const;
+};
 
 // ============================================================================
 // EXPORTED MOCKS - ALL TOKENS

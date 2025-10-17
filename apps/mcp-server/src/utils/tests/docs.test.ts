@@ -363,7 +363,7 @@ describe("getDesignTokens", () => {
     describe("Supported Props Filtering", () => {
         it("should return empty when no categories have supportedProps", async () => {
             // The default mock data doesn't have supportedProps defined
-            const result = await getDesignTokens("all", undefined, undefined, ["backgroundColor"], false);
+            const result = await getDesignTokens("all", undefined, undefined, ["unsupportedProp"], false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text as string);
