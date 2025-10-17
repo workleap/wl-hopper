@@ -29,9 +29,9 @@ export const TokenCategoryDescriptions: { [key in TokenCategory]: string } = {
 export const GuideDescriptions: { [key in GuideSection]: string } = {
     installation: "How to install and set up the Hopper Design System",
     "components-list": "Get a list of all components in the Hopper Design System.",
-    styles: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
+    styles: "How to use style components by using style props and related design tokens.",
     layout: "Building application layouts using Flex or Grid",
-    "escape-hatches": "It lists the ONLY available UNSAFE_* props in JSON format.",
+    "escape-hatches": "Best practices regarding the use of UNSAFE_* props in Hopper components. It also lists all available UNSAFE_* props.",
     "color-schemes": "Applying light mode, dark mode, or adapt to operating system's dark mode",
     icons: "Using and designing standard, rich, and SVG icons in Hopper for React and other frameworks",
     "controlled-mode": "Using controlled and uncontrolled modes to customize components",

@@ -23,6 +23,33 @@ import {
 import { getIcons, IconTypes } from "./utils/iconSearch";
 import { trackEvent } from "./utils/logging";
 
+/**
+ * Helper function to create a successful ReadResourceResult from content
+ * Handles both single content objects and arrays of content objects
+ */
+function createResourceResult(uri: URL, content: unknown): ReadResourceResult {
+    const contents = Array.isArray(content) ? content : [content];
+
+    return {
+        contents: contents.map(item => ({
+            uri: uri.href,
+            ...item
+        }))
+    };
+}
+
+/**
+ * Helper function to create an error ReadResourceResult
+ */
+function createErrorResult(uri: URL, error: unknown, message: string): ReadResourceResult {
+    return {
+        contents: [{
+            uri: uri.href,
+            ...errorContent(error, message)
+        }]
+    };
+}
+
 // Get all component names dynamically from the files structure
 // This ensures the resource list stays in sync with available documentation
 // without manual maintenance when new components are added
@@ -61,14 +88,8 @@ export function resources(server: McpServer) {
             trackEvent("resource:hopper-full-documentation", {}, requestInfo);
 
             const doc = await getLlmsFull();
-            const contents = Array.isArray(doc) ? doc : [doc];
 
-            return {
-                contents: contents.map(content => ({
-                    uri: uri.href,
-                    ...content
-                }))
-            };
+            return createResourceResult(uri, doc);
         }
     );
 
@@ -91,26 +112,15 @@ export function resources(server: McpServer) {
             description: "Usage documentation for Hopper components including anatomy, structure, examples, and best practices"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const componentName = uri.pathname.split("/")[2];
+            const componentName = uri.pathname.split("/")[1];
             trackEvent("resource:component-usage", { component: componentName }, requestInfo);
 
             try {
                 const doc = await getComponentUsage(componentName);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load usage documentation for ${componentName}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load usage documentation for ${componentName}`);
             }
         }
     );
@@ -133,26 +143,15 @@ export function resources(server: McpServer) {
             description: "Brief component props/API as JSON (important fields only)"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const componentName = uri.pathname.split("/")[2];
+            const componentName = uri.pathname.split("/")[1];
             trackEvent("resource:component-props", { component: componentName }, requestInfo);
 
             try {
                 const doc = await getComponentBriefApi(componentName);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load props documentation for ${componentName}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load props documentation for ${componentName}`);
             }
         }
     );
@@ -175,26 +174,15 @@ export function resources(server: McpServer) {
             description: "Full component props/API as JSON (all fields)"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const componentName = uri.pathname.split("/")[2];
+            const componentName = uri.pathname.split("/")[1];
             trackEvent("resource:component-props-full", { component: componentName }, requestInfo);
 
             try {
                 const doc = await getComponentFullApi(componentName);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load full API documentation for ${componentName}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load full API documentation for ${componentName}`);
             }
         }
     );
@@ -222,26 +210,15 @@ export function resources(server: McpServer) {
             description: "Design system tokens mapped to component props"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const category = uri.pathname.split("/")[2] as TokenCategory;
+            const category = uri.pathname.split("/")[1] as TokenCategory;
             trackEvent("resource:design-tokens", { category }, requestInfo);
 
             try {
                 const doc = await getDesignTokens(category, undefined, undefined, undefined, false);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load design tokens for ${category}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load design tokens for ${category}`);
             }
         }
     );
@@ -269,26 +246,15 @@ export function resources(server: McpServer) {
             description: "Guides and documentation for design tokens by category"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const category = uri.pathname.split("/")[2] as TokenCategory;
+            const category = uri.pathname.split("/")[1] as TokenCategory;
             trackEvent("resource:token-guides", { category }, requestInfo);
 
             try {
                 const doc = await getDesignTokenGuide(category);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load token guide for ${category}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load token guide for ${category}`);
             }
         }
     );
@@ -316,26 +282,15 @@ export function resources(server: McpServer) {
             description: "Various guides for using the Hopper Design System"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const section = uri.pathname.split("/")[2] as GuideSection;
+            const section = uri.pathname.split("/")[1] as GuideSection;
             trackEvent("resource:guides", { section }, requestInfo);
 
             try {
                 const doc = await getGuide(section);
-                const contents = Array.isArray(doc) ? doc : [doc];
 
-                return {
-                    contents: contents.map(content => ({
-                        uri: uri.href,
-                        ...content
-                    }))
-                };
+                return createResourceResult(uri, doc);
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load guide for ${section}`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load guide for ${section}`);
             }
         }
     );
@@ -358,26 +313,18 @@ export function resources(server: McpServer) {
             description: "Icon collections available in the Hopper Design System"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const type = uri.pathname.split("/")[2] as typeof IconTypes[number];
+            const type = uri.pathname.split("/")[1] as typeof IconTypes[number];
             trackEvent("resource:icons", { type }, requestInfo);
 
             try {
                 const icons = await getIcons([], type);
 
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        text: JSON.stringify(icons, null, 2),
-                        mimeType: "application/json"
-                    }]
-                };
+                return createResourceResult(uri, {
+                    text: JSON.stringify(icons, null, 2),
+                    mimeType: "application/json"
+                });
             } catch (error) {
-                return {
-                    contents: [{
-                        uri: uri.href,
-                        ...errorContent(error, `Failed to load ${type} icons`)
-                    }]
-                };
+                return createErrorResult(uri, error, `Failed to load ${type} icons`);
             }
         }
     );
@@ -402,13 +349,10 @@ export function resources(server: McpServer) {
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("resource:component-list", {}, requestInfo);
 
-            return {
-                contents: [{
-                    uri: uri.href,
-                    text: JSON.stringify(HOPPER_COMPONENTS, null, 2),
-                    mimeType: "application/json"
-                }]
-            };
+            return createResourceResult(uri, {
+                text: JSON.stringify(HOPPER_COMPONENTS, null, 2),
+                mimeType: "application/json"
+            });
         }
     );
 }
