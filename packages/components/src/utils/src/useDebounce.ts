@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type Dispatch, type SetStateAction } from "react";
 
+// The code in this file is adapted from https://github.com/xnimorz/use-debounce
+
 const DebounceTimeouts = {
     sm: 100,
     md: 400,
