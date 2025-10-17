@@ -1,8 +1,7 @@
 import { Button, useDebounceCallback } from "@hopper-ui/components";
 
 export default function Example() {
-    const handlePress = useDebounceCallback(
-        () => {
+    const handlePress = useDebounceCallback(() => {
             console.log("Button clicked!");
             // Expensive operation here
         },
