@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-import type { GuideSection } from "./utils/docs";
-import { toolsInfo } from "./utils/toolsInfo";
+import type { GuideSection } from "./config/constants";
+import { toolsInfo } from "./config/tools-metadata";
 
 const figma_get_code = "'#get_design_context'";
 const figma_get_screenshot = "'#get_screenshot'";

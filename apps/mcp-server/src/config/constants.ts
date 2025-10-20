@@ -1,8 +1,25 @@
-import type { GuideSection, TokenCategory } from "./docs";
+export const GuideSections = [
+    "installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout",
+    "controlled-mode", "forms", "slots", "utility-hooks",
+    "escape-hatches", "figma-conventions", "tooling-cli", "internationalization"
+] as const;
 
-/**
- * Descriptions for token categories - shared between tools and resources
- */
+export const TokenCategories = [
+    //semantic
+    "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography",
+
+    //core
+    "core-border-radius", "core-color", "core-dimensions",
+    "core-font-family", "core-font-size", "core-font-weight", "core-line-height",
+    "core-motion", "core-shadow",
+
+    //all
+    "all", "all-core", "all-semantic"
+] as const;
+
+export type GuideSection = typeof GuideSections[number];
+export type TokenCategory = typeof TokenCategories[number];
+
 export const TokenCategoryDescriptions: { [key in TokenCategory]: string } = {
     "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
     "semantic-elevation": "Box shadows for creating depth and hierarchy in interfaces",
@@ -23,9 +40,6 @@ export const TokenCategoryDescriptions: { [key in TokenCategory]: string } = {
     all: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible"
 } as const;
 
-/**
- * Descriptions for guides - shared between tools and resources
- */
 export const GuideDescriptions: { [key in GuideSection]: string } = {
     installation: "How to install and set up the Hopper Design System",
     "components-list": "Get a list of all components in the Hopper Design System.",
@@ -43,3 +57,4 @@ export const GuideDescriptions: { [key in GuideSection]: string } = {
     "tooling-cli": "Analyze component usage across Hopper and Orbiter codebases, and automate migrations (Orbiter→Hopper, OV→Hopper) using 'pnpx \"@workleap/migrations\"@latest'. Generate usage reports, migration plans, and automated code transformations.",
     "utility-hooks": "Commonly used React hooks and utility functions for building components."
 } as const;
+

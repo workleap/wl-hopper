@@ -40,7 +40,7 @@ export interface PaginatedResult {
     currentPage?: number;
 }
 
-export function paginateContent(
+export function paginate(
     fullContent: string,
     pageSize?: number,
     cursor?: string

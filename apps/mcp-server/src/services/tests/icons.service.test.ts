@@ -1,4 +1,5 @@
-import { MOCK_ICONS_DATA } from "../../tests/mocks/iconsData.ts";
+import { MOCK_ICONS_DATA } from "../../tests/mocks/iconsData";
+import { getIcons } from "../icons.service";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
@@ -13,8 +14,6 @@ jest.mock("fs/promises", () => ({
     })
 }));
 
-// Import after mocks are set up
-import { getIcons } from "../iconSearch";
 
 describe("getIcons", () => {
     beforeEach(() => {

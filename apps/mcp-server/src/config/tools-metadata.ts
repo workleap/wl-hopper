@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 
-import { GuideFiles, type GuideSection, TokenGuideFiles, TokenMapFiles } from "./docs";
-import { GuideDescriptions, TokenCategoryDescriptions } from "./descriptions";
+import { GuideDescriptions, type GuideSection, TokenCategoryDescriptions } from "./constants";
+import { GuideFiles, TokenGuideFiles, TokenMapFiles } from "./file-mappings";
 
 export function generateDesignTokensDescription(): string {
     let description = "Available token categories:\n";

@@ -1,4 +1,4 @@
-import { convertToBriefFormat, TokenCategoryNode, TokenFileBriefRootNode, TokenFileRootNode } from "../../utils/tokenUtils.js";
+import { convertToBriefFormat, TokenCategoryNode, TokenFileBriefRootNode, TokenFileRootNode } from "../../utils/token-filters.js";
 
 // ============================================================================
 // CORE TOKENS

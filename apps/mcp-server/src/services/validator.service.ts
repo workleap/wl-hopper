@@ -6,10 +6,10 @@ import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
 import { readFile } from "fs/promises";
 import { join } from "path";
+import type { GuideSection } from "../config/constants";
 import { env } from "../env";
-import type { GuideSection } from "./docs";
-import { formatStyledSystemName } from "./formatStyledSystemName";
-import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "./tokenUtils";
+import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "../utils/token-filters";
+import { formatStyledSystemName } from "../utils/token-name-formatter";
 
 interface ValidationMessage {
     message: string;

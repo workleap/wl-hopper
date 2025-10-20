@@ -1,1 +1,0 @@
-../../../docs/app/lib/formatStyledSystemName.ts
