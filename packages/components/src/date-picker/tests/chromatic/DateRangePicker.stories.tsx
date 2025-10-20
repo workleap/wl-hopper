@@ -7,7 +7,7 @@ import { Inline, Stack } from "../../../layout/index.ts";
 import { DateRangePicker } from "../../src/DateRangePicker.tsx";
 
 const meta = {
-    title: "Components/Forms/DateRangePicker",
+    title: "Components/DateRangePicker",
     component: DateRangePicker,
     args: {
         "aria-label": "Select a date"
@@ -35,7 +35,6 @@ export const Default: Story = {
         </Stack>
     )
 };
-
 
 export const WithContextualHelp: Story = {
     render: args => (
