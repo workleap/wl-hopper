@@ -4,7 +4,7 @@ export default function Example() {
     return (
         <DateRangePicker
             label="Trip dates"
-            description="Please select a dates for your trip."
+            description="Please select dates for your trip."
         />
     );
 }
