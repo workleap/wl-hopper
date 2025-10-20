@@ -1,6 +1,4 @@
 import { files } from "@docs/ai";
-import { join } from "path";
-import { env } from "../env";
 import { getLocalJsonContent, getLocalMdContent } from "../utils/file-reader";
 import { errorContent } from "../utils/formatter";
 
