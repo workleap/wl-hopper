@@ -1,4 +1,4 @@
-import { matchesCssValue } from "./cssValueMatcher";
+import { matchesCssValue } from "./css-value-matcher";
 
 interface TokenNode {
     cssValue: string;

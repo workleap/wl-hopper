@@ -4,7 +4,7 @@ import express from "express";
 import { randomUUID } from "node:crypto";
 import { env } from "../env";
 import { getServer } from "../server";
-import { trackEvent } from "../utils/logging";
+import { trackEvent } from "../utils/logger";
 import { getAllowedHosts } from "./utils";
 
 console.log(`Hopper MCP server\nlistening on port ${env.PORT}...`);

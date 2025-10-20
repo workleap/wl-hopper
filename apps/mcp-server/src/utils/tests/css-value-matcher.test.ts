@@ -1,4 +1,4 @@
-import { type CssMatchConfig, DEFAULT_CSS_MATCH_CONFIG, matchesCssValue } from "../cssValueMatcher";
+import { type CssMatchConfig, DEFAULT_CSS_MATCH_CONFIG, matchesCssValue } from "../css-value-matcher";
 
 // Test configuration with fixed values
 // This ensures tests are stable even if DEFAULT_CSS_MATCH_CONFIG changes

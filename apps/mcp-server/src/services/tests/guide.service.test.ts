@@ -5,19 +5,8 @@ import {
     MOCK_TOKENS_SEMANTIC_COLOR_FULL,
     MOCK_TOKENS_SEMANTIC_SHADOW_FULL
 } from "../../tests/mocks/tokensData.ts";
+import { clearTokenDataCache, getDesignTokens } from "../tokens.service.ts";
 
-// Mock the rehype and remark dependencies before importing docs
-jest.mock("rehype-parse", () => jest.fn());
-jest.mock("rehype-remark", () => jest.fn());
-jest.mock("remark-stringify", () => jest.fn());
-jest.mock("unified", () => ({
-    unified: jest.fn()
-}));
-
-/**
- * Mock file system paths mapping
- * Maps file paths to their corresponding mock data
- */
 const MOCK_FILE_MAP = {
     "/tokens/maps/all.json": MOCK_TOKENS_FULL,
     "/tokens/maps/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
@@ -25,10 +14,8 @@ const MOCK_FILE_MAP = {
     "/tokens/maps/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
 } as const;
 
-// Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
     readFile: jest.fn(async (path: string) => {
-        // Check each mock file path
         for (const [mockPath, mockData] of Object.entries(MOCK_FILE_MAP)) {
             if (path.includes(mockPath)) {
                 return JSON.stringify(mockData);
@@ -42,16 +29,12 @@ jest.mock("fs/promises", () => ({
     })
 }));
 
-// Mock the fs module for existsSync
 jest.mock("fs", () => ({
     existsSync: jest.fn((path: string) => {
         // Check if the path matches any of our mocked files
         return Object.keys(MOCK_FILE_MAP).some(mockPath => path.includes(mockPath));
     })
 }));
-
-// Import after mocks are set up
-import { clearTokenDataCache, getDesignTokens } from "../docs.ts";
 
 describe("getDesignTokens", () => {
     describe("Basic functionality", () => {

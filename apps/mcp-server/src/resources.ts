@@ -1,27 +1,18 @@
 /* eslint-disable max-len */
 
 import { files } from "@docs/ai";
-import { ResourceTemplate, type McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
-import { errorContent } from "./utils/content";
-import { GuideDescriptions, TokenCategoryDescriptions } from "./utils/descriptions";
-import {
-    getComponentBriefApi,
-    getComponentFullApi,
-    getComponentUsage,
-    getDesignTokenGuide,
-    getDesignTokens,
-    getGuide,
-    getLlmsFull,
-    GuideFiles,
-    GuideSections,
-    TokenCategories,
-    TokenGuideFiles,
-    type GuideSection,
-    type TokenCategory
-} from "./utils/docs";
-import { getIcons, IconTypes } from "./utils/iconSearch";
-import { trackEvent } from "./utils/logging";
+import { GuideDescriptions, type GuideSection, GuideSections, TokenCategories, type TokenCategory, TokenCategoryDescriptions } from "./config/constants";
+import { GuideFiles, TokenGuideFiles } from "./config/file-mappings";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/component.service";
+import { getDesignTokenGuide, getGuide } from "./services/guide.service";
+import { getIcons, IconTypes } from "./services/icons.service";
+import { getDesignTokens } from "./services/tokens.service";
+import { getComponentNames } from "./utils/component-utils";
+import { getLocalMdContent } from "./utils/file-reader";
+import { errorContent } from "./utils/formatter";
+import { trackEvent } from "./utils/logger";
 
 /**
  * Helper function to create a successful ReadResourceResult from content
@@ -50,20 +41,6 @@ function createErrorResult(uri: URL, error: unknown, message: string): ReadResou
     };
 }
 
-// Get all component names dynamically from the files structure
-// This ensures the resource list stays in sync with available documentation
-// without manual maintenance when new components are added
-function getComponentNames(): string[] {
-    const componentKeys = Object.keys(files.components.full);
-
-    return componentKeys
-        .map(key => {
-            // Convert camelCase to PascalCase (e.g., "accordion" -> "Accordion", "avatarGroup" -> "AvatarGroup")
-            return key.charAt(0).toUpperCase() + key.slice(1);
-        })
-        .sort(); // Sort alphabetically for consistent ordering
-}
-
 const HOPPER_COMPONENTS = getComponentNames();
 
 export function resources(server: McpServer) {
@@ -87,7 +64,7 @@ export function resources(server: McpServer) {
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("resource:hopper-full-documentation", {}, requestInfo);
 
-            const doc = await getLlmsFull();
+            const doc = await getLocalMdContent(files.llmsFull.path);
 
             return createResourceResult(uri, doc);
         }

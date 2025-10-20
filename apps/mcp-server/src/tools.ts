@@ -3,14 +3,17 @@ import type {
     CallToolResult
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { content, errorContent, toolContent } from "./utils/content";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage, getDesignTokenGuide, getDesignTokens, getGuide, type GuideSection, GuideSections, TokenCategories } from "./utils/docs";
-import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/formatStyledSystemName";
-import { formatValidationMessages } from "./utils/formatValidationMessages";
-import { getIcons, IconTypes } from "./utils/iconSearch";
-import { trackError, trackEvent } from "./utils/logging";
-import { paginationParamsInfo, toolsInfo } from "./utils/toolsInfo";
-import { validateHopperCode } from "./utils/validateHopperCode";
+import { type GuideSection, GuideSections, TokenCategories } from "./config/constants";
+import { paginationParamsInfo, toolsInfo } from "./config/tools-metadata";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/component.service";
+import { getDesignTokenGuide, getGuide } from "./services/guide.service";
+import { getIcons, IconTypes } from "./services/icons.service";
+import { getDesignTokens } from "./services/tokens.service";
+import { validateHopperCode } from "./services/validator.service";
+import { content, errorContent, toolContent } from "./utils/formatter";
+import { trackError, trackEvent } from "./utils/logger";
+import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/token-name-formatter";
+import { formatValidationMessages } from "./utils/validation-message-formatter";
 
 const paginationParams = {
     page_size: z
