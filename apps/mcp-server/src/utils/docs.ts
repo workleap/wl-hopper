@@ -349,7 +349,7 @@ export async function fetchDocumentContent(url: string) {
     const mainContentMatch = docsContent.match(/<main[^>]*>([\s\S]*?)<\/main>/);
     if (mainContentMatch && mainContentMatch[1]) {
         const mainContent = mainContentMatch[1];
-        // Remove any <script> tags from the main content
+        // Remove any <script> tags from the main content.
         const cleanedContent = mainContent.replace(/<script[^>]*>[\s\S]*?<\/script>/g, "");
 
         const file = await unified()
