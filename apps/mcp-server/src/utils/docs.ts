@@ -18,7 +18,7 @@ export const TokenCategories = [
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography", "core-border-radius", "core-color",
     "core-dimensions", "core-font-family", "core-font-size", "core-font-weight", "core-line-height", "core-motion", "core-shadow",
     "all", "all-core", "all-semantic"] as const;
-export const GuideSections = ["installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "internationalization", "escape-hatches", "figma-conventions", "tooling-cli"] as const;
+export const GuideSections = ["installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout", "controlled-mode", "forms", "slots", "utility-hooks", "escape-hatches", "figma-conventions", "tooling-cli", "internationalization"] as const;
 
 export type GuideSection = typeof GuideSections[number];
 export type TokenCategory = typeof TokenCategories[number];
@@ -43,6 +43,7 @@ export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index 
     "escape-hatches": files.styledSystem.escapeHatches,
     "figma-conventions": files.ai.figmaConventions,
     tokens: files.tokens.overview.introduction,
+    "utility-hooks": files.components.utilities.index,
     "tooling-cli": {
         url: "https://raw.githubusercontent.com/workleap/wl-design-systems-migrations/refs/heads/main/README.md"
     }
@@ -348,7 +349,7 @@ export async function fetchDocumentContent(url: string) {
     const mainContentMatch = docsContent.match(/<main[^>]*>([\s\S]*?)<\/main>/);
     if (mainContentMatch && mainContentMatch[1]) {
         const mainContent = mainContentMatch[1];
-        // Remove any <script> tags from the main content
+        // Remove any <script> tags from the main content.
         const cleanedContent = mainContent.replace(/<script[^>]*>[\s\S]*?<\/script>/g, "");
 
         const file = await unified()
