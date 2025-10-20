@@ -1,23 +1,24 @@
+import type { components } from "@/components/mdx/components.ai.tsx";
 import fs from "fs/promises";
 import type { Heading, Node, Parent, Root } from "mdast";
 import path from "path";
+import type { ComponentType } from "react";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
 import { convertMdxToMd, type FrontMatterConvertOptions } from "./convertMdxToMd.ts";
 
-
-async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions): Promise<string> {
+async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions, customComponents: Record<string, ComponentType> = {}): Promise<string> {
     const mdxSource = await fs.readFile(filePath, "utf-8");
 
-    const mdContent = convertMdxToMd(mdxSource, options);
+    const mdContent = convertMdxToMd(mdxSource, options, customComponents);
 
     //replace <!-- --> comments with empty string
     return (await mdContent).replace(/<!--[\s\S]*?-->/g, "");
 }
 
-interface GenerateMarkdownOptions {
+export interface GenerateMarkdownOptions {
     filesPath: string;
     outputPath: string;
     flattenOutput?: boolean;
@@ -48,12 +49,18 @@ interface GenerateMarkdownOptions {
          * A function to replace links in the generated Markdown.
          */
         replaceLinks?: (link: string) => string;
+    };
 
+    /**
+     * Custom MDX components to support during conversion (e.g., for rendering previews).
+     */
+    renderer?: {
+        customComponents?: Partial<Record<keyof typeof components, ComponentType>>;
     };
 }
 
 // Find all MDX files in a directory
-async function findMdxFiles(dir: string, deep: boolean, excludes?: string[]): Promise<string[]> {
+async function findFiles(dir: string, deep: boolean, extensions: string[], excludes?: string[]): Promise<string[]> {
     const files: string[] = [];
 
     try {
@@ -67,9 +74,9 @@ async function findMdxFiles(dir: string, deep: boolean, excludes?: string[]): Pr
                 if (shouldExclude) {
                     continue;
                 }
-                const subdirFiles = await findMdxFiles(fullPath, deep, excludes);
+                const subdirFiles = await findFiles(fullPath, deep, extensions, excludes);
                 files.push(...subdirFiles);
-            } else if (entry.isFile() && entry.name.endsWith(".mdx")) {
+            } else if (entry.isFile() && extensions.some(ext => entry.name.endsWith(ext))) {
                 files.push(fullPath);
             }
         }
@@ -83,6 +90,27 @@ async function findMdxFiles(dir: string, deep: boolean, excludes?: string[]): Pr
 interface ProcessedFile {
     outputPath: string;
     content: string;
+}
+
+// Build a processed file object for an MDX source file (handles path logic + directory creation)
+async function processMarkdownContent(filePath: string, mdContent: string, options: GenerateMarkdownOptions): Promise<ProcessedFile> {
+    let targetPath = options.outputPath;
+    const relativePath = path.relative(options.filesPath, filePath);
+    const fileDir = path.dirname(relativePath);
+
+    if (!options.flattenOutput) {
+        targetPath = path.join(targetPath, fileDir);
+        await fs.mkdir(targetPath, { recursive: true });
+    }
+
+    return {
+        // Always replace whatever extension the original file had with .md (handles .mdx, .md, etc.)
+        outputPath: path.join(targetPath, path.parse(filePath).name + ".md"),
+        content: replaceLinks(
+            excludeSections(mdContent, options.markdown?.excludedSections),
+            options.markdown?.replaceLinks
+        )
+    };
 }
 
 // Write processed file to output directory
@@ -105,31 +133,49 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         // Ensure output directory exists
         await fs.mkdir(options.outputPath, { recursive: true });
 
-        // Find all MDX files
-        const mdxFiles = await findMdxFiles(options.filesPath, options.deep ?? true, options.excludedPaths);
+        const mdxFiles = await findFiles(options.filesPath, options.deep ?? true, [".mdx"], options.excludedPaths);
         console.log(`📁 Found ${mdxFiles.length} MDX files`);
 
         // Process files
         const processedFiles: ProcessedFile[] = [];
+        const customComponents = options.renderer?.customComponents ?? {};
 
         for (const filePath of mdxFiles) {
-            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false });
+            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false }, customComponents);
             if (mdContent) {
-                let targetPath = options.outputPath;
-                const relativePath = path.relative(options.filesPath, filePath);
-                const fileDir = path.dirname(relativePath);
-
-                // Check if this file should maintain directory structure
-                if (!options.flattenOutput) {
-                    targetPath = path.join(targetPath, fileDir);
-                    await fs.mkdir(targetPath, { recursive: true });
-                }
-
-                processedFiles.push({
-                    outputPath: path.join(targetPath, path.basename(filePath, ".mdx") + ".md"),
-                    content: replaceLinks(excludeSections(mdContent, options.markdown?.excludedSections), options.markdown?.replaceLinks)
-                });
+                processedFiles.push(await processMarkdownContent(filePath, mdContent, options));
             }
+        }
+
+        // Write all processed files
+        for (const processedFile of processedFiles) {
+            await writeProcessedFile(processedFile);
+        }
+
+        console.log(`✅ Successfully converted ${processedFiles.length} MDX files to Markdown`);
+        console.log(`📦 Output directory: ${options.outputPath}`);
+    } catch (error) {
+        console.error("❌ Error during conversion:", error);
+        process.exit(1);
+    }
+}
+
+export async function copyMarkdownFiles(options: GenerateMarkdownOptions): Promise<void> {
+    try {
+        console.log("🚀 Starting Markdown file copy...");
+
+        // Ensure output directory exists
+        await fs.mkdir(options.outputPath, { recursive: true });
+
+        const mdFiles = await findFiles(options.filesPath, options.deep ?? true, [".md"], options.excludedPaths);
+        console.log(`📁 Found ${mdFiles.length} MD files`);
+
+        // Process files
+        const processedFiles: ProcessedFile[] = [];
+
+        for (const filePath of mdFiles) {
+            const mdContent = await fs.readFile(filePath, "utf-8");
+            processedFiles.push(await processMarkdownContent(filePath, mdContent, options));
         }
 
         // Write all processed files

@@ -33,12 +33,20 @@ The `visibleMonths` prop should be provided to the Calendar component to specify
 
 <Example src="calendar/docs/multi-month" />
 
-#### Page Behaviour
+#### Page Behavior
 
 The `pageBehavior` prop allows you to control how the calendar navigates between months.
 By default, the calendar will navigate by `visibleMonths`, but by setting `pageBehavior` to `single`, pagination will be by one month.
 
 <Example src="calendar/docs/page-behavior" />
+
+#### Fixed weeks
+
+The `isFixedWeeks` prop allows you to control whether the calendar displays fixed weeks.
+By default, the calendar will display variable weeks, but by setting `isFixedWeeks` to true, all months will be displayed with 6 weeks.
+This ensures that the height of the calendar does not change when navigating between months.
+
+<Example src="calendar/docs/fixed-weeks" />
 
 ### Validation
 

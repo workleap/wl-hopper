@@ -33,6 +33,13 @@ export const MultiMonth = {
     }
 };
 
+export const MultiMonthFixed = {
+    args: {
+        ...MultiMonth.args,
+        isFixedWeeks: true
+    }
+} satisfies Story;
+
 export const CustomFirstDayOfWeek = {
     args: {
         ...Default.args,

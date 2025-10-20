@@ -1,6 +1,6 @@
 import { useStyledSystem, type StyledSystemProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type ComponentProps, type ElementType, type ForwardedRef } from "react";
+import { forwardRef, type ComponentProps, type ElementType, type ForwardedRef, type ReactElement } from "react";
 
 export const GlobalBoxCssSelector = "hop-Box";
 
@@ -50,6 +50,6 @@ const Box = <T extends ElementType = "div">(
  */
 const _Box = forwardRef(Box) as <T extends ElementType = "div">(
     props: BoxProps<T> & { ref?: ForwardedRef<unknown> }
-) => React.ReactElement;
+) => ReactElement;
 
 export { _Box as Box };

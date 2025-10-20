@@ -1,8 +1,9 @@
 import { CalendarIcon } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { mergeRefs, useObjectRef } from "@react-aria/utils";
+import { mergeRefs } from "@react-aria/utils";
 import clsx from "clsx";
 import { forwardRef, type CSSProperties, type ForwardedRef, type MutableRefObject } from "react";
+import { useObjectRef } from "react-aria";
 import {
     DateRangePicker as AriaDateRangePicker,
     useContextProps,
@@ -11,12 +12,12 @@ import {
 } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
-import { RangeCalendar, type RangeCalendarProps } from "../../calendar/index.ts";
+import { RangeCalendar, type CalendarProps, type RangeCalendarProps } from "../../calendar/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { InputGroup, type InputGroupProps } from "../../inputs/index.ts";
-import { PopoverBase } from "../../overlays/index.ts";
+import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, cssModule, type FieldProps } from "../../utils/index.ts";
 
@@ -27,9 +28,9 @@ import styles from "./DateRangePicker.module.css";
 
 export const GlobalDateRangePickerCssSelector = "hop-DateRangePicker";
 
-export interface DateRangePickerProps<T extends DateValue> extends
-    StyledComponentProps<Omit<AriaDateRangePickerProps<T>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<RangeCalendarProps<T>, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+export interface DateRangePickerProps extends
+    StyledComponentProps<Omit<AriaDateRangePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
+    Pick<RangeCalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
     FieldProps {
     /**
      * If `true`, the DateRangePicker will take all available width.
@@ -57,9 +58,25 @@ export interface DateRangePickerProps<T extends DateValue> extends
      * @default 1
      */
     maxVisibleMonths?: number;
+
+    /**
+   * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
+   * @default true
+   */
+    isFixedWeeks?: boolean;
+
+    /**
+     * The props for the popover.
+     */
+    popoverProps?: PopoverBaseProps;
+
+    /**
+     * The props for the calendar.
+     */
+    calendarProps?: CalendarProps;
 }
 
-const DateRangePicker = <T extends DateValue>(props: DateRangePickerProps<T>, ref: ForwardedRef<HTMLDivElement>) => {
+const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivElement>) => {
     // we extract the inputRef props, since we want to manually merge it with the context props.
     const {
         inputStartRef: userProvidedInputStartRef = null,
@@ -173,7 +190,7 @@ const DateRangePicker = <T extends DateValue>(props: DateRangePickerProps<T>, re
  *
  * [View Documentation](https://hopper.workleap.design/components/DateRangePicker)
  */
-const _DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps<DateValue>>(DateRangePicker);
+const _DateRangePicker = forwardRef<HTMLDivElement, DateRangePickerProps>(DateRangePicker);
 _DateRangePicker.displayName = "DateRangePicker";
 
 export { _DateRangePicker as DateRangePicker };

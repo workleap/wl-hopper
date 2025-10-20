@@ -1,4 +1,4 @@
-import { Avatar, Stack } from "@hopper-ui/components";
+import { Avatar, Paragraph, Stack } from "@hopper-ui/components";
 import { type ReactEventHandler, useEffect, useState } from "react";
 
 function useAsyncImage(src: string, retryCount = 5, delay = 250) {
@@ -56,14 +56,14 @@ export default function Example() {
                     src={src}
                     imageProps={{ onError: handleError }}
                 />
-                <p>The avatar failed to load <strong>{failureCount}</strong> times.</p>
+                <Paragraph>The avatar failed to load <strong>{failureCount}</strong> times.</Paragraph>
             </Stack>
             <Stack alignX="center">
                 <Avatar name="John Doe"
                     src={src2}
                     imageProps={{ onError: handleError2 }}
                 />
-                <p>The avatar failed to load <strong>{failureCount2}</strong> times.</p>
+                <Paragraph>The avatar failed to load <strong>{failureCount2}</strong> times.</Paragraph>
             </Stack>
         </Stack>
     );

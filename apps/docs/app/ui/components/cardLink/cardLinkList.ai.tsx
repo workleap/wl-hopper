@@ -1,6 +1,7 @@
+import type { ReactNode } from "react";
 
 export interface CardLinkListProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const CardLinkList = ({ children }: CardLinkListProps) => {

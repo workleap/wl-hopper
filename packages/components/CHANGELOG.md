@@ -1,5 +1,27 @@
 # @hopper-ui/components
 
+## 1.15.1
+
+### Patch Changes
+
+- 90f5c55: Added useDebounce and useDebounceCallback hooks
+
+## 1.15.0
+
+### Minor Changes
+
+- ad15359: Added the DatePicker component
+
+## 1.14.0
+
+### Minor Changes
+
+- 62fe803: Add RangeCalendar component
+
+### Patch Changes
+
+- 660de97: Ghost buttons are no longer underlined when hovered and selected
+
 ## 1.13.1
 
 ### Patch Changes

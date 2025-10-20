@@ -1,7 +1,7 @@
 ---
 title: Rich Icons Library
 description: Getting started with Hopper's Rich Icons library
-order: 4
+order: 3
 ---
 
 All rich icons in the Workleap icon library are available in three predefined sizes. To ensure consistency and clarity, always use the icons at one of these sizes. Avoid resizing icons to dimensions other than the provided options.
@@ -12,14 +12,17 @@ To integrate a rich icon into your project, simply import it from `@hopper-ui/ic
 import { ActionListRichIcon } from "@hopper-ui/icons"
 ```
 
-The color of the rich icons can be changed by using the `variant` prop. The following [decorative colors](/tokens/semantic/color#decorative) are available as variants: `option1` to `option8`.
+The color of the rich icons can be changed by using the `variant` prop. The following [decorative semantic colors](/tokens/semantic/color#decorative) are available as variants: `option1` to `option8`.
 The following status colors are available as well: `success`, `warning`, `danger`, `information` and `upsell`.
 
 ```tsx
+<ActionListRichIcon /> // default variant
 <ActionListRichIcon variant="option3" />
+<ActionListRichIcon variant="information" />
 ```
 
-You can preview rich icons in your preferred size. Simply click on an icon to instantly copy its name!
-
-
-<Switcher type="react" iconType="richIcon" />
+<Switcher
+    type="react"
+    iconType="richIcon"
+    headLine="You can preview rich icons in your preferred size. Simply click on an icon to instantly copy its name!"
+/>

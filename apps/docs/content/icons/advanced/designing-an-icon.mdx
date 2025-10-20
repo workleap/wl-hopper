@@ -1,0 +1,37 @@
+---
+title: Designing an Icon
+description: Learn how to create consistent and high-quality icons by following these guidelines.
+---
+
+import { iconData } from '../overview/data.ts';
+
+To maintain visual consistency across the Workleap platform, icon creators should follow these guidelines when contributing to the Workleap icon library.
+**All designers are encouraged to create their own icons.** Use the design language and specifications outlined in this guide to ensure alignment across all Workleap products.
+
+## Before You Begin
+
+**1. Review Existing Icons:**
+Before proposing a new icon, explore the current icon set to determine if an existing design fits your needs. Avoid duplicating concepts and ensure your proposal adds unique value.
+
+**2. Understand the Design Language:**
+The Workleap icon library follows a specific and consistent design language. Adhering to this language is crucial for maintaining a shared understanding across all verticals and ensuring new additions feel cohesive within Workleap's visual system.
+
+## Anatomy of an Icon
+
+Icons in the Workleap library have several defined characteristics. Understanding these attributes is essential for creating high-quality contributions.
+
+### Definitions
+
+- Frame Size - The dimensions of the artboard in which the icon is designed.
+- Stroke Alignment - The stroke's position relative to the shape. Use **center** alignment unless the shape is closed; in that case, use **inside**.
+- Corner Radius - Follow the standard radius values from the design specification table. Deviations are allowed only to improve legibility.
+- Terminal - The end style of a stroke, which can be round, square, or flat.
+- Inner spacing - The space between a shape and its stroke.
+- Fill - The shape's color. Icons using a fill are also known as solid icons. Any shapes on a filled icon should follow the stroke guidelines.
+- Keylines - Lines that define an icon's shape and stroke alignment. In Figma, toggle them using `⌘G`(Mac) or `Ctrl+G`(PC).
+
+### Values
+
+Use the following specifications when designing your icon:
+
+<IconSpecTable data={iconData} />

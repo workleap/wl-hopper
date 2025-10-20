@@ -1,11 +1,12 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName.ts";
+import { getSupportedPropsByTokenCategory, type TokenCategory } from "@/app/lib/styleProps.ts";
 import fs from "fs/promises";
 import path from "path";
 
 // Type definitions based on tokens.json structure
 interface TokenItem {
     name: string;
-    value: string;
+    value: unknown;
 }
 
 interface TokenSubsection {
@@ -17,19 +18,24 @@ interface TokensData {
 }
 
 interface ProcessedTokenValue {
-    rawValue: string;
+    cssValue: string;
     propValue: string;
 }
 
 interface ProcessedTokens {
-    [tokenName: string]: string | ProcessedTokenValue;
+    [tokenName: string]: ProcessedTokenValue;
+}
+
+interface SubsectionWithMetadata {
+    tokens: ProcessedTokens;
+    supportedProps?: string[];
 }
 
 interface ProcessedSubsection {
-    [subsectionName: string]: ProcessedTokens;
+    [subsectionName: string]: SubsectionWithMetadata;
 }
 
-interface ProcessedTokensData {
+interface ProcessedRootData {
     [sectionName: string]: ProcessedSubsection;
 }
 
@@ -40,7 +46,7 @@ interface StructureInfo {
 
 interface FileSpec {
     fileName: string;
-    data: ProcessedTokens | ProcessedSubsection | ProcessedTokensData;
+    data: ProcessedRootData;
 }
 
 type TokenType = "core" | "semantic" | null;
@@ -73,17 +79,16 @@ function isTokenArray(node: unknown[]): node is TokenItem[] {
 
 function processTokenArray(
     node: TokenItem[],
-    tokenType: TokenType,
-    fullMap?: boolean
+    tokenType: TokenType
 ): ProcessedTokens {
     const result: ProcessedTokens = {};
 
     for (const item of node) {
         if (isTokenItem(item) && item.name) {
-            result[item.name] = fullMap ? {
+            result[item.name] = {
                 propValue: formatStyledSystemName(item.name, tokenType),
-                rawValue: item.value
-            } : formatStyledSystemName(item.name, tokenType);
+                cssValue: String(item.value)
+            };
         }
     }
 
@@ -92,23 +97,43 @@ function processTokenArray(
 
 function processNode(
     node: unknown,
-    currentPath: string[] = [],
-    fullMap?: boolean
-): ProcessedTokens | ProcessedSubsection | ProcessedTokensData | unknown[] | unknown {
+    currentPath: string[] = []
+): ProcessedTokens | ProcessedSubsection | ProcessedRootData | unknown[] | unknown {
     if (Array.isArray(node)) {
         if (isTokenArray(node)) {
             const tokenType = findTokenTypeInPath(currentPath);
+            const tokens = processTokenArray(node, tokenType);
 
-            return processTokenArray(node, tokenType, fullMap);
+            // If we're at a subsection level (e.g., ["semantic", "color"]), wrap tokens and add supportedProps
+            if (currentPath.length === 2) {
+                const [sectionKey, subsectionKey] = currentPath;
+                const tokenCategory = `${sectionKey}-${subsectionKey}` as TokenCategory;
+                const supportedProps = getSupportedPropsByTokenCategory(tokenCategory);
+
+                return {
+                    tokens,
+                    ...(supportedProps.length > 0 ? { supportedProps } : {})
+                } as SubsectionWithMetadata;
+            }
+
+            return tokens;
         } else {
             // Regular array, process each element recursively
-            return node.map((item, index) => processNode(item, [...currentPath, index.toString()], fullMap));
+            return node.map((item, index) => processNode(item, [...currentPath, index.toString()]));
         }
     } else if (node && typeof node === "object") {
         // Process object properties recursively
         const result: Record<string, unknown> = {};
         for (const [key, value] of Object.entries(node)) {
-            result[key] = processNode(value, [...currentPath, key], fullMap);
+            const processedValue = processNode(value, [...currentPath, key]);
+            // Skip empty arrays and empty objects
+            if (Array.isArray(processedValue) && processedValue.length === 0) {
+                continue;
+            }
+            if (processedValue && typeof processedValue === "object" && !Array.isArray(processedValue) && Object.keys(processedValue).length === 0) {
+                continue;
+            }
+            result[key] = processedValue;
         }
 
         return result;
@@ -143,24 +168,22 @@ function extractSection(data: TokensData, sectionKey: string): TokenSubsection {
     return data[sectionKey] || {};
 }
 
-function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: string): TokenSubsection {
+function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: string): TokenItem[] {
     const section = data[sectionKey];
     if (section && typeof section === "object") {
-        // Return the subsection with its key wrapper
-        return { [subsectionKey]: section[subsectionKey] || [] };
+        // Return the subsection token array directly
+        return section[subsectionKey] || [];
     }
 
-    return {};
+    return [];
 }
 
 export async function generateTokensMaps({
     outputPath,
-    sourceFile,
-    fullMap
+    sourceFile
 }: {
     outputPath: string;
     sourceFile: string;
-    fullMap?: boolean;
 }) {
     try {
         // Read the source JSON file
@@ -174,7 +197,7 @@ export async function generateTokensMaps({
         const filesToGenerate: FileSpec[] = [];
 
         // 1. Generate all.json (complete transformed data)
-        const allData = processNode(sourceData, [], fullMap) as ProcessedTokensData;
+        const allData = processNode(sourceData, []) as ProcessedRootData;
         filesToGenerate.push({
             fileName: "all.json",
             data: allData
@@ -183,20 +206,22 @@ export async function generateTokensMaps({
         // 2. Generate section files (e.g., core.json, semantic.json)
         for (const sectionKey of sections) {
             const sectionData = extractSection(sourceData, sectionKey);
-            const transformedSectionData = processNode(sectionData, [sectionKey], fullMap) as ProcessedSubsection;
+            const transformedSectionData = processNode(sectionData, [sectionKey]) as ProcessedSubsection;
+
             filesToGenerate.push({
                 fileName: `${sectionKey}.json`,
-                data: transformedSectionData
+                data: { [sectionKey]: transformedSectionData }
             });
 
             // 3. Generate subsection files (e.g., core-color.json, semantic-shadow.json)
-            const sectionSubsections = subsections.get(sectionKey) || [];
-            for (const subsectionKey of sectionSubsections) {
+            const allSubsections = subsections.get(sectionKey) || [];
+            for (const subsectionKey of allSubsections) {
                 const subsectionData = extractSubsection(sourceData, sectionKey, subsectionKey);
-                const transformedSubsectionData = processNode(subsectionData, [sectionKey, subsectionKey], fullMap) as ProcessedSubsection;
+                const transformedSubsectionData = processNode(subsectionData, [sectionKey, subsectionKey]) as SubsectionWithMetadata;
+
                 filesToGenerate.push({
                     fileName: `${sectionKey}-${subsectionKey}.json`,
-                    data: transformedSubsectionData
+                    data: { [sectionKey]: { [subsectionKey]: transformedSubsectionData } }
                 });
             }
         }

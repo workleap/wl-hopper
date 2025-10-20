@@ -1,7 +1,7 @@
 import { HopperProvider, Stack, Tab, TabList, Tabs } from "@hopper-ui/components";
 import { createMemoryRouter, RouterProvider, useLocation, useNavigate } from "react-router-dom";
 
-export default function App() {
+export default function Exemple() {
     const router = createMemoryRouter([
         {
             path: "/deleted",

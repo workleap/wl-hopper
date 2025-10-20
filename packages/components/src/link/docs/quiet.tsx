@@ -1,9 +1,9 @@
-import { Link } from "@hopper-ui/components";
+import { Link, Paragraph } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <p>
+        <Paragraph>
             Would you like to <Link isQuiet href="#">learn more</Link> about this role?
-        </p>
+        </Paragraph>
     );
 }

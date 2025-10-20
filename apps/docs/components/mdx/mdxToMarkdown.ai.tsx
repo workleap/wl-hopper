@@ -3,6 +3,7 @@ import { iconData } from "@/content/icons/overview/data";
 import tokensDark from "@/datas/tokens-dark.json";
 import tokens from "@/datas/tokens.json";
 import { compileMDX } from "next-mdx-remote/rsc";
+import type { ComponentType, ReactElement } from "react";
 import { renderToPipeableStream } from "react-dom/server";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
@@ -12,7 +13,7 @@ import remarkStringify from "remark-stringify";
 import { Writable } from "stream";
 import { unified } from "unified";
 
-async function renderToStringAsync(element: React.ReactElement): Promise<string> {
+async function renderToStringAsync(element: ReactElement): Promise<string> {
     // NOTE! React 19 is required for this function to work properly.
 
     return new Promise((resolve, reject) => {
@@ -37,7 +38,7 @@ async function renderToStringAsync(element: React.ReactElement): Promise<string>
     });
 }
 
-export async function mdxToReact(mdxSource: string): Promise<React.ReactElement> {
+export async function mdxToReact(mdxSource: string, customComponents: Record<string, ComponentType> = {}): Promise<ReactElement> {
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
@@ -49,15 +50,15 @@ export async function mdxToReact(mdxSource: string): Promise<React.ReactElement>
             parseFrontmatter: false,
             mdxOptions: { remarkPlugins: [], rehypePlugins: [] }
         },
-        components: components
+        components: { ...components, ...customComponents }
     });
 
     return compiled.content;
 }
 
 
-export async function mdxToMarkdown(mdxSource: string): Promise<string> {
-    const compiled = await mdxToReact(mdxSource);
+export async function mdxToMarkdown(mdxSource: string, customComponents: Record<string, ComponentType>): Promise<string> {
+    const compiled = await mdxToReact(mdxSource, customComponents);
     const html = await renderToStringAsync(compiled);
 
     return String(await htmlToMarkdown(html));

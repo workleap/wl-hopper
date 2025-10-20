@@ -25,6 +25,52 @@ Stack items can be aligned on the vertical axis.
 
 <Example src="layout/docs/stack/alignY" />
 
+## Best Practices
+
+Stack is a specialized layout component for arranging items vertically with consistent spacing. It's a preset of `Flex` with `direction="column"`, designed for common vertical layouts like form fields, card content, and list items.
+
+Stack should:
+
+- Be used for simple vertical layouts where items are stacked with consistent spacing.
+- Use [Hopper space tokens](/tokens/semantic/space) for the `gap` property to ensure consistency.
+- Be the default choice for vertical layouts unless you need custom alignment or other flex properties.
+- Keep layouts simple and semantic without unnecessary wrapper elements.
+
+### Do's and Don'ts
+
+<DosAndDonts
+    items={[
+        {
+            do: {
+                explanation: "Use Stack for simple vertical layouts with consistent spacing",
+                example: <CodeOnlyExample src="layout/docs/stack/dos-and-donts/simple-do" />
+            },
+            dont: {
+                explanation: "Use Flex with direction='column' when Stack is sufficient",
+                example: <CodeOnlyExample src="layout/docs/stack/dos-and-donts/simple-dont" />
+            }
+        },
+        {
+            isForAiOnly: true,
+            do: {
+                explanation: "Use `alignY` to adjust vertical alignment of items",
+            },
+            dont: {
+                explanation: "Use `alignItems` which is not supported by `Stack`",
+            }
+        },
+        {
+            isForAiOnly: true,
+            do: {
+                explanation: "Use `alignX` to adjust horizontal alignment of items",
+            },
+            dont: {
+                explanation: "Use `justifyContent` which is not supported by `Stack`",
+            }
+        }
+    ]}
+/>
+
 ## Props
 
 <PropTable component="Stack" />

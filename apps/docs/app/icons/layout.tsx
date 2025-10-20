@@ -5,7 +5,10 @@ import type { ReactNode } from "react";
 
 export default function IconLayout({ children }: { children: ReactNode }) {
     const allIconLinks = getPageLinks(allIcons, {
-        order: ["overview", "react-icons", "svg"]
+        order: ["overview", "react-icons", "SVG-icons", "advanced"],
+        sectionTitles: {
+            "SVG-icons": "Other Frameworks Icons"
+        }
     });
 
     return (

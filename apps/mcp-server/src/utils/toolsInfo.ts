@@ -1,61 +1,27 @@
 /* eslint-disable max-len */
 
-import { GuideFiles, type GuideSection, type TokenCategory, TokenGuideFiles, TokenMapFiles } from "./docs";
-
-const CategoryDescriptions: { [key in TokenCategory]: string } = {
-    "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
-    "semantic-elevation": "Box shadows for creating depth and hierarchy in interfaces",
-    "semantic-shape": "Border radius values for rounded corners and circular elements",
-    "semantic-space": "Spacing tokens for padding, margin, and layout gaps",
-    "semantic-typography": "Font styles, sizes, and weights for headings and body text",
-    "core-border-radius": "Fundamental border radius values from 0 to full circles",
-    "core-color": "Raw color palette values across all brand color scales",
-    "core-dimensions": "Base spacing units from 0 to 8rem for layouts",
-    "core-font-family": "Typography font stacks for primary, secondary, and monospace",
-    "core-font-size": "Font size scale from 0.75rem to 3rem",
-    "core-font-weight": "Font weight values from 400 to 690",
-    "core-line-height": "Line height ratios for consistent vertical rhythm",
-    "core-motion": "Animation durations and easing functions for transitions",
-    "core-shadow": "Box shadow values for elevation effects",
-    "all-semantic": "All semantic design tokens",
-    "all-core": "All core design tokens",
-    all: "All available design tokens. Note: This may result in a large payload; for better performance and readability, it is recommended to use specific categories when possible"
-} as const;
-
-const GuideDescriptions: { [key in GuideSection]: string } = {
-    installation: "How to install and set up the Hopper Design System",
-    "components-list": "Get a list of all components in the Hopper Design System.",
-    styles: "How to use CSS properties and design tokens in Hopper Design System. Read this guide to understand how",
-    layout: "Building application layouts using Flex or Grid",
-    "escape-hatches": "It lists the ONLY available UNSAFE_* props in JSON format.",
-    "color-schemes": "Applying light mode, dark mode, or adapt to operating system's dark mode",
-    "react-icons": "All available react icons with each icon description and usage examples",
-    "svg-icons": "All available SVG icons with each icon description and usage examples",
-    "controlled-mode": "Using controlled and uncontrolled modes to customize components",
-    forms: "Best practices for building forms in Hopper Design System",
-    slots: "How Hopper components include predefined layouts that you can insert elements into via slots. Slots are named areas in a component that receive children and provide style and layout for them",
-    internationalization: "Adapting components to respect languages and cultures"
-} as const;
+import { GuideFiles, type GuideSection, TokenGuideFiles, TokenMapFiles } from "./docs";
+import { GuideDescriptions, TokenCategoryDescriptions } from "./descriptions";
 
 export function generateDesignTokensDescription(): string {
-    let description = "Get design system tokens and their component props value by category.\n Available tokens categories:\n";
+    let description = "Available token categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+    for (const [category, categoryDescription] of Object.entries(TokenCategoryDescriptions)) {
         const fileInfo = TokenGuideFiles[category as keyof typeof TokenGuideFiles];
         const tokenCount = fileInfo?.estimatedTokens || 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${category}: ${categoryDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
 }
 
 export function generateTokenMapsDescription(): string {
-    let description = "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> color=\"text-weak\"\n\nAvailable token categories:\n";
+    let description = "Available token categories:\n";
 
-    for (const [category, categoryDescription] of Object.entries(CategoryDescriptions)) {
+    for (const [category, categoryDescription] of Object.entries(TokenCategoryDescriptions)) {
         const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
-        const totalTokens = mapFiles ? mapFiles["brief"].reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
-        description += `        - ${category}: ${categoryDescription} (tokens: ${totalTokens})\n`;
+        const totalTokens = mapFiles ? mapFiles.reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
+        description += `        - ${category}: ${categoryDescription} (size: ${totalTokens} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -66,7 +32,7 @@ export function generateGuidesDescription(): string {
 
     for (const [guide, guideDescription] of Object.entries(GuideDescriptions)) {
         const tokenCount = GuideFiles[guide as GuideSection]?.estimatedTokens || 0;
-        description += `        - ${guide}: ${guideDescription} (tokens: ${tokenCount})\n`;
+        description += `        - ${guide}: ${guideDescription} (size: ${tokenCount} LLM tokens)\n`;
     }
 
     return description.trim();
@@ -78,50 +44,69 @@ export const paginationParamsInfo = {
 };
 
 export const toolsInfo = {
-    get_started: {
-        name: "get_started",
-        title: "Get Started",
-        description: "Start with this tool. This service help you building app or part of it using Hopper Design System. Always start with calling this tool."
-    },
-
-    get_component_usage: {
-        name: "get_component_usage",
-        title: "Get component usage documentation",
-        description: "Includes component's anatomy, structure, examples, dos and don'ts, and best practices.\n**IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**"
-    },
-    get_component_props: {
-        name: "get_component_props",
-        title: "Get component props as JSON",
-        description: "Get properties, attributes, methods, events for a specific component.\n- This service returns a JSON API content.\n- Call this service after you have read the component usage",
+    get_component_doc: {
+        name: "get_component_doc",
+        title: "Get component documentation",
+        description: "Get component documentation including usage, anatomy, structure, props, and best practices.\n**IT IS VERY IMPORTANT TO READ COMPONENT DOCUMENTATION BEFORE USING IT TO AVOID STRUCTURE MISTAKES.**",
         parameters: {
-            include_full_props: "Whether to include full props data or only important fields. **DEFAULT: false**"
+            doc_type: `Type of documentation to retrieve:
+                - 'usage': Component anatomy, structure, examples, dos and don'ts, and best practices
+                - 'props': Brief component props/API as JSON (important fields only)
+                - 'props-full': Full component props/API as JSON (all fields)`
         }
     },
 
     get_guide: {
         name: "get_guide",
         title: "Get guide or best practices",
-        description: generateGuidesDescription()
+        description: generateGuidesDescription(),
+        parameters: {
+            category:  generateDesignTokensDescription()
+        }
     },
     get_design_tokens: {
         name: "get_design_tokens",
-        title: "Get design system tokens",
-        description: generateDesignTokensDescription()
-    },
-    get_design_tokens_map: {
-        name: "get_design_tokens_map",
-        title: "Get design system tokens map to component props as JSON",
-        description: generateTokenMapsDescription()
+        title: "Search design system tokens and get their map to component props as JSON",
+        description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> information-weak",
+        parameters: {
+            category: generateTokenMapsDescription(),
+            search_token_names: {
+                name: "search_token_names",
+                description: "Filter tokens by their Hopper token names (case-insensitive, partial match). Pass actual token names like 'hop-neutral-text', NOT CSS values like '#3c3c3c'. Examples: ['hop-neutral-text', 'hop-primary-surface', 'hop-space-stack-md']"
+            },
+            search_css_values: {
+                name: "search_css_values",
+                description: "Filter tokens by their CSS values (fuzzy match). Pass actual CSS values, NOT Hopper token names. Examples: ['#3c3c3c', '16px', '2rem', '400', 'Arial', '500ms']"
+            },
+            search_supported_props: {
+                name: "search_supported_props",
+                description: "Filter token categories that support specific component style props. Only returns token categories that can be used with the specified properties. Examples: ['backgroundColor', 'color', 'borderColor', 'padding', 'margin']"
+            },
+            include_css_values: {
+                name: "include_css_values",
+                description: "Whether to include token css values in the response. **DEFAULT: false**"
+            }
+        }
     },
 
-    validate_component_structure: {
-        name: "validate_component_structure",
-        title: "Validate Component Structure",
-        description: "Validates if the component implementation follows the structure and best practices."
+    validate_hopper_code: {
+        name: "validate_hopper_code",
+        title: "Validate & lint Hopper Code",
+        description: "Validates Hopper component implementation including design tokens, prop values, UNSAFE_ usage, component structure, and layout patterns. Returns errors and warnings. Use after implementing or changing Hopper components."
     },
     migrate_from_orbiter_to_hopper: {
         name: "migrate_from_orbiter_to_hopper",
         title: "Migrate a file or all files in the folder from Orbiter to Hopper",
         description: "It migrates a file or all files in the folder from Orbiter to Hopper."
+    },
+    get_icons: {
+        name: "get_icons",
+        title: "Search for Hopper icons",
+        description: "Search for Hopper icons with multiple queries. Each query can contain multiple keywords separated by space (treated as AND). Returns a map of query to results. When all queries are missed, returns all icons under the type key.",
+        parameters: {
+            queries: "Optional. Array of search queries (e.g., ['add', 'new product']). Each query can have multiple keywords separated by space. Empty/whitespace-only queries are ignored.",
+            type: "Filter by icon type (default: 'all')",
+            limit: "Optional. Max results to return per query. If omitted, returns all matching results. **Recommended:** Use limit=5 when providing queries to get focused results."
+        }
     }
 } as const;

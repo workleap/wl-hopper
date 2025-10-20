@@ -1,9 +1,10 @@
+import type { ReactNode } from "react";
 import type {
     LinkProps as RACLinkProps
 } from "react-aria-components";
 
 export interface LinkProps extends RACLinkProps {
-    children: React.ReactNode;
+    children: ReactNode;
 }
 
 const Link = ({ href, children }: LinkProps) => {
