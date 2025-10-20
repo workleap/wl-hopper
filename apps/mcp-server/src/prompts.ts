@@ -135,7 +135,7 @@ You MUST NOT proceed to implementation until you:
 - [ ] Verify **ALL Product Icons/Logos/Images/Avatars** are preserved from the Figma design.
 - [ ] **CRITICAL** Verify Core_* tokens are NOT used when Semantic tokens are available.
 - [ ] Call '#${toolsInfo.validate_hopper_code.name}' tool after every major changes, not just at the end.
-- [ ] Use ${figma_get_screenshot} for the last time to compare your result with the original Figma frame. IT MUST be a pixel perfect. Otherwise review your work.
+- [ ] Run detailed visual comparison: Check with "Chrome Dev Tools MCP server"'s "take_snapshot" tool that the generated code snapshot exactly matches the original Figma screenshot. IT MUST be pixel- and color-perfect. Identify the differences and plan how to fix them.
 - [ ] The code must pass TypeScript compilation with zero errors before considering it complete. Run type checking frequently during development.
 - [ ] **SUPER CRITICAL**: The '#${toolsInfo.validate_hopper_code.name}' tool MUST return ZERO ERRORS before considering this task DONE. If there are ANY ERRORS, you MUST fix them ALL and re-validate until there are ZERO ERRORS.
 

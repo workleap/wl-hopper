@@ -8,7 +8,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "components/full": {
             build: {
                 source: "content/components",
-                excludedPaths: ["concepts"],
+                excludedPaths: ["concepts", "utilities"],
                 flatten: true,
                 markdown: {
                     includeFrontMatterLinks: true
@@ -21,7 +21,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "components/usage": {
             build: {
                 source: "content/components",
-                excludedPaths: ["concepts"],
+                excludedPaths: ["concepts", "utilities"],
                 flatten: true,
                 markdown: {
                     includeFrontMatterLinks: false,
@@ -78,6 +78,26 @@ export const aiDocsConfig: AiDocsConfig = {
                 template: "/ai-pipeline/templates/components-concepts.mdx",
                 merge: [
                     "/components/concepts/*.md",
+                ]
+            },
+        },
+
+        // components' utilities
+        "components/utilities": {
+            build: {
+                source: "content/components/utilities",
+                flatten: true
+            },
+            serve: {
+                at: "/components"
+            }
+        },
+
+        "components/utilities/index.md": {
+            build: {
+                template: "/ai-pipeline/templates/components-utilities.mdx",
+                merge: [
+                    "/components/utilities/*.md",
                 ]
             },
         },
@@ -332,6 +352,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "tokens/index.md",
                     "components/index.md",
                     "components/concepts/index.md",
+                    "components/utilities/index.md",
                     "icons/full/index.md"
                 ]
             },
