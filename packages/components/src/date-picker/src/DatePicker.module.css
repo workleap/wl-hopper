@@ -31,7 +31,9 @@
     --hop-DatePicker__Button-md-block-size: 2.375rem; /** calc(2.5rem - 0.125rem) account for border */
     --hop-DatePicker__Button-border-inline-start: 0.0625rem solid var(--hop-neutral-border);
     --hop-DatePicker__Button-border-left-radius: 0;
+    --hop-DatePicker__Button-flex-shrink: 0;
 
+    flex-shrink: var(--hop-DatePicker__Button-flex-shrink);
     border-inline-start: var(--hop-DatePicker__Button-border-inline-start);
     border-start-start-radius: var(--hop-DatePicker__Button-border-left-radius);
     border-end-start-radius: var(--hop-DatePicker__Button-border-left-radius);
