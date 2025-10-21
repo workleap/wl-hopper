@@ -15,7 +15,7 @@ export default function Example() {
                     end: today(getLocalTimeZone()).add({ weeks: 1, days: 3 })
                 }}
             />
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="secondary">
                 Submit
             </Button>
         </Form>

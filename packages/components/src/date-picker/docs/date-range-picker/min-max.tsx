@@ -12,7 +12,7 @@ export default function Example() {
                     end: parseDate("2022-05-03")
                 }}
             />
-            <Button type="submit" variant="primary">
+            <Button type="submit" variant="secondary">
                 Submit
             </Button>
         </Form>
