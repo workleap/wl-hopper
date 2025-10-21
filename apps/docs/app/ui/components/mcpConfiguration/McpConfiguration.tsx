@@ -1,11 +1,11 @@
 import Tabs from "@/app/ui/components/tabs/Tabs";
 import { HighlightCode, highlightCode } from "@/components/highlightCode";
 import Callout from "../callout/Callout";
-import { assistantIcons, assistants } from "./assistants";
+import { assistantIcons, assistants, assistantTitles } from "./assistants";
 
 const assistantTabs = assistants.map(assistant => ({
     id: assistant,
-    title: assistant === "claude-code" ? "Claude Code" : assistant === "vscode" ? "VS Code" : "Other Assistants",
+    title: assistantTitles[assistant],
     titleIcon: assistantIcons[assistant]
 }));
 

@@ -1,9 +1,9 @@
 import Tabs from "@/app/ui/components/tabs/Tabs";
-import { assistantIcons, assistants } from "./assistants";
+import { assistantIcons, assistants, assistantTitles } from "./assistants";
 
 const assistantTabs = assistants.map(assistant => ({
     id: assistant,
-    title: assistant === "claude-code" ? "Claude Code" : "VS Code",
+    title: assistantTitles[assistant],
     titleIcon: assistantIcons[assistant]
 
 }));
