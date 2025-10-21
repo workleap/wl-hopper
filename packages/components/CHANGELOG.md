@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.2
+
+### Patch Changes
+
+- 033f8fa: Added the DateRangePicker component.
+
 ## 1.15.1
 
 ### Patch Changes
