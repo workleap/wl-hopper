@@ -5,7 +5,6 @@ import InlineCode from "@/components/code/InlineCode.tsx";
 import Link from "@/components/link/Link.tsx";
 
 import AI from "@/app/ui/components/ai/AI";
-import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable";
 import Callout from "@/app/ui/components/callout/Callout";
 import Card from "@/app/ui/components/card/Card";
 import CardLink from "@/app/ui/components/cardLink/cardLink.tsx";
