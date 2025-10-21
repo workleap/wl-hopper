@@ -99,6 +99,7 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
         inputGroupProps,
         isFluid: isFluidProp,
         maxVisibleMonths = 1,
+        isFixedWeeks = true,
         createCalendar,
         ...otherProps
     } = ownProps;
@@ -174,6 +175,7 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
                         <ErrorMessage className={styles["hop-DateRangePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
                         <PopoverBase className={styles["hop-DateRangePicker__Popover"]}>
                             <RangeCalendar
+                                isFixedWeeks={isFixedWeeks}
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}
                             />
