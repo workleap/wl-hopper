@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, type PropsWithChildren } from "react";
 import clsx from "clsx";
+import { useState, type PropsWithChildren } from "react";
 
 import { Button } from "react-aria-components";
 
@@ -36,7 +36,7 @@ const CopyButton = (
 
         const timer = setTimeout(() => {
             setIsCopied(false);
-        }, 5000);
+        }, 2000);
 
         return () => {
             clearTimeout(timer);

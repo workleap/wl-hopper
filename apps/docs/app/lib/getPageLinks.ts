@@ -6,9 +6,11 @@ interface Raw {
 export interface Data {
     _id: string;
     title: string;
+    menuTitle?: string;
     order?: number | undefined;
     status?: string | undefined;
     section?: string;
+    isNewUntil?: Date;
     _raw: Raw;
 }
 
@@ -18,6 +20,7 @@ export interface LinkItem {
     order?: number;
     status?: string;
     path: string;
+    isNew?: boolean;
 }
 
 export interface Section {
@@ -76,13 +79,13 @@ function getPageLinks<T extends Data>(items: T[], opt?: GetPageLinksOptions<T>) 
                 linkItems: []
             };
         }
-
         acc[sectionId].linkItems.push({
             id: item._id,
-            title: item.title,
+            title: item.menuTitle ?? item.title,
             order: item.order,
             status: item.status,
-            path: pathAccessor(item)
+            path: pathAccessor(item),
+            isNew: item.isNewUntil ? new Date(item.isNewUntil) >= new Date() : false
         });
 
         return acc;
