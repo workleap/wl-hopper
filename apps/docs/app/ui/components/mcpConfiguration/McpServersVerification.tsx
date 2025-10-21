@@ -21,9 +21,9 @@ const McpServersVerification = () => {
     const vscodeContent = (
         <ul>
             <li>Open the Command Palette (<code className="hd-code">⌘ + Shift + P</code> on Mac, <code className="hd-code">Ctrl + Shift + P</code> on Windows/Linux)</li>
-            <li>Search for "MCP: List Servers"</li>
-            <li>Verify all servers show a green "Running" status</li>
-            <li>Click "Start" on any server that isn't running</li>
+            <li>Search for &quot;MCP: List Servers&quot;</li>
+            <li>Verify all servers show a green &quot;Running&quot; status</li>
+            <li>Click &quot;Start&quot; on any server that isn&apos;t running</li>
         </ul>
     );
 

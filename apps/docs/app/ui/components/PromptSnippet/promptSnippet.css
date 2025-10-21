@@ -6,7 +6,7 @@
     padding-block: var(--hd-space-05);
     padding-inline: var(--hd-space-1);
     background-color: var(--hd-color-accent-surface);
-    white-space: no-wrap;
+    white-space: nowrap;
 }
 
 .hd-prompt-snippet__wrapper {

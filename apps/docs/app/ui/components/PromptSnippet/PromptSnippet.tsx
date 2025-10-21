@@ -18,4 +18,4 @@ export default function PromptSnippet({ children }: PromptSnippetProps) {
             <CopyButton text={String(children)} variant="ghost" className="hd-prompt-snippet__copy" />
         </span>
     );
-};
+}

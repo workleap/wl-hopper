@@ -83,12 +83,12 @@ const McpConfiguration = async () => {
 
     return (
         <>
-        <Tabs tabs={assistantTabs} ariaLabel="MCP Configuration">
-            {tabsContent}
-        </Tabs>
-        <Callout variant="information">
-            <span><strong>Chrome DevTools MCP</strong> (optional but recommended): Enables visual comparison between your generated code and the original Figma design for better results.</span>
-        </Callout>
+            <Tabs tabs={assistantTabs} ariaLabel="MCP Configuration">
+                {tabsContent}
+            </Tabs>
+            <Callout variant="information">
+                <span><strong>Chrome DevTools MCP</strong> (optional but recommended): Enables visual comparison between your generated code and the original Figma design for better results.</span>
+            </Callout>
         </>
     );
 };

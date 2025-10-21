@@ -14,7 +14,7 @@ const FigmaAuthentication = () => {
                 <li>Type <code className="hd-code">/mcp</code> in Claude terminal to manage your MCP Servers and select figma</li>
                 <li>Select Authenticate</li>
                 <li>Click Allow Access when prompted in your browser</li>
-                <li>You should see: "Authentication successful. Connected to figma"</li>
+                <li>You should see: &quot;Authentication successful. Connected to figma&quot;</li>
             </ul>
         </>
     );
@@ -23,7 +23,7 @@ const FigmaAuthentication = () => {
         <>
             <ul>
                 <li>Open the Command Palette (<code className="hd-code">⌘ + Shift + P</code> on Mac, <code className="hd-code">Ctrl + Shift + P</code> on Windows/Linux)</li>
-                <li>Search for "MCP: List Servers"</li>
+                <li>Search for &quot;MCP: List Servers&quot;</li>
                 <li>Select the Figma server from the list</li>
                 <li>Click Start on the Figma server</li>
                 <li>Select Authenticate when prompted</li>
