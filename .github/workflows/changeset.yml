@@ -10,7 +10,7 @@ jobs:
     version:
         runs-on: ubuntu-latest
         permissions:
-            id-token: write # required for provenance https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions
+            id-token: write # OIDC for npm Trusted Publishing
             contents: write
             pull-requests: write
 
@@ -32,4 +32,3 @@ jobs:
                     publish: pnpm run ci-release
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                    NPM_TOKEN: ${{ secrets.WORKLEAP_NPM_TOKEN }}
