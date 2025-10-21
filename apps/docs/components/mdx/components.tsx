@@ -5,6 +5,7 @@ import InlineCode from "@/components/code/InlineCode.tsx";
 import Link from "@/components/link/Link.tsx";
 
 import AI from "@/app/ui/components/ai/AI";
+import BreakpointTable from "@/app/ui/components/breakpointTable/BreakpointTable";
 import Callout from "@/app/ui/components/callout/Callout";
 import Card from "@/app/ui/components/card/Card";
 import CardLink from "@/app/ui/components/cardLink/cardLink.tsx";
@@ -63,26 +64,27 @@ export const components = {
     Expand,
     Figure,
     FigmaAuthentication,
-    Footnote,
-    IconSpecTable: IconSpecTable,
-    IconTable: IconTable,
     Image: NextImage,
     McpConfiguration,
     McpServersVerification,
-    MotionPreview: MotionPreview,
-    Overview: Overview,
     pre: Pre,
-    PropsReferenceTable: PropsReferenceTable,
-    SimpleTable: SimpleTable,
-    Switcher: Switcher,
-    TableSection: TableSection,
-    Tabs: Tabs,
     Tag,
+    MotionPreview: MotionPreview,
+    BreakpointTable: BreakpointTable,
+    Footnote: Footnote,
     TokenTable: TokenTable,
+    PropsReferenceTable: PropsReferenceTable,
     TypographyTable: TypographyTable,
     TypographyVariantTable: TypographyVariantTable,
+    IconTable: IconTable,
+    IconSpecTable: IconSpecTable,
+    Overview: Overview,
+    SimpleTable: SimpleTable,
+    Tabs: Tabs,
     ComposedComponents: ComposedComponents,
+    TableSection: TableSection,
     Link: Link,
+    Switcher: Switcher,
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },

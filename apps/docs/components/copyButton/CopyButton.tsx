@@ -2,7 +2,6 @@
 
 import clsx from "clsx";
 import { useState, type PropsWithChildren } from "react";
-
 import { Button } from "react-aria-components";
 
 import "./copyButton.css";
@@ -36,7 +35,7 @@ const CopyButton = (
 
         const timer = setTimeout(() => {
             setIsCopied(false);
-        }, 2000);
+        }, 5000);
 
         return () => {
             clearTimeout(timer);
