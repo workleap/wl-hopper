@@ -2,4 +2,4 @@
 "@hopper-ui/components": patch
 ---
 
-Added DateRangePicker
+Added the DateRangePicker component.
