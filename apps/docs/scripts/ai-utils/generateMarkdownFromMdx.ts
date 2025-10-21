@@ -77,6 +77,10 @@ async function findFiles(dir: string, deep: boolean, extensions: string[], exclu
                 const subdirFiles = await findFiles(fullPath, deep, extensions, excludes);
                 files.push(...subdirFiles);
             } else if (entry.isFile() && extensions.some(ext => entry.name.endsWith(ext))) {
+                const shouldExclude = excludes?.some(exclude => fullPath.endsWith(exclude));
+                if (shouldExclude) {
+                    continue;
+                }
                 files.push(fullPath);
             }
         }
