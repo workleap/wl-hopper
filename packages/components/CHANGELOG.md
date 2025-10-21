@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.3
+
+### Patch Changes
+
+- 5074540: Bump to test new release flow
+
 ## 1.15.2
 
 ### Patch Changes
