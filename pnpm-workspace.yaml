@@ -6,6 +6,3 @@ packages:
 minimumReleaseAge: 1440
 minimumReleaseAgeExclude:
   - "@workleap*"
-strictPeerDependencies: false
-publicHoistPattern:
-  - "*"
