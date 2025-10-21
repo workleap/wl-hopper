@@ -12,7 +12,7 @@ import {
 } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
-import { RangeCalendar, type CalendarProps, type RangeCalendarProps } from "../../calendar/index.ts";
+import { RangeCalendar, type RangeCalendarProps } from "../../calendar/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
@@ -73,7 +73,7 @@ export interface DateRangePickerProps extends
     /**
      * The props for the calendar.
      */
-    calendarProps?: CalendarProps;
+    calendarProps?: RangeCalendarProps;
 }
 
 const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivElement>) => {
@@ -101,6 +101,8 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
         maxVisibleMonths = 1,
         isFixedWeeks = true,
         createCalendar,
+        calendarProps,
+        popoverProps,
         ...otherProps
     } = ownProps;
 
@@ -173,11 +175,12 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
                         {inputMarkup}
                         {description && <HelperMessage className={styles["hop-DateRangePicker__HelperMessage"]}>{description}</HelperMessage>}
                         <ErrorMessage className={styles["hop-DateRangePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
-                        <PopoverBase className={styles["hop-DateRangePicker__Popover"]}>
+                        <PopoverBase {...popoverProps} className={clsx(styles["hop-DateRangePicker__Popover"], popoverProps?.className)}>
                             <RangeCalendar
                                 isFixedWeeks={isFixedWeeks}
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}
+                                {...calendarProps}
                             />
                         </PopoverBase>
                     </>
@@ -188,7 +191,7 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
 };
 
 /**
- * DateRangePickers combine two DateFields and a RangeCalendar popover to allow users to enter or select a date and time range.
+ * DateRangePickers combine two DateInputs and a RangeCalendar popover to allow users to enter or select a date and time range.
  *
  * [View Documentation](https://hopper.workleap.design/components/DateRangePicker)
  */
