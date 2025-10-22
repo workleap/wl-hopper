@@ -10,6 +10,12 @@ export const Page = defineDocumentType(() => ({
             type: "string",
             required: true
         },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
+        },
         description: {
             type: "string"
         }
@@ -30,6 +36,12 @@ export const Tokens = defineDocumentType(() => ({
         title: {
             type: "string",
             required: true
+        },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
         },
         description: {
             type: "string"
@@ -63,6 +75,12 @@ export const Guides = defineDocumentType(() => ({
             type: "string",
             required: true
         },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
+        },
         description: {
             type: "string"
         },
@@ -95,6 +113,12 @@ export const Icons = defineDocumentType(() => ({
         title: {
             type: "string",
             required: true
+        },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
         },
         description: {
             type: "string"
@@ -130,6 +154,12 @@ export const StyledSystem = defineDocumentType(() => ({
             type: "string",
             required: true
         },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
+        },
         description: {
             type: "string"
         },
@@ -162,6 +192,12 @@ export const GettingStarted = defineDocumentType(() => ({
         title: {
             type: "string",
             required: true
+        },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
         },
         description: {
             type: "string"
@@ -205,6 +241,12 @@ export const Components = defineDocumentType(() => ({
         title: {
             type: "string",
             required: true
+        },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
         },
         description: {
             type: "string"

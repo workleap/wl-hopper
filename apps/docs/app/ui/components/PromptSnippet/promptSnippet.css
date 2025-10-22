@@ -1,4 +1,4 @@
-.hd-code {
+.hd-prompt-snippet {
     font-family: var(--hd-mono-font-family);
     font-size: 0.8125rem;
     color: var(--hd-color-accent-text);
@@ -8,27 +8,26 @@
     background-color: var(--hd-color-accent-surface);
 }
 
-.hd-code__wrapper {
-    display: flex;
-    float: left;
+.hd-prompt-snippet__wrapper {
+    display: inline-flex;
 }
 
-.hd-code__copy {
+.hd-prompt-snippet__copy {
     opacity: 0;
     transform: translateX(-50%);
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
 }
 
-.hd-code__wrapper--interactive:hover {
+.hd-prompt-snippet__wrapper--interactive:hover {
     cursor: pointer;
 }
 
-.hd-code__wrapper--interactive:hover .hd-code__copy {
+.hd-prompt-snippet__wrapper--interactive:hover .hd-prompt-snippet__copy {
     opacity: 1;
     transform: translateX(var(--hd-space-1));
 }
 
-.hd-code--ghost {
+.hd-prompt-snippet--ghost {
     padding-block: 0;
     padding-inline: 0;
     background-color: transparent;

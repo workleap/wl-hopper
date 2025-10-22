@@ -1,0 +1,149 @@
+---
+title: Figma Code Generation with Hopper MCP Server
+menuTitle: Figma Code Generation
+description: Generate Hopper Design System code directly from Figma designs using the Hopper MCP Server
+order: 3
+isNewUntil: 2026-01-31
+---
+
+
+This guide demonstrates how to automatically generate Hopper Design System code from Figma designs using AI coding assistants. We'll cover setup, workflow, and troubleshooting tips to help you convert designs into production-ready code.
+
+## Overview
+
+The Hopper MCP Server integrates with [Figma's MCP server](https://developers.figma.com/docs/figma-mcp-server/) to automatically generate production-ready code from your Figma designs. Simply provide a Figma frame URL, and AI assistants will analyze the design and generate JSX code using the correct Hopper components, design tokens, and best practices. This turns hours of manual work into minutes!
+
+<Callout>
+    **To get best results** ensure your Figma design follows Hopper's [Figma Conventions Guide](/ai/figma-conventions.md) for accurate component, icon, and token mapping during code generation.
+</Callout>
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- **AI Coding Assistant** (choose one):
+   - [Claude Code](https://www.claude.com/product/claude-code) (Recommended): Provides the best results for Figma-to-Hopper conversion
+   - GitHub Copilot + Claude Sonnet 4.5: Install both [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot) and [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat) extensions in your Visual Studio Code. Make sure to select Claude Sonnet 4.5 as the AI model in the Copilot Chat settings.
+   - Other assistants: You can also use [Codex](https://openai.com/research/codex), [Cursor](https://cursor.so/), or any other MCP-compatible AI assistants.
+- **Figma access**: Access to the Figma file you want to convert
+- **MCP servers configured**: Both Hopper and Figma MCP servers set up (see [Setup](#setup))
+
+<Callout variant="information">
+    **Why Claude Code?** Our testing shows that Claude Code produces the most consistent and accurate Hopper code from Figma designs. GitHub Copilot with Claude Sonnet 4.5 works well for simpler scenarios but tends to be slower. Codex has significantly slower performance and produces inconsistent results.
+</Callout>
+
+## Setup
+
+### 1. Configure MCP Servers
+
+<McpConfiguration />
+
+### 2. Authenticate Figma MCP Server
+
+<FigmaAuthentication />
+
+### 3. Verify MCP Servers are Running
+
+<McpServersVerification />
+
+## Usage
+
+The Hopper MCP server includes a specialized prompt (i.e. `/generate_code_from_figma_design`) optimized for Figma-to-Hopper conversion. This workflow provides comprehensive guidance and validation to generate production-ready code.
+
+### Steps to Generate Code
+
+- **Get the Figma frame URL**
+   - Open your Figma file
+   - Select the frame you want to convert.
+   - Right-click → "Copy link to selection"
+   - Example: `https://www.figma.com/design/abc123/MyFile?node-id=123-456`
+
+    <Callout variant="warning">
+        **Frame size limitations:** Large or complex Figma frames may exceed your AI Assistant's context window size limits and cause the generation to fail. If this happens, break down your design into smaller frames and convert them separately.
+    </Callout>
+
+
+- **Prompt**
+    - In your AI assistant's chat, write down the following prompt, replacing the URL with your Figma frame link:
+    ```terminal
+    /generate_code_from_figma_design [URL]
+    ```
+    <Callout variant="information">
+        **Note for assistants without MCP prompt support:** If your AI assistant doesn't support MCP prompts (the `/generate_code_from_figma_design` command), you can copy the full prompt directly from the [Hopper MCP Server source code](https://github.com/workleap/wl-hopper/blob/main/apps/mcp-server/src/prompts.ts#L63-L149) and paste it into your assistant's chat, replacing the Figma URL placeholder with your actual design URL.
+    </Callout>
+
+The AI will now complete the automated workflow, which typically takes a few minutes.
+
+
+### Understanding the Generation Process
+
+The AI follows this workflow when you use the provided prompt:
+
+- Extract design information from Figma
+- Fetch Hopper guides (styles, layout, icons, Figma conventions)
+- Create mappings:
+   - Design tokens → component prop values
+   - CSS values → token names
+   - Figma layers → Hopper components/icons
+- Generate initial code
+- Validate with Hopper's validation tool
+- Refine until all validation errors are resolved
+- Compare visually with original Figma design
+
+This ensures the generated code is close to production-ready and follows all Hopper best practices.
+
+
+### Follow-up Prompts
+
+You may find these additional prompts useful after code generation.
+
+- <PromptSnippet>Use "Chrome Dev Tools MCP server"'s "take_snapshot" tool to compare the generated code screenshot with the original Figma design, identify all visual differences, and fix them</PromptSnippet>
+- <PromptSnippet>Run the Hopper validation tool on the generated code to ensure all errors are resolved</PromptSnippet>
+- <PromptSnippet>Review the Figma layer names and ensure right components are used</PromptSnippet>
+- <PromptSnippet>Validate that all images and icons are properly imported</PromptSnippet>
+
+
+### Troubleshooting
+
+#### The AI Stops or Gets Stuck
+
+If the generation process stops before completion, use these prompts to get it back on track:
+
+- <PromptSnippet>Continue the work</PromptSnippet>
+- <PromptSnippet>Finish the undone tasks</PromptSnippet>
+- <PromptSnippet>Address all the remaining errors and make sure to have all QA tasks are done</PromptSnippet>
+
+#### Build and Runtime Errors
+
+If you encounter build or runtime errors, try these prompts:
+
+- <PromptSnippet>Run TypeScript type checking on the generated code and ensure there are no type errors</PromptSnippet>
+- <PromptSnippet>Use "Chrome Dev Tools MCP server" to check the browser console for any runtime errors and fix them</PromptSnippet>
+
+
+### Best Practices
+
+- **Start with small frames**: Test the workflow with simple designs before tackling complex layouts
+- **Review mappings**: When the AI shows token/component mappings, verify they look correct before proceeding
+- **Check early, check often**: Don't wait until the end to validate - the AI should validate after each major change
+- **Keep designs organized**: Use clear, descriptive layer names in Figma for better component mapping
+- **Validate manually**: Even with automatic validation, review the generated code for logic and best practices
+
+## Limitations
+
+While Figma-to-Hopper code generation is powerful, be aware of these limitations:
+
+- **Complex interactions**: Advanced animations or interactions may need manual implementation
+- **Custom logic**: Business logic and data fetching must be added manually
+- **Edge cases**: Unusual design patterns may require custom code
+- **Design quality**: Output quality depends on how well the Figma design follows design system guidelines
+
+## Next Steps
+
+After generating your code:
+
+- **Review the implementation**: Check that it matches your requirements
+- **Add business logic**: Implement data fetching, event handlers, and state management
+- **Test thoroughly**: Verify functionality, accessibility, and responsiveness
+- **Integrate**: Add the component to your application
+- **Iterate**: Refine based on user feedback and testing

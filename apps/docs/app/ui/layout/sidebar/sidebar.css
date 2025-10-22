@@ -138,3 +138,15 @@
 .hd-sidebar-list__details[open] .hd-sidebar-trigger__icon {
     rotate: 0deg;
 }
+
+.hd-sidebar__new {
+    background: var(--hd-accent-900);
+    color: var(--hd-white);
+    font-size: 0.7rem;
+    padding: 0 0.3rem;
+    border-radius: var(--hd-border-radius-sm);
+    margin-left: var(--hd-space-05);
+    white-space: nowrap;
+    height: fit-content;
+    align-self: center;
+}

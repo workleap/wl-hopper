@@ -19,6 +19,9 @@ import Expand from "@/app/ui/components/expand/Expand";
 import Figure from "@/app/ui/components/figure/Figure";
 import Footnote from "@/app/ui/components/footnote/Footnote";
 import NextImage from "@/app/ui/components/image/Image";
+import FigmaAuthentication from "@/app/ui/components/mcpConfiguration/FigmaAuthentication";
+import McpConfiguration from "@/app/ui/components/mcpConfiguration/McpConfiguration";
+import McpServersVerification from "@/app/ui/components/mcpConfiguration/McpServersVerification";
 import type { MigrateGuideProps } from "@/app/ui/components/migrateGuide/MigrateGuide.tsx";
 import MotionPreview from "@/app/ui/components/motionPreview/MotionPreview";
 import Overview from "@/app/ui/components/overview/Overview.tsx";
@@ -26,6 +29,7 @@ import PackageInstallation, {
     type PackageInstallationProps
 } from "@/app/ui/components/packageInstallation/PackageInstallation";
 import Pre from "@/app/ui/components/pre/Pre";
+import PromptSnippet from "@/app/ui/components/PromptSnippet/PromptSnippet";
 import PropsReferenceTable from "@/app/ui/components/propsReferenceTable/PropsReferenceTable";
 import type { PropTableProps } from "@/app/ui/components/propTable/PropTable.tsx";
 import SimpleTable from "@/app/ui/components/simpleTable/SimpleTable";
@@ -39,6 +43,7 @@ import TokenTable from "@/app/ui/tokens/table/TokenTable.tsx";
 import TypographyTable from "@/app/ui/tokens/table/TypographyTable.tsx";
 import TypographyVariantTable from "@/app/ui/tokens/table/TypographyVariantTable.tsx";
 import TableSection from "@/app/ui/tokens/tableSection/TableSection.tsx";
+
 
 const MigrateGuide = dynamic(() => import("@/app/ui/components/migrateGuide/MigrateGuide.tsx"));
 const PropTable = dynamic(() => import("@/app/ui/components/propTable/PropTable.tsx"));
@@ -58,7 +63,10 @@ export const components = {
     DosAndDonts,
     Expand,
     Figure,
+    FigmaAuthentication,
     Image: NextImage,
+    McpConfiguration,
+    McpServersVerification,
     pre: Pre,
     Tag,
     MotionPreview: MotionPreview,
@@ -80,6 +88,7 @@ export const components = {
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },
+    PromptSnippet: PromptSnippet,
     Example: (props: ComponentExampleProps) => {
         const { src, type = "both" } = props;
 

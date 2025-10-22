@@ -81,7 +81,10 @@ const Sidebar = ({ links }: SidebarProps) => {
                                             <Link href={linkPath}
                                                 className="hd-sidebar__link"
                                                 onClick={handleLinkClick}
-                                            >{item.title}</Link>
+                                            >
+                                                {item.title}
+                                                {item.isNew && <span className="hd-sidebar__new">New</span>}
+                                            </Link>
                                         </li>
                                     );
                                 })}

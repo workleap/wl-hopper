@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, type PropsWithChildren } from "react";
 import clsx from "clsx";
-
+import { useState, type PropsWithChildren } from "react";
 import { Button } from "react-aria-components";
 
 import "./copyButton.css";
