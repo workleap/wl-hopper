@@ -23,7 +23,7 @@ export default {
             "label": "Apps and Samples should pin dependencies and devDependencies."
         },
         {
-            "packages": ["workspace-root"],
+            "packages": ["wl-hopper"],
             "dependencyTypes": ["dev"],
             "range": "",
             "label": "Workspace root should pin devDependencies."
