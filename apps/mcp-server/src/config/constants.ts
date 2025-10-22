@@ -57,6 +57,6 @@ export const GuideDescriptions: { [key in GuideSection]: string } = {
     tokens: "Get design system tokens, their component props value, and their raw values by category. You must provide the category parameter.",
     "tooling-cli": "Analyze component usage across Hopper and Orbiter codebases, and automate migrations (Orbiter→Hopper, OV→Hopper) using 'pnpx \"@workleap/migrations\"@latest'. Generate usage reports, migration plans, and automated code transformations.",
     "utility-hooks": "Commonly used React hooks and utility functions for building components.",
-    "changelog": "Changelog for all Hopper packages"
+    changelog: "Changelog for all Hopper packages"
 } as const;
 
