@@ -46,7 +46,7 @@
         "@swc/jest": "0.2.39",
         "@types/eslint": "8.56.12",
         "@types/jest": "29.5.14",
-        "@types/node": "22.10.1",
+        "@types/node": "24.5.1",
         "@workleap/eslint-plugin": "3.5.0",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",

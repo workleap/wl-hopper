@@ -1,7 +1,7 @@
 import { useLocalizedStringFormatter, type LocalizedStringFormatter, type LocalizedStrings } from "react-aria";
 
-import resourcesEnUS from "../intl/en-US.json";
-import resourcesFrCa from "../intl/fr-CA.json";
+import resourcesEnUS from "../intl/en-US.json" with { type: "json" };
+import resourcesFrCa from "../intl/fr-CA.json" with { type: "json" };
 
 const Resources = {
     "en-US": resourcesEnUS,

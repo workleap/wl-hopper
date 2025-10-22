@@ -16,7 +16,7 @@ const allIconsContent = IconSizes.flatMap(size => {
             return {
                 name: file.name,
                 size,
-                content: readFileSync(path.resolve(file.path, file.name), "utf8")
+                content: readFileSync(path.resolve(file.parentPath, file.name), "utf8")
             };
         });
 });

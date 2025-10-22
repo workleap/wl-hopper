@@ -16,7 +16,7 @@ export function optimizeIcon(srcDir: string, outputDir: string, fileNameConverte
     const svgFiles = files.filter(file => file.isFile() && file.name.endsWith(".svg"));
 
     const iconFiles = svgFiles.map(file => {
-        const srcPath = path.resolve(file.path, file.name);
+        const srcPath = path.resolve(file.parentPath, file.name);
         const dstPath = path.resolve(outputDir, fileNameConverter ? fileNameConverter(srcPath) : file.name);
 
         return {

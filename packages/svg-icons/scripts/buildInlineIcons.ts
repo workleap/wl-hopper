@@ -37,7 +37,7 @@ fs.rmSync(IconsInlineDistDirectory, { recursive: true, force: true });
 fs.mkdirSync(IconsInlineDistDirectory, { recursive: true });
 
 const inlinedSvgs = svgFiles.map(file => {
-    const contents = fs.readFileSync(path.resolve(file.path, file.name), "utf8");
+    const contents = fs.readFileSync(path.resolve(file.parentPath, file.name), "utf8");
     const { name, group, size } = fileNameConverter(file.name);
     const fileName = `${name}.js`;
     const location = path.resolve(IconsInlineDistDirectory, fileName);
