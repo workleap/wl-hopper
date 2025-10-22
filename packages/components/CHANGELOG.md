@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.4
+
+### Patch Changes
+
+- 48988fb: Bump and standardize dependencies
+
 ## 1.15.3
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @hopper-ui/svg-icons
 
+## 2.19.3
+
+### Patch Changes
+
+- 48988fb: Bump and standardize dependencies
+
 ## 2.19.2
 
 ### Patch Changes

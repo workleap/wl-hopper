@@ -1,5 +1,11 @@
 # @hopper-ui/icons
 
+## 2.10.4
+
+### Patch Changes
+
+- 48988fb: Bump and standardize dependencies
+
 ## 2.10.3
 
 ### Patch Changes

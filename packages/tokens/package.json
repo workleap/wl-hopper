@@ -1,7 +1,7 @@
 {
     "name": "@hopper-ui/tokens",
     "author": "Workleap",
-    "version": "4.4.6",
+    "version": "4.4.7",
     "description": "The tokens package.",
     "license": "Apache-2.0",
     "repository": {

@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 4.4.7
+
+### Patch Changes
+
+- 48988fb: Bump and standardize dependencies
+
 ## 4.4.6
 
 ### Patch Changes
