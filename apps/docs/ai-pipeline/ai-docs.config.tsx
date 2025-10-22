@@ -357,6 +357,20 @@ export const aiDocsConfig: AiDocsConfig = {
                     "icons/full/index.md"
                 ]
             },
+        },
+
+        //change logs
+        "changelogs.md": {
+            build: {
+                template: "/ai-pipeline/templates/changelog.mdx",
+                merge: [
+                    "../../../../packages/components/CHANGELOG.md",
+                    "../../../../packages/styled-system/CHANGELOG.md",
+                    "../../../../packages/tokens/CHANGELOG.md",
+                    "../../../../packages/icons/CHANGELOG.md",
+                    "../../../../packages/svg-icons/CHANGELOG.md",
+                ]
+            },
         }
 
     }

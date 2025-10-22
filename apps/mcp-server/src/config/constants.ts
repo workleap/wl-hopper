@@ -1,7 +1,8 @@
 export const GuideSections = [
     "installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout",
     "controlled-mode", "forms", "slots", "utility-hooks",
-    "escape-hatches", "figma-conventions", "tooling-cli", "internationalization"
+    "escape-hatches", "figma-conventions", "tooling-cli", "internationalization",
+    "changelog"
 ] as const;
 
 export const TokenCategories = [
@@ -55,6 +56,7 @@ export const GuideDescriptions: { [key in GuideSection]: string } = {
     "figma-conventions": "Figma → Hopper Translation Guide",
     tokens: "Get design system tokens, their component props value, and their raw values by category. You must provide the category parameter.",
     "tooling-cli": "Analyze component usage across Hopper and Orbiter codebases, and automate migrations (Orbiter→Hopper, OV→Hopper) using 'pnpx \"@workleap/migrations\"@latest'. Generate usage reports, migration plans, and automated code transformations.",
-    "utility-hooks": "Commonly used React hooks and utility functions for building components."
+    "utility-hooks": "Commonly used React hooks and utility functions for building components.",
+    changelog: "Changelog for all Hopper packages"
 } as const;
 

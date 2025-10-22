@@ -49,7 +49,7 @@ const vscodeConfig = `\`\`\`json title=".vscode/mcp.json"
 \`\`\``;
 
 const formatConfig = async (assistant: typeof assistants[number]) => {
-        return await highlightCode(assistant === "claude-code"? claudeCodeConfig : vscodeConfig);
+    return await highlightCode(assistant === "claude-code" ? claudeCodeConfig : vscodeConfig);
 };
 
 const McpConfiguration = async () => {

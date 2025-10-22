@@ -22,6 +22,7 @@ export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index 
     "figma-conventions": files.ai.figmaConventions,
     tokens: files.tokens.overview.introduction,
     "utility-hooks": files.components.utilities.index,
+    changelog: files.changelogs,
     "tooling-cli": {
         url: "https://raw.githubusercontent.com/workleap/wl-design-systems-migrations/refs/heads/main/README.md"
     }
