@@ -48,16 +48,8 @@ const vscodeConfig = `\`\`\`json title=".vscode/mcp.json"
 }
 \`\`\``;
 
-const otherAssistantsContent = "For other MCP-compatible AI assistants (Cursor, Codex, etc.), use a configuration similar to the VS Code setup. Refer to your assistant's documentation for the specific configuration format.";
-
 const formatConfig = async (assistant: typeof assistants[number]) => {
-    if (assistant === "claude-code") {
-        return await highlightCode(claudeCodeConfig);
-    } else if (assistant === "vscode") {
-        return await highlightCode(vscodeConfig);
-    } else {
-        return otherAssistantsContent;
-    }
+        return await highlightCode(assistant === "claude-code"? claudeCodeConfig : vscodeConfig);
 };
 
 const McpConfiguration = async () => {
