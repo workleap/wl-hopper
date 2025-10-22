@@ -46,12 +46,8 @@
     color: var(--hop-DateInput-placeholder-color-disabled);
 }
 
-.hop-DateSegment[data-placeholder] + .hop-DateSegment[data-readonly] {
+.hop-DateSegment[data-placeholder] {
     color: var(--hop-DateInput-placeholder-color);
-}
-
-.hop-DateInput--disabled .hop-DateSegment[data-placeholder] + .hop-DateSegment[data-readonly] {
-    color: var(--hop-DateInput-placeholder-color-disabled);
 }
 
 .hop-DateSegment:not([data-type="literal"]) {
