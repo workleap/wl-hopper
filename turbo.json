@@ -27,6 +27,7 @@
         },
         "test": {
             "outputs": ["node_modules/.cache/jest"]
-        }
+        },
+        "//#syncpack": {}
     }
 }
