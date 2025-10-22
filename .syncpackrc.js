@@ -5,13 +5,13 @@ export default {
     "lintFormatting": false,
     "semverGroups": [
         {
-            "packages": ["@hopper-ui/*", "eslint-plugin-hopper-monorepo", "@sample-widgets/*", "!@hopper-ui/mcp-server"],
+            "packages": ["@hopper-ui/*", "eslint-plugin-hopper-monorepo", "!@hopper-ui/mcp-server"],
             "dependencyTypes": ["prod", "peer"],
             "range": "^",
             "label": "Packages should use ^ for dependencies and peerDependencies."
         },
         {
-            "packages": ["@hopper-ui/*", "eslint-plugin-hopper-monorepo", "@sample-widgets/*", "!@hopper-ui/mcp-server"],
+            "packages": ["@hopper-ui/*", "eslint-plugin-hopper-monorepo", "!@hopper-ui/mcp-server"],
             "dependencyTypes": ["dev"],
             "range": "",
             "label": "Packages should pin devDependencies."
