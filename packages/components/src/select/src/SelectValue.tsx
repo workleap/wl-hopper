@@ -1,13 +1,14 @@
 import { IconContext } from "@hopper-ui/icons";
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import { filterDOMProps } from "@react-aria/utils";
-import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent, useContext, useRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent, useContext, useMemo, useRef } from "react";
 import {
     composeRenderProps,
     DEFAULT_SLOT,
     SelectContext as RACSelectContext,
     SelectValueContext as RACSelectValueContext,
     type SelectValueProps as RACSelectValueProps,
+    type SelectState,
     SelectStateContext,
     useContextProps, useSlottedContext
 } from "react-aria-components";
@@ -49,9 +50,9 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const textRef = useRef<HTMLSpanElement>(null);
     const refForOverflowCheck = textRef.current ? textRef : ref;
     const isOverflow = useIsOverflow(refForOverflowCheck);
-    const state = useContext(SelectStateContext);
+    const state = useContext(SelectStateContext)! as SelectState<T, "single" | "multiple">;
     const { placeholder } = useSlottedContext(RACSelectContext)!;
-    const selectedItem = state?.selectedKey != null
+    const selectedItem = state.selectedKey != null
         ? state.collection.getItem(state.selectedKey)
         : null;
 
@@ -81,9 +82,11 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
         defaultChildren: textValue || placeholder || stringFormatter.format("Select.placeholder"),
         style,
         values: {
-            selectedItem: state?.selectedItem?.value as T ?? null,
-            selectedText: textValue ?? null,
-            isPlaceholder: !selectedItem
+            selectedItem: state.selectedItems[0]?.value as T ?? null,
+            selectedItems: useMemo(() => state?.selectedItems.map(item => item.value as T ?? null), [state?.selectedItems]),
+            selectedText: textValue ?? "",
+            isPlaceholder: !selectedItem,
+            state
         }
     });
 
