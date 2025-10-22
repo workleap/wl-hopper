@@ -1,11 +1,12 @@
-import { useMemo, type CSSProperties, type ReactNode } from "react";
+import { useMemo, type CSSProperties, type PropsWithChildren, type ReactNode } from "react";
 
-import type { RenderPropsHookOptions } from "./types.ts";
+import type { RenderPropsHookOptions, StyleProps } from "./types.ts";
+
 
 /**
 * Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
 */
-export function useRenderProps<T>(props: RenderPropsHookOptions<T>) {
+export function useRenderProps<T>(props: RenderPropsHookOptions<T>): PropsWithChildren<StyleProps> {
     const {
         className,
         style,
