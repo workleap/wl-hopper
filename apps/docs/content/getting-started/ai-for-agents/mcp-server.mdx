@@ -56,6 +56,8 @@ You can use it for code generation, migration, or any questions you have about t
 - "Use Hopper MCP migration tool to migrate only layout components imported from the Orbiter within the src folder"
 - "How could I use Hopper CLI tool to analyze Hopper usage in this folder?"
 
+- "Check with Hopper MCP and identify all the new changes I missed out"
+
 ## Tools
 
 The Hopper MCP server exposes the following tools to AI agents:
@@ -69,6 +71,9 @@ The Hopper MCP server exposes the following tools to AI agents:
 - **`get_guide`**: Access comprehensive guides, best practices, and design tokens for the Hopper Design System.
   - For regular guides: `get_guide("styles")`, `get_guide("layout")`, etc.
   - For design tokens: `get_guide("tokens", category="semantic-color")`
+  - For installation guides: `get_guide("installation")`
+  - For utility hooks: `get_guide("utility-hooks")`
+  - For changelogs: `get_guide("changelog")`
 
 ### Search Tools
 - **`get_design_tokens`**: Search for design tokens by category, name, CSS value, or supported Props.
