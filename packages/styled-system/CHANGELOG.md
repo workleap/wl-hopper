@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 2.5.13
+
+### Patch Changes
+
+- 48988fb: Bump and standardize dependencies
+
 ## 2.5.12
 
 ### Patch Changes
