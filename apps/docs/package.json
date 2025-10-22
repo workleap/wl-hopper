@@ -10,7 +10,7 @@
         "start": "next start",
         "dev": "next dev",
         "build": "next build",
-        "copy:ai-docs-to-public": "rm -rf public/ai-docs && mkdir -p public/ai-docs && cp -r dist/ai-docs public",
+        "copy:ai-docs-to-public": "rm -rf public/ai-docs && mkdir -p public/ai-docs && shx cp -r dist/ai-docs public",
         "build:ai-docs": "tsx --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts && pnpm copy:ai-docs-to-public",
         "eslint": "next lint",
         "generate": "pnpm run \"/^generate:.*/\"",
@@ -44,6 +44,7 @@
         "@hopper-ui/tokens": "workspace:*",
         "@svgr/webpack": "8.1.0",
         "@types/eslint": "8.56.12",
+        "@types/mdast": "4.0.4",
         "@types/node": "24.5.1",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
@@ -55,6 +56,7 @@
         "eslint-config-next": "15.5.4",
         "glob": "11.0.3",
         "logrocket": "10.1.0",
+        "mdast": "3.0.0",
         "mdast-util-mdx": "3.0.0",
         "mdx-bundler": "10.1.1",
         "react-docgen-typescript": "2.2.2",
@@ -66,8 +68,11 @@
         "remark-parse": "11.0.0",
         "remark-stringify": "11.0.0",
         "shiki": "3.13.0",
+        "shx": "0.4.0",
         "tsconfig-paths-webpack-plugin": "4.2.0",
-        "typescript": "5.5.4"
+        "typescript": "5.5.4",
+        "vfile": "6.0.3",
+        "vfile-matter": "5.0.1"
     },
     "browser": {
         "fs": false
