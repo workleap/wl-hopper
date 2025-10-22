@@ -6,3 +6,4 @@ pnpm-lock.yaml
 !/.storybook
 !/**/.storybook
 .turbo
+storybook-static
