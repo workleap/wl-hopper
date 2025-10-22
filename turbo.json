@@ -8,7 +8,7 @@
             "cache": false
         },
         "lint": {
-            "dependsOn": ["eslint", "typecheck", "stylelint"]
+            "dependsOn": ["eslint", "typecheck", "stylelint", "syncpack"]
         },
         "//#eslint": {
             "outputs": ["node_modules/.cache/eslint"]
