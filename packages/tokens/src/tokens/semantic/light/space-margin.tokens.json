@@ -1,0 +1,48 @@
+{
+    "space": {
+        "stack": {
+            "xs": {
+                "$type": "sizeMargin",
+                "$value": "{space.40}"
+            },
+            "sm": {
+                "$type": "sizeMargin",
+                "$value": "{space.80}"
+            },
+            "md": {
+                "$type": "sizeMargin",
+                "$value": "{space.160}"
+            },
+            "lg": {
+                "$type": "sizeMargin",
+                "$value": "{space.240}"
+            },
+            "xl": {
+                "$type": "sizeMargin",
+                "$value": "{space.320}"
+            }
+        },
+        "inline": {
+            "xs": {
+                "$type": "sizeMargin",
+                "$value": "{space.40}"
+            },
+            "sm": {
+                "$type": "sizeMargin",
+                "$value": "{space.80}"
+            },
+            "md": {
+                "$type": "sizeMargin",
+                "$value": "{space.160}"
+            },
+            "lg": {
+                "$type": "sizeMargin",
+                "$value": "{space.240}"
+            },
+            "xl": {
+                "$type": "sizeMargin",
+                "$value": "{space.320}"
+            }
+        }
+    }
+}

@@ -17,7 +17,7 @@ export type StyleGroup =
 export const TokenCategories = [
     "semantic-color", "semantic-shadow", "semantic-fontFamily",
     "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight", "semantic-topOffset", "semantic-bottomOffset",
-    "semantic-borderRadius", "semantic-size",
+    "semantic-borderRadius", "semantic-sizePadding", "semantic-sizeMargin",
     "core-color", "core-shadow", "core-fontFamily", "core-fontSize",
     "core-fontWeight", "core-lineHeight", "core-borderRadius", "core-size", "core-duration", "core-timingFunction"
 ] as const;
@@ -48,12 +48,12 @@ export const TokenScales = {
     "spacing-padding-scale": {
         title: "Spacing > Padding",
         link: "/tokens/semantic/space#tokens-padding",
-        tokenCategories: ["semantic-size", "core-size"]
+        tokenCategories: ["semantic-sizePadding", "core-size"]
     },
     "spacing-margin-scale": {
         title: "Spacing > Margin",
         link: "/tokens/semantic/space#tokens-margin",
-        tokenCategories: ["semantic-size", "core-size"]
+        tokenCategories: ["semantic-sizeMargin", "core-size"]
     },
     "typography-fontFamily-scale": {
         title: "Typography",

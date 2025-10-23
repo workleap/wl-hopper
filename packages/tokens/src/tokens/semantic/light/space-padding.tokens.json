@@ -1,0 +1,55 @@
+
+{
+    "space": {
+        "inset": {
+            "xs": {
+                "$type": "sizePadding",
+                "$value": "{space.40}"
+            },
+            "sm": {
+                "$type": "sizePadding",
+                "$value": "{space.80}"
+            },
+            "md": {
+                "$type": "sizePadding",
+                "$value": "{space.160}"
+            },
+            "lg": {
+                "$type": "sizePadding",
+                "$value": "{space.240}"
+            },
+            "xl": {
+                "$type": "sizePadding",
+                "$value": "{space.320}"
+            }
+        },
+        "inset-squish": {
+            "sm": {
+                "$type": "sizePadding",
+                "$value": "{space.40} {space.80}"
+            },
+            "md": {
+                "$type": "sizePadding",
+                "$value": "{space.80} {space.160}"
+            },
+            "lg": {
+                "$type": "sizePadding",
+                "$value": "{space.160} {space.320}"
+            }
+        },
+        "inset-stretch": {
+            "sm": {
+                "$type": "sizePadding",
+                "$value": "{space.160} {space.80}"
+            },
+            "md": {
+                "$type": "sizePadding",
+                "$value": "{space.240} {space.160}"
+            },
+            "lg": {
+                "$type": "sizePadding",
+                "$value": "{space.480} {space.240}"
+            }
+        }
+    }
+}

@@ -37,18 +37,15 @@ export async function getDesignTokens(
     include_css_values: boolean
 ) {
     const mapFiles = TokenMapFiles[category];
-    const normalizedTokenNames = filter_by_token_names.map(key =>
-        key.replace(/^-+/, "").replace("hop-", "")
-    );
 
-    return await Promise.all(mapFiles.map(async map => {
+    const result = await Promise.all(mapFiles.map(async map => {
         try {
             const tokensData = await loadTokenData(map.path, category);
-            const filteredTokensData = filterTokens(tokensData, normalizedTokenNames, filter_by_css_values, filter_by_supported_props);
+            const filteredTokensData = filterTokens(tokensData, filter_by_token_names, filter_by_css_values, filter_by_supported_props);
 
-            const result = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
+            const partialResult = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
 
-            return content(JSON.stringify(result, null, 2));
+            return isEmptyObject(partialResult) ? undefined : content(JSON.stringify(partialResult, null, 2));
         } catch (error) {
             if (error instanceof Error && error.message.includes("Tokens map not found")) {
                 return errorContent(error, error.message);
@@ -57,4 +54,10 @@ export async function getDesignTokens(
             return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
         }
     }));
+
+    return result.filter(item => item !== undefined);
+}
+
+function isEmptyObject(obj: object): boolean {
+    return Object.keys(obj).length === 0 && obj.constructor === Object;
 }

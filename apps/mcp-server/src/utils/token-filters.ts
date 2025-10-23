@@ -98,6 +98,10 @@ function filterByCssValues(root: TokenFileRootNode, cssValues: string[]): TokenF
 function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): TokenFileRootNode {
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
+    const sanitizedTokenNames = tokenNames.map(key =>
+        key.replace(/^-+/, "").replace("hop-", "")
+    );
+
     // Iterate through top-level keys (core/semantic)
     for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileRootNode, Record<string, TokenCategoryNode>][]) {
         const filteredCategories: Record<string, TokenCategoryNode> = {};
@@ -108,7 +112,7 @@ function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): Toke
 
             // Filter tokens at the leaf level
             for (const [tokenKey, tokenValue] of Object.entries(categoryNode.tokens)) {
-                const shouldInclude = tokenNames.some(filterKey =>
+                const shouldInclude = sanitizedTokenNames.some(filterKey =>
                     tokenKey.includes(filterKey)
                 );
 
@@ -141,18 +145,23 @@ export function filterTokens(
     cssValues: string[] = [],
     supportedProps: string[] = []
 ) {
+    //sanitize inputs
+    const sanitizedTokenNames = tokenNames.map(name => name.trim()).filter(name => name !== "");
+    const sanitizedCssValues = cssValues.map(value => value.trim()).filter(value => value !== "");
+    const sanitizedSupportedProps = supportedProps.map(prop => prop.trim()).filter(prop => prop !== "");
+
     let filteredTokensData = tokensData;
 
-    if (supportedProps.length > 0) {
-        filteredTokensData = filterBySupportedProps(filteredTokensData, supportedProps);
+    if (sanitizedSupportedProps.length > 0) {
+        filteredTokensData = filterBySupportedProps(filteredTokensData, sanitizedSupportedProps);
     }
 
-    if (tokenNames.length > 0) {
-        filteredTokensData = filterByTokenNames(filteredTokensData, tokenNames);
+    if (sanitizedTokenNames.length > 0) {
+        filteredTokensData = filterByTokenNames(filteredTokensData, sanitizedTokenNames);
     }
 
-    if (cssValues.length > 0) {
-        filteredTokensData = filterByCssValues(filteredTokensData, cssValues);
+    if (sanitizedCssValues.length > 0) {
+        filteredTokensData = filterByCssValues(filteredTokensData, sanitizedCssValues);
     }
 
     return filteredTokensData;
