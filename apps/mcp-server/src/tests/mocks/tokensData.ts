@@ -68,14 +68,23 @@ const SEMANTIC_TOKENS_FULL = {
         },
         supportedProps: ["backgroundColor", "color", "borderColor", "fill", "stroke"]
     },
-    size: {
+    paddingSize: {
         tokens: {
             "hop-space-inset-xs": {
                 propValue: "inset-xs",
                 cssValue: "0.5rem"
             }
         },
-        supportedProps: ["padding", "margin", "gap"]
+        supportedProps: ["padding"]
+    },
+    marginSize: {
+        tokens: {
+            "hop-space-stack-xs": {
+                propValue: "stack-xs",
+                cssValue: "0.5rem"
+            }
+        },
+        supportedProps: ["margin", "gap"]
     },
     shadow: {
         tokens: {
@@ -143,6 +152,18 @@ export const MOCK_TOKENS_SEMANTIC_SHADOW_BRIEF: TokenFileBriefRootNode = convert
 export const MOCK_TOKENS_SEMANTIC_COLOR_FULL = {
     semantic: {
         color: SEMANTIC_TOKENS_FULL.color
+    }
+} as const;
+
+export const MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL = {
+    semantic: {
+        paddingSize: SEMANTIC_TOKENS_FULL.paddingSize
+    }
+} as const;
+
+export const MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL = {
+    semantic: {
+        marginSize: SEMANTIC_TOKENS_FULL.marginSize
     }
 } as const;
 

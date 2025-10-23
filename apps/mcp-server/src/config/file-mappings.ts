@@ -62,7 +62,7 @@ export const TokenMapFiles: Record<TokenCategory, typeof files.gettingStarted.in
     "core-motion": [files.tokens.maps.coreDuration, files.tokens.maps.coreTimingFunction],
     "core-shadow": [files.tokens.maps.coreShadow],
     "semantic-shape": [files.tokens.maps.semanticBorderRadius],
-    "semantic-space": [files.tokens.maps.semanticSize],
+    "semantic-space": [files.tokens.maps.semanticPaddingSize, files.tokens.maps.semanticMarginSize],
     "semantic-typography": [
         files.tokens.maps.semanticFontFamily,
         files.tokens.maps.semanticFontSize,

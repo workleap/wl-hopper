@@ -1,0 +1,48 @@
+{
+    "space": {
+        "stack": {
+            "xs": {
+                "$type": "marginSize",
+                "$value": "{space.40}"
+            },
+            "sm": {
+                "$type": "marginSize",
+                "$value": "{space.80}"
+            },
+            "md": {
+                "$type": "marginSize",
+                "$value": "{space.160}"
+            },
+            "lg": {
+                "$type": "marginSize",
+                "$value": "{space.240}"
+            },
+            "xl": {
+                "$type": "marginSize",
+                "$value": "{space.320}"
+            }
+        },
+        "inline": {
+            "xs": {
+                "$type": "marginSize",
+                "$value": "{space.40}"
+            },
+            "sm": {
+                "$type": "marginSize",
+                "$value": "{space.80}"
+            },
+            "md": {
+                "$type": "marginSize",
+                "$value": "{space.160}"
+            },
+            "lg": {
+                "$type": "marginSize",
+                "$value": "{space.240}"
+            },
+            "xl": {
+                "$type": "marginSize",
+                "$value": "{space.320}"
+            }
+        }
+    }
+}

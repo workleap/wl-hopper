@@ -77,11 +77,16 @@ export function tools(server: McpServer) {
 
         const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
 
-        return toolContent(
-            ...result,
-            include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
-            content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
-        );
+
+        return result.length > 0 ?
+            toolContent(
+                ...result,
+                include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
+                content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
+            ) :
+            toolContent(
+                content("No design tokens found matching the provided criteria.")
+            );
     });
 
     server.registerTool(toolsInfo.get_guide.name, {
