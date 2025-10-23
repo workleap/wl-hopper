@@ -24,9 +24,6 @@
       ],
       "@hopper-ui/test-utils": [
         "../../tooling/test-utils/index.ts"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
       ]
     }
   },
