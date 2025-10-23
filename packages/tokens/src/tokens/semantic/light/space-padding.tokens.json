@@ -3,51 +3,51 @@
     "space": {
         "inset": {
             "xs": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.40}"
             },
             "sm": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.80}"
             },
             "md": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.160}"
             },
             "lg": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.240}"
             },
             "xl": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.320}"
             }
         },
         "inset-squish": {
             "sm": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.40} {space.80}"
             },
             "md": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.80} {space.160}"
             },
             "lg": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.160} {space.320}"
             }
         },
         "inset-stretch": {
             "sm": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.160} {space.80}"
             },
             "md": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.240} {space.160}"
             },
             "lg": {
-                "$type": "sizePadding",
+                "$type": "paddingSize",
                 "$value": "{space.480} {space.240}"
             }
         }

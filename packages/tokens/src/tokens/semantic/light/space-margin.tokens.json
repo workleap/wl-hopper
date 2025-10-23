@@ -2,45 +2,45 @@
     "space": {
         "stack": {
             "xs": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.40}"
             },
             "sm": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.80}"
             },
             "md": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.160}"
             },
             "lg": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.240}"
             },
             "xl": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.320}"
             }
         },
         "inline": {
             "xs": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.40}"
             },
             "sm": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.80}"
             },
             "md": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.160}"
             },
             "lg": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.240}"
             },
             "xl": {
-                "$type": "sizeMargin",
+                "$type": "marginSize",
                 "$value": "{space.320}"
             }
         }

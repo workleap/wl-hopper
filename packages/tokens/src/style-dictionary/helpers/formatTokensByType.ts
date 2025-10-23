@@ -9,5 +9,5 @@ export function formatTokensByType(types: string[], tokens: TransformedToken[]) 
         });
 
         return formatTokens(data, type);
-    }).filter(([, tokens]) => tokens.length > 0);
+    }).filter(([, typeTokens]) => typeTokens.length > 0);
 }

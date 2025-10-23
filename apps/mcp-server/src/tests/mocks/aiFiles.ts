@@ -2196,13 +2196,13 @@ const files = {
         "size": 650,
         "estimatedTokens": 186
       },
-      "semanticSizeMargin": {
-        "path": "/tokens/maps/semantic-sizeMargin.json",
+      "semanticMarginSize": {
+        "path": "/tokens/maps/semantic-marginSize.json",
         "size": 1402,
         "estimatedTokens": 401
       },
-      "semanticSizePadding": {
-        "path": "/tokens/maps/semantic-sizePadding.json",
+      "semanticpaddingSize": {
+        "path": "/tokens/maps/semantic-paddingSize.json",
         "size": 1579,
         "estimatedTokens": 452
       },

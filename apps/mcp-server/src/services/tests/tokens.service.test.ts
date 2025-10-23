@@ -13,8 +13,8 @@ const MOCK_FILE_MAP = {
     "/tokens/maps/all.json": MOCK_TOKENS_FULL,
     "/tokens/maps/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
     "/tokens/maps/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/semantic-sizePadding.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/semantic-sizeMargin.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    "/tokens/maps/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
     "/tokens/maps/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
 } as const;
 
@@ -139,7 +139,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should include inset token
-            expect(content.semantic.sizePadding.tokens).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
             // Should not include other categories
             expect(content.semantic).not.toHaveProperty("color");
         });
@@ -250,7 +250,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text as string);
 
             // Should match tokens containing "space-inset"
-            expect(content.semantic.sizePadding.tokens).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
         });
 
         it("should handle filter key that matches parent category", async () => {
@@ -358,7 +358,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
             const content = JSON.parse(result[0].text as string);
-            expect(content.semantic.sizePadding).toBeDefined();
+            expect(content.semantic.paddingSize).toBeDefined();
         });
     });
 
