@@ -2191,20 +2191,20 @@ const files = {
         "size": 4223,
         "estimatedTokens": 1207
       },
-      "semanticShadow": {
-        "path": "/tokens/maps/semantic-shadow.json",
-        "size": 650,
-        "estimatedTokens": 186
-      },
       "semanticMarginSize": {
         "path": "/tokens/maps/semantic-marginSize.json",
         "size": 1402,
         "estimatedTokens": 401
       },
-      "semanticpaddingSize": {
+      "semanticPaddingSize": {
         "path": "/tokens/maps/semantic-paddingSize.json",
         "size": 1579,
         "estimatedTokens": 452
+      },
+      "semanticShadow": {
+        "path": "/tokens/maps/semantic-shadow.json",
+        "size": 650,
+        "estimatedTokens": 186
       },
       "semanticTopOffset": {
         "path": "/tokens/maps/semantic-topOffset.json",
