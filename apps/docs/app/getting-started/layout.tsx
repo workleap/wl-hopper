@@ -1,6 +1,6 @@
+import { allGettingStarteds } from "@/.contentlayer/generated";
 import getPageLinks from "@/app/lib/getPageLinks";
 import { SidebarLayout } from "@/app/ui/layout/sidebarLayout";
-import { allGettingStarteds } from "contentlayer/generated";
 import type { ReactNode } from "react";
 
 export default function GettingStartedLayout({ children }: { children: ReactNode }) {

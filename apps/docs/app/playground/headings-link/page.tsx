@@ -1,7 +1,7 @@
+import { allPages } from "@/.contentlayer/generated";
 import getSectionLinks from "@/app/lib/getSectionLinks";
 import Aside from "@/app/ui/layout/aside/Aside.tsx";
 import Mdx from "@/components/mdx/Mdx";
-import { allPages } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 export default function HeadingsLinkPage() {

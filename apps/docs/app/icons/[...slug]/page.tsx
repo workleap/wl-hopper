@@ -1,10 +1,10 @@
+import { allIcons } from "@/.contentlayer/generated";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getIconsSlugs } from "@/app/lib/getSlugs";
 import Title from "@/app/ui/components/title/Title";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
-import { allIcons } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 
 interface PageProps {

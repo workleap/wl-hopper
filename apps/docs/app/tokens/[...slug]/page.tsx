@@ -1,4 +1,4 @@
-import { allTokens } from "contentlayer/generated";
+import { allTokens } from "@/.contentlayer/generated";
 import { notFound } from "next/navigation";
 
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";

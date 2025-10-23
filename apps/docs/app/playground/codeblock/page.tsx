@@ -1,4 +1,4 @@
-import { allPages } from "contentlayer/generated";
+import { allPages } from "@/.contentlayer/generated";
 import Mdx from "@/components/mdx/Mdx";
 
 export default function CodeBlockPage() {
