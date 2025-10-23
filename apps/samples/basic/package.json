@@ -22,7 +22,7 @@
         "@swc/helpers": "0.5.17",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
-        "@typescript-eslint/parser": "8.45.0",
+        "@typescript-eslint/parser": "8.46.0",
         "@workleap/browserslist-config": "2.1.0",
         "@workleap/eslint-plugin": "3.5.0",
         "@workleap/swc-configs": "2.3.0",
