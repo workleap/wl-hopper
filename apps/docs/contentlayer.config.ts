@@ -1,4 +1,4 @@
-import { defineDocumentType, defineNestedType, makeSource } from "contentlayer/source-files";
+import { defineDocumentType, defineNestedType, makeSource } from "contentlayer2/source-files";
 import { rehypePluginOptions } from "./app/lib/rehypeConfig.ts";
 
 export const Page = defineDocumentType(() => ({

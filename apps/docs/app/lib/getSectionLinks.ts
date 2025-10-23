@@ -1,5 +1,5 @@
-import type { MDX } from "contentlayer/core";
 import formattingTitleId from "@/app/lib/formattingTitleId";
+import type { MDX } from "contentlayer2/core";
 
 type SectionLink = Pick<MDX, "raw">;
 
