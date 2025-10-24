@@ -39,6 +39,23 @@ const CORE_TOKENS_FULL: Record<string, TokenCategoryNode> = {
             }
         },
         supportedProps: ["fontWeight"]
+    },
+    size: {
+        tokens: {
+            "hop-space-160": {
+                propValue: "core_160",
+                cssValue: "1rem"
+            },
+            "hop-space-240": {
+                propValue: "core_240",
+                cssValue: "1.5rem"
+            },
+            "hop-space-320": {
+                propValue: "core_320",
+                cssValue: "2rem"
+            }
+        },
+        supportedProps: ["width"]
     }
 };
 

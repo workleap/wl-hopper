@@ -1589,5 +1589,217 @@ describe("validateHopperCode", () => {
             });
         });
     });
+
+    describe("Complex prop value validation", () => {
+        describe("Conditional expressions", () => {
+            it("should validate all branches of ternary expressions", async () => {
+                const code = "<Div padding={isCompact ? \"invalid_token_1\" : \"invalid_token_2\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Both values are invalid tokens - no specific validation error since they're not recognized tokens
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should validate nested ternary expressions", async () => {
+                const code = "<Div color={isSmall ? \"core_coastal-25\" : (isMedium ? \"danger-active\" : \"primary\")}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // All values are valid tokens - no errors expected
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should validate all percentage values in conditional UNSAFE props", async () => {
+                const code = "<Div UNSAFE_width={isMobile ? \"50%\" : \"100%\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                expect(result.isValid).toBe(false);
+                // Both percentage values should trigger errors
+                expect(result.errors.filter(e => e.message.includes("percentage")).length).toBe(2);
+            });
+
+            it("should not error if part of values are correct in conditional UNSAFE props", async () => {
+                const code = "<Div UNSAFE_width={isMobile ? \"123px\" : \"100%\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should not error if all values are correct in conditional UNSAFE props", async () => {
+                const code = "<Div UNSAFE_width={isMobile ? \"123px\" : \"97px\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should error only if all values are wrong in conditional UNSAFE props", async () => {
+                const code = "<Div UNSAFE_width={isMobile ? \"32px\" : \"100%\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(false);
+                expect(result.errors.length).toBe(2);
+                expect(result.errors.filter(e => e.message.includes("percentage")).length).toBe(1);
+                expect(result.errors.filter(e => e.message.includes("core_")).length).toBe(1);
+            });
+
+            it("should error combined values in conditional UNSAFE props", async () => {
+                const code = "<Div UNSAFE_width={isMobile ? \"16px\" : \"100%\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(false);
+                expect(result.errors.length).toBe(2);
+                expect(result.errors.filter(e => e.message.includes("percentage")).length).toBe(1);
+            });
+        });
+
+        describe("Responsive object expressions", () => {
+            it("should validate all values in responsive objects", async () => {
+                const code = "<Div padding={{ base: \"inset-xs\", md: \"inset-xs\", lg: \"inset-xs\" }}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // All values are valid tokens
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should validate nested conditionals in responsive objects", async () => {
+                const code = `<Div padding={{
+                    base: "inset-xs",
+                    md: isCompact ? "inset-xs" : "inset-xs",
+                    lg: "inset-xs"
+                }}>Content</Div>`;
+                const result = await validateHopperCode(code);
+                // All values are valid for padding prop
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should validate all values in responsive objects with conditionals", async () => {
+                const code = `<Div color={{
+                    base: "primary",
+                    md: isActive ? "danger-active" : "success",
+                    lg: "neutral"
+                }}>Content</Div>`;
+                const result = await validateHopperCode(code);
+                // All values are valid tokens
+                expect(result.isValid).toBe(true);
+            });
+        });
+
+        describe("Logical expressions", () => {
+            it("should validate OR expressions with fallback values", async () => {
+                const code = "<Div padding={userPadding || \"inset-xs\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Valid token
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should NOT validate AND expressions (conditional rendering)", async () => {
+                const code = "<Div padding={isActive && \"inset-xs\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should pass because AND expressions are not direct prop values
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should validate chained OR expressions", async () => {
+                const code = "<Div padding={userPadding || defaultPadding || \"inset-xs\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Valid token for padding prop
+                expect(result.isValid).toBe(true);
+            });
+        });
+
+        describe("Non-direct values (should NOT be validated)", () => {
+            it("should not validate string fragments in concatenation", async () => {
+                const code = "<Div UNSAFE_width={value + \"px\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(true);
+                // Should pass because "px" is not a direct prop value
+                expect(result.errors.filter(e => e.message.includes("px")).length).toBe(0);
+            });
+
+            it("should not validate template literal fragments", async () => {
+                //eslint-disable-next-line no-template-curly-in-string
+                const code = "<Div UNSAFE_height={`${height}px`}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should pass because template literal fragments are not validated
+                expect(result.errors.filter(e => e.message.includes("px")).length).toBe(0);
+            });
+
+            it("should validate static template literals", async () => {
+                const code = "<Div padding={`inset-xs`}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Valid token in static template literal
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should not validate binary expression operands", async () => {
+                const code = "<Div UNSAFE_margin={\"prefix-\" + suffix}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should pass because binary expression operands are not direct values
+                expect(result.errors.filter(e => e.message.includes("prefix-")).length).toBe(0);
+            });
+        });
+
+        describe("UNSAFE prop validation with complex values", () => {
+            it("should validate UNSAFE props with conditional values", async () => {
+                const code = "<Div UNSAFE_width={isCompact ? \"16px\" : \"24px\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // UNSAFE_width is allowed in the mock data, but values may trigger suggestions
+                expect(result.errors.length).toBe(2);
+            });
+
+            it("should validate responsive objects with UNSAFE props", async () => {
+                const code = `<Div UNSAFE_width={{
+                    base: "35%",
+                    md: isCompact ? "16px" : "24px",
+                    lg: "32px"
+                }}>Content</Div>`;
+                const result = await validateHopperCode(code);
+                // UNSAFE_margin is allowed in the mock data
+                expect(result.errors.length).toBe(4);
+            });
+        });
+
+        describe("Div display validation with complex values", () => {
+            it("should warn for flex/grid in conditional expressions", async () => {
+                const code = "<Div display={isGrid ? \"grid\" : \"flex\"}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should have warnings for both flex and grid
+                expect(result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length).toBeGreaterThanOrEqual(2);
+            });
+
+            it("should warn for flex/grid in responsive objects", async () => {
+                const code = "<Div display={{ base: \"block\", md: \"flex\", lg: \"grid\" }}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should have warnings for both flex and grid
+                expect(result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length).toBeGreaterThanOrEqual(2);
+            });
+        });
+
+        describe("Edge cases", () => {
+            it("should handle deeply nested object structures", async () => {
+                const code = `<Component config={{
+                    theme: {
+                        spacing: isCompact ? "inset-xs" : "invalid-token"
+                    },
+                    directValue: "primary"
+                }}>Content</Component>`;
+                const result = await validateHopperCode(code);
+                // Nested objects are not processed, so nested values are not validated
+                // Only first-level values like "primary" are validated
+                expect(result.isValid).toBe(true);
+            });
+
+            it("should deduplicate errors for repeated values", async () => {
+                const code = "<Div color={isA ? \"hop-primary-surface\" : (isB ? \"hop-primary-surface\" : \"primary\")}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // The extractAllConstantStrings function deduplicates, so we should only see one error for "hop-primary-surface"
+                const formatErrors = result.errors.filter(e => e.message.includes("hop-primary-surface"));
+                expect(formatErrors.length).toBeLessThanOrEqual(1);
+            });
+
+            it("should handle null/undefined in conditionals", async () => {
+                const code = "<Div padding={value || null}>Content</Div>";
+                const result = await validateHopperCode(code);
+                // Should handle gracefully without errors
+                expect(result.isValid).toBe(true);
+            });
+        });
+    });
 });
 
