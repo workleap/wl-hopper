@@ -12,7 +12,6 @@
         "eslint": "eslint . --max-warnings=0",
         "prebuild": "shx rm -rf ./src/.docs && shx cp -r ../docs/dist/ai-docs ./src/.docs",
         "postbuild": "shx rm -rf dist/hosts/netlify/docs && shx cp -r ./src/.docs dist/hosts/netlify/docs",
-        "typecheck": "tsc",
         "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
         "netlify": "pnpm --package=netlify-cli dlx netlify",
         "dev:server:expressJs": "nodemon --watch src --ext ts --exec \"tsx src/hosts/expressJs.ts\"",
