@@ -4,20 +4,19 @@ import { richIconNames } from "../../../../../../packages/icons/src/generated-ri
 import iconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/icon-metadata.json" with { type: "json" };
 import richIconsMetadata from "../../../../../../packages/svg-icons/dist/metadata/rich-icon-metadata.json" with { type: "json" };
 
-
 interface SwitcherProps {
     type: "react" | "svg";
     iconType: "icon" | "richIcon";
     headLine: string;
 }
 
-type AvailableSizes = "sm"| "md" | "lg" | "xl";
+type AvailableSizes = "sm" | "md" | "lg" | "xl";
 
 function toKebabCase(str: string) {
     return str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
-function getIconNumericSize(iconSize : "sm" | "md" | "lg" | "xl") {
+function getIconNumericSize(iconSize: "sm" | "md" | "lg" | "xl") {
     switch (iconSize) {
         case "sm":
             return "16";
@@ -71,21 +70,25 @@ const Switcher = ({ type, headLine, iconType = "icon" }: SwitcherProps) => {
             ? `<${name} size="md" />`
             : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, "md", type)}";`,
         description: getIconFileDescription(name, iconType),
-        sizes: <span>
-            {sizes.map((size, idx) => (
-                <span key={size}>
-                    <code>{type === "react" ? size : `${getIconNumericSize(size)}px`}</code>
-                    {idx < sizes.length - 1 && ","}
-                </span>
-            ))}
-        </span>,
+        sizes: (
+            <span>
+                {sizes.map((size, idx) => (
+                    <span key={size}>
+                        <code>{type === "react" ? size : `${getIconNumericSize(size)}px`}</code>
+                        {idx < sizes.length - 1 && ","}
+                    </span>
+                ))}
+            </span>
+        ),
         keywords: getIconFileKeywords(name, iconType)
     }));
 
-    return <>
-        <div>{headLine}</div>
-        <Icons items={iconsData} />
-    </>;
+    return (
+        <>
+            <div>{headLine}</div>
+            <Icons items={iconsData} />
+        </>
+    );
 };
 
 const iconTypeFolderMap = {
@@ -101,27 +104,28 @@ interface Item {
     sizes: ReactNode;
 }
 
-
 function Icons({ items }: { items: Item[] }) {
-    return <div>
-        <div>Available Sizes: {items.length > 0 ? items[0].sizes : "N/A"}</div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Keywords</th>
-                </tr>
-            </thead>
-            <tbody>
-                {items.map(item => (
-                    <tr key={item.name}>
-                        <td><code>{item.name}</code></td>
-                        <td>{item.keywords}</td>
+    return (
+        <div>
+            <div>Available Sizes: {items.length > 0 ? items[0].sizes : "N/A"}</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Keywords</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>;
+                </thead>
+                <tbody>
+                    {items.map(item => (
+                        <tr key={item.name}>
+                            <td><code>{item.name}</code></td>
+                            <td>{item.keywords}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default Switcher;

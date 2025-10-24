@@ -71,7 +71,8 @@ const ComponentExample = memo(({
         }
 
         return (
-            <ToggleButton isSelected={showCode}
+            <ToggleButton
+                isSelected={showCode}
                 className="hd-component-preview-wrapper__action"
                 aria-label="Show code"
                 onPress={toggleShowCode}
@@ -111,7 +112,8 @@ const ComponentExample = memo(({
     };
 
     return (
-        <div data-usage={type}
+        <div
+            data-usage={type}
             className={clsx("hd-component-example", showCodeComponent && "hd-component-example--expanded", className)}
         >
             {renderPreviewComponent()}

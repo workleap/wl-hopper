@@ -26,7 +26,7 @@
         "@types/react-dom": "18.3.1",
         "@typescript-eslint/parser": "8.46.0",
         "@workleap/browserslist-config": "2.1.0",
-        "@workleap/eslint-configs": "0.0.6",
+        "@workleap/eslint-configs": "0.0.7",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
         "@workleap/webpack-configs": "1.6.0",

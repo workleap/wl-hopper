@@ -37,7 +37,9 @@ const globals: Record<string, boolean> = {
 
 export default defineConfig([
     globalIgnores([
-        "datas/*"
+        "datas/*",
+        ".next",
+        ".contentlayer"
     ]),
     {
         languageOptions: {
@@ -47,7 +49,7 @@ export default defineConfig([
     defineWebApplicationConfig(import.meta.dirname),
     {
         files: [
-            "*.{js,jsx,ts,tsx}"
+            "**/*.{js,jsx,ts,tsx,cjs,mjs}"
         ],
         ignores: ["scripts/**"],
         // "excludedFiles": "scripts/**",

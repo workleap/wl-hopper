@@ -4,7 +4,7 @@ import { SidebarLayout } from "@/app/ui/layout/sidebarLayout";
 import path from "path";
 import type { ReactNode } from "react";
 
-async function ComponentsLayout({ children }: { children: ReactNode }) {
+function ComponentsLayout({ children }: { children: ReactNode }) {
     const links = getPageLinks(allComponents, {
         order: [
             "overview",

@@ -6,7 +6,7 @@ import { Cell, Column, Table as ReactTable, Row, TableBody, TableHeader } from "
 import "./table.css";
 
 interface dataType {
-    [key: string]: string | number | boolean | undefined | null | ReactNode;
+    [key: string]: ReactNode;
 }
 
 export interface TableProps {
@@ -43,7 +43,8 @@ const Table = ({ data, head, lastColumnAlignment = "left", ariaLabel = "standard
                 <Row key={`table-body-${index}`} className="hd-table__row">
                     {Object.keys(item).map((key, i) => {
                         return (
-                            <Cell key={key}
+                            <Cell
+                                key={key}
                                 className={clsx("hd-table__cell", { "hd-table__cell--right": i === lastColumnIndex && textAlignRight })}
                             >
                                 {item[key]}

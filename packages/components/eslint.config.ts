@@ -12,8 +12,7 @@ export default defineConfig([
         react: {
             rules: {
                 "react/destructuring-assignment": "off", // This is a frequent RAC pattern
-                "react-hooks/immutability": "off", // This is a frequent RAC pattern
-                "react-hooks/set-state-in-effect": "off" // This is a new hook, in an existing codebase. It currently causes errors in some of my examples
+                "react-hooks/immutability": "off" // This is a frequent RAC pattern
             }
         },
         jsxAlly: {

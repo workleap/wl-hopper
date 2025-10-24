@@ -1,9 +1,9 @@
-import type { ComponentProps } from "react";
 import clsx from "clsx";
+import type { ComponentProps } from "react";
 
 import "./card.css";
 
-export interface CardProps extends ComponentProps<"div">{
+export interface CardProps extends ComponentProps<"div"> {
     size?: "sm" | "md" | "lg";
     align?: "start" | "center" | "end";
     ghost?: boolean;

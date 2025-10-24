@@ -7,7 +7,7 @@ async function getUnsafeProps() {
     const sampleComponent = "Flex";
     const data = await getComponentProps(sampleComponent, true);
 
-    if (!data || !data.groups || data.groups.length === 0) {
+    if (!data?.groups || data.groups.length === 0) {
         throw new Error(`Unable to fetch UNSAFE_* props. No props data found for component: ${sampleComponent}`);
     }
 

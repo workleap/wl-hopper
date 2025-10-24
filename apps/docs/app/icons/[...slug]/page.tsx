@@ -19,7 +19,6 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-
 export default function IconPage({ params }: PageProps) {
     const icons = findPageFromSlug(params.slug);
 
@@ -40,11 +39,11 @@ export default function IconPage({ params }: PageProps) {
     );
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
     return getIconsSlugs();
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export function generateMetadata({ params }: PageProps) {
     const page = findPageFromSlug(params.slug);
 
     if (page) {
@@ -55,7 +54,6 @@ export async function generateMetadata({ params }: PageProps) {
         if (page.description) {
             metadata.description = page.description;
         }
-
 
         return metadata;
     }

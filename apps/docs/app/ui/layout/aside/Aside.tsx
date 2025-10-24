@@ -51,10 +51,11 @@ const Aside = ({ title, links }: PropsWithoutRef<AsideProps>) => {
     }, [isOpen]);
 
     const listItems = links.map(link => (
-        <li className={clsx("hd-aside__item", {
-            "hd-aside__item--active": link.url === `#${activeId}` && "hd-aside__item--active"
-        })}
-        key={link.url}
+        <li
+            className={clsx("hd-aside__item", {
+                "hd-aside__item--active": link.url === `#${activeId}` && "hd-aside__item--active"
+            })}
+            key={link.url}
         >
             {/* This has to be an a, not a link: https://github.com/vercel/next.js/issues/49612 */}
             <a href={link.url} className={`hd-aside__link hd-aside__link-level-${link.level}`}>
@@ -70,14 +71,16 @@ const Aside = ({ title, links }: PropsWithoutRef<AsideProps>) => {
                     <span className="hd-aside__title">{title}</span>
                     <button type="button" className="hd-aside__button" onClick={toggleList}>
                         {title}
-                        <svg width="16"
+                        <svg
+                            width="16"
                             height="16"
                             viewBox="0 0 16 16"
                             fill="none"
                             className="hd-aside__button-icon"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <path d="M4 6L8 10L12 6"
+                            <path
+                                d="M4 6L8 10L12 6"
                                 strokeWidth="1.33333"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -89,7 +92,8 @@ const Aside = ({ title, links }: PropsWithoutRef<AsideProps>) => {
                             <span
                                 className={clsx("hd-aside__marker", activeIndex === -1 && "hd-aside__marker--hide")}
                                 style={{ top: activeIndex * titleHeight + "px" }}
-                            ></span>
+                            >
+                            </span>
                         )}
                         <ul className={clsx("hd-aside__list", isOpen ? "hd-aside__item--active" : "hd-aside__list--closed")}>
                             {listItems}
