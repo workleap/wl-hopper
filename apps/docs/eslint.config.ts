@@ -1,7 +1,5 @@
 import { defineWebApplicationConfig } from "@workleap/eslint-configs";
-import { defineConfig } from "eslint/config";
-
-const workleapConfig = defineWebApplicationConfig(import.meta.dirname);
+import { defineConfig, globalIgnores } from "eslint/config";
 
 const globals: Record<string, boolean> = {
     "AI": true,
@@ -37,24 +35,23 @@ const globals: Record<string, boolean> = {
     "Link": true
 };
 
-const ignores: string[] = [
-    "datas/*"
-];
-
-const configs = defineConfig([
+export default defineConfig([
+    globalIgnores([
+        "datas/*"
+    ]),
     {
         languageOptions: {
             globals: globals
         }
     },
-    ...workleapConfig,
+    defineWebApplicationConfig(import.meta.dirname),
     {
-        "files": [
+        files: [
             "*.{js,jsx,ts,tsx}"
         ],
         ignores: ["scripts/**"],
         // "excludedFiles": "scripts/**",
-        "rules": {
+        rules: {
             "no-console": [
                 "warn",
                 {
@@ -95,10 +92,4 @@ const configs = defineConfig([
     }
 ]
 );
-
-export default configs.map(config => {
-    config.ignores = [...config.ignores ?? [], ...ignores];
-
-    return config;
-});
 

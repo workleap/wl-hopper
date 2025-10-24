@@ -23,8 +23,8 @@ export default defineConfig([
         }
     }),
     {
-        "files": ["src/**/src/*"],
-        "rules": {
+        files: ["src/**/src/*"],
+        rules: {
             "no-restricted-imports": ["error", {
                 "patterns": [
                     {
@@ -51,8 +51,8 @@ export default defineConfig([
         }
     },
     {
-        "files": ["src/**/tests/*"],
-        "rules": {
+        files: ["src/**/tests/*"],
+        rules: {
             "no-restricted-imports": ["error", {
                 "patterns": [
                     {
@@ -75,8 +75,8 @@ export default defineConfig([
         }
     },
     {
-        "files": ["src/**/docs/*"],
-        "rules": {
+        files: ["src/**/docs/*"],
+        rules: {
             "no-restricted-imports": ["error", {
                 "patterns": [
                     {
