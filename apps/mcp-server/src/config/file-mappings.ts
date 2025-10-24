@@ -7,7 +7,8 @@ export interface UrlGuideFile {
     estimatedTokens?: number;
 }
 
-export const GuideFiles: Record<GuideSection, typeof files.gettingStarted.index | UrlGuideFile> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const GuideFiles: Record<GuideSection, any> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     icons: files.icons.brief.index,
