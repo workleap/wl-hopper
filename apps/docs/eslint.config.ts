@@ -1,6 +1,8 @@
 import { defineWebApplicationConfig } from "@workleap/eslint-configs";
 import { defineConfig, globalIgnores } from "eslint/config";
 
+// TODO: once i migrate to next 16, i need to re-add the next plugin in this config
+// TODO: MDX plugin isn't in the workleap config anymore, we need to bring this back
 const globals: Record<string, boolean> = {
     "AI": true,
     "BreakpointTable": true,
@@ -39,7 +41,11 @@ export default defineConfig([
     globalIgnores([
         "datas/*",
         ".next",
-        ".contentlayer"
+        ".contentlayer",
+        ".next/**",
+        "out/**",
+        "build/**",
+        "next-env.d.ts"
     ]),
     {
         languageOptions: {
