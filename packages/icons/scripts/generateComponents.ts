@@ -9,7 +9,7 @@ import {
 import type { MultiSourceIconSource } from "./fetchSvgs.ts";
 import svgoConfig from "./svgo-config.ts";
 
-export async function generateComponents(componentDirectory: string, icons: MultiSourceIconSource[], isRichIcons = false) {
+export function generateComponents(componentDirectory: string, icons: MultiSourceIconSource[], isRichIcons = false) {
     const createMethodImportPath = isRichIcons ? "../createRichIcon.tsx" : "../createIcon.tsx";
     const createMethodName = isRichIcons ? "createRichIcon" : "createIcon";
     const iconSuffix = isRichIcons ? RichIconSuffix : IconSuffix;

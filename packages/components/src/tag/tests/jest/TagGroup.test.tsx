@@ -36,7 +36,8 @@ describe("Tag", () => {
     it("should support slots", () => {
         render(
             <TagGroupContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <TagGroup slot="test"
+                <TagGroup
+                    slot="test"
                     data-testid="tag-group"
                 >
                     <Tag id="option1">option 1</Tag>
@@ -46,20 +47,22 @@ describe("Tag", () => {
 
         const element = screen.getByTestId("tag-group");
         const tagList = screen.getByRole("grid");
-        
+
         expect(element).toHaveAttribute("slot", "test");
         expect(tagList).toHaveAttribute("aria-label", "test");
     });
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<TagGroup 
-            aria-label="options" 
-            data-testid="tag-group"
-            ref={ref}
-        >
-            <Tag id="option1">option 1</Tag>
-        </TagGroup>);
+        render(
+            <TagGroup
+                aria-label="options"
+                data-testid="tag-group"
+                ref={ref}
+            >
+                <Tag id="option1">option 1</Tag>
+            </TagGroup>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();

@@ -1,14 +1,14 @@
 {
-  "name": "Build",
-  "description": "Used to represent building, construction, configuration, settings, or tools for customization and development.",
-  "keywords": [
-    "build",
-    "construct",
-    "configure",
-    "settings",
-    "tools",
-    "wrench",
-    "customize",
-    "develop"
-  ]
+    "name": "Build",
+    "description": "Used to represent building, construction, configuration, settings, or tools for customization and development.",
+    "keywords": [
+        "build",
+        "construct",
+        "configure",
+        "settings",
+        "tools",
+        "wrench",
+        "customize",
+        "develop"
+    ]
 }

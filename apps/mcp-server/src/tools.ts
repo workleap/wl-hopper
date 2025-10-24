@@ -51,13 +51,11 @@ export function tools(server: McpServer) {
             docContent = await getComponentFullApi(component_name);
         }
 
-
         return toolContent(
             docContent,
             content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
         );
     });
-
 
     server.registerTool(toolsInfo.get_design_tokens.name, {
         title: toolsInfo.get_design_tokens.title,
@@ -72,7 +70,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_css_values, search_token_names, search_css_values, search_supported_props }, e) : Promise<CallToolResult> => {
+    }, async ({ category, include_css_values, search_token_names, search_css_values, search_supported_props }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
 
         const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
@@ -95,7 +93,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ guide, category, page_size, cursor }, e) : Promise<CallToolResult> => {
+    }, async ({ guide, category, page_size, cursor }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_guide.name, { guide, category, page_size, cursor }, e?.requestInfo);
 
         if (guide === "tokens") {
@@ -120,7 +118,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ queries, type, limit }, e) : Promise<CallToolResult> => {
+    }, async ({ queries, type, limit }, e): Promise<CallToolResult> => {
         try {
             trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
 
@@ -140,7 +138,6 @@ export function tools(server: McpServer) {
         }
     });
 
-
     server.registerTool(toolsInfo.validate_hopper_code.name, {
         title: toolsInfo.validate_hopper_code.title,
         description: toolsInfo.validate_hopper_code.description,
@@ -150,7 +147,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ code }, e) : Promise<CallToolResult> => {
+    }, async ({ code }, e): Promise<CallToolResult> => {
         try {
             const validationResult = await validateHopperCode(code);
             trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
@@ -181,7 +178,7 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ file_or_folder_path }, e): Promise<CallToolResult> => {
+    }, ({ file_or_folder_path }, e): CallToolResult => {
         trackEvent(toolsInfo.migrate_from_orbiter_to_hopper.name, { filePath: file_or_folder_path }, e?.requestInfo);
 
         return toolContent(

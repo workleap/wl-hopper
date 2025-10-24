@@ -1,24 +1,24 @@
 {
-  "name": "StarSolid",
-  "description": "Represents a filled (solid) five-pointed star. Used for features related to active favorites, selected ratings, active bookmarks, or any feature that involves highlighting selected or active items. Commonly used in rating systems, favorite lists, and bookmark functionality to indicate the selected or active state.",
-  "keywords": [
-    "star solid",
-    "favorite",
-    "selected",
-    "active",
-    "rating",
-    "bookmark",
-    "important",
-    "preference",
-    "highlight",
-    "saved",
-    "marked",
-    "liked",
-    "featured",
-    "review",
-    "selected rating",
-    "active state",
-    "filled star",
-    "chosen"
-  ]
+    "name": "StarSolid",
+    "description": "Represents a filled (solid) five-pointed star. Used for features related to active favorites, selected ratings, active bookmarks, or any feature that involves highlighting selected or active items. Commonly used in rating systems, favorite lists, and bookmark functionality to indicate the selected or active state.",
+    "keywords": [
+        "star solid",
+        "favorite",
+        "selected",
+        "active",
+        "rating",
+        "bookmark",
+        "important",
+        "preference",
+        "highlight",
+        "saved",
+        "marked",
+        "liked",
+        "featured",
+        "review",
+        "selected rating",
+        "active state",
+        "filled star",
+        "chosen"
+    ]
 }

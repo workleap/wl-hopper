@@ -1,18 +1,18 @@
 {
-  "name": "Script",
-  "description": "Used to represent code, programming, or automated sequences of instructions. Often depicted as a document with code lines, this icon is commonly used in development environments, automation tools, or any interface related to programming or scripted processes.",
-  "keywords": [
-    "script",
-    "code",
-    "programming",
-    "automation",
-    "sequence",
-    "instructions",
-    "algorithm",
-    "routine",
-    "macro",
-    "command",
-    "procedure",
-    "coding"
-  ]
+    "name": "Script",
+    "description": "Used to represent code, programming, or automated sequences of instructions. Often depicted as a document with code lines, this icon is commonly used in development environments, automation tools, or any interface related to programming or scripted processes.",
+    "keywords": [
+        "script",
+        "code",
+        "programming",
+        "automation",
+        "sequence",
+        "instructions",
+        "algorithm",
+        "routine",
+        "macro",
+        "command",
+        "procedure",
+        "coding"
+    ]
 }

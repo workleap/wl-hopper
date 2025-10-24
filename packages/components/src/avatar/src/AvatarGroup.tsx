@@ -50,7 +50,7 @@ export interface AvatarGroupProps extends StyledComponentProps<BaseComponentDOMP
     children?: AvatarGroupElement | AvatarGroupElement[];
 }
 
-function AvatarGroup(props:AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) {
+function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AvatarGroupContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {

@@ -1,21 +1,21 @@
 {
-  "name": "Language",
-  "description": "Represents a globe or world map. Used for language selection, internationalization, translation features, global settings, or any feature that involves multiple languages, localization, or international content.",
-  "keywords": [
-    "language",
-    "globe",
-    "world",
-    "international",
-    "translation",
-    "localization",
-    "multilingual",
-    "i18n",
-    "global",
-    "region",
-    "country",
-    "dialect",
-    "speech",
-    "communication",
-    "culture"
-  ]
+    "name": "Language",
+    "description": "Represents a globe or world map. Used for language selection, internationalization, translation features, global settings, or any feature that involves multiple languages, localization, or international content.",
+    "keywords": [
+        "language",
+        "globe",
+        "world",
+        "international",
+        "translation",
+        "localization",
+        "multilingual",
+        "i18n",
+        "global",
+        "region",
+        "country",
+        "dialect",
+        "speech",
+        "communication",
+        "culture"
+    ]
 }

@@ -155,14 +155,14 @@ export const Primary: Story = {
             </Stack>
         );
     },
-    args:{
+    args: {
         href: "https://www.google.com"
     }
 };
 
 export const Secondary: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "secondary"
     }
@@ -170,7 +170,7 @@ export const Secondary: Story = {
 
 export const Upsell: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "upsell"
     }
@@ -178,7 +178,7 @@ export const Upsell: Story = {
 
 export const Danger: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "danger"
     }
@@ -234,7 +234,7 @@ const StateTemplate = (args: Partial<LinkButtonProps>) => (
 );
 
 export const PrimaryStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const buttons = canvas.getAllByRole("link");
 
@@ -275,11 +275,10 @@ export const PrimaryStates: Story = {
             </Stack>
         );
     },
-    args:{
+    args: {
         href: "https://www.google.com"
     }
 };
-
 
 export const SecondaryStates: Story = {
     ...PrimaryStates,

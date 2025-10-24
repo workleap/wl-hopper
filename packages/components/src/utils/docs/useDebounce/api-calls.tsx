@@ -10,7 +10,9 @@ export default function Example() {
     const handleInputChange = (value: string) => {
         setInputValue(value); // Update input immediately for responsiveness
         setDebouncedQuery(value); // Trigger debounced search
-        if (value.trim()) {setIsSearching(true);}
+        if (value.trim()) {
+            setIsSearching(true);
+        }
     };
 
     // Effect runs only after user stops typing for 400ms

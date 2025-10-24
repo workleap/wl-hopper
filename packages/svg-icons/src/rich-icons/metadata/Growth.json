@@ -1,18 +1,18 @@
 {
-  "name": "Growth",
-  "description": "Used to represent improvement, development, or positive progress over time. Often depicted as an upward trending graph or plant, this icon is commonly used in dashboards, analytics, or personal development contexts to indicate advancement, expansion, or increasing metrics.",
-  "keywords": [
-    "growth",
-    "increase",
-    "development",
-    "improvement",
-    "progress",
-    "advancement",
-    "expansion",
-    "upward trend",
-    "rising",
-    "flourishing",
-    "evolution",
-    "positive change"
-  ]
+    "name": "Growth",
+    "description": "Used to represent improvement, development, or positive progress over time. Often depicted as an upward trending graph or plant, this icon is commonly used in dashboards, analytics, or personal development contexts to indicate advancement, expansion, or increasing metrics.",
+    "keywords": [
+        "growth",
+        "increase",
+        "development",
+        "improvement",
+        "progress",
+        "advancement",
+        "expansion",
+        "upward trend",
+        "rising",
+        "flourishing",
+        "evolution",
+        "positive change"
+    ]
 }

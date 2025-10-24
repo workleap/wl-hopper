@@ -55,11 +55,14 @@ describe("Badge", () => {
     });
 
     it("should support disabled state", () => {
-        render(<Badge
-            data-testid="badge"
-            isDisabled
-            className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
-        >12</Badge>);
+        render(
+            <Badge
+                data-testid="badge"
+                isDisabled
+                className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
+            >12
+            </Badge>
+        );
 
         const element = screen.getByTestId("badge");
 
@@ -69,11 +72,14 @@ describe("Badge", () => {
     });
 
     it("should support indeterminate state", () => {
-        render(<Badge
-            data-testid="badge"
-            isIndeterminate
-            className={({ isIndeterminate }) => (isIndeterminate ? "indeterminate" : "")}
-        >12</Badge>);
+        render(
+            <Badge
+                data-testid="badge"
+                isIndeterminate
+                className={({ isIndeterminate }) => (isIndeterminate ? "indeterminate" : "")}
+            >12
+            </Badge>
+        );
 
         const element = screen.getByTestId("badge");
 

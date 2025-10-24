@@ -1,18 +1,18 @@
 {
-  "name": "Dollar",
-  "description": "Represents a dollar sign ($) within a circle. Used to indicate currency, money, finance, pricing, costs, payments, or any financial-related features.",
-  "keywords": [
-    "dollar",
-    "money",
-    "currency",
-    "finance",
-    "payment",
-    "price",
-    "cost",
-    "financial",
-    "cash",
-    "transaction",
-    "budget",
-    "economy"
-  ]
+    "name": "Dollar",
+    "description": "Represents a dollar sign ($) within a circle. Used to indicate currency, money, finance, pricing, costs, payments, or any financial-related features.",
+    "keywords": [
+        "dollar",
+        "money",
+        "currency",
+        "finance",
+        "payment",
+        "price",
+        "cost",
+        "financial",
+        "cash",
+        "transaction",
+        "budget",
+        "economy"
+    ]
 }

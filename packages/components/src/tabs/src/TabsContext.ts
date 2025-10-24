@@ -16,7 +16,7 @@ export const TabPanelContext = createContext<ContextValue<Partial<TabPanelProps>
 
 TabPanelContext.displayName = "TabPanelContext";
 
-export const InternalTabsContext = createContext<Partial<TabsProps>& {
+export const InternalTabsContext = createContext<Partial<TabsProps> & {
     tablistRef?: MutableRefObject<HTMLDivElement | null>;
     prevRef?: MutableRefObject<DOMRect | null>;
     selectedKey?: Key | null;

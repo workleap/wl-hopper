@@ -8,7 +8,9 @@ export function formatValidationMessages(
     messages: Array<{ message: string; line?: number }>,
     title: string
 ): string {
-    if (messages.length === 0) {return "";}
+    if (messages.length === 0) {
+        return "";
+    }
 
     let formatted = `\n\n${title}:`;
     messages.forEach((msg, index) => {

@@ -112,7 +112,9 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
     }, [openTrigger, setOpen, isOpen]);
 
     const handleMouseMove = useCallback((event: MouseEvent) => {
-        if (!isOpen || openTrigger !== "hover") {return;}
+        if (!isOpen || openTrigger !== "hover") {
+            return;
+        }
 
         const { clientX, clientY } = event;
 
@@ -140,19 +142,19 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
         }
     }, [clearCloseTimeout, handleMouseMove, isOpen]);
 
-    const handlePressed = useCallback((e: PressEvent) => {
+    const handlePressed = (e: PressEvent) => {
         onPress?.(e);
         setOpenTrigger("click");
-    }, [setOpenTrigger, onPress]);
+    };
 
-    const handleHoverStarted = useCallback((e: HoverEvent) => {
+    const handleHoverStarted = (e: HoverEvent) => {
         onHoverStart?.(e);
         handleTriggerMouseEnter();
 
         if (openTrigger === undefined) {
             setOpenTrigger("hover");
         }
-    }, [handleTriggerMouseEnter, openTrigger, setOpenTrigger, onHoverStart]);
+    };
 
     const Icon = variant === "help" ? QuestionIcon : InfoIcon;
 
@@ -205,7 +207,9 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
 }
 
 function isPointInSafeArea(x: number, y: number, triggeRef: RefObject<HTMLButtonElement | null>, popoverRef: RefObject<HTMLDivElement | null>) {
-    if (!triggeRef.current || !popoverRef.current) {return false;}
+    if (!triggeRef.current || !popoverRef.current) {
+        return false;
+    }
 
     const triggerRect = triggeRef.current.getBoundingClientRect();
     const popoverRect = popoverRef.current.getBoundingClientRect();

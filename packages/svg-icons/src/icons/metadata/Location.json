@@ -1,21 +1,21 @@
 {
-  "name": "Location",
-  "description": "Represents a map pin or location marker. Used for features related to geographic locations, addresses, places, maps, directions, or any feature that involves physical positioning or location-based services.",
-  "keywords": [
-    "location",
-    "map",
-    "pin",
-    "marker",
-    "address",
-    "place",
-    "position",
-    "geography",
-    "coordinates",
-    "navigation",
-    "directions",
-    "destination",
-    "GPS",
-    "geolocation",
-    "waypoint"
-  ]
+    "name": "Location",
+    "description": "Represents a map pin or location marker. Used for features related to geographic locations, addresses, places, maps, directions, or any feature that involves physical positioning or location-based services.",
+    "keywords": [
+        "location",
+        "map",
+        "pin",
+        "marker",
+        "address",
+        "place",
+        "position",
+        "geography",
+        "coordinates",
+        "navigation",
+        "directions",
+        "destination",
+        "GPS",
+        "geolocation",
+        "waypoint"
+    ]
 }

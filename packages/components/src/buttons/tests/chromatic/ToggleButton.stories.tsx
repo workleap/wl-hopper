@@ -241,7 +241,6 @@ export const GhostDanger: Story = {
     }
 };
 
-
 const StateTemplate = (args: Partial<ToggleButtonProps>) => (
     <Inline alignY="end">
         <ToggleButton size="xs" {...args}>Save</ToggleButton>
@@ -274,7 +273,7 @@ const StateTemplate = (args: Partial<ToggleButtonProps>) => (
 );
 
 export const PrimaryStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const toggleButtons = canvas.getAllByRole("button");
 

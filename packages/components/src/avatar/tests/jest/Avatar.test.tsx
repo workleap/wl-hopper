@@ -89,7 +89,6 @@ describe("Avatar", () => {
         expect(ref.current?.tagName.toUpperCase()).toBe("DIV");
     });
 
-
     it("should render the correct initials when no src is set", () => {
         const initials = "JD";
         render(<Avatar name="John Doe" />);
@@ -109,11 +108,13 @@ describe("Avatar", () => {
     });
 
     it("should support disabled state", () => {
-        render(<Avatar
-            name="John Doe"
-            isDisabled
-            className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
-        />);
+        render(
+            <Avatar
+                name="John Doe"
+                isDisabled
+                className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
+            />
+        );
 
         const element = screen.getByRole("img", { name: "John Doe" });
 

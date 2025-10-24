@@ -7,7 +7,6 @@ import { createRef } from "react";
 import { Checkbox } from "../../src/Checkbox.tsx";
 import { CheckboxContext } from "../../src/CheckboxContext.ts";
 
-
 describe("Checkbox", () => {
     it("should render with default class", () => {
         render(<Checkbox>option 1</Checkbox>);
@@ -85,7 +84,7 @@ describe("Checkbox", () => {
         const ref = createRef<HTMLLabelElement>();
 
         render(<Checkbox ref={ref}>option 1</Checkbox>);
-        const checkboxElement = ref.current?.querySelector("input[type='checkbox']") as HTMLInputElement;
+        const checkboxElement = ref.current?.querySelector<HTMLElement>("input[type='checkbox']");
 
         act(() => {
             checkboxElement?.focus();

@@ -1,14 +1,14 @@
 {
-  "name": "Bookmark",
-  "description": "Used to represent saving, marking, or flagging content for later reference or quick access.",
-  "keywords": [
-    "bookmark",
-    "save",
-    "favorite",
-    "flag",
-    "mark",
-    "remember",
-    "reference",
-    "tag"
-  ]
+    "name": "Bookmark",
+    "description": "Used to represent saving, marking, or flagging content for later reference or quick access.",
+    "keywords": [
+        "bookmark",
+        "save",
+        "favorite",
+        "flag",
+        "mark",
+        "remember",
+        "reference",
+        "tag"
+    ]
 }

@@ -27,7 +27,9 @@ export const useDebounceCallback = <CallbackArgs extends unknown[]>(
 
     useEffect(
         () => () => {
-            timeout.current && clearTimeout(timeout.current);
+            if (timeout.current) {
+                clearTimeout(timeout.current);
+            }
             timeout.current = null;
         },
         [wait, leading, storedCallback]
@@ -44,7 +46,9 @@ export const useDebounceCallback = <CallbackArgs extends unknown[]>(
             return storedCallback.current.apply(null, args);
         }
 
-        current && clearTimeout(current);
+        if (current) {
+            clearTimeout(current);
+        }
 
         timeout.current = setTimeout(() => {
             timeout.current = null;

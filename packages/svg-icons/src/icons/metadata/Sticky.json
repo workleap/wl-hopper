@@ -1,24 +1,24 @@
 {
-  "name": "Sticky",
-  "description": "Represents a sticky note or post-it note with a folded corner. Used for features related to notes, reminders, annotations, or any feature that involves adding temporary or persistent notes to content. Commonly used in note-taking applications, document annotation tools, and reminder systems.",
-  "keywords": [
-    "sticky note",
-    "post-it",
-    "note",
-    "reminder",
-    "annotation",
-    "memo",
-    "comment",
-    "jot",
-    "scribble",
-    "mark",
-    "tag",
-    "label",
-    "flag",
-    "highlight",
-    "remember",
-    "notation",
-    "adhesive note",
-    "quick note"
-  ]
+    "name": "Sticky",
+    "description": "Represents a sticky note or post-it note with a folded corner. Used for features related to notes, reminders, annotations, or any feature that involves adding temporary or persistent notes to content. Commonly used in note-taking applications, document annotation tools, and reminder systems.",
+    "keywords": [
+        "sticky note",
+        "post-it",
+        "note",
+        "reminder",
+        "annotation",
+        "memo",
+        "comment",
+        "jot",
+        "scribble",
+        "mark",
+        "tag",
+        "label",
+        "flag",
+        "highlight",
+        "remember",
+        "notation",
+        "adhesive note",
+        "quick note"
+    ]
 }

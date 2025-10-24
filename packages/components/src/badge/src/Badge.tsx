@@ -74,7 +74,6 @@ function Badge(props: BadgeProps, ref: ForwardedRef<HTMLSpanElement>) {
         ...otherProps
     } = ownProps;
 
-
     const classNames = composeClassnameRenderProps(
         className,
         GlobalBadgeCssSelector,

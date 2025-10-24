@@ -1,5 +1,6 @@
 {
     "name": "basic",
+    "description": "Sample app",
     "private": true,
     "version": "0.0.0",
     "type": "module",
@@ -18,20 +19,22 @@
         "react-router-dom": "^7.9.3"
     },
     "devDependencies": {
+        "@eslint/js": "9.38.0",
         "@swc/core": "1.13.5",
         "@swc/helpers": "0.5.17",
         "@types/react": "18.3.13",
         "@types/react-dom": "18.3.1",
         "@typescript-eslint/parser": "8.46.0",
         "@workleap/browserslist-config": "2.1.0",
-        "@workleap/eslint-plugin": "3.5.0",
+        "@workleap/eslint-configs": "0.0.6",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
         "@workleap/webpack-configs": "1.6.0",
         "browserslist": "4.26.2",
-        "eslint": "8.57.1",
+        "eslint": "9.38.0",
         "shelljs": "0.10.0",
         "typescript": "5.5.4",
+        "typescript-eslint": "8.46.2",
         "webpack": "5.102.0",
         "webpack-cli": "6.0.1",
         "webpack-dev-server": "5.2.2"

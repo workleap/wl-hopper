@@ -56,7 +56,8 @@ export const Default = {
     )
 } satisfies Story;
 
-export const image = {
+export const ImageStory = {
+    name: "Image",
     render: args => (
         <Modal {...args}>
             <Image src={Frog} alt="Frog" />
@@ -70,7 +71,7 @@ export const image = {
     )
 } satisfies Story;
 
-export const choice = {
+export const Choice = {
     render: args => (
         <Modal {...args}>
             <Heading>Fascinating Frog Facts!</Heading>
@@ -106,7 +107,8 @@ export const choice = {
     )
 } satisfies Story;
 
-export const header = {
+export const HeaderStory = {
+    name: "Header",
     render: args => (
         <Modal {...args}>
             <Heading>Fascinating Frog Facts!</Heading>
@@ -120,7 +122,8 @@ export const header = {
     )
 } satisfies Story;
 
-export const footer = {
+export const FooterStory = {
+    name: "Footer",
     render: args => (
         <Modal {...args}>
             <Heading>Fascinating Frog Facts!</Heading>
@@ -136,7 +139,8 @@ export const footer = {
     )
 } satisfies Story;
 
-export const button = {
+export const ButtonStory = {
+    name: "Button",
     render: args => (
         <Modal {...args}>
             {({ close }) => (
@@ -154,7 +158,8 @@ export const button = {
     )
 } satisfies Story;
 
-export const buttonGroup = {
+export const ButtonGroupStory = {
+    name: "Button Group",
     render: args => (
         <Modal {...args}>
             {({ close }) => (
@@ -203,7 +208,7 @@ export const NonDismissable = {
     }
 } satisfies Story;
 
-export const everything = {
+export const Everything = {
     render: args => (
         <Modal {...args}>
             {({ close }) => (
@@ -230,35 +235,35 @@ export const everything = {
 } satisfies Story;
 
 export const Small = {
-    ...everything,
+    ...Everything,
     args: {
         size: "sm"
     }
 };
 
 export const Large = {
-    ...everything,
+    ...Everything,
     args: {
         size: "lg"
     }
 };
 
 export const ExtraLarge = {
-    ...everything,
+    ...Everything,
     args: {
         size: "xl"
     }
 };
 
 export const Fullscreen = {
-    ...everything,
+    ...Everything,
     args: {
         size: "fullscreen"
     }
 };
 
 export const FullscreenTakeover = {
-    ...everything,
+    ...Everything,
     args: {
         size: "fullscreenTakeover"
     }

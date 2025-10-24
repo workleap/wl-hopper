@@ -1,21 +1,21 @@
 {
-  "name": "Mobile",
-  "description": "Represents a smartphone or mobile device. Used for features related to mobile applications, responsive design, mobile-specific functionality, or any feature that involves accessing content or services on mobile devices.",
-  "keywords": [
-    "mobile",
-    "smartphone",
-    "phone",
-    "device",
-    "cellular",
-    "responsive",
-    "portable",
-    "handheld",
-    "touchscreen",
-    "app",
-    "mobile-friendly",
-    "on-the-go",
-    "wireless",
-    "tablet",
-    "accessibility"
-  ]
+    "name": "Mobile",
+    "description": "Represents a smartphone or mobile device. Used for features related to mobile applications, responsive design, mobile-specific functionality, or any feature that involves accessing content or services on mobile devices.",
+    "keywords": [
+        "mobile",
+        "smartphone",
+        "phone",
+        "device",
+        "cellular",
+        "responsive",
+        "portable",
+        "handheld",
+        "touchscreen",
+        "app",
+        "mobile-friendly",
+        "on-the-go",
+        "wireless",
+        "tablet",
+        "accessibility"
+    ]
 }

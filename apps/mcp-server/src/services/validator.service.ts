@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+// TODO: Mahmoud, can you look into this? seems like a valid error
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 
 import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
@@ -125,7 +126,9 @@ function findJSXElements(node: any): TSESTree.JSXElement[] {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function traverse(n: any) {
-        if (!n || typeof n !== "object") {return;}
+        if (!n || typeof n !== "object") {
+            return;
+        }
 
         if (n.type === "JSXElement") {
             elements.push(n as TSESTree.JSXElement);
@@ -133,6 +136,8 @@ function findJSXElements(node: any): TSESTree.JSXElement[] {
 
         // Traverse all properties
         for (const key in n) {
+            //TODO: Mahmoud can we use Object.hasOwn(obj, prop) here?
+            // eslint-disable-next-line no-prototype-builtins
             if (n.hasOwnProperty(key)) {
                 const value = n[key];
                 if (Array.isArray(value)) {
@@ -336,8 +341,7 @@ function validateDivComponent(element: TSESTree.JSXElement, result: ValidationRe
                 attribute.name.type === "JSXIdentifier" &&
                 attribute.name.name === "display") {
                 // Check if the value is "flex" or "grid"
-                if (attribute.value &&
-                    attribute.value.type === "Literal" &&
+                if (attribute.value?.type === "Literal" &&
                     typeof attribute.value.value === "string") {
                     const displayValue = attribute.value.value;
 
@@ -778,11 +782,9 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
     }
 }
 
-
 function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
     return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
 }
-
 
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
     const safePropName = propName.replace("UNSAFE_", "");
@@ -807,7 +809,7 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
         // Validate token format for token-supported props
         if (tokenSupportedProps.has(propName)) {
             validateTokenFormat(originalValue, propName, loc, result);
-        } else if (allowedTokens.has(originalValue)) {// Ensure tokens are not used for not token-supported props
+        } else if (allowedTokens.has(originalValue)) { // Ensure tokens are not used for not token-supported props
             validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
         }
     }

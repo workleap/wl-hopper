@@ -192,7 +192,7 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
                                 {children(tagProps)}
                             </SlotProvider>
                         </ClearContainerSlots>
-                        {(allowsRemoving && !isLoading) &&
+                        {(allowsRemoving && !isLoading) && (
                             <ClearButton
                                 slot="remove"
                                 isDisabled={isDisabled}
@@ -203,15 +203,15 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
                                 isSelected={isSelected}
                                 {...otherClearButtonProps}
                             />
-                        }
-                        {isLoading &&
+                        )}
+                        {isLoading && (
                             <Spinner
                                 aria-label={stringFormatter.format("Tag.spinnerAriaLabel")}
                                 size="sm"
                                 className={spinnerClassNames}
                                 {...otherSpinnerProps}
                             />
-                        }
+                        )}
                     </>
                 );
             }}

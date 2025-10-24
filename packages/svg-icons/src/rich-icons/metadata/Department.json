@@ -1,18 +1,18 @@
 {
-  "name": "Department",
-  "description": "Used to represent organizational divisions, teams, or functional units within a company. Often used in organizational charts, HR systems, or company directories to indicate departmental structures such as Marketing, Finance, HR, or Engineering.",
-  "keywords": [
-    "department",
-    "division",
-    "team",
-    "unit",
-    "organizational structure",
-    "business function",
-    "group",
-    "section",
-    "branch",
-    "functional area",
-    "corporate division",
-    "business unit"
-  ]
+    "name": "Department",
+    "description": "Used to represent organizational divisions, teams, or functional units within a company. Often used in organizational charts, HR systems, or company directories to indicate departmental structures such as Marketing, Finance, HR, or Engineering.",
+    "keywords": [
+        "department",
+        "division",
+        "team",
+        "unit",
+        "organizational structure",
+        "business function",
+        "group",
+        "section",
+        "branch",
+        "functional area",
+        "corporate division",
+        "business unit"
+    ]
 }

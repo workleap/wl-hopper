@@ -4,7 +4,6 @@ import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { PopoverBase } from "../../src/PopoverBase.tsx";
 
-
 const meta = {
     title: "Components/PopoverBase",
     component: PopoverBase,

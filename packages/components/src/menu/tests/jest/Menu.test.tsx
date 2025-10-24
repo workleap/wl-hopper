@@ -41,7 +41,8 @@ describe("Menu", () => {
                 <Menu marginTop="stack-sm" style={{ marginBottom: "13px" }}>
                     <MenuItem>Test</MenuItem>
                 </Menu>
-            </MenuTrigger>);
+            </MenuTrigger>
+        );
 
         const element = screen.getByRole("menu");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

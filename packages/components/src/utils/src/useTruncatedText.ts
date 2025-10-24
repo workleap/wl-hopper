@@ -8,7 +8,9 @@ export const useTruncatedText = (): (value: string, limit?: number) => string =>
         let count = 0;
 
         for (const segment of segments) {
-            if (limit && count + segment.segment.length > limit) {break;}
+            if (limit && count + segment.segment.length > limit) {
+                break;
+            }
             truncatedText += segment.segment;
             count += segment.segment.length;
         }

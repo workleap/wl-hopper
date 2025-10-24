@@ -13,18 +13,10 @@
             ]
         },
     },
-    "include": [
-        "src/**/*"
-    ],
     "exclude": [
         "dist",
         "node_modules",
         "logs",
-        "netlify",
-        "jest.config.ts",
-        "setupTests.ts",
-        "**/*.test.ts",
-        "**/*.spec.ts",
-        "swc.jest.ts"
+        "netlify"
     ],
 }

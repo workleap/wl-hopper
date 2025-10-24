@@ -1,21 +1,21 @@
 {
-  "name": "NewSticky",
-  "description": "Represents a sticky note with a notification dot. Used for features related to sticky notes, quick reminders, short notes, or any feature that involves creating or viewing brief notes with a notification about new content.",
-  "keywords": [
-    "new sticky",
-    "sticky note",
-    "reminder",
-    "note",
-    "memo",
-    "notification",
-    "quick note",
-    "post-it",
-    "jot",
-    "annotation",
-    "brief",
-    "reminder",
-    "task",
-    "to-do",
-    "scribble"
-  ]
+    "name": "NewSticky",
+    "description": "Represents a sticky note with a notification dot. Used for features related to sticky notes, quick reminders, short notes, or any feature that involves creating or viewing brief notes with a notification about new content.",
+    "keywords": [
+        "new sticky",
+        "sticky note",
+        "reminder",
+        "note",
+        "memo",
+        "notification",
+        "quick note",
+        "post-it",
+        "jot",
+        "annotation",
+        "brief",
+        "reminder",
+        "task",
+        "to-do",
+        "scribble"
+    ]
 }

@@ -1,18 +1,18 @@
 {
-  "name": "User",
-  "description": "Represents a user, person, or profile. Depicted as a simple silhouette with a circular head and body shape. Commonly used to indicate user accounts, profile pages, user settings, or any user-related functionality in applications, websites, and digital interfaces.",
-  "keywords": [
-    "user",
-    "person",
-    "profile",
-    "account",
-    "avatar",
-    "member",
-    "individual",
-    "identity",
-    "personal",
-    "human",
-    "login",
-    "user account"
-  ]
+    "name": "User",
+    "description": "Represents a user, person, or profile. Depicted as a simple silhouette with a circular head and body shape. Commonly used to indicate user accounts, profile pages, user settings, or any user-related functionality in applications, websites, and digital interfaces.",
+    "keywords": [
+        "user",
+        "person",
+        "profile",
+        "account",
+        "avatar",
+        "member",
+        "individual",
+        "identity",
+        "personal",
+        "human",
+        "login",
+        "user account"
+    ]
 }

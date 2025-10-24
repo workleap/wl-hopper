@@ -123,9 +123,11 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
     );
 
     if (onPress) {
-        return <Pressable onPress={onPress}>
-            {avatarImage({ role: "button", ...focusProps })}
-        </Pressable>;
+        return (
+            <Pressable onPress={onPress}>
+                {avatarImage({ role: "button", ...focusProps })}
+            </Pressable>
+        );
     }
 
     return avatarImage({ role: "img" });

@@ -89,7 +89,7 @@ const StateTemplate = (args: Partial<ClearButtonProps>) => (
 );
 
 export const States: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const buttons = canvas.getAllByRole("button");
 

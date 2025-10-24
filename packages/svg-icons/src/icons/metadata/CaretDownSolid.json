@@ -1,16 +1,16 @@
 {
-  "name": "CaretDownSolid",
-  "description": "Solid version of the CaretDown icon. Used to represent a dropdown menu, expandable content, or a downward direction in user interfaces with a filled appearance for stronger visual emphasis.",
-  "keywords": [
-    "caret down solid",
-    "dropdown",
-    "expand",
-    "menu",
-    "triangle down",
-    "disclosure",
-    "collapse",
-    "downward",
-    "filled",
-    "solid"
-  ]
+    "name": "CaretDownSolid",
+    "description": "Solid version of the CaretDown icon. Used to represent a dropdown menu, expandable content, or a downward direction in user interfaces with a filled appearance for stronger visual emphasis.",
+    "keywords": [
+        "caret down solid",
+        "dropdown",
+        "expand",
+        "menu",
+        "triangle down",
+        "disclosure",
+        "collapse",
+        "downward",
+        "filled",
+        "solid"
+    ]
 }

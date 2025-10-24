@@ -152,7 +152,7 @@ const StateTemplate = (args: Partial<NumberFieldProps>) => (
 );
 
 export const States: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const inputs = canvas.getAllByRole("textbox");
 

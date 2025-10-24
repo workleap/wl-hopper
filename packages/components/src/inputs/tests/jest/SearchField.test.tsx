@@ -45,7 +45,7 @@ describe("SearchField", () => {
 
     it("should support slots", () => {
         render(
-            <SearchFieldContext.Provider value={{ slots: { test: { "aria-label" : "test label" } } }}>
+            <SearchFieldContext.Provider value={{ slots: { test: { "aria-label": "test label" } } }}>
                 <SearchField data-testid="field" slot="test" />
             </SearchFieldContext.Provider>
         );

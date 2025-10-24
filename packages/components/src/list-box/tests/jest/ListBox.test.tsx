@@ -8,22 +8,26 @@ import { ListBoxContext } from "../../src/ListBoxContext.ts";
 
 describe("ListBox", () => {
     it("should render with default class", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem>Item 1</ListBoxItem>
-            <ListBoxItem>Item 2</ListBoxItem>
-            <ListBoxItem>Item 3</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("listbox");
         expect(element).toHaveClass("hop-ListBox");
     });
 
     it("should support custom class", () => {
-        render(<ListBox aria-label="list of options" className="test">
-            <ListBoxItem>Item 1</ListBoxItem>
-            <ListBoxItem>Item 2</ListBoxItem>
-            <ListBoxItem>Item 3</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options" className="test">
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("listbox");
         expect(element).toHaveClass("hop-ListBox");
@@ -31,22 +35,26 @@ describe("ListBox", () => {
     });
 
     it("should support custom style", () => {
-        render(<ListBox aria-label="list of options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
-            <ListBoxItem>Item 1</ListBoxItem>
-            <ListBoxItem>Item 2</ListBoxItem>
-            <ListBoxItem>Item 3</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("listbox");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<ListBox aria-label="list of options" data-foo="bar">
-            <ListBoxItem>Item 1</ListBoxItem>
-            <ListBoxItem>Item 2</ListBoxItem>
-            <ListBoxItem>Item 3</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options" data-foo="bar">
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("listbox");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -70,20 +78,24 @@ describe("ListBox", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<ListBox ref={ref} aria-label="list of options">
-            <ListBoxItem>Item 1</ListBoxItem>
-            <ListBoxItem>Item 2</ListBoxItem>
-            <ListBoxItem>Item 3</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox ref={ref} aria-label="list of options">
+                <ListBoxItem>Item 1</ListBoxItem>
+                <ListBoxItem>Item 2</ListBoxItem>
+                <ListBoxItem>Item 3</ListBoxItem>
+            </ListBox>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
     });
 
     it("should support isInvalid prop", () => {
-        render(<ListBox aria-label="list of options" isInvalid>
-            <ListBoxItem>Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options" isInvalid>
+                <ListBoxItem>Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveAttribute("data-invalid");
@@ -91,7 +103,7 @@ describe("ListBox", () => {
 });
 
 describe("ListBoxItem", () => {
-    it("should have a matching aria-labelledby and label ID", async () => {
+    it("should have a matching aria-labelledby and label ID", () => {
         render(
             <ListBox aria-label="list of options">
                 <ListBoxItem id="earth" data-testid="earth-item">Earth</ListBoxItem>
@@ -107,7 +119,7 @@ describe("ListBoxItem", () => {
         expect(firstItem).toHaveAttribute("aria-labelledby", labelId);
     });
 
-    it("should have a matching aria-describedBy and description ID", async () => {
+    it("should have a matching aria-describedBy and description ID", () => {
         const descriptionText = "description here";
         render(
             <ListBox aria-label="list of options">
@@ -127,18 +139,22 @@ describe("ListBoxItem", () => {
     });
 
     it("should render with default class", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem>Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem>Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveClass("hop-ListBoxItem");
     });
 
     it("should support custom class", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem className="test">Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem className="test">Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveClass("hop-ListBoxItem");
@@ -146,18 +162,22 @@ describe("ListBoxItem", () => {
     });
 
     it("should support custom style", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem marginTop="stack-sm" style={{ marginBottom: "13px" }}>Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem marginTop="stack-sm" style={{ marginBottom: "13px" }}>Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem data-foo="bar">Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem data-foo="bar">Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -165,18 +185,22 @@ describe("ListBoxItem", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem ref={ref}>Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem ref={ref}>Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
     });
 
     it("should support isInvalid prop", () => {
-        render(<ListBox aria-label="list of options">
-            <ListBoxItem isInvalid>Item 1</ListBoxItem>
-        </ListBox>);
+        render(
+            <ListBox aria-label="list of options">
+                <ListBoxItem isInvalid>Item 1</ListBoxItem>
+            </ListBox>
+        );
 
         const element = screen.getByRole("option");
         expect(element).toHaveAttribute("data-invalid");

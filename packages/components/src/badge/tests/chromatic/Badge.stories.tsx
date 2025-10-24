@@ -42,7 +42,7 @@ export const Subdued = {
     }
 } satisfies Story;
 
-export const indeterminate = {
+export const Indeterminate = {
     render: props => (
         <Stack>
             <h1>Variants</h1>

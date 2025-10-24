@@ -1,13 +1,13 @@
 {
-  "name": "ArrowsOutVertical",
-  "description": "Used to represent vertical expansion, resizing, or adjusting the height of an element or container.",
-  "keywords": [
-    "arrows out vertical",
-    "expand vertically",
-    "resize height",
-    "vertical adjustment",
-    "stretch",
-    "vertical resize",
-    "height"
-  ]
+    "name": "ArrowsOutVertical",
+    "description": "Used to represent vertical expansion, resizing, or adjusting the height of an element or container.",
+    "keywords": [
+        "arrows out vertical",
+        "expand vertically",
+        "resize height",
+        "vertical adjustment",
+        "stretch",
+        "vertical resize",
+        "height"
+    ]
 }

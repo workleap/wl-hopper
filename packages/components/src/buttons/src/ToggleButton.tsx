@@ -167,17 +167,19 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
                     {...otherProps}
                 >
                     {buttonRenderProps => {
-                        return <>
-                            {children(buttonRenderProps)}
-                            {isLoading && (
-                                <Spinner
-                                    aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
-                                    size={iconSize}
-                                    className={spinnerClassNames}
-                                    {...otherSpinnerProps}
-                                />
-                            )}
-                        </>;
+                        return (
+                            <>
+                                {children(buttonRenderProps)}
+                                {isLoading && (
+                                    <Spinner
+                                        aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
+                                        size={iconSize}
+                                        className={spinnerClassNames}
+                                        {...otherSpinnerProps}
+                                    />
+                                )}
+                            </>
+                        );
                     }}
                 </RACToggleButton>
             </SlotProvider>
@@ -194,3 +196,4 @@ const _ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(ToggleBut
 _ToggleButton.displayName = "ToggleButton";
 
 export { _ToggleButton as ToggleButton };
+

@@ -1,14 +1,14 @@
 {
-  "name": "Book",
-  "description": "Used to represent reading, learning, education, documentation, or knowledge resources.",
-  "keywords": [
-    "book",
-    "reading",
-    "learning",
-    "education",
-    "documentation",
-    "knowledge",
-    "literature",
-    "manual"
-  ]
+    "name": "Book",
+    "description": "Used to represent reading, learning, education, documentation, or knowledge resources.",
+    "keywords": [
+        "book",
+        "reading",
+        "learning",
+        "education",
+        "documentation",
+        "knowledge",
+        "literature",
+        "manual"
+    ]
 }

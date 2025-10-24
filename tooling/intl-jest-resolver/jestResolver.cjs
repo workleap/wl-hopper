@@ -10,7 +10,7 @@ const intlCacheDir = path.join(__dirname, "..", "..", "node_modules", ".cache", 
 
 try {
     fs.mkdirSync(intlCacheDir, { recursive: true });
-} catch (err) {
+} catch {
     // ignore
 }
 

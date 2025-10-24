@@ -26,8 +26,7 @@
     },
     "files": [
         "dist",
-        "CHANGELOG.md",
-        "README.md"
+        "CHANGELOG.md"
     ],
     "scripts": {
         "clean:dist": "pnpm dlx rimraf dist",
@@ -36,15 +35,17 @@
         "typecheck": "tsc"
     },
     "devDependencies": {
-        "@types/eslint": "8.56.12",
+        "@eslint/js": "9.38.0",
+        "@types/eslint": "9.6.1",
         "@types/node": "24.5.1",
-        "@workleap/eslint-plugin": "3.5.0",
+        "@workleap/eslint-configs": "0.0.6",
         "@workleap/tsup-configs": "3.1.0",
         "@workleap/typescript-configs": "3.0.4",
-        "eslint": "8.57.1",
+        "eslint": "9.38.0",
         "style-dictionary": "3.9.2",
         "tsx": "4.20.6",
-        "typescript": "5.5.4"
+        "typescript": "5.5.4",
+        "typescript-eslint": "8.46.2"
     },
     "sideEffects": false
 }

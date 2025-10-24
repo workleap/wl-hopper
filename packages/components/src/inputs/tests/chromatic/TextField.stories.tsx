@@ -165,7 +165,7 @@ const StateTemplate = (args: Partial<TextFieldProps>) => (
 );
 
 export const States: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const inputs = canvas.getAllByRole("textbox");
 

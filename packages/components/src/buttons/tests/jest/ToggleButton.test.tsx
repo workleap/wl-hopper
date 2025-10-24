@@ -5,7 +5,6 @@ import { userEvent, waitFor } from "storybook/test";
 import { ToggleButton } from "../../src/ToggleButton.tsx";
 import { ToggleButtonContext } from "../../src/ToggleButtonContext.ts";
 
-
 describe("ToggleButton", () => {
     it("should render with default class", () => {
         render(<ToggleButton>Cutoff</ToggleButton>);
@@ -68,7 +67,7 @@ describe("ToggleButton", () => {
         expect(element).not.toBeNull();
     });
 
-    it("should add aria-disabled attribute when the button is loading", async () => {
+    it("should add aria-disabled attribute when the button is loading", () => {
         render(<ToggleButton isLoading>Loading Button</ToggleButton>);
 
         const element = screen.getByRole("button");

@@ -20,7 +20,7 @@ export interface IconListProps extends StyledSystemProps, BaseComponentDOMProps 
     size?: ResponsiveProp<IconSize>;
 }
 
-function IconList(props:IconListProps, ref: ForwardedRef<HTMLSpanElement>) {
+function IconList(props: IconListProps, ref: ForwardedRef<HTMLSpanElement>) {
     [props, ref] = useContextProps(props, ref, IconListContext);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);

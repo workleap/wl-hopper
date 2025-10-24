@@ -3,7 +3,7 @@ import { getIcons } from "../icons.service";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
-    readFile: jest.fn(async (path: string) => {
+    readFile: jest.fn((path: string) => {
         if (path.includes("/icons/data.json")) {
             return JSON.stringify(MOCK_ICONS_DATA);
         }
@@ -13,7 +13,6 @@ jest.mock("fs/promises", () => ({
         return fs.readFileSync(path, "utf-8");
     })
 }));
-
 
 describe("getIcons", () => {
     beforeEach(() => {

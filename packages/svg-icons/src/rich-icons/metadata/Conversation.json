@@ -1,18 +1,18 @@
 {
-  "name": "Conversation",
-  "description": "Used to represent discussions, dialogues, or communication between individuals. Often depicted as speech bubbles, this icon is commonly used in messaging applications, forums, comment sections, or any interface related to interpersonal communication.",
-  "keywords": [
-    "conversation",
-    "discussion",
-    "dialogue",
-    "chat",
-    "communication",
-    "messaging",
-    "talk",
-    "exchange",
-    "interaction",
-    "speech",
-    "comments",
-    "discourse"
-  ]
+    "name": "Conversation",
+    "description": "Used to represent discussions, dialogues, or communication between individuals. Often depicted as speech bubbles, this icon is commonly used in messaging applications, forums, comment sections, or any interface related to interpersonal communication.",
+    "keywords": [
+        "conversation",
+        "discussion",
+        "dialogue",
+        "chat",
+        "communication",
+        "messaging",
+        "talk",
+        "exchange",
+        "interaction",
+        "speech",
+        "comments",
+        "discourse"
+    ]
 }
