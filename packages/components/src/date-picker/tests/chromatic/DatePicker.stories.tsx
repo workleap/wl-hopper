@@ -1,6 +1,6 @@
 import { Div } from "@hopper-ui/styled-system";
 import { parseDate } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
@@ -35,7 +35,6 @@ export const Default: Story = {
         </Stack>
     )
 };
-
 
 export const WithContextualHelp: Story = {
     render: args => (

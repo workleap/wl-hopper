@@ -4,7 +4,7 @@ import type { ComponentProps, ReactNode } from "react";
 import Link from "next/link";
 import "./cardLink.css";
 
-export interface CardLinkProps extends ComponentProps<"a">{
+export interface CardLinkProps extends ComponentProps<"a"> {
     href: string;
     type: "primary" | "secondary";
     title: string;
@@ -21,9 +21,11 @@ const CardLink = ({ children, className, title, size = "md", type = "primary", d
 
     return (
         <Link className={cardLinkClass} {...rest} href={href}>
-            {children && <div className="hd-cardlink__logo">
-                {children}
-            </div>}
+            {children && (
+                <div className="hd-cardlink__logo">
+                    {children}
+                </div>
+            )}
             <div className="hd-cardlink__copy">
                 <h3 className="hd-cardlink__title">{title}</h3>
                 <p className="hd-cardlink__description">{description}</p>

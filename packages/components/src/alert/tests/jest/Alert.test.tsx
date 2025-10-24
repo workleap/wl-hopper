@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-node-access */
+
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -8,18 +8,22 @@ import { Alert, AlertContext } from "../../src/index.ts";
 
 describe("Alert", () => {
     it("should render with default class", () => {
-        render(<Alert primaryButtonLabel="Confirm" overlayProps={{ isOpen: true }}>
-            <Heading>Test</Heading>
-        </Alert>);
+        render(
+            <Alert primaryButtonLabel="Confirm" overlayProps={{ isOpen: true }}>
+                <Heading>Test</Heading>
+            </Alert>
+        );
 
         const element = screen.getByRole("alertdialog");
         expect(element).toHaveClass("hop-Alert");
     });
 
     it("should support custom class", () => {
-        render(<Alert primaryButtonLabel="Confirm" className="test" overlayProps={{ isOpen: true }}>
-            <Heading>Test</Heading>
-        </Alert>);
+        render(
+            <Alert primaryButtonLabel="Confirm" className="test" overlayProps={{ isOpen: true }}>
+                <Heading>Test</Heading>
+            </Alert>
+        );
 
         const element = screen.getByRole("alertdialog");
         expect(element).toHaveClass("hop-Alert");
@@ -27,18 +31,22 @@ describe("Alert", () => {
     });
 
     it("should support custom style", () => {
-        render(<Alert primaryButtonLabel="Confirm" marginTop="stack-sm" style={{ marginBottom: "13px" }} overlayProps={{ isOpen: true }}>
-            <Heading>Test</Heading>
-        </Alert>);
+        render(
+            <Alert primaryButtonLabel="Confirm" marginTop="stack-sm" style={{ marginBottom: "13px" }} overlayProps={{ isOpen: true }}>
+                <Heading>Test</Heading>
+            </Alert>
+        );
 
         const element = screen.getByRole("alertdialog");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<Alert primaryButtonLabel="Confirm" aria-label="alert options" data-foo="bar" overlayProps={{ isOpen: true }}>
-            <Heading>Test</Heading>
-        </Alert>);
+        render(
+            <Alert primaryButtonLabel="Confirm" aria-label="alert options" data-foo="bar" overlayProps={{ isOpen: true }}>
+                <Heading>Test</Heading>
+            </Alert>
+        );
 
         const element = screen.getByRole("alertdialog");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -61,9 +69,11 @@ describe("Alert", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<Alert primaryButtonLabel="Confirm" aria-label="alert options" ref={ref} overlayProps={{ isOpen: true }}>
-            <Heading>Test</Heading>
-        </Alert>);
+        render(
+            <Alert primaryButtonLabel="Confirm" aria-label="alert options" ref={ref} overlayProps={{ isOpen: true }}>
+                <Heading>Test</Heading>
+            </Alert>
+        );
 
         expect(ref.current).not.toBeNull();
     });

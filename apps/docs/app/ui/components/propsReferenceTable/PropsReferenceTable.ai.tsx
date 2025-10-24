@@ -1,8 +1,8 @@
-import { getPropsTableRows, getScaleLinkCategory, hasScaleLink, type PropsTableRow, type TokenScale, TokenScales, type StyleGroup } from "@/app/lib/styleProps";
+import { getPropsTableRows, getScaleLinkCategory, hasScaleLink, TokenScales, type PropsTableRow, type StyleGroup, type TokenScale } from "@/app/lib/styleProps";
 import type { ReactNode } from "react";
 
 function toScaleLink(scale: TokenScale) {
-    return hasScaleLink(scale) ? <a href={TokenScales[scale].link} target="_blank" >{`${getScaleLinkCategory(scale)} > ${TokenScales[scale].title}`}</a> : scale;
+    return hasScaleLink(scale) ? <a href={TokenScales[scale].link} target="_blank" rel="noreferrer" >{`${getScaleLinkCategory(scale)} > ${TokenScales[scale].title}`}</a> : scale;
 }
 
 function toRowValues([propName, cssProperty, scale, supports]: PropsTableRow): Item {
@@ -35,29 +35,30 @@ export default function PropsReferenceTable({ group }: PropsReferenceTableProps)
     );
 }
 
-
 function PropsReferenceTableRender({ items }: { items: Item[] }) {
-    return <table>
-        <thead>
-            <tr>
-                <th>Property Name</th>
-                <th>CSS Property</th>
-                <th>Tokens Category</th>
-                <th>UNSAFE_</th>
-                <th>Supports</th>
-            </tr>
-        </thead>
-        <tbody>
-            {items.map(item => (
-                <tr key={item.propertyName}>
-                    <td>{item.propertyName}</td>
-                    <td>{item.cssPropertyName}</td>
-                    <td>{item.scale}</td>
-                    <td>{item.scale === "none" ? "✗" : "✓"}</td>
-                    <td>{item.supports}</td>
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Property Name</th>
+                    <th>CSS Property</th>
+                    <th>Tokens Category</th>
+                    <th>UNSAFE_</th>
+                    <th>Supports</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>;
+            </thead>
+            <tbody>
+                {items.map(item => (
+                    <tr key={item.propertyName}>
+                        <td>{item.propertyName}</td>
+                        <td>{item.cssPropertyName}</td>
+                        <td>{item.scale}</td>
+                        <td>{item.scale === "none" ? "✗" : "✓"}</td>
+                        <td>{item.supports}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
 

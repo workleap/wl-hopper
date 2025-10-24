@@ -486,7 +486,7 @@ const StateTemplate = (args: Partial<TagGroupProps<unknown>>) => (
 );
 
 export const DefaultStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const tagGroups = canvas.getAllByTestId("tag-group");
         tagGroups.forEach(tagGroup => {

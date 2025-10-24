@@ -31,7 +31,7 @@ export function MenuTrigger(props: MenuTriggerProps) {
     const { align, direction, allowFlip, children, shouldCloseOnSelect } = props;
     const [isPressed, setPressed] = useState(false);
 
-    const { addGlobalListener } = useGlobalListeners();
+    const globalListeners = useGlobalListeners();
 
     const onPressStart = (e: PressEvent) => {
         if (e.pointerType !== "mouse") {
@@ -40,7 +40,7 @@ export function MenuTrigger(props: MenuTriggerProps) {
 
         setPressed(true);
 
-        addGlobalListener(document, "pointerup", () => {
+        globalListeners.addGlobalListener(document, "pointerup", () => {
             setPressed(false);
         }, { once: true, capture: true });
     };

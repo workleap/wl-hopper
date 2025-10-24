@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse } from "@typescript-eslint/parser";
 import { extractAllConstantStrings } from "../jsx-helpers";
 

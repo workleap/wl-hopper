@@ -11,5 +11,5 @@ export const formatTokens = (tokens: TransformedToken[], group: string): [string
         };
     });
 
-    return [group, formatted ];
+    return [group, formatted];
 };

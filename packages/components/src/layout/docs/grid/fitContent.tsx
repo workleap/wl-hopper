@@ -1,4 +1,4 @@
-import { Grid, Div, type DivProps, fitContent } from "@hopper-ui/components";
+import { Div, type DivProps, fitContent, Grid } from "@hopper-ui/components";
 
 function Square(props: DivProps) {
     return <Div backgroundColor="decorative-option1" minHeight="core_640" minWidth="core_640" {...props} />;
@@ -7,7 +7,7 @@ function Square(props: DivProps) {
 export default function Example() {
     return (
         <Div width="100%" paddingY="core_400">
-            <Grid 
+            <Grid
                 templateColumns={[fitContent("core_800"), fitContent("core_800"), "1fr"]}
                 gap="stack-sm"
                 alignItems="center"

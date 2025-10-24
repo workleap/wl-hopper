@@ -1,21 +1,21 @@
 {
-  "name": "Home",
-  "description": "Represents a house or home. Used for navigation to a homepage, dashboard, or main screen in an application, or for features related to home, residence, shelter, or any feature that involves a starting point or central location.",
-  "keywords": [
-    "home",
-    "house",
-    "homepage",
-    "dashboard",
-    "main",
-    "start",
-    "landing",
-    "residence",
-    "shelter",
-    "dwelling",
-    "abode",
-    "domicile",
-    "navigation",
-    "central",
-    "base"
-  ]
+    "name": "Home",
+    "description": "Represents a house or home. Used for navigation to a homepage, dashboard, or main screen in an application, or for features related to home, residence, shelter, or any feature that involves a starting point or central location.",
+    "keywords": [
+        "home",
+        "house",
+        "homepage",
+        "dashboard",
+        "main",
+        "start",
+        "landing",
+        "residence",
+        "shelter",
+        "dwelling",
+        "abode",
+        "domicile",
+        "navigation",
+        "central",
+        "base"
+    ]
 }

@@ -41,7 +41,7 @@ function toCamelCase(input: string): string {
 }
 
 // Build a nested object from a path like "components/concepts/client-router-file.md"
-async function setDeep(obj: Record<string, FileMapping | FileInfo>, filePathFromRoot: string, fileSize: number) {
+function setDeep(obj: Record<string, FileMapping | FileInfo>, filePathFromRoot: string, fileSize: number) {
     const parts = filePathFromRoot.split("/");
     let cursor = obj;
     for (let i = 0; i < parts.length; i++) {
@@ -104,7 +104,7 @@ export async function generateAiDocsMapping(outputRoot: string, fileName: string
     for (const abs of files) {
         const relFromAiDocs = relative(distAiDocs, abs).replaceAll("\\", "/");
         const fileStats = await stat(abs);
-        await setDeep(mapping, relFromAiDocs, fileStats.size);
+        setDeep(mapping, relFromAiDocs, fileStats.size);
     }
 
     const content = `// Auto-generated file - do not edit manually\nconst files = ${JSON.stringify(mapping, null, 2)};\n\nexport { files };\n`;

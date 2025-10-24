@@ -19,7 +19,7 @@ export interface ToggleArrowProps extends Omit<StyledComponentProps<BaseComponen
     isExpanded?: boolean;
 }
 
-function ToggleArrow(props:ToggleArrowProps, ref: ForwardedRef<SVGSVGElement>) {
+function ToggleArrow(props: ToggleArrowProps, ref: ForwardedRef<SVGSVGElement>) {
     [props, ref] = useContextProps(props, ref, ToggleArrowContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {

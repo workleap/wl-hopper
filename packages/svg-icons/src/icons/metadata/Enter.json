@@ -1,18 +1,18 @@
 {
-  "name": "Enter",
-  "description": "Represents an arrow pointing to the right and entering a rectangular area. Used to indicate login functionality, entering a space or system, accessing content, or any feature that involves gaining entry to something.",
-  "keywords": [
-    "enter",
-    "login",
-    "access",
-    "sign in",
-    "join",
-    "admission",
-    "entry",
-    "ingress",
-    "input",
-    "submit",
-    "proceed",
-    "continue"
-  ]
+    "name": "Enter",
+    "description": "Represents an arrow pointing to the right and entering a rectangular area. Used to indicate login functionality, entering a space or system, accessing content, or any feature that involves gaining entry to something.",
+    "keywords": [
+        "enter",
+        "login",
+        "access",
+        "sign in",
+        "join",
+        "admission",
+        "entry",
+        "ingress",
+        "input",
+        "submit",
+        "proceed",
+        "continue"
+    ]
 }

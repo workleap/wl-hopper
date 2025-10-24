@@ -16,7 +16,7 @@ export async function getFileContent(filePath: string) {
     return await fs.readFile(filePath, "utf8");
 }
 
-export async function getFormattedCode(code: string) {
+export function getFormattedCode(code: string) {
     return (`
 \`\`\`tsx showLineNumbers
 ${code}
@@ -27,7 +27,7 @@ ${code}
 export async function getComponentCode(filePath: string) {
     const examplePath = formatComponentExamplePath(filePath);
     const fileContent = await getFileContent(`${examplePath}.tsx`);
-    const formattedCode = await getFormattedCode(fileContent);
+    const formattedCode = getFormattedCode(fileContent);
 
     return await highlightCode(formattedCode);
 }

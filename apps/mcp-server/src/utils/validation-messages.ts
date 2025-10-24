@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+
 import { formatMessage } from "./message-formatter";
 
 const validationMessages = {
@@ -45,7 +45,6 @@ const validationMessages = {
 
 };
 
-
 /**
  * Formats a validation message with the given parameters
  * @param key The message key from the validation messages
@@ -58,6 +57,7 @@ const validationMessages = {
  */
 export function validationMessage(
     key: keyof typeof validationMessages.errors | keyof typeof validationMessages.warnings | keyof typeof validationMessages.exceptions,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     params?: Record<string, any>
 ): string {
     const template = key in validationMessages.errors

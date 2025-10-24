@@ -1,21 +1,21 @@
 {
-  "name": "Italic",
-  "description": "Represents the italic text formatting option. Used in text editors, word processors, rich text editors, or any feature that involves text formatting to emphasize or highlight text by slanting the characters.",
-  "keywords": [
-    "italic",
-    "formatting",
-    "text",
-    "style",
-    "emphasis",
-    "slant",
-    "typography",
-    "editor",
-    "font",
-    "highlight",
-    "markup",
-    "rich text",
-    "writing",
-    "document",
-    "composition"
-  ]
+    "name": "Italic",
+    "description": "Represents the italic text formatting option. Used in text editors, word processors, rich text editors, or any feature that involves text formatting to emphasize or highlight text by slanting the characters.",
+    "keywords": [
+        "italic",
+        "formatting",
+        "text",
+        "style",
+        "emphasis",
+        "slant",
+        "typography",
+        "editor",
+        "font",
+        "highlight",
+        "markup",
+        "rich text",
+        "writing",
+        "document",
+        "composition"
+    ]
 }

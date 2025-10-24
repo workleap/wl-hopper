@@ -1,18 +1,18 @@
 {
-  "name": "LikertScale",
-  "description": "Used to represent rating systems or survey questions with a range of responses. Often depicted as a series of points on a line, this icon represents measurement scales used in questionnaires to capture opinions, attitudes, or perceptions across a spectrum of responses.",
-  "keywords": [
-    "likert scale",
-    "rating scale",
-    "survey",
-    "questionnaire",
-    "measurement",
-    "opinion scale",
-    "response range",
-    "assessment",
-    "evaluation",
-    "feedback scale",
-    "satisfaction scale",
-    "agreement scale"
-  ]
+    "name": "LikertScale",
+    "description": "Used to represent rating systems or survey questions with a range of responses. Often depicted as a series of points on a line, this icon represents measurement scales used in questionnaires to capture opinions, attitudes, or perceptions across a spectrum of responses.",
+    "keywords": [
+        "likert scale",
+        "rating scale",
+        "survey",
+        "questionnaire",
+        "measurement",
+        "opinion scale",
+        "response range",
+        "assessment",
+        "evaluation",
+        "feedback scale",
+        "satisfaction scale",
+        "agreement scale"
+    ]
 }

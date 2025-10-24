@@ -2,7 +2,6 @@ import { useMemo, type CSSProperties, type PropsWithChildren, type ReactNode } f
 
 import type { RenderPropsHookOptions, StyleProps } from "./types.ts";
 
-
 /**
 * Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
 */

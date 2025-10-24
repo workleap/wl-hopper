@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 
 import { files } from "@docs/ai";
 import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -48,7 +47,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "hopper-full-documentation",
         new ResourceTemplate("hopper://llms-full", {
-            list: async () => ({
+            list: () => ({
                 resources: [{
                     uri: "hopper://llms-full",
                     name: "Full Hopper Documentation",
@@ -75,7 +74,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "component-usage",
         new ResourceTemplate("hopper://components/{name}/usage", {
-            list: async () => ({
+            list: () => ({
                 resources: HOPPER_COMPONENTS.map(name => ({
                     uri: `hopper://components/${name}/usage`,
                     name: `${name} Component Usage`,
@@ -106,7 +105,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "component-props",
         new ResourceTemplate("hopper://components/{name}/props", {
-            list: async () => ({
+            list: () => ({
                 resources: HOPPER_COMPONENTS.map(name => ({
                     uri: `hopper://components/${name}/props`,
                     name: `${name} Component Props`,
@@ -137,7 +136,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "component-props-full",
         new ResourceTemplate("hopper://components/{name}/props-full", {
-            list: async () => ({
+            list: () => ({
                 resources: HOPPER_COMPONENTS.map(name => ({
                     uri: `hopper://components/${name}/props-full`,
                     name: `${name} Component Full API`,
@@ -168,9 +167,9 @@ export function resources(server: McpServer) {
     server.registerResource(
         "design-tokens",
         new ResourceTemplate("hopper://tokens/{category}", {
-            list: async () => ({
+            list: () => ({
                 resources: TokenCategories.map(category => {
-                    const guideFile = TokenGuideFiles[category as TokenCategory];
+                    const guideFile = TokenGuideFiles[category];
                     const estimatedTokens = guideFile?.estimatedTokens || 0;
 
                     return {
@@ -204,9 +203,9 @@ export function resources(server: McpServer) {
     server.registerResource(
         "token-guides",
         new ResourceTemplate("hopper://token-guides/{category}", {
-            list: async () => ({
+            list: () => ({
                 resources: TokenCategories.map(category => {
-                    const guideFile = TokenGuideFiles[category as TokenCategory];
+                    const guideFile = TokenGuideFiles[category];
                     const estimatedTokens = guideFile?.estimatedTokens || 0;
 
                     return {
@@ -240,15 +239,15 @@ export function resources(server: McpServer) {
     server.registerResource(
         "guides",
         new ResourceTemplate("hopper://guides/{section}", {
-            list: async () => ({
+            list: () => ({
                 resources: GuideSections.map(section => {
-                    const guideFile = GuideFiles[section as GuideSection];
+                    const guideFile = GuideFiles[section];
                     const estimatedTokens = (guideFile && "estimatedTokens" in guideFile) ? guideFile.estimatedTokens : 0;
 
                     return {
                         uri: `hopper://guides/${section}`,
                         name: section.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
-                        description: `${GuideDescriptions[section as GuideSection]} (~${estimatedTokens} LLM tokens)`,
+                        description: `${GuideDescriptions[section]} (~${estimatedTokens} LLM tokens)`,
                         mimeType: "text/markdown"
                     };
                 })
@@ -276,7 +275,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "icons",
         new ResourceTemplate("hopper://icons/{type}", {
-            list: async () => ({
+            list: () => ({
                 resources: IconTypes.map(type => ({
                     uri: `hopper://icons/${type}`,
                     name: `${type} icons`,
@@ -310,7 +309,7 @@ export function resources(server: McpServer) {
     server.registerResource(
         "component-list",
         new ResourceTemplate("hopper://component-list", {
-            list: async () => ({
+            list: () => ({
                 resources: [{
                     uri: "hopper://component-list",
                     name: "Hopper Component List",
@@ -323,7 +322,7 @@ export function resources(server: McpServer) {
             title: "List of all Hopper components",
             description: "A complete list of all available components in the Hopper Design System"
         },
-        async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
+        (uri, _, { requestInfo }): ReadResourceResult => {
             trackEvent("resource:component-list", {}, requestInfo);
 
             return createResourceResult(uri, {

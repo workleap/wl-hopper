@@ -1,14 +1,14 @@
 {
-  "name": "Bullseye",
-  "description": "Used to represent targeting, goals, objectives, precision, or hitting a specific target or outcome.",
-  "keywords": [
-    "bullseye",
-    "target",
-    "goal",
-    "objective",
-    "aim",
-    "precision",
-    "accuracy",
-    "focus"
-  ]
+    "name": "Bullseye",
+    "description": "Used to represent targeting, goals, objectives, precision, or hitting a specific target or outcome.",
+    "keywords": [
+        "bullseye",
+        "target",
+        "goal",
+        "objective",
+        "aim",
+        "precision",
+        "accuracy",
+        "focus"
+    ]
 }

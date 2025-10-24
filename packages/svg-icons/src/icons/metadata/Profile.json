@@ -1,21 +1,21 @@
 {
-  "name": "Profile",
-  "description": "Represents a user profile or avatar with a circular border and a person silhouette inside. Used for features related to user profiles, account settings, personal information, user management, or any feature that involves user identity or account management.",
-  "keywords": [
-    "profile",
-    "user",
-    "account",
-    "avatar",
-    "person",
-    "identity",
-    "personal",
-    "settings",
-    "member",
-    "contact",
-    "individual",
-    "user profile",
-    "biography",
-    "credentials",
-    "authentication"
-  ]
+    "name": "Profile",
+    "description": "Represents a user profile or avatar with a circular border and a person silhouette inside. Used for features related to user profiles, account settings, personal information, user management, or any feature that involves user identity or account management.",
+    "keywords": [
+        "profile",
+        "user",
+        "account",
+        "avatar",
+        "person",
+        "identity",
+        "personal",
+        "settings",
+        "member",
+        "contact",
+        "individual",
+        "user profile",
+        "biography",
+        "credentials",
+        "authentication"
+    ]
 }

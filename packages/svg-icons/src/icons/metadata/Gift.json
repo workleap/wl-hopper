@@ -1,18 +1,18 @@
 {
-  "name": "Gift",
-  "description": "Represents a wrapped present or gift box. Used for gift-related features, rewards, special offers, or any feature that involves giving or receiving something special.",
-  "keywords": [
-    "gift",
-    "present",
-    "reward",
-    "offer",
-    "surprise",
-    "package",
-    "celebration",
-    "special",
-    "bonus",
-    "giveaway",
-    "prize",
-    "treat"
-  ]
+    "name": "Gift",
+    "description": "Represents a wrapped present or gift box. Used for gift-related features, rewards, special offers, or any feature that involves giving or receiving something special.",
+    "keywords": [
+        "gift",
+        "present",
+        "reward",
+        "offer",
+        "surprise",
+        "package",
+        "celebration",
+        "special",
+        "bonus",
+        "giveaway",
+        "prize",
+        "treat"
+    ]
 }

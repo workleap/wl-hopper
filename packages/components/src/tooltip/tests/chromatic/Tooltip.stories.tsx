@@ -132,7 +132,6 @@ export const DOMTrigger = {
     )
 } satisfies Story;
 
-
 export const IconTrigger = {
     render: function Render(args) {
         return (

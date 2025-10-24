@@ -14,9 +14,9 @@ export function mockImage() {
     //@ts-expect-error - Image is a global object
     window.Image = class Image {
         onload: VoidFunction = () => {
-            // eslint-disable-next-line no-console
             console.log("called");
         };
+
         onerror: VoidFunction = () => {};
         _src = "";
         alt = "";
@@ -32,16 +32,20 @@ export function mockImage() {
                 setSrcAttempts++;
             }, mockImage.DELAY);
         }
+
         get src() {
             return this._src;
         }
+
         hasAttribute(name: string) {
             return name in this;
         }
+
         getAttribute(name: string) {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return name in this ? (this as any)[name] : null;
         }
+
         constructor() {
             return this;
         }

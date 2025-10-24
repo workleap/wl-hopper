@@ -14,13 +14,13 @@ function errorToObject(error: object | null) {
     return error;
 }
 
-export function trackEvent(event: string | "error", data: object | null = {}, requestInfo?: RequestInfo) {
+export function trackEvent(event: (string & {}) | "error", data: object | null = {}, requestInfo?: RequestInfo) {
     const convertedData = errorToObject(data);
-    let sessionId = requestInfo && requestInfo.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
+    let sessionId = requestInfo?.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
     const { sessionId: dataSessionId, ...modifiedData } = (convertedData != null && ("sessionId" in convertedData)) ? convertedData : { sessionId: null, ...convertedData };
 
     if (!sessionId && dataSessionId && typeof dataSessionId === "string") {
-        sessionId = dataSessionId as string;
+        sessionId = dataSessionId;
     }
 
     const logData = {

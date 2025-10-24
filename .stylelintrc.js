@@ -18,6 +18,7 @@ const config = {
             ],
             rules: {
                 "prettier/prettier": null,
+                "order/properties-order": null, // Disable property order enforcement from prettier-config, we use clean-order instead
                 // We want to enforce the use of logical properties
                 "csstools/use-logical": true,
                 "media-feature-range-notation": "prefix",

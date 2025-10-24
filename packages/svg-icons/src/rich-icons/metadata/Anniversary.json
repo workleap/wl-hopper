@@ -1,18 +1,18 @@
 {
-  "name": "Anniversary",
-  "description": "Used to represent anniversaries, celebrations of milestones, or commemorative events. Often used in calendar applications, event planning tools, or HR systems to mark important dates such as work anniversaries or company milestones.",
-  "keywords": [
-    "anniversary",
-    "celebration",
-    "milestone",
-    "commemoration",
-    "yearly event",
-    "annual",
-    "remembrance",
-    "special date",
-    "work anniversary",
-    "company milestone",
-    "jubilee",
-    "memorial"
-  ]
+    "name": "Anniversary",
+    "description": "Used to represent anniversaries, celebrations of milestones, or commemorative events. Often used in calendar applications, event planning tools, or HR systems to mark important dates such as work anniversaries or company milestones.",
+    "keywords": [
+        "anniversary",
+        "celebration",
+        "milestone",
+        "commemoration",
+        "yearly event",
+        "annual",
+        "remembrance",
+        "special date",
+        "work anniversary",
+        "company milestone",
+        "jubilee",
+        "memorial"
+    ]
 }

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { RouterProvider } from "react-aria-components";
 
-export const RACProvider = ({ children }: { children : ReactNode }) => {
+export const RACProvider = ({ children }: { children: ReactNode }) => {
     const router = useRouter();
 
     return (

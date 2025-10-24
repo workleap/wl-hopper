@@ -22,7 +22,7 @@ export interface AccordionProps extends StyledComponentProps<RACDisclosureGroupP
     variant?: "standalone" | "inline";
 }
 
-function Accordion(props:AccordionProps, ref: ForwardedRef<HTMLDivElement>) {
+function Accordion(props: AccordionProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AccordionContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {

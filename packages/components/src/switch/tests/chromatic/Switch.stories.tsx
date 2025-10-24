@@ -7,7 +7,6 @@ import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { Switch } from "../../src/Switch.tsx";
 
-
 const meta = {
     title: "Components/Forms/Switch",
     component: Switch
@@ -114,7 +113,7 @@ export const Checked: Story = {
 };
 
 export const UncheckedStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const switchLabels = canvasElement.querySelectorAll("label");
 
         switchLabels.forEach(switchLabel => {

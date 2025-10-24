@@ -142,8 +142,8 @@ describe("filterTokens", () => {
             const result = filterTokens(mockTokenData, [], [], ["fontSize"]);
 
             expect(result.core?.fontSize).toBeDefined();
-            expect(Object.keys(result.core!.fontSize!.tokens)).toHaveLength(3);
-            expect(result.core!.fontSize!.tokens["hop-font-size-sm"]).toEqual({
+            expect(Object.keys(result.core!.fontSize.tokens)).toHaveLength(3);
+            expect(result.core!.fontSize.tokens["hop-font-size-sm"]).toEqual({
                 propValue: "sm",
                 cssValue: "0.875rem"
             });
@@ -156,10 +156,10 @@ describe("filterTokens", () => {
 
             // Should have core.color category with only primary tokens
             expect(result.core?.color).toBeDefined();
-            expect(Object.keys(result.core!.color!.tokens)).toHaveLength(2);
-            expect(result.core!.color!.tokens["hop-primary-100"]).toBeDefined();
-            expect(result.core!.color!.tokens["hop-primary-200"]).toBeDefined();
-            expect(result.core!.color!.tokens["hop-secondary-100"]).toBeUndefined();
+            expect(Object.keys(result.core!.color.tokens)).toHaveLength(2);
+            expect(result.core!.color.tokens["hop-primary-100"]).toBeDefined();
+            expect(result.core!.color.tokens["hop-primary-200"]).toBeDefined();
+            expect(result.core!.color.tokens["hop-secondary-100"]).toBeUndefined();
         });
 
         it("should apply supportedProps filter before cssValues filter", () => {
@@ -168,12 +168,12 @@ describe("filterTokens", () => {
             // Should have fontSize and spacing categories, tokens with values close to 1rem
             expect(result.core?.fontSize).toBeDefined();
             // With tolerance, all fontSize tokens should match (0.875rem, 1rem, 1.125rem are close)
-            expect(Object.keys(result.core!.fontSize!.tokens).length).toBeGreaterThan(0);
-            expect(result.core!.fontSize!.tokens["hop-font-size-md"]).toBeDefined();
+            expect(Object.keys(result.core!.fontSize.tokens).length).toBeGreaterThan(0);
+            expect(result.core!.fontSize.tokens["hop-font-size-md"]).toBeDefined();
 
             expect(result.core?.spacing).toBeDefined();
-            expect(Object.keys(result.core!.spacing!.tokens)).toHaveLength(1);
-            expect(result.core!.spacing!.tokens["hop-space-md"]).toBeDefined();
+            expect(Object.keys(result.core!.spacing.tokens)).toHaveLength(1);
+            expect(result.core!.spacing.tokens["hop-space-md"]).toBeDefined();
         });
 
         it("should apply all three filters in correct order", () => {
@@ -181,8 +181,8 @@ describe("filterTokens", () => {
 
             // Should only have semantic.color category with danger-text token
             expect(result.semantic?.color).toBeDefined();
-            expect(Object.keys(result.semantic!.color!.tokens)).toHaveLength(1);
-            expect(result.semantic!.color!.tokens["hop-danger-text"]).toBeDefined();
+            expect(Object.keys(result.semantic!.color.tokens)).toHaveLength(1);
+            expect(result.semantic!.color.tokens["hop-danger-text"]).toBeDefined();
             expect(result.core).toBeUndefined();
         });
 
@@ -212,7 +212,7 @@ describe("filterTokens", () => {
 
             const result = filterTokens(dataWithEmptyTokens, [], [], ["backgroundColor"]);
             expect(result.core?.color).toBeDefined();
-            expect(result.core!.color!.tokens).toEqual({});
+            expect(result.core!.color.tokens).toEqual({});
         });
 
         it("should handle multiple filters returning no results", () => {
@@ -459,7 +459,6 @@ describe("convertToBriefFormat", () => {
             });
         });
     });
-
 
     describe("Real-world token structures", () => {
         it("should convert semantic color tokens", () => {

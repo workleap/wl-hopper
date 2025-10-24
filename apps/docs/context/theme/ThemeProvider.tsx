@@ -16,7 +16,7 @@ export type ColorScheme = "light" | "dark";
 
 export const ThemeContext = createContext<ColorSchemeContextType>({
     colorMode: "light",
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+
     setColorMode: () => {}
 });
 
@@ -33,8 +33,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }, [colorMode]);
 
     useEffect(() => {
-        setColorMode (getInitialColorMode());
-    }, [setColorMode ]);
+        setColorMode(getInitialColorMode());
+    }, [setColorMode]);
 
     return (
         <ThemeContext.Provider value={{

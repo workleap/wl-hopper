@@ -84,7 +84,6 @@ export const TokenScales = {
 
 export type TokenScale = keyof typeof TokenScales;
 
-
 export interface StylePropDefinition {
     propName: string;
     cssProperty: string;
@@ -266,9 +265,10 @@ export function getPropsGroupedByCategory(): Record<StyleGroup, StylePropDefinit
     }, {} as Record<StyleGroup, StylePropDefinition[]>);
 }
 
-
 export function getScaleLinkCategory(scale: TokenScale) {
-    if (scale === "none") {return "";}
+    if (scale === "none") {
+        return "";
+    }
 
     return TokenScales[scale].link.startsWith("/tokens/core") ? "Core" : "Semantic";
 }

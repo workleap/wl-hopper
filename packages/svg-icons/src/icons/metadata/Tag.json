@@ -1,24 +1,24 @@
 {
-  "name": "Tag",
-  "description": "Represents a price tag or label. Used for features related to tagging, labeling, categorizing, or any feature that involves adding metadata or identifiers to content. Commonly used in content management systems, e-commerce platforms, and organizational tools.",
-  "keywords": [
-    "tag",
-    "label",
-    "category",
-    "keyword",
-    "metadata",
-    "identifier",
-    "marker",
-    "classify",
-    "organize",
-    "group",
-    "flag",
-    "mark",
-    "annotate",
-    "index",
-    "price tag",
-    "taxonomy",
-    "hashtag",
-    "attribute"
-  ]
+    "name": "Tag",
+    "description": "Represents a price tag or label. Used for features related to tagging, labeling, categorizing, or any feature that involves adding metadata or identifiers to content. Commonly used in content management systems, e-commerce platforms, and organizational tools.",
+    "keywords": [
+        "tag",
+        "label",
+        "category",
+        "keyword",
+        "metadata",
+        "identifier",
+        "marker",
+        "classify",
+        "organize",
+        "group",
+        "flag",
+        "mark",
+        "annotate",
+        "index",
+        "price tag",
+        "taxonomy",
+        "hashtag",
+        "attribute"
+    ]
 }

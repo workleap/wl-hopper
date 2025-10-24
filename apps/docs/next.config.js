@@ -8,21 +8,6 @@ const nextConfig = {
         ignoreBuildErrors: true // we typecheck separately
     },
     productionBrowserSourceMaps: true,
-    // Eslint only lint pages/, app/, components/, lib/, and src/ directories by default. So we need to add other directories to the eslint config.
-    // https://nextjs.org/docs/app/building-your-application/configuring/eslint#linting-custom-directories-and-files
-    eslint: {
-        ignoreDuringBuilds: true,
-        dirs: [
-            ".storybook",
-            "app",
-            "components",
-            "configs",
-            "content",
-            "context",
-            "hooks",
-            "scripts"
-        ]
-    },
     pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
     transpilePackages: ["@hopper-ui", "shiki"],
     images: {

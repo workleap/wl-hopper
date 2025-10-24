@@ -1,18 +1,18 @@
 {
-  "name": "DecreasingScore",
-  "description": "Used to represent declining performance, downward trends, or decreasing metrics. Often depicted as a downward-trending graph or chart, this icon is commonly used in dashboards, analytics, or reporting interfaces to indicate negative performance changes.",
-  "keywords": [
-    "decreasing score",
-    "declining performance",
-    "downward trend",
-    "negative change",
-    "falling metrics",
-    "reduction",
-    "decline",
-    "decrease",
-    "downtrend",
-    "performance drop",
-    "regression",
-    "deterioration"
-  ]
+    "name": "DecreasingScore",
+    "description": "Used to represent declining performance, downward trends, or decreasing metrics. Often depicted as a downward-trending graph or chart, this icon is commonly used in dashboards, analytics, or reporting interfaces to indicate negative performance changes.",
+    "keywords": [
+        "decreasing score",
+        "declining performance",
+        "downward trend",
+        "negative change",
+        "falling metrics",
+        "reduction",
+        "decline",
+        "decrease",
+        "downtrend",
+        "performance drop",
+        "regression",
+        "deterioration"
+    ]
 }

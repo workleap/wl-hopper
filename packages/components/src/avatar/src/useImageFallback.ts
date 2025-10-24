@@ -32,10 +32,10 @@ export interface ImageFallbackReturnProps {
 }
 
 type Status =
-"loading" /* When the image is loading. */
-| "failed" /*  The image has failed to load. */
-| "pending" /* There is no src, but it's in a pending state since it could be updated in the future. */
-| "loaded" /* The image has loaded successfully. */;
+    "loading" /* When the image is loading. */
+    | "failed" /*  The image has failed to load. */
+    | "pending" /* There is no src, but it's in a pending state since it could be updated in the future. */
+    | "loaded";
 type ImageEvent = SyntheticEvent<HTMLImageElement, Event>;
 
 export function useImageFallback(props: ImageFallbackProps): ImageFallbackReturnProps {
@@ -50,7 +50,9 @@ export function useImageFallback(props: ImageFallbackProps): ImageFallbackReturn
     const imageRef = useRef<HTMLImageElement | null>(null);
 
     const load = useCallback(() => {
-        if (!src) {return;}
+        if (!src) {
+            return;
+        }
 
         flush();
 

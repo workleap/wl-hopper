@@ -33,7 +33,7 @@ const Pre = ({ children, className, title, "data-language": dataLanguage, raw, t
 
     return (
         <pre data-theme={theme} className={classes} tabIndex={-1} {...props}>
-            {title &&
+            {title && (
                 <div className="hd-pre-header">
                     <div className="hd-pre-header__info">
                         {langContent}
@@ -41,7 +41,7 @@ const Pre = ({ children, className, title, "data-language": dataLanguage, raw, t
                     </div>
                     {copyButton}
                 </div>
-            }
+            )}
             <div className="hd-pre__code">
                 {children}
             </div>

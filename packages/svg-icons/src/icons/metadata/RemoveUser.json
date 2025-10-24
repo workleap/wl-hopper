@@ -1,21 +1,21 @@
 {
-  "name": "RemoveUser",
-  "description": "Represents a user or person icon with an X or close symbol. Used for features related to removing users, deleting accounts, revoking access, unassigning people, or any feature that involves eliminating user profiles, memberships, or permissions.",
-  "keywords": [
-    "remove user",
-    "delete account",
-    "revoke access",
-    "unassign",
-    "remove member",
-    "delete profile",
-    "deactivate user",
-    "remove participant",
-    "unsubscribe",
-    "terminate account",
-    "remove permission",
-    "delete contact",
-    "remove follower",
-    "unlink user",
-    "disassociate"
-  ]
+    "name": "RemoveUser",
+    "description": "Represents a user or person icon with an X or close symbol. Used for features related to removing users, deleting accounts, revoking access, unassigning people, or any feature that involves eliminating user profiles, memberships, or permissions.",
+    "keywords": [
+        "remove user",
+        "delete account",
+        "revoke access",
+        "unassign",
+        "remove member",
+        "delete profile",
+        "deactivate user",
+        "remove participant",
+        "unsubscribe",
+        "terminate account",
+        "remove permission",
+        "delete contact",
+        "remove follower",
+        "unlink user",
+        "disassociate"
+    ]
 }

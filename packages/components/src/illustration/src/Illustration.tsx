@@ -25,7 +25,7 @@ export interface IllustrationProps extends StyledComponentProps<BaseComponentDOM
     shape?: "straight" | "rounded";
 }
 
-function Illustration(props:IllustrationProps, ref: ForwardedRef<HTMLDivElement>) {
+function Illustration(props: IllustrationProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, IllustrationContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props as IllustrationContextValue);
     const {

@@ -1,20 +1,20 @@
 {
-  "name": "WhosWhoFace",
-  "description": "Represents a face icon used in a \"Who's Who\" feature or game. Depicted as a smiling face with eyes inside a square frame. Used to indicate person identification, facial recognition, people directory features, or team member identification activities in applications, websites, and digital interfaces.",
-  "keywords": [
-    "who's who",
-    "face",
-    "identification",
-    "recognition",
-    "profile",
-    "person",
-    "identity",
-    "directory",
-    "team member",
-    "people",
-    "facial recognition",
-    "contact",
-    "avatar",
-    "employee"
-  ]
+    "name": "WhosWhoFace",
+    "description": "Represents a face icon used in a \"Who's Who\" feature or game. Depicted as a smiling face with eyes inside a square frame. Used to indicate person identification, facial recognition, people directory features, or team member identification activities in applications, websites, and digital interfaces.",
+    "keywords": [
+        "who's who",
+        "face",
+        "identification",
+        "recognition",
+        "profile",
+        "person",
+        "identity",
+        "directory",
+        "team member",
+        "people",
+        "facial recognition",
+        "contact",
+        "avatar",
+        "employee"
+    ]
 }

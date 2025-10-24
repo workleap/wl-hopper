@@ -2,7 +2,3 @@ packages:
   - "packages/**"
   - "apps/**"
   - "tooling/**"
-
-minimumReleaseAge: 1440
-minimumReleaseAgeExclude:
-  - "@workleap*"

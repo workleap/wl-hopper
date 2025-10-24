@@ -1,13 +1,13 @@
 {
-  "name": "Alignment",
-  "description": "Used to represent alignment, orientation, direction, or navigation functionality within an interface or document.",
-  "keywords": [
-    "alignment",
-    "orientation",
-    "direction",
-    "compass",
-    "navigation",
-    "position",
-    "layout"
-  ]
+    "name": "Alignment",
+    "description": "Used to represent alignment, orientation, direction, or navigation functionality within an interface or document.",
+    "keywords": [
+        "alignment",
+        "orientation",
+        "direction",
+        "compass",
+        "navigation",
+        "position",
+        "layout"
+    ]
 }

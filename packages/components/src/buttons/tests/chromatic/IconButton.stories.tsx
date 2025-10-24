@@ -46,7 +46,7 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "secondary"
     }
@@ -54,7 +54,7 @@ export const Secondary: Story = {
 
 export const Upsell: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "upsell"
     }
@@ -62,7 +62,7 @@ export const Upsell: Story = {
 
 export const Danger: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "danger"
     }
@@ -70,7 +70,7 @@ export const Danger: Story = {
 
 export const GhostPrimary: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "ghost-primary"
     }
@@ -78,7 +78,7 @@ export const GhostPrimary: Story = {
 
 export const GhostSecondary: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "ghost-secondary"
     }
@@ -86,7 +86,7 @@ export const GhostSecondary: Story = {
 
 export const GhostDanger: Story = {
     ...Primary,
-    args:{
+    args: {
         ...Primary.args,
         variant: "ghost-danger"
     }
@@ -104,7 +104,7 @@ const StateTemplate = (args: Partial<ButtonProps>) => (
 );
 
 export const PrimaryStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const buttons = canvas.getAllByRole("button");
 

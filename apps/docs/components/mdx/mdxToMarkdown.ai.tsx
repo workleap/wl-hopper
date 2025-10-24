@@ -30,7 +30,7 @@ async function renderToStringAsync(element: ReactElement): Promise<string> {
                 pipe(writable);
             },
             onError(err) {
-                reject(err);
+                reject(err as Error);
             }
         });
 
@@ -56,14 +56,12 @@ export async function mdxToReact(mdxSource: string, customComponents: Record<str
     return compiled.content;
 }
 
-
 export async function mdxToMarkdown(mdxSource: string, customComponents: Record<string, ComponentType>): Promise<string> {
     const compiled = await mdxToReact(mdxSource, customComponents);
     const html = await renderToStringAsync(compiled);
 
     return String(await htmlToMarkdown(html));
 }
-
 
 export async function htmlToMarkdown(html: string): Promise<string> {
     const file = await unified()
@@ -78,5 +76,4 @@ export async function htmlToMarkdown(html: string): Promise<string> {
 
     return String(file);
 }
-
 

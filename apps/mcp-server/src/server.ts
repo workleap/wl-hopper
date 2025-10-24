@@ -1,6 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-// eslint-disable-next-line
 import packageInfo from "../package.json" assert { type: "json" };
 import { prompts } from "./prompts";
 import { resources } from "./resources";

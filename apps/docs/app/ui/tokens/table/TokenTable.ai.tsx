@@ -39,28 +39,30 @@ interface Item {
 }
 
 function TokenTableRender({ items, showStyledSystemValue }: { items: Item[]; showStyledSystemValue: boolean }) {
-    return <div>
-        <div>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </div>
-        <div>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the related mapping value from the <strong>Component Prop Value</strong> column by searching this table.</div>
-        <table>
-            <thead>
-                <tr>
-                    {showStyledSystemValue && <th>Component Prop Value</th>}
-                    <th>Token Name (CSS Variable Name)</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                {items.map(item => (
-                    <tr key={item.name}>
-                        {showStyledSystemValue && <td>{item.styledSystemValue}</td>}
-                        <td><code>{`--${item.name}`}</code></td>
-                        <td>{item.value}</td>
+    return (
+        <div>
+            <div>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </div>
+            <div>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the related mapping value from the <strong>Component Prop Value</strong> column by searching this table.</div>
+            <table>
+                <thead>
+                    <tr>
+                        {showStyledSystemValue && <th>Component Prop Value</th>}
+                        <th>Token Name (CSS Variable Name)</th>
+                        <th>Value</th>
                     </tr>
-                ))}
-            </tbody>
-        </table>
-    </div>;
+                </thead>
+                <tbody>
+                    {items.map(item => (
+                        <tr key={item.name}>
+                            {showStyledSystemValue && <td>{item.styledSystemValue}</td>}
+                            <td><code>{`--${item.name}`}</code></td>
+                            <td>{item.value}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    );
 }
 
 export default TokenTable;

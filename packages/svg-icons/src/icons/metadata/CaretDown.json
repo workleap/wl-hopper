@@ -1,14 +1,14 @@
 {
-  "name": "CaretDown",
-  "description": "Used to represent a dropdown menu, expandable content, or a downward direction in user interfaces.",
-  "keywords": [
-    "caret down",
-    "dropdown",
-    "expand",
-    "menu",
-    "triangle down",
-    "disclosure",
-    "collapse",
-    "downward"
-  ]
+    "name": "CaretDown",
+    "description": "Used to represent a dropdown menu, expandable content, or a downward direction in user interfaces.",
+    "keywords": [
+        "caret down",
+        "dropdown",
+        "expand",
+        "menu",
+        "triangle down",
+        "disclosure",
+        "collapse",
+        "downward"
+    ]
 }

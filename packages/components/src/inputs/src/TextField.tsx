@@ -218,14 +218,14 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
                 {prefixMarkup}
                 <Input ref={inputRef} placeholder={placeholder} size={size} />
 
-                {showCharacterCount && maxLength &&
+                {showCharacterCount && maxLength && (
                     <RemainingCharacterCount
                         count={maxLength - characterCount}
                         isInvalid={overMaxLength}
                         isDisabled={isDisabled}
                         {...remainingCharacterCountProps}
                     />
-                }
+                )}
                 {showClearButton && <ClearButton isDisabled={isDisabled} size="lg" onPress={handleClear} />}
             </InputGroup>
         </ClearContainerSlots>

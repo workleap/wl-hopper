@@ -9,7 +9,7 @@ import styles from "./MenuSection.module.css";
 
 export const GlobalMenuSectionCssSelector = "hop-MenuSection";
 
-export interface MenuSectionProps<T> extends StyledComponentProps<RACMenuSectionProps<T>>{}
+export interface MenuSectionProps<T> extends StyledComponentProps<RACMenuSectionProps<T>> {}
 
 export function MenuSection<T extends object>(props: MenuSectionProps<T>) {
     const { stylingProps, ...ownProps } = useStyledSystem(props);

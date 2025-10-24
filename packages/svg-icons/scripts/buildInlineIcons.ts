@@ -62,7 +62,6 @@ const groupedSvgs = inlinedSvgs.reduce((acc, file) => {
     return acc;
 }, {} as Record<string, Record<typeof IconSizes[number], string>>);
 
-
 // index barrel file
 let indexContent = inlinedSvgs.map(file => {
     const name = file.name;
@@ -77,7 +76,6 @@ indexContent += Object.entries(groupedSvgs).map(([group, icons]) => {
 }).join("");
 
 fs.writeFileSync(path.resolve(IconsInlineDistDirectory, "index.js"), indexContent);
-
 
 // types barrel file
 let indexDeclarationFileContent = `export type IconObject = Record<${IconSizes.map(s => `"${s}"`).join(" | ")} | "displayName", string>;\n`;

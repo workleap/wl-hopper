@@ -31,7 +31,7 @@ function findImportedTypesFromReactAria(filePath: string): string[] {
     while ((match = importTypeRegex.exec(fileContent)) !== null) {
         const types = match[1].split(",").map(type => type.trim());
         types.forEach(type => {
-            const typeMatch = type.match(/^\s*type\s+([^\s,]+)/);
+            const typeMatch = /^\s*type\s+([^\s,]+)/.exec(type);
             if (typeMatch) {
                 importedTypes.add(typeMatch[1]);
             }

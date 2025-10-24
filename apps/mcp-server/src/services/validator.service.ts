@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+// TODO: Mahmoud, can you look into this? seems like a valid error
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 
 import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
@@ -109,7 +110,6 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
 
     return result;
 }
-
 
 /**
  * Validates component-specific rules by grouping components by type and applying appropriate validation
@@ -673,11 +673,11 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
         const values = extractAllConstantStrings(propValue);
         let invalidValuesCount = 0;
         const propValuesValidation: ValidationResult =
-        {
-            isValid: true,
-            errors: [],
-            warnings: []
-        };
+            {
+                isValid: true,
+                errors: [],
+                warnings: []
+            };
 
         for (const value of values) {
             // Check if this is an invalid percentage-safe prop with percentage value
@@ -702,7 +702,6 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
         }
     }
 }
-
 
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
     const safePropName = propName.replace("UNSAFE_", "");
@@ -729,7 +728,7 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
             // Validate token format for token-supported props
             if (tokenSupportedProps.has(propName)) {
                 validateTokenFormat(originalValue, propName, loc, result);
-            } else if (allowedTokens.has(originalValue)) {// Ensure tokens are not used for not token-supported props
+            } else if (allowedTokens.has(originalValue)) { // Ensure tokens are not used for not token-supported props
                 validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
             }
         }

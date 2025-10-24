@@ -8,7 +8,7 @@ import { ButtonGroup } from "../../src/ButtonGroup.tsx";
 const meta = {
     title: "Components/Buttons/ButtonGroup",
     component: ButtonGroup,
-    args:{
+    args: {
         children: [
             <Button key="1" variant="secondary">No, thanks</Button>,
             <Button key="2" variant="secondary">Remind me later</Button>,
@@ -33,7 +33,7 @@ export const Default: Story = {
 
 export const ButtonGroupIconButton: Story = {
     ...Default,
-    args:{
+    args: {
         ...Default.args,
         children: [
             <Button key="1" variant="secondary" aria-label="Clean"><SparklesIcon /></Button>,
@@ -45,7 +45,7 @@ export const ButtonGroupIconButton: Story = {
 
 export const Fluid: Story = {
     ...Default,
-    args:{
+    args: {
         ...Default.args,
         isFluid: true
     }
@@ -53,14 +53,14 @@ export const Fluid: Story = {
 
 export const Disabled: Story = {
     ...Default,
-    args:{
+    args: {
         ...Default.args,
         isDisabled: true
     }
 };
 
 export const Align: Story = {
-    args:{
+    args: {
         children: [
             <Button key="1" variant="secondary">Reset</Button>,
             <Button key="2" variant="primary">Submit form</Button>

@@ -14,7 +14,7 @@ interface SwitcherProps {
     headLine: string;
 }
 
-type AvailableSizes = "sm"| "md" | "lg" | "xl";
+type AvailableSizes = "sm" | "md" | "lg" | "xl";
 
 const Switcher = memo(({ type, headLine, iconType = "icon" }: SwitcherProps) => {
     const { colorMode } = useContext(ThemeContext);
@@ -59,7 +59,7 @@ const SizeMap = {
         title: "Small",
         size: "16x16px"
     },
-    md:{
+    md: {
         title: "Medium",
         size: "24x24px"
     },
@@ -72,7 +72,6 @@ const SizeMap = {
         size: "40x40px"
     }
 };
-
 
 function SwitcherChoice({ preview, value, ...rest }: SwitcherChoiceProps) {
     const { title, size } = SizeMap[value];

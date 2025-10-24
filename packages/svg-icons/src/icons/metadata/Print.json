@@ -1,21 +1,21 @@
 {
-  "name": "Print",
-  "description": "Represents a printer with a document. Used for features related to printing documents, print functionality, print preview, print settings, or any feature that involves sending content to a physical or virtual printer.",
-  "keywords": [
-    "print",
-    "printer",
-    "document",
-    "hard copy",
-    "paper",
-    "output",
-    "publish",
-    "physical copy",
-    "printing",
-    "print preview",
-    "print settings",
-    "page setup",
-    "print job",
-    "printout",
-    "reproduction"
-  ]
+    "name": "Print",
+    "description": "Represents a printer with a document. Used for features related to printing documents, print functionality, print preview, print settings, or any feature that involves sending content to a physical or virtual printer.",
+    "keywords": [
+        "print",
+        "printer",
+        "document",
+        "hard copy",
+        "paper",
+        "output",
+        "publish",
+        "physical copy",
+        "printing",
+        "print preview",
+        "print settings",
+        "page setup",
+        "print job",
+        "printout",
+        "reproduction"
+    ]
 }

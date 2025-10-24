@@ -44,7 +44,6 @@ import TypographyTable from "@/app/ui/tokens/table/TypographyTable.tsx";
 import TypographyVariantTable from "@/app/ui/tokens/table/TypographyVariantTable.tsx";
 import TableSection from "@/app/ui/tokens/tableSection/TableSection.tsx";
 
-
 const MigrateGuide = dynamic(() => import("@/app/ui/components/migrateGuide/MigrateGuide.tsx"));
 const PropTable = dynamic(() => import("@/app/ui/components/propTable/PropTable.tsx"));
 const ComponentExample = dynamic(() => import("@/app/ui/components/componentExample/ComponentExample.tsx"));
@@ -92,22 +91,26 @@ export const components = {
     Example: (props: ComponentExampleProps) => {
         const { src, type = "both" } = props;
 
-        return <ComponentExample
-            {...props}
-            type={type}
-            code={<ComponentCodeWrapper src={src} />}
-            preview={<ComponentPreview src={src} />}
-        />;
+        return (
+            <ComponentExample
+                {...props}
+                type={type}
+                code={<ComponentCodeWrapper src={src} />}
+                preview={<ComponentPreview src={src} />}
+            />
+        );
     },
     CodeOnlyExample: (props: ComponentExampleProps) => {
         const { src } = props;
 
-        return <ComponentExample
-            {...props}
-            type="code"
-            isOpen
-            code={<ComponentCodeWrapper src={src} />}
-        />;
+        return (
+            <ComponentExample
+                {...props}
+                type="code"
+                isOpen
+                code={<ComponentCodeWrapper src={src} />}
+            />
+        );
     },
     MigrateGuide: (props: MigrateGuideProps) => {
         return <MigrateGuide {...props} />;

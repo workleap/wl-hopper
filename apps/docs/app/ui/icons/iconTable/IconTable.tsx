@@ -19,7 +19,7 @@ function toKebabCase(str: string) {
     return str.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 }
 
-function getIconNumericSize(iconSize : "sm" | "md" | "lg" | "xl") {
+function getIconNumericSize(iconSize: "sm" | "md" | "lg" | "xl") {
     switch (iconSize) {
         case "sm":
             return "16";

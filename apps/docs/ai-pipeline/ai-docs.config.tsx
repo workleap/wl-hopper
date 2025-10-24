@@ -59,7 +59,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/components/full/component-list.md",
                     "/components/full/*.md"
                 ]
-            },
+            }
         },
 
         // components' concepts
@@ -77,9 +77,9 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 template: "/ai-pipeline/templates/components-concepts.mdx",
                 merge: [
-                    "/components/concepts/*.md",
+                    "/components/concepts/*.md"
                 ]
-            },
+            }
         },
 
         // components' utilities
@@ -97,9 +97,9 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 template: "/ai-pipeline/templates/components-utilities.mdx",
                 merge: [
-                    "/components/utilities/*.md",
+                    "/components/utilities/*.md"
                 ]
-            },
+            }
         },
 
         //getting-started
@@ -107,7 +107,7 @@ export const aiDocsConfig: AiDocsConfig = {
             build: {
                 source: "content/getting-started",
                 excludedPaths: ["guides/figma-code-generation.mdx"],
-                flatten: true,
+                flatten: true
             },
             serve: {
                 at: "/getting-started",
@@ -125,17 +125,17 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/getting-started/text-crop.md",
                     "/getting-started/components.md"
                 ]
-            },
+            }
         },
 
         //icons (full)
         "icons/full": {
             build: {
                 source: "content/icons",
-                flatten: false,
+                flatten: false
             },
             serve: {
-                 at: "/icons",
+                at: "/icons"
             }
         },
 
@@ -151,7 +151,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/full/advanced/designing-an-icon.md"
 
                 ]
-            },
+            }
         },
 
         "icons/full/react-icons/index.md": {
@@ -161,7 +161,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/full/react-icons/icon-library.md",
                     "/icons/full/react-icons/rich-icon-library.md"
                 ]
-            },
+            }
         },
 
         "icons/full/SVG-icons/index.md": {
@@ -171,7 +171,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/full/SVG-icons/icon-library.md",
                     "/icons/full/SVG-icons/rich-icon-library.md"
                 ]
-            },
+            }
         },
 
         //icons (brief): same as full but without icons lists
@@ -181,10 +181,10 @@ export const aiDocsConfig: AiDocsConfig = {
                 flatten: false,
                 renderer: {
                     customComponents: {
-                        Switcher: () => <div/>
+                        Switcher: () => <div />
                     }
                 }
-            },
+            }
         },
 
         "icons/brief/index.md": {
@@ -198,7 +198,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/brief/SVG-icons/rich-icon-library.md",
                     "/icons/brief/advanced/designing-an-icon.md"
                 ]
-            },
+            }
         },
 
         "icons/brief/react-icons/index.md": {
@@ -208,7 +208,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/brief/react-icons/icon-library.md",
                     "/icons/brief/react-icons/rich-icon-library.md"
                 ]
-            },
+            }
         },
 
         "icons/brief/SVG-icons/index.md": {
@@ -218,13 +218,13 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/brief/SVG-icons/icon-library.md",
                     "/icons/brief/SVG-icons/rich-icon-library.md"
                 ]
-            },
+            }
         },
 
         //icons (data)
         "icons/data.json": {
             build: {
-                type: "icons-json",
+                type: "icons-json"
             }
         },
 
@@ -232,7 +232,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "tokens": {
             build: {
                 source: "content/tokens",
-                flatten: false,
+                flatten: false
             }
         },
 
@@ -249,14 +249,14 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"
                 ]
-            },
+            }
         },
 
         // tokens map (json)
         "tokens/maps": {
             build: {
                 type: "tokens-json",
-                source: "datas/tokens.json",
+                source: "datas/tokens.json"
             }
         },
 
@@ -268,9 +268,9 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/semantic/elevation.md",
                     "/tokens/semantic/shape.md",
                     "/tokens/semantic/space.md",
-                    "/tokens/semantic/typography.md",
+                    "/tokens/semantic/typography.md"
                 ]
-            },
+            }
         },
 
         "tokens/index.md": {
@@ -293,14 +293,14 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"
                 ]
-            },
+            }
         },
 
         //styled-system
         "styled-system": {
             build: {
                 source: "content/styled-system",
-                flatten: false,
+                flatten: false
             }
         },
 
@@ -314,34 +314,34 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/styled-system/concepts/html-elements.md",
                     "/styled-system/concepts/custom-components.md"
                 ]
-            },
+            }
         },
 
         "styled-system/unsafe-props-data.json": {
             build: {
-                type: "unsafe-props-json",
-            },
+                type: "unsafe-props-json"
+            }
         },
 
         "styled-system/escape-hatches.md": {
             build: {
                 type: "unsafe-props-markdown",
-                template: "/ai-pipeline/templates/escape-hatches.mdx",
-            },
+                template: "/ai-pipeline/templates/escape-hatches.mdx"
+            }
         },
 
         //ai docs
         "ai": {
             build: {
-                source: "content/ai",
+                source: "content/ai"
             }
         },
 
         // llms.txt
         "llms.md": {
             build: {
-                template: "/ai-pipeline/templates/llms.mdx",
-            },
+                template: "/ai-pipeline/templates/llms.mdx"
+            }
         },
 
         "llms-full.md": {
@@ -356,7 +356,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "components/utilities/index.md",
                     "icons/full/index.md"
                 ]
-            },
+            }
         },
 
         //change logs
@@ -368,12 +368,11 @@ export const aiDocsConfig: AiDocsConfig = {
                     "../../../../packages/styled-system/CHANGELOG.md",
                     "../../../../packages/tokens/CHANGELOG.md",
                     "../../../../packages/icons/CHANGELOG.md",
-                    "../../../../packages/svg-icons/CHANGELOG.md",
+                    "../../../../packages/svg-icons/CHANGELOG.md"
                 ]
-            },
+            }
         }
 
     }
-}
-
+};
 

@@ -22,7 +22,7 @@ interface MobileMenuProps {
 }
 
 const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
-    const pathname = usePathname()!;
+    const pathname = usePathname();
     let firstPathLevel: string;
 
     const { colorMode, setColorMode } = useContext(ThemeContext);
@@ -60,7 +60,6 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
         }
     }, [isOpen, onClose]);
 
-
     const toggleTheme = () => {
         const theme: ColorScheme = colorMode === "dark"
             ? "light"
@@ -77,7 +76,8 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
 
         return (
             <li key={label}>
-                <Link href={path}
+                <Link
+                    href={path}
                     className={clsx("hd-mobile-menu-nav-list__link", isActive && "hd-mobile-menu-nav-list__link--active", status !== "ready" && "hd-mobile-menu-nav-list__link--disabled")}
                     onClick={onClose}
                 >
@@ -111,7 +111,8 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                     <nav>
                         <ul className="hd-mobile-menu-footer-list">
                             <li>
-                                <Link href="https://github.com/workleap/wl-hopper"
+                                <Link
+                                    href="https://github.com/workleap/wl-hopper"
                                     target="_blank"
                                     className="hd-mobile-menu-footer-link"
                                 >
@@ -120,8 +121,9 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                                 </Link>
                             </li>
                             <li>
-                                <ThemeSwitch onChange={toggleTheme}
-                                    colorMode={colorMode as ColorScheme}
+                                <ThemeSwitch
+                                    onChange={toggleTheme}
+                                    colorMode={colorMode!}
                                     text="Appearance"
                                     className="hd-mobile-menu-footer-button"
                                 />

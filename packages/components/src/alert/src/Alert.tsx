@@ -78,7 +78,7 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
     isLoading?: boolean;
 }
 
-function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
+function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AlertContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
@@ -163,7 +163,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             {children(renderProps)}
                         </Provider>
                         <ButtonGroup align="end" className={styles["hop-Alert__button-group"]}>
-                            {cancelButtonLabel &&
+                            {cancelButtonLabel && (
                                 <Button
                                     onPress={() => chain(onCancelButtonClick?.(), renderProps.close())}
                                     variant="secondary"
@@ -172,8 +172,8 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                 >
                                     {cancelButtonLabel}
                                 </Button>
-                            }
-                            {secondaryButtonLabel &&
+                            )}
+                            {secondaryButtonLabel && (
                                 <Button
                                     onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
@@ -182,7 +182,7 @@ function Alert(props:AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                 >
                                     {secondaryButtonLabel}
                                 </Button>
-                            }
+                            )}
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
                                 isLoading={isLoading}

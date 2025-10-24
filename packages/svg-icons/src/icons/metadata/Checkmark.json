@@ -1,18 +1,18 @@
 {
-  "name": "Checkmark",
-  "description": "Represents a checkmark or tick symbol. Used to indicate completion, success, confirmation, verification, or selection of an item. Commonly used in checkboxes, task lists, and to confirm successful actions.",
-  "keywords": [
-    "checkmark",
-    "tick",
-    "check",
-    "success",
-    "complete",
-    "done",
-    "verified",
-    "confirmed",
-    "approved",
-    "selected",
-    "correct",
-    "validation"
-  ]
+    "name": "Checkmark",
+    "description": "Represents a checkmark or tick symbol. Used to indicate completion, success, confirmation, verification, or selection of an item. Commonly used in checkboxes, task lists, and to confirm successful actions.",
+    "keywords": [
+        "checkmark",
+        "tick",
+        "check",
+        "success",
+        "complete",
+        "done",
+        "verified",
+        "confirmed",
+        "approved",
+        "selected",
+        "correct",
+        "validation"
+    ]
 }

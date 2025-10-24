@@ -1,18 +1,18 @@
 {
-  "name": "Anonymous",
-  "description": "Used to represent anonymous users, unidentified individuals, or private/incognito modes. Often used in user interfaces to indicate content from unknown sources, anonymous feedback, or when a user's identity is hidden or not available.",
-  "keywords": [
-    "anonymous",
-    "unknown",
-    "unidentified",
-    "unnamed",
-    "incognito",
-    "private",
-    "hidden identity",
-    "confidential",
-    "nameless",
-    "undisclosed",
-    "privacy",
-    "masked user"
-  ]
+    "name": "Anonymous",
+    "description": "Used to represent anonymous users, unidentified individuals, or private/incognito modes. Often used in user interfaces to indicate content from unknown sources, anonymous feedback, or when a user's identity is hidden or not available.",
+    "keywords": [
+        "anonymous",
+        "unknown",
+        "unidentified",
+        "unnamed",
+        "incognito",
+        "private",
+        "hidden identity",
+        "confidential",
+        "nameless",
+        "undisclosed",
+        "privacy",
+        "masked user"
+    ]
 }

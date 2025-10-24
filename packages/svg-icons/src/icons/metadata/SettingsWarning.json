@@ -1,23 +1,23 @@
 {
-  "name": "SettingsWarning",
-  "description": "Represents a gear or cog wheel with a warning indicator (orange dot). Used for features related to settings or configuration that have issues, errors, or require urgent attention. Indicates critical system settings that need immediate review, configuration problems, or potential security concerns in application settings.",
-  "keywords": [
-    "settings warning",
-    "configuration error",
-    "system issue",
-    "critical settings",
-    "urgent attention",
-    "settings problem",
-    "configuration alert",
-    "system warning",
-    "error notification",
-    "settings error",
-    "security concern",
-    "configuration issue",
-    "settings alert",
-    "system maintenance",
-    "critical update",
-    "warning indicator",
-    "troubleshooting"
-  ]
+    "name": "SettingsWarning",
+    "description": "Represents a gear or cog wheel with a warning indicator (orange dot). Used for features related to settings or configuration that have issues, errors, or require urgent attention. Indicates critical system settings that need immediate review, configuration problems, or potential security concerns in application settings.",
+    "keywords": [
+        "settings warning",
+        "configuration error",
+        "system issue",
+        "critical settings",
+        "urgent attention",
+        "settings problem",
+        "configuration alert",
+        "system warning",
+        "error notification",
+        "settings error",
+        "security concern",
+        "configuration issue",
+        "settings alert",
+        "system maintenance",
+        "critical update",
+        "warning indicator",
+        "troubleshooting"
+    ]
 }

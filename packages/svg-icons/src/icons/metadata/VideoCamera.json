@@ -1,19 +1,19 @@
 {
-  "name": "VideoCamera",
-  "description": "Represents a video camera or recording device. Depicted as a camcorder with a lens. Used to indicate video recording functionality, camera access, filming options, or video creation features in applications, websites, and digital interfaces.",
-  "keywords": [
-    "video camera",
-    "camcorder",
-    "recording",
-    "filming",
-    "capture",
-    "video recording",
-    "camera",
-    "webcam",
-    "video creation",
-    "videography",
-    "record video",
-    "shoot video",
-    "video device"
-  ]
+    "name": "VideoCamera",
+    "description": "Represents a video camera or recording device. Depicted as a camcorder with a lens. Used to indicate video recording functionality, camera access, filming options, or video creation features in applications, websites, and digital interfaces.",
+    "keywords": [
+        "video camera",
+        "camcorder",
+        "recording",
+        "filming",
+        "capture",
+        "video recording",
+        "camera",
+        "webcam",
+        "video creation",
+        "videography",
+        "record video",
+        "shoot video",
+        "video device"
+    ]
 }

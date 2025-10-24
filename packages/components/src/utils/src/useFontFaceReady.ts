@@ -7,10 +7,14 @@ export const useFontFaceReady = () => {
     useIsomorphicLayoutEffect(() => {
         let isCancelled = false;
         document.fonts.ready.then(() => {
-            if (!isCancelled) { setReady(true); }
+            if (!isCancelled) {
+                setReady(true);
+            }
         });
 
-        return () => { isCancelled = true; };
+        return () => {
+            isCancelled = true;
+        };
     }, []);
 
     return ready;

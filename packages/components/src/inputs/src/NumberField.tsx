@@ -8,7 +8,7 @@ import {
 import { mergeRefs } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { forwardRef, useCallback, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
+import { forwardRef, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
 import { useObjectRef } from "react-aria";
 import {
     composeRenderProps,
@@ -142,11 +142,7 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
         };
     });
 
-    const handleTextChanged = useCallback((value: number) => {
-        onChangeProp?.(value);
-    }, [onChangeProp]);
-
-    const [value, onChange] = useControlledState<number>(valueProp, defaultValue || 0, handleTextChanged);
+    const [value, onChange] = useControlledState<number>(valueProp, defaultValue || 0, onChangeProp);
 
     const prefixMarkup = prefix ? (
         <SlotProvider values={[

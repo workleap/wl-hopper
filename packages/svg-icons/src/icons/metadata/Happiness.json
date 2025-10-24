@@ -1,22 +1,22 @@
 {
-  "name": "Happiness",
-  "description": "Represents a smiling face or happy emoji. Used for features related to user satisfaction, positive feedback, mood tracking, employee happiness, wellbeing, or any feature that involves measuring or expressing positive emotions.",
-  "keywords": [
-    "happiness",
-    "smile",
-    "satisfaction",
-    "joy",
-    "positive",
-    "emotion",
-    "feedback",
-    "mood",
-    "wellbeing",
-    "contentment",
-    "delight",
-    "pleasure",
-    "cheerful",
-    "happy",
-    "enjoyment",
-    "fulfillment"
-  ]
+    "name": "Happiness",
+    "description": "Represents a smiling face or happy emoji. Used for features related to user satisfaction, positive feedback, mood tracking, employee happiness, wellbeing, or any feature that involves measuring or expressing positive emotions.",
+    "keywords": [
+        "happiness",
+        "smile",
+        "satisfaction",
+        "joy",
+        "positive",
+        "emotion",
+        "feedback",
+        "mood",
+        "wellbeing",
+        "contentment",
+        "delight",
+        "pleasure",
+        "cheerful",
+        "happy",
+        "enjoyment",
+        "fulfillment"
+    ]
 }

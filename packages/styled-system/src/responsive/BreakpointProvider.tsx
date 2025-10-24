@@ -35,12 +35,13 @@ export function BreakpointProvider({
 function useMatchedBreakpoints(unsupportedMatchMediaBreakpoint: Breakpoint = DefaultUnsupportedMatchMediaBreakpoint) {
     const getBreakpointHandler = useCallback(() => {
         const entries =
-        Object.entries(Breakpoints)
-            .sort(([, valueA], [, valueB]) => valueB - valueA);
+            Object.entries(Breakpoints)
+                .sort(([, valueA], [, valueB]) => valueB - valueA);
         const breakpointQueries = entries.map(([, value]) => `(min-width: ${value}px)`);
 
         const matched: Breakpoint[] = [];
 
+        // eslint-disable-next-line @typescript-eslint/no-for-in-array
         for (const i in breakpointQueries) {
             const query = breakpointQueries[i];
             if (window.matchMedia(query).matches) {
@@ -68,7 +69,7 @@ function useMatchedBreakpoints(unsupportedMatchMediaBreakpoint: Breakpoint = Def
 
             setMatchedBreakpoints(previousMatchedBreakpoints => {
                 if (previousMatchedBreakpoints.length !== breakpointHandler.length ||
-          previousMatchedBreakpoints.some((breakpoint, idx) => breakpoint !== breakpointHandler[idx])) {
+                    previousMatchedBreakpoints.some((breakpoint, idx) => breakpoint !== breakpointHandler[idx])) {
                     return [...breakpointHandler]; // Return a new array to force state change
                 }
 

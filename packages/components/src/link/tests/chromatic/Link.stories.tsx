@@ -116,7 +116,6 @@ export const StartIcon: Story = {
     }
 };
 
-
 export const EndIcon: Story = {
     render: args => {
         return (
@@ -268,17 +267,20 @@ export const OverwriteFontWeight: Story = {
 export const StaticColor: Story = {
     ...Primary,
     decorators: [
-        Story => <Stack backgroundColor="decorative-option4"
-            color="decorative-option4"
-            padding="inset-md"
-        ><Story /></Stack>
+        Story => (
+            <Stack
+                backgroundColor="decorative-option4"
+                color="decorative-option4"
+                padding="inset-md"
+            ><Story />
+            </Stack>
+        )
     ],
     args: {
         ...Primary.args,
         color: "inherit"
     }
 };
-
 
 const StateTemplate = (args: Partial<LinkProps>) => (
     <Inline alignY="end">
@@ -307,7 +309,7 @@ const StateTemplate = (args: Partial<LinkProps>) => (
 );
 
 export const PrimaryStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const links = canvas.getAllByRole("link");
 

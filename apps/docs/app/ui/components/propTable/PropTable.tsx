@@ -14,7 +14,6 @@ import { PropTableRender } from "./PropTableRender.tsx";
 
 import "./propTable.css";
 
-
 export interface PropTableProps {
     component: string;
 }
@@ -39,7 +38,7 @@ function replaceSeeLinkWithMarkdown(description: string) {
     return description.replace(linkRegex, replacementFormat);
 }
 
-async function replaceExampleWithMarkdown(description: string) {
+function replaceExampleWithMarkdown(description: string) {
     const placeholder = "PLACEHOLDER_FOR_CODE_EXAMPLE";
 
     return description.replace(exampleRegex, (_, content) => {
@@ -68,8 +67,8 @@ ${example}
 };
 
 const formatDescription = async (description: string) => {
-    const linkMatch = description.match(linkRegex);
-    const exampleMatch = description.match(exampleRegex);
+    const linkMatch = linkRegex.exec(description);
+    const exampleMatch = exampleRegex.exec(description);
 
     if (linkMatch) {
         const replacedDescription = replaceSeeLinkWithMarkdown(description);
@@ -78,7 +77,7 @@ const formatDescription = async (description: string) => {
     }
 
     if (exampleMatch) {
-        const replacedDescription = await replaceExampleWithMarkdown(description);
+        const replacedDescription = replaceExampleWithMarkdown(description);
 
         return await renderDescription(replacedDescription);
     }
@@ -122,16 +121,19 @@ export default async function PropTable({ component }: PropTableProps) {
                 return (
                     <Fragment key={key}>
                         {key === "default" ?
-                            <PropTableRender items={group[key]} /> :
-                            <Collapsible className="hd-props-table__section"
-                                key={key}
-                                title={<Title level={4}>
-                                    {capitalize(key)}
-                                </Title>}
-                            >
-                                <PropTableRender items={group[key]} />
-                            </Collapsible>
-                        }
+                            <PropTableRender items={group[key]} /> : (
+                                <Collapsible
+                                    className="hd-props-table__section"
+                                    key={key}
+                                    title={(
+                                        <Title level={4}>
+                                            {capitalize(key)}
+                                        </Title>
+                                    )}
+                                >
+                                    <PropTableRender items={group[key]} />
+                                </Collapsible>
+                            )}
                     </Fragment>
                 );
             })}

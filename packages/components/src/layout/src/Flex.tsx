@@ -3,12 +3,12 @@ import { forwardRef, type Ref } from "react";
 
 export interface FlexProps
     extends Omit<DivProps,
-    | "display"
-    | "flexDirection"
-    | "flexWrap"
-    | "flexBasis"
-    | "flexGrow"
-    | "flexShrink"
+        | "display"
+        | "flexDirection"
+        | "flexWrap"
+        | "flexBasis"
+        | "flexGrow"
+        | "flexShrink"
     > {
     /**
      * The flex direction of the container. Can be row, column, row-reverse or column-reverse.

@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 import fs from "fs";
 import path from "path";
 import docgenTs, { type ComponentDoc, type PropItem } from "react-docgen-typescript";
@@ -86,7 +87,7 @@ const tsConfigFullPropsParser = docgenTs.withCustomConfig(
     }
 );
 
-async function writeFile(filename: string, data: ComponentDocWithGroups[]) {
+function writeFile(filename: string, data: ComponentDocWithGroups[]) {
     if (!fs.existsSync(COMPONENT_DATA)) {
         fs.mkdirSync(COMPONENT_DATA, { recursive: true });
     }
@@ -113,7 +114,7 @@ function updatePropsFileName(component: ComponentDoc, originalFilePath: string) 
             });
         }
         if (component.props[propName].parent) {
-            component.props[propName].parent!.fileName = originalFilePath;
+            component.props[propName].parent.fileName = originalFilePath;
         }
     });
 }
@@ -350,8 +351,8 @@ async function generateComponentData() {
                 const fullData = tsConfigFullPropsParser.parse(tempFilePath);
                 const { name } = component;
 
-                await writeFile(name, getFormattedData(data));
-                await writeFile(`${name}-full`, getFormattedData(fullData));
+                writeFile(name, getFormattedData(data));
+                writeFile(`${name}-full`, getFormattedData(fullData));
                 console.log(`${name} API is created!`);
             } catch (error) {
                 console.error(`Error generating documentation for ${component.name}:`, error);

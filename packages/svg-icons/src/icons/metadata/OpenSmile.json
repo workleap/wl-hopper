@@ -1,17 +1,17 @@
 {
-  "name": "OpenSmile",
-  "description": "Used to represent happiness, positivity, or satisfaction. Depicts a smiling face with an open mouth, commonly used in feedback, ratings, or emotional response interfaces.",
-  "keywords": [
-    "smile",
-    "happy",
-    "positive",
-    "satisfaction",
-    "feedback",
-    "emotion",
-    "face",
-    "emoji",
-    "joy",
-    "pleased",
-    "grin"
-  ]
+    "name": "OpenSmile",
+    "description": "Used to represent happiness, positivity, or satisfaction. Depicts a smiling face with an open mouth, commonly used in feedback, ratings, or emotional response interfaces.",
+    "keywords": [
+        "smile",
+        "happy",
+        "positive",
+        "satisfaction",
+        "feedback",
+        "emotion",
+        "face",
+        "emoji",
+        "joy",
+        "pleased",
+        "grin"
+    ]
 }

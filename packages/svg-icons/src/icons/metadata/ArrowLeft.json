@@ -1,13 +1,13 @@
 {
-  "name": "ArrowLeft",
-  "description": "Used to represent a leftward direction, navigation to a previous page, or moving backward in a workflow or interface.",
-  "keywords": [
-    "arrow left",
-    "back",
-    "previous",
-    "leftward",
-    "backward",
-    "return",
-    "navigate back"
-  ]
+    "name": "ArrowLeft",
+    "description": "Used to represent a leftward direction, navigation to a previous page, or moving backward in a workflow or interface.",
+    "keywords": [
+        "arrow left",
+        "back",
+        "previous",
+        "leftward",
+        "backward",
+        "return",
+        "navigate back"
+    ]
 }

@@ -1,24 +1,24 @@
 {
-  "name": "Slider",
-  "description": "Represents a circular control with adjustment sliders or equalizer bars. Used for features related to adjusting settings, controlling levels, equalizers, or any feature that involves fine-tuning parameters on a scale. Commonly used in audio controls, preference adjustments, and customization interfaces.",
-  "keywords": [
-    "slider",
-    "adjust",
-    "control",
-    "level",
-    "equalizer",
-    "tune",
-    "calibrate",
-    "customize",
-    "setting",
-    "parameter",
-    "scale",
-    "range",
-    "volume",
-    "balance",
-    "mixer",
-    "dial",
-    "knob",
-    "adjustment"
-  ]
+    "name": "Slider",
+    "description": "Represents a circular control with adjustment sliders or equalizer bars. Used for features related to adjusting settings, controlling levels, equalizers, or any feature that involves fine-tuning parameters on a scale. Commonly used in audio controls, preference adjustments, and customization interfaces.",
+    "keywords": [
+        "slider",
+        "adjust",
+        "control",
+        "level",
+        "equalizer",
+        "tune",
+        "calibrate",
+        "customize",
+        "setting",
+        "parameter",
+        "scale",
+        "range",
+        "volume",
+        "balance",
+        "mixer",
+        "dial",
+        "knob",
+        "adjustment"
+    ]
 }

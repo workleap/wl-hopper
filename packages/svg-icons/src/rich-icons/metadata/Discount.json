@@ -1,18 +1,18 @@
 {
-  "name": "Discount",
-  "description": "Used to represent price reductions, special offers, or promotional deals. Often depicted as a percentage symbol or price tag, this icon is commonly used in e-commerce, retail applications, or any interface related to sales and promotions.",
-  "keywords": [
-    "discount",
-    "sale",
-    "offer",
-    "promotion",
-    "deal",
-    "reduction",
-    "savings",
-    "special price",
-    "markdown",
-    "coupon",
-    "bargain",
-    "price cut"
-  ]
+    "name": "Discount",
+    "description": "Used to represent price reductions, special offers, or promotional deals. Often depicted as a percentage symbol or price tag, this icon is commonly used in e-commerce, retail applications, or any interface related to sales and promotions.",
+    "keywords": [
+        "discount",
+        "sale",
+        "offer",
+        "promotion",
+        "deal",
+        "reduction",
+        "savings",
+        "special price",
+        "markdown",
+        "coupon",
+        "bargain",
+        "price cut"
+    ]
 }

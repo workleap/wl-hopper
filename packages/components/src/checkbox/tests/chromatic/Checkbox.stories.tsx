@@ -7,7 +7,6 @@ import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { Checkbox } from "../../src/Checkbox.tsx";
 
-
 const meta = {
     title: "Components/Forms/Checkbox",
     component: Checkbox
@@ -141,7 +140,7 @@ export const Indeterminate: Story = {
 };
 
 export const UncheckedStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const checkboxLabels = canvasElement.querySelectorAll("label");
 
         checkboxLabels.forEach(checkboxLabel => {

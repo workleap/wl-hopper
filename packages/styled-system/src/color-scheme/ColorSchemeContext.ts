@@ -10,7 +10,6 @@ export interface ColorSchemeContextType {
 
 export const ColorSchemeContext = createContext<ColorSchemeContextType>({
     colorScheme: "light",
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
     setColorScheme: () => {}
 });
 

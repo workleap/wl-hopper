@@ -93,7 +93,7 @@ async function getFilteredComponentProps(componentName: string, options: Generat
     try {
         const data = await getComponentProps(componentName, options.includeFullProps);
 
-        if (!data || !data.groups || data.groups.length === 0) {
+        if (!data?.groups || data.groups.length === 0) {
             console.warn(`No props data found for component: ${componentName}`);
 
             return null;

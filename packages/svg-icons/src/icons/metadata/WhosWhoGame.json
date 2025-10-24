@@ -1,20 +1,20 @@
 {
-  "name": "WhosWhoGame",
-  "description": "Represents a \"Who's Who\" game or activity. Depicted as a card or document with a smiling face, symbolizing a game where users identify or match people. Used to indicate team-building activities, icebreakers, people recognition games, or employee directory features in applications, websites, and digital interfaces.",
-  "keywords": [
-    "who's who",
-    "game",
-    "activity",
-    "identification",
-    "recognition",
-    "matching",
-    "team building",
-    "icebreaker",
-    "people",
-    "directory",
-    "quiz",
-    "learning",
-    "faces",
-    "memory"
-  ]
+    "name": "WhosWhoGame",
+    "description": "Represents a \"Who's Who\" game or activity. Depicted as a card or document with a smiling face, symbolizing a game where users identify or match people. Used to indicate team-building activities, icebreakers, people recognition games, or employee directory features in applications, websites, and digital interfaces.",
+    "keywords": [
+        "who's who",
+        "game",
+        "activity",
+        "identification",
+        "recognition",
+        "matching",
+        "team building",
+        "icebreaker",
+        "people",
+        "directory",
+        "quiz",
+        "learning",
+        "faces",
+        "memory"
+    ]
 }

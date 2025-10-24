@@ -1,21 +1,21 @@
 {
-  "name": "Note",
-  "description": "Represents a document or note with a folded corner. Used for features related to notes, documents, written content, text files, or any feature that involves creating, viewing, or managing text-based information.",
-  "keywords": [
-    "note",
-    "document",
-    "file",
-    "text",
-    "content",
-    "page",
-    "paper",
-    "memo",
-    "record",
-    "information",
-    "writing",
-    "documentation",
-    "sheet",
-    "entry",
-    "composition"
-  ]
+    "name": "Note",
+    "description": "Represents a document or note with a folded corner. Used for features related to notes, documents, written content, text files, or any feature that involves creating, viewing, or managing text-based information.",
+    "keywords": [
+        "note",
+        "document",
+        "file",
+        "text",
+        "content",
+        "page",
+        "paper",
+        "memo",
+        "record",
+        "information",
+        "writing",
+        "documentation",
+        "sheet",
+        "entry",
+        "composition"
+    ]
 }

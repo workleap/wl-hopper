@@ -21,7 +21,7 @@ export const Default = {
 } satisfies Story;
 
 export const WithStyle = {
-    args:{
+    args: {
         border: "core_amanita-100"
     }
 } satisfies Story;

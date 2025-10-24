@@ -1,18 +1,18 @@
 {
-  "name": "WhosWho",
-  "description": "Used to represent team member identification, organizational directories, or employee recognition activities. Often used in HR systems, company intranets, or team-building applications to help identify and connect team members.",
-  "keywords": [
-    "who's who",
-    "team directory",
-    "employee identification",
-    "organizational chart",
-    "staff directory",
-    "team members",
-    "personnel listing",
-    "employee directory",
-    "team roster",
-    "people finder",
-    "colleague identification",
-    "staff recognition"
-  ]
+    "name": "WhosWho",
+    "description": "Used to represent team member identification, organizational directories, or employee recognition activities. Often used in HR systems, company intranets, or team-building applications to help identify and connect team members.",
+    "keywords": [
+        "who's who",
+        "team directory",
+        "employee identification",
+        "organizational chart",
+        "staff directory",
+        "team members",
+        "personnel listing",
+        "employee directory",
+        "team roster",
+        "people finder",
+        "colleague identification",
+        "staff recognition"
+    ]
 }

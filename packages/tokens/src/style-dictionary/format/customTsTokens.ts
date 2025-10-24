@@ -32,7 +32,7 @@ export const customTsTokens = function ({ dictionary }: { dictionary: Dictionary
     return tokens;
 };
 
-function formatTokenFamily(familyName: string, tokens: TransformedToken[], dictionary:Dictionary) {
+function formatTokenFamily(familyName: string, tokens: TransformedToken[], dictionary: Dictionary) {
     const formattedTokens = tokens.map(token => {
         const { name, value } = formatTypeScriptToken(token, dictionary);
 
@@ -42,7 +42,7 @@ function formatTokenFamily(familyName: string, tokens: TransformedToken[], dicti
     return `export const ${familyName} = {\n${formattedTokens}\n};`;
 }
 
-function formatTypeScriptToken(token: TransformedToken, dictionary:Dictionary) {
+function formatTypeScriptToken(token: TransformedToken, dictionary: Dictionary) {
     let value = token.value;
 
     if (dictionary.usesReference(token.original.value)) {

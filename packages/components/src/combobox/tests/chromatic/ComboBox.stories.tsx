@@ -160,7 +160,6 @@ export const Small = {
     decorators: marginBottomDecoratorMD
 } satisfies Story;
 
-
 export const Medium = {
     play: playFn,
     render: args => (
@@ -187,7 +186,7 @@ export const Medium = {
     decorators: marginBottomDecoratorMD
 } satisfies Story;
 
-export const placeholder = {
+export const Placeholder = {
     ...OnlyItems,
     args: {
         placeholder: "Name an animal"
@@ -549,7 +548,8 @@ const StateTemplate = (args: Partial<ComboBoxProps<object>>) => (
                 <ComboBoxItem id="cat">Cat</ComboBoxItem>
                 <ComboBoxItem id="frog">Frog</ComboBoxItem>
             </ComboBox>
-            <ComboBox {...args}
+            <ComboBox
+                {...args}
                 size="md"
                 label="Medium"
             >
@@ -558,7 +558,8 @@ const StateTemplate = (args: Partial<ComboBoxProps<object>>) => (
                 <ComboBoxItem id="frog">Frog</ComboBoxItem>
             </ComboBox>
         </Inline>
-        <ComboBox {...args}
+        <ComboBox
+            {...args}
             isDisabled
             label="Disabled"
         >
@@ -566,7 +567,8 @@ const StateTemplate = (args: Partial<ComboBoxProps<object>>) => (
             <ComboBoxItem id="cat">Cat</ComboBoxItem>
             <ComboBoxItem id="frog">Frog</ComboBoxItem>
         </ComboBox>
-        <ComboBox {...args}
+        <ComboBox
+            {...args}
             isInvalid
             label="Invalid"
         >
@@ -578,7 +580,7 @@ const StateTemplate = (args: Partial<ComboBoxProps<object>>) => (
 );
 
 export const TriggerStates = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const triggers = canvas.getAllByRole("group");
 
@@ -655,7 +657,8 @@ export const Zoom = {
 export const Styling = {
     render: args => (
         <Inline>
-            <ComboBox {...args}
+            <ComboBox
+                {...args}
                 triggerProps={
                     { border: "warning" }
                 }
@@ -664,7 +667,8 @@ export const Styling = {
                 <ComboBoxItem id="2">Voodoo</ComboBoxItem>
                 <ComboBoxItem id="3">Dusty</ComboBoxItem>
             </ComboBox>
-            <ComboBox {...args}
+            <ComboBox
+                {...args}
                 triggerProps={
                     { className: "border-red" }
                 }
@@ -673,7 +677,8 @@ export const Styling = {
                 <ComboBoxItem id="2">Voodoo</ComboBoxItem>
                 <ComboBoxItem id="3">Dusty</ComboBoxItem>
             </ComboBox>
-            <ComboBox {...args}
+            <ComboBox
+                {...args}
                 triggerProps={
                     { style: { border: "1px solid red" } }
                 }

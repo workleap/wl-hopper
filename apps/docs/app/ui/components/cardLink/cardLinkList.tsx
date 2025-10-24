@@ -3,7 +3,7 @@ import type { ComponentProps } from "react";
 
 import "./cardLinkList.css";
 
-export interface CardLinkListProps extends ComponentProps<"div">{
+export interface CardLinkListProps extends ComponentProps<"div"> {
     size: "sm" | "md";
 }
 

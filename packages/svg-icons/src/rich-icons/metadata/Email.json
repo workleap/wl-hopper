@@ -1,18 +1,18 @@
 {
-  "name": "Email",
-  "description": "Used to represent electronic mail, messaging, or digital communication. Often depicted as an envelope, this icon is commonly used in applications for sending messages, contact forms, or indicating notification preferences.",
-  "keywords": [
-    "email",
-    "mail",
-    "message",
-    "electronic mail",
-    "communication",
-    "envelope",
-    "inbox",
-    "correspondence",
-    "contact",
-    "notification",
-    "digital message",
-    "e-mail"
-  ]
+    "name": "Email",
+    "description": "Used to represent electronic mail, messaging, or digital communication. Often depicted as an envelope, this icon is commonly used in applications for sending messages, contact forms, or indicating notification preferences.",
+    "keywords": [
+        "email",
+        "mail",
+        "message",
+        "electronic mail",
+        "communication",
+        "envelope",
+        "inbox",
+        "correspondence",
+        "contact",
+        "notification",
+        "digital message",
+        "e-mail"
+    ]
 }

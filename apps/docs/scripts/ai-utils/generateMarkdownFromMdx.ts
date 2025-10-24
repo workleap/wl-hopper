@@ -1,6 +1,6 @@
 import type { components } from "@/components/mdx/components.ai.tsx";
 import fs from "fs/promises";
-import type { Heading, Node, Parent, Root } from "mdast";
+import type { Heading, Node, Parent } from "mdast";
 import path from "path";
 import type { ComponentType } from "react";
 import remarkParse from "remark-parse";
@@ -212,7 +212,7 @@ function replaceLinks(mdContent: string, replaceLinkFn?: (link: string) => strin
         }
     });
 
-    return processor.stringify(tree as Root);
+    return processor.stringify(tree);
 }
 
 function excludeSections(mdContent: string, excludedSections?: string[]): string {
@@ -229,7 +229,7 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
 
     // Parse excluded sections to extract level and text
     const parsedExcludedSections = excludedSections.map(section => {
-        const match = section.match(/^(#{1,6})\s+(.+)$/);
+        const match = /^(#{1,6})\s+(.+)$/.exec(section);
         if (match) {
             return {
                 level: match[1].length as 1 | 2 | 3 | 4 | 5 | 6,
@@ -245,7 +245,9 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
     });
 
     visit(tree, "heading", (node: Heading, index, parent) => {
-        if (!node.children || !parent) {return;}
+        if (!node.children || !parent) {
+            return;
+        }
 
         // Check if heading text matches any excluded section
         const headingText = node.children
@@ -273,7 +275,7 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
                 const nextNode = parent.children[nextIndex];
 
                 // If we hit another heading of same or higher level, stop
-                if (nextNode.type === "heading" && (nextNode as Heading).depth <= currentLevel) {
+                if (nextNode.type === "heading" && (nextNode).depth <= currentLevel) {
                     break;
                 }
 
@@ -296,5 +298,5 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
             parent.children.splice(index, 1);
         });
 
-    return processor.stringify(tree as Root);
+    return processor.stringify(tree);
 }

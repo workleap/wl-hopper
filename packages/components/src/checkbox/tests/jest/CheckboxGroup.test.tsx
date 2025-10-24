@@ -66,11 +66,13 @@ describe("Checkbox", () => {
 
     it("should set the size class name and pass the size to the checkbox and checkbox field.", () => {
         const testId = "checkbox-field";
-        render(<CheckboxGroup aria-label="options" size="sm">
-            <CheckboxField data-testid={testId} description="Description">
-                <Checkbox>option 1</Checkbox>
-            </CheckboxField>
-        </CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options" size="sm">
+                <CheckboxField data-testid={testId} description="Description">
+                    <Checkbox>option 1</Checkbox>
+                </CheckboxField>
+            </CheckboxGroup>
+        );
 
         const element = screen.getByRole("group");
         const checkboxField = screen.getByTestId(testId);
@@ -93,11 +95,12 @@ describe("Checkbox", () => {
     it("should call onChange when a single checkbox is selected.", async () => {
         const user = userEvent.setup();
         const onChange = jest.fn();
-        render(<CheckboxGroup aria-label="options" onChange={onChange}>
-            <Checkbox value="option 1" aria-label="option 1">option 1</Checkbox>
-            <Checkbox value="option 2">option 2</Checkbox>
-            <Checkbox value="option 3">option 3</Checkbox>
-        </CheckboxGroup>
+        render(
+            <CheckboxGroup aria-label="options" onChange={onChange}>
+                <Checkbox value="option 1" aria-label="option 1">option 1</Checkbox>
+                <Checkbox value="option 2">option 2</Checkbox>
+                <Checkbox value="option 3">option 3</Checkbox>
+            </CheckboxGroup>
         );
 
         const checkbox = screen.getAllByRole("checkbox")[0];
@@ -108,11 +111,12 @@ describe("Checkbox", () => {
     it("should call onChange when a single checkbox is unselected.", async () => {
         const user = userEvent.setup();
         const onChange = jest.fn();
-        render(<CheckboxGroup aria-label="options" onChange={onChange}>
-            <Checkbox value="option 1">option 1</Checkbox>
-            <Checkbox value="option 2">option 2</Checkbox>
-            <Checkbox value="option 3">option 3</Checkbox>
-        </CheckboxGroup>
+        render(
+            <CheckboxGroup aria-label="options" onChange={onChange}>
+                <Checkbox value="option 1">option 1</Checkbox>
+                <Checkbox value="option 2">option 2</Checkbox>
+                <Checkbox value="option 3">option 3</Checkbox>
+            </CheckboxGroup>
         );
 
         const checkboxes = screen.getAllByRole("checkbox");

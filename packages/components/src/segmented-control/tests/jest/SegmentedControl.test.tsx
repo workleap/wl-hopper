@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-node-access */
+
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -23,9 +23,11 @@ describe("SegmentedControl", () => {
     });
 
     it("should support custom style", () => {
-        render(<SegmentedControl aria-label="options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
-            <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
-        </SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

@@ -1,8 +1,7 @@
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
-import { useEffectEvent } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, useRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, useCallback, useRef } from "react";
 import {
     type Key,
     type TabsProps as RACTabsProps,
@@ -34,7 +33,7 @@ export interface TabsProps extends Omit<RACTabsProps, "id" | "children" | "style
     isFluid?: boolean;
 }
 
-function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
+function Tabs(props: TabsProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabsContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
@@ -56,12 +55,12 @@ function Tabs(props:TabsProps, ref: ForwardedRef<HTMLDivElement>) {
     const tablistRef = useRef<HTMLDivElement | null>(null);
     const prevRef = useRef<DOMRect | null>(null);
 
-    const onChange = useEffectEvent((val: Key) => {
+    const onChange = useCallback((val: Key) => {
         if (tablistRef.current) {
             prevRef.current = tablistRef.current.querySelector("[role=tab][data-selected=true]")?.getBoundingClientRect() ?? null;
         }
         setValue(val);
-    });
+    }, [setValue]);
 
     if (!props["aria-label"] && !props["aria-labelledby"]) {
         console.warn("An aria-label or aria-labelledby prop is required on Tabs for accessibility.");

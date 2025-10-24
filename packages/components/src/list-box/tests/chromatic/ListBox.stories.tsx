@@ -123,27 +123,36 @@ export const Default = {
                     </ListBox>
                     <ListBox {...args} size="md">
                         <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
-                            <Text>Earth</Text></ListBoxItem>
+                            <Text>Earth</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
-                            <Text>Mars</Text></ListBoxItem>
+                            <Text>Mars</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
-                            <Text>Saturn</Text></ListBoxItem>
+                            <Text>Saturn</Text>
+                        </ListBoxItem>
                     </ListBox>
                     <ListBox {...args} size="sm">
                         <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
-                            <Text>Earth</Text></ListBoxItem>
+                            <Text>Earth</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
-                            <Text>Mars</Text></ListBoxItem>
+                            <Text>Mars</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
-                            <Text>Saturn</Text></ListBoxItem>
+                            <Text>Saturn</Text>
+                        </ListBoxItem>
                     </ListBox>
                     <ListBox {...args} size="xs">
                         <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
-                            <Text>Earth</Text></ListBoxItem>
+                            <Text>Earth</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
-                            <Text>Mars</Text></ListBoxItem>
+                            <Text>Mars</Text>
+                        </ListBoxItem>
                         <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
-                            <Text>Saturn</Text></ListBoxItem>
+                            <Text>Saturn</Text>
+                        </ListBoxItem>
                     </ListBox>
                 </Inline>
                 <h1>Items with End Icon</h1>
@@ -744,7 +753,8 @@ const StateTemplate = (args: StateTemplateProps) => {
     return (
         <Inline alignY="flex-end">
             <ListBox {...rest} size="xs">
-                <ListBoxItem id="1"
+                <ListBoxItem
+                    id="1"
                     textValue="Earth"
                     data-testid="first-item"
                     data-chromatic-force={dataChromaticForce}
@@ -764,7 +774,8 @@ const StateTemplate = (args: StateTemplateProps) => {
                 </ListBoxItem>
             </ListBox>
             <ListBox {...rest} size="sm">
-                <ListBoxItem id="1"
+                <ListBoxItem
+                    id="1"
                     textValue="Earth"
                     data-testid="first-item"
                     data-chromatic-force={dataChromaticForce}
@@ -784,7 +795,8 @@ const StateTemplate = (args: StateTemplateProps) => {
                 </ListBoxItem>
             </ListBox>
             <ListBox {...rest} size="md">
-                <ListBoxItem id="1"
+                <ListBoxItem
+                    id="1"
                     textValue="Earth"
                     data-testid="first-item"
                     data-chromatic-force={dataChromaticForce}
@@ -804,7 +816,8 @@ const StateTemplate = (args: StateTemplateProps) => {
                 </ListBoxItem>
             </ListBox>
             <ListBox {...rest} size="lg">
-                <ListBoxItem id="1"
+                <ListBoxItem
+                    id="1"
                     textValue="Earth"
                     data-testid="first-item"
                     data-chromatic-force={dataChromaticForce}

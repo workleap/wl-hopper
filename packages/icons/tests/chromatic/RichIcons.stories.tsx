@@ -16,7 +16,8 @@ const List = ({ ...iconProps }: ListProps) => {
             return (
                 <LI key={name} display="block">
                     <Component variant={variant} {...iconProps} />
-                </LI>);
+                </LI>
+            );
         });
 
         return (
@@ -44,13 +45,15 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: args => {
-        return <>
-            <h1>Medium</h1>
-            <List {...args} size="md" />
-            <h1>Large</h1>
-            <List {...args} size="lg" />
-            <h1>XLarge</h1>
-            <List {...args} size="xl" />
-        </>;
+        return (
+            <>
+                <h1>Medium</h1>
+                <List {...args} size="md" />
+                <h1>Large</h1>
+                <List {...args} size="lg" />
+                <h1>XLarge</h1>
+                <List {...args} size="xl" />
+            </>
+        );
     }
 };

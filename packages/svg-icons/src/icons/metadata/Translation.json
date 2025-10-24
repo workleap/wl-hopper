@@ -1,24 +1,24 @@
 {
-  "name": "Translation",
-  "description": "Represents a language translation symbol with the letter \"A\" in different styles or languages. Used for features related to language translation, localization, internationalization, or any feature that involves converting content from one language to another. Commonly used in multilingual applications, content management systems, and global platforms.",
-  "keywords": [
-    "translation",
-    "language",
-    "localization",
-    "internationalization",
-    "multilingual",
-    "global",
-    "interpret",
-    "convert",
-    "translate",
-    "foreign",
-    "dialect",
-    "bilingual",
-    "polyglot",
-    "linguistic",
-    "i18n",
-    "l10n",
-    "globalization",
-    "cross-language"
-  ]
+    "name": "Translation",
+    "description": "Represents a language translation symbol with the letter \"A\" in different styles or languages. Used for features related to language translation, localization, internationalization, or any feature that involves converting content from one language to another. Commonly used in multilingual applications, content management systems, and global platforms.",
+    "keywords": [
+        "translation",
+        "language",
+        "localization",
+        "internationalization",
+        "multilingual",
+        "global",
+        "interpret",
+        "convert",
+        "translate",
+        "foreign",
+        "dialect",
+        "bilingual",
+        "polyglot",
+        "linguistic",
+        "i18n",
+        "l10n",
+        "globalization",
+        "cross-language"
+    ]
 }

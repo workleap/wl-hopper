@@ -13,8 +13,7 @@ export default function Example() {
         setIsOpen(open);
     }, [setIsOpen, isLoading]);
 
-
-    const handlePrimaryButtonClick = useCallback(async() => {
+    const handlePrimaryButtonClick = useCallback(async () => {
         setIsLoading(true);
 
         await new Promise(resolve => setTimeout(resolve, 3000));

@@ -1,18 +1,18 @@
 {
-  "name": "Gauge",
-  "description": "Represents a speedometer, dashboard, or measurement gauge. Used for performance monitoring, metrics dashboards, measurement tools, or any feature that involves measuring or monitoring values or performance.",
-  "keywords": [
-    "gauge",
-    "speedometer",
-    "dashboard",
-    "metrics",
-    "measurement",
-    "performance",
-    "monitoring",
-    "indicator",
-    "analytics",
-    "statistics",
-    "level",
-    "progress"
-  ]
+    "name": "Gauge",
+    "description": "Represents a speedometer, dashboard, or measurement gauge. Used for performance monitoring, metrics dashboards, measurement tools, or any feature that involves measuring or monitoring values or performance.",
+    "keywords": [
+        "gauge",
+        "speedometer",
+        "dashboard",
+        "metrics",
+        "measurement",
+        "performance",
+        "monitoring",
+        "indicator",
+        "analytics",
+        "statistics",
+        "level",
+        "progress"
+    ]
 }

@@ -56,7 +56,6 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
     console.log(`✅ Merged successfully: ${outputPath}`);
 }
 
-
 function fixRelativeLink(link: string, extension: "txt" | "md"): string {
     try {
         // If the link is absolute (has a valid scheme), just return it

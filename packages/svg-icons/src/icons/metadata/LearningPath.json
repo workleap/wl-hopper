@@ -1,21 +1,21 @@
 {
-  "name": "LearningPath",
-  "description": "Represents a connected path or journey with multiple points or nodes. Used for features related to educational courses, learning paths, curriculum design, skill development, or any feature that involves a structured learning journey or progression through educational content.",
-  "keywords": [
-    "learning path",
-    "education",
-    "course",
-    "curriculum",
-    "journey",
-    "progression",
-    "development",
-    "training",
-    "roadmap",
-    "sequence",
-    "steps",
-    "milestones",
-    "skills",
-    "knowledge",
-    "instruction"
-  ]
+    "name": "LearningPath",
+    "description": "Represents a connected path or journey with multiple points or nodes. Used for features related to educational courses, learning paths, curriculum design, skill development, or any feature that involves a structured learning journey or progression through educational content.",
+    "keywords": [
+        "learning path",
+        "education",
+        "course",
+        "curriculum",
+        "journey",
+        "progression",
+        "development",
+        "training",
+        "roadmap",
+        "sequence",
+        "steps",
+        "milestones",
+        "skills",
+        "knowledge",
+        "instruction"
+    ]
 }

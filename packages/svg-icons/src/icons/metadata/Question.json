@@ -1,21 +1,21 @@
 {
-  "name": "Question",
-  "description": "Represents a question mark inside a circle. Used for features related to help, FAQs, information, guidance, tooltips, or any feature that involves providing assistance, answering questions, or offering additional information to users.",
-  "keywords": [
-    "question",
-    "help",
-    "information",
-    "FAQ",
-    "guidance",
-    "assistance",
-    "support",
-    "inquiry",
-    "tooltip",
-    "hint",
-    "explanation",
-    "clarification",
-    "query",
-    "ask",
-    "learn"
-  ]
+    "name": "Question",
+    "description": "Represents a question mark inside a circle. Used for features related to help, FAQs, information, guidance, tooltips, or any feature that involves providing assistance, answering questions, or offering additional information to users.",
+    "keywords": [
+        "question",
+        "help",
+        "information",
+        "FAQ",
+        "guidance",
+        "assistance",
+        "support",
+        "inquiry",
+        "tooltip",
+        "hint",
+        "explanation",
+        "clarification",
+        "query",
+        "ask",
+        "learn"
+    ]
 }

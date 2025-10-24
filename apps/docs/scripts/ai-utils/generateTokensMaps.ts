@@ -98,7 +98,7 @@ function processTokenArray(
 function processNode(
     node: unknown,
     currentPath: string[] = []
-): ProcessedTokens | ProcessedSubsection | ProcessedRootData | unknown[] | unknown {
+): unknown {
     if (Array.isArray(node)) {
         if (isTokenArray(node)) {
             const tokenType = findTokenTypeInPath(currentPath);

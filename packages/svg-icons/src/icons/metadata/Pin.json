@@ -1,21 +1,21 @@
 {
-  "name": "Pin",
-  "description": "Represents a pushpin or thumbtack. Used for features related to pinning, saving, bookmarking, marking locations, highlighting important items, or any feature that involves attaching, fixing, or saving content for easy access or reference later.",
-  "keywords": [
-    "pin",
-    "pushpin",
-    "thumbtack",
-    "bookmark",
-    "save",
-    "mark",
-    "location",
-    "highlight",
-    "attach",
-    "fix",
-    "favorite",
-    "important",
-    "reference",
-    "reminder",
-    "flag"
-  ]
+    "name": "Pin",
+    "description": "Represents a pushpin or thumbtack. Used for features related to pinning, saving, bookmarking, marking locations, highlighting important items, or any feature that involves attaching, fixing, or saving content for easy access or reference later.",
+    "keywords": [
+        "pin",
+        "pushpin",
+        "thumbtack",
+        "bookmark",
+        "save",
+        "mark",
+        "location",
+        "highlight",
+        "attach",
+        "fix",
+        "favorite",
+        "important",
+        "reference",
+        "reminder",
+        "flag"
+    ]
 }

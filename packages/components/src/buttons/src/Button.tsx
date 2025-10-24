@@ -177,17 +177,19 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
                     {...otherProps}
                 >
                     {buttonRenderProps => {
-                        return <>
-                            {children(buttonRenderProps)}
-                            {isLoading && (
-                                <Spinner
-                                    aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
-                                    size={iconSize}
-                                    className={spinnerClassNames}
-                                    {...otherSpinnerProps}
-                                />
-                            )}
-                        </>;
+                        return (
+                            <>
+                                {children(buttonRenderProps)}
+                                {isLoading && (
+                                    <Spinner
+                                        aria-label={stringFormatter.format("Button.spinnerAriaLabel")}
+                                        size={iconSize}
+                                        className={spinnerClassNames}
+                                        {...otherSpinnerProps}
+                                    />
+                                )}
+                            </>
+                        );
                     }}
                 </RACButton>
             </SlotProvider>
@@ -205,3 +207,4 @@ const _Button = slotFn("button", forwardRef(Button));
 _Button.displayName = "Button";
 
 export { _Button as Button };
+

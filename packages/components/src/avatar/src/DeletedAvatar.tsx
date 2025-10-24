@@ -19,7 +19,6 @@ interface DeletedAvatarRenderProps {
     isDisabled?: boolean;
 }
 
-
 export interface DeletedAvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<DeletedAvatarRenderProps>, "children"> {
     /**
      * Whether or not the avatar is disabled.
@@ -92,3 +91,4 @@ const _DeletedAvatar = forwardRef<HTMLDivElement, DeletedAvatarProps>(DeletedAva
 _DeletedAvatar.displayName = "DeletedAvatar";
 
 export { _DeletedAvatar as DeletedAvatar };
+

@@ -1,11 +1,11 @@
 import type { MetadataRoute } from "next";
 import { getComponentsSlugs, getGettingStartedSlugs, getIconsSlugs, getTokensSlugs } from "./lib/getSlugs";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export default function sitemap(): MetadataRoute.Sitemap {
     const siteUrl = "https://hopper.workleap.design";
 
     // Fetch dynamic paths (replace with your logic to fetch dynamic routes)
-    const dynamicPages = await fetchDynamicPaths();
+    const dynamicPages = fetchDynamicPaths();
 
     // Define static pages
     const staticPages = ["/"];
@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return urls;
 }
 
-async function fetchDynamicPaths(): Promise<string[]> {
+function fetchDynamicPaths(): string[] {
     const gettingStartedLinks = getGettingStartedSlugs().map(x => `/getting-started/${x.slug.join("/")}`);
     const iconsLinks = getIconsSlugs().map(x => `/icons/${x.slug.join("/")}`);
     const tokensLinks = getTokensSlugs().map(x => `/tokens/${x.slug.join("/")}`);

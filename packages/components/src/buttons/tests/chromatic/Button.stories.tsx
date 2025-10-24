@@ -273,7 +273,7 @@ const StateTemplate = (args: Partial<ButtonProps>) => (
 );
 
 export const PrimaryStates: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const buttons = canvas.getAllByRole("button");
 

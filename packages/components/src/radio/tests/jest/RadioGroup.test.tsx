@@ -26,9 +26,11 @@ describe("Radio", () => {
     });
 
     it("should support custom style", () => {
-        render(<RadioGroup aria-label="options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
-            <Radio value="option1">option 1</Radio>
-        </RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -64,11 +66,13 @@ describe("Radio", () => {
 
     it("should set the size class name and pass the size to the radio and radio field.", () => {
         const testId = "radio-field";
-        render(<RadioGroup aria-label="options" size="sm">
-            <RadioField data-testid={testId} description="Description">
-                <Radio value="option1">option 1</Radio>
-            </RadioField>
-        </RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" size="sm">
+                <RadioField data-testid={testId} description="Description">
+                    <Radio value="option1">option 1</Radio>
+                </RadioField>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         const radioField = screen.getByTestId(testId);
@@ -91,11 +95,12 @@ describe("Radio", () => {
     it("should call onChange when a single radio is selected.", async () => {
         const user = userEvent.setup();
         const onChange = jest.fn();
-        render(<RadioGroup aria-label="options" onChange={onChange}>
-            <Radio value="option 1" aria-label="option 1">option 1</Radio>
-            <Radio value="option 2">option 2</Radio>
-            <Radio value="option 3">option 3</Radio>
-        </RadioGroup>
+        render(
+            <RadioGroup aria-label="options" onChange={onChange}>
+                <Radio value="option 1" aria-label="option 1">option 1</Radio>
+                <Radio value="option 2">option 2</Radio>
+                <Radio value="option 3">option 3</Radio>
+            </RadioGroup>
         );
 
         const radio = screen.getAllByRole("radio")[0];

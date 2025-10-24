@@ -37,7 +37,7 @@ export function a11yParameters(params: A11yAddonParameters["a11y"]): A11yAddonPa
 }
 
 export function getA11yAddonParameters(parameters: SBParameters): A11yAddonParameters["a11y"] | undefined {
-    const a11yParams = (parameters as A11yAddonParameters | undefined)?.a11y ;
+    const a11yParams = (parameters as A11yAddonParameters | undefined)?.a11y;
 
     return a11yParams;
 }

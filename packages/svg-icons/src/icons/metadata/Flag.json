@@ -1,18 +1,18 @@
 {
-  "name": "Flag",
-  "description": "Represents a flag or banner. Used for flagging content, marking items for attention, highlighting important information, or any feature that involves drawing attention to specific items.",
-  "keywords": [
-    "flag",
-    "mark",
-    "highlight",
-    "attention",
-    "important",
-    "bookmark",
-    "tag",
-    "label",
-    "indicator",
-    "notification",
-    "priority",
-    "save"
-  ]
+    "name": "Flag",
+    "description": "Represents a flag or banner. Used for flagging content, marking items for attention, highlighting important information, or any feature that involves drawing attention to specific items.",
+    "keywords": [
+        "flag",
+        "mark",
+        "highlight",
+        "attention",
+        "important",
+        "bookmark",
+        "tag",
+        "label",
+        "indicator",
+        "notification",
+        "priority",
+        "save"
+    ]
 }

@@ -50,7 +50,7 @@ describe("TextArea", () => {
 
     it("should support slots", async () => {
         render(
-            <TextAreaContext.Provider value={{ slots: { test: { "aria-label" : "test label" } } }}>
+            <TextAreaContext.Provider value={{ slots: { test: { "aria-label": "test label" } } }}>
                 <TextArea data-testid="field" slot="test" />
             </TextAreaContext.Provider>
         );

@@ -1,16 +1,16 @@
 {
-  "name": "UnorderedList",
-  "description": "Represents a bulleted or unordered list format. Displayed as three horizontal lines with bullet points to the left of each line. Used in text editors, formatting toolbars, and content creation interfaces to indicate the option to create or format text as an unordered list.",
-  "keywords": [
-    "unordered list",
-    "bulleted list",
-    "bullet points",
-    "list format",
-    "text formatting",
-    "bullets",
-    "list style",
-    "document formatting",
-    "content structure",
-    "text editor"
-  ]
+    "name": "UnorderedList",
+    "description": "Represents a bulleted or unordered list format. Displayed as three horizontal lines with bullet points to the left of each line. Used in text editors, formatting toolbars, and content creation interfaces to indicate the option to create or format text as an unordered list.",
+    "keywords": [
+        "unordered list",
+        "bulleted list",
+        "bullet points",
+        "list format",
+        "text formatting",
+        "bullets",
+        "list style",
+        "document formatting",
+        "content structure",
+        "text editor"
+    ]
 }

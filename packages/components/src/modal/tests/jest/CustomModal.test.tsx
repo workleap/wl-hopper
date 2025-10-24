@@ -1,5 +1,3 @@
-/* eslint-disable testing-library/no-node-access */
-/* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { userEvent } from "@testing-library/user-event";
 import { createRef } from "react";

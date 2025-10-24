@@ -48,6 +48,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const size = useResponsiveValue(sizeProp) ?? "sm";
 
     const textRef = useRef<HTMLSpanElement>(null);
+    // eslint-disable-next-line react-hooks/refs
     const refForOverflowCheck = textRef.current ? textRef : ref;
     const isOverflow = useIsOverflow(refForOverflowCheck);
     const state = useContext(SelectStateContext)! as SelectState<T, "single" | "multiple">;
@@ -82,8 +83,8 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
         defaultChildren: textValue || placeholder || stringFormatter.format("Select.placeholder"),
         style,
         values: {
-            selectedItem: state.selectedItems[0]?.value as T ?? null,
-            selectedItems: useMemo(() => state?.selectedItems.map(item => item.value as T ?? null), [state?.selectedItems]),
+            selectedItem: state.selectedItems[0]?.value ?? null,
+            selectedItems: useMemo(() => state?.selectedItems.map(item => item.value ?? null), [state?.selectedItems]),
             selectedText: textValue ?? "",
             isPlaceholder: !selectedItem,
             state

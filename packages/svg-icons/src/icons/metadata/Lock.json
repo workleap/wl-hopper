@@ -1,21 +1,21 @@
 {
-  "name": "Lock",
-  "description": "Represents a padlock. Used for features related to security settings, privacy controls, access restrictions, password protection, or any feature that involves protecting content or functionality from unauthorized access.",
-  "keywords": [
-    "lock",
-    "security",
-    "privacy",
-    "protection",
-    "restricted",
-    "password",
-    "authentication",
-    "confidential",
-    "secure",
-    "private",
-    "encrypted",
-    "safeguard",
-    "access control",
-    "permission",
-    "confidentiality"
-  ]
+    "name": "Lock",
+    "description": "Represents a padlock. Used for features related to security settings, privacy controls, access restrictions, password protection, or any feature that involves protecting content or functionality from unauthorized access.",
+    "keywords": [
+        "lock",
+        "security",
+        "privacy",
+        "protection",
+        "restricted",
+        "password",
+        "authentication",
+        "confidential",
+        "secure",
+        "private",
+        "encrypted",
+        "safeguard",
+        "access control",
+        "permission",
+        "confidentiality"
+    ]
 }

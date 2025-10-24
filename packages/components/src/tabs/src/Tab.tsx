@@ -132,7 +132,6 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
     );
 }
 
-
 /**
  * [View Documentation](https://hopper.workleap.design/components/Tabs)
  */

@@ -1,13 +1,13 @@
 {
-  "name": "Basketball",
-  "description": "Used to represent basketball as a sport, game, activity, or team-building exercise.",
-  "keywords": [
-    "basketball",
-    "sport",
-    "game",
-    "ball",
-    "team",
-    "recreation",
-    "athletics"
-  ]
+    "name": "Basketball",
+    "description": "Used to represent basketball as a sport, game, activity, or team-building exercise.",
+    "keywords": [
+        "basketball",
+        "sport",
+        "game",
+        "ball",
+        "team",
+        "recreation",
+        "athletics"
+    ]
 }

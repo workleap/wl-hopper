@@ -10,8 +10,8 @@ export default function Example() {
     }
 
     return (
-        <RadioGroup 
-            onChange={onChange} 
+        <RadioGroup
+            onChange={onChange}
             isInvalid={isInvalid}
             label="Roles"
             description="These are all excellent roles"

@@ -111,7 +111,7 @@ export const AsteriskNecessityIndicator = {
 } satisfies Story;
 
 export const Validation = {
-    args:{
+    args: {
         validationErrors: { username: "Sorry, this username is taken." },
         children: (
             <TextField defaultValue="john_doe" name="username" label="Username" />
@@ -138,7 +138,7 @@ export const ValidationBehaviorAria = {
 } satisfies Story;
 
 export const ValidationBehaviorNative = {
-    args:{
+    args: {
         validationBehavior: "native",
         children: (
             <>

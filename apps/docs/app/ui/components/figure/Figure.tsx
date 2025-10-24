@@ -4,7 +4,7 @@ import Image from "../image/Image";
 
 import "./figure.css";
 
-export interface FigureProps extends ComponentProps<"div">{
+export interface FigureProps extends ComponentProps<"div"> {
     src: string;
     alt: string;
     width: number;

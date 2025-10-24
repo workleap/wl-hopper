@@ -29,7 +29,8 @@ function Callout(props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) {
     const IconSrc = iconMap[variant] || InfoIcon;
 
     return (
-        <div {...other}
+        <div
+            {...other}
             className={clsx("hd-callout", className, {
                 [`hd-callout--${variant}`]: variant
             })}

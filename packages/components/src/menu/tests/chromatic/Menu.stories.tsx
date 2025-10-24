@@ -389,4 +389,3 @@ export const MultipleSelectionMode = {
     }
 } satisfies Story;
 
-

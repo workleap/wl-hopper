@@ -124,7 +124,6 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
         };
     });
 
-
     return (
         <InternalTagGroupContext.Provider value={{
             isInGroup: true

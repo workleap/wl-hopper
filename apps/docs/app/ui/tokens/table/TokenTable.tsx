@@ -40,7 +40,8 @@ const TokenTable = ({ category, data, noPreview = false, tokenType }: TableProps
     const columns = ["Name", tokenType && "Styled-System Value", "Value", !noPreview && "Preview"].filter(Boolean) as string[];
 
     return (
-        <Table head={columns}
+        <Table
+            head={columns}
             data={formattedData}
             lastColumnAlignment="right"
             ariaLabel="Tokens"

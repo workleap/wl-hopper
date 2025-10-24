@@ -4,7 +4,7 @@ import { validateHopperCode } from "../validator.service";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
-    readFile: jest.fn(async (path: string) => {
+    readFile: jest.fn((path: string) => {
         if (path.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
         } else if (path.includes("/tokens/maps/all.json")) {

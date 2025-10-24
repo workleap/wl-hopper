@@ -1,18 +1,18 @@
 {
-  "name": "Duplicate",
-  "description": "Represents a square with a plus sign inside it. Used to indicate duplication functionality, creating copies, cloning items, or adding new items based on existing ones.",
-  "keywords": [
-    "duplicate",
-    "copy",
-    "clone",
-    "replicate",
-    "reproduce",
-    "mirror",
-    "create copy",
-    "duplicate item",
-    "make another",
-    "multiply",
-    "repeat",
-    "template"
-  ]
+    "name": "Duplicate",
+    "description": "Represents a square with a plus sign inside it. Used to indicate duplication functionality, creating copies, cloning items, or adding new items based on existing ones.",
+    "keywords": [
+        "duplicate",
+        "copy",
+        "clone",
+        "replicate",
+        "reproduce",
+        "mirror",
+        "create copy",
+        "duplicate item",
+        "make another",
+        "multiply",
+        "repeat",
+        "template"
+    ]
 }

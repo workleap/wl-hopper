@@ -15,12 +15,12 @@ const ROLE_OPTIONS = [
 ];
 
 export default function Example() {
-    const { startsWith } = useFilter({ sensitivity: "base" });
+    const filter = useFilter({ sensitivity: "base" });
     const [filterValue, setFilterValue] = useState("");
 
     const filteredItems = useMemo(() => {
-        return ROLE_OPTIONS.filter(item => startsWith(item.name, filterValue));
-    }, [startsWith, filterValue]);
+        return ROLE_OPTIONS.filter(item => filter.startsWith(item.name, filterValue));
+    }, [filter, filterValue]);
 
     return (
         <ComboBox

@@ -82,11 +82,13 @@ describe("BrokenAvatar", () => {
     });
 
     it("should support disabled state", () => {
-        render(<BrokenAvatar
-            aria-label="John Doe"
-            isDisabled
-            className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
-        />);
+        render(
+            <BrokenAvatar
+                aria-label="John Doe"
+                isDisabled
+                className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
+            />
+        );
 
         const element = screen.getByRole("img", { name: "John Doe" });
 

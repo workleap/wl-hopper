@@ -1,12 +1,12 @@
 {
-  "servers": {
-    "hopper": {
-      "url": "https://hopper.workleap.design/mcp",
-      "type": "http"
-    },
-    "figma": {
-      "url": "https://mcp.figma.com/mcp",
-      "type": "http"
+    "servers": {
+        "hopper": {
+            "url": "https://hopper.workleap.design/mcp",
+            "type": "http"
+        },
+        "figma": {
+            "url": "https://mcp.figma.com/mcp",
+            "type": "http"
+        }
     }
-  }
 }

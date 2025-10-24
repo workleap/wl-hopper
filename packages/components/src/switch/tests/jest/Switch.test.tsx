@@ -7,7 +7,6 @@ import { createRef } from "react";
 import { Switch } from "../../src/Switch.tsx";
 import { SwitchContext } from "../../src/SwitchContext.ts";
 
-
 describe("Switch", () => {
     it("should render with default class", () => {
         render(<Switch>option 1</Switch>);

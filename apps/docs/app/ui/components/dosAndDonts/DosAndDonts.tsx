@@ -4,7 +4,7 @@ import clsx from "clsx";
 import "./dosAndDonts.css";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Div, Grid, HopperProvider, Tag, Text, type ColorScheme, type TagProps } from "@hopper-ui/components";
+import { Div, Grid, HopperProvider, Tag, Text, type TagProps } from "@hopper-ui/components";
 import { CheckmarkIcon, DismissIcon } from "@hopper-ui/icons";
 import { Fragment, useContext, type ReactNode } from "react";
 import Card from "../card/Card";
@@ -45,7 +45,7 @@ export interface DosAndDontsProps {
 
 function DosAndDonts({ items }: DosAndDontsProps) {
     const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode as ColorScheme;
+    const theme = colorMode!;
 
     const renderCard = (variant: Variant, item?: DosAndDontsItem) => {
         if (!item || item.isForAiOnly) {
@@ -58,11 +58,11 @@ function DosAndDonts({ items }: DosAndDontsProps) {
 
         return (
             <Card size="sm" className="hd-dosAndDonts__card">
-                {example &&
+                {example && (
                     <Div flex="1" className={clsx("hd-dosAndDonts__example", `hd-dosAndDonts__example--${variant}`)}>
                         {example}
                     </Div>
-                }
+                )}
                 <Tag variant={tagVariant} textValue={textValue}>
                     {icon}
                     <Text size="sm">{textValue}</Text>

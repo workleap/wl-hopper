@@ -17,7 +17,6 @@ export interface InputProps extends StyledComponentProps<Omit<RACInputProps, "si
 
 export const InputContext = createContext<ContextValue<InputProps, HTMLInputElement>>({});
 
-
 export const Input = forwardRef(function Input(props: InputProps, ref: ForwardedRef<HTMLInputElement>) {
     [props, ref] = useContextProps(props, ref, InputContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);

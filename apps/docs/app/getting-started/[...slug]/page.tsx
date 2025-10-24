@@ -38,12 +38,11 @@ export default function GettingStartedPage({ params }: PageProps) {
     );
 }
 
-
-export async function generateStaticParams() {
+export function generateStaticParams() {
     return getGettingStartedSlugs();
 }
 
-export async function generateMetadata({ params }: PageProps) {
+export function generateMetadata({ params }: PageProps) {
     const page = findPageFromSlug(params.slug);
 
     if (page) {
@@ -54,7 +53,6 @@ export async function generateMetadata({ params }: PageProps) {
         if (page.description) {
             metadata.description = page.description;
         }
-
 
         return metadata;
     }

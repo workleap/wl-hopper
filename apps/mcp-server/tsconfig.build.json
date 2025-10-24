@@ -1,0 +1,30 @@
+{
+    "extends": "@workleap/typescript-configs/library.json",
+    "compilerOptions": {
+        "noEmit": false,
+        "allowImportingTsExtensions": false,
+        "module": "esnext",
+        "moduleResolution": "Bundler",
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "paths": {
+            "@docs/ai": [
+                "./src/.docs/index.ts",
+            ]
+        },
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "logs",
+        "netlify",
+        "jest.config.ts",
+        "setupTests.ts",
+        "**/*.test.ts",
+        "**/*.spec.ts",
+        "swc.jest.ts"
+    ],
+}

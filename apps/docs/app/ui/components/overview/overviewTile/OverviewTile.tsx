@@ -32,7 +32,8 @@ const OverviewTile = ({ title }: OverviewTileProps) => {
                             <Title
                                 level={3}
                                 className="hd-component-overview-item__title"
-                            >{component.title}</Title>
+                            >{component.title}
+                            </Title>
                             <p className="hd-component-overview-item__description">{component.description}</p>
                         </div>
                     </Link>

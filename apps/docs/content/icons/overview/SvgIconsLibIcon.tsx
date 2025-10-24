@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-/* eslint-disable max-len */
 const SvgComponent = (props: Partial<SVGProps<SVGSVGElement>>) => (
     <svg
         width={24}

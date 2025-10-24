@@ -94,7 +94,6 @@ const storybookConfig: StorybookConfig = {
     }
 };
 
-
 export default storybookConfig;
 
 function getAbsolutePath(value: string) {

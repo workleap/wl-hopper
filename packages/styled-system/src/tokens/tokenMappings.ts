@@ -295,6 +295,6 @@ export function getSystemValue<T extends string | number>(value: T, systemValues
     return systemValues[value];
 }
 
-export function getSizingValue(value: UNSAFE_SizingValue | string) {
+export function getSizingValue(value: UNSAFE_SizingValue | (string & {})) {
     return (SizingMapping as Record<string, string>)[value] || value;
 }

@@ -41,7 +41,8 @@ const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleB
             <div className="hd-component-preview-wrapper__actions">
                 {openInStackblitzButton}
                 {toggleButton}
-                <ThemeSwitch className="hd-component-preview-wrapper__action"
+                <ThemeSwitch
+                    className="hd-component-preview-wrapper__action"
                     onChange={toggleTheme}
                     colorMode={localColorMode}
                 />

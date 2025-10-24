@@ -3,7 +3,9 @@ import { env } from "../env.js";
 export function getAllowedHosts(): string[] | undefined {
     const result = [];
     for (const host of env.ALLOWED_HOSTS.split(",")) {
-        if (host === "") {continue;}
+        if (host === "") {
+            continue;
+        }
         if (host.includes(":")) {
             result.push(host);
         } else {

@@ -56,7 +56,7 @@ function generateSizeRows(tokenData: TokenData, type: string) {
 function generateSizelessRows(tokenData: TokenData, type: string) {
     const properties = groupItemsByProperties(tokenData, type);
 
-    return typographyTableRows(properties!);
+    return typographyTableRows(properties);
 }
 
 function typographyTableRows(properties?: FontProperties, size?: Size) {
@@ -80,27 +80,28 @@ interface Item {
 }
 
 function TypographyTableRender({ items, showSize }: { items: Item[]; showSize: boolean }) {
-    return <table>
-        <thead>
-            <tr>
-                <th>Component Prop Name</th>
-                {showSize && <th>Component Prop Value</th>}
-                <th>Token Name</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            {items.map(item => (
-                <tr key={item.name + item.propertyName}>
-                    <td>{item.propertyName}</td>
-                    {showSize && <td>{formatStyledSystemName(item.tokenName)}</td>}
-                    <td><code>{item.tokenName}</code></td>
-                    <td>{item.value}</td>
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Component Prop Name</th>
+                    {showSize && <th>Component Prop Value</th>}
+                    <th>Token Name</th>
+                    <th>Value</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>;
+            </thead>
+            <tbody>
+                {items.map(item => (
+                    <tr key={item.name + item.propertyName}>
+                        <td>{item.propertyName}</td>
+                        {showSize && <td>{formatStyledSystemName(item.tokenName)}</td>}
+                        <td><code>{item.tokenName}</code></td>
+                        <td>{item.value}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
-
 
 export default TypographyTable;

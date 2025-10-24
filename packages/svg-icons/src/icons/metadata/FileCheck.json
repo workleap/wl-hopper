@@ -1,18 +1,18 @@
 {
-  "name": "FileCheck",
-  "description": "Represents a document or file with a checkmark. Used to indicate file verification, document approval, completed forms, or any feature that involves confirming or validating file content.",
-  "keywords": [
-    "file check",
-    "verified document",
-    "approved file",
-    "validated",
-    "completed form",
-    "confirmed",
-    "checked",
-    "document verification",
-    "file approval",
-    "certified",
-    "authenticated",
-    "validated document"
-  ]
+    "name": "FileCheck",
+    "description": "Represents a document or file with a checkmark. Used to indicate file verification, document approval, completed forms, or any feature that involves confirming or validating file content.",
+    "keywords": [
+        "file check",
+        "verified document",
+        "approved file",
+        "validated",
+        "completed form",
+        "confirmed",
+        "checked",
+        "document verification",
+        "file approval",
+        "certified",
+        "authenticated",
+        "validated document"
+    ]
 }

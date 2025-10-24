@@ -1,6 +1,6 @@
 import type { Config } from "svgo";
 
-const config : Config = {
+const config: Config = {
     plugins: [
         "preset-default",
         "removeXMLNS"

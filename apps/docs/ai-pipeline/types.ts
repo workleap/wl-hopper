@@ -53,7 +53,7 @@ export interface UnsafePropsMarkdownBuild {
 }
 
 export interface IconsJsonBuild {
-    type: "icons-json"
+    type: "icons-json";
 }
 
 export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild | UnsafePropsJsonBuild | UnsafePropsMarkdownBuild | IconsJsonBuild;

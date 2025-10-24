@@ -75,15 +75,17 @@ export function FieldLabel(props: FieldLabelProps) {
 
     const requiredIndicator = <span aria-hidden="true" aria-label={necessityLabel} className={styles["hop-FieldLabel__indicator"]}>*</span>;
 
-    const label = <Label
-        {...otherProps}
-        className={classNames}
-        style={mergedStyles}
-    >
-        {children}
-        {necessityIndicator === "label" && !isRequired && <span> ({necessityLabel})</span>}
-        {necessityIndicator === "asterisk" && isRequired && requiredIndicator}
-    </Label>;
+    const label = (
+        <Label
+            {...otherProps}
+            className={classNames}
+            style={mergedStyles}
+        >
+            {children}
+            {necessityIndicator === "label" && !isRequired && <span> ({necessityLabel})</span>}
+            {necessityIndicator === "asterisk" && isRequired && requiredIndicator}
+        </Label>
+    );
 
     if (!contextualHelp) {
         return label;

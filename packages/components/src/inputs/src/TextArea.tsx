@@ -108,7 +108,9 @@ function useCalculateRowHeight(input: HTMLTextAreaElement | null) {
 
         const { font, lineHeight } = window.getComputedStyle(input);
 
-        if (lineHeight !== "normal") { return pxToInt(lineHeight); }
+        if (lineHeight !== "normal") {
+            return pxToInt(lineHeight);
+        }
 
         const element = document.createElement("span");
 
@@ -285,7 +287,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
                     className={textAreaClassNames}
                 />
 
-                {showCharacterCount && maxLength &&
+                {showCharacterCount && maxLength && (
                     <RemainingCharacterCount
                         className={remainingCharacterCountClassNames}
                         count={maxLength - characterCount}
@@ -293,7 +295,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
                         isDisabled={isDisabled}
                         {...otherRemainingCharacterCountProps}
                     />
-                }
+                )}
             </InputGroup>
         </ClearContainerSlots>
     );

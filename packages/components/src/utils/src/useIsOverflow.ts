@@ -5,16 +5,18 @@ export const useIsOverflow = (ref: RefObject<HTMLElement | null>, callback?: (is
     const [isOverflow, setIsOverflow] = useState(false);
 
     useIsomorphicLayoutEffect(() => {
-        if (!ref || !ref?.current) {
+        if (!ref?.current) {
             return;
         }
         const { current } = ref;
         const trigger = () => {
             const hasOverflow = current.scrollHeight > current.clientHeight ||
-                                current.scrollWidth > current.clientWidth;
+                current.scrollWidth > current.clientWidth;
             setIsOverflow(hasOverflow);
 
-            if (callback) {callback(hasOverflow);}
+            if (callback) {
+                callback(hasOverflow);
+            }
         };
 
         if (current) {

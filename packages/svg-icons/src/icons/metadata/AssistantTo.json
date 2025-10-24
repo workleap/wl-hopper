@@ -1,13 +1,13 @@
 {
-  "name": "AssistantTo",
-  "description": "Used to represent an assistant-to relationship, delegation structure, or reporting relationship between an assistant and their manager.",
-  "keywords": [
-    "assistant to",
-    "delegation",
-    "reporting structure",
-    "administrative support",
-    "organizational hierarchy",
-    "executive assistant",
-    "support role"
-  ]
+    "name": "AssistantTo",
+    "description": "Used to represent an assistant-to relationship, delegation structure, or reporting relationship between an assistant and their manager.",
+    "keywords": [
+        "assistant to",
+        "delegation",
+        "reporting structure",
+        "administrative support",
+        "organizational hierarchy",
+        "executive assistant",
+        "support role"
+    ]
 }

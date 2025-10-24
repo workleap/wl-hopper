@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-
 import { GuideDescriptions, type GuideSection, TokenCategoryDescriptions } from "./constants";
 import { GuideFiles, TokenGuideFiles, TokenMapFiles } from "./file-mappings";
 
@@ -61,7 +59,7 @@ export const toolsInfo = {
         title: "Get guide or best practices",
         description: generateGuidesDescription(),
         parameters: {
-            category:  generateDesignTokensDescription()
+            category: generateDesignTokensDescription()
         }
     },
     get_design_tokens: {

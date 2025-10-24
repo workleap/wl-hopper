@@ -76,7 +76,7 @@ describe("PasswordField", () => {
         const inputRef = createRef<HTMLInputElement>();
 
         render(
-            <PasswordFieldContext.Provider value={{ slots: { test: { "aria-label" : "test label" } } }}>
+            <PasswordFieldContext.Provider value={{ slots: { test: { "aria-label": "test label" } } }}>
                 <PasswordField inputRef={inputRef} data-testid="field" slot="test" />
             </PasswordFieldContext.Provider>
         );

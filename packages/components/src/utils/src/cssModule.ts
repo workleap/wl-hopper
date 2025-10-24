@@ -8,7 +8,7 @@ import clsx, { type ClassValue } from "clsx";
  * const result = cssModule(styles, 'hop-button', 'lg', 'primary');
  * // result = "hop-button--lg hop-button--primary"
  */
-export function cssModule(cssModules: { [key: string]: string }, componentName: string, ...modifiers : ClassValue[]) {
+export function cssModule(cssModules: { [key: string]: string }, componentName: string, ...modifiers: ClassValue[]) {
     const classes = clsx(modifiers).split(" ").filter(x => x && x !== "");
 
     return classes.reduce<string[]>((acc, className) => {

@@ -21,7 +21,7 @@ export default function App() {
 
 function Example() {
     const navigate = useNavigate();
-    
+
     return (
         <HopperProvider colorScheme="light" navigate={navigate}>
             <TagGroup aria-label="tag-group">

@@ -38,12 +38,14 @@ export const IconsCard = () => {
     const { colorMode } = useContext(ThemeContext);
 
     return (
-        <Link className="hd-home-sample__item hd-home-sample__item-icons"
+        <Link
+            className="hd-home-sample__item hd-home-sample__item-icons"
             href="/icons/overview/introduction"
         >
-            <h3 className="hd-home-sample__title">Icons <ArrowIcon
-                className="hd-home-sample__title-icon"
-            /></h3>
+            <h3 className="hd-home-sample__title">
+                Icons
+                <ArrowIcon className="hd-home-sample__title-icon" />
+            </h3>
             <p className="hd-home-sample__tagline">A set of commonly used interface icons.</p>
             <HopperProvider colorScheme={colorMode} className="hd-home-sample__icons">
                 <div className="hd-home-sample__icons-row">
@@ -65,7 +67,8 @@ export const IconsCard = () => {
                 </div>
                 <div className="hd-home-sample__icons-row">
                     <ThumbsUpIcon className="hd-home-sample__icons-icon" size="sm" />
-                    <LockIcon className="hd-home-sample__icons-icon hd-home-sample__icons-icon--active"
+                    <LockIcon
+                        className="hd-home-sample__icons-icon hd-home-sample__icons-icon--active"
                         size="sm"
                     />
                     <ItalicIcon className="hd-home-sample__icons-icon" size="sm" />
@@ -83,11 +86,13 @@ export const IconsCard = () => {
                     <ProfileIcon className="hd-home-sample__icons-icon" size="sm" />
                 </div>
                 <div className="hd-home-sample__icons-row hd-home-sample__icons-extra-row">
-                    <FocusIcon className="hd-home-sample__icons-icon hd-home-sample__icons-icon--strong"
+                    <FocusIcon
+                        className="hd-home-sample__icons-icon hd-home-sample__icons-icon--strong"
                         size="sm"
                     />
                     <ReactionIcon className="hd-home-sample__icons-icon" size="sm" />
-                    <PinIcon className="hd-home-sample__icons-icon hd-home-sample__icons-icon--strong"
+                    <PinIcon
+                        className="hd-home-sample__icons-icon hd-home-sample__icons-icon--strong"
                         size="sm"
                     />
                     <SyncIcon className="hd-home-sample__icons-icon" size="sm" />

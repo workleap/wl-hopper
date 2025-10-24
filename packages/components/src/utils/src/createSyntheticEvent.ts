@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { SyntheticEvent } from "react";
 
-
 /**
  * This function is meant to convert a native event into a synthetic event.
  * Copied from @react-aria\interactions\src\utils.ts

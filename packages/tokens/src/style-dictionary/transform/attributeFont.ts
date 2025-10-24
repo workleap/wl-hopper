@@ -8,7 +8,7 @@ export interface AttributeFont {
     style: string;
 }
 
-export function attributeFont (token: TransformedToken): AttributeFont {
+export function attributeFont(token: TransformedToken): AttributeFont {
     return ({
         category: token.path[0],
         type: token.path[1],

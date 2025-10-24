@@ -1,10 +1,10 @@
+import type { FontProperties, Size } from "@/app/lib/getTypographyTokens";
+import Code from "@/components/code/Code";
 import type { ComponentProps, ReactNode } from "react";
 import TypographyPreview from "../preview/TypographyPreview";
-import Code from "@/components/code/Code";
-import type { FontProperties, Size } from "@/app/lib/getTypographyTokens";
 
-import "./tokenTable.css";
 import Link from "next/link";
+import "./tokenTable.css";
 
 export function typographyTableRow(type: string, properties: FontProperties, size?: Size) {
     const {
@@ -28,17 +28,19 @@ export function typographyTableRow(type: string, properties: FontProperties, siz
     return ({
         name: size,
         value: <PropertiesCell properties={properties} />,
-        preview: <TypographyPreview
-            style={{ ...previewAdditionalStyles }}
-            values={{
-                lineHeight: lineHeight?.value,
-                fontSize: fontSize?.value,
-                fontWeight: fontWeight?.value,
-                fontFamily: fontFamily?.value,
-                topOffset: topOffset?.value,
-                bottomOffset: bottomOffset?.value
-            }}
-        />
+        preview: (
+            <TypographyPreview
+                style={{ ...previewAdditionalStyles }}
+                values={{
+                    lineHeight: lineHeight?.value,
+                    fontSize: fontSize?.value,
+                    fontWeight: fontWeight?.value,
+                    fontFamily: fontFamily?.value,
+                    topOffset: topOffset?.value,
+                    bottomOffset: bottomOffset?.value
+                }}
+            />
+        )
     });
 }
 
@@ -87,9 +89,17 @@ function PropertiesCell({ properties }: PropertiesCellProps) {
                         key="topOffset"
                         className="hd-typo-offset-cell"
                         tokenName={properties.topOffset.tokenName}
-                        displayName={<>Top Offset<Link href="#offset-tokens"
-                            className="hd-table__link"
-                        ><sup>1</sup></Link></>}
+                        displayName={(
+                            <>
+                                Top Offset
+                                <Link
+                                    href="#offset-tokens"
+                                    className="hd-table__link"
+                                >
+                                    <sup>1</sup>
+                                </Link>
+                            </>
+                        )}
                         value={properties.topOffset.value}
                     />
                 )}
@@ -98,9 +108,17 @@ function PropertiesCell({ properties }: PropertiesCellProps) {
                         key="bottomOffset"
                         className={properties.topOffset ? undefined : "hd-typo-offset-cell"}
                         tokenName={properties.bottomOffset.tokenName}
-                        displayName={<>Bottom Offset<Link href="#offset-tokens"
-                            className="hd-table__link"
-                        ><sup>1</sup></Link></>}
+                        displayName={(
+                            <>
+                                Bottom Offset
+                                <Link
+                                    href="#offset-tokens"
+                                    className="hd-table__link"
+                                >
+                                    <sup>1</sup>
+                                </Link>
+                            </>
+                        )}
                         value={properties.bottomOffset.value}
                     />
                 )}

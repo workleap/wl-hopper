@@ -1,7 +1,7 @@
 "use client";
 
-import type { FC, ReactNode } from "react";
 import CopyButton from "@/components/copyButton/CopyButton.tsx";
+import type { FC, ReactNode } from "react";
 
 import "./iconItem.css";
 
@@ -10,7 +10,6 @@ export interface IconItemProps {
     copyString: string;
     name: string;
 }
-
 
 const IconItem: FC<IconItemProps> = ({ children, copyString, name }) => {
     return (

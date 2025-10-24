@@ -102,12 +102,12 @@ export const HasFooter = {
     )
 } satisfies Story;
 
-
 export const Styling = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args}
+            <Popover
+                {...args}
                 borderRadius={0}
                 containerProps={{
                     border: "transparent",

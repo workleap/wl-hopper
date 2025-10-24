@@ -5,7 +5,6 @@ interface FormValues {
     name: string;
 }
 
-
 export default function Example() {
     const { handleSubmit, control } = useForm({
         defaultValues: {

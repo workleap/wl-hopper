@@ -1,13 +1,13 @@
 {
-  "name": "Ambassadorship",
-  "description": "Used to represent ambassadorship programs, partnerships, advocacy roles, or relationship building between individuals or organizations.",
-  "keywords": [
-    "ambassador",
-    "partnership",
-    "advocacy",
-    "relationship",
-    "collaboration",
-    "representation",
-    "networking"
-  ]
+    "name": "Ambassadorship",
+    "description": "Used to represent ambassadorship programs, partnerships, advocacy roles, or relationship building between individuals or organizations.",
+    "keywords": [
+        "ambassador",
+        "partnership",
+        "advocacy",
+        "relationship",
+        "collaboration",
+        "representation",
+        "networking"
+    ]
 }
