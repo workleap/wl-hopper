@@ -7,10 +7,11 @@ import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import type { GuideSection } from "../config/constants";
 import { env } from "../env";
+import { extractAllConstantStrings, findJSXElements, getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren } from "../utils/jsx-helpers";
 import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "../utils/token-filters";
 import { formatStyledSystemName } from "../utils/token-name-formatter";
+import { validationMessage } from "../utils/validation-messages";
 
 interface ValidationMessage {
     message: string;
@@ -23,9 +24,6 @@ interface ValidationResult {
     warnings: ValidationMessage[];
 }
 
-/**
- * Validates component structure according to Hopper Design System rules
- */
 export async function validateHopperCode(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {
         isValid: true,
@@ -37,7 +35,7 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
     if (!code || code.trim().length === 0) {
         result.isValid = false;
         result.errors.push({
-            message: "No code provided. Please provide valid TypeScript/JSX code to validate."
+            message: validationMessage("no-code-provided")
         });
 
         return result;
@@ -58,7 +56,7 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
         if (jsxElements.length === 0) {
             result.isValid = false;
             result.errors.push({
-                message: "No JSX components found in the provided code."
+                message: validationMessage("no-jsx-found")
             });
 
             return result;
@@ -92,15 +90,12 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
         // Provide more detailed parsing error information
         if (error instanceof Error) {
             // Check for common parsing issues and provide helpful messages
-            let errorMessage = `Failed to parse code: ${error.message}`;
+            let errorMessage = validationMessage("parse-error", { message: error.message });
 
             if (error.message.includes("Identifier expected")) {
-                errorMessage += "\n\nPlease ensure the code is valid TypeScript/JSX syntax. Common issues include:";
-                errorMessage += "\n- Missing semicolons or brackets";
-                errorMessage += "\n- Invalid JSX syntax";
-                errorMessage += "\n- Incomplete component declarations";
+                errorMessage += validationMessage("parse-error-identifier");
             } else if (error.message.includes("Unexpected end of file")) {
-                errorMessage += "\n\nThe code appears to be incomplete. Please provide the full component code.";
+                errorMessage += validationMessage("parse-error-eof");
             }
 
             result.errors.push({
@@ -108,124 +103,12 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
             });
         } else {
             result.errors.push({
-                message: "Failed to parse code due to unknown error. Please ensure the code is valid TypeScript/JSX."
+                message: validationMessage("parse-error-unknown")
             });
         }
     }
 
     return result;
-}
-
-/**
- * Recursively finds all JSX elements in the AST
- */
-//
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function findJSXElements(node: any): TSESTree.JSXElement[] {
-    const elements: TSESTree.JSXElement[] = [];
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function traverse(n: any) {
-        if (!n || typeof n !== "object") {
-            return;
-        }
-
-        if (n.type === "JSXElement") {
-            elements.push(n as TSESTree.JSXElement);
-        }
-
-        // Traverse all properties
-        for (const key in n) {
-            //TODO: Mahmoud can we use Object.hasOwn(obj, prop) here?
-            // eslint-disable-next-line no-prototype-builtins
-            if (n.hasOwnProperty(key)) {
-                const value = n[key];
-                if (Array.isArray(value)) {
-                    value.forEach(traverse);
-                } else if (value && typeof value === "object") {
-                    traverse(value);
-                }
-            }
-        }
-    }
-
-    traverse(node);
-
-    return elements;
-}
-
-/**
- * Gets the component name from a JSX element
- */
-function getComponentName(element: TSESTree.JSXElement): string | null {
-    const openingElement = element.openingElement;
-    if (openingElement.name.type === "JSXIdentifier") {
-        return openingElement.name.name;
-    }
-
-    return null;
-}
-
-/**
- * Generator function that yields JSX attributes from a list of JSX elements
- */
-function* getAllProps(jsxElements: TSESTree.JSXElement[]) {
-    for (const element of jsxElements) {
-        const openingElement = element.openingElement;
-        if (openingElement.attributes) {
-            for (const attribute of openingElement.attributes) {
-                if (attribute.type === "JSXAttribute" && attribute.name.type === "JSXIdentifier") {
-                    const propName = attribute.name.name;
-                    yield { propValue: attribute.value, propName, loc: attribute.loc };
-                }
-            }
-        }
-    }
-}
-
-/**
- * Gets direct children components from a JSX element (excludes text nodes and expressions)
- */
-function getDirectComponentChildren(element: TSESTree.JSXElement): string[] {
-    const children: string[] = [];
-
-    for (const child of element.children) {
-        if (child.type === "JSXElement") {
-            const childName = getComponentName(child);
-            if (childName) {
-                children.push(childName);
-            }
-        }
-    }
-
-    return children;
-}
-
-/**
- * Gets all direct children (components + text nodes) from a JSX element
- */
-function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: "component" | "text"; name: string }> {
-    const children: Array<{ type: "component" | "text"; name: string }> = [];
-
-    for (const child of element.children) {
-        if (child.type === "JSXElement") {
-            const childName = getComponentName(child);
-            if (childName) {
-                children.push({ type: "component", name: childName });
-            }
-        } else if (child.type === "JSXText") {
-            // Only count non-whitespace text nodes
-            const text = child.value.trim();
-            if (text.length > 0) {
-                children.push({ type: "text", name: "text" });
-            }
-        } else if (child.type === "JSXExpressionContainer") {
-            // Handle expressions like {variable} or {someFunction()}
-            children.push({ type: "text", name: "expression" });
-        }
-    }
-
-    return children;
 }
 
 /**
@@ -288,7 +171,10 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
 
         if (!hasTextComponent && hasTextContent) {
             result.errors.push({
-                message: `Button component${instanceInfo} with 2 children must include a Text component when containing text content. Found children: ${componentChildren.join(", ")}${componentChildren.length === 0 ? "none" : ""} (plus text content)`,
+                message: validationMessage("button-two-children-rule", {
+                    instanceInfo,
+                    children: componentChildren.length === 0 ? "none" : componentChildren.join(", ")
+                }),
                 line: element.loc?.start.line,
                 column: element.loc?.start.column
             });
@@ -311,7 +197,10 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
 
     if (invalidChildren.length > 0) {
         result.errors.push({
-            message: `Modal component${instanceInfo} can only have Header, Content, and ButtonGroup as direct children. Found invalid children: ${invalidChildren.join(", ")}`,
+            message: validationMessage("modal-invalid-children", {
+                instanceInfo,
+                invalidChildren: invalidChildren.join(", ")
+            }),
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
@@ -321,7 +210,10 @@ function validateModalComponent(element: TSESTree.JSXElement, result: Validation
     const missingChildren = allowedChildren.filter(required => !children.includes(required));
     if (missingChildren.length > 0) {
         result.errors.push({
-            message: `Modal component${instanceInfo} is missing recommended children: ${missingChildren.join(", ")}`,
+            message: validationMessage("modal-missing-children", {
+                instanceInfo,
+                missingChildren: missingChildren.join(", ")
+            }),
             line: element.loc?.start.line,
             column: element.loc?.start.column
         });
@@ -340,20 +232,20 @@ function validateDivComponent(element: TSESTree.JSXElement, result: ValidationRe
             if (attribute.type === "JSXAttribute" &&
                 attribute.name.type === "JSXIdentifier" &&
                 attribute.name.name === "display") {
-                // Check if the value is "flex" or "grid"
-                if (attribute.value?.type === "Literal" &&
-                    typeof attribute.value.value === "string") {
-                    const displayValue = attribute.value.value;
+                // Extract all constant string values from the display prop
+                const displayValues = extractAllConstantStrings(attribute.value);
 
+                // Check each display value
+                for (const displayValue of displayValues) {
                     if (displayValue === "flex") {
                         result.warnings.push({
-                            message: `Div component${instanceInfo} with display="flex" should probably be replaced with a more semantic layout component. Consider using <Stack> for vertical layouts, <Inline> for horizontal layouts with wrapping, or <Flex> for custom flex layouts.`,
+                            message: validationMessage("div-flex-warning", { instanceInfo }),
                             line: element.loc?.start.line,
                             column: element.loc?.start.column
                         });
                     } else if (displayValue === "grid") {
                         result.warnings.push({
-                            message: `Div component${instanceInfo} with display="grid" should probably be replaced with the <Grid> component for better design consistency and built-in grid functionality.`,
+                            message: validationMessage("div-grid-warning", { instanceInfo }),
                             line: element.loc?.start.line,
                             column: element.loc?.start.column
                         });
@@ -386,7 +278,7 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
             // Warning for Div and Box
             if (componentChildren.length === 1 && allChildren.length === 1) {
                 result.warnings.push({
-                    message: `'${componentName}' component has only one child. This might be unnecessary — consider merging the '${componentName}' props directly into the child component if possible.`,
+                    message: validationMessage("layout-single-child-warning", { componentName }),
                     line: element.loc?.start.line,
                     column: element.loc?.start.column
                 });
@@ -395,7 +287,7 @@ function validateLayoutComponents(jsxElements: TSESTree.JSXElement[], result: Va
             // Error for other layout components
             if (componentChildren.length <= 1) {
                 result.errors.push({
-                    message: `'${componentName}' component has only one child. Layout components MUST not be used with only one child. Consider removing it or replacing it with a more appropriate component.`,
+                    message: validationMessage("layout-single-child-error", { componentName }),
                     line: element.loc?.start.line,
                     column: element.loc?.start.column
                 });
@@ -418,7 +310,10 @@ function validateNoEmojis(code: string, result: ValidationResult): void {
 
         for (const match of matches) {
             result.errors.push({
-                message: `Emoji '${match[0]}' detected at position ${(match.index || 0) + 1}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.`,
+                message: validationMessage("emoji-detected", {
+                    emoji: match[0],
+                    position: (match.index || 0) + 1
+                }),
                 line: lineIndex + 1,
                 column: (match.index || 0) + 1
             });
@@ -453,10 +348,11 @@ function validateTagNames(jsxElements: TSESTree.JSXElement[], result: Validation
         }
 
         if (NATIVE_HTML_ELEMENTS.has(componentName)) {
-            const message = `Native HTML element '<${componentName}>' is not allowed. Use Hopper components instead for better design consistency. For example, consider using semantic components like Card, Box, Stack, Text, or Button, or use the direct Hopper equivalent like Div, Span, etc. If no direct equivalent exists, consider using the 'htmlElement' function. Check the '${"styles" as GuideSection}' guide for more details.`;
-
             result.errors.push({
-                message,
+                message: validationMessage("native-html-not-allowed", {
+                    element: componentName,
+                    guideSection: "styles"
+                }),
                 line: element.loc?.start.line,
                 column: element.loc?.start.column
             });
@@ -477,10 +373,8 @@ function validateProhibitedProps(jsxElements: TSESTree.JSXElement[], result: Val
     for (const { loc, propName } of getAllProps(jsxElements)) {
         // Check if the prop is in the prohibited list
         if (PROHIBITED_PROPS.includes(propName)) {
-            const message = `Using '${propName}' prop is **STRONGLY** discouraged. Check the Hopper 'styles' guide for details.`;
-
             result.errors.push({
-                message,
+                message: validationMessage("prohibited-prop", { prop: propName }),
                 line: loc?.start.line,
                 column: loc?.start.column
             });
@@ -509,9 +403,9 @@ async function getUnsafeProps() {
 
             return _unsafePropsCache;
         }
-        throw new Error("Invalid format for unsafe props data.");
+        throw new Error(validationMessage("unsafe-props-invalid-format"));
     } catch {
-        throw new Error("Failed to load the list of allowed UNSAFE_ props for validation.");
+        throw new Error(validationMessage("unsafe-props-load-error"));
     }
 }
 
@@ -570,7 +464,7 @@ async function getAllTokens(): Promise<Set<string>> {
         return _allTokensCache;
     } catch (e) {
         console.error("error:", e);
-        throw new Error("Failed to load the list of allowed design tokens for validation.", { cause: e });
+        throw new Error(validationMessage("tokens-load-error"), { cause: e });
     }
 }
 
@@ -595,7 +489,7 @@ async function getAllTokensData(): Promise<TokenFileRootNode> {
         return _allTokensDataCache;
     } catch (e) {
         console.error("error:", e);
-        throw new Error("Failed to load the full token data for validation.", { cause: e });
+        throw new Error(validationMessage("token-data-load-error"), { cause: e });
     }
 }
 
@@ -616,7 +510,7 @@ const PERCENTAGE_SAFE_PROPS = new Set([
  */
 function isInvalidUnsafePercentageProp(
     propName: string,
-    propValue: TSESTree.JSXAttribute["value"],
+    propValue: string,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): boolean {
@@ -632,21 +526,17 @@ function isInvalidUnsafePercentageProp(
         return false;
     }
 
-    // Percentage-safe prop but not a string value - not our concern
-    if (!isStringValue(propValue)) {
-        return false;
-    }
-
-    // Percentage-safe prop with string value but not a percentage - not our concern
-    if (!propValue.value.endsWith("%")) {
+    if (!propValue.endsWith("%")) {
         return false;
     }
 
     // This is an invalid case: UNSAFE_ prefix used with percentage on a percentage-safe prop
-    const message = `The prop '${propName}' with percentage value '${propValue.value}' should not use the UNSAFE_ prefix. Change it to '${safePropName}="${propValue.value}"' instead. Width and height properties accept percentage values directly.`;
-
     result.errors.push({
-        message,
+        message: validationMessage("unsafe-percentage-error", {
+            propName,
+            value: propValue,
+            safePropName
+        }),
         line: loc?.start.line,
         column: loc?.start.column
     });
@@ -675,16 +565,21 @@ function isDisallowedUnsafeProp(
 
     // Check if the safe version would be prohibited
     if (PROHIBITED_PROPS.includes(safePropName)) {
-        const message = `The prop '${propName}' is not a valid UNSAFE_ prop, and '${safePropName}' is prohibited in Hopper. Check the Hopper ${"styles" satisfies GuideSection}' guide for proper styling alternatives.`;
         result.errors.push({
-            message,
+            message: validationMessage("unsafe-prop-prohibited", {
+                propName,
+                safePropName,
+                guideSection: "styles"
+            }),
             line: loc?.start.line,
             column: loc?.start.column
         });
     } else {
-        const message = `The prop '${propName}' is not a valid UNSAFE_ prop. Use '${safePropName}' directly instead.`;
         result.errors.push({
-            message,
+            message: validationMessage("unsafe-prop-invalid", {
+                propName,
+                safePropName
+            }),
             line: loc?.start.line,
             column: loc?.start.column
         });
@@ -697,29 +592,25 @@ function isDisallowedUnsafeProp(
  * Checks if an UNSAFE_ prop value has an equivalent design token
  * If equivalent tokens exist, suggests using them instead of the raw CSS value
  */
-async function checkUnsafePropHasTokenEquivalent(
+async function isInvalidUseOfCustomValue(
     propName: string,
-    propValue: TSESTree.JSXAttribute["value"],
+    propValue: string,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
-): Promise<void> {
-    if (!isStringValue(propValue)) {
-        return;
-    }
-
+): Promise<boolean> {
     const safePropName = propName.replace("UNSAFE_", "");
 
     try {
         // First check if the value is already a valid token propValue
         // If it is, the existing validation (validateDesignSystemTokensUsage) will handle it
         const allTokens = await getAllTokens();
-        if (allTokens.has(propValue.value)) {
+        if (allTokens.has(propValue)) {
             // This is a valid token value. It is not this function's job to validate it.
-            return;
+            return false;
         }
 
         const allTokensData = await getAllTokensData();
-        const filteredTokens = filterTokens(allTokensData, [], [propValue.value], [safePropName]);
+        const filteredTokens = filterTokens(allTokensData, [], [propValue], [safePropName]);
         const equivalentTokens = new Set<string>();
 
         for (const categories of Object.values(filteredTokens) as Record<string, TokenCategoryNode>[]) {
@@ -736,20 +627,30 @@ async function checkUnsafePropHasTokenEquivalent(
         if (equivalentTokens.size > 0) {
             // Generate suggestions - limit to a reasonable number for readability
             const suggestions = Array.from(equivalentTokens).slice(0, 10);
-            const moreSuggestions = equivalentTokens.size > 10 ? ` (and ${equivalentTokens.size - 10} more)` : "";
-
-            const message = `The CSS value '${propValue.value}' for '${propName}' has equivalent design tokens. Consider using the safe prop '${safePropName}' with one of these token values: ${suggestions.join(", ")}${moreSuggestions}.`;
+            const moreCount = equivalentTokens.size > 10 ? equivalentTokens.size - 10 : 0;
+            const moreText = moreCount > 0 ? ` (and ${moreCount} more)` : "";
 
             result.errors.push({
-                message,
+                message: validationMessage("unsafe-has-token-equivalent", {
+                    value: propValue,
+                    propName,
+                    safePropName,
+                    suggestions: suggestions.join(", "),
+                    moreText
+                }),
                 line: loc?.start.line,
                 column: loc?.start.column
             });
+
+            return true;
         }
+
+        return false;
     } catch (error) {
         // If we can't load token data, just skip this validation
         // Don't fail the entire validation because of this
         console.error("Failed to check for token equivalents:", error);
+        throw error;
     }
 }
 
@@ -763,27 +664,43 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
         if (!propName.startsWith("UNSAFE_")) {
             continue;
         }
-
-        // Check if this is an invalid percentage-safe prop with percentage value
-        // If so, error is already reported and we skip further validation
-        if (isInvalidUnsafePercentageProp(propName, propValue, loc, result)) {
-            continue;
-        }
-
         // Check if this is a disallowed UNSAFE_ prop
         // If so, error is already reported and we skip further validation
         if (isDisallowedUnsafeProp(propName, allowedUnsafeProps, loc, result)) {
             continue;
         }
 
-        // At this point, the UNSAFE_ prop is valid, now check if the CSS value has a token equivalent
-        // Only check string literal values
-        await checkUnsafePropHasTokenEquivalent(propName, propValue, loc, result);
-    }
-}
+        const values = extractAllConstantStrings(propValue);
+        let invalidValuesCount = 0;
+        const propValuesValidation: ValidationResult =
+            {
+                isValid: true,
+                errors: [],
+                warnings: []
+            };
 
-function isStringValue(propValue: TSESTree.JSXAttribute["value"]): propValue is TSESTree.Literal & { value: string } {
-    return !!propValue && propValue.type === "Literal" && typeof propValue.value === "string";
+        for (const value of values) {
+            // Check if this is an invalid percentage-safe prop with percentage value
+            // If so, error is already reported and we skip further validation
+            if (isInvalidUnsafePercentageProp(propName, value, loc, propValuesValidation)) {
+                invalidValuesCount++;
+                continue;
+            }
+
+            // At this point, the UNSAFE_ prop is valid, now check if the CSS value has a token equivalent
+            // Only check string literal values
+            if (await isInvalidUseOfCustomValue(propName, value, loc, propValuesValidation)) {
+                invalidValuesCount++;
+                continue;
+            }
+        }
+
+        if (invalidValuesCount === values.length) {
+            result.errors.push(...propValuesValidation.errors);
+            result.warnings.push(...propValuesValidation.warnings);
+            result.isValid = result.isValid && propValuesValidation.isValid;
+        }
+    }
 }
 
 function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
@@ -799,18 +716,21 @@ async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[
 
     for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
         // Skip invalid UNSAFE_ props as they are handled in another validation
-        // Only process string literal values
-        if (!isStringValue(propValue) || isInvalidUnsafeProp(propName, tokenSupportedProps)) {
+        if (isInvalidUnsafeProp(propName, tokenSupportedProps)) {
             continue;
         }
 
-        const originalValue = propValue.value;
+        // Extract all constant string values from the prop
+        const constantStrings = extractAllConstantStrings(propValue);
 
-        // Validate token format for token-supported props
-        if (tokenSupportedProps.has(propName)) {
-            validateTokenFormat(originalValue, propName, loc, result);
-        } else if (allowedTokens.has(originalValue)) { // Ensure tokens are not used for not token-supported props
-            validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
+        // Check each constant string value
+        for (const originalValue of constantStrings) {
+            // Validate token format for token-supported props
+            if (tokenSupportedProps.has(propName)) {
+                validateTokenFormat(originalValue, propName, loc, result);
+            } else if (allowedTokens.has(originalValue)) { // Ensure tokens are not used for not token-supported props
+                validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
+            }
         }
     }
 }
@@ -823,9 +743,12 @@ function validateTokenFormat(
 ): void {
     const formatted = formatStyledSystemName(originalValue, null);
     if (formatted !== originalValue && formatted.length < originalValue.length) {
-        const message = `The token value '${originalValue}' for prop '${propName}' is wrong. Change it to '${formatted}'.`;
         result.errors.push({
-            message,
+            message: validationMessage("token-format-error", {
+                value: originalValue,
+                propName,
+                formatted
+            }),
             line: loc?.start.line,
             column: loc?.start.column
         });
@@ -848,16 +771,23 @@ function validateTokenUsageOnUnsupportedProp(
     // (e.g. top="core_0", or UNSAFE_color="danger-selected")
     if (propName.startsWith("UNSAFE_")) {
         const suggestedProp = propName.replace("UNSAFE_", "");
-        const message = `The token value '${originalValue}' is not allowed for prop '${propName}'. You have to use the safe prop '${suggestedProp}' directly when tokens are available. Check the Hopper '${"styles" satisfies GuideSection}' guide for details.`;
         result.errors.push({
-            message,
+            message: validationMessage("token-not-allowed-unsafe", {
+                value: originalValue,
+                propName,
+                suggestedProp,
+                guideSection: "styles"
+            }),
             line: loc?.start.line,
             column: loc?.start.column
         });
     } else {
-        const message = `The token value '${originalValue}' is not allowed for prop '${propName}'. Only certain props support design tokens. Check the Hopper '${"styles" satisfies GuideSection}' guide for details.`;
         result.errors.push({
-            message,
+            message: validationMessage("token-not-allowed", {
+                value: originalValue,
+                propName,
+                guideSection: "styles"
+            }),
             line: loc?.start.line,
             column: loc?.start.column
         });

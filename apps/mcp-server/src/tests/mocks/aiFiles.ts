@@ -11,6 +11,11 @@ const files = {
       "estimatedTokens": 607
     }
   },
+  "changelogs": {
+    "path": "/changelogs.md",
+    "size": 85446,
+    "estimatedTokens": 24414
+  },
   "components": {
     "api": {
       "brief": {
@@ -118,6 +123,11 @@ const files = {
           "path": "/components/api/brief/DatePicker.json",
           "size": 22723,
           "estimatedTokens": 6493
+        },
+        "dateRangePicker": {
+          "path": "/components/api/brief/DateRangePicker.json",
+          "size": 23299,
+          "estimatedTokens": 6657
         },
         "disclosure": {
           "path": "/components/api/brief/Disclosure.json",
@@ -451,8 +461,8 @@ const files = {
         },
         "Summary": {
           "path": "/components/api/brief/_summary.json",
-          "size": 1637,
-          "estimatedTokens": 468
+          "size": 1660,
+          "estimatedTokens": 475
         }
       },
       "full": {
@@ -560,6 +570,11 @@ const files = {
           "path": "/components/api/full/DatePicker.json",
           "size": 98485,
           "estimatedTokens": 28139
+        },
+        "dateRangePicker": {
+          "path": "/components/api/full/DateRangePicker.json",
+          "size": 99061,
+          "estimatedTokens": 28304
         },
         "disclosure": {
           "path": "/components/api/full/Disclosure.json",
@@ -893,8 +908,8 @@ const files = {
         },
         "Summary": {
           "path": "/components/api/full/_summary.json",
-          "size": 1637,
-          "estimatedTokens": 468
+          "size": 1660,
+          "estimatedTokens": 475
         }
       }
     },
@@ -1050,6 +1065,11 @@ const files = {
         "path": "/components/full/DatePicker.md",
         "size": 35996,
         "estimatedTokens": 10285
+      },
+      "dateRangePicker": {
+        "path": "/components/full/DateRangePicker.md",
+        "size": 40072,
+        "estimatedTokens": 11450
       },
       "disclosure": {
         "path": "/components/full/Disclosure.md",
@@ -1353,8 +1373,8 @@ const files = {
       },
       "componentList": {
         "path": "/components/full/component-list.md",
-        "size": 17633,
-        "estimatedTokens": 5038
+        "size": 17899,
+        "estimatedTokens": 5114
       },
       "hopperToOrbiter": {
         "path": "/components/full/hopper-to-orbiter.md",
@@ -1364,8 +1384,8 @@ const files = {
     },
     "index": {
       "path": "/components/index.md",
-      "size": 1926263,
-      "estimatedTokens": 550361
+      "size": 1966618,
+      "estimatedTokens": 561891
     },
     "usage": {
       "a": {
@@ -1472,6 +1492,11 @@ const files = {
         "path": "/components/usage/DatePicker.md",
         "size": 6835,
         "estimatedTokens": 1953
+      },
+      "dateRangePicker": {
+        "path": "/components/usage/DateRangePicker.md",
+        "size": 9379,
+        "estimatedTokens": 2680
       },
       "disclosure": {
         "path": "/components/usage/Disclosure.md",
@@ -1775,8 +1800,8 @@ const files = {
       },
       "componentList": {
         "path": "/components/usage/component-list.md",
-        "size": 17633,
-        "estimatedTokens": 5038
+        "size": 17899,
+        "estimatedTokens": 5114
       },
       "hopperToOrbiter": {
         "path": "/components/usage/hopper-to-orbiter.md",
@@ -1825,8 +1850,8 @@ const files = {
     },
     "mcpServer": {
       "path": "/getting-started/mcp-server.md",
-      "size": 4177,
-      "estimatedTokens": 1194
+      "size": 4753,
+      "estimatedTokens": 1358
     },
     "react": {
       "path": "/getting-started/react.md",
@@ -1958,8 +1983,8 @@ const files = {
   },
   "llmsFull": {
     "path": "/llms-full.md",
-    "size": 2432211,
-    "estimatedTokens": 694918
+    "size": 2472582,
+    "estimatedTokens": 706452
   },
   "llms": {
     "path": "/llms.md",
@@ -2073,18 +2098,13 @@ const files = {
     "maps": {
       "all": {
         "path": "/tokens/maps/all.json",
-        "size": 164546,
-        "estimatedTokens": 47014
+        "size": 164639,
+        "estimatedTokens": 47040
       },
       "coreBorderRadius": {
         "path": "/tokens/maps/core-borderRadius.json",
         "size": 915,
         "estimatedTokens": 262
-      },
-      "coreBottomOffset": {
-        "path": "/tokens/maps/core-bottomOffset.json",
-        "size": 42,
-        "estimatedTokens": 12
       },
       "coreColor": {
         "path": "/tokens/maps/core-color.json",
@@ -2131,11 +2151,6 @@ const files = {
         "size": 529,
         "estimatedTokens": 152
       },
-      "coreTopOffset": {
-        "path": "/tokens/maps/core-topOffset.json",
-        "size": 39,
-        "estimatedTokens": 12
-      },
       "core": {
         "path": "/tokens/maps/core.json",
         "size": 23949,
@@ -2155,11 +2170,6 @@ const files = {
         "path": "/tokens/maps/semantic-color.json",
         "size": 116135,
         "estimatedTokens": 33182
-      },
-      "semanticDuration": {
-        "path": "/tokens/maps/semantic-duration.json",
-        "size": 42,
-        "estimatedTokens": 12
       },
       "semanticFontFamily": {
         "path": "/tokens/maps/semantic-fontFamily.json",
@@ -2181,20 +2191,20 @@ const files = {
         "size": 4223,
         "estimatedTokens": 1207
       },
+      "semanticMarginSize": {
+        "path": "/tokens/maps/semantic-marginSize.json",
+        "size": 1402,
+        "estimatedTokens": 401
+      },
+      "semanticPaddingSize": {
+        "path": "/tokens/maps/semantic-paddingSize.json",
+        "size": 1579,
+        "estimatedTokens": 452
+      },
       "semanticShadow": {
         "path": "/tokens/maps/semantic-shadow.json",
         "size": 650,
         "estimatedTokens": 186
-      },
-      "semanticSize": {
-        "path": "/tokens/maps/semantic-size.json",
-        "size": 2866,
-        "estimatedTokens": 819
-      },
-      "semanticTimingFunction": {
-        "path": "/tokens/maps/semantic-timingFunction.json",
-        "size": 48,
-        "estimatedTokens": 14
       },
       "semanticTopOffset": {
         "path": "/tokens/maps/semantic-topOffset.json",
@@ -2203,8 +2213,8 @@ const files = {
       },
       "semantic": {
         "path": "/tokens/maps/semantic.json",
-        "size": 140599,
-        "estimatedTokens": 40172
+        "size": 140692,
+        "estimatedTokens": 40198
       }
     },
     "overview": {
@@ -2250,4 +2260,3 @@ const files = {
 };
 
 export { files };
-

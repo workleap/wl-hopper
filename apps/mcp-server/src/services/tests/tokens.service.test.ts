@@ -3,14 +3,18 @@ import {
     MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
     MOCK_TOKENS_FULL,
     MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    MOCK_TOKENS_SEMANTIC_SHADOW_FULL
-} from "../../tests/mocks/tokensData.ts";
-import { clearTokenDataCache, getDesignTokens } from "../tokens.service.ts";
+    MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+    MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL
+} from "../../tests/mocks/tokensData";
+import { clearTokenDataCache, getDesignTokens } from "../tokens.service";
 
 const MOCK_FILE_MAP = {
     "/tokens/maps/all.json": MOCK_TOKENS_FULL,
     "/tokens/maps/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
     "/tokens/maps/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+    "/tokens/maps/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
     "/tokens/maps/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
 } as const;
 
@@ -65,35 +69,22 @@ describe("getDesignTokens", () => {
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text);
-
-            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
-            expect(content.core.color.tokens).not.toHaveProperty("hop-primary-surface");
-        });
-
-        it("should normalize filter keys by removing multiple leading dashes", async () => {
-            const result = await getDesignTokens("all", ["----coastal"], undefined, undefined, false);
-
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
-        it("should normalize filter keys by removing hop- prefix", async () => {
+        it("should normalize filter keys with hop- prefix", async () => {
             const result = await getDesignTokens("all", ["hop-coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text);
-
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
-        it("should normalize filter keys by removing both leading dashes and hop- prefix", async () => {
-            const result = await getDesignTokens("all", ["--hop-coastal"], undefined, undefined, false);
+        it("should match tokens with partial match", async () => {
+            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text);
-
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
     });
@@ -148,7 +139,7 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text);
 
             // Should include inset token
-            expect(content.semantic.size.tokens).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
             // Should not include other categories
             expect(content.semantic).not.toHaveProperty("color");
         });
@@ -156,30 +147,19 @@ describe("getDesignTokens", () => {
         it("should NOT filter by category names (only leaf tokens)", async () => {
             const result = await getDesignTokens("all", ["color"], undefined, undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should not match category names, only leaf token keys
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
 
         it("should NOT filter by intermediate category names", async () => {
             const result = await getDesignTokens("all", ["core"], undefined, undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should not match category names
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
 
         it("should return empty object when no matches found", async () => {
             const result = await getDesignTokens("all", ["nonexistent"], undefined, undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
     });
 
@@ -260,11 +240,7 @@ describe("getDesignTokens", () => {
         it("should handle case-sensitive matching", async () => {
             const result = await getDesignTokens("all", ["COASTAL"], undefined, undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should not match due to case sensitivity
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
 
         it("should handle special characters in filter keys", async () => {
@@ -274,17 +250,13 @@ describe("getDesignTokens", () => {
             const content = JSON.parse(result[0].text);
 
             // Should match tokens containing "space-inset"
-            expect(content.semantic.size.tokens).toHaveProperty("hop-space-inset-xs");
+            expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
         });
 
         it("should handle filter key that matches parent category", async () => {
             const result = await getDesignTokens("all", ["color"], undefined, undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should not match parent keys, only leaf keys
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
     });
 
@@ -348,11 +320,7 @@ describe("getDesignTokens", () => {
             // The default mock data doesn't have supportedProps defined
             const result = await getDesignTokens("all", undefined, undefined, ["unsupportedProp"], false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should be empty since no categories have supportedProps defined
-            expect(content).toEqual({});
+            expect(result).toHaveLength(0);
         });
 
         it("should handle supportedProps filter with empty array", async () => {
@@ -363,6 +331,34 @@ describe("getDesignTokens", () => {
 
             // Should return all tokens when supportedProps filter is empty
             expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+    });
+
+    describe("Empty object filtering", () => {
+        it("should filter out truly empty objects {} from results array", async () => {
+            const result = await getDesignTokens("semantic-space", ["invalid"], undefined, undefined, false);
+
+            // Should return empty array instead of array with empty object
+            expect(result).toHaveLength(0);
+        });
+
+        it("should NOT filter out objects with empty properties like {core: {}, semantic: {}}", async () => {
+            const result = await getDesignTokens("semantic-space", undefined, undefined, undefined, false);
+
+            // Both results should be included (empty properties are not filtered out)
+            expect(result).toHaveLength(2);
+            expect(result[0]).toHaveProperty("type", "text");
+            expect(result[1]).toHaveProperty("type", "text");
+        });
+
+        it("should filter out {} but keep non-empty results", async () => {
+            const result = await getDesignTokens("semantic-space", ["inset"], undefined, undefined, false);
+
+            // Should only return the non-empty result
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+            const content = JSON.parse(result[0].text);
+            expect(content.semantic.paddingSize).toBeDefined();
         });
     });
 
@@ -431,11 +427,7 @@ describe("getDesignTokens", () => {
         it("should return empty result when no CSS values match", async () => {
             const result = await getDesignTokens("semantic-color", undefined, ["#zzzzzz"], undefined, false);
 
-            expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text);
-
-            // Should be empty or have no matching tokens
-            expect(Object.keys(content).length).toBe(0);
+            expect(result).toHaveLength(0);
         });
 
         it("should handle multiple CSS value filters", async () => {

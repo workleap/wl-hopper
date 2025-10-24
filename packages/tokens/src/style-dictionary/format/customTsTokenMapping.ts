@@ -210,17 +210,17 @@ function mapFonts(coreTokens: TransformedToken[], semanticTokens: TransformedTok
 }
 
 function mapSpace(coreTokens: TransformedToken[], semanticTokens: TransformedToken[]) {
-    const coreColorTokens = getTokensByFamily("space", coreTokens);
-    const semanticColorTokens = getTokensByFamily("space", semanticTokens);
+    const coreSpaceTokens = getTokensByFamily("space", coreTokens);
+    const semanticSpaceTokens = getTokensByFamily("space", semanticTokens);
 
     let spaceMapping = "";
 
-    spaceMapping += formatTokenMapping("CoreSpace", coreColorTokens.map(x => x.name).map(name => {
+    spaceMapping += formatTokenMapping("CoreSpace", coreSpaceTokens.map(x => x.name).map(name => {
         return createMapping(name, "space", "core");
     }));
 
     // Padding values (checks stack and inline in the name)
-    const paddingTokens = semanticColorTokens.filter(x => x.name.includes("inset"));
+    const paddingTokens = semanticSpaceTokens.filter(x => x.name.includes("inset"));
     const simplePaddingValuesNames = paddingTokens.filter(x => !x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
     const complexPaddingValuesNames = paddingTokens.filter(x => x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
 
@@ -233,7 +233,7 @@ function mapSpace(coreTokens: TransformedToken[], semanticTokens: TransformedTok
     }));
 
     // Margin values (checks stack and inline in the name)
-    const marginTokens = semanticColorTokens.filter(x => x.name.includes("stack") || x.name.includes("inline"));
+    const marginTokens = semanticSpaceTokens.filter(x => x.name.includes("stack") || x.name.includes("inline"));
     const simpleMarginValuesNames = marginTokens.filter(x => !x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
     const complexMarginValuesNames = marginTokens.filter(x => x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
 
