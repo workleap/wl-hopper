@@ -641,6 +641,7 @@ async function isInvalidUseOfCustomValue(
                 line: loc?.start.line,
                 column: loc?.start.column
             });
+
             return true;
         }
 
@@ -688,7 +689,7 @@ async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], resu
 
             // At this point, the UNSAFE_ prop is valid, now check if the CSS value has a token equivalent
             // Only check string literal values
-            if (await isInvalidUseOfCustomValue(propName, value, loc, propValuesValidation)){
+            if (await isInvalidUseOfCustomValue(propName, value, loc, propValuesValidation)) {
                 invalidValuesCount++;
                 continue;
             }

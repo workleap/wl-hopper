@@ -1621,7 +1621,7 @@ describe("validateHopperCode", () => {
                 expect(result.isValid).toBe(true);
             });
 
-           it("should not error if all values are correct in conditional UNSAFE props", async () => {
+            it("should not error if all values are correct in conditional UNSAFE props", async () => {
                 const code = "<Div UNSAFE_width={isMobile ? \"123px\" : \"97px\"}>Content</Div>";
                 const result = await validateHopperCode(code);
 
