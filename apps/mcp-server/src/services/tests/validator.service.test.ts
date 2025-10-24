@@ -888,6 +888,31 @@ describe("validateHopperCode", () => {
             expect(result.errors[1].message).toContain("#ba2d2d");
             expect(result.errors[1].message).toContain("danger-active");
         });
+
+        it("should fail when UNSAFE_width uses rem value with token equivalent", async () => {
+            // Using "2rem" which has token equivalent "core_320" in our mock data
+            const code = "<Div UNSAFE_width='2rem'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("2rem");
+            expect(result.errors[0].message).toContain("UNSAFE_width");
+            expect(result.errors[0].message).toContain("width");
+            expect(result.errors[0].message).toContain("core_320");
+        });
+
+        it("should suggest safe prop when UNSAFE_fontSize has token equivalent", async () => {
+            // Using "1.2rem" which has token equivalent "core_120" for fontSize
+            const code = "<Div UNSAFE_fontSize='1.2rem'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("1.2rem");
+            expect(result.errors[0].message).toContain("UNSAFE_fontSize");
+            expect(result.errors[0].message).toContain("fontSize");
+            expect(result.errors[0].message).toContain("core_120");
+            expect(result.errors[0].message).toContain("has equivalent design tokens");
+        });
     });
 
     describe("Percentage values on width/height props", () => {
@@ -1252,6 +1277,7 @@ describe("validateHopperCode", () => {
                 fontSize="core_120"
             >Content</Div>`;
             const result = await validateHopperCode(code);
+
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -1752,6 +1778,27 @@ describe("validateHopperCode", () => {
                 const result = await validateHopperCode(code);
                 // UNSAFE_margin is allowed in the mock data
                 expect(result.errors.length).toBe(4);
+            });
+
+            it("should error when valid token and percentage are used together in responsive objects", async () => {
+                const code = `<Div UNSAFE_width={{
+                    base: "100%",
+                    lg: "core_160"
+                }}>Content</Div>`;
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(false);
+                expect(result.errors.length).toBe(2);
+            });
+
+            it("should validate nested conditionals when tokens are used partially in responsive objects", async () => {
+                const code = `<Div UNSAFE_width={{
+                    base: "133px",
+                    lg: "core_160"
+                }}>Content</Div>`;
+                const result = await validateHopperCode(code);
+
+                expect(result.isValid).toBe(true);
             });
         });
 

@@ -47,10 +47,16 @@ export function getComponentName(element: TSESTree.JSXElement): string | null {
     return null;
 }
 
+export interface PropInfo {
+    propValue: TSESTree.JSXAttribute["value"];
+    propName: string;
+    loc: TSESTree.SourceLocation | undefined;
+}
+
 /**
  * Generator function that yields JSX attributes from a list of JSX elements
  */
-export function* getAllProps(jsxElements: TSESTree.JSXElement[]) {
+export function* getAllProps(jsxElements: TSESTree.JSXElement[]): Generator<PropInfo> {
     for (const element of jsxElements) {
         const openingElement = element.openingElement;
         if (openingElement.attributes) {
