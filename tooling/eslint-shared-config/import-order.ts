@@ -1,11 +1,10 @@
-// @ts-check
+import importPlugin from "eslint-plugin-import";
+import { Config } from "eslint/config";
 
-// This file is in JavaScript because we don't want to transpile it, so we don't have to build it before using it
-
-/**
- * @type {import("eslint").ESLint.ConfigData}
- */
-const config = {
+export default {
+    plugins: {
+        import: importPlugin
+    },
     rules: {
         "import/order": ["error", {
             "newlines-between": "always",
@@ -28,6 +27,4 @@ const config = {
             }
         }]
     }
-};
-
-module.exports = config;
+} satisfies Config;

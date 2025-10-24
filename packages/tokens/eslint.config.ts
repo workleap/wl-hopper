@@ -1,10 +1,13 @@
 import { defineTypeScriptLibraryConfig } from "@workleap/eslint-configs";
 import { defineConfig, globalIgnores } from "eslint/config";
 
+import sharedConfig from "../../tooling/eslint-shared-config/import-order.ts";
+
 export default defineConfig([
     globalIgnores([
         "**/datas/**"
     ]),
+    sharedConfig,
     defineTypeScriptLibraryConfig(import.meta.dirname, {
         core: {
             rules: {

@@ -1,10 +1,13 @@
 import { defineReactLibraryConfig } from "@workleap/eslint-configs";
 import { defineConfig, globalIgnores } from "eslint/config";
 
+import sharedConfig from "../../tooling/eslint-shared-config/import-order.ts";
+
 export default defineConfig([
     globalIgnores([
         "**/generated/**"
     ]),
+    sharedConfig,
     defineReactLibraryConfig(import.meta.dirname, {
         core: {
             rules: {
