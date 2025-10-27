@@ -95,13 +95,14 @@ function AvatarInitials(props: AvatarInitialsProps) {
         const cleanName = name.replace(/\s+/g, " ").trim();
 
         // This approach correctly handles emojis and other complex characters
-        const [firstNameInitial, lastNameInitial] = cleanName.split(" ")
-            .map(part => part.codePointAt(0)!)
-            .map(codepoint => String.fromCodePoint(codepoint));
+        const letters = cleanName.split(" ")
+            .filter(part => part.length > 0) // Remove empty parts
+            .map(part => part.codePointAt(0))
+            .map(codepoint => codepoint === undefined ? undefined : String.fromCodePoint(codepoint))
+            .slice(0, size === "xs" ? 1 : 2)
+            .map(char => char ?? "");
 
-        const letters = firstNameInitial + lastNameInitial;
-
-        return size === "xs" && letters.length > 1 ? letters.charAt(0) : letters;
+        return letters;
     }, [name, size]);
 
     return (
