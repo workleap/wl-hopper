@@ -4,7 +4,9 @@ import { defineConfig, globalIgnores } from "eslint/config";
 export default defineConfig([
     globalIgnores([
         "**/mocks/**",
-        "/reports/**"
+        "/reports/**",
+        ".netlify/**",
+        "src/.docs/"
     ]),
     defineReactLibraryConfig(import.meta.dirname)
 ]);
