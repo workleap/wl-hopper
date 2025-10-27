@@ -9,7 +9,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.build.json",
-        "eslint": "eslint . --max-warnings=0",
+        "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "prebuild": "shx rm -rf ./src/.docs && shx cp -r ../docs/dist/ai-docs ./src/.docs",
         "postbuild": "shx rm -rf dist/hosts/netlify/docs && shx cp -r ./src/.docs dist/hosts/netlify/docs",
         "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
