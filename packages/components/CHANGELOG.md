@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.5
+
+### Patch Changes
+
+- 7206f07: Updated Tags when they are not in TagGroup. They should now properly forward all the event handlers and no longer give a textValue does not exist on Div warning in the console.
+
 ## 1.15.4
 
 ### Patch Changes
