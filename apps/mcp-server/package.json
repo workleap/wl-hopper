@@ -14,6 +14,7 @@
         "postbuild": "shx rm -rf dist/hosts/netlify/docs && shx cp -r ./src/.docs dist/hosts/netlify/docs",
         "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
         "netlify": "pnpm --package=netlify-cli dlx netlify",
+        "typecheck": "tsc",
         "dev:server:expressJs": "nodemon --watch src --ext ts --exec \"tsx src/hosts/expressJs.ts\"",
         "dev:server:netlify": "IS_NETLIFY_FUNCTION=true pnpm netlify dev",
         "dev:inspect:expressJs": "DANGEROUSLY_OMIT_AUTH=true pnpx @modelcontextprotocol/inspector@latest http://localhost:3300/mcp",

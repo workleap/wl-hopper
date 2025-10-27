@@ -6,9 +6,13 @@ export interface UrlGuideFile {
     size?: number;
     estimatedTokens?: number;
 }
+export interface IndexFile {
+    path: string;
+    size?: number;
+    estimatedTokens?: number;
+}
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const GuideFiles: Record<GuideSection, any> = {
+export const GuideFiles: Record<GuideSection, UrlGuideFile | IndexFile> = {
     installation: files.gettingStarted.index,
     styles: files.styledSystem.index,
     icons: files.icons.brief.index,
@@ -29,7 +33,7 @@ export const GuideFiles: Record<GuideSection, any> = {
     }
 };
 
-export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.index> = {
+export const TokenGuideFiles: Record<TokenCategory, IndexFile> = {
     "semantic-color": files.tokens.semantic.color,
     "semantic-elevation": files.tokens.semantic.elevation,
     "semantic-shape": files.tokens.semantic.shape,
@@ -49,7 +53,7 @@ export const TokenGuideFiles: Record<TokenCategory, typeof files.gettingStarted.
     all: files.tokens.index
 };
 
-export const TokenMapFiles: Record<TokenCategory, typeof files.gettingStarted.index[]> = {
+export const TokenMapFiles: Record<TokenCategory, IndexFile[]> = {
     all: [files.tokens.maps.all],
     "all-core": [files.tokens.maps.core],
     "all-semantic": [files.tokens.maps.semantic],

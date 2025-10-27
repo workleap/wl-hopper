@@ -3,13 +3,15 @@
     "exclude": ["dist", "node_modules"],
     "include": ["**/*", "../../types/*"],
     "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
         "allowImportingTsExtensions": false,
         "module": "esnext",
         "moduleResolution": "Bundler",
         "outDir": "./dist",
         "paths": {
             "@docs/ai": [
-                "./src/.docs/index.ts",
+                "./src/tests/mocks/aiFiles.ts",
             ]
         },
     }
