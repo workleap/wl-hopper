@@ -1,4 +1,4 @@
-import { CssMatchConfig, matchesCssValue } from "./css-value-matcher";
+import { CssMatchConfig, matchesCssValue } from "../services/validator/css-value-matcher";
 
 interface TokenNode {
     cssValue: string;
@@ -145,42 +145,40 @@ function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): Toke
 }
 
 export interface FilterTokensOptions {
-    tokensData: TokenFileRootNode;
     tokenNames?: string[];
     cssValues?: string[];
     supportedProps?: string[];
     cssMatchTolerances?: Partial<CssMatchConfig["tolerances"]>;
 }
 
-export function filterTokens(options: FilterTokensOptions) {
+export function filterTokens(data: TokenFileRootNode, options?: FilterTokensOptions) {
     const {
-        tokensData,
         tokenNames = [],
         cssValues = [],
         supportedProps = [],
         cssMatchTolerances
-    } = options;
+    } = options || {};
 
     //sanitize inputs
     const sanitizedTokenNames = tokenNames.map(name => name.trim()).filter(name => name !== "");
     const sanitizedCssValues = cssValues.map(value => value.trim()).filter(value => value !== "");
     const sanitizedSupportedProps = supportedProps.map(prop => prop.trim()).filter(prop => prop !== "");
 
-    let filteredTokensData = tokensData;
+    let filteredTokens = data;
 
     if (sanitizedSupportedProps.length > 0) {
-        filteredTokensData = filterBySupportedProps(filteredTokensData, sanitizedSupportedProps);
+        filteredTokens = filterBySupportedProps(filteredTokens, sanitizedSupportedProps);
     }
 
     if (sanitizedTokenNames.length > 0) {
-        filteredTokensData = filterByTokenNames(filteredTokensData, sanitizedTokenNames);
+        filteredTokens = filterByTokenNames(filteredTokens, sanitizedTokenNames);
     }
 
     if (sanitizedCssValues.length > 0) {
-        filteredTokensData = filterByCssValues(filteredTokensData, sanitizedCssValues, cssMatchTolerances);
+        filteredTokens = filterByCssValues(filteredTokens, sanitizedCssValues, cssMatchTolerances);
     }
 
-    return filteredTokensData;
+    return filteredTokens;
 }
 
 /**

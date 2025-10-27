@@ -9,11 +9,10 @@ import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./
 import { getDesignTokenGuide, getGuide } from "./services/guide.service";
 import { getIcons, IconTypes } from "./services/icons.service";
 import { getDesignTokens } from "./services/tokens.service";
-import { validateHopperCode } from "./services/validator.service";
+import { validateHopperCode } from "./services/validator";
 import { content, errorContent, toolContent } from "./utils/formatter";
 import { trackError, trackEvent } from "./utils/logger";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/token-name-formatter";
-import { formatValidationMessages } from "./utils/validation-message-formatter";
 
 const paginationParams = {
     page_size: z
@@ -26,6 +25,25 @@ const paginationParams = {
         .optional()
         .describe(paginationParamsInfo.cursor)
 };
+
+export function formatValidationMessages(
+    messages: Array<{ message: string; line?: number }>,
+    title: string
+): string {
+    if (messages.length === 0) {
+        return "";
+    }
+
+    let formatted = `\n\n${title}:`;
+    messages.forEach((msg, index) => {
+        formatted += `\n${index + 1}. ${msg.message}`;
+        if (msg.line) {
+            formatted += ` (line ${msg.line})`;
+        }
+    });
+
+    return formatted;
+}
 
 export function tools(server: McpServer) {
     server.registerTool(toolsInfo.get_component_doc.name, {
