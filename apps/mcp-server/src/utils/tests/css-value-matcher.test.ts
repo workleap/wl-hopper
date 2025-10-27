@@ -3,12 +3,12 @@ import { type CssMatchConfig, DEFAULT_CSS_MATCH_CONFIG, matchesCssValue } from "
 // Test configuration with fixed values
 // This ensures tests are stable even if DEFAULT_CSS_MATCH_CONFIG changes
 const TEST_CONFIG: CssMatchConfig = {
-    colorThreshold: 15,
     conversions: {
         remToPx: 16,
         sToMs: 1000
     },
     tolerances: {
+        color: 15,
         px: 2,
         ms: 10,
         "%": 1
@@ -212,7 +212,10 @@ describe("matchesCssValue", () => {
         it("should allow custom color threshold", () => {
             const strictConfig: CssMatchConfig = {
                 ...TEST_CONFIG,
-                colorThreshold: 5
+                tolerances: {
+                    ...TEST_CONFIG.tolerances,
+                    color: 5
+                }
             };
 
             // Within strict threshold
@@ -240,6 +243,7 @@ describe("matchesCssValue", () => {
             const strictToleranceConfig: CssMatchConfig = {
                 ...TEST_CONFIG,
                 tolerances: {
+                    color: 15,
                     px: 1, // Stricter: only ±1px
                     ms: 5, // Stricter: only ±5ms
                     "%": 0.5 // Stricter: only ±0.5%
@@ -256,9 +260,9 @@ describe("matchesCssValue", () => {
 
     describe("Configuration constants", () => {
         it("should have expected default configuration values", () => {
-            expect(DEFAULT_CSS_MATCH_CONFIG.colorThreshold).toBe(15);
             expect(DEFAULT_CSS_MATCH_CONFIG.conversions.remToPx).toBe(16);
             expect(DEFAULT_CSS_MATCH_CONFIG.conversions.sToMs).toBe(1000);
+            expect(DEFAULT_CSS_MATCH_CONFIG.tolerances.color).toBe(15);
             expect(DEFAULT_CSS_MATCH_CONFIG.tolerances.px).toBe(2);
             expect(DEFAULT_CSS_MATCH_CONFIG.tolerances.ms).toBe(10);
             expect(DEFAULT_CSS_MATCH_CONFIG.tolerances["%"]).toBe(1);

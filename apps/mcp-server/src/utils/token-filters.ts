@@ -1,4 +1,4 @@
-import { matchesCssValue } from "./css-value-matcher";
+import { CssMatchConfig, matchesCssValue } from "./css-value-matcher";
 
 interface TokenNode {
     cssValue: string;
@@ -35,13 +35,18 @@ function filterBySupportedProps(root: TokenFileRootNode, supportedProps: string[
         for (const [categoryKey, categoryNode] of Object.entries(categories)) {
             // Check if this category supports any of the requested props
             if (categoryNode.supportedProps) {
-                const hasMatchingProp = categoryNode.supportedProps.some(prop =>
+                // Calculate intersection of category's supportedProps and filter's supportedProps
+                const filteredSupportedProps = categoryNode.supportedProps.filter(prop =>
                     supportedProps.includes(prop)
                 );
 
-                if (hasMatchingProp) {
-                    // Include the entire category with all its tokens
-                    filteredCategories[categoryKey] = categoryNode;
+                // Only include the category if there's at least one matching prop
+                if (filteredSupportedProps.length > 0) {
+                    // Include the category with filtered supportedProps
+                    filteredCategories[categoryKey] = {
+                        ...categoryNode,
+                        supportedProps: filteredSupportedProps
+                    };
                 }
             }
         }
@@ -55,7 +60,7 @@ function filterBySupportedProps(root: TokenFileRootNode, supportedProps: string[
     return result;
 }
 
-function filterByCssValues(root: TokenFileRootNode, cssValues: string[]): TokenFileRootNode {
+function filterByCssValues(root: TokenFileRootNode, cssValues: string[], tolerances?: Partial<CssMatchConfig["tolerances"]>): TokenFileRootNode {
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
     // Iterate through top-level keys (core/semantic)
@@ -69,7 +74,7 @@ function filterByCssValues(root: TokenFileRootNode, cssValues: string[]): TokenF
             // Filter tokens by CSS values
             for (const [tokenKey, tokenValue] of Object.entries(categoryNode.tokens)) {
                 const shouldInclude = cssValues.some(searchValue =>
-                    matchesCssValue(tokenValue.cssValue, searchValue)
+                    matchesCssValue(tokenValue.cssValue, searchValue, { tolerances })
                 );
 
                 if (shouldInclude) {
@@ -139,12 +144,23 @@ function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): Toke
     return result;
 }
 
-export function filterTokens(
-    tokensData: TokenFileRootNode,
-    tokenNames: string[] = [],
-    cssValues: string[] = [],
-    supportedProps: string[] = []
-) {
+export interface FilterTokensOptions {
+    tokensData: TokenFileRootNode;
+    tokenNames?: string[];
+    cssValues?: string[];
+    supportedProps?: string[];
+    cssMatchTolerances?: Partial<CssMatchConfig["tolerances"]>;
+}
+
+export function filterTokens(options: FilterTokensOptions) {
+    const {
+        tokensData,
+        tokenNames = [],
+        cssValues = [],
+        supportedProps = [],
+        cssMatchTolerances
+    } = options;
+
     //sanitize inputs
     const sanitizedTokenNames = tokenNames.map(name => name.trim()).filter(name => name !== "");
     const sanitizedCssValues = cssValues.map(value => value.trim()).filter(value => value !== "");
@@ -161,7 +177,7 @@ export function filterTokens(
     }
 
     if (sanitizedCssValues.length > 0) {
-        filteredTokensData = filterByCssValues(filteredTokensData, sanitizedCssValues);
+        filteredTokensData = filterByCssValues(filteredTokensData, sanitizedCssValues, cssMatchTolerances);
     }
 
     return filteredTokensData;
