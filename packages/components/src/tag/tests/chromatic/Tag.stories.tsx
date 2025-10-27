@@ -391,26 +391,3 @@ export const TagWithTooltip = {
         );
     }
 } satisfies Story;
-
-export const Debugging = {
-    parameters: {
-        ...hopperParameters({
-            colorSchemes: ["light"]
-        })
-    },
-    render: props => {
-        return (
-            <Tag
-                href="https://www.google.com"
-                id="1"
-                size="sm"
-                excludeFromTabOrder
-                onPress={() => window.alert("test")}
-                onHoverStart={() => console.log("ON HOVER")}
-                {...props}
-            >
-                Tag 1
-            </Tag>
-        );
-    }
-} satisfies Story;
