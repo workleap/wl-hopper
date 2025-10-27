@@ -100,7 +100,8 @@ function AvatarInitials(props: AvatarInitialsProps) {
             .map(part => part.codePointAt(0))
             .map(codepoint => codepoint === undefined ? undefined : String.fromCodePoint(codepoint))
             .slice(0, size === "xs" ? 1 : 2)
-            .map(char => char ?? "");
+            .map(char => char ?? "")
+            .join("");
 
         return letters;
     }, [name, size]);
