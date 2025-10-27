@@ -266,11 +266,6 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
     } = props;
     const objectRef = useObjectRef(ref);
     const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
-    const { hoverProps, isHovered } = useHover({
-        onHoverStart: props.onHoverStart,
-        onHoverChange: props.onHoverChange,
-        onHoverEnd: props.onHoverEnd
-    });
 
     const isLink = props.href != null;
     const ElementType: ElementType = isLink ? "a" : "div";
@@ -278,6 +273,13 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
     const { linkProps } = useLink(propsWithoutId, objectRef);
     const nonLinkProps = useNonLinkTagProps(propsWithoutId, objectRef);
     const itemProps = isLink ? linkProps : nonLinkProps;
+
+    // This is not supported in useLink, so we do it manually
+    const { hoverProps, isHovered } = useHover({
+        onHoverStart: props.onHoverStart,
+        onHoverChange: props.onHoverChange,
+        onHoverEnd: props.onHoverEnd
+    });
 
     const renderProps = useRenderProps({
         ...propsWithoutId,
