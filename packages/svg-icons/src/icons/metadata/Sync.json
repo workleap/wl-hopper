@@ -1,24 +1,24 @@
 {
-  "name": "Sync",
-  "description": "Represents two arrows pointing in opposite directions. Used for features related to synchronization, updating, refreshing, or any feature that involves exchanging or updating data between systems. Commonly used in cloud storage applications, data synchronization interfaces, and content refresh functions.",
-  "keywords": [
-    "sync",
-    "synchronize",
-    "update",
-    "refresh",
-    "exchange",
-    "transfer",
-    "bidirectional",
-    "mirror",
-    "replicate",
-    "harmonize",
-    "coordinate",
-    "align",
-    "match",
-    "reconcile",
-    "reload",
-    "renew",
-    "two-way",
-    "data exchange"
-  ]
+    "name": "Sync",
+    "description": "Represents two arrows pointing in opposite directions. Used for features related to synchronization, updating, refreshing, or any feature that involves exchanging or updating data between systems. Commonly used in cloud storage applications, data synchronization interfaces, and content refresh functions.",
+    "keywords": [
+        "sync",
+        "synchronize",
+        "update",
+        "refresh",
+        "exchange",
+        "transfer",
+        "bidirectional",
+        "mirror",
+        "replicate",
+        "harmonize",
+        "coordinate",
+        "align",
+        "match",
+        "reconcile",
+        "reload",
+        "renew",
+        "two-way",
+        "data exchange"
+    ]
 }

@@ -1,4 +1,5 @@
-/* eslint-disable max-len */
+// TODO: Mahmoud, can you look into this? seems like a valid error
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 
 import { files } from "@docs/ai";
 import { parse } from "@typescript-eslint/parser";
@@ -74,7 +75,6 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
         validateLayoutComponents(jsxElements, result);
 
         await validatePropValues(jsxElements, result);
-
 
         // Validate component-specific rules
         validateComponentSpecificRules(jsxElements, result);
@@ -712,11 +712,11 @@ async function validateUnsafePropsUsage({ propValue, loc, propName }: PropInfo, 
     const values = extractAllConstantStrings(propValue);
     let invalidValuesCount = 0;
     const propValuesValidation: ValidationResult =
-    {
-        isValid: true,
-        errors: [],
-        warnings: []
-    };
+        {
+            isValid: true,
+            errors: [],
+            warnings: []
+        };
 
     for (const value of values) {
         if (!validatePercentageUsageWithUnsafeProp(propName, value, loc, propValuesValidation)) {
@@ -743,11 +743,11 @@ async function validateDesignSystemTokensUsage({ propValue, propName, loc }: Pro
     const values = extractAllConstantStrings(propValue);
     let invalidValuesCount = 0;
     const propValuesValidation: ValidationResult =
-    {
-        isValid: true,
-        errors: [],
-        warnings: []
-    };
+        {
+            isValid: true,
+            errors: [],
+            warnings: []
+        };
 
     for (const value of values) {
         if (!await validateTokenFormat(value, propName, loc, propValuesValidation)) {

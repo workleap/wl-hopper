@@ -94,7 +94,6 @@ const ErrorMessageInner = forwardRef((props: ErrorMessageProps, ref: ForwardedRe
         return null;
     }
 
-
     return (
         <Text
             slot={slot}

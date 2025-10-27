@@ -1,18 +1,18 @@
 {
-  "name": "WebinarLesson",
-  "description": "Used to represent online webinars, virtual classes, or digital learning sessions. Indicates content that is delivered through web-based video conferencing or streaming platforms for educational purposes.",
-  "keywords": [
-    "webinar",
-    "online lesson",
-    "virtual class",
-    "digital learning",
-    "e-learning",
-    "video lesson",
-    "online training",
-    "web conference",
-    "remote learning",
-    "virtual seminar",
-    "online education",
-    "distance learning"
-  ]
+    "name": "WebinarLesson",
+    "description": "Used to represent online webinars, virtual classes, or digital learning sessions. Indicates content that is delivered through web-based video conferencing or streaming platforms for educational purposes.",
+    "keywords": [
+        "webinar",
+        "online lesson",
+        "virtual class",
+        "digital learning",
+        "e-learning",
+        "video lesson",
+        "online training",
+        "web conference",
+        "remote learning",
+        "virtual seminar",
+        "online education",
+        "distance learning"
+    ]
 }

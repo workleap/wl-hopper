@@ -1,9 +1,0 @@
-**/dist/*
-node_modules
-*.md
-pnpm-lock.yaml
-!.stylelintrc.js
-!/.storybook
-!/**/.storybook
-.turbo
-storybook-static

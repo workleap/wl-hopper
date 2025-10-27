@@ -1,24 +1,24 @@
 {
-  "name": "Send",
-  "description": "Represents a paper airplane. Used for features related to sending messages, emails, sharing content, or any feature that involves transmitting information from one place to another. Commonly used in messaging interfaces, email clients, and content sharing tools.",
-  "keywords": [
-    "send",
-    "transmit",
-    "share",
-    "message",
-    "email",
-    "dispatch",
-    "deliver",
-    "forward",
-    "submit",
-    "communicate",
-    "paper airplane",
-    "post",
-    "distribute",
-    "transfer",
-    "broadcast",
-    "publish",
-    "relay",
-    "transmit"
-  ]
+    "name": "Send",
+    "description": "Represents a paper airplane. Used for features related to sending messages, emails, sharing content, or any feature that involves transmitting information from one place to another. Commonly used in messaging interfaces, email clients, and content sharing tools.",
+    "keywords": [
+        "send",
+        "transmit",
+        "share",
+        "message",
+        "email",
+        "dispatch",
+        "deliver",
+        "forward",
+        "submit",
+        "communicate",
+        "paper airplane",
+        "post",
+        "distribute",
+        "transfer",
+        "broadcast",
+        "publish",
+        "relay",
+        "transmit"
+    ]
 }

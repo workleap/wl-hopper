@@ -525,7 +525,8 @@ const StateTemplate = (args: Partial<SelectProps<object>>) => (
                 <SelectItem id="cat">Cat</SelectItem>
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
-            <Select {...args}
+            <Select
+                {...args}
                 size="md"
                 label="Medium"
             >
@@ -534,7 +535,8 @@ const StateTemplate = (args: Partial<SelectProps<object>>) => (
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
         </Inline>
-        <Select {...args}
+        <Select
+            {...args}
             isDisabled
             label="Disabled"
         >
@@ -542,7 +544,8 @@ const StateTemplate = (args: Partial<SelectProps<object>>) => (
             <SelectItem id="cat">Cat</SelectItem>
             <SelectItem id="frog">Frog</SelectItem>
         </Select>
-        <Select {...args}
+        <Select
+            {...args}
             isInvalid
             label="Invalid"
         >
@@ -554,7 +557,7 @@ const StateTemplate = (args: Partial<SelectProps<object>>) => (
 );
 
 export const TriggerStates = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const triggers = canvas.getAllByRole("button");
 
@@ -631,7 +634,8 @@ export const Zoom = {
 export const Styling = {
     render: args => (
         <Inline>
-            <Select {...args}
+            <Select
+                {...args}
                 triggerProps={
                     { border: "warning" }
                 }
@@ -640,7 +644,8 @@ export const Styling = {
                 <SelectItem id="2">Voodoo</SelectItem>
                 <SelectItem id="3">Dusty</SelectItem>
             </Select>
-            <Select {...args}
+            <Select
+                {...args}
                 triggerProps={
                     { className: "border-red" }
                 }
@@ -649,7 +654,8 @@ export const Styling = {
                 <SelectItem id="2">Voodoo</SelectItem>
                 <SelectItem id="3">Dusty</SelectItem>
             </Select>
-            <Select {...args}
+            <Select
+                {...args}
                 triggerProps={
                     { style: { border: "1px solid red" } }
                 }

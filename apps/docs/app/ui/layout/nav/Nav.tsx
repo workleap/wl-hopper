@@ -9,7 +9,7 @@ import type { PropsWithoutRef } from "react";
 import "./nav.css";
 
 const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
-    const pathname = usePathname()!;
+    const pathname = usePathname();
     let firstPathLevel: string;
 
     if (pathname) {
@@ -23,7 +23,8 @@ const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
         const isActive = pathShortened === firstPathLevel && firstPathLevel !== "";
 
         return (
-            <li key={label}
+            <li
+                key={label}
                 className={clsx("hd-nav__list-item", isActive && "hd-nav__list-item--active", status !== "ready" && "hd-nav__link--disabled")}
             >
                 <Link href={path} className="hd-nav__link">

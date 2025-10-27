@@ -74,6 +74,7 @@ const isColumnAvailable = (columnName: string, items: Item[]) => {
 };
 
 export const PropTableRender = ({ items }: { items: Item[] }) => {
+    // eslint-disable-next-line react-hooks/incompatible-library
     const table = useReactTable({
         columns,
         state: {
@@ -92,7 +93,8 @@ export const PropTableRender = ({ items }: { items: Item[] }) => {
                     <div key={row.id} className="hd-table__row hd-props-table__row">
                         {row.getVisibleCells().map(cell => {
                             return (
-                                <div key={cell.id}
+                                <div
+                                    key={cell.id}
                                     className={clsx("hd-table__cell", "hd-props-table__cell", `hd-props-table__col-${cell.column.id}`)}
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

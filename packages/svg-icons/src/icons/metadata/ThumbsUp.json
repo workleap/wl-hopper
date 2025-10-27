@@ -1,24 +1,24 @@
 {
-  "name": "ThumbsUp",
-  "description": "Represents a thumbs up or like gesture. Used for features related to approval, liking, positive feedback, or any feature that involves expressing agreement or satisfaction. Commonly used in social media interactions, feedback systems, and content rating interfaces.",
-  "keywords": [
-    "thumbs up",
-    "like",
-    "approve",
-    "positive",
-    "feedback",
-    "upvote",
-    "agree",
-    "endorse",
-    "support",
-    "recommend",
-    "praise",
-    "appreciation",
-    "satisfaction",
-    "rating",
-    "review",
-    "reaction",
-    "affirmation",
-    "consent"
-  ]
+    "name": "ThumbsUp",
+    "description": "Represents a thumbs up or like gesture. Used for features related to approval, liking, positive feedback, or any feature that involves expressing agreement or satisfaction. Commonly used in social media interactions, feedback systems, and content rating interfaces.",
+    "keywords": [
+        "thumbs up",
+        "like",
+        "approve",
+        "positive",
+        "feedback",
+        "upvote",
+        "agree",
+        "endorse",
+        "support",
+        "recommend",
+        "praise",
+        "appreciation",
+        "satisfaction",
+        "rating",
+        "review",
+        "reaction",
+        "affirmation",
+        "consent"
+    ]
 }

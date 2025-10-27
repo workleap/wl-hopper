@@ -44,7 +44,7 @@ describe("NumberField", () => {
 
     it("should support slots", () => {
         render(
-            <NumberFieldContext.Provider value={{ slots: { test: { "aria-label" : "test label" } } }}>
+            <NumberFieldContext.Provider value={{ slots: { test: { "aria-label": "test label" } } }}>
                 <NumberField data-testid="field" slot="test" />
             </NumberFieldContext.Provider>
         );

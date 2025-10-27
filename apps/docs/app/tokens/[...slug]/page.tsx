@@ -39,12 +39,12 @@ export default function TokenPage({ params }: PageProps) {
     );
 }
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
     return getTokensSlugs();
 }
 
 // The sections are Overview, Semantic and Core. we want all title in "Core" to be "Core " + "Color"(the token type) + " Tokens"
-export async function generateMetadata({ params }: PageProps) {
+export function generateMetadata({ params }: PageProps) {
     const page = findPageFromSlug(params.slug);
 
     if (!page) {
@@ -69,7 +69,6 @@ export async function generateMetadata({ params }: PageProps) {
     if (description) {
         metadata.description = description;
     }
-
 
     return metadata;
 }

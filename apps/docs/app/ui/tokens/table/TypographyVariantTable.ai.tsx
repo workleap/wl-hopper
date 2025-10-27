@@ -38,22 +38,24 @@ interface Item {
 }
 
 function TypographyVariantTableRender({ items }: { items: Item[] }) {
-    return <table>
-        <thead>
-            <tr>
-                <th>Token Name</th>
-                <th>Value</th>
-            </tr>
-        </thead>
-        <tbody>
-            {items.map(item => (
-                <tr key={item.name}>
-                    <td><code>{item.name}</code></td>
-                    <td>{item.value}</td>
+    return (
+        <table>
+            <thead>
+                <tr>
+                    <th>Token Name</th>
+                    <th>Value</th>
                 </tr>
-            ))}
-        </tbody>
-    </table>;
+            </thead>
+            <tbody>
+                {items.map(item => (
+                    <tr key={item.name}>
+                        <td><code>{item.name}</code></td>
+                        <td>{item.value}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    );
 }
 
 export default TypographyVariantTable;

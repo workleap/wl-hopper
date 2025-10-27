@@ -37,7 +37,7 @@ type SystemValues = Record<string | number, string>;
 // This is a simple handler for property that only accept tokens
 function createSystemValueHandler(systemValues: SystemValues): PropHandler {
     return (name, value, context) => {
-        const parsedValue = parseResponsiveSystemValue(value, systemValues!, context.matchedBreakpoints);
+        const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
 
         if (!isNil(parsedValue)) {
             context.addStyleValue(name, parsedValue);
@@ -324,7 +324,7 @@ class StylingContext {
 
     constructor(className: string | undefined, style: CSSProperties | undefined, matchedBreakpoints: Breakpoint[]) {
         this.#classes = !isNil(className) ? [className] : [];
-        this.#style = { ...(style ?? {}) } ; // TODO: different than orbit, in order to not modify the original style object https://github.com/workleap/sg-orbit/issues/1211
+        this.#style = { ...(style ?? {}) }; // TODO: different than orbit, in order to not modify the original style object https://github.com/workleap/sg-orbit/issues/1211
         this.matchedBreakpoints = matchedBreakpoints;
     }
 
@@ -391,8 +391,7 @@ function removeStyledSystemProps<TProps extends StyledSystemProps>(props: TProps
         }, {} as Record<string, unknown>) as Omit<TProps, keyof StyledSystemProps>;
 }
 
-export function useStyledSystem<TProps extends StyledSystemProps>(props: TProps)
-    : Omit<TProps, keyof StyledSystemProps> & { stylingProps: StylingProps } {
+export function useStyledSystem<TProps extends StyledSystemProps>(props: TProps): Omit<TProps, keyof StyledSystemProps> & { stylingProps: StylingProps } {
     const { matchedBreakpoints } = useBreakpointContext();
 
     const stylingProps = convertStyleProps(props, PropsHandlers, matchedBreakpoints);

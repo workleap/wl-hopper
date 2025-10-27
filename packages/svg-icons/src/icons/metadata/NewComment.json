@@ -1,21 +1,21 @@
 {
-  "name": "NewComment",
-  "description": "Represents a comment or chat bubble with a notification dot. Used for features related to new comments, unread messages, notifications about new communication, or any feature that involves alerting users about new feedback or conversation.",
-  "keywords": [
-    "new comment",
-    "unread message",
-    "notification",
-    "feedback",
-    "conversation",
-    "discussion",
-    "reply",
-    "chat",
-    "communication",
-    "message",
-    "alert",
-    "update",
-    "response",
-    "interaction",
-    "dialogue"
-  ]
+    "name": "NewComment",
+    "description": "Represents a comment or chat bubble with a notification dot. Used for features related to new comments, unread messages, notifications about new communication, or any feature that involves alerting users about new feedback or conversation.",
+    "keywords": [
+        "new comment",
+        "unread message",
+        "notification",
+        "feedback",
+        "conversation",
+        "discussion",
+        "reply",
+        "chat",
+        "communication",
+        "message",
+        "alert",
+        "update",
+        "response",
+        "interaction",
+        "dialogue"
+    ]
 }

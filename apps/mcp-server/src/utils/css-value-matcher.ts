@@ -68,7 +68,7 @@ function isHexColor(value: string): boolean {
  * Convert hex color to RGB components
  */
 function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-    const match = hex.match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+    const match = /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.exec(hex);
     if (!match) {
         return null;
     }
@@ -139,8 +139,8 @@ type ToleranceUnit = keyof CssMatchConfig["tolerances"];
  */
 function matchNumberWithUnit(search: string, value: string, config: CssMatchConfig): boolean | null {
     const unitPattern = /^(-?\d+\.?\d*)(rem|px|ms|s|%)$/;
-    const searchMatch = search.match(unitPattern);
-    const valueMatch = value.match(unitPattern);
+    const searchMatch = unitPattern.exec(search);
+    const valueMatch = unitPattern.exec(value);
 
     // Not a number with unit
     if (!searchMatch || !valueMatch) {

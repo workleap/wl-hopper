@@ -28,7 +28,7 @@ const Title = ({
 
     const uniqueId = formattingTitleId(children.toString());
     const uniqueParentId = parentHeading ? formattingTitleId(parentHeading.toString()) : "";
-    const uniqueConcatId = uniqueParentId ? `${uniqueParentId}-${uniqueId}` : uniqueId ;
+    const uniqueConcatId = uniqueParentId ? `${uniqueParentId}-${uniqueId}` : uniqueId;
 
     return (
         <Component

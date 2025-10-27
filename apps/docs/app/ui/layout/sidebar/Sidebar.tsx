@@ -75,10 +75,12 @@ const Sidebar = ({ links }: SidebarProps) => {
                                     const isActive = pathName === linkPath;
 
                                     return (
-                                        <li className={clsx("hd-sidebar__item", isActive && "hd-sidebar__item--active")}
+                                        <li
+                                            className={clsx("hd-sidebar__item", isActive && "hd-sidebar__item--active")}
                                             key={item.id}
                                         >
-                                            <Link href={linkPath}
+                                            <Link
+                                                href={linkPath}
                                                 className="hd-sidebar__link"
                                                 onClick={handleLinkClick}
                                             >
@@ -97,7 +99,8 @@ const Sidebar = ({ links }: SidebarProps) => {
     return (
         <>
             <Overlay isOpen={isSidebarOpen}></Overlay>
-            <nav className={clsx("hd-sidebar", isSidebarOpen && "hd-sidebar--open")}
+            <nav
+                className={clsx("hd-sidebar", isSidebarOpen && "hd-sidebar--open")}
                 aria-label="Sidebar"
                 ref={sidebarRef}
             >

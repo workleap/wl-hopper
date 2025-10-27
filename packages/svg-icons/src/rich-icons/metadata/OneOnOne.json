@@ -1,18 +1,18 @@
 {
-  "name": "OneOnOne",
-  "description": "Used to represent individual meetings, personal discussions, or direct interactions between two people. Often used in calendar applications, HR systems, or meeting schedulers to indicate private conversations, mentoring sessions, or personal reviews.",
-  "keywords": [
-    "one-on-one",
-    "individual meeting",
-    "personal discussion",
-    "face-to-face",
-    "private conversation",
-    "direct interaction",
-    "mentoring",
-    "coaching",
-    "personal review",
-    "two-person meeting",
-    "1:1",
-    "personal session"
-  ]
+    "name": "OneOnOne",
+    "description": "Used to represent individual meetings, personal discussions, or direct interactions between two people. Often used in calendar applications, HR systems, or meeting schedulers to indicate private conversations, mentoring sessions, or personal reviews.",
+    "keywords": [
+        "one-on-one",
+        "individual meeting",
+        "personal discussion",
+        "face-to-face",
+        "private conversation",
+        "direct interaction",
+        "mentoring",
+        "coaching",
+        "personal review",
+        "two-person meeting",
+        "1:1",
+        "personal session"
+    ]
 }

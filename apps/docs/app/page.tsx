@@ -24,7 +24,8 @@ export default function Home() {
                 <div className="hd-home__heading">
                     <h1 className="hd-home__header">Leap into creativity</h1>
                     <p className="hd-home__tagline">Explore Workleap&apos;s Design System, where icons, tokens, and components are
-                        handpicked for ultimate simplicity and accessibility.</p>
+                        handpicked for ultimate simplicity and accessibility.
+                    </p>
                 </div>
                 <div className="hd-home__ctas">
                     <LinkButton href="/getting-started/overview/installation">Getting Started</LinkButton>
@@ -39,24 +40,27 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
-                        <h2 className="hd-home__feature-title"><InternationalIcon
-                            className="hd-home-feature-title__icon"
-                        />International</h2>
+                        <h2 className="hd-home__feature-title">
+                            <InternationalIcon className="hd-home-feature-title__icon" />
+                            International
+                        </h2>
                         <p className="hd-home__feature-copy">
                             Experience is pushed further with internationalization.
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
-                        <h2 className="hd-home__feature-title"><TypescriptIcon
-                            className="hd-home-feature-title__icon hd-icon-fill"
-                        />Typescript</h2>
+                        <h2 className="hd-home__feature-title">
+                            <TypescriptIcon className="hd-home-feature-title__icon hd-icon-fill" />
+                            Typescript
+                        </h2>
                         <p className="hd-home__feature-copy">
                             Typescript based for reduced learning curve and error detection.
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
                         <h2 className="hd-home__feature-title"><DarkModeIcon className="hd-home-feature-title__icon" />Dark
-                            mode</h2>
+                            mode
+                        </h2>
                         <p className="hd-home__feature-copy">
                             Switching from light to dark mode couldn&apos;t be easier.
                         </p>
@@ -66,49 +70,61 @@ export default function Home() {
                     <div className="hd-home-samples__col hd-home-samples__main-wrapper">
                         <div className="hd-home-samples__row">
                             <div className="hd-home-samples__col">
-                                <Link className="hd-home-sample__item hd-home-sample__item-colors"
+                                <Link
+                                    className="hd-home-sample__item hd-home-sample__item-colors"
                                     href="/tokens/semantic/color"
                                 >
-                                    <h3 className="hd-home-sample__title">Colors <ArrowIcon
-                                        className="hd-home-sample__title-icon"
-                                    /></h3>
+                                    <h3 className="hd-home-sample__title">
+                                        Colors
+                                        <ArrowIcon className="hd-home-sample__title-icon" />
+                                    </h3>
                                     <div className="hd-home-sample__colors">
                                         <div className="hd-home-sample__colors-row">
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-rock-200"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-rock-300"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-rock-400"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-rock-500"
-                                            ></span>
+                                            >
+                                            </span>
                                         </div>
                                         <div className="hd-home-sample__colors-row">
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-sapphire-200"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-sapphire-300"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-sapphire-400"
-                                            ></span>
+                                            >
+                                            </span>
                                             <span
                                                 className="hd-home-sample__color hd-home-sample__color-sapphire-500"
-                                            ></span>
+                                            >
+                                            </span>
                                         </div>
                                     </div>
                                 </Link>
-                                <Link className="hd-home-sample__item hd-home-sample__item-sizes"
+                                <Link
+                                    className="hd-home-sample__item hd-home-sample__item-sizes"
                                     href="/tokens/semantic/space"
                                 >
-                                    <h3 className="hd-home-sample__title">Sizes <ArrowIcon
-                                        className="hd-home-sample__title-icon"
-                                    /></h3>
+                                    <h3 className="hd-home-sample__title">
+                                        Sizes
+                                        <ArrowIcon className="hd-home-sample__title-icon" />
+                                    </h3>
                                     <div className="hd-home-sample__sizes">
                                         <div className="hd-home-sample__size hd-home-sample__size-16">
                                             <span className="hd-home-sample__size-text">16</span>
@@ -130,17 +146,21 @@ export default function Home() {
                                 </Link>
                             </div>
                             <div className="hd-home-samples__col">
-                                <Link className="hd-home-sample__item hd-home-sample__item-text-styles"
+                                <Link
+                                    className="hd-home-sample__item hd-home-sample__item-text-styles"
                                     href="/tokens/semantic/typography"
                                 >
-                                    <h3 className="hd-home-sample__title">Text Styles <ArrowIcon
-                                        className="hd-home-sample__title-icon"
-                                    /></h3>
+                                    <h3 className="hd-home-sample__title">
+                                        Text Styles
+                                        <ArrowIcon className="hd-home-sample__title-icon" />
+                                    </h3>
                                     <div className="hd-home-sample__text-styles">
                                         <div className="hd-home-sample__text-styles-col">
-                                            <span className="hd-home-sample__text">A<span
-                                                className="hd-home-sample__text-lowercase"
-                                            >a</span></span>
+                                            <span className="hd-home-sample__text">
+                                                A
+                                                <span className="hd-home-sample__text-lowercase" >a
+                                                </span>
+                                            </span>
                                         </div>
                                         <div
                                             className="hd-home-sample__text-styles-col hd-home-sample__text-styles-controls"

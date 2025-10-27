@@ -5,7 +5,7 @@ import Tag from "@/app/ui/components/tag/Tag";
 import Title from "@/app/ui/components/title/Title";
 import AICallout from "@/components/ai-callout/AICallout";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Content, Callout as HopperCallout, Heading as HopperHeading, HopperProvider, type ColorScheme } from "@hopper-ui/components";
+import { Content, Callout as HopperCallout, Heading as HopperHeading, HopperProvider } from "@hopper-ui/components";
 import clsx from "clsx";
 import { useContext } from "react";
 import "./heading.css";
@@ -30,7 +30,7 @@ const Heading = ({ title, tag, alpha, className, description, links }: HeadingPr
             </div>
             {alpha && (
                 <div className="hd-heading__alpha">
-                    <HopperProvider colorScheme={colorMode as ColorScheme}>
+                    <HopperProvider colorScheme={colorMode}>
                         <HopperCallout variant="warning">
                             <HopperHeading>Alpha component</HopperHeading>
                             <Content>{alpha}</Content>

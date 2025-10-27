@@ -8,7 +8,8 @@ export default function Example() {
             footer={(
                 <Button variant="ghost-secondary" isFluid>
                     <AddIcon />
-                    <Text>Add</Text></Button>
+                    <Text>Add</Text>
+                </Button>
             )}
         >
             <ComboBoxItem id="developer">Developer</ComboBoxItem>

@@ -1,13 +1,13 @@
 {
-  "name": "Bars",
-  "description": "Used to represent a menu, navigation options, or additional actions that can be accessed by clicking or tapping.",
-  "keywords": [
-    "bars",
-    "hamburger menu",
-    "navigation",
-    "menu",
-    "options",
-    "mobile menu",
-    "toggle"
-  ]
+    "name": "Bars",
+    "description": "Used to represent a menu, navigation options, or additional actions that can be accessed by clicking or tapping.",
+    "keywords": [
+        "bars",
+        "hamburger menu",
+        "navigation",
+        "menu",
+        "options",
+        "mobile menu",
+        "toggle"
+    ]
 }

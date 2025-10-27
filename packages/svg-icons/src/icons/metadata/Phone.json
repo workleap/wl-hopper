@@ -1,21 +1,21 @@
 {
-  "name": "Phone",
-  "description": "Represents a telephone handset or phone receiver. Used for features related to phone calls, telecommunications, contact information, customer support, or any feature that involves making or receiving phone calls or voice communications.",
-  "keywords": [
-    "phone",
-    "telephone",
-    "call",
-    "contact",
-    "communication",
-    "voice",
-    "mobile",
-    "dial",
-    "support",
-    "helpline",
-    "conversation",
-    "telecommunications",
-    "receiver",
-    "callback",
-    "hotline"
-  ]
+    "name": "Phone",
+    "description": "Represents a telephone handset or phone receiver. Used for features related to phone calls, telecommunications, contact information, customer support, or any feature that involves making or receiving phone calls or voice communications.",
+    "keywords": [
+        "phone",
+        "telephone",
+        "call",
+        "contact",
+        "communication",
+        "voice",
+        "mobile",
+        "dial",
+        "support",
+        "helpline",
+        "conversation",
+        "telecommunications",
+        "receiver",
+        "callback",
+        "hotline"
+    ]
 }

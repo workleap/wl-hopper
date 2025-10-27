@@ -1,21 +1,21 @@
 {
-  "name": "Play",
-  "description": "Represents a play button or triangle pointing to the right. Used for features related to playing media, starting processes, initiating actions, or any feature that involves beginning playback, execution, or launching an activity.",
-  "keywords": [
-    "play",
-    "start",
-    "begin",
-    "launch",
-    "initiate",
-    "activate",
-    "media",
-    "playback",
-    "video",
-    "audio",
-    "stream",
-    "execute",
-    "run",
-    "trigger",
-    "commence"
-  ]
+    "name": "Play",
+    "description": "Represents a play button or triangle pointing to the right. Used for features related to playing media, starting processes, initiating actions, or any feature that involves beginning playback, execution, or launching an activity.",
+    "keywords": [
+        "play",
+        "start",
+        "begin",
+        "launch",
+        "initiate",
+        "activate",
+        "media",
+        "playback",
+        "video",
+        "audio",
+        "stream",
+        "execute",
+        "run",
+        "trigger",
+        "commence"
+    ]
 }

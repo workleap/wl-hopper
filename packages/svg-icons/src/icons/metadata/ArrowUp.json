@@ -1,13 +1,13 @@
 {
-  "name": "ArrowUp",
-  "description": "Used to represent an upward direction, uploading content, or moving an item up in a list or hierarchy.",
-  "keywords": [
-    "arrow up",
-    "upload",
-    "upward",
-    "direction",
-    "move up",
-    "ascend",
-    "higher"
-  ]
+    "name": "ArrowUp",
+    "description": "Used to represent an upward direction, uploading content, or moving an item up in a list or hierarchy.",
+    "keywords": [
+        "arrow up",
+        "upload",
+        "upward",
+        "direction",
+        "move up",
+        "ascend",
+        "higher"
+    ]
 }

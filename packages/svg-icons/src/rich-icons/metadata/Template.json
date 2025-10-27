@@ -1,18 +1,18 @@
 {
-  "name": "Template",
-  "description": "Used to represent pre-designed formats, layouts, or patterns that can be reused. Often depicted as a document with sections, this icon is commonly used in content creation tools, document editors, or design applications to indicate reusable structures.",
-  "keywords": [
-    "template",
-    "pattern",
-    "format",
-    "layout",
-    "blueprint",
-    "model",
-    "boilerplate",
-    "framework",
-    "preset",
-    "structure",
-    "sample",
-    "starter"
-  ]
+    "name": "Template",
+    "description": "Used to represent pre-designed formats, layouts, or patterns that can be reused. Often depicted as a document with sections, this icon is commonly used in content creation tools, document editors, or design applications to indicate reusable structures.",
+    "keywords": [
+        "template",
+        "pattern",
+        "format",
+        "layout",
+        "blueprint",
+        "model",
+        "boilerplate",
+        "framework",
+        "preset",
+        "structure",
+        "sample",
+        "starter"
+    ]
 }

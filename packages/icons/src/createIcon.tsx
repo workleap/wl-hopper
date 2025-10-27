@@ -9,7 +9,7 @@ export function createIcon(
     src32: ElementType<Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>>,
     displayName: string
 ) {
-    const iconComponent = forwardRef<SVGSVGElement, Omit<IconProps, "src16" | "src24" | "src32">>((props, ref) =>
+    const iconComponent = forwardRef<SVGSVGElement, Omit<IconProps, "src16" | "src24" | "src32">>((props, ref) => (
         <Icon
             {...props}
             ref={ref}
@@ -17,6 +17,7 @@ export function createIcon(
             src24={src24}
             src32={src32}
         />
+    )
     );
 
     iconComponent.displayName = displayName;

@@ -4,7 +4,6 @@ import type { ContextValue } from "react-aria-components";
 
 import type { HeadingProps, HeadingSize } from "./Heading.tsx";
 
-
 export interface HeadingContextValue extends Omit<HeadingProps, "size"> {
     /**
      *  Contexts to clear.

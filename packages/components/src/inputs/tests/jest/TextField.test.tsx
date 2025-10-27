@@ -45,7 +45,7 @@ describe("TextField", () => {
 
     it("should support slots", () => {
         render(
-            <TextFieldContext.Provider value={{ slots: { test: { "aria-label" : "test label" } } }}>
+            <TextFieldContext.Provider value={{ slots: { test: { "aria-label": "test label" } } }}>
                 <TextField data-testid="field" slot="test" />
             </TextFieldContext.Provider>
         );
@@ -90,7 +90,7 @@ describe("TextField", () => {
         expect(contextInputRef.current).toBe(element);
     });
 
-    it("should only show clear button when the field contains text", async () => {
+    it("should only show clear button when the field contains text", () => {
         render(
             <TextField isClearable label="Label" />
         );
@@ -112,7 +112,7 @@ describe("TextField", () => {
         expect(handleClear).toHaveBeenCalledTimes(1);
     });
 
-    it("should show character count when empty", async () => {
+    it("should show character count when empty", () => {
         const defaultValue = "";
         const maxLength = 20;
         const expectedResult = maxLength - defaultValue.length;
@@ -125,7 +125,7 @@ describe("TextField", () => {
         expect(characterCount).toBeInTheDocument();
     });
 
-    it("should show character count when maxed", async () => {
+    it("should show character count when maxed", () => {
         const defaultValue = "1111111111";
 
         render(
@@ -136,7 +136,7 @@ describe("TextField", () => {
         expect(characterCount).toBeInTheDocument();
     });
 
-    it("should show character count", async () => {
+    it("should show character count", () => {
         const defaultValue = "1111111111";
         const maxLength = 20;
         const expectedResult = maxLength - defaultValue.length;

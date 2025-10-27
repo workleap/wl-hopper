@@ -1,13 +1,15 @@
+// TODO: Mahmoud check these disables
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-enum-comparison */
 import type { TSESTree } from "@typescript-eslint/types";
 
 /**
  * Recursively finds all JSX elements in the AST
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function findJSXElements(node: any): TSESTree.JSXElement[] {
     const elements: TSESTree.JSXElement[] = [];
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function traverse(n: any) {
         if (!n || typeof n !== "object") {
             return;

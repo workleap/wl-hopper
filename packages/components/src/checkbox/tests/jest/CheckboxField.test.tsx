@@ -1,4 +1,4 @@
-/* eslint-disable testing-library/no-node-access */
+
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -6,7 +6,6 @@ import { createRef } from "react";
 import { Checkbox } from "../../src/Checkbox.tsx";
 import { CheckboxField } from "../../src/CheckboxField.tsx";
 import { CheckboxFieldContext } from "../../src/CheckboxFieldContext.ts";
-
 
 describe("Checkbox", () => {
     const testId = "checkbox-field";
@@ -27,9 +26,11 @@ describe("Checkbox", () => {
     });
 
     it("should support custom style", () => {
-        render(<CheckboxField data-testid={testId} marginTop="stack-sm" style={{ marginBottom: "13px" }} description="Description">
-            <Checkbox>option 1</Checkbox>
-        </CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} marginTop="stack-sm" style={{ marginBottom: "13px" }} description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const element = screen.getByTestId(testId);
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

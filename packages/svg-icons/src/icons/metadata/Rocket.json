@@ -1,24 +1,24 @@
 {
-  "name": "Rocket",
-  "description": "Represents a rocket or spacecraft. Used for features related to launching, starting, boosting, accelerating, or any feature that involves rapid advancement, innovation, high performance, or exploration of new ideas and opportunities.",
-  "keywords": [
-    "rocket",
-    "launch",
-    "startup",
-    "boost",
-    "accelerate",
-    "speed",
-    "fast",
-    "performance",
-    "takeoff",
-    "blast",
-    "innovation",
-    "growth",
-    "advancement",
-    "progress",
-    "mission",
-    "exploration",
-    "journey",
-    "space"
-  ]
+    "name": "Rocket",
+    "description": "Represents a rocket or spacecraft. Used for features related to launching, starting, boosting, accelerating, or any feature that involves rapid advancement, innovation, high performance, or exploration of new ideas and opportunities.",
+    "keywords": [
+        "rocket",
+        "launch",
+        "startup",
+        "boost",
+        "accelerate",
+        "speed",
+        "fast",
+        "performance",
+        "takeoff",
+        "blast",
+        "innovation",
+        "growth",
+        "advancement",
+        "progress",
+        "mission",
+        "exploration",
+        "journey",
+        "space"
+    ]
 }

@@ -69,7 +69,7 @@ export const Href = {
             </Stack>
         );
     },
-    args:{
+    args: {
         href: "https://www.google.com"
     }
 } satisfies Story;

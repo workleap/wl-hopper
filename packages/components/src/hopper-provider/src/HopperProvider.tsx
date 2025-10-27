@@ -30,6 +30,7 @@ export interface HopperProviderProps extends StyledSystemProviderProps {
      *   );
      * }
      */
+    // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
     navigate?: (path: Href, routerOptions: RouterOptions | undefined) => void;
     /**
      * useHref is an optional prop that converts a router-specific href to a native HTML href, e.g. prepending a base path.
@@ -64,7 +65,6 @@ export function useHopperContext() {
 
     return context;
 }
-
 
 /**
  * This hook is used to get the HopperProviderProps from the nearest HopperProvider ancestor.
@@ -108,7 +108,8 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
 
     return (
         <HopperContext.Provider value={props}>
-            <StyledSystemProvider ref={ref}
+            <StyledSystemProvider
+                ref={ref}
                 withBodyStyle={withBodyStyle}
                 colorScheme={colorScheme}
                 withCssVariables={withCssVariables}

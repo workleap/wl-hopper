@@ -1,13 +1,13 @@
 {
-  "name": "Bento",
-  "description": "Used to represent a grid menu, app launcher, or collection of options arranged in a grid layout.",
-  "keywords": [
-    "bento",
-    "grid",
-    "menu",
-    "app launcher",
-    "options",
-    "applications",
-    "dashboard"
-  ]
+    "name": "Bento",
+    "description": "Used to represent a grid menu, app launcher, or collection of options arranged in a grid layout.",
+    "keywords": [
+        "bento",
+        "grid",
+        "menu",
+        "app launcher",
+        "options",
+        "applications",
+        "dashboard"
+    ]
 }

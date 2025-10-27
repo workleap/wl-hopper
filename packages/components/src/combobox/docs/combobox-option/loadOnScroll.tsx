@@ -24,7 +24,7 @@ export default function Example() {
             label="Roles"
             items={list.items}
             isLoading={list.isLoading}
-            onLoadMore={list.loadMore}
+            onLoadMore={() => list.loadMore()}
             listBoxProps={{
                 maxHeight: "core_1280"
             }}

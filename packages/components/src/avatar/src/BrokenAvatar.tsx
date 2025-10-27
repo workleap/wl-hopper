@@ -19,7 +19,6 @@ interface BrokenAvatarRenderProps {
     isDisabled?: boolean;
 }
 
-
 export interface BrokenAvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<BrokenAvatarRenderProps>, "children"> {
     /**
      * Whether or not the avatar is disabled.

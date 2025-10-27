@@ -136,7 +136,7 @@ describe("ErrorMessage", () => {
 
         const element = screen.getByText("Test");
         const svgElement = element.querySelector(".hop-Icon");
-        
+
         expect(svgElement).not.toBeNull();
     });
 
@@ -156,7 +156,7 @@ describe("ErrorMessage", () => {
 
         const element = screen.getByText("Test");
         const svgElement = element.querySelector(".hop-Icon");
-        
+
         expect(svgElement).toBeNull();
     });
 });

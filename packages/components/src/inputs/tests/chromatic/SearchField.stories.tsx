@@ -86,7 +86,6 @@ export const NonClearable: Story = {
     }
 };
 
-
 export const ClearableButReadonly: Story = {
     ...Value,
     args: {
@@ -94,7 +93,6 @@ export const ClearableButReadonly: Story = {
         isReadOnly: true
     }
 };
-
 
 export const CustomIcon: Story = {
     ...Value,
@@ -175,7 +173,7 @@ const StateTemplate = (args: Partial<SearchFieldProps>) => (
 );
 
 export const States: Story = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const inputs = canvas.getAllByRole("searchbox");
 

@@ -120,7 +120,6 @@ export const WithDeletedAndAnonymous = {
     }
 } satisfies Story;
 
-
 export const Alignments = {
     render: args => (
         <Stack>

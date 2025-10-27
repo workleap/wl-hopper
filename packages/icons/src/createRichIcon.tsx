@@ -8,7 +8,7 @@ export function createRichIcon(
     src40: ElementType<Omit<SVGProps<SVGSVGElement>, "ref"> & RefAttributes<SVGSVGElement>>,
     displayName: string
 ) {
-    const richIconComponent = forwardRef<SVGSVGElement, Omit<RichIconProps, "src24" | "src32" | "src40">>((props, ref) =>
+    const richIconComponent = forwardRef<SVGSVGElement, Omit<RichIconProps, "src24" | "src32" | "src40">>((props, ref) => (
         <RichIcon
             {...props}
             ref={ref}
@@ -16,6 +16,7 @@ export function createRichIcon(
             src32={src32}
             src40={src40}
         />
+    )
     );
 
     richIconComponent.displayName = displayName;

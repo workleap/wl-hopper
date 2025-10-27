@@ -1,19 +1,19 @@
 {
-  "name": "Video",
-  "description": "Represents video content or a video player. Depicted as a rectangular frame with a play button triangle in the center. Used to indicate video files, video playback functionality, media players, or video-related features in applications, websites, and digital interfaces.",
-  "keywords": [
-    "video",
-    "media",
-    "player",
-    "playback",
-    "movie",
-    "film",
-    "multimedia",
-    "streaming",
-    "recording",
-    "footage",
-    "clip",
-    "video file",
-    "video content"
-  ]
+    "name": "Video",
+    "description": "Represents video content or a video player. Depicted as a rectangular frame with a play button triangle in the center. Used to indicate video files, video playback functionality, media players, or video-related features in applications, websites, and digital interfaces.",
+    "keywords": [
+        "video",
+        "media",
+        "player",
+        "playback",
+        "movie",
+        "film",
+        "multimedia",
+        "streaming",
+        "recording",
+        "footage",
+        "clip",
+        "video file",
+        "video content"
+    ]
 }

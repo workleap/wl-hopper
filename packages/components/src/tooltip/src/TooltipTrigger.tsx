@@ -98,7 +98,6 @@ function FocusableTrigger(props: TooltipTriggerProps) {
         </DisabledTriggerWrapper>
     ) : cloneElement(child, { ref: mergeRefs(getChildRef(child), context?.ref) });
 
-
     return (
         // ALEX: Review the typing cast here.
         // We forward the FocusableProvider props, but we make sure to merge the refs

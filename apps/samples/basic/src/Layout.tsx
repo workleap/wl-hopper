@@ -33,7 +33,9 @@ function InnerLayout() {
                         onPress={() => {
                             setColorScheme(colorScheme === "light" ? "dark" : "light");
                         }}
-                    >Change Theme</Button>
+                    >
+                        Change Theme
+                    </Button>
                 </Div>
             </HtmlHeader>
             <Main padding="inset-lg">

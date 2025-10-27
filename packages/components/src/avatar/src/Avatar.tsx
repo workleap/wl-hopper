@@ -191,22 +191,26 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
     let content: ReactElement | null = null;
 
     if (isInitials) {
-        content = <AvatarInitials
-            {...otherProps}
-            name={name}
-            size={size}
-        />;
+        content = (
+            <AvatarInitials
+                {...otherProps}
+                name={name}
+                size={size}
+            />
+        );
     }
 
     if (imageLoaded) {
-        content = <img
-            {...filterDOMProps(otherImageProps)}
-            alt=""
-            aria-hidden
-            className={styles["hop-Avatar__image"]}
-            onError={onError}
-            src={imageUrl}
-        />;
+        content = (
+            <img
+                {...filterDOMProps(otherImageProps)}
+                alt=""
+                aria-hidden
+                className={styles["hop-Avatar__image"]}
+                onError={onError}
+                src={imageUrl}
+            />
+        );
     }
 
     const avatar = (extraProps: ComponentProps<"div">) => (
@@ -224,12 +228,14 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
     );
 
     if (onPress) {
-        return <Pressable onPress={onPress}>
-            {avatar({
-                ...focusProps,
-                role: "button"
-            })}
-        </Pressable>;
+        return (
+            <Pressable onPress={onPress}>
+                {avatar({
+                    ...focusProps,
+                    role: "button"
+                })}
+            </Pressable>
+        );
     }
 
     return avatar({ role: "img" });

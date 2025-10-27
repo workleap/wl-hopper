@@ -2,7 +2,6 @@ import fs from "fs/promises";
 import iconsMetadata from "../../../../packages/svg-icons/dist/metadata/icon-metadata.json" with { type: "json" };
 import richIconsMetadata from "../../../../packages/svg-icons/dist/metadata/rich-icon-metadata.json" with { type: "json" };
 
-
 function getIconsData() {
     return {
         standardIcons: Object.values(iconsMetadata).map(icon => ({

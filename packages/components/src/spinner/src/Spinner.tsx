@@ -73,7 +73,8 @@ const Spinner = (props: SpinnerProps, ref: ForwardedRef<HTMLDivElement>) => {
             )}
             size={SpinnerToTextSizeAdapter[size]}
             id={labelId}
-        >{children}</Text>
+        >{children}
+        </Text>
     );
 
     return (
@@ -91,14 +92,16 @@ const Spinner = (props: SpinnerProps, ref: ForwardedRef<HTMLDivElement>) => {
                     "hop-Spinner__track"
                 )
             }
-            ></div>
+            >
+            </div>
             <div className={
                 cssModule(
                     styles,
                     "hop-Spinner__fill"
                 )
             }
-            ></div>
+            >
+            </div>
             {labelMarkup}
         </ProgressBar>
     );

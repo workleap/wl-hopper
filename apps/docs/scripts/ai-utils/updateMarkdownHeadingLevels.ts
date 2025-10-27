@@ -6,9 +6,9 @@ import { visit } from "unist-util-visit";
 
 export async function updateMarkdownHeadingLevels(markdown: string, n: number): Promise<string> {
     const processor =
-  unified()
-      .use(remarkParse)
-      .use(remarkStringify);
+        unified()
+            .use(remarkParse)
+            .use(remarkStringify);
 
     const tree = processor.parse(markdown);
 

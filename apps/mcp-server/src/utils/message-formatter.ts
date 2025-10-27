@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Formats a message template with placeholders.
  * Supports both indexed placeholders ({0}, {1}) and named placeholders ({name}, {value})

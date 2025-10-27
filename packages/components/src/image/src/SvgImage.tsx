@@ -56,13 +56,16 @@ function SvgImage(props: SvgImageProps, ref: ForwardedRef<SVGSVGElement>) {
         return null;
     }
 
-    return <SvgComponent
-        {...otherProps}
-        className={classNames}
-        style={mergedStyles}
-        ref={ref}
-        role="img"
-    />;
+    return (
+        // eslint-disable-next-line react-hooks/static-components
+        <SvgComponent
+            {...otherProps}
+            className={classNames}
+            style={mergedStyles}
+            ref={ref}
+            role="img"
+        />
+    );
 }
 
 /**

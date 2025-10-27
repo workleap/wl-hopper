@@ -1,21 +1,21 @@
 {
-  "name": "Recurring",
-  "description": "Represents two curved arrows forming a circular pattern. Used for features related to recurring events, repetition, cycles, automation, scheduled tasks, or any feature that involves regular repetition, continuous processes, or items that repeat at defined intervals.",
-  "keywords": [
-    "recurring",
-    "repeat",
-    "cycle",
-    "periodic",
-    "scheduled",
-    "automation",
-    "regular",
-    "routine",
-    "interval",
-    "frequency",
-    "continuous",
-    "loop",
-    "iteration",
-    "pattern",
-    "renewal"
-  ]
+    "name": "Recurring",
+    "description": "Represents two curved arrows forming a circular pattern. Used for features related to recurring events, repetition, cycles, automation, scheduled tasks, or any feature that involves regular repetition, continuous processes, or items that repeat at defined intervals.",
+    "keywords": [
+        "recurring",
+        "repeat",
+        "cycle",
+        "periodic",
+        "scheduled",
+        "automation",
+        "regular",
+        "routine",
+        "interval",
+        "frequency",
+        "continuous",
+        "loop",
+        "iteration",
+        "pattern",
+        "renewal"
+    ]
 }

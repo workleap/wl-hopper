@@ -81,7 +81,6 @@ function PopoverBase(props: PopoverBaseProps, ref: ForwardedRef<HTMLElement>) {
     );
 }
 
-
 /**
  * A simple React Aria Popover with hopper's styling
  *

@@ -143,7 +143,7 @@ const StateTemplate = (args: Partial<DisclosureProps>) => (
 );
 
 export const DefaultStates = {
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const triggers = canvas.getAllByRole("button");
 

@@ -185,7 +185,6 @@ function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>)
     );
 }
 
-
 /**
  * A specialized text input for [search input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/search).
  *

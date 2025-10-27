@@ -24,7 +24,6 @@ function getSectionLinks(content: {
                 ? `#${formattingTitleId(lastLevel2Title.toString())}-${formattingTitleId(title.toString())}`
                 : `#${formattingTitleId(title.toString())}`;
 
-
             return {
                 title: title,
                 url: url,

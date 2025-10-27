@@ -42,7 +42,9 @@ export interface FrontMatterConvertOptions {
 function frontMatterToMarkdown(options: FrontMatterConvertOptions) {
     return (tree: Root, file: VFile) => {
         visit(tree, (node, index, parent) => {
-            if (!parent || typeof index !== "number") {return;}
+            if (!parent || typeof index !== "number") {
+                return;
+            }
 
             if (node.type === "yaml") {
                 const frontMatter = file.data.matter as DocumentFrontMatter;

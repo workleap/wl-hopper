@@ -144,7 +144,6 @@ export const Icons = defineDocumentType(() => ({
     }
 }));
 
-
 export const StyledSystem = defineDocumentType(() => ({
     name: "StyledSystem",
     filePathPattern: "styled-system/**/*.mdx",

@@ -52,14 +52,16 @@ export default function Example() {
     return (
         <Stack>
             <Stack alignX="center">
-                <Avatar name="John Doe"
+                <Avatar
+                    name="John Doe"
                     src={src}
                     imageProps={{ onError: handleError }}
                 />
                 <Paragraph>The avatar failed to load <strong>{failureCount}</strong> times.</Paragraph>
             </Stack>
             <Stack alignX="center">
-                <Avatar name="John Doe"
+                <Avatar
+                    name="John Doe"
                     src={src2}
                     imageProps={{ onError: handleError2 }}
                 />

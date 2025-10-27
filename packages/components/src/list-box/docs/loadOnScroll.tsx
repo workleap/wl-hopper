@@ -25,7 +25,7 @@ export default function Example() {
             aria-label="list of options"
             items={list.items}
             isLoading={list.isLoading}
-            onLoadMore={list.loadMore}
+            onLoadMore={() => list.loadMore()}
             maxHeight="core_1280"
         >
             {item => (

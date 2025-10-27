@@ -1,6 +1,6 @@
 import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { isWeekend, parseDate, type DateValue } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { userEvent, within } from "storybook/test";
 
 import { RangeCalendar } from "../../src/RangeCalendar.tsx";
@@ -108,7 +108,7 @@ export const HoverDate = {
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
-        const gridCell = await canvas.getByRole("gridcell", { name: "3" });
+        const gridCell = canvas.getByRole("gridcell", { name: "3" });
 
         await userEvent.hover(gridCell.firstElementChild!);
     }

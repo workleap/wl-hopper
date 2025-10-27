@@ -42,7 +42,7 @@ const meta = {
     args: {
         primaryButtonLabel: "Leap ahead!"
     },
-    play: async ({ canvasElement }) => {
+    play: ({ canvasElement }) => {
         const canvas = within(canvasElement);
         const button = canvas.getByRole("button");
 

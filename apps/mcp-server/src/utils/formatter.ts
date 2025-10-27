@@ -1,6 +1,5 @@
 import type { PaginatedResult } from "./pagination";
 
-// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
 type TextContent = {
     type: "text";
     text: string;
@@ -41,5 +40,4 @@ export function getPaginatedContent(result: PaginatedResult): TextContent | Text
         ] : [])
     ];
 }
-
 

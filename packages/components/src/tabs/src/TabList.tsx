@@ -60,5 +60,4 @@ function TabList(props: TabListProps<object>) {
     );
 }
 
-
 export { TabList };

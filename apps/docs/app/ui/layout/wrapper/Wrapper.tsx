@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import clsx from "clsx";
+import type { ReactNode } from "react";
 
 import "./wrapper.css";
 
@@ -18,7 +18,8 @@ const Wrapper = ({ children, type = "fluid", className }: WrapperProps) => {
                     [`hd-layout__${type}`]: type
                 },
                 className
-            )}
+            )
+        }
         >
             {children}
         </div>

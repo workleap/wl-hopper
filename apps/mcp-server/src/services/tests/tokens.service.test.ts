@@ -6,8 +6,8 @@ import {
     MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
     MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
     MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL
-} from "../../tests/mocks/tokensData.ts";
-import { clearTokenDataCache, getDesignTokens } from "../tokens.service.ts";
+} from "../../tests/mocks/tokensData";
+import { clearTokenDataCache, getDesignTokens } from "../tokens.service";
 
 const MOCK_FILE_MAP = {
     "/tokens/maps/all.json": MOCK_TOKENS_FULL,
@@ -19,7 +19,7 @@ const MOCK_FILE_MAP = {
 } as const;
 
 jest.mock("fs/promises", () => ({
-    readFile: jest.fn(async (path: string) => {
+    readFile: jest.fn((path: string) => {
         for (const [mockPath, mockData] of Object.entries(MOCK_FILE_MAP)) {
             if (path.includes(mockPath)) {
                 return JSON.stringify(mockData);
@@ -48,7 +48,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
 
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content).toEqual(MOCK_TOKENS_BRIEF);
         });
 
@@ -58,7 +58,7 @@ describe("getDesignTokens", () => {
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
 
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content).toEqual(MOCK_TOKENS_BRIEF);
         });
     });
@@ -68,7 +68,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["--coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
@@ -76,7 +76,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["hop-coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
 
@@ -84,7 +84,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
         });
     });
@@ -94,7 +94,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include coastal token
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
@@ -108,7 +108,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["coastal", "primary"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include both coastal and primary tokens
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
@@ -121,7 +121,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["danger"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include danger tokens
             expect(content.semantic.color.tokens).toHaveProperty("hop-danger-border-active");
@@ -136,7 +136,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["space-inset"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include inset token
             expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
@@ -168,7 +168,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should have the full nested structure
             expect(content).toHaveProperty("core");
@@ -180,7 +180,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["danger"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should have semantic.color but not core
             expect(content).toHaveProperty("semantic");
@@ -195,7 +195,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", [], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             expect(Object.keys(content.semantic).length).toBeGreaterThan(0);
             // Check a specific token has both properties
@@ -207,7 +207,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["danger"], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             expect(content.semantic.color.tokens).toBeDefined();
             // Check that filtered tokens have both cssValue and propValue
@@ -219,7 +219,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-elevation", [], undefined, undefined, true);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             expect(content.semantic.shadow.tokens).toHaveProperty("hop-elevation-none");
             expect(content.semantic.shadow.tokens["hop-elevation-none"]).toHaveProperty("cssValue", "none");
@@ -229,7 +229,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-elevation", [], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             expect(content.semantic.shadow.tokens).toHaveProperty("hop-elevation-none", "none");
             expect(typeof content.semantic.shadow.tokens["hop-elevation-none"]).toBe("string");
@@ -247,7 +247,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["space-inset"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should match tokens containing "space-inset"
             expect(content.semantic.paddingSize.tokens).toHaveProperty("hop-space-inset-xs");
@@ -294,7 +294,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["coastal", "font-size"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include both matching tokens
             expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
@@ -307,7 +307,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", ["danger-border", "danger-icon"], undefined, undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should include both tokens
             expect(content.semantic.color.tokens).toHaveProperty("hop-danger-border-active");
@@ -327,7 +327,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("all", undefined, undefined, [], false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should return all tokens when supportedProps filter is empty
             expect(content).toEqual(MOCK_TOKENS_BRIEF);
@@ -357,7 +357,7 @@ describe("getDesignTokens", () => {
             // Should only return the non-empty result
             expect(result).toHaveLength(1);
             expect(result[0]).toHaveProperty("type", "text");
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
             expect(content.semantic.paddingSize).toBeDefined();
         });
     });
@@ -367,7 +367,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should find tokens with this exact color
             expect(content.semantic.color.tokens).toBeDefined();
@@ -380,7 +380,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-color", undefined, ["#bb2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should find tokens with similar color (#ba2d2d is close to #bb2d2d)
             expect(content.semantic.color.tokens).toBeDefined();
@@ -391,7 +391,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, true);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // In full mode, should have both propValue and cssValue
             const firstToken = Object.values(content.semantic.color.tokens)[0];
@@ -403,7 +403,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("core-font-weight", undefined, ["400"], undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should find exact match for font-weight 400
             expect(content.core.fontWeight.tokens).toBeDefined();
@@ -414,7 +414,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-color", ["danger"], ["#bb2d2d"], undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should only include tokens that match both filters
             expect(content.semantic.color.tokens).toBeDefined();
@@ -434,7 +434,7 @@ describe("getDesignTokens", () => {
             const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d", "#ffffff"], undefined, false);
 
             expect(result).toHaveLength(1);
-            const content = JSON.parse(result[0].text as string);
+            const content = JSON.parse(result[0].text);
 
             // Should find tokens matching either color
             expect(content.semantic.color.tokens).toBeDefined();

@@ -30,7 +30,7 @@ function getEnv(): z.infer<typeof configSchema> {
             DOCS_PATH: ev.DOCS_PATH || join(import.meta.dirname, "./docs"),
             ENV: "production"
         };
-    } else {//local Express server
+    } else { //local Express server
         return {
             DOCS_PATH: join(import.meta.dirname, "../../docs/dist/ai"),
             PORT: "3300",
