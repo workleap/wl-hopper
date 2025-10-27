@@ -913,6 +913,32 @@ describe("validateHopperCode", () => {
             expect(result.errors[0].message).toContain("core_120");
             expect(result.errors[0].message).toContain("has equivalent design tokens");
         });
+
+        it("should NOT match fuzzy values with EXACT_CSS_MATCH_CONFIG (exact match only)", async () => {
+            // Using "0.6rem" which is close to "0.5rem" (inset-xs) but NOT exact
+            // With EXACT_CSS_MATCH_CONFIG, it should NOT match and therefore should pass
+            const code = "<Div UNSAFE_padding='0.6rem'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should NOT match close-but-not-exact color values", async () => {
+            // Using "#ba2d2e" which is very close to "#ba2d2d" (danger-active) but not exact
+            // With EXACT_CSS_MATCH_CONFIG, it should NOT match and therefore should pass
+            const code = "<Div UNSAFE_backgroundColor='#ba2d2e'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should NOT match similar rem values (exact match required)", async () => {
+            // Using "0.51rem" which is close to "0.5rem" (inset-xs) but not exact
+            const code = "<Div UNSAFE_padding='0.51rem'>Hello</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
     });
 
     describe("Percentage values on width/height props", () => {

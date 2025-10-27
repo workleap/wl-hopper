@@ -41,7 +41,12 @@ export async function getDesignTokens(
     const result = await Promise.all(mapFiles.map(async map => {
         try {
             const tokensData = await loadTokenData(map.path, category);
-            const filteredTokensData = filterTokens(tokensData, filter_by_token_names, filter_by_css_values, filter_by_supported_props);
+            const filteredTokensData = filterTokens({
+                tokensData,
+                tokenNames: filter_by_token_names,
+                cssValues: filter_by_css_values,
+                supportedProps: filter_by_supported_props
+            });
 
             const partialResult = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
 

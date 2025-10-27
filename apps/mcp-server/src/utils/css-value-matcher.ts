@@ -3,20 +3,6 @@
  */
 export interface CssMatchConfig {
     /**
-     * Maximum RGB distance for color matching (0-765)
-     * Uses Euclidean distance in RGB space: sqrt((r1-r2)² + (g1-g2)² + (b1-b2)²)
-     *
-     * Threshold guidelines:
-     * - 0: Exact match only
-     * - 10: Very strict - matches only nearly identical colors (e.g., #ffffff matches #fcfcfc)
-     * - 15: Strict - matches very similar shades (e.g., #ffffff matches #f5f5f5)
-     * - 20: Moderate - allows slight tinting (e.g., #ffffff matches #f0f0f0)
-     * - 30: Lenient - matches light tints with color variations (e.g., #ffffff matches #f0f8ff, #fef6ef)
-     * - 50+: Very lenient - matches visually distinct colors
-     */
-    colorThreshold: number;
-
-    /**
      * Unit conversion constants
      */
     conversions: {
@@ -37,15 +23,32 @@ export interface CssMatchConfig {
         ms: number;
         /** ±% tolerance */
         "%": number;
+        /**
+         * Maximum RGB distance for color matching (0-765)
+         * Uses Euclidean distance in RGB space: sqrt((r1-r2)² + (g1-g2)² + (b1-b2)²)
+         *
+         * Threshold guidelines:
+         * - 0: Exact match only
+         * - 10: Very strict - matches only nearly identical colors (e.g., #ffffff matches #fcfcfc)
+         * - 15: Strict - matches very similar shades (e.g., #ffffff matches #f5f5f5)
+         * - 20: Moderate - allows slight tinting (e.g., #ffffff matches #f0f0f0)
+         * - 30: Lenient - matches light tints with color variations (e.g., #ffffff matches #f0f8ff, #fef6ef)
+         * - 50+: Very lenient - matches visually distinct colors
+         */
+        color: number;
     };
 }
+
+type PartialCssMatchConfig = {
+    conversions?: Partial<CssMatchConfig["conversions"]>;
+    tolerances?: Partial<CssMatchConfig["tolerances"]>;
+};
 
 /**
  * Default configuration for CSS value matching
  * These can be adjusted to tune the matching behavior
  */
 export const DEFAULT_CSS_MATCH_CONFIG: CssMatchConfig = {
-    colorThreshold: 15, // ~5 units difference per channel (~2% variation)
     conversions: {
         remToPx: 16,
         sToMs: 1000
@@ -53,8 +56,16 @@ export const DEFAULT_CSS_MATCH_CONFIG: CssMatchConfig = {
     tolerances: {
         px: 2,
         ms: 10,
-        "%": 1
+        "%": 1,
+        color: 15 // ~5 units difference per channel (~2% variation)
     }
+};
+
+export const EXACT_CSS_MATCH_CONFIG: CssMatchConfig["tolerances"] = {
+    px: 0,
+    ms: 0,
+    "%": 0,
+    color: 0
 };
 
 /**
@@ -184,10 +195,15 @@ function matchNumberWithUnit(search: string, value: string, config: CssMatchConf
 export function matchesCssValue(
     cssValue: string,
     searchValue: string,
-    config: CssMatchConfig = DEFAULT_CSS_MATCH_CONFIG
+    matchConfig?: PartialCssMatchConfig
 ): boolean {
     const normalized = cssValue.toLowerCase().trim();
     const search = searchValue.toLowerCase().trim();
+    const config = {
+        ...DEFAULT_CSS_MATCH_CONFIG,
+        tolerances: { ...DEFAULT_CSS_MATCH_CONFIG.tolerances, ...matchConfig?.tolerances },
+        conversions: { ...DEFAULT_CSS_MATCH_CONFIG.conversions, ...matchConfig?.conversions }
+    };
 
     // Handle empty search - only match empty values
     if (search === "") {
@@ -201,7 +217,7 @@ export function matchesCssValue(
 
     // 2. Hex color fuzzy matching
     if (isHexColor(search) && isHexColor(normalized)) {
-        return getColorDistance(search, normalized) <= config.colorThreshold;
+        return getColorDistance(search, normalized) <= config.tolerances.color;
     }
 
     // 3. Number with unit matching

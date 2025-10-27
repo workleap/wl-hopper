@@ -8,6 +8,7 @@ import emojiRegex from "emoji-regex";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import { env } from "../env";
+import { EXACT_CSS_MATCH_CONFIG } from "../utils/css-value-matcher";
 import { extractAllConstantStrings, findJSXElements, getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren, type PropInfo } from "../utils/jsx-helpers";
 import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "../utils/token-filters";
 import { formatStyledSystemName } from "../utils/token-name-formatter";
@@ -658,7 +659,13 @@ async function validateUseOfCustomValueWithUnsafeProp(
         }
 
         const allTokensData = await getAllTokensData();
-        const filteredTokens = filterTokens(allTokensData, [], [propValue], [safePropName]);
+        const filteredTokens = filterTokens({
+            tokensData: allTokensData,
+            tokenNames: [],
+            cssValues: [propValue],
+            supportedProps: [safePropName],
+            cssMatchTolerances: EXACT_CSS_MATCH_CONFIG
+        });
         const equivalentTokens = new Set<string>();
 
         for (const categories of Object.values(filteredTokens) as Record<string, TokenCategoryNode>[]) {
