@@ -1,42 +1,8 @@
 import { defineWebApplicationConfig } from "@workleap/eslint-configs";
+import * as mdx from "eslint-plugin-mdx";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 // TODO: once i migrate to next 16, i need to re-add the next plugin in this config
-// TODO: MDX plugin isn't in the workleap config anymore, we need to bring this back
-const globals: Record<string, boolean> = {
-    "AI": true,
-    "BreakpointTable": true,
-    "Card": true,
-    "CardLink": true,
-    "CardLinkList": true,
-    "Callout": true,
-    "Collapsible": true,
-    "DosAndDonts": true,
-    "Expand": true,
-    "TokenTable": true,
-    "PropsReferenceTable": true,
-    "MotionPreview": true,
-    "Figure": true,
-    "Footnote": true,
-    "TypographyTable": true,
-    "TypographyVariantTable": true,
-    "Tag": true,
-    "Tabs": true,
-    "TableSection": true,
-    "SimpleTable": true,
-    "Switcher": true,
-    "IconSpecTable": true,
-    "Overview": true,
-    "PreviewComponent": true,
-    "MigrateGuide": true,
-    "PackageInstallation": true,
-    "PropTable": true,
-    "CodeOnlyExample": true,
-    "Example": true,
-    "ComposedComponents": true,
-    "Link": true
-};
-
 export default defineConfig([
     globalIgnores([
         "datas/*",
@@ -48,9 +14,7 @@ export default defineConfig([
         "next-env.d.ts"
     ]),
     {
-        languageOptions: {
-            globals: globals
-        }
+        ...mdx.flat
     },
     defineWebApplicationConfig(import.meta.dirname),
     {
@@ -58,7 +22,6 @@ export default defineConfig([
             "**/*.{js,jsx,ts,tsx,cjs,mjs}"
         ],
         ignores: ["scripts/**"],
-        // "excludedFiles": "scripts/**",
         rules: {
             "no-console": [
                 "warn",
