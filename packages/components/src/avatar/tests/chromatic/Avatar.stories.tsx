@@ -167,3 +167,14 @@ export const AccessToDisabledState = {
     }
 } satisfies Story;
 
+export const Emoji = {
+    args: {
+        name: "Gab 🔥 Seguin"
+    }
+} satisfies Story;
+
+export const OnlyFirstName = {
+    args: {
+        name: "Gab"
+    }
+} satisfies Story;

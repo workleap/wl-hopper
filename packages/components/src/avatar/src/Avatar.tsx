@@ -93,17 +93,23 @@ function AvatarInitials(props: AvatarInitialsProps) {
 
     const initials = useMemo(() => {
         const cleanName = name.replace(/\s+/g, " ").trim();
-        const [firstName, lastName] = cleanName.split(" ");
-        const letters = firstName && lastName
-            ? `${firstName.charAt(0)}${lastName.charAt(0)}`
-            : firstName.charAt(0);
 
-        return size === "xs" && letters.length > 1 ? letters.charAt(0) : letters;
+        // This approach correctly handles emojis and other complex characters
+        const letters = cleanName.split(" ")
+            .filter(part => part.length > 0) // Remove empty parts
+            .map(part => part.codePointAt(0))
+            .map(codepoint => codepoint === undefined ? undefined : String.fromCodePoint(codepoint))
+            .slice(0, size === "xs" ? 1 : 2)
+            .map(char => char ?? "")
+            .join("");
+
+        return letters;
     }, [name, size]);
 
     return (
         <Text
             size={AvatarToTextSizeAdapter[size]}
+            className={styles["hop-Avatar__initials"]}
         >
             {initials}
         </Text>
