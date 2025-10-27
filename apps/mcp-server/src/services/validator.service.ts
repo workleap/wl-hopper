@@ -8,7 +8,7 @@ import emojiRegex from "emoji-regex";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import { env } from "../env";
-import { extractAllConstantStrings, findJSXElements, getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren } from "../utils/jsx-helpers";
+import { extractAllConstantStrings, findJSXElements, getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren, type PropInfo } from "../utils/jsx-helpers";
 import { filterTokens, type TokenCategoryNode, type TokenFileRootNode } from "../utils/token-filters";
 import { formatStyledSystemName } from "../utils/token-name-formatter";
 import { validationMessage } from "../utils/validation-messages";
@@ -74,11 +74,7 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
         // Check for layout components with single child
         validateLayoutComponents(jsxElements, result);
 
-        // Check for unsafe props usage
-        await validateUnsafePropsUsage(jsxElements, result);
-
-        // Check for design system tokens usage
-        await validateDesignSystemTokensUsage(jsxElements, result);
+        await validatePropValues(jsxElements, result);
 
         // Validate component-specific rules
         validateComponentSpecificRules(jsxElements, result);
@@ -109,6 +105,16 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
     }
 
     return result;
+}
+
+async function validatePropValues(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+    for (const prop of getAllProps(jsxElements)) {
+        if (prop.propName.startsWith("UNSAFE_")) {
+            await validateUnsafePropsUsage(prop, result);
+        } else {
+            await validateDesignSystemTokensUsage(prop, result);
+        }
+    }
 }
 
 /**
@@ -409,10 +415,19 @@ async function getUnsafeProps() {
     }
 }
 
+let _tokenSupportedPropsCache: Set<string> | null = null;
 async function getTokenSupportedProps(): Promise<Set<string>> {
+    // Return cached value if available
+    if (_tokenSupportedPropsCache !== null) {
+        return _tokenSupportedPropsCache;
+    }
+
     const unsafeProps = await getUnsafeProps();
 
-    return new Set(Array.from(unsafeProps).map(prop => prop.replace("UNSAFE_", "")));
+    // Compute the supported props and cache the result
+    _tokenSupportedPropsCache = new Set(Array.from(unsafeProps).map(prop => prop.replace("UNSAFE_", "")));
+
+    return _tokenSupportedPropsCache;
 }
 
 // Cache for allowed tokens to avoid repeated file I/O
@@ -508,26 +523,20 @@ const PERCENTAGE_SAFE_PROPS = new Set([
  * Returns true if this is an invalid UNSAFE_ percentage prop (error already reported)
  * Returns false if this is not a percentage-related issue (needs further validation)
  */
-function isInvalidUnsafePercentageProp(
+function validatePercentageUsageWithUnsafeProp(
     propName: string,
     propValue: string,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): boolean {
-    // Only check UNSAFE_ props
-    if (!propName.startsWith("UNSAFE_")) {
-        return false;
+    if (!propValue.endsWith("%")) {
+        return true;
     }
-
     const safePropName = propName.replace("UNSAFE_", "");
 
     // Not a percentage-safe prop - not our concern
     if (!PERCENTAGE_SAFE_PROPS.has(safePropName)) {
-        return false;
-    }
-
-    if (!propValue.endsWith("%")) {
-        return false;
+        return true;
     }
 
     // This is an invalid case: UNSAFE_ prefix used with percentage on a percentage-safe prop
@@ -541,7 +550,11 @@ function isInvalidUnsafePercentageProp(
         column: loc?.start.column
     });
 
-    return true; // This is invalid and error was reported
+    return false; // This is invalid and error was reported
+}
+
+async function isValidUnsafeProp(propName: string): Promise<boolean> {
+    return (await getUnsafeProps()).has(propName);
 }
 
 /**
@@ -549,15 +562,13 @@ function isInvalidUnsafePercentageProp(
  * Returns true if this is an invalid UNSAFE_ prop (error already reported)
  * Returns false if this is a valid UNSAFE_ prop (no error)
  */
-function isDisallowedUnsafeProp(
+async function isDisallowedUnsafeProp(
     propName: string,
-    allowedUnsafeProps: Set<string>,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
-): boolean {
-    // Check if the UNSAFE_ prop is in the allowed list
-    if (allowedUnsafeProps.has(propName)) {
-        return false; // Valid UNSAFE_ prop
+): Promise<boolean> {
+    if (await isValidUnsafeProp(propName)) {
+        return false;
     }
 
     // Invalid UNSAFE_ prop - generate appropriate error message
@@ -589,10 +600,48 @@ function isDisallowedUnsafeProp(
 }
 
 /**
+ * Checks if a token value is being used with an UNSAFE_ prop
+ * Tokens should use the safe prop directly, not UNSAFE_
+ * Returns true if this is invalid usage (error already reported)
+ */
+async function validateTokenUsageWithUnsafeProp(
+    propName: string,
+    propValue: string,
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult
+): Promise<boolean> {
+    if (!await isToken(propValue)) {
+        return true;
+    }
+
+    // If the prop is UNSAFE_, suggest using the safe version
+    const safeProp = propName.replace("UNSAFE_", "");
+
+    result.errors.push({
+        message: validationMessage("token-not-allowed-unsafe", {
+            value: propValue,
+            propName,
+            suggestedProp: safeProp,
+            guideSection: "styles"
+        }),
+        line: loc?.start.line,
+        column: loc?.start.column
+    });
+
+    return false;
+}
+
+async function isToken(value: string): Promise<boolean> {
+    const allTokens = await getAllTokens();
+
+    return allTokens.has(value);
+}
+
+/**
  * Checks if an UNSAFE_ prop value has an equivalent design token
  * If equivalent tokens exist, suggests using them instead of the raw CSS value
  */
-async function isInvalidUseOfCustomValue(
+async function validateUseOfCustomValueWithUnsafeProp(
     propName: string,
     propValue: string,
     loc: TSESTree.SourceLocation | undefined,
@@ -603,10 +652,9 @@ async function isInvalidUseOfCustomValue(
     try {
         // First check if the value is already a valid token propValue
         // If it is, the existing validation (validateDesignSystemTokensUsage) will handle it
-        const allTokens = await getAllTokens();
-        if (allTokens.has(propValue)) {
+        if (await isToken(propValue)) {
             // This is a valid token value. It is not this function's job to validate it.
-            return false;
+            return true;
         }
 
         const allTokensData = await getAllTokensData();
@@ -642,10 +690,10 @@ async function isInvalidUseOfCustomValue(
                 column: loc?.start.column
             });
 
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
     } catch (error) {
         // If we can't load token data, just skip this validation
         // Don't fail the entire validation because of this
@@ -654,93 +702,82 @@ async function isInvalidUseOfCustomValue(
     }
 }
 
-async function validateUnsafePropsUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
-    // Load the allowed unsafe props list
-    const allowedUnsafeProps = new Set(await getUnsafeProps());
+async function validateUnsafePropsUsage({ propValue, loc, propName }: PropInfo, result: ValidationResult) {
+    // Check if this is a disallowed UNSAFE_ prop
+    // If so, error is already reported and we skip further validation
+    if (await isDisallowedUnsafeProp(propName, loc, result)) {
+        return true;
+    }
 
-    // Check each JSX element for UNSAFE_ props
-    for (const { propValue, loc, propName } of getAllProps(jsxElements)) {
-        // Skip non-UNSAFE props
-        if (!propName.startsWith("UNSAFE_")) {
-            continue;
+    const values = extractAllConstantStrings(propValue);
+    let invalidValuesCount = 0;
+    const propValuesValidation: ValidationResult =
+        {
+            isValid: true,
+            errors: [],
+            warnings: []
+        };
+
+    for (const value of values) {
+        if (!validatePercentageUsageWithUnsafeProp(propName, value, loc, propValuesValidation)) {
+            invalidValuesCount++;
+        } else if (!await validateTokenUsageWithUnsafeProp(propName, value, loc, propValuesValidation)) {
+            invalidValuesCount++;
+        } else if (!await validateUseOfCustomValueWithUnsafeProp(propName, value, loc, propValuesValidation)) {
+            invalidValuesCount++;
         }
-        // Check if this is a disallowed UNSAFE_ prop
-        // If so, error is already reported and we skip further validation
-        if (isDisallowedUnsafeProp(propName, allowedUnsafeProps, loc, result)) {
-            continue;
-        }
+    }
 
-        const values = extractAllConstantStrings(propValue);
-        let invalidValuesCount = 0;
-        const propValuesValidation: ValidationResult =
-            {
-                isValid: true,
-                errors: [],
-                warnings: []
-            };
-
-        for (const value of values) {
-            // Check if this is an invalid percentage-safe prop with percentage value
-            // If so, error is already reported and we skip further validation
-            if (isInvalidUnsafePercentageProp(propName, value, loc, propValuesValidation)) {
-                invalidValuesCount++;
-                continue;
-            }
-
-            // At this point, the UNSAFE_ prop is valid, now check if the CSS value has a token equivalent
-            // Only check string literal values
-            if (await isInvalidUseOfCustomValue(propName, value, loc, propValuesValidation)) {
-                invalidValuesCount++;
-                continue;
-            }
-        }
-
-        if (invalidValuesCount === values.length) {
-            result.errors.push(...propValuesValidation.errors);
-            result.warnings.push(...propValuesValidation.warnings);
-            result.isValid = result.isValid && propValuesValidation.isValid;
-        }
+    if (invalidValuesCount === values.length) {
+        mergeResults(result, propValuesValidation);
     }
 }
 
-function isInvalidUnsafeProp(propName: string, tokenSupportedProps: Set<string>): boolean {
-    const safePropName = propName.replace("UNSAFE_", "");
-
-    return propName.startsWith("UNSAFE_") && !tokenSupportedProps.has(safePropName);
-}
-
-async function validateDesignSystemTokensUsage(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
-    // Load the allowed unsafe props list
+async function isTokenSupportedProp(propName: string): Promise<boolean> {
     const tokenSupportedProps = await getTokenSupportedProps();
-    const allowedTokens = await getAllTokens();
 
-    for (const { propValue, propName, loc } of getAllProps(jsxElements)) {
-        // Skip invalid UNSAFE_ props as they are handled in another validation
-        if (isInvalidUnsafeProp(propName, tokenSupportedProps)) {
-            continue;
+    return tokenSupportedProps.has(propName);
+}
+
+async function validateDesignSystemTokensUsage({ propValue, propName, loc }: PropInfo, result: ValidationResult) {
+    const values = extractAllConstantStrings(propValue);
+    let invalidValuesCount = 0;
+    const propValuesValidation: ValidationResult =
+        {
+            isValid: true,
+            errors: [],
+            warnings: []
+        };
+
+    for (const value of values) {
+        if (!await validateTokenFormat(value, propName, loc, propValuesValidation)) {
+            invalidValuesCount++;
+        } else if (!await validateTokenUsageOnUnsupportedProp(value, propName, loc, propValuesValidation)) {
+            invalidValuesCount++;
         }
+    }
 
-        // Extract all constant string values from the prop
-        const constantStrings = extractAllConstantStrings(propValue);
-
-        // Check each constant string value
-        for (const originalValue of constantStrings) {
-            // Validate token format for token-supported props
-            if (tokenSupportedProps.has(propName)) {
-                validateTokenFormat(originalValue, propName, loc, result);
-            } else if (allowedTokens.has(originalValue)) { // Ensure tokens are not used for not token-supported props
-                validateTokenUsageOnUnsupportedProp(originalValue, propName, loc, result);
-            }
-        }
+    if (invalidValuesCount === values.length) {
+        mergeResults(result, propValuesValidation);
     }
 }
 
-function validateTokenFormat(
+function mergeResults(target: ValidationResult, source: ValidationResult): void {
+    target.isValid = target.isValid && source.isValid;
+    target.errors.push(...source.errors);
+    target.warnings.push(...source.warnings);
+}
+
+async function validateTokenFormat(
     originalValue: string,
     propName: string,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
-): void {
+): Promise<boolean> {
+    if (!await isTokenSupportedProp(propName) || await isToken(originalValue)) {
+        return true;
+    }
+
     const formatted = formatStyledSystemName(originalValue, null);
     if (formatted !== originalValue && formatted.length < originalValue.length) {
         result.errors.push({
@@ -752,44 +789,40 @@ function validateTokenFormat(
             line: loc?.start.line,
             column: loc?.start.column
         });
+
+        return false;
     }
+
+    return true;
 }
 
-function validateTokenUsageOnUnsupportedProp(
-    originalValue: string,
+async function validateTokenUsageOnUnsupportedProp(
+    propValue: string,
     propName: string,
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
-): void {
-    //this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
-    //for example variant="primary" is valid. So, we only check for tokens with "-" or "_" which are unlikely to be valid non-token values
-    if (!originalValue.includes("-") && !originalValue.includes("_")) {
-        return;
+): Promise<boolean> {
+    // this approach could be a bit flaky as some tokens might coincidentally match valid non-token values
+    // for example variant="primary" is valid. So, we only check for tokens with "-" or "_" which are unlikely to be valid non-token values
+    if (!propValue.includes("-") && !propValue.includes("_")) {
+        return true;
     }
 
-    // If the prop is not in the token-supported list, make sure tokens are not used
-    // (e.g. top="core_0", or UNSAFE_color="danger-selected")
-    if (propName.startsWith("UNSAFE_")) {
-        const suggestedProp = propName.replace("UNSAFE_", "");
-        result.errors.push({
-            message: validationMessage("token-not-allowed-unsafe", {
-                value: originalValue,
-                propName,
-                suggestedProp,
-                guideSection: "styles"
-            }),
-            line: loc?.start.line,
-            column: loc?.start.column
-        });
-    } else {
-        result.errors.push({
-            message: validationMessage("token-not-allowed", {
-                value: originalValue,
-                propName,
-                guideSection: "styles"
-            }),
-            line: loc?.start.line,
-            column: loc?.start.column
-        });
+    if (await isTokenSupportedProp(propName) || !await isToken(propValue)) {
+        return true;
     }
+
+    // This function should only handle non-UNSAFE_ props
+    // UNSAFE_ props are handled separately in validateUnsafePropsUsage
+    result.errors.push({
+        message: validationMessage("token-not-allowed", {
+            value: propValue,
+            propName,
+            guideSection: "styles"
+        }),
+        line: loc?.start.line,
+        column: loc?.start.column
+    });
+
+    return false;
 }
