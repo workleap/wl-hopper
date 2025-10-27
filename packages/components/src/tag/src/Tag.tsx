@@ -276,6 +276,7 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
 
     // This is not supported in useLink, so we do it manually
     const { hoverProps, isHovered } = useHover({
+        isDisabled: props.isDisabled,
         onHoverStart: props.onHoverStart,
         onHoverChange: props.onHoverChange,
         onHoverEnd: props.onHoverEnd
