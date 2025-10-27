@@ -6,11 +6,11 @@ import {
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
-import { mergeProps, useObjectRef } from "@react-aria/utils";
+import { filterDOMProps, mergeProps, useObjectRef } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
-import { type ElementType, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
-import { useFocusRing, useFocusable, useHover, useLink } from "react-aria";
+import { type ElementType, type ForwardedRef, type MutableRefObject, forwardRef, useContext, useEffect, useMemo } from "react";
+import { useFocusRing, useFocusable, useHover, useLink, usePress } from "react-aria";
 import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
@@ -87,6 +87,14 @@ export interface TagProps extends StyledComponentProps<RACTagProps> {
      * The props of the Spinner.
      */
     spinnerProps?: SpinnerProps;
+    /**
+     * This property is only available for Tag without a TagGroup.
+     * Whether to exclude the element from the sequential tab order. If true,
+     * the element will not be focusable via the keyboard by tabbing. This should
+     * be avoided except in rare scenarios where an alternative means of accessing
+     * the element or its functionality via the keyboard is available.
+     */
+    excludeFromTabOrder?: boolean;
 }
 
 function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -110,6 +118,7 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
     const stringFormatter = useLocalizedString();
     const size = useResponsiveValue(sizeProp) ?? "md";
     const textValue = textValueProp ?? (typeof childrenProp === "string" ? childrenProp : undefined);
+    const isStandalone = !useContext(InternalTagGroupContext).isInGroup;
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -118,7 +127,8 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
             styles,
             "hop-Tag",
             size,
-            mapOrbiterToHopperVariants(variant)
+            mapOrbiterToHopperVariants(variant),
+            isStandalone && "standalone"
         ),
         stylingProps.className
     );
@@ -140,7 +150,7 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
     const { className: clearButtonClassName, ...otherClearButtonProps } = clearButtonProps ?? {};
     const clearButtonClassNames = clsx(styles["hop-Tag__remove-btn"], clearButtonClassName);
 
-    const ElementType = useContext(InternalTagGroupContext).isInGroup ? RACTag : StandaloneTag;
+    const ElementType = isStandalone ? StandaloneTag : RACTag;
 
     return (
         <ElementType
@@ -221,39 +231,56 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
 
 interface StandaloneTagProps extends RACTagProps {
     onRemove?: () => void;
+    excludeFromTabOrder?: boolean;
+}
+
+function useNonLinkTagProps(props: Omit<StandaloneTagProps, "id">, ref: MutableRefObject<FocusableElement | null>) {
+    const { focusableProps } = useFocusable(props, ref) ?? {};
+    const { pressProps } = usePress({
+        onPress: props.onPress,
+        onPressChange: props.onPressChange,
+        onPressStart: props.onPressStart,
+        onPressEnd: props.onPressEnd,
+        onPressUp: props.onPressUp,
+        onClick: props.onClick,
+        isDisabled: props.isDisabled,
+        ref
+    });
+
+    return useMemo(() => {
+        const domProps = filterDOMProps(props, { labelable: true, events: true, global: true });
+
+        return mergeProps(domProps, focusableProps, pressProps);
+    }, [props, focusableProps, pressProps]);
 }
 
 /**
  * A tag can also be rendered outside a TagGroup. In those cases, this component should be used.
  */
 const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, ref) => {
-    const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
+    const {
+        //  We don't want the Id in a standalone tag
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        id: _,
+        ...propsWithoutId
+    } = props;
     const objectRef = useObjectRef(ref);
-    const { linkProps } = useLink(props, objectRef);
-    const { focusableProps } = useFocusable({
-        ...props,
-        excludeFromTabOrder: true,
-        id: undefined
-    }, objectRef) ?? {};
-
+    const { focusProps, isFocusVisible, isFocused } = useFocusRing({ within: true });
     const { hoverProps, isHovered } = useHover({
-        // disabled, since we don't allow selection.
-        isDisabled: true,
         onHoverStart: props.onHoverStart,
         onHoverChange: props.onHoverChange,
         onHoverEnd: props.onHoverEnd
     });
 
     const isLink = props.href != null;
-    const itemProps = isLink ? linkProps : props;
     const ElementType: ElementType = isLink ? "a" : "div";
 
+    const { linkProps } = useLink(propsWithoutId, objectRef);
+    const nonLinkProps = useNonLinkTagProps(propsWithoutId, objectRef);
+    const itemProps = isLink ? linkProps : nonLinkProps;
+
     const renderProps = useRenderProps({
-        ...itemProps,
-        id: undefined,
-        children: props.children,
-        className: props.className,
-        style: props.style,
+        ...propsWithoutId,
         values: {
             isFocusVisible,
             isHovered,
@@ -271,16 +298,18 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
         if (!props.textValue) {
             console.warn("A `textValue` prop is required for <Tag> elements with non-plain text children for accessibility.");
         }
-    }, [props.textValue]);
+
+        if (props.onRemove) {
+            console.warn("A <Tag> can't be removed if it's not rendered inside a <TagGroup>.");
+        }
+    }, [props.textValue, props.onRemove]);
 
     return (
         <ElementType
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ref={objectRef as any}
             aria-label={props.textValue}
-            {...mergeProps(itemProps, focusProps, hoverProps, focusableProps)}
-            // overwrite the tabIndex set by react-aria to ensure that the tag is not focusable by tabbing
-            tabIndex={-1}
+            {...mergeProps(itemProps, focusProps, hoverProps)}
             {...renderProps}
             data-disabled={props.isDisabled || undefined}
             data-hovered={isHovered || undefined}
