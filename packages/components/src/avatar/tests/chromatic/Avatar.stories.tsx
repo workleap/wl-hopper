@@ -172,3 +172,9 @@ export const Emoji = {
         name: "Gab 🔥 Seguin"
     }
 } satisfies Story;
+
+export const OnlyFirstName = {
+    args: {
+        name: "Gab"
+    }
+} satisfies Story;
