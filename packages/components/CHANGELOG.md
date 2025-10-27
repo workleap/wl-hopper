@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.6
+
+### Patch Changes
+
+- 9d73170: Avatar now better support emojis and complex characters in initials.
+
 ## 1.15.5
 
 ### Patch Changes
