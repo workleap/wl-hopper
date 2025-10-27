@@ -420,7 +420,7 @@
     --text-color: var(--hop-Tag-neutral-text-color-focus);
 }
 
-.hop-Tag--neutral[data-hovered] {
+.hop-Tag--neutral:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-neutral-border-color-hover);
     --background-color: var(--hop-Tag-neutral-background-color-hover);
     --text-color: var(--hop-Tag-neutral-text-color-hover);
@@ -444,7 +444,7 @@
     --text-color: var(--hop-Tag-subdued-text-color-focus);
 }
 
-.hop-Tag--subdued[data-hovered] {
+.hop-Tag--subdued:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-subdued-border-color-hover);
     --background-color: var(--hop-Tag-subdued-background-color-hover);
     --text-color: var(--hop-Tag-subdued-text-color-hover);
@@ -468,7 +468,7 @@
     --text-color: var(--hop-Tag-progress-text-color-focus);
 }
 
-.hop-Tag--progress[data-hovered] {
+.hop-Tag--progress:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-progress-border-color-hover);
     --background-color: var(--hop-Tag-progress-background-color-hover);
     --text-color: var(--hop-Tag-progress-text-color-hover);
@@ -492,7 +492,7 @@
     --text-color: var(--hop-Tag-positive-text-color-focus);
 }
 
-.hop-Tag--positive[data-hovered] {
+.hop-Tag--positive:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-positive-border-color-hover);
     --background-color: var(--hop-Tag-positive-background-color-hover);
     --text-color: var(--hop-Tag-positive-text-color-hover);
@@ -516,7 +516,7 @@
     --text-color: var(--hop-Tag-caution-text-color-focus);
 }
 
-.hop-Tag--caution[data-hovered] {
+.hop-Tag--caution:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-caution-border-color-hover);
     --background-color: var(--hop-Tag-caution-background-color-hover);
     --text-color: var(--hop-Tag-caution-text-color-hover);
@@ -540,7 +540,7 @@
     --text-color: var(--hop-Tag-negative-text-color-focus);
 }
 
-.hop-Tag--negative[data-hovered] {
+.hop-Tag--negative:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-negative-border-color-hover);
     --background-color: var(--hop-Tag-negative-background-color-hover);
     --text-color: var(--hop-Tag-negative-text-color-hover);
@@ -564,7 +564,7 @@
     --text-color: var(--hop-Tag-option1-text-color-focus);
 }
 
-.hop-Tag--option1[data-hovered] {
+.hop-Tag--option1:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option1-border-color-hover);
     --background-color: var(--hop-Tag-option1-background-color-hover);
     --text-color: var(--hop-Tag-option1-text-color-hover);
@@ -588,7 +588,7 @@
     --text-color: var(--hop-Tag-option2-text-color-focus);
 }
 
-.hop-Tag--option2[data-hovered] {
+.hop-Tag--option2:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option2-border-color-hover);
     --background-color: var(--hop-Tag-option2-background-color-hover);
     --text-color: var(--hop-Tag-option2-text-color-hover);
@@ -612,7 +612,7 @@
     --text-color: var(--hop-Tag-option3-text-color-focus);
 }
 
-.hop-Tag--option3[data-hovered] {
+.hop-Tag--option3:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option3-border-color-hover);
     --background-color: var(--hop-Tag-option3-background-color-hover);
     --text-color: var(--hop-Tag-option3-text-color-hover);
@@ -636,7 +636,7 @@
     --text-color: var(--hop-Tag-option4-text-color-focus);
 }
 
-.hop-Tag--option4[data-hovered] {
+.hop-Tag--option4:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option4-border-color-hover);
     --background-color: var(--hop-Tag-option4-background-color-hover);
     --text-color: var(--hop-Tag-option4-text-color-hover);
@@ -660,7 +660,7 @@
     --text-color: var(--hop-Tag-option5-text-color-focus);
 }
 
-.hop-Tag--option5[data-hovered] {
+.hop-Tag--option5:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option5-border-color-hover);
     --background-color: var(--hop-Tag-option5-background-color-hover);
     --text-color: var(--hop-Tag-option5-text-color-hover);
@@ -684,7 +684,7 @@
     --text-color: var(--hop-Tag-option6-text-color-focus);
 }
 
-.hop-Tag--option6[data-hovered] {
+.hop-Tag--option6:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-option6-border-color-hover);
     --background-color: var(--hop-Tag-option6-background-color-hover);
     --text-color: var(--hop-Tag-option6-text-color-hover);
@@ -706,7 +706,7 @@
     outline: 0.125rem solid var(--focus-ring-color);
 }
 
-.hop-Tag[data-hovered] {
+.hop-Tag:not(.hop-Tag--standalone)[data-hovered] {
     cursor: pointer;
 }
 
