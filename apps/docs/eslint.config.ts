@@ -14,7 +14,7 @@ export default defineConfig([
         "next-env.d.ts"
     ]),
     {
-        ...mdx.flat,
+        ...mdx.flat
     },
     defineWebApplicationConfig(import.meta.dirname),
     {
