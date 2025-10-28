@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.7
+
+### Patch Changes
+
+- 02f1caa: Fix outline property in the styled system that was not working properly. Also added token values to it and an UNSAFE\_ property
+
 ## 1.15.6
 
 ### Patch Changes
