@@ -26,25 +26,6 @@ const paginationParams = {
         .describe(paginationParamsInfo.cursor)
 };
 
-export function formatValidationMessages(
-    messages: Array<{ message: string; line?: number }>,
-    title: string
-): string {
-    if (messages.length === 0) {
-        return "";
-    }
-
-    let formatted = `\n\n${title}:`;
-    messages.forEach((msg, index) => {
-        formatted += `\n${index + 1}. ${msg.message}`;
-        if (msg.line) {
-            formatted += ` (line ${msg.line})`;
-        }
-    });
-
-    return formatted;
-}
-
 export function tools(server: McpServer) {
     server.registerTool(toolsInfo.get_component_doc.name, {
         title: toolsInfo.get_component_doc.title,
@@ -200,10 +181,11 @@ export function tools(server: McpServer) {
                 ? "Component structure validation passed with warnings!"
                 : "Component structure validation failed!";
 
-            message += formatValidationMessages(validationResult.errors, "Errors");
-            message += formatValidationMessages(validationResult.warnings, "Warnings");
-
-            return toolContent(content(message));
+            return toolContent(
+                content(message),
+                validationResult.errors.length > 0 ? content(JSON.stringify({ errors: validationResult.errors }, null, 2)) : undefined,
+                validationResult.warnings.length > 0 ? content(JSON.stringify({ warnings: validationResult.warnings }, null, 2)) : undefined
+            );
         } catch (error) {
             trackError(error, e?.requestInfo);
 
