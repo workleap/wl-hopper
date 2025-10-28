@@ -85,16 +85,10 @@ main {
     margin-inline-start: var(--hd-space-2);
 }
 
-.hd-content p a,
-.hd-content li a {
+.hd-content p a:not(.hd-component-preview-wrapper__card a),
+.hd-content li a:not(.hd-component-preview-wrapper__card a) {
     text-decoration: underline;
     color: var(--hd-color-accent-text)
-}
-
-/* reset the underline for the card */
-.hd-content .hd-component-preview-wrapper__card p a,
-.hd-content .hd-component-preview-wrapper__card li a {
-    text-decoration: unset;
 }
 
 .hd-content [data-rehype-pretty-code-figure] {

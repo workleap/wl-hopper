@@ -204,7 +204,7 @@ export const stylePropDefinitions: StylePropDefinition[] = [
     { propName: "borderTopRightRadius", cssProperty: "border-top-right-radius", tokenScale: "shape-scale", supportedFeatures: "breakpoints", group: "Border" },
     { propName: "borderBottomLeftRadius", cssProperty: "border-bottom-left-radius", tokenScale: "shape-scale", supportedFeatures: "breakpoints", group: "Border" },
     { propName: "borderBottomRightRadius", cssProperty: "border-bottom-right-radius", tokenScale: "shape-scale", supportedFeatures: "breakpoints", group: "Border" },
-    { propName: "outline", cssProperty: "outline", tokenScale: "none", supportedFeatures: "breakpoints & focus", group: "Border" },
+    { propName: "outline", cssProperty: "outline", tokenScale: "color-scale", supportedFeatures: "breakpoints & focus", group: "Border" },
 
     // Position
     { propName: "position", cssProperty: "position", tokenScale: "none", supportedFeatures: "breakpoints", group: "Position" },

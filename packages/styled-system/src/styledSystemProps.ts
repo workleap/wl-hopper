@@ -26,6 +26,7 @@ import type {
     GridTemplateRowsValue,
     HeightValue,
     LineHeightValue,
+    OutlineValue,
     RowGapValue,
     SimpleMarginValue,
     SimplePaddingValue,
@@ -48,6 +49,7 @@ import type {
     UNSAFE_GridTemplateRowsValue,
     UNSAFE_HeightValue,
     UNSAFE_LineHeightValue,
+    UNSAFE_OutlineValue,
     UNSAFE_RowGapValue,
     UNSAFE_SimpleMarginValue,
     UNSAFE_SimplePaddingValue,
@@ -721,15 +723,15 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
 
     /**
    * Sets the `outline` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/outline}
+   * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outline`** property
    */
-    outline?: ResponsiveProp<Property.Outline>;
+    outline?: ResponsiveProp<OutlineValue>;
 
     /**
    * Sets the `outline` property when focused.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/outline}
+   * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outlineFocus`** property
    */
-    outlineFocus?: ResponsiveProp<Property.Outline>;
+    outlineFocus?: ResponsiveProp<OutlineValue>;
 
     /**
    * Sets the `overflow` property.
@@ -1486,6 +1488,24 @@ export interface UnsafeStyledSystemProps {
      * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
      */
     UNSAFE_minWidth?: ResponsiveProp<UNSAFE_WidthValue>;
+
+    /**
+     * Sets the `outline` property.
+     *
+     * If you want to use a **token value** from the **SCALE**, use the **`outline`** property instead.
+     *
+     * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
+     */
+    UNSAFE_outline?: ResponsiveProp<UNSAFE_OutlineValue>;
+
+    /**
+     * Sets the `outline` property when focused.
+     *
+     * If you want to use a **token value** from the **SCALE**, use the **`outlineHover`** property instead.
+     *
+     * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
+     */
+    UNSAFE_outlineFocus?: ResponsiveProp<UNSAFE_OutlineValue>;
 
     /**
      * Sets the `padding` property.

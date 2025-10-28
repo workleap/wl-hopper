@@ -191,5 +191,5 @@
 .hop-ol-focus:focus-visible {
     --hop-ol-focus: initial;
 
-    color: var(--hop-ol-focus) !important;
+    outline: var(--hop-ol-focus) !important;
 }
