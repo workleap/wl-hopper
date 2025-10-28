@@ -729,7 +729,7 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
 
     /**
    * Sets the `outline` property when focused.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/outline}
+   * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outlineFocus`** property
    */
     outlineFocus?: ResponsiveProp<OutlineValue>;
 
