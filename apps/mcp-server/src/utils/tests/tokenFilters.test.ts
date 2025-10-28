@@ -1,5 +1,5 @@
-import { EXACT_CSS_MATCH_CONFIG } from "../../services/validator/css-value-matcher";
-import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../token-filters";
+import { EXACT_CSS_MATCH_CONFIG } from "../../services/validatorService/cssValueMatcher";
+import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../tokenFilters";
 
 describe("filterTokens", () => {
     const mockTokenData: TokenFileRootNode = {

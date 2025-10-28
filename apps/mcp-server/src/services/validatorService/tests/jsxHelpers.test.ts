@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { parse } from "@typescript-eslint/parser";
-import { extractAllConstantStrings } from "../jsx-helpers";
+import { extractAllConstantStrings } from "../jsxHelpers";
 
 describe("extractAllConstantStrings", () => {
     function getFirstPropValue(code: string) {

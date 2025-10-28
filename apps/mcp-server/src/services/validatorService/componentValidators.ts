@@ -1,7 +1,7 @@
 import { AST_NODE_TYPES, type TSESTree } from "@typescript-eslint/types";
-import { extractAllConstantStrings, getAllDirectChildren, getComponentName, getDirectComponentChildren } from "./jsx-helpers";
+import { extractAllConstantStrings, getAllDirectChildren, getComponentName, getDirectComponentChildren } from "./jsxHelpers";
 import type { ValidationResult } from "./types";
-import { validationMessage } from "./validation-messages";
+import { validationMessage } from "./validationMessages";
 
 /**
  * Validates component-specific rules by grouping components by type and applying appropriate validation

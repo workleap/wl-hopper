@@ -1,5 +1,5 @@
 
-import { formatMessage } from "../../utils/message-formatter";
+import { formatMessage } from "../../utils/messageFormatter";
 
 const validationMessages = {
     errors: {

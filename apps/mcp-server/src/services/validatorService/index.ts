@@ -2,13 +2,13 @@
 
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
-import { validateLayoutComponents, validateNoEmojis, validateProhibitedProps, validateTagNames } from "./basic-validators";
-import { validateComponentSpecificRules } from "./component-validators";
-import { findJSXElements, getAllProps } from "./jsx-helpers";
-import { isToken, validateDesignSystemTokensUsage } from "./token-validator";
+import { validateLayoutComponents, validateNoEmojis, validateProhibitedProps, validateTagNames } from "./basicValidators";
+import { validateComponentSpecificRules } from "./componentValidators";
+import { findJSXElements, getAllProps } from "./jsxHelpers";
+import { isToken, validateDesignSystemTokensUsage } from "./tokenValidator";
 import type { ValidationResult } from "./types";
-import { validateUnsafePropsUsage } from "./unsafe-props-validator";
-import { validationMessage } from "./validation-messages";
+import { validateUnsafePropsUsage } from "./unsafePropsValidator";
+import { validationMessage } from "./validationMessages";
 
 export async function validateHopperCode(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {

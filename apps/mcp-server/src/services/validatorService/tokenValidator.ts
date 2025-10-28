@@ -1,10 +1,10 @@
 import type { TSESTree } from "@typescript-eslint/types";
-import { formatStyledSystemName } from "../../utils/token-name-formatter";
+import { formatStyledSystemName } from "../../utils/tokenNameFormatter";
 import { getAllTokens, getTokenSupportedProps } from "./data";
-import { extractAllConstantStrings, type PropInfo } from "./jsx-helpers";
+import { extractAllConstantStrings, type PropInfo } from "./jsxHelpers";
 import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
-import { validationMessage } from "./validation-messages";
+import { validationMessage } from "./validationMessages";
 
 export async function isToken(value: string): Promise<boolean> {
     const allTokens = await getAllTokens();

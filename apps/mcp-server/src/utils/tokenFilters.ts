@@ -1,4 +1,4 @@
-import { CssMatchConfig, matchesCssValue } from "../services/validator/css-value-matcher";
+import { CssMatchConfig, matchesCssValue } from "../services/validatorService/cssValueMatcher";
 
 interface TokenNode {
     cssValue: string;

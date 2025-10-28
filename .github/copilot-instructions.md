@@ -24,3 +24,23 @@ These properties should be defined in CSS modules instead. For example, instead 
 
 Path patterns: packages/components/src/**/*.tsx
 
+## File naming conventions
+
+- Use **PascalCase** for files that contain:
+  - React components (e.g., `Button.tsx`, `IconButton.tsx`)
+  - Classes (e.g., `ValidationService.ts`, `TokenMapper.ts`)
+  - A single type/interface that matches the filename (e.g., `ButtonProps.ts`)
+- Use **camelCase** for all other files:
+  - Utility functions (e.g., `formatDate.ts`, `mergeProps.ts`)
+  - Configuration files (e.g., `tokenMappings.ts`, `cssVariables.ts`)
+  - Test files (e.g., `button.test.tsx`, `utils.test.ts`)
+  - Hooks (e.g., `useHover.ts`, `useScrollPosition.ts`)
+  - Constants, enums, and shared types (e.g., `colors.ts`, `breakpoints.ts`, `types.ts`)
+
+## Code style
+
+- Use double quotes for strings.
+- Use camelCase for variable and function names.
+- Use PascalCase for component names.
+- Use consistent indentation (4 spaces).
+

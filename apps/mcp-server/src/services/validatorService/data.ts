@@ -2,8 +2,8 @@ import { files } from "@docs/ai";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import { env } from "../../env";
-import type { TokenCategoryNode, TokenFileRootNode } from "../../utils/token-filters";
-import { validationMessage } from "./validation-messages";
+import type { TokenCategoryNode, TokenFileRootNode } from "../../utils/tokenFilters";
+import { validationMessage } from "./validationMessages";
 
 // Cache for allowed unsafe props to avoid repeated file I/O
 let _unsafePropsCache: Set<string> | null = null;

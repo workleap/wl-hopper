@@ -2,10 +2,10 @@ import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import type { TokenCategory } from "../config/constants";
-import { TokenMapFiles } from "../config/file-mappings";
+import { TokenMapFiles } from "../config/fileMappings";
 import { env } from "../env";
-import { content, errorContent } from "../utils/formatter";
-import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../utils/token-filters";
+import { content } from "../utils/formatter";
+import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../utils/tokenFilters";
 
 const tokenDataCache: Map<string, TokenFileRootNode> = new Map();
 
@@ -52,10 +52,10 @@ export async function getDesignTokens(
             return isEmptyObject(partialResult) ? undefined : content(JSON.stringify(partialResult, null, 2));
         } catch (error) {
             if (error instanceof Error && error.message.includes("Tokens map not found")) {
-                return errorContent(error, error.message);
+                throw error;
             }
 
-            return errorContent(error, `Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`);
+            throw new Error(`Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
         }
     }));
 

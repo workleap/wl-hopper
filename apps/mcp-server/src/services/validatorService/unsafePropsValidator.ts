@@ -1,12 +1,12 @@
 import type { TSESTree } from "@typescript-eslint/types";
-import { filterTokens, type TokenCategoryNode } from "../../utils/token-filters";
+import { filterTokens, type TokenCategoryNode } from "../../utils/tokenFilters";
 import { PERCENTAGE_SAFE_PROPS, PROHIBITED_PROPS } from "./constants";
-import { EXACT_CSS_MATCH_CONFIG } from "./css-value-matcher";
+import { EXACT_CSS_MATCH_CONFIG } from "./cssValueMatcher";
 import { getAllTokensData, getUnsafeProps } from "./data";
-import { extractAllConstantStrings, type PropInfo } from "./jsx-helpers";
+import { extractAllConstantStrings, type PropInfo } from "./jsxHelpers";
 import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
-import { validationMessage } from "./validation-messages";
+import { validationMessage } from "./validationMessages";
 
 /**
  * Checks if a prop is an invalid UNSAFE_ usage with percentage values

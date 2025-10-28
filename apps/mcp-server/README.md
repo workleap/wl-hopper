@@ -17,7 +17,7 @@ A Model Context Protocol (MCP) server providing AI-powered assistance for the Wo
 2. **Start the server**:
 
    ```bash
-   cd apps/mcp-server
+   cd apps/mcpServer
    pnpm dev
    ```
 

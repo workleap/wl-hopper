@@ -1,13 +1,10 @@
 import type { GuideSection, TokenCategory } from "../config/constants";
-import { GuideFiles, TokenGuideFiles } from "../config/file-mappings";
-import { getLocalMdContent, getRemoteMdContent } from "../utils/file-reader";
-import { errorContent } from "../utils/formatter";
+import { GuideFiles, TokenGuideFiles } from "../config/fileMappings";
+import { getLocalMdContent, getRemoteMdContent } from "../utils/fileReader";
 
 export async function getGuide(section: GuideSection, pageSize?: number, cursor?: string) {
     if (!Object.keys(GuideFiles).includes(section)) {
-        const error = new Error(`Invalid guide section requested: ${section}`);
-
-        return errorContent(error);
+        throw new Error(`Invalid guide section requested: ${section}`);
     }
 
     const guideFile = GuideFiles[section];
@@ -21,9 +18,7 @@ export async function getGuide(section: GuideSection, pageSize?: number, cursor?
 
 export async function getDesignTokenGuide(category: TokenCategory, pageSize?: number, cursor?: string) {
     if (!Object.keys(TokenGuideFiles).includes(category)) {
-        const error = new Error(`Invalid design token category requested: ${category}`);
-
-        return errorContent(error);
+        throw new Error(`Invalid design token category requested: ${category}`);
     }
 
     return await getLocalMdContent(TokenGuideFiles[category].path, pageSize, cursor);

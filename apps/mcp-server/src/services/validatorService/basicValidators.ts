@@ -1,16 +1,13 @@
 import type { TSESTree } from "@typescript-eslint/types";
 import emojiRegex from "emoji-regex";
 import { LAYOUT_COMPONENTS, NATIVE_HTML_ELEMENTS, NOT_RECOMMENDED_COMPONENTS, PROHIBITED_PROPS } from "./constants";
-import { getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren } from "./jsx-helpers";
+import { getAllDirectChildren, getAllProps, getComponentName, getDirectComponentChildren } from "./jsxHelpers";
 import type { ValidationResult } from "./types";
-import { validationMessage } from "./validation-messages";
-
-const EMOJI_REGEX = emojiRegex();
+import { validationMessage } from "./validationMessages";
 
 export function validateNoEmojis(code: string, result: ValidationResult): void {
     // Use the emoji-regex library for accurate emoji detection
-    const regex = EMOJI_REGEX;
-
+    const regex = emojiRegex();
     const lines = code.split("\n");
 
     for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
