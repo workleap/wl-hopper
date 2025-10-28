@@ -34,6 +34,7 @@ export const ColorExpressionTypes = [
 ] as const;
 
 export const DefaultBorderWidthAndStyle = "1px solid";
+export const DefaultOutlineWidthAndStyle = "1px solid";
 
 function createMapping<T extends string>(mappings: Record<T, string>, template: (value: string) => string = createValueTemplate) {
     return Object.entries<string>(mappings).reduce((acc, [key, value]) => {
@@ -51,6 +52,10 @@ function createBorderValueTemplate(value: string) {
     return `${DefaultBorderWidthAndStyle} ${createValueTemplate(value)}`;
 }
 
+function createOutlineValueTemplate(value: string) {
+    return `${DefaultOutlineWidthAndStyle} ${createValueTemplate(value)}`;
+}
+
 // mappings
 export const ColorMapping = createMapping(HopperColors);
 export const DataVizColorMapping = createMapping(DataVizColors);
@@ -65,6 +70,12 @@ export const BorderMapping = {
     ...createMapping(BorderColors, createBorderValueTemplate),
     ...createMapping(HopperColors, createBorderValueTemplate),
     ...createMapping(DataVizColors, createBorderValueTemplate)
+};
+
+export const OutlineMapping = {
+    ...createMapping(BorderColors, createOutlineValueTemplate),
+    ...createMapping(HopperColors, createOutlineValueTemplate),
+    ...createMapping(DataVizColors, createOutlineValueTemplate)
 };
 
 export const TextColorMapping = {
@@ -155,6 +166,7 @@ export type CssBorder = Globals | 0 | DataType.LineStyle;
 export type CssBorderRadius = Globals | Percentage | 0;
 export type CssGap = Globals | "normal" | 0;
 export type CSSSizing = "auto" | "fit-content" | "max-content" | "min-content" | Globals | Percentage;
+export type CSSOutline = Globals | DataType.LineStyle | "auto" | "invert";
 
 export type BackgroundColorValue = keyof typeof BackgroundColorMapping | CssColor;
 export type UNSAFE_BackgroundColorValue = keyof typeof BackgroundColorMapping | Property.BackgroundColor;
@@ -232,6 +244,9 @@ export type SimplePaddingValue = keyof typeof SimplePaddingMapping | Globals | 0
 export type UNSAFE_SimplePaddingValue = keyof typeof SimplePaddingMapping | Property.Padding;
 export type ComplexPaddingValue = keyof typeof ComplexPaddingMapping | Globals | 0;
 export type UNSAFE_ComplexPaddingValue = keyof typeof ComplexPaddingMapping | Property.Padding;
+
+export type OutlineValue = keyof typeof OutlineMapping | CssColor | CSSOutline;
+export type UNSAFE_OutlineValue = keyof typeof OutlineMapping | Property.Outline;
 
 export type RowGapValue = keyof typeof SimpleMarginMapping | CssGap | 0;
 export type UNSAFE_RowGapValue = keyof typeof SimpleMarginMapping | Property.RowGap;

@@ -13,11 +13,13 @@ import {
     ComplexMarginMapping,
     ComplexPaddingMapping,
     DefaultBorderWidthAndStyle,
+    DefaultOutlineWidthAndStyle,
     FontFamilyMapping,
     FontSizeMapping,
     FontWeightMapping,
     IconColorMapping,
     LineHeightMapping,
+    OutlineMapping,
     SimpleMarginMapping,
     SimplePaddingMapping,
     SizingMapping,
@@ -67,7 +69,7 @@ function createAxisHandler(firstPropName: string, secondPropName: string, system
     };
 }
 
-function createPseudoHandler(pseudoClassName: string, pseudoVariable: string, systemValues?: SystemValues): PropHandler {
+function createPseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues?: SystemValues): PropHandler {
     const systemValueHandler: PropHandler = (name, value, context) => {
         const parsedValue = parseResponsiveSystemValue(value, systemValues!, context.matchedBreakpoints);
 
@@ -108,7 +110,42 @@ function createBorderHandler(systemValues: SystemValues): PropHandler {
     };
 }
 
-function createBorderPseudoHandler(pseudoClassName: string, pseudoVariable: string, systemValues: SystemValues): PropHandler {
+// Custom handler for outline to allow the following syntax:
+// - outlineFocus="warning-10" -> style="1px solid var(--hop-warning-10)"
+// - outlineFocus="hsla(223, 12%, 87%, 1)" -> style="1px solid hsla(223, 12%, 87%, 1)"
+// - outlineFocus="3px solid warning-10" -> style="3px solid var(--hop-warning-10)" -> Not supported yet
+function createOutlineHandler(systemValues: SystemValues): PropHandler {
+    return (name, value, context) => {
+        const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
+
+        if (!isNil(parsedValue)) {
+            if (typeof parsedValue === "string" && ColorExpressionTypes.some(x => parsedValue.startsWith(x))) {
+                context.addStyleValue(name, `${DefaultOutlineWidthAndStyle} ${parsedValue}`);
+            } else {
+                // TODO: Add support for 3px solid warning-10
+                context.addStyleValue(name, parsedValue);
+            }
+        }
+    };
+}
+
+function createBorderPseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues: SystemValues): PropHandler {
+    return (name, value, context) => {
+        const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
+
+        if (!isNil(parsedValue)) {
+            context.addClass(pseudoClassName);
+
+            if (typeof parsedValue === "string" && ColorExpressionTypes.some(x => parsedValue.startsWith(x))) {
+                context.addStyleValue(pseudoVariable, `${DefaultBorderWidthAndStyle} ${parsedValue}`);
+            } else {
+                context.addStyleValue(pseudoVariable, parsedValue);
+            }
+        }
+    };
+}
+
+function createOutlinePseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues: SystemValues): PropHandler {
     return (name, value, context) => {
         const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
 
@@ -271,12 +308,12 @@ const PropsHandlers: Record<PropsHandlersKey, PropHandler> = {
     objectFit: createPassthroughHandler(),
     objectPosition: createPassthroughHandler(),
     opacity: createPassthroughHandler(),
-    opacityActive: createPseudoHandler(styles["hop-o-active"], "hop-o-active"),
-    opacityFocus: createPseudoHandler(styles["hop-o-focus"], "hop-o-focus"),
-    opacityHover: createPseudoHandler(styles["hop-o-hover"], "hop-o-hover"),
+    opacityActive: createPseudoHandler(styles["hop-o-active"], "--hop-o-active"),
+    opacityFocus: createPseudoHandler(styles["hop-o-focus"], "--hop-o-focus"),
+    opacityHover: createPseudoHandler(styles["hop-o-hover"], "--hop-o-hover"),
     order: createPassthroughHandler(),
-    outline: createPassthroughHandler(),
-    outlineFocus: createPseudoHandler(styles["hop-ol-focus"], "hop-ol-focus"),
+    outline: createOutlineHandler(OutlineMapping),
+    outlineFocus: createOutlinePseudoHandler(styles["hop-ol-focus"], "--hop-ol-focus", OutlineMapping),
     overflow: createPassthroughHandler(),
     overflowX: createPassthroughHandler(),
     overflowY: createPassthroughHandler(),
