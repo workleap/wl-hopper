@@ -1,27 +1,31 @@
-import { Div, type DivProps, useStyledSystem } from "@hopper-ui/components";
+import { useStyledSystem } from "@hopper-ui/components";
+import type { StyledComponentProps } from "@hopper-ui/styled-system";
+import { Button as RACButton, ButtonProps as RACButtonProps } from "react-aria-components";
 
-interface MyCustomComponentProps extends Omit<DivProps, "children"> {
+interface MyCustomButtonProps extends StyledComponentProps<RACButtonProps> {
     // your custom props here
 }
 
-function MyCustomComponent(props: MyCustomComponentProps) {
-    const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const { className, style } = ownProps;
+function MyCustomButton(props: MyCustomButtonProps) {
+    const { stylingProps, children, className, style, ...otherProps } = useStyledSystem(props);
 
-    const classNames = `${stylingProps.className} ${className}`;
+    // append or use "classnames" or "clsx" to merge classes
+    const classNames = `${stylingProps.className ?? ""} ${className ?? ""}`;
     const mergedStyles = { ...stylingProps.style, ...style };
 
     return (
-        <Div style={mergedStyles} className={classNames} >
-            My Custom component
-        </Div>
+        <RACButton style={mergedStyles} className={classNames} {...otherProps}>
+            {children}
+        </RACButton>
     );
 }
 
 export default function Example() {
     return (
-        <MyCustomComponent
+        <MyCustomButton
             paddingY="inset-md"
-        />
+        >
+            My Styled Button
+        </MyCustomButton>
     );
 }
