@@ -18,7 +18,7 @@ export function errorContent(error: unknown, customErrorMessage?: string): { isE
 
     return {
         ...toolContent(content(errorMessage)),
-        isError: true,
+        isError: true
     };
 }
 

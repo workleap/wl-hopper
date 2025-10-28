@@ -32,12 +32,12 @@ function createResourceResult(uri: URL, content: unknown): ReadResourceResult {
  * Helper function to create an error ReadResourceResult
  */
 function createErrorResult(uri: URL, error: unknown, message: string): ReadResourceResult {
-    const errorMessage = (error instanceof Error ? error.message : "Unknown error");
+    const errorMessage = `${message} - ${(error instanceof Error ? error.message : "Unknown error")}`;
 
     return {
         contents: [{
             uri: uri.href,
-            ...content(errorMessage),
+            ...content(errorMessage)
         }]
     };
 }

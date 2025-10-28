@@ -177,7 +177,7 @@ export function tools(server: McpServer) {
                 return toolContent(content("Component structure validation passed!"));
             }
 
-            let message = validationResult.isValid
+            const message = validationResult.isValid
                 ? "Component structure validation passed with warnings!"
                 : "Component structure validation failed!";
 
