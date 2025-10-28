@@ -1,5 +1,5 @@
 import { MOCK_ICONS_DATA } from "../../tests/mocks/iconsData";
-import { getIcons } from "../icons.service";
+import { getIcons } from "../iconsService";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({

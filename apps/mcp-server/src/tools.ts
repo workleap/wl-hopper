@@ -4,16 +4,15 @@ import type {
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { type GuideSection, GuideSections, TokenCategories } from "./config/constants";
-import { paginationParamsInfo, toolsInfo } from "./config/tools-metadata";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/component.service";
-import { getDesignTokenGuide, getGuide } from "./services/guide.service";
-import { getIcons, IconTypes } from "./services/icons.service";
-import { getDesignTokens } from "./services/tokens.service";
-import { validateHopperCode } from "./services/validator.service";
+import { paginationParamsInfo, toolsInfo } from "./config/toolsMetadata";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/componentsService";
+import { getDesignTokenGuide, getGuide } from "./services/guidesService";
+import { getIcons, IconTypes } from "./services/iconsService";
+import { getDesignTokens } from "./services/tokensService";
+import { validateHopperCode } from "./services/validatorService";
 import { content, errorContent, toolContent } from "./utils/formatter";
 import { trackError, trackEvent } from "./utils/logger";
-import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/token-name-formatter";
-import { formatValidationMessages } from "./utils/validation-message-formatter";
+import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/tokenNameFormatter";
 
 const paginationParams = {
     page_size: z
@@ -41,20 +40,26 @@ export function tools(server: McpServer) {
     }, async ({ component_name, doc_type }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_component_doc.name, { componentName: component_name, docType: doc_type }, e?.requestInfo);
 
-        let docContent;
+        try {
+            let docContent;
 
-        if (doc_type === "usage") {
-            docContent = await getComponentUsage(component_name);
-        } else if (doc_type === "props") {
-            docContent = await getComponentBriefApi(component_name);
-        } else { // props-full
-            docContent = await getComponentFullApi(component_name);
+            if (doc_type === "usage") {
+                docContent = await getComponentUsage(component_name);
+            } else if (doc_type === "props") {
+                docContent = await getComponentBriefApi(component_name);
+            } else { // props-full
+                docContent = await getComponentFullApi(component_name);
+            }
+
+            return toolContent(
+                docContent,
+                content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
+            );
+        } catch (error) {
+            trackError(error, e?.requestInfo);
+
+            return errorContent(error);
         }
-
-        return toolContent(
-            docContent,
-            content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
-        );
     });
 
     server.registerTool(toolsInfo.get_design_tokens.name, {
@@ -73,17 +78,23 @@ export function tools(server: McpServer) {
     }, async ({ category, include_css_values, search_token_names, search_css_values, search_supported_props }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
 
-        const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
+        try {
+            const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
 
-        return result.length > 0 ?
-            toolContent(
-                ...result,
-                include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
-                content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
-            ) :
-            toolContent(
-                content("No design tokens found matching the provided criteria.")
-            );
+            return result.length > 0 ?
+                toolContent(
+                    ...result,
+                    include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
+                    content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
+                ) :
+                toolContent(
+                    content("No design tokens found matching the provided criteria.")
+                );
+        } catch (error) {
+            trackError(error, e?.requestInfo);
+
+            return errorContent(error);
+        }
     });
 
     server.registerTool(toolsInfo.get_guide.name, {
@@ -100,14 +111,20 @@ export function tools(server: McpServer) {
     }, async ({ guide, category, page_size, cursor }, e): Promise<CallToolResult> => {
         trackEvent(toolsInfo.get_guide.name, { guide, category, page_size, cursor }, e?.requestInfo);
 
-        if (guide === "tokens") {
-            if (!category) {
-                return toolContent(errorContent(new Error("Category is required when guide is 'tokens'.")));
-            }
+        try {
+            if (guide === "tokens") {
+                if (!category) {
+                    return errorContent(new Error("Category is required when guide is 'tokens'."));
+                }
 
-            return toolContent(await getDesignTokenGuide(category, page_size, cursor));
-        } else {
-            return toolContent(await getGuide(guide, page_size, cursor));
+                return toolContent(await getDesignTokenGuide(category, page_size, cursor));
+            } else {
+                return toolContent(await getGuide(guide, page_size, cursor));
+            }
+        } catch (error) {
+            trackError(error, e?.requestInfo);
+
+            return errorContent(error);
         }
     });
 
@@ -123,9 +140,9 @@ export function tools(server: McpServer) {
             readOnlyHint: true
         }
     }, async ({ queries, type, limit }, e): Promise<CallToolResult> => {
-        try {
-            trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
+        trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
 
+        try {
             const results = await getIcons(queries, type, limit);
 
             if (Object.keys(results).length === 0) {
@@ -138,7 +155,7 @@ export function tools(server: McpServer) {
         } catch (error) {
             trackError(error, e?.requestInfo);
 
-            return toolContent(errorContent(error, "Failed to search icons. Please try again with different keywords."));
+            return errorContent(error);
         }
     });
 
@@ -160,18 +177,19 @@ export function tools(server: McpServer) {
                 return toolContent(content("Component structure validation passed!"));
             }
 
-            let message = validationResult.isValid
+            const message = validationResult.isValid
                 ? "Component structure validation passed with warnings!"
                 : "Component structure validation failed!";
 
-            message += formatValidationMessages(validationResult.errors, "Errors");
-            message += formatValidationMessages(validationResult.warnings, "Warnings");
-
-            return toolContent(content(message));
+            return toolContent(
+                content(message),
+                validationResult.errors.length > 0 ? content(JSON.stringify({ errors: validationResult.errors }, null, 2)) : undefined,
+                validationResult.warnings.length > 0 ? content(JSON.stringify({ warnings: validationResult.warnings }, null, 2)) : undefined
+            );
         } catch (error) {
             trackError(error, e?.requestInfo);
 
-            return toolContent(errorContent(error, "Failed to validate component structure. Please ensure the code is valid JSX/TSX."));
+            return errorContent(error);
         }
     });
 

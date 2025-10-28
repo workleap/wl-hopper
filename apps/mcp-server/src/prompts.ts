@@ -1,7 +1,7 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 import type { GuideSection } from "./config/constants";
-import { toolsInfo } from "./config/tools-metadata";
+import { toolsInfo } from "./config/toolsMetadata";
 
 const figma_get_code = "'#get_design_context'";
 const figma_get_screenshot = "'#get_screenshot'";

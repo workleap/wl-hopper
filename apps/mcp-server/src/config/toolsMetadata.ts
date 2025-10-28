@@ -1,5 +1,5 @@
 import { GuideDescriptions, type GuideSection, TokenCategoryDescriptions } from "./constants";
-import { GuideFiles, TokenGuideFiles, TokenMapFiles } from "./file-mappings";
+import { GuideFiles, TokenGuideFiles, TokenMapFiles } from "./fileMappings";
 
 export function generateDesignTokensDescription(): string {
     let description = "Available token categories:\n";

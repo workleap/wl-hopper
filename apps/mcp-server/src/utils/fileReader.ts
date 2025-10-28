@@ -2,7 +2,7 @@ import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
 import { env } from "../env";
-import { content, errorContent, getPaginatedContent } from "./formatter";
+import { content, getPaginatedContent } from "./formatter";
 import { trackError } from "./logger";
 import { paginate, type PaginatedResult } from "./pagination";
 
@@ -30,17 +30,14 @@ export async function getLocalMdContent(relativePath: string, pageSize?: number,
     const guidePath = join(env.DOCS_PATH, relativePath);
 
     if (!existsSync(guidePath)) {
-        const error = new Error(`File not found: ${guidePath}`);
-
-        return errorContent(error, "File not found.");
+        throw new Error(`File not found: ${guidePath}`);
     }
-
     try {
         return getPaginatedContent(
             await readMarkdownFile(guidePath, pageSize, cursor)
         );
     } catch (error) {
-        return errorContent(error, `Error reading file: ${error instanceof Error ? error.message : "Unknown error"}`);
+        throw new Error(`Error reading file: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
     }
 }
 
@@ -60,7 +57,7 @@ export async function getRemoteMdContent(url: string, pageSize?: number, cursor?
             paginate(result, pageSize, cursor)
         );
     } catch (error) {
-        return errorContent(error, `Error reading remote URL: ${error instanceof Error ? error.message : "Unknown error"}`);
+        throw new Error(`Error reading remote URL: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
     }
 }
 

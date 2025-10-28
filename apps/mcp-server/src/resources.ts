@@ -3,14 +3,14 @@ import { files } from "@docs/ai";
 import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
 import { GuideDescriptions, type GuideSection, GuideSections, TokenCategories, type TokenCategory, TokenCategoryDescriptions } from "./config/constants";
-import { GuideFiles, TokenGuideFiles } from "./config/file-mappings";
-import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/component.service";
-import { getDesignTokenGuide, getGuide } from "./services/guide.service";
-import { getIcons, IconTypes } from "./services/icons.service";
-import { getDesignTokens } from "./services/tokens.service";
-import { getComponentNames } from "./utils/component-utils";
-import { getLocalMdContent } from "./utils/file-reader";
-import { errorContent } from "./utils/formatter";
+import { GuideFiles, TokenGuideFiles } from "./config/fileMappings";
+import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/componentsService";
+import { getDesignTokenGuide, getGuide } from "./services/guidesService";
+import { getIcons, IconTypes } from "./services/iconsService";
+import { getDesignTokens } from "./services/tokensService";
+import { getComponentNames } from "./utils/componentUtils";
+import { getLocalMdContent } from "./utils/fileReader";
+import { content } from "./utils/formatter";
 import { trackEvent } from "./utils/logger";
 
 /**
@@ -32,10 +32,12 @@ function createResourceResult(uri: URL, content: unknown): ReadResourceResult {
  * Helper function to create an error ReadResourceResult
  */
 function createErrorResult(uri: URL, error: unknown, message: string): ReadResourceResult {
+    const errorMessage = `${message} - ${(error instanceof Error ? error.message : "Unknown error")}`;
+
     return {
         contents: [{
             uri: uri.href,
-            ...errorContent(error, message)
+            ...content(errorMessage)
         }]
     };
 }

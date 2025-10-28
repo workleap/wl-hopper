@@ -7,7 +7,7 @@ import {
     MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
     MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL
 } from "../../tests/mocks/tokensData";
-import { clearTokenDataCache, getDesignTokens } from "../tokens.service";
+import { clearTokenDataCache, getDesignTokens } from "../tokensService";
 
 const MOCK_FILE_MAP = {
     "/tokens/maps/all.json": MOCK_TOKENS_FULL,
@@ -264,28 +264,22 @@ describe("getDesignTokens", () => {
         beforeEach(() => {
             clearTokenDataCache();
         });
-        it("should return error content when file does not exist", async () => {
+        it("should throw error when file does not exist", async () => {
             // Mock existsSync to return false
             const fs = await import("fs");
             jest.spyOn(fs, "existsSync").mockReturnValueOnce(false);
 
-            const result = await getDesignTokens("all", undefined, undefined, undefined, false);
-
-            expect(result).toHaveLength(1);
-            expect(result[0]).toHaveProperty("type", "text");
-            expect(result[0].text).toContain("Tokens map not found");
+            await expect(getDesignTokens("all", undefined, undefined, undefined, false))
+                .rejects.toThrow("Tokens map not found");
         });
 
-        it("should handle JSON parse errors gracefully", async () => {
+        it("should throw error on JSON parse errors", async () => {
             // Mock readFile to return invalid JSON
             const fsPromises = await import("fs/promises");
             jest.spyOn(fsPromises, "readFile").mockResolvedValueOnce("invalid json {" as never);
 
-            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false);
-
-            expect(result).toHaveLength(1);
-            expect(result[0]).toHaveProperty("type", "text");
-            expect(result[0].text).toContain("Error filtering tokens");
+            await expect(getDesignTokens("all", ["coastal"], undefined, undefined, false))
+                .rejects.toThrow("Error filtering tokens");
         });
     });
 

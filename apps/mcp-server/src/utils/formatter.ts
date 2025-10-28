@@ -12,14 +12,13 @@ export function content(text: string): TextContent {
     };
 }
 
-export function errorContent(error: unknown, customErrorMessage?: string): { type: "text"; isError: true; text: string } {
+export function errorContent(error: unknown, customErrorMessage?: string): { isError: true; content: TextContent[] } {
     const errorMessage = customErrorMessage ||
         (error instanceof Error ? error.message : "Unknown error");
 
     return {
-        type: "text",
-        isError: true,
-        text: errorMessage
+        ...toolContent(content(errorMessage)),
+        isError: true
     };
 }
 

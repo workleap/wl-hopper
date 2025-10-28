@@ -1,6 +1,6 @@
-import { MOCK_TOKENS_FULL } from "../../tests/mocks/tokensData";
-import { MOCK_UNSAFE_PROPS } from "../../tests/mocks/unsafePropsData";
-import { validateHopperCode } from "../validator.service";
+import { MOCK_TOKENS_FULL } from "../../../tests/mocks/tokensData";
+import { MOCK_UNSAFE_PROPS } from "../../../tests/mocks/unsafePropsData";
+import { validateHopperCode } from "..";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
