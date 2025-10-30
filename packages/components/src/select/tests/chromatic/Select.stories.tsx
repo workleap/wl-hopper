@@ -149,7 +149,7 @@ export const Small = {
         </Select>
     ),
     args: {
-        defaultSelectedKey: "2",
+        defaultValue: "2",
         size: "sm"
     },
     play: playFn,
@@ -175,7 +175,7 @@ export const Medium = {
         </Select>
     ),
     args: {
-        defaultSelectedKey: "2",
+        defaultValue: "2",
         size: "md"
     },
     play: playFn,
@@ -185,7 +185,7 @@ export const Medium = {
 export const OpenWithSelectedItem = {
     ...OnlyItems,
     args: {
-        defaultSelectedKey: "cat"
+        defaultValue: "cat"
     },
     play: playFn,
     decorators: marginBottomDecoratorSM
@@ -242,7 +242,7 @@ export const SelectedItemWithIcon = {
             <Inline>
                 <Div>
                     <h1>Default Selected Key</h1>
-                    <Select {...args} defaultSelectedKey="raccoon">
+                    <Select {...args} defaultValue="raccoon">
                         <SelectItem id="dog" textValue="Dog">
                             <SparklesIcon />
                             <Text>Dog</Text>
@@ -256,7 +256,7 @@ export const SelectedItemWithIcon = {
                 </Div>
                 <Div>
                     <h1>Selected Key</h1>
-                    <Select {...args} selectedKey="raccoon">
+                    <Select {...args} value="raccoon">
                         <SelectItem id="dog" textValue="Dog">
                             <SparklesIcon />
                             <Text>Dog</Text>
@@ -270,7 +270,7 @@ export const SelectedItemWithIcon = {
                 </Div>
             </Inline>
             <h1>Disabled</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isDisabled>
+            <Select {...args} defaultValue="raccoon" isDisabled>
                 <SelectItem id="dog" textValue="Dog">
                     <SparklesIcon />
                     <Text>Dog</Text>
@@ -282,7 +282,7 @@ export const SelectedItemWithIcon = {
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
             <h1>Fluid</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isFluid>
+            <Select {...args} defaultValue="raccoon" isFluid>
                 <SelectItem id="dog" textValue="Dog">
                     <SparklesIcon />
                     <Text>Dog</Text>
@@ -295,7 +295,7 @@ export const SelectedItemWithIcon = {
             </Select>
             <h1>Limited Width</h1>
             <Div width="11%">
-                <Select {...args} defaultSelectedKey="raccoon" isFluid>
+                <Select {...args} defaultValue="raccoon" isFluid>
                     <SelectItem id="dog" textValue="Dog">
                         <SparklesIcon />
                         <Text>Dog</Text>
@@ -317,7 +317,7 @@ export const SelectedItemWithEndIcon = {
             <Inline>
                 <Div>
                     <h1>Default Selected Key</h1>
-                    <Select {...args} defaultSelectedKey="raccoon">
+                    <Select {...args} defaultValue="raccoon">
                         <SelectItem id="dog" textValue="Dog">
                             <SparklesIcon slot="end-icon" />
                             <Text>Dog</Text>
@@ -331,7 +331,7 @@ export const SelectedItemWithEndIcon = {
                 </Div>
                 <Div>
                     <h1>Selected Key</h1>
-                    <Select {...args} selectedKey="raccoon">
+                    <Select {...args} value="raccoon">
                         <SelectItem id="dog" textValue="Dog">
                             <SparklesIcon slot="end-icon" />
                             <Text>Dog</Text>
@@ -345,7 +345,7 @@ export const SelectedItemWithEndIcon = {
                 </Div>
             </Inline>
             <h1>Disabled</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isDisabled>
+            <Select {...args} defaultValue="raccoon" isDisabled>
                 <SelectItem id="dog" textValue="Dog">
                     <SparklesIcon slot="end-icon" />
                     <Text>Dog</Text>
@@ -357,7 +357,7 @@ export const SelectedItemWithEndIcon = {
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
             <h1>Fluid</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isFluid>
+            <Select {...args} defaultValue="raccoon" isFluid>
                 <SelectItem id="dog" textValue="Dog">
                     <SparklesIcon slot="end-icon" />
                     <Text>Dog</Text>
@@ -370,7 +370,7 @@ export const SelectedItemWithEndIcon = {
             </Select>
             <h1>Limited Width</h1>
             <Div width="11%">
-                <Select {...args} defaultSelectedKey="raccoon" isFluid>
+                <Select {...args} defaultValue="raccoon" isFluid>
                     <SelectItem id="dog" textValue="Dog">
                         <SparklesIcon slot="end-icon" />
                         <Text>Dog</Text>
@@ -401,7 +401,7 @@ export const SelectItemWithDescription = {
         </Select>
     ),
     args: {
-        defaultSelectedKey: "raccoon"
+        defaultValue: "raccoon"
     }
 } satisfies Story;
 
@@ -415,7 +415,7 @@ export const TriggerIcon = {
 export const ScrollingWithSelectedItemOutsideVisibleScope = {
     ...Sections,
     args: {
-        defaultSelectedKey: "7"
+        defaultValue: "7"
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
@@ -511,7 +511,7 @@ export const Invalid = {
     ...SelectItemWithDescription,
     args: {
         isInvalid: true,
-        defaultSelectedKey: "raccoon"
+        defaultValue: "raccoon"
     },
     play: playFn,
     decorators: marginBottomDecoratorMD
@@ -601,7 +601,7 @@ export const TriggerStates = {
         </Stack>
     ),
     args: {
-        defaultSelectedKey: "cat"
+        defaultValue: "cat"
     },
     decorators: marginBottomDecoratorSM
 } satisfies Story;
@@ -626,7 +626,7 @@ export const Zoom = {
         </Inline>
     ),
     args: {
-        defaultSelectedKey: "2"
+        defaultValue: "2"
     },
     decorators: marginBottomDecoratorSM
 } satisfies Story;
@@ -667,7 +667,7 @@ export const Styling = {
         </Inline>
     ),
     args: {
-        defaultSelectedKey: "2"
+        defaultValue: "2"
     },
     decorators: marginBottomDecoratorSM
 } satisfies Story;

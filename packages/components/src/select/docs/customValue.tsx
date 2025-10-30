@@ -23,7 +23,7 @@ export default function Example() {
     return (
         <Select
             renderValue={renderValue}
-            defaultSelectedKey={firstUser.id}
+            defaultValue={firstUser.id}
             items={users}
             label="Users"
         >
