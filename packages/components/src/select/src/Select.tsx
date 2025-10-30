@@ -1,17 +1,17 @@
-import { forwardRef, type ForwardedRef, type NamedExoticComponent } from "react";
+import { type ForwardedRef, type NamedExoticComponent } from "react";
 
 import { ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxSectionProps } from "../../list-box/index.ts";
 
-import { InternalSelect, type InternalSelectProps } from "./SelectInternal.tsx";
+import { SelectInternal, type InternalSelectProps } from "./SelectInternal.tsx";
 
 /**
  * Select components enable users to choose a single option from a collapsible list, optimizing space efficiency.
  *
  * [View Documentation](https://hopper.workleap.design/components/Select)
  */
-const _Select = forwardRef(InternalSelect) as <T extends object>(
+const _Select = SelectInternal as <T extends object>(
     props: SelectProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
-) => ReturnType<typeof InternalSelect>;
+) => ReturnType<typeof SelectInternal>;
 export type SelectProps<T extends object> = InternalSelectProps<T, "single">;
 (_Select as NamedExoticComponent).displayName = "Select";
 

@@ -1,6 +1,6 @@
 import { IconContext } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { type ForwardedRef, type ReactNode } from "react";
+import { forwardRef, type ForwardedRef, type ReactNode } from "react";
 import {
     Button,
     composeRenderProps,
@@ -109,7 +109,7 @@ export interface InternalSelectProps<T extends object, M extends "single" | "mul
     triggerProps?: SelectTriggerProps;
 }
 
-export function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
+function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, SelectContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -299,3 +299,8 @@ export function InternalSelect<T extends object>(props: InternalSelectProps<T>, 
         </RACSelect>
     );
 }
+const _SelectInternal = forwardRef(InternalSelect) as <T extends object, M extends "single" | "multiple" = "single">(
+    props: InternalSelectProps<T, M> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof InternalSelect>;
+
+export { _SelectInternal as SelectInternal };
