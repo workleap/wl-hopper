@@ -181,6 +181,18 @@ A select item can have a description.
 
 <Example src="select/docs/select-dropdown/description" />
 
+### Multiple Selection
+
+If you want to allow users to select multiple options from a list, use the `MultiSelect` component.
+
+<Example src="select/docs/multi-select" />
+
+### Multiple Selection with custom value display
+
+Use the `renderValue` prop to customize how the selected values are displayed in the trigger of a `MultiSelect`.
+
+<Example src="select/docs/multi-select-custom-value" />
+
 ## Best Practices
 
 The select component should:
@@ -205,6 +217,19 @@ Avoid having multiple lines of text in a select. If the text is too long for one
 ### SelectItem
 
 <PropTable component="ListBoxItem" />
+
+
+### MultiSelect
+
+<PropTable component="MultiSelect" />
+
+### MultiSelectSection
+
+<PropTable component="MultiListBoxSection" />
+
+### MultiSelectItem
+
+<PropTable component="MultiListBoxItem" />
 
 ## Migration Notes
 

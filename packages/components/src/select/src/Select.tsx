@@ -34,8 +34,7 @@ export const GlobalSelectCssSelector = "hop-Select";
 
 export type ValueRenderProps<T> = SelectValueRenderProps<T> & { defaultChildren: ReactNode };
 export type SelectTriggerProps = StyledComponentProps<RACButtonProps>;
-
-export interface SelectProps<T extends object> extends StyledComponentProps<Omit<RACSelectProps<T>, "children">>, FieldProps {
+interface InternalSelectProps<T extends object, M extends "single" | "multiple" = "single"> extends StyledComponentProps<Omit<RACSelectProps<T, M>, "children">>, FieldProps {
     /**
      * The alignment of the menu.
      * @default "start"
@@ -111,7 +110,7 @@ export interface SelectProps<T extends object> extends StyledComponentProps<Omit
     triggerProps?: SelectTriggerProps;
 }
 
-function Select<T extends object>(props: SelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
+function Select<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, SelectContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -310,6 +309,7 @@ function Select<T extends object>(props: SelectProps<T>, ref: ForwardedRef<HTMLD
 const _Select = forwardRef(Select) as <T extends object>(
     props: SelectProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
 ) => ReturnType<typeof Select>;
+export type SelectProps<T extends object> = InternalSelectProps<T, "single">;
 (_Select as NamedExoticComponent).displayName = "Select";
 
 export const SelectItem = ListBoxItem;
@@ -318,3 +318,26 @@ export const SelectSection = ListBoxSection;
 export type SelectSectionProps<T> = ListBoxSectionProps<T>;
 
 export { _Select as Select };
+
+const _MultiSelect = forwardRef((props: MultiSelectProps<object>, ref: ForwardedRef<HTMLDivElement>) => {
+    const InternalSelect = forwardRef(Select) as <T extends object>(
+        props: InternalSelectProps<T, "multiple"> & { ref?: ForwardedRef<HTMLDivElement> }
+    ) => ReturnType<typeof Select>;
+    return (
+        <InternalSelect
+            {...props}
+            selectionMode="multiple"
+            ref={ref}
+        />
+    );
+}) as <T extends object>(
+    props: MultiSelectProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof Select>;
+(_MultiSelect as NamedExoticComponent).displayName = "MultiSelect";
+export type MultiSelectProps<T extends object> = Omit<InternalSelectProps<T, "multiple">, "selectionMode" | "selectionIndicator">;
+
+export { _MultiSelect as MultiSelect };
+export const MultiSelectItem = ListBoxItem;
+export type MultiSelectItemProps<T> = ListBoxItemProps<T>;
+export const MultiSelectSection = ListBoxSection;
+export type MultiSelectSectionProps<T> = ListBoxSectionProps<T>;

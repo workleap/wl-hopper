@@ -197,7 +197,7 @@ export const SelectedItem = {
             <Inline>
                 <Div>
                     <h1>Default Selected Key</h1>
-                    <Select {...args} defaultSelectedKey="cat">
+                    <Select {...args} defaultValue="cat">
                         <SelectItem id="dog">Dog</SelectItem>
                         <SelectItem id="cat">Cat</SelectItem>
                         <SelectItem id="frog">Frog</SelectItem>
@@ -205,7 +205,7 @@ export const SelectedItem = {
                 </Div>
                 <Div>
                     <h1>Selected Key</h1>
-                    <Select {...args} selectedKey="cat">
+                    <Select {...args} value="cat">
                         <SelectItem id="dog">Dog</SelectItem>
                         <SelectItem id="cat">Cat</SelectItem>
                         <SelectItem id="frog">Frog</SelectItem>
@@ -213,20 +213,20 @@ export const SelectedItem = {
                 </Div>
             </Inline>
             <h1>Disabled</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isDisabled>
+            <Select {...args} defaultValue="raccoon" isDisabled>
                 <SelectItem id="dog">Dog</SelectItem>
                 <SelectItem id="raccoon">Raccoon</SelectItem>
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
             <h1>Fluid</h1>
-            <Select {...args} defaultSelectedKey="raccoon" isFluid>
+            <Select {...args} defaultValue="raccoon" isFluid>
                 <SelectItem id="dog">Dog</SelectItem>
                 <SelectItem id="raccoon">Raccoon</SelectItem>
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
             <h1>Limited Width</h1>
             <Div width="11%">
-                <Select {...args} defaultSelectedKey="raccoon" isFluid>
+                <Select {...args} defaultValue="raccoon" isFluid>
                     <SelectItem id="dog">Dog</SelectItem>
                     <SelectItem id="raccoon">Raccoon</SelectItem>
                     <SelectItem id="frog">Frog</SelectItem>
@@ -671,3 +671,4 @@ export const Styling = {
     },
     decorators: marginBottomDecoratorSM
 } satisfies Story;
+

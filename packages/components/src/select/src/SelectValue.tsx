@@ -2,6 +2,7 @@ import { IconContext } from "@hopper-ui/icons";
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import { filterDOMProps } from "@react-aria/utils";
 import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent, useContext, useMemo, useRef } from "react";
+import { useListFormatter } from "react-aria";
 import {
     composeRenderProps,
     DEFAULT_SLOT,
@@ -48,6 +49,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const size = useResponsiveValue(sizeProp) ?? "sm";
 
     const textRef = useRef<HTMLSpanElement>(null);
+
     // eslint-disable-next-line react-hooks/refs
     const refForOverflowCheck = textRef.current ? textRef : ref;
     const isOverflow = useIsOverflow(refForOverflowCheck);
@@ -58,7 +60,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
         : null;
 
     const stringFormatter = useLocalizedString();
-    const textValue = state?.selectedItem?.textValue;
+    const textValue = useMemo(() => state.selectedItems.map(item => item?.textValue), [state.selectedItems]);
 
     const classNames = composeClassnameRenderProps(
         className,
@@ -76,16 +78,24 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
             ...prev
         };
     }) as CSSProperties;
+    const selectionMode = state.selectionManager.selectionMode;
+
+    const formatter = useListFormatter();
+    const selectedText = useMemo(() => (
+        selectionMode === "single"
+            ? textValue[0] ?? ""
+            : formatter.format(textValue)
+    ), [selectionMode, formatter, textValue]);
 
     const renderProps = useRenderProps({
         ...otherProps,
         className: classNames,
-        defaultChildren: textValue || placeholder || stringFormatter.format("Select.placeholder"),
+        defaultChildren: selectedText || placeholder || stringFormatter.format("Select.placeholder"),
         style,
         values: {
             selectedItem: state.selectedItems[0]?.value ?? null,
             selectedItems: useMemo(() => state?.selectedItems.map(item => item.value ?? null), [state?.selectedItems]),
-            selectedText: textValue ?? "",
+            selectedText,
             isPlaceholder: !selectedItem,
             state
         }
@@ -100,7 +110,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
                 {...DOMProps}
                 {...renderProps}
                 size={size}
-                title={isOverflow ? textValue : undefined}
+                title={isOverflow ? selectedText : undefined}
                 data-placeholder={!selectedItem || undefined}
             >
                 <SlotProvider values={[
