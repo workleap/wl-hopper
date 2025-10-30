@@ -2,13 +2,13 @@ import { Select, SelectItem, Text, type Key } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {
-    const [selectedKey, setSelectedKey] = useState<Key | null>("1");
+    const [value, setValue] = useState<Key | null>("1");
 
     return (
         <Select
             aria-label="list of options"
-            selectedKey={selectedKey}
-            onSelectionChange={setSelectedKey}
+            value={value}
+            onChange={setValue}
             selectionIndicator="input"
         >
             <SelectItem textValue="Developer" id="1">

@@ -2,18 +2,18 @@ import { Header, Select, SelectItem, SelectSection, type Key } from "@hopper-ui/
 import { useState } from "react";
 
 export default function Example() {
-    const [selectedKey, setSelectedKey] = useState<Key | null>();
+    const [value, setValue] = useState<Key | null>();
 
     const handleSelectionChange = (key: Key | null) => {
-        if (selectedKey === key) {
-            setSelectedKey(null);
+        if (value === key) {
+            setValue(null);
         } else {
-            setSelectedKey(key);
+            setValue(key);
         }
     };
 
     return (
-        <Select selectedKey={selectedKey} onSelectionChange={handleSelectionChange} label="Roles">
+        <Select value={value} onChange={handleSelectionChange} label="Roles">
             <SelectSection>
                 <Header>Operations</Header>
                 <SelectItem id="1">Project Coordinator</SelectItem>
