@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.8
+
+### Patch Changes
+
+- e100da4: Added MultiSelect component
+
 ## 1.15.7
 
 ### Patch Changes
