@@ -7,7 +7,7 @@ import { SelectInternal, type InternalSelectProps } from "./SelectInternal.tsx";
 export type MultiSelectProps<T extends object> = Omit<InternalSelectProps<T, "multiple">, "selectionMode" | "selectionIndicator">;
 
 /**
- * Select components enable users to choose multiple option from a collapsible list, optimizing space efficiency.
+ * MultiSelect components enable users to choose multiple option from a collapsible list, optimizing space efficiency.
  *
  * [View Documentation](https://hopper.workleap.design/components/Select)
  */
