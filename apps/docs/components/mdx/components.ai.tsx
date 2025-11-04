@@ -49,6 +49,11 @@ export const components = {
     Link: Link,
     AI: AI,
 
+    FigmaAuthentication: () => <div />,
+    McpConfiguration: () => <div />,
+    McpServersVerification: () => <div />,
+    PromptSnippet: (children: ReactNode) => <span>{String(children)}</span>,
+
     Footnote: () => <div />,
     Figure: () => <div />,
     MotionPreview: () => <div />,

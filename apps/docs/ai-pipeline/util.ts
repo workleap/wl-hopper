@@ -1,3 +1,4 @@
+import { existsSync } from "fs";
 import { dirname, join } from "path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
 import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
@@ -19,7 +20,21 @@ function getRelativePath(path: string, basePath: string): string | null {
     return path.slice(basePath.length) || "/";
 }
 
-export function findPossibleFilePaths(urlPath: string): string[] {
+function extractPathSegments(relativePath: string, ext: string): { fileName: string; urlPath: string } {
+    const pathSegments = relativePath.split("/");
+    const fileName = `${pathSegments[pathSegments.length - 1]}.${ext}`;
+    const urlPath = pathSegments.length === 1 ? "/" : join(...pathSegments.slice(0, -1));
+    return { fileName, urlPath };
+}
+
+export function getAiDocRelativeUrl(pageRelativePath: string): string {
+    const { urlPath, fileName } = extractPathSegments(pageRelativePath, "md");
+    return `${urlPath === "/" ? "" : urlPath}/${fileName}`;
+}
+
+export function findMatchedAiFiles(relativePath: string): string[] {
+
+    const { fileName, urlPath } = extractPathSegments(relativePath, "md");
     const normalizedUrlPath = normalizePath(urlPath);
     const result = new Set<string>();
 
@@ -30,16 +45,30 @@ export function findPossibleFilePaths(urlPath: string): string[] {
         const relativePath = getRelativePath(normalizedUrlPath, baseUrlPath);
 
         if (relativePath) {
-            const rootPath = getRoutePath(route);
+            const routePath = getRoutePath(route);
             const filesInRoot = routeConfig.serve?.filesInRoot;
 
             result.add(
-                join(rootPath, filesInRoot ? "" : relativePath)
+                join(aiDocsConfig.filesFolder,
+                    routePath,
+                    filesInRoot ? "" : relativePath,
+                    fileName)
             );
         }
     }
 
     return Array.from(result);
+}
+
+export function findAiDocFile(urlPath: string, searchBaseDir: string): string | null {
+    for (const filePath of findMatchedAiFiles(urlPath)) {
+        const aiDocPath = join(searchBaseDir, filePath);
+        if (existsSync(aiDocPath)) {
+            return aiDocPath;
+        }
+    }
+
+    return null;
 }
 
 function getRoutePath(fileKey: string): string {

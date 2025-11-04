@@ -106,7 +106,6 @@ export const aiDocsConfig: AiDocsConfig = {
         "getting-started": {
             build: {
                 source: "content/getting-started",
-                excludedPaths: ["guides/figma-code-generation.mdx"],
                 flatten: true
             },
             serve: {

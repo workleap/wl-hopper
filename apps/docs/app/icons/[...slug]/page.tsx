@@ -1,7 +1,8 @@
 import { allIcons } from "@/.contentlayer/generated";
+import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getIconsSlugs } from "@/app/lib/getSlugs";
-import Title from "@/app/ui/components/title/Title";
+import { PageHeader } from "@/app/ui/components/pageHeader/PageHeader";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
@@ -26,12 +27,13 @@ export default function IconPage({ params }: PageProps) {
         notFound();
     }
 
+    const aiDoc = getAiDocAbsolutePath(["icons", ...params.slug]);
     const sectionLinks = getSectionLinks(icons);
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <Title level={1}>{icons.title}</Title>
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>

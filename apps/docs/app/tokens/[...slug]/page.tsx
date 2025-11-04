@@ -1,8 +1,10 @@
 import { allTokens } from "@/.contentlayer/generated";
 import { notFound } from "next/navigation";
 
+import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getTokensSlugs } from "@/app/lib/getSlugs";
+import { PageHeader } from "@/app/ui/components/pageHeader/PageHeader";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
@@ -26,12 +28,13 @@ export default function TokenPage({ params }: PageProps) {
         notFound();
     }
 
+    const aiDoc = getAiDocAbsolutePath(["tokens", ...params.slug]);
     const sectionLinks = getSectionLinks(designToken);
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={designToken._id}>
-                <h1 className="hd-title hd-title--level1">{designToken.title}</h1>
+                <PageHeader title={designToken.title} aiDocAbsolutePath={aiDoc} />
                 <AICallout />
                 <Mdx code={designToken.body.code} />
             </article>
