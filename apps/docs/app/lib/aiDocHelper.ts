@@ -11,9 +11,9 @@ export function getAiDocFilePath(urlPathParts: string[]): string | null {
 export function getAiDocAbsolutePath(pageUrlPathParts: string[]): string | null {
     const pageRelativePath = pageUrlPathParts.join("/");
 
-    console.log("-->", pageUrlPathParts, process.cwd());
+    console.error("-->", pageUrlPathParts, process.cwd());
     if (getAiDocFilePath(pageUrlPathParts) !== null) {
-        console.log("-->", "found");
+        console.error("-->", "found");
         const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
         return aiDocRelativeUrl.startsWith("/")
             ? aiDocRelativeUrl
