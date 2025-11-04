@@ -52,7 +52,7 @@ export const components = {
     FigmaAuthentication: () => <div />,
     McpConfiguration: () => <div />,
     McpServersVerification: () => <div />,
-    PromptSnippet: (children: ReactNode) => <span>{String(children)}</span>,
+    PromptSnippet: ({ children }: { children: ReactNode }) => <span>{String(children)}</span>,
 
     Footnote: () => <div />,
     Figure: () => <div />,
