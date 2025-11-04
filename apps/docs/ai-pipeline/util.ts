@@ -1,3 +1,5 @@
+"use server";
+
 import { access, constants } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
