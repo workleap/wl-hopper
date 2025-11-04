@@ -33,14 +33,14 @@ export default async function IconPage({ params: { slug } }: PageProps) {
         notFound();
     }
 
-    test();
+    const result = test();
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" exists={test()} />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" searchParams="test" exists={result} />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>
