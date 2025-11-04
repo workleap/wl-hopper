@@ -11,8 +11,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 function test() {
-    existsSync(join(process.cwd(), "foo"));
-    return join(process.cwd(), "foo");
+    return existsSync(join(process.cwd(), "foo"));
 }
 
 interface PageProps {
@@ -41,7 +40,7 @@ export default async function IconPage({ params: { slug } }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" exists={test()} />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>
