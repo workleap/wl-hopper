@@ -33,7 +33,6 @@ export function getAiDocRelativeUrl(pageRelativePath: string): string {
 }
 
 export function findMatchedAiFiles(relativePath: string): string[] {
-
     const { fileName, urlPath } = extractPathSegments(relativePath, "md");
     const normalizedUrlPath = normalizePath(urlPath);
     const result = new Set<string>();
@@ -50,9 +49,9 @@ export function findMatchedAiFiles(relativePath: string): string[] {
 
             result.add(
                 join(aiDocsConfig.filesFolder,
-                    routePath,
-                    filesInRoot ? "" : relativePath,
-                    fileName)
+                     routePath,
+                     filesInRoot ? "" : relativePath,
+                     fileName)
             );
         }
     }
