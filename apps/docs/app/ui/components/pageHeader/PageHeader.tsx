@@ -3,14 +3,17 @@
 import Title from "@/app/ui/components/title/Title";
 import { Button, Divider, Inline, Menu, MenuItem, MenuTrigger, Text, Tooltip, TooltipTrigger } from "@hopper-ui/components";
 import { AngleDownIcon } from "@hopper-ui/icons";
-import { useEffect } from "react";
 
 interface PageHeaderProps {
     title: string;
     aiDocAbsolutePath?: string | null;
     sectionTitle: string;
     sectionPath: string;
+
+    // eslint-disable-next-line
     searchParams?: string;
+
+    // eslint-disable-next-line
     exists?: boolean;
 }
 
@@ -47,17 +50,17 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath, searchParams, exists }: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
         : aiDocAbsolutePath;
 
-    useEffect(() => {
-        if (searchParams) {
-            alert(`Search Params: ${searchParams}, Exists: ${exists}`);
-        }
-    }, [searchParams, exists]);
+    // useEffect(() => {
+    //     if (searchParams) {
+    //         alert(`Search Params: ${searchParams}, Exists: ${exists}`);
+    //     }
+    // }, [searchParams, exists]);
 
     // Extract section URL for index.md
     const sectionIndexUrl = sectionPath && baseUrl
