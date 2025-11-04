@@ -7,9 +7,11 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 
 function test() {
+    existsSync(join(process.cwd(), "foo"));
     return join(process.cwd(), "foo");
 }
 
