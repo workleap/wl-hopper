@@ -59,40 +59,41 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
     const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
 
     return (
-        !aiDocAbsolutePath ? <Title level={1}>{title}</Title> :
-        <Inline alignY="baseline" gap="inline-sm" wrap={false}>
-            <Title level={1}>{title}</Title>
-            <MenuTrigger>
-                <TooltipTrigger>
-                    <Button variant="secondary" size="xs" aria-label="Page options" minWidth="core_240">
-                        <AngleDownIcon />
-                    </Button>
-                    <Tooltip>View in Markdown or AI tools</Tooltip>
-                </TooltipTrigger>
-                <Menu>
-                    <MenuItem href={fullMarkdownUrl ?? undefined} target="_blank" rel="noopener noreferrer">
-                        <MarkdownIcon />
-                        <Text>View as Markdown</Text>
-                    </MenuItem>
-                    <MenuItem href={chatGptUrl} target="_blank" rel="noopener noreferrer">
-                        <ChatGPTIcon />
-                        <Text>Open in ChatGPT</Text>
-                    </MenuItem>
-                    <MenuItem href={claudeUrl} target="_blank" rel="noopener noreferrer">
-                        <ClaudeIcon />
-                        <Text>Open in Claude</Text>
-                    </MenuItem>
-                    {sectionIndexUrl && (
-                        <>
-                            <Divider />
-                            <MenuItem href={sectionIndexUrl} target="_blank" rel="noopener noreferrer">
-                                <MarkdownIcon />
-                                <Text>{sectionTitle} Complete Reference</Text>
-                            </MenuItem>
-                        </>
-                    )}
-                </Menu>
-            </MenuTrigger>
-        </Inline>
+        !aiDocAbsolutePath ? <Title level={1}>{title}</Title> : (
+            <Inline alignY="baseline" gap="inline-sm" wrap={false}>
+                <Title level={1}>{title}</Title>
+                <MenuTrigger>
+                    <TooltipTrigger>
+                        <Button variant="secondary" size="xs" aria-label="Page options" minWidth="core_240">
+                            <AngleDownIcon />
+                        </Button>
+                        <Tooltip>View in Markdown or AI tools</Tooltip>
+                    </TooltipTrigger>
+                    <Menu>
+                        <MenuItem href={fullMarkdownUrl ?? undefined} target="_blank" rel="noopener noreferrer">
+                            <MarkdownIcon />
+                            <Text>View as Markdown</Text>
+                        </MenuItem>
+                        <MenuItem href={chatGptUrl} target="_blank" rel="noopener noreferrer">
+                            <ChatGPTIcon />
+                            <Text>Open in ChatGPT</Text>
+                        </MenuItem>
+                        <MenuItem href={claudeUrl} target="_blank" rel="noopener noreferrer">
+                            <ClaudeIcon />
+                            <Text>Open in Claude</Text>
+                        </MenuItem>
+                        {sectionIndexUrl && (
+                            <>
+                                <Divider />
+                                <MenuItem href={sectionIndexUrl} target="_blank" rel="noopener noreferrer">
+                                    <MarkdownIcon />
+                                    <Text>{sectionTitle} Complete Reference</Text>
+                                </MenuItem>
+                            </>
+                        )}
+                    </Menu>
+                </MenuTrigger>
+            </Inline>
+        )
     );
 }
