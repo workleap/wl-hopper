@@ -21,14 +21,15 @@ function findPageFromSlug(slug: string[]) {
     return allTokens.find(page => page.section === section && page.slug === type);
 }
 
-export default function TokenPage({ params }: PageProps) {
-    const designToken = findPageFromSlug(params.slug);
+export default function TokenPage({ params: { slug } }: PageProps) {
+    const designToken = findPageFromSlug(slug);
 
     if (!designToken) {
         notFound();
     }
 
-    const aiDoc = getAiDocAbsolutePath(["tokens", ...params.slug]);
+    const [section, type] = slug;
+    const aiDoc = getAiDocAbsolutePath(["tokens", section, type]);
     const sectionLinks = getSectionLinks(designToken);
 
     return (

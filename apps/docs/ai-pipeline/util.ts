@@ -59,7 +59,7 @@ export function findMatchedAiFiles(relativePath: string): string[] {
     return Array.from(result);
 }
 
-export function findAiDocFile(urlPath: string, searchBaseDir: string): string | null {
+export function findAiDocFilePath(urlPath: string, searchBaseDir: string): string | null {
     for (const filePath of findMatchedAiFiles(urlPath)) {
         const aiDocPath = join(searchBaseDir, filePath);
         if (existsSync(aiDocPath)) {

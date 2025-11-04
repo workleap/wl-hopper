@@ -1,4 +1,4 @@
-import { getAiDoc } from "@/app/lib/aiDocHelper";
+import { getAiDocFilePath } from "@/app/lib/aiDocHelper";
 import fs from "node:fs/promises";
 
 export const runtime = "nodejs"; // ensures filesystem access works in Next.js
@@ -12,7 +12,7 @@ export async function GET(
         return new Response("Not found", { status: 404 });
     }
 
-    const filePath = getAiDoc(parts);
+    const filePath = getAiDocFilePath(parts);
 
     if (!filePath) {
         return new Response("Invalid path", { status: 400 });

@@ -20,14 +20,15 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-export default function IconPage({ params }: PageProps) {
-    const icons = findPageFromSlug(params.slug);
+export default function IconPage({ params: { slug } }: PageProps) {
+    const icons = findPageFromSlug(slug);
 
     if (!icons) {
         notFound();
     }
 
-    const aiDoc = getAiDocAbsolutePath(["icons", ...params.slug]);
+    const [section, type] = slug;
+    const aiDoc = getAiDocAbsolutePath(["icons", section, type]);
     const sectionLinks = getSectionLinks(icons);
 
     return (
