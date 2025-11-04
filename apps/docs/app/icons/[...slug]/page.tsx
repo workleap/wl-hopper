@@ -33,7 +33,7 @@ export default function IconPage({ params }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>

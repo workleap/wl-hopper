@@ -7,7 +7,8 @@ import { AngleDownIcon } from "@hopper-ui/icons";
 interface PageHeaderProps {
     title: string;
     aiDocAbsolutePath?: string | null;
-    sectionTitle?: string;
+    sectionTitle: string;
+    sectionPath: string;
 }
 
 function MarkdownIcon() {
@@ -43,23 +44,15 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath, sectionTitle }: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
         : aiDocAbsolutePath;
 
     // Extract section URL for index.md
-    const sectionIndexUrl = aiDocAbsolutePath && baseUrl
-        ? (() => {
-            const parts = aiDocAbsolutePath.split("/").filter(Boolean);
-            if (parts.length > 1) {
-                // Take first part (e.g., "ai-docs") and add "index.md"
-                const sectionPath = `/${parts[0]}/index.md`;
-                return `${baseUrl}${sectionPath}`;
-            }
-            return null;
-        })()
+    const sectionIndexUrl = sectionPath && baseUrl
+        ? `${baseUrl}/${sectionPath}/index.md`
         : null;
 
     const chatGptUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
@@ -94,7 +87,7 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle }: PageHeade
                             <Divider />
                             <MenuItem href={sectionIndexUrl} target="_blank" rel="noopener noreferrer">
                                 <MarkdownIcon />
-                                <Text>View {sectionTitle || "Complete Reference"} Markdown</Text>
+                                <Text>{sectionTitle} Complete Reference</Text>
                             </MenuItem>
                         </>
                     )}
