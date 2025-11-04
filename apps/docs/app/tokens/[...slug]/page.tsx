@@ -34,7 +34,7 @@ export default function TokenPage({ params }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={designToken._id}>
-                <PageHeader title={designToken.title} aiDocAbsolutePath={aiDoc} />
+                <PageHeader title={designToken.title} aiDocAbsolutePath={aiDoc} sectionTitle="Tokens" />
                 <AICallout />
                 <Mdx code={designToken.body.code} />
             </article>

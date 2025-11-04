@@ -34,7 +34,7 @@ export default function StyledSystemPage({ params }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
-                <PageHeader title={title} aiDocAbsolutePath={aiDoc} />
+                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Styled System" />
                 <AICallout />
                 <Mdx code={code} />
             </article>

@@ -18,15 +18,16 @@ export interface HeadingProps {
     className?: string;
     links?: Links[];
     aiDocAbsolutePath?: string | null;
+    sectionTitle?: string;
 }
 
-const Heading = ({ title, tag, alpha, className, description, links, aiDocAbsolutePath }: HeadingProps) => {
+const Heading = ({ title, tag, alpha, className, description, links, aiDocAbsolutePath, sectionTitle }: HeadingProps) => {
     const { colorMode } = useContext(ThemeContext);
 
     return (
         <div className={clsx("hd-heading", className)}>
             <div className="hd-heading__title">
-                <PageHeader title={title} aiDocAbsolutePath={aiDocAbsolutePath} />
+                <PageHeader title={title} aiDocAbsolutePath={aiDocAbsolutePath} sectionTitle={sectionTitle} />
                 {tag && <Tag>{tag}</Tag>}
             </div>
             {alpha && (

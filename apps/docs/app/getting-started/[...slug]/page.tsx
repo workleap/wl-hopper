@@ -32,7 +32,7 @@ export default function GettingStartedPage({ params }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
-                <PageHeader title={title} aiDocAbsolutePath={aiDoc}/>
+                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Getting Started"/>
                 <Mdx code={code} />
             </article>
         </BasePageLayout>

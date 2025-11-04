@@ -66,7 +66,7 @@ export default async function ComponentPage({ params }: PageProps) {
     return (
         <div className="hd-section">
             <BasePageLayout showSections={type !== "component-list"} sectionsLinks={sectionLinks}>
-                <Heading title={title} tag={status} alpha={alpha} description={description} links={componentLinks} aiDocAbsolutePath={aiDoc} />
+                <Heading title={title} tag={status} alpha={alpha} description={description} links={componentLinks} aiDocAbsolutePath={aiDoc} sectionTitle="Components" />
                 <div className="hd-content">
                     {content}
                 </div>

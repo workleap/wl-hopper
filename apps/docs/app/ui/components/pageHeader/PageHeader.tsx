@@ -7,6 +7,7 @@ import { AngleDownIcon } from "@hopper-ui/icons";
 interface PageHeaderProps {
     title: string;
     aiDocAbsolutePath?: string | null;
+    sectionTitle?: string;
 }
 
 function MarkdownIcon() {
@@ -42,7 +43,7 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath }: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
@@ -93,7 +94,7 @@ export function PageHeader({ title, aiDocAbsolutePath }: PageHeaderProps) {
                             <Divider />
                             <MenuItem href={sectionIndexUrl} target="_blank" rel="noopener noreferrer">
                                 <MarkdownIcon />
-                                <Text>View Complete Reference</Text>
+                                <Text>View {sectionTitle || "Complete Reference"} Markdown</Text>
                             </MenuItem>
                         </>
                     )}
