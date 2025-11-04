@@ -3,17 +3,17 @@
 import { findAiDocFilePath, getAiDocRelativeUrl } from "@/ai-pipeline/util";
 import { join } from "node:path";
 
-export function getAiDocFilePath(urlPathParts: string[]): string | null {
+export async function getAiDocFilePath(urlPathParts: string[]): Promise<string | null> {
     const relativePath = urlPathParts.join("/");
 
     const searchBaseDir = join(process.cwd(), "public");
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
 
-export function getAiDocAbsolutePath(pageUrlPathParts: string[]): string | null {
+export async function getAiDocAbsolutePath(pageUrlPathParts: string[]): Promise<string | null> {
     const pageRelativePath = pageUrlPathParts.join("/");
 
-    if (getAiDocFilePath(pageUrlPathParts) !== null) {
+    if (await getAiDocFilePath(pageUrlPathParts) !== null) {
         const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
         return aiDocRelativeUrl.startsWith("/")
             ? aiDocRelativeUrl

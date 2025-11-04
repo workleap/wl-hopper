@@ -35,7 +35,7 @@ export default async function ComponentPage({ params }: PageProps) {
     }
     const componentDetails = await getComponentDetails(component._raw.sourceFilePath);
     const { content, frontmatter: { title, status, description, links, alpha } } = componentDetails;
-    const aiDoc = getAiDocAbsolutePath(["components", type]);
+    const aiDoc = await getAiDocAbsolutePath(["components", ...params.slug]);
 
     const componentLinks = links && [
         {

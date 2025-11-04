@@ -1,5 +1,3 @@
-"use server";
-
 import { allIcons } from "@/.contentlayer/generated";
 import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
@@ -22,14 +20,14 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-export default function IconPage({ params: { slug } }: PageProps) {
+export default async function IconPage({ params: { slug } }: PageProps) {
     const icons = findPageFromSlug(slug);
 
     if (!icons) {
         notFound();
     }
 
-    const aiDoc = getAiDocAbsolutePath(["icons", ...slug]);
+    const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
     return (

@@ -12,7 +12,7 @@ export async function GET(
         return new Response("Not found", { status: 404 });
     }
 
-    const filePath = getAiDocFilePath(parts);
+    const filePath = await getAiDocFilePath(parts);
 
     if (!filePath) {
         return new Response("Invalid path", { status: 400 });

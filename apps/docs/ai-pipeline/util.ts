@@ -1,4 +1,5 @@
-import { existsSync } from "node:fs";
+import { constants } from "fs";
+import { access } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
 import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
@@ -59,10 +60,19 @@ export function findMatchedAiFiles(relativePath: string): string[] {
     return Array.from(result);
 }
 
-export function findAiDocFilePath(urlPath: string, searchBaseDir: string): string | null {
+async function fileExists(path: string): Promise<boolean> {
+    try {
+        await access(path, constants.F_OK);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+export async function findAiDocFilePath(urlPath: string, searchBaseDir: string): Promise<string | null> {
     for (const filePath of findMatchedAiFiles(urlPath)) {
         const aiDocPath = join(searchBaseDir, filePath);
-        if (existsSync(aiDocPath)) {
+        if (await fileExists(aiDocPath)) {
             return aiDocPath;
         }
     }

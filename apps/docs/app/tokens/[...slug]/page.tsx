@@ -23,14 +23,14 @@ function findPageFromSlug(slug: string[]) {
     return allTokens.find(page => page.section === section && page.slug === type);
 }
 
-export default function TokenPage({ params: { slug }, searchParams }: PageProps) {
+export default async function TokenPage({ params: { slug }, searchParams }: PageProps) {
     const designToken = findPageFromSlug(slug);
 
     if (!designToken) {
         notFound();
     }
 
-    const aiDoc = getAiDocAbsolutePath(["tokens", ...slug]);
+    const aiDoc = await getAiDocAbsolutePath(["tokens", ...slug]);
     const sectionLinks = getSectionLinks(designToken);
     const exists = searchParams && Object.keys(searchParams).length > 0 ? existsSync(join(process.cwd(), String(searchParams["q"]))) : false;
 

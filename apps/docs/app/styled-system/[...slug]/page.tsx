@@ -20,14 +20,14 @@ function findPageFromSlug(slug: string[]) {
     return allStyledSystems.find(page => page.section === section && page.slug === type);
 }
 
-export default function StyledSystemPage({ params }: PageProps) {
+export default async function StyledSystemPage({ params }: PageProps) {
     const page = findPageFromSlug(params.slug);
 
     if (!page) {
         notFound();
     }
 
-    const aiDoc = getAiDocAbsolutePath(["styled-system", ...params.slug]);
+    const aiDoc = await getAiDocAbsolutePath(["styled-system", ...params.slug]);
     const sectionLinks = getSectionLinks(page);
     const { title, body: { code }, _id: id } = page;
 
