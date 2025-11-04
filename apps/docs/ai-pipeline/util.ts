@@ -1,7 +1,6 @@
-"use server";
-
 import { access, constants } from "node:fs/promises";
 import { dirname, join } from "node:path";
+import "server-only";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
 import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
 
