@@ -47,17 +47,17 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath, searchParams , exists}: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath, searchParams, exists }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
         : aiDocAbsolutePath;
 
-        useEffect(() => {
-            if (searchParams) {
-                alert(`Search Params: ${searchParams}, Exists: ${exists}`);
-            }
-        }, [searchParams, exists]);
+    useEffect(() => {
+        if (searchParams) {
+            alert(`Search Params: ${searchParams}, Exists: ${exists}`);
+        }
+    }, [searchParams, exists]);
 
     // Extract section URL for index.md
     const sectionIndexUrl = sectionPath && baseUrl

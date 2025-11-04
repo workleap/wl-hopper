@@ -24,7 +24,7 @@ function findPageFromSlug(slug: string[]) {
     return allTokens.find(page => page.section === section && page.slug === type);
 }
 
-export default function TokenPage({ params: { slug } , searchParams}: PageProps) {
+export default function TokenPage({ params: { slug }, searchParams }: PageProps) {
     const designToken = findPageFromSlug(slug);
 
     if (!designToken) {
