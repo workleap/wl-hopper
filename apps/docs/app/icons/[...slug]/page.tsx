@@ -7,6 +7,11 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
+import { join } from "node:path";
+
+function test() {
+    return join(process.cwd(), "foo");
+}
 
 interface PageProps {
     params: {
@@ -27,6 +32,7 @@ export default async function IconPage({ params: { slug } }: PageProps) {
         notFound();
     }
 
+    test();
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
