@@ -29,6 +29,7 @@ export default function TokenPage({ params: { slug } }: PageProps) {
     }
 
     const [section, type] = slug;
+
     const aiDoc = getAiDocAbsolutePath(["tokens", section, type]);
     const sectionLinks = getSectionLinks(designToken);
 
