@@ -1,5 +1,5 @@
-import { existsSync } from "fs";
-import { dirname, join } from "path";
+import { existsSync } from "node:fs";
+import { dirname, join } from "node:path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
 import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
 

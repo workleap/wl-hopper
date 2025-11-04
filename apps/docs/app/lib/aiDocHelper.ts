@@ -1,3 +1,5 @@
+"use server";
+
 import { findAiDocFilePath, getAiDocRelativeUrl } from "@/ai-pipeline/util";
 import { join } from "node:path";
 

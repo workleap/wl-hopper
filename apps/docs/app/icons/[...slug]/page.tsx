@@ -1,3 +1,5 @@
+"use server";
+
 import { allIcons } from "@/.contentlayer/generated";
 import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
