@@ -27,8 +27,7 @@ export default function IconPage({ params: { slug } }: PageProps) {
         notFound();
     }
 
-    const [section, type] = slug;
-    const aiDoc = getAiDocAbsolutePath(["icons", section, type]);
+    const aiDoc = getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
     return (
