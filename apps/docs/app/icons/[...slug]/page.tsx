@@ -10,14 +10,11 @@ import { notFound } from "next/navigation";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 
-function test() {
-    return existsSync(join(process.cwd(), "foo"));
-}
-
 interface PageProps {
     params: {
         slug: string[];
     };
+    searchParams: Record<string, string | string[] | undefined>;
 }
 
 function findPageFromSlug(slug: string[]) {
@@ -26,21 +23,22 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-export default async function IconPage({ params: { slug } }: PageProps) {
+export default async function IconPage({ params: { slug }, searchParams }: PageProps) {
     const icons = findPageFromSlug(slug);
 
     if (!icons) {
         notFound();
     }
 
-    const result = test();
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
+    const exists = searchParams && Object.keys(searchParams).length > 0 ? existsSync(join(process.cwd(), String(searchParams["q"]))) : false;
+    const q = join(process.cwd(), String(searchParams["q"]));
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" searchParams="test" exists={result} />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" searchParams={q} exists={exists} />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>
