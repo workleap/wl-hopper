@@ -7,6 +7,16 @@
         "**/.contentlayer*": true,
     },
 
+    "eslint.probe": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "jsonc",
+        "yaml"
+    ],
+
     // Formatters settings
     "editor.codeActionsOnSave": {
         "source.fixAll": "explicit",

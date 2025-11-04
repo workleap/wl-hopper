@@ -4,17 +4,14 @@ import { join } from "node:path";
 export function getAiDocFilePath(urlPathParts: string[]): string | null {
     const relativePath = urlPathParts.join("/");
 
-    console.error("-->", urlPathParts, process.cwd());
-    const searchBaseDir = join(process.cwd(), "public");
+    const searchBaseDir = join(process.cwd(), "");
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
 
 export function getAiDocAbsolutePath(pageUrlPathParts: string[]): string | null {
     const pageRelativePath = pageUrlPathParts.join("/");
 
-    console.error("-->", pageUrlPathParts, process.cwd());
     if (getAiDocFilePath(pageUrlPathParts) !== null) {
-        console.error("-->", "found");
         const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
         return aiDocRelativeUrl.startsWith("/")
             ? aiDocRelativeUrl
