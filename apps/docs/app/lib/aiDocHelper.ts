@@ -6,7 +6,7 @@ import { join } from "node:path";
 export async function getAiDocFilePath(urlPathParts: string[]): Promise<string | null> {
     const relativePath = urlPathParts.join("/");
 
-    const searchBaseDir = join(process.cwd(), "public");
+    const searchBaseDir = join(import.meta.dirname, "../../", "public");
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
 
