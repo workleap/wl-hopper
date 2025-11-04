@@ -4,7 +4,7 @@ import { join } from "node:path";
 export function getAiDocFilePath(urlPathParts: string[]): string | null {
     const relativePath = urlPathParts.join("/");
 
-     console.error("-->", urlPathParts, process.cwd());
+    console.error("-->", urlPathParts, process.cwd());
     const searchBaseDir = join(process.cwd(), "public");
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
