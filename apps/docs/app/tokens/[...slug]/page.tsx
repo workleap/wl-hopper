@@ -1,11 +1,12 @@
 import { allTokens } from "@/.contentlayer/generated";
-import { notFound } from "next/navigation";
-
+import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getTokensSlugs } from "@/app/lib/getSlugs";
+import { PageHeader } from "@/app/ui/components/pageHeader/PageHeader";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
+import { notFound } from "next/navigation";
 
 interface PageProps {
     params: {
@@ -19,19 +20,20 @@ function findPageFromSlug(slug: string[]) {
     return allTokens.find(page => page.section === section && page.slug === type);
 }
 
-export default function TokenPage({ params }: PageProps) {
-    const designToken = findPageFromSlug(params.slug);
+export default function TokenPage({ params: { slug } }: PageProps) {
+    const designToken = findPageFromSlug(slug);
 
     if (!designToken) {
         notFound();
     }
 
+    const aiDoc = getAiDocAbsolutePath(["tokens", ...slug]);
     const sectionLinks = getSectionLinks(designToken);
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={designToken._id}>
-                <h1 className="hd-title hd-title--level1">{designToken.title}</h1>
+                <PageHeader title={designToken.title} aiDocAbsolutePath={aiDoc} sectionTitle="Tokens" sectionPath="tokens" />
                 <AICallout />
                 <Mdx code={designToken.body.code} />
             </article>

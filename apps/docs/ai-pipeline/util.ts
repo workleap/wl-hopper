@@ -1,4 +1,7 @@
-import { dirname, join } from "path";
+"server only";
+
+import { access, constants } from "node:fs/promises";
+import { dirname, join } from "node:path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
 import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
 
@@ -19,7 +22,20 @@ function getRelativePath(path: string, basePath: string): string | null {
     return path.slice(basePath.length) || "/";
 }
 
-export function findPossibleFilePaths(urlPath: string): string[] {
+function extractPathSegments(relativePath: string, ext: string): { fileName: string; urlPath: string } {
+    const pathSegments = relativePath.split("/");
+    const fileName = `${pathSegments[pathSegments.length - 1]}.${ext}`;
+    const urlPath = pathSegments.length === 1 ? "/" : join(...pathSegments.slice(0, -1));
+    return { fileName, urlPath };
+}
+
+export function getAiDocRelativeUrl(pageRelativePath: string): string {
+    const { urlPath, fileName } = extractPathSegments(pageRelativePath, "md");
+    return `${urlPath === "/" ? "" : urlPath}/${fileName}`;
+}
+
+export function findMatchedAiFiles(relativePath: string): string[] {
+    const { fileName, urlPath } = extractPathSegments(relativePath, "md");
     const normalizedUrlPath = normalizePath(urlPath);
     const result = new Set<string>();
 
@@ -30,16 +46,39 @@ export function findPossibleFilePaths(urlPath: string): string[] {
         const relativePath = getRelativePath(normalizedUrlPath, baseUrlPath);
 
         if (relativePath) {
-            const rootPath = getRoutePath(route);
+            const routePath = getRoutePath(route);
             const filesInRoot = routeConfig.serve?.filesInRoot;
 
             result.add(
-                join(rootPath, filesInRoot ? "" : relativePath)
+                join(aiDocsConfig.filesFolder,
+                     routePath,
+                     filesInRoot ? "" : relativePath,
+                     fileName)
             );
         }
     }
 
     return Array.from(result);
+}
+
+async function fileExists(path: string): Promise<boolean> {
+    try {
+        await access(path, constants.F_OK);
+        return true;
+    } catch {
+        return false;
+    }
+}
+
+export async function findAiDocFilePath(urlPath: string, searchBaseDir: string): Promise<string | null> {
+    for (const filePath of findMatchedAiFiles(urlPath)) {
+        const aiDocPath = join(searchBaseDir, filePath);
+        if (await fileExists(aiDocPath)) {
+            return aiDocPath;
+        }
+    }
+
+    return null;
 }
 
 function getRoutePath(fileKey: string): string {

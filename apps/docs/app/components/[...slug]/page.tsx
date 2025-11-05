@@ -1,4 +1,5 @@
 import { allComponents } from "@/.contentlayer/generated";
+import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import { getComponentDetails } from "@/app/lib/getComponentDetails.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
 import { getComponentsSlugs } from "@/app/lib/getSlugs";
@@ -34,6 +35,7 @@ export default async function ComponentPage({ params }: PageProps) {
     }
     const componentDetails = await getComponentDetails(component._raw.sourceFilePath);
     const { content, frontmatter: { title, status, description, links, alpha } } = componentDetails;
+    const aiDoc = getAiDocAbsolutePath(["components", ...params.slug]);
 
     const componentLinks = links && [
         {
@@ -64,7 +66,7 @@ export default async function ComponentPage({ params }: PageProps) {
     return (
         <div className="hd-section">
             <BasePageLayout showSections={type !== "component-list"} sectionsLinks={sectionLinks}>
-                <Heading title={title} tag={status} alpha={alpha} description={description} links={componentLinks} />
+                <Heading title={title} tag={status} alpha={alpha} description={description} links={componentLinks} aiDocAbsolutePath={aiDoc} sectionTitle="Components" sectionPath="components" />
                 <div className="hd-content">
                     {content}
                 </div>
