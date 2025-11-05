@@ -7,7 +7,7 @@
         "**/.contentlayer*": true,
     },
 
-    "eslint.validate": [
+    "eslint.probe": [
         "javascript",
         "javascriptreact",
         "typescript",
