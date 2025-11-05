@@ -59,6 +59,7 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
 
     useEffect(() => {
         if (data) {
+            console.warn("Debug Data:", data);
             alert(`Data: ${data}`);
         }
     }, [data]);
