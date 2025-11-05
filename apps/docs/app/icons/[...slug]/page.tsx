@@ -7,6 +7,8 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 interface PageProps {
     params: {
@@ -30,10 +32,15 @@ export default async function IconPage({ params: { slug } }: PageProps) {
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
+    const _temp = {
+        x: join(process.cwd(), "public"),
+        y: existsSync(process.cwd())
+    };
+
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" refresh={_temp} />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>

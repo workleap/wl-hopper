@@ -10,6 +10,7 @@ interface PageHeaderProps {
     aiDocAbsolutePath?: string | null;
     sectionTitle: string;
     sectionPath: string;
+    refresh?: object;
 }
 
 function MarkdownIcon() {
@@ -45,7 +46,7 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath }: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath, refresh }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
@@ -57,8 +58,9 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
         : null;
 
     useEffect(() => {
-        console.warn("Debug Data:", aiDocAbsolutePath);
-    }, [aiDocAbsolutePath]);
+        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+        refresh;
+    }, [refresh]);
 
     const chatGptUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
     const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;

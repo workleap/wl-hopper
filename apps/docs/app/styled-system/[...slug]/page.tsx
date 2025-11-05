@@ -7,6 +7,8 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 
 interface PageProps {
     params: {
@@ -31,10 +33,15 @@ export default async function StyledSystemPage({ params }: PageProps) {
     const sectionLinks = getSectionLinks(page);
     const { title, body: { code }, _id: id } = page;
 
+    const _temp = {
+        x: join(process.cwd(), "public"),
+        y: existsSync(process.cwd())
+    };
+
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
-                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Styled System" sectionPath="styled-system" />
+                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Styled System" sectionPath="styled-system" refresh={_temp} />
                 <AICallout />
                 <Mdx code={code} />
             </article>
