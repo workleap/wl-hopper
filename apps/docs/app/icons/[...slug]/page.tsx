@@ -33,13 +33,13 @@ export default async function IconPage({ params: { slug }, searchParams }: PageP
 
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
-    const data = {
+    const data = JSON.stringify({
         cwd: process.cwd(),
         path: join(env.isNetlifyFunction ? "/var/task/apps/docs/" : process.cwd(), "public"),
         env: process.env,
         exists: existsSync(join(env.isNetlifyFunction ? "/var/task/apps/docs/" : process.cwd(), "public", searchParams["q"] as string || "")),
         searchParams
-    };
+    });
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>

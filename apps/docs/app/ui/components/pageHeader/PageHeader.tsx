@@ -10,7 +10,7 @@ interface PageHeaderProps {
     aiDocAbsolutePath?: string | null;
     sectionTitle: string;
     sectionPath: string;
-    data?: object;
+    data?: string;
 }
 
 function MarkdownIcon() {
@@ -59,7 +59,7 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
 
     useEffect(() => {
         if (data) {
-            alert(`Data: ${JSON.stringify(data)}`);
+            alert(`Data: ${data}`);
         }
     }, [data]);
 
