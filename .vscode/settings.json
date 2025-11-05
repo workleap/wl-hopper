@@ -14,7 +14,7 @@
         "typescriptreact",
         "json",
         "jsonc",
-        "yaml"
+        "mdx"
     ],
 
     // Formatters settings
