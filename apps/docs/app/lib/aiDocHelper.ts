@@ -7,7 +7,7 @@ import { join } from "node:path";
 export async function getAiDocFilePath(urlPathParts: string[]): Promise<string | null> {
     const relativePath = urlPathParts.join("/");
 
-    const searchBaseDir = join(env.isNetlifyFunction ? "/var/task/apps/docs/" : process.cwd(), "public");
+    const searchBaseDir = env.isNetlifyFunction ? "/var/task/apps/docs/" : join(process.cwd(), "public");
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
 
