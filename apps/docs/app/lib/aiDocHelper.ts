@@ -1,5 +1,3 @@
-"use server";
-
 import { findAiDocFilePath, getAiDocRelativeUrl } from "@/ai-pipeline/util";
 import { env } from "@/context/env/env";
 import { join } from "node:path";
@@ -11,14 +9,11 @@ export async function getAiDocFilePath(urlPathParts: string[]): Promise<string |
     return findAiDocFilePath(relativePath, searchBaseDir);
 }
 
-export async function getAiDocAbsolutePath(pageUrlPathParts: string[]): Promise<string | null> {
+export function getAiDocAbsolutePath(pageUrlPathParts: string[]) {
     const pageRelativePath = pageUrlPathParts.join("/");
 
-    if (await getAiDocFilePath(pageUrlPathParts) !== null) {
-        const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
-        return aiDocRelativeUrl.startsWith("/")
-            ? aiDocRelativeUrl
-            : `/${aiDocRelativeUrl}`;
-    }
-    return null;
+    const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
+    return aiDocRelativeUrl.startsWith("/")
+        ? aiDocRelativeUrl
+        : `/${aiDocRelativeUrl}`;
 }

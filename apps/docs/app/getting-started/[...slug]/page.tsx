@@ -19,13 +19,13 @@ function findPageFromSlug(slug: string[]) {
     return allGettingStarteds.find(page => page.section === section && page.slug === type);
 }
 
-export default async function GettingStartedPage({ params }: PageProps) {
+export default function GettingStartedPage({ params }: PageProps) {
     const page = findPageFromSlug(params.slug);
 
     if (!page) {
         notFound();
     }
-    const aiDoc = await getAiDocAbsolutePath(["getting-started", ...params.slug]);
+    const aiDoc = getAiDocAbsolutePath(["getting-started", ...params.slug]);
     const sectionLinks = getSectionLinks(page);
     const { title, body: { code }, _id: id } = page;
 
