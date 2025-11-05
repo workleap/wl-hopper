@@ -1,4 +1,4 @@
-"use client";
+"server-only";
 
 import Title from "@/app/ui/components/title/Title";
 import { Button, Divider, Inline, Menu, MenuItem, MenuTrigger, Text, Tooltip, TooltipTrigger } from "@hopper-ui/components";
@@ -10,7 +10,7 @@ interface PageHeaderProps {
     aiDocAbsolutePath?: string | null;
     sectionTitle: string;
     sectionPath: string;
-    refresh?: object;
+    refresh?: string;
 }
 
 function MarkdownIcon() {
@@ -58,9 +58,8 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
         : null;
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-        refresh;
-    }, [refresh]);
+        console.warn("PageHeader refresh", refresh, aiDocAbsolutePath);
+    }, [refresh, aiDocAbsolutePath]);
 
     const chatGptUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
     const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;

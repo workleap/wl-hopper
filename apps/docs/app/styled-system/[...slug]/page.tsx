@@ -33,10 +33,10 @@ export default async function StyledSystemPage({ params }: PageProps) {
     const sectionLinks = getSectionLinks(page);
     const { title, body: { code }, _id: id } = page;
 
-    const _temp = {
+    const _temp = JSON.stringify({
         x: join(process.cwd(), "public"),
         y: existsSync(process.cwd())
-    };
+    });
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>

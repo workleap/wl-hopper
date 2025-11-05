@@ -32,10 +32,10 @@ export default async function IconPage({ params: { slug } }: PageProps) {
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
 
-    const _temp = {
+    const _temp = JSON.stringify({
         x: join(process.cwd(), "public"),
         y: existsSync(process.cwd())
-    };
+    });
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
