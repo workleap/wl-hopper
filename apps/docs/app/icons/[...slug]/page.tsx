@@ -7,8 +7,6 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 
 interface PageProps {
     params: {
@@ -31,12 +29,6 @@ export default async function IconPage({ params: { slug } }: PageProps) {
 
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
-
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const _temp = JSON.stringify({
-        t: join(process.cwd(), "public"),
-        exists: existsSync(join(process.cwd()))
-    });
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
