@@ -1,5 +1,3 @@
-"server-only";
-
 import Title from "@/app/ui/components/title/Title";
 import { Button, Divider, Inline, Menu, MenuItem, MenuTrigger, Text, Tooltip, TooltipTrigger } from "@hopper-ui/components";
 import { AngleDownIcon } from "@hopper-ui/icons";
