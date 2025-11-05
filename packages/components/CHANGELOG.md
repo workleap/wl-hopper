@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.9
+
+### Patch Changes
+
+- 8df2fe7: Updated ContextualHelp to fix max-width and add an aria-label
+
 ## 1.15.8
 
 ### Patch Changes
