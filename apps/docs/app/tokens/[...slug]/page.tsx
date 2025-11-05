@@ -1,5 +1,3 @@
-"use server";
-
 import { allTokens } from "@/.contentlayer/generated";
 import { getAiDocAbsolutePath } from "@/app/lib/aiDocHelper.ts";
 import getSectionLinks from "@/app/lib/getSectionLinks.ts";
