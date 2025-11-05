@@ -6,6 +6,7 @@ import { forwardRef, useCallback, useEffect, useRef, useState, type CSSPropertie
 import type { HoverEvent } from "react-aria";
 import { Button, Provider, ButtonContext as RACButtonContext, useContextProps, type ButtonProps, type PressEvent } from "react-aria-components";
 
+import { useLocalizedString } from "../../i18n/index.ts";
 import { PopoverBase, PopoverTrigger, type PopoverBaseProps, type PopoverTriggerProps } from "../../overlays/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import { ClearContainerSlots, ClearProviders, cssModule, ensureTextWrapper } from "../../utils/index.ts";
@@ -63,10 +64,12 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
         style,
         slot,
         variant = "help",
+        "aria-label": ariaLabelProp,
         ...otherProps
     } = ownProps;
     const [isOpen, setOpen] = useControlledState(isOpenProp, defaultOpen || false, onOpenChange);
     const size = useResponsiveValue(sizeProp) ?? "sm";
+    const stringFormatter = useLocalizedString();
 
     const classNames = clsx(
         GlobalContextualHelpCssSelector,
@@ -157,6 +160,9 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
     };
 
     const Icon = variant === "help" ? QuestionIcon : InfoIcon;
+    const ariaLabel = ariaLabelProp ?? stringFormatter.format(variant === "help"
+        ? "ContextualHelp.helpAriaLabel"
+        : "ContextualHelp.informationAriaLabel");
 
     return (
         /**
@@ -177,6 +183,7 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
                         ref={ref}
                         onPress={handlePressed}
                         onHoverStart={handleHoverStarted}
+                        aria-label={ariaLabel}
                         {...otherProps}
                     >
                         <Icon size={size} />
