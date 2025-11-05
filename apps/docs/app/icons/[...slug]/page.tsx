@@ -6,7 +6,6 @@ import { PageHeader } from "@/app/ui/components/pageHeader/PageHeader";
 import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import AICallout from "@/components/ai-callout/AICallout";
 import Mdx from "@/components/mdx/Mdx.tsx";
-import { env } from "@/context/env/env";
 import { notFound } from "next/navigation";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
@@ -15,7 +14,6 @@ interface PageProps {
     params: {
         slug: string[];
     };
-    searchParams: Record<string, string | string[] | undefined>;
 }
 
 function findPageFromSlug(slug: string[]) {
@@ -24,7 +22,7 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-export default async function IconPage({ params: { slug }, searchParams }: PageProps) {
+export default async function IconPage({ params: { slug } }: PageProps) {
     const icons = findPageFromSlug(slug);
 
     if (!icons) {
@@ -33,18 +31,17 @@ export default async function IconPage({ params: { slug }, searchParams }: PageP
 
     const aiDoc = await getAiDocAbsolutePath(["icons", ...slug]);
     const sectionLinks = getSectionLinks(icons);
-    const data = JSON.stringify({
-        cwd: process.cwd(),
-        path: join(env.isNetlifyFunction ? "/var/task/apps/docs/" : process.cwd(), "public"),
-        env: process.env,
-        exists: existsSync(join(env.isNetlifyFunction ? "/var/task/apps/docs/" : process.cwd(), "public", searchParams["q"] as string || "")),
-        searchParams
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const _temp = JSON.stringify({
+        t: join(process.cwd(), "public"),
+        exists: existsSync(join(process.cwd()))
     });
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={icons._id}>
-                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" data={data} />
+                <PageHeader title={icons.title} aiDocAbsolutePath={aiDoc} sectionTitle="Icons" sectionPath="icons" />
                 <AICallout />
                 <Mdx code={icons.body.code} />
             </article>

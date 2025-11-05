@@ -3,14 +3,12 @@
 import Title from "@/app/ui/components/title/Title";
 import { Button, Divider, Inline, Menu, MenuItem, MenuTrigger, Text, Tooltip, TooltipTrigger } from "@hopper-ui/components";
 import { AngleDownIcon } from "@hopper-ui/icons";
-import { useEffect } from "react";
 
 interface PageHeaderProps {
     title: string;
     aiDocAbsolutePath?: string | null;
     sectionTitle: string;
     sectionPath: string;
-    data?: string;
 }
 
 function MarkdownIcon() {
@@ -46,7 +44,7 @@ function getBaseUrl(): string {
     return typeof window !== "undefined" ? window.location.origin : "";
 }
 
-export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath, data }: PageHeaderProps) {
+export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath }: PageHeaderProps) {
     const baseUrl = getBaseUrl();
     const fullMarkdownUrl = aiDocAbsolutePath && baseUrl
         ? `${baseUrl}${aiDocAbsolutePath}`
@@ -57,12 +55,12 @@ export function PageHeader({ title, aiDocAbsolutePath, sectionTitle, sectionPath
         ? `${baseUrl}/${sectionPath}/index.md`
         : null;
 
-    useEffect(() => {
-        if (data) {
-            console.warn("Debug Data:", data);
-            alert(`Data: ${data}`);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (data) {
+    //         console.warn("Debug Data:", data);
+    //         alert(`Data: ${data}`);
+    //     }
+    // }, [data]);
 
     const chatGptUrl = `https://chatgpt.com/?hints=search&q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
     const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(`Use web browsing to access links and information: ${fullMarkdownUrl}.\n\nI want to ask some questions`)}`;
