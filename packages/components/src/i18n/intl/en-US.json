@@ -16,5 +16,7 @@
     "Calendar.invalidSelection": "Invalid date selection",
     "DatePicker.openCalendarButtonAriaLabel": "Open calendar",
     "DateRangePicker.toSeparator": "to",
-    "DateRangePicker.openCalendarButtonAriaLabel": "Open calendar"
+    "DateRangePicker.openCalendarButtonAriaLabel": "Open calendar",
+    "ContextualHelp.informationAriaLabel": "Information",
+    "ContextualHelp.helpAriaLabel": "Help"
 }

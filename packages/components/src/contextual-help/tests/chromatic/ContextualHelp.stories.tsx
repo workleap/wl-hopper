@@ -11,7 +11,7 @@ const meta = {
     },
     decorators: [
         Story => (
-            <Inline alignX="center" alignY="center" UNSAFE_height="150px">
+            <Inline alignX="center" alignY="center" UNSAFE_height="250px">
                 <Story />
             </Inline>
         )
@@ -29,6 +29,14 @@ export const Open = {
     ...Default,
     args: {
         isOpen: true
+    }
+} satisfies Story;
+
+export const LongText = {
+    ...Open,
+    args: {
+        ...Open.args,
+        children: "This is a contextual help message with a longer text to demonstrate how the component handles larger content. It should properly wrap and display all the information without any issues."
     }
 } satisfies Story;
 

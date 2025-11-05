@@ -54,7 +54,7 @@
     --hop-ContextualHelp__popover-color: var(--hop-neutral-text-strong);
     --hop-ContextualHelp__popover-padding: var(--hop-space-inset-squish-md);
 
-    max-inline-size: min(var(--hop-ContextualHelp__popover-max-inline-size), calc(100% - (var(--container-padding) * 2)));
+    max-inline-size: min(var(--hop-ContextualHelp__popover-max-inline-size), 100%);
     padding: var(--hop-ContextualHelp__popover-padding);
 
     font-family: var(--hop-ContextualHelp__popover-font-family);
