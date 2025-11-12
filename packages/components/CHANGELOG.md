@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.10
+
+### Patch Changes
+
+- 8e26322: Adds max block size to the menu to handle overflow.
+
 ## 1.15.9
 
 ### Patch Changes
