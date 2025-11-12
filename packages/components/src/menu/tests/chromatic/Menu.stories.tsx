@@ -389,3 +389,27 @@ export const MultipleSelectionMode = {
     }
 } satisfies Story;
 
+export const Overflowing = {
+    parameters: {
+        ...hopperParameters({
+            colorSchemes: ["light"],
+            height: 200
+        })
+    },
+    render: args => (
+        <Menu {...args}>
+            <MenuItem>Favorite</MenuItem>
+            <MenuItem>Edit</MenuItem>
+            <MenuItem>Delete</MenuItem>
+            <MenuItem>Help</MenuItem>
+            <MenuItem>Exit</MenuItem>
+            <MenuItem>Share</MenuItem>
+            <MenuItem>Download</MenuItem>
+            <MenuItem>Duplicate</MenuItem>
+            <MenuItem>Move to...</MenuItem>
+            <MenuItem>Copy to...</MenuItem>
+            <MenuItem>Archive</MenuItem>
+            <MenuItem>Print</MenuItem>
+        </Menu>
+    )
+} satisfies Story;
