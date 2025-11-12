@@ -392,9 +392,13 @@ export const MultipleSelectionMode = {
 export const Overflowing = {
     parameters: {
         ...hopperParameters({
-            colorSchemes: ["light"],
-            height: 200
-        })
+            colorSchemes: ["light"]
+        }),
+        chromatic: {
+            modes: {
+                "Small height": { viewport: { height: 200 } }
+            }
+        }
     },
     render: args => (
         <Menu {...args}>
