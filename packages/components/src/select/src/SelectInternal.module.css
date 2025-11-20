@@ -40,9 +40,9 @@
     --hop-Select-button-outline-color-focused: var(--hop-primary-border-focus);
 
     /**
-    * Selected 
+    * Selected
     * Note: The selected state is the pressed state in RAC. Pressed is activated when the dropdown is open.
-    * This can be viewed here: https://github.com/adobe/react-spectrum/blob/7336849a1ddb754ba264f0adb4a1e898e49e1579/packages/react-aria-components/src/Select.tsx#L170 
+    * This can be viewed here: https://github.com/adobe/react-spectrum/blob/7336849a1ddb754ba264f0adb4a1e898e49e1579/packages/react-aria-components/src/Select.tsx#L170
     */
     --hop-Select-button-background-color-selected: var(--hop-neutral-surface);
     --hop-Select-button-border-color-selected: var(--hop-neutral-border-selected);
@@ -167,4 +167,9 @@
 .hop-Select__helper-message,
 .hop-Select__error-message {
     order: 3;
+}
+
+.hop-Select__search-input {
+    padding: var(--hop-space-inset-sm);
+    box-sizing: border-box;
 }

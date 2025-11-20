@@ -2,12 +2,14 @@ import { IconContext } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import { forwardRef, type ForwardedRef, type ReactNode } from "react";
 import {
+    Autocomplete,
     Button,
     composeRenderProps,
     ButtonContext as RACButtonContext,
     Select as RACSelect,
     TextContext as RACTextContext,
     useContextProps,
+    useFilter,
     type ButtonProps as RACButtonProps,
     type SelectProps as RACSelectProps,
     type SelectValueRenderProps
@@ -17,6 +19,7 @@ import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
+import { SearchField } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, type ListBoxProps, type SelectionIndicator } from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
@@ -107,14 +110,44 @@ export interface InternalSelectProps<T extends object, M extends "single" | "mul
      * The props for the select's trigger.
      */
     triggerProps?: SelectTriggerProps;
+    /**
+     * Whether to show a search input in the dropdown.
+     */
+    isSearchable?: boolean;
+    /**
+     * The controlled search value for filtering items. When used, items must be filtered manually.
+     */
+    inputValue?: string;
+    /**
+     * Handler called when the input value changes.
+     */
+    onInputChange?: (value: string) => void;
+    /**
+     * Placeholder text for the search input.
+     * @default "Search"
+     */
+    searchPlaceholder?: string;
+    /**
+     * Accessible label for the search input. Required when isSearchable is true.
+     * If not provided, defaults to searchPlaceholder value.
+     */
+    searchInputLabel?: string;
+    /**
+     * Whether to auto-focus the search input when the dropdown opens.
+     * @default true
+     */
+    autoFocusSearch?: boolean;
 }
 
 function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, SelectContext);
     props = useFormProps(props);
+    const { contains } = useFilter({ sensitivity: "base" });
+
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         align: alignProp,
+        autoFocusSearch = true,
         className,
         children,
         contextualHelp,
@@ -127,14 +160,19 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         isInvalid,
         isLoading,
         isRequired,
+        isSearchable,
         items,
         label,
         listBoxProps,
         necessityIndicator,
         onLoadMore,
+        onInputChange,
         popoverProps,
         prefix,
         renderValue,
+        searchPlaceholder = "Search",
+        searchInputLabel,
+        inputValue,
         selectionIndicator,
         shouldFlip,
         size: sizeProp,
@@ -224,6 +262,27 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         </ClearProviders>
     ) : null;
 
+    const listBoxMarkup = (
+        <SlotProvider values={[
+            [BadgeContext, {
+                variant: "secondary"
+            }]
+        ]}
+        >
+            <ListBox
+                size={size}
+                isInvalid={isInvalid}
+                items={items}
+                isLoading={isLoading}
+                onLoadMore={onLoadMore}
+                selectionIndicator={selectionIndicator}
+                {...listBoxProps}
+            >
+                {children}
+            </ListBox>
+        </SlotProvider>
+    );
+
     return (
         <RACSelect
             ref={ref}
@@ -253,25 +312,29 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                             shouldFlip={shouldFlip}
                             {...popoverProps}
                         >
-                            <SlotProvider values={[
-                                [BadgeContext, {
-                                    variant: "secondary"
-                                }]
-                            ]}
-                            >
-                                <ListBox
-                                    size={size}
-                                    isInvalid={isInvalid}
-                                    items={items}
-                                    isLoading={isLoading}
-                                    onLoadMore={onLoadMore}
-                                    selectionIndicator={selectionIndicator}
-                                    {...listBoxProps}
+                            {isSearchable ? (
+                                <Autocomplete
+                                    filter={inputValue ? undefined : contains}
+                                    inputValue={inputValue}
+                                    onInputChange={onInputChange}
                                 >
-                                    {children}
-                                </ListBox>
-                            </SlotProvider>
-                            {footerMarkup}
+                                    <SearchField
+                                        placeholder={searchPlaceholder}
+                                        autoFocus={autoFocusSearch}
+                                        aria-label={searchInputLabel ?? searchPlaceholder}
+                                        size={size}
+                                        isFluid
+                                        className={styles["hop-Select__search-input"]}
+                                    />
+                                    {listBoxMarkup}
+                                    {footerMarkup}
+                                </Autocomplete>
+                            ) : (
+                                <>
+                                    {listBoxMarkup}
+                                    {footerMarkup}
+                                </>
+                            )}
                         </Popover>
                         <Button className={buttonClassNames} style={triggerStyle} data-invalid={isInvalid || undefined} {...otherTriggerProps}>
                             {prefixMarkup}

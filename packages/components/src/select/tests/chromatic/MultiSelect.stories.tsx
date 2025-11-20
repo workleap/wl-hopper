@@ -1,7 +1,8 @@
-import { MultiSelect, MultiSelectItem, type MultiSelectProps, MultiSelectSection } from "@hopper-ui/components";
+import { MultiSelect, MultiSelectItem, type MultiSelectProps, MultiSelectSection, useFilter } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
+import { useMemo, useState } from "react";
 import { userEvent, within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
@@ -700,4 +701,54 @@ export const CustomValue = {
     },
     play: playFn,
     decorators: marginBottomDecoratorSM
+} satisfies Story;
+
+const ANIMALS = [
+    { id: "aardvark", name: "Aardvark" },
+    { id: "albatross", name: "Albatross" },
+    { id: "alligator", name: "Alligator" },
+    { id: "bear", name: "Bear" },
+    { id: "cat", name: "Cat" },
+    { id: "dog", name: "Dog" },
+    { id: "elephant", name: "Elephant" },
+    { id: "fox", name: "Fox" },
+    { id: "giraffe", name: "Giraffe" },
+    { id: "horse", name: "Horse" },
+    { id: "iguana", name: "Iguana" },
+    { id: "jaguar", name: "Jaguar" },
+    { id: "kangaroo", name: "Kangaroo" },
+    { id: "lion", name: "Lion" },
+    { id: "monkey", name: "Monkey" }
+];
+
+export const SearchableMultiSelect = {
+    render: args => {
+        const filter = useFilter({ sensitivity: "base" });
+        const [inputValue, setInputValue] = useState("");
+
+        const filteredItems = useMemo(() => {
+            return ANIMALS.filter(item => filter.contains(item.name, inputValue));
+        }, [inputValue, filter]);
+
+        return (
+            <MultiSelect
+                {...args}
+                items={filteredItems}
+                isSearchable
+                searchPlaceholder="Search animals..."
+                inputValue={inputValue}
+                onInputChange={setInputValue}
+                onOpenChange={() => setInputValue("")}
+            >
+                {item => <MultiSelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</MultiSelectItem>}
+            </MultiSelect>
+        );
+    },
+    args: {
+        label: "Select animals",
+        "aria-label": "Animals",
+        defaultValue: ["cat", "dog"]
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorLG
 } satisfies Story;

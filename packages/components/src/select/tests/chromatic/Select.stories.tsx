@@ -1,7 +1,8 @@
-import { Select, SelectItem, type SelectProps, SelectSection } from "@hopper-ui/components";
+import { Select, SelectItem, type SelectProps, SelectSection, useFilter } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
+import { useMemo, useState } from "react";
 import { userEvent, within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
@@ -672,3 +673,71 @@ export const Styling = {
     decorators: marginBottomDecoratorSM
 } satisfies Story;
 
+const ANIMALS = [
+    { id: "aardvark", name: "Aardvark" },
+    { id: "albatross", name: "Albatross" },
+    { id: "alligator", name: "Alligator" },
+    { id: "bear", name: "Bear" },
+    { id: "cat", name: "Cat" },
+    { id: "dog", name: "Dog" },
+    { id: "elephant", name: "Elephant" },
+    { id: "fox", name: "Fox" },
+    { id: "giraffe", name: "Giraffe" },
+    { id: "horse", name: "Horse" },
+    { id: "iguana", name: "Iguana" },
+    { id: "jaguar", name: "Jaguar" },
+    { id: "kangaroo", name: "Kangaroo" },
+    { id: "lion", name: "Lion" },
+    { id: "monkey", name: "Monkey" }
+];
+
+export const SearchableSelect = {
+    render: args => {
+        return (
+            <Select
+                {...args}
+                items={ANIMALS}
+                isSearchable
+                searchPlaceholder="Search animals..."
+            >
+                {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
+            </Select>
+        );
+    },
+    args: {
+        label: "Select an animal",
+        "aria-label": "Animals"
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorMD
+} satisfies Story;
+
+export const SearchableSelectWithCustomFiltering = {
+    render: args => {
+        const filter = useFilter({ sensitivity: "base" });
+        const [inputValue, setInputValue] = useState("");
+
+        const filteredItems = useMemo(() => {
+            return ANIMALS.filter(item => filter.contains(item.name, inputValue));
+        }, [inputValue, filter]);
+
+        return (
+            <Select
+                {...args}
+                items={filteredItems}
+                isSearchable
+                inputValue={inputValue}
+                onInputChange={setInputValue}
+                searchPlaceholder="Search animals..."
+            >
+                {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
+            </Select>
+        );
+    },
+    args: {
+        label: "Select an animal",
+        "aria-label": "Animals"
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorMD
+} satisfies Story;
