@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.15.11
+
+### Patch Changes
+
+- 1e7a34a: Fix Tooltips being wider than they are supposed to
+
 ## 1.15.10
 
 ### Patch Changes
