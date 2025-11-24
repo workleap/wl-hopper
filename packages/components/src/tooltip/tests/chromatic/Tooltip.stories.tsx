@@ -291,3 +291,15 @@ export const TooltipOnSelect = {
         </TooltipTrigger>
     )
 } satisfies Story;
+
+export const LongText = {
+    args: {
+        children: "This is a tooltip with a very long text that should be displayed properly without any issues. It contains multiple sentences to ensure that the text wrapping and layout are functioning as expected within the tooltip component."
+    },
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Button isDisabled>{buttonText}</Button>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
