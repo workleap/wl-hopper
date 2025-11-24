@@ -173,3 +173,11 @@
     padding: var(--hop-space-inset-sm);
     box-sizing: border-box;
 }
+
+.hop-Select__popover {
+    font-family: var(--hop-body-md-font-family);
+    font-size: var(--hop-body-md-font-size);
+    font-weight: var(--hop-body-md-font-weight);
+    line-height: var(--hop-body-md-line-height);
+    color: var(--hop-neutral-text);
+}

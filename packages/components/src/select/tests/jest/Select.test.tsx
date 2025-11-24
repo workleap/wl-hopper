@@ -1,4 +1,4 @@
-import { Select, SelectItem } from "@hopper-ui/components";
+import { MultiSelect, Select, SelectItem } from "@hopper-ui/components";
 import { render, screen, waitFor } from "@hopper-ui/test-utils";
 import { userEvent } from "@testing-library/user-event";
 import { createRef } from "react";
@@ -104,8 +104,8 @@ describe("Select", () => {
                 <Select
                     aria-label="Animals"
                     items={items}
-                    isSearchable
-                    searchInputLabel="Search animals"
+                    isFilterable
+                    searchFieldProps={{ "aria-label": "Search animals" }}
                 >
                     {(item: typeof items[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
                 </Select>
@@ -113,6 +113,55 @@ describe("Select", () => {
         };
 
         render(<SearchableSelect />);
+
+        const trigger = screen.getByRole("button");
+        await user.click(trigger);
+
+        await waitFor(() => {
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
+        });
+
+        // Navigate down through options
+        await user.keyboard("{ArrowDown}");
+        await waitFor(() => {
+            expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
+        });
+
+        await user.keyboard("{ArrowDown}");
+        await waitFor(() => {
+            expect(screen.getByRole("option", { name: "Dog" })).toHaveAttribute("data-focused", "true");
+        });
+
+        // Navigate back up
+        await user.keyboard("{ArrowUp}");
+        await waitFor(() => {
+            expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
+        });
+    });
+
+    it("should support keyboard navigation with searchable multi-select", async () => {
+        const user = userEvent.setup();
+
+        const SearchableMultiSelect = () => {
+            const items = [
+                { id: "cat", name: "Cat" },
+                { id: "dog", name: "Dog" },
+                { id: "panda", name: "Panda" }
+            ];
+
+            return (
+                <MultiSelect
+                    aria-label="Animals"
+                    items={items}
+                    isFilterable
+                    searchFieldProps={{ "aria-label": "Search animals" }}
+                >
+                    {(item: typeof items[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
+                </MultiSelect>
+            );
+        };
+
+        render(<SearchableMultiSelect />);
 
         const trigger = screen.getByRole("button");
         await user.click(trigger);

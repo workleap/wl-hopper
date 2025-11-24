@@ -23,9 +23,7 @@ export default function Example() {
         <Select
             label="Select an animal"
             items={ANIMALS}
-            isSearchable
-            searchPlaceholder="Search animals..."
-            searchInputLabel="Search animals"
+            isFilterable
         >
             {(item: typeof ANIMALS[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
         </Select>

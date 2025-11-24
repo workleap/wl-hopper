@@ -10,6 +10,7 @@ import {
     TextContext as RACTextContext,
     useContextProps,
     useFilter,
+    type AutocompleteProps as RACAutocompleteProps,
     type ButtonProps as RACButtonProps,
     type SelectProps as RACSelectProps,
     type SelectValueRenderProps
@@ -19,7 +20,7 @@ import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
-import { SearchField } from "../../inputs/index.ts";
+import { SearchField, type SearchFieldProps } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, type ListBoxProps, type SelectionIndicator } from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
@@ -36,6 +37,7 @@ export const GlobalSelectCssSelector = "hop-Select";
 
 export type ValueRenderProps<T> = SelectValueRenderProps<T> & { defaultChildren: ReactNode };
 export type SelectTriggerProps = StyledComponentProps<RACButtonProps>;
+export type SelectAutocompleteProps = Omit<RACAutocompleteProps, "children">;
 export interface InternalSelectProps<T extends object, M extends "single" | "multiple" = "single"> extends StyledComponentProps<Omit<RACSelectProps<T, M>, "children">>, FieldProps {
     /**
      * The alignment of the menu.
@@ -111,32 +113,17 @@ export interface InternalSelectProps<T extends object, M extends "single" | "mul
      */
     triggerProps?: SelectTriggerProps;
     /**
-     * Whether to show a search input in the dropdown.
+     * Whether to show a search input in the dropdown to allow for filtering.
      */
-    isSearchable?: boolean;
+    isFilterable?: boolean;
     /**
-     * The controlled search value for filtering items. When used, items must be filtered manually.
+     * The props for the autocomplete component.
      */
-    inputValue?: string;
+    autocompleteProps?: SelectAutocompleteProps;
     /**
-     * Handler called when the input value changes.
+     * The props for the search field.
      */
-    onInputChange?: (value: string) => void;
-    /**
-     * Placeholder text for the search input.
-     * @default "Search"
-     */
-    searchPlaceholder?: string;
-    /**
-     * Accessible label for the search input. Required when isSearchable is true.
-     * If not provided, defaults to searchPlaceholder value.
-     */
-    searchInputLabel?: string;
-    /**
-     * Whether to auto-focus the search input when the dropdown opens.
-     * @default true
-     */
-    autoFocusSearch?: boolean;
+    searchFieldProps?: SearchFieldProps;
 }
 
 function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
@@ -147,7 +134,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         align: alignProp,
-        autoFocusSearch = true,
+        autocompleteProps,
         className,
         children,
         contextualHelp,
@@ -160,19 +147,16 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         isInvalid,
         isLoading,
         isRequired,
-        isSearchable,
+        isFilterable,
         items,
         label,
         listBoxProps,
         necessityIndicator,
         onLoadMore,
-        onInputChange,
         popoverProps,
         prefix,
         renderValue,
-        searchPlaceholder = "Search",
-        searchInputLabel,
-        inputValue,
+        searchFieldProps,
         selectionIndicator,
         shouldFlip,
         size: sizeProp,
@@ -186,6 +170,18 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         style: triggerStyleProp,
         ...otherTriggerProps
     } = triggerOwnProps;
+
+    const { stylingProps: searchFieldStylingProps, ...searchFieldOwnProps } = useStyledSystem(searchFieldProps ?? {});
+    const {
+        className: searchFieldClassName,
+        style: searchFieldStyleProp,
+        ...otherSearchFieldProps
+    } = searchFieldOwnProps;
+
+    const {
+        className: popoverContainerClassName,
+        ...otherPopoverContainerProps
+    } = popoverProps?.containerProps ?? {};
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
@@ -227,6 +223,28 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
             ...prev
         };
     });
+
+    const searchFieldClassNames = composeClassnameRenderProps(
+        searchFieldClassName,
+        cssModule(
+            styles,
+            "hop-Select__search-input"
+        ),
+        searchFieldStylingProps.className
+    );
+
+    const searchFieldStyle = composeRenderProps(searchFieldStyleProp, prev => {
+        return {
+            ...searchFieldStylingProps.style,
+            ...prev
+        };
+    });
+
+    const popoverContainerClassNames = cssModule(
+        styles,
+        "hop-Select__popover",
+        popoverContainerClassName
+    );
 
     const prefixMarkup = prefix ? (
         <SlotProvider values={[
@@ -311,20 +329,23 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                             placement={`${direction} ${align}`}
                             shouldFlip={shouldFlip}
                             {...popoverProps}
+                            containerProps={{
+                                ...otherPopoverContainerProps,
+                                className: popoverContainerClassNames
+                            }}
                         >
-                            {isSearchable ? (
+                            {isFilterable ? (
                                 <Autocomplete
-                                    filter={inputValue ? undefined : contains}
-                                    inputValue={inputValue}
-                                    onInputChange={onInputChange}
+                                    filter={contains}
+                                    {...autocompleteProps}
                                 >
                                     <SearchField
-                                        placeholder={searchPlaceholder}
-                                        autoFocus={autoFocusSearch}
-                                        aria-label={searchInputLabel ?? searchPlaceholder}
+                                        autoFocus
                                         size={size}
                                         isFluid
-                                        className={styles["hop-Select__search-input"]}
+                                        className={searchFieldClassNames}
+                                        style={searchFieldStyle}
+                                        {...otherSearchFieldProps}
                                     />
                                     {listBoxMarkup}
                                     {footerMarkup}

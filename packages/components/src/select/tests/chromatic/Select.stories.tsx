@@ -697,46 +697,11 @@ export const SearchableSelect = {
             <Select
                 {...args}
                 items={ANIMALS}
-                isSearchable
-                searchPlaceholder="Search animals..."
+                isFilterable
             >
                 {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
             </Select>
         );
-    },
-    args: {
-        label: "Select an animal",
-        "aria-label": "Animals"
-    },
-    play: playFn,
-    decorators: marginBottomDecoratorMD
-} satisfies Story;
-
-export const SearchableSelectWithCustomFiltering = {
-    render: args => {
-        const filter = useFilter({ sensitivity: "base" });
-        const [inputValue, setInputValue] = useState("");
-
-        const filteredItems = useMemo(() => {
-            return ANIMALS.filter(item => filter.contains(item.name, inputValue));
-        }, [inputValue, filter]);
-
-        return (
-            <Select
-                {...args}
-                items={filteredItems}
-                isSearchable
-                inputValue={inputValue}
-                onInputChange={setInputValue}
-                searchPlaceholder="Search animals..."
-            >
-                {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
-            </Select>
-        );
-    },
-    args: {
-        label: "Select an animal",
-        "aria-label": "Animals"
     },
     play: playFn,
     decorators: marginBottomDecoratorMD

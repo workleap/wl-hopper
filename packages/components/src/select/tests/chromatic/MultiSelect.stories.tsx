@@ -723,30 +723,18 @@ const ANIMALS = [
 
 export const SearchableMultiSelect = {
     render: args => {
-        const filter = useFilter({ sensitivity: "base" });
-        const [inputValue, setInputValue] = useState("");
-
-        const filteredItems = useMemo(() => {
-            return ANIMALS.filter(item => filter.contains(item.name, inputValue));
-        }, [inputValue, filter]);
-
         return (
             <MultiSelect
                 {...args}
-                items={filteredItems}
-                isSearchable
-                searchPlaceholder="Search animals..."
-                inputValue={inputValue}
-                onInputChange={setInputValue}
-                onOpenChange={() => setInputValue("")}
+                items={ANIMALS}
+                isFilterable
+                searchFieldProps={{ placeholder: "Search animals…" }}
             >
                 {item => <MultiSelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</MultiSelectItem>}
             </MultiSelect>
         );
     },
     args: {
-        label: "Select animals",
-        "aria-label": "Animals",
         defaultValue: ["cat", "dog"]
     },
     play: playFn,
