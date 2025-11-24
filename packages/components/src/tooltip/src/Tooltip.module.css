@@ -16,7 +16,7 @@
     --origin-x: 0;
     --origin-y: 0;
 
-    /* Ensures there's always 1rem space around the tooltip, but it'll still have a max width of 20rem. */
+    /* Ensures there's always 2rem space around the tooltip, but it'll still have a max width of 20rem. */
     max-inline-size: min(var(--hop-Tooltip-max-inline-size), calc(100% - 4rem));
     padding: var(--hop-Tooltip-padding);
 
