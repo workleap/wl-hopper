@@ -1,8 +1,7 @@
-import { MultiSelect, MultiSelectItem, type MultiSelectProps, MultiSelectSection, useFilter } from "@hopper-ui/components";
+import { MultiSelect, MultiSelectItem, type MultiSelectProps, MultiSelectSection } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
-import { useMemo, useState } from "react";
 import { userEvent, within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
