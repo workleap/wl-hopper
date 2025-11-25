@@ -52,14 +52,6 @@ const playFn: Story["play"] = async ({ canvasElement }) => {
     await userEvent.click(selectTrigger);
 };
 
-const awaitOptionPlayFn: Story["play"] = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    const selectTrigger = canvas.getAllByRole("button")[0];
-    await userEvent.click(selectTrigger);
-    // Wait for async content to load (300ms delay + rendering)
-    await waitFor(() => canvas.getByRole("option"), { timeout: 1000 });
-};
-
 export const OnlyItems = {
     render: args => (
         <Select {...args}>
@@ -767,6 +759,6 @@ export const SearchableSelectWithLoadMore = {
             </Select>
         );
     },
-    play: awaitOptionPlayFn,
+    play: playFn,
     decorators: marginBottomDecoratorMD
 } satisfies Story;
