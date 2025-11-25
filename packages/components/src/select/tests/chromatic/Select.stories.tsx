@@ -2,7 +2,7 @@ import { Select, SelectItem, type SelectProps, SelectSection, useAsyncList } fro
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
-import { userEvent, waitFor, within } from "storybook/test";
+import { userEvent, within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
 import { Header } from "../../../header/index.ts";
@@ -695,6 +695,7 @@ export const SearchableSelect = {
         return (
             <Select
                 {...args}
+                aria-label="Animals"
                 items={ANIMALS}
                 isFilterable
             >
