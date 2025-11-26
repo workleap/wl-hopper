@@ -2,12 +2,15 @@ import { IconContext } from "@hopper-ui/icons";
 import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import { forwardRef, type ForwardedRef, type ReactNode } from "react";
 import {
+    Autocomplete,
     Button,
     composeRenderProps,
     ButtonContext as RACButtonContext,
     Select as RACSelect,
     TextContext as RACTextContext,
     useContextProps,
+    useFilter,
+    type AutocompleteProps as RACAutocompleteProps,
     type ButtonProps as RACButtonProps,
     type SelectProps as RACSelectProps,
     type SelectValueRenderProps
@@ -17,6 +20,8 @@ import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
+import { useLocalizedString } from "../../i18n/index.ts";
+import { SearchField, type SearchFieldProps } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, type ListBoxProps, type SelectionIndicator } from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
@@ -33,6 +38,7 @@ export const GlobalSelectCssSelector = "hop-Select";
 
 export type ValueRenderProps<T> = SelectValueRenderProps<T> & { defaultChildren: ReactNode };
 export type SelectTriggerProps = StyledComponentProps<RACButtonProps>;
+export type SelectAutocompleteProps = Omit<RACAutocompleteProps, "children">;
 export interface InternalSelectProps<T extends object, M extends "single" | "multiple" = "single"> extends StyledComponentProps<Omit<RACSelectProps<T, M>, "children">>, FieldProps {
     /**
      * The alignment of the menu.
@@ -107,14 +113,30 @@ export interface InternalSelectProps<T extends object, M extends "single" | "mul
      * The props for the select's trigger.
      */
     triggerProps?: SelectTriggerProps;
+    /**
+     * Whether to show a search input in the dropdown to allow for filtering.
+     */
+    isFilterable?: boolean;
+    /**
+     * The props for the autocomplete component.
+     */
+    autocompleteProps?: SelectAutocompleteProps;
+    /**
+     * The props for the search field.
+     */
+    searchFieldProps?: SearchFieldProps;
 }
 
 function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, SelectContext);
     props = useFormProps(props);
+    const { contains } = useFilter({ sensitivity: "base" });
+    const stringFormatter = useLocalizedString();
+
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
         align: alignProp,
+        autocompleteProps,
         className,
         children,
         contextualHelp,
@@ -127,6 +149,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         isInvalid,
         isLoading,
         isRequired,
+        isFilterable,
         items,
         label,
         listBoxProps,
@@ -135,6 +158,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         popoverProps,
         prefix,
         renderValue,
+        searchFieldProps,
         selectionIndicator,
         shouldFlip,
         size: sizeProp,
@@ -148,6 +172,17 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         style: triggerStyleProp,
         ...otherTriggerProps
     } = triggerOwnProps;
+
+    const { stylingProps: searchFieldStylingProps, ...searchFieldOwnProps } = useStyledSystem(searchFieldProps ?? {});
+    const {
+        className: searchFieldClassName,
+        ...otherSearchFieldProps
+    } = searchFieldOwnProps;
+
+    const {
+        className: popoverContainerClassName,
+        ...otherPopoverContainerProps
+    } = popoverProps?.containerProps ?? {};
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
@@ -190,6 +225,21 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         };
     });
 
+    const searchFieldClassNames = composeClassnameRenderProps(
+        searchFieldClassName,
+        cssModule(
+            styles,
+            "hop-Select__search-input"
+        ),
+        searchFieldStylingProps.className
+    );
+
+    const popoverContainerClassNames = cssModule(
+        styles,
+        "hop-Select__popover",
+        popoverContainerClassName
+    );
+
     const prefixMarkup = prefix ? (
         <SlotProvider values={[
             [TextContext, { size, className: styles["hop-Select__prefix"] }],
@@ -224,6 +274,27 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         </ClearProviders>
     ) : null;
 
+    const listBoxMarkup = (
+        <SlotProvider values={[
+            [BadgeContext, {
+                variant: "secondary"
+            }]
+        ]}
+        >
+            <ListBox
+                size={size}
+                isInvalid={isInvalid}
+                items={items}
+                isLoading={isLoading}
+                onLoadMore={onLoadMore}
+                selectionIndicator={selectionIndicator}
+                {...listBoxProps}
+            >
+                {children}
+            </ListBox>
+        </SlotProvider>
+    );
+
     return (
         <RACSelect
             ref={ref}
@@ -252,26 +323,33 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                             placement={`${direction} ${align}`}
                             shouldFlip={shouldFlip}
                             {...popoverProps}
+                            containerProps={{
+                                ...otherPopoverContainerProps,
+                                className: popoverContainerClassNames
+                            }}
                         >
-                            <SlotProvider values={[
-                                [BadgeContext, {
-                                    variant: "secondary"
-                                }]
-                            ]}
-                            >
-                                <ListBox
-                                    size={size}
-                                    isInvalid={isInvalid}
-                                    items={items}
-                                    isLoading={isLoading}
-                                    onLoadMore={onLoadMore}
-                                    selectionIndicator={selectionIndicator}
-                                    {...listBoxProps}
+                            {isFilterable ? (
+                                <Autocomplete
+                                    filter={contains}
+                                    {...autocompleteProps}
                                 >
-                                    {children}
-                                </ListBox>
-                            </SlotProvider>
-                            {footerMarkup}
+                                    <SearchField
+                                        autoFocus
+                                        size={size}
+                                        isFluid
+                                        className={searchFieldClassNames}
+                                        placeholder={stringFormatter.format("Select.searchPlaceholder")}
+                                        {...otherSearchFieldProps}
+                                    />
+                                    {listBoxMarkup}
+                                    {footerMarkup}
+                                </Autocomplete>
+                            ) : (
+                                <>
+                                    {listBoxMarkup}
+                                    {footerMarkup}
+                                </>
+                            )}
                         </Popover>
                         <Button className={buttonClassNames} style={triggerStyle} data-invalid={isInvalid || undefined} {...otherTriggerProps}>
                             {prefixMarkup}

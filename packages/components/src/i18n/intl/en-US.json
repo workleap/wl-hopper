@@ -18,5 +18,6 @@
     "DateRangePicker.toSeparator": "to",
     "DateRangePicker.openCalendarButtonAriaLabel": "Open calendar",
     "ContextualHelp.informationAriaLabel": "Information",
-    "ContextualHelp.helpAriaLabel": "Help"
+    "ContextualHelp.helpAriaLabel": "Help",
+    "Select.searchPlaceholder": "Search…"
 }

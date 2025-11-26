@@ -701,3 +701,41 @@ export const CustomValue = {
     play: playFn,
     decorators: marginBottomDecoratorSM
 } satisfies Story;
+
+const ANIMALS = [
+    { id: "aardvark", name: "Aardvark" },
+    { id: "albatross", name: "Albatross" },
+    { id: "alligator", name: "Alligator" },
+    { id: "bear", name: "Bear" },
+    { id: "cat", name: "Cat" },
+    { id: "dog", name: "Dog" },
+    { id: "elephant", name: "Elephant" },
+    { id: "fox", name: "Fox" },
+    { id: "giraffe", name: "Giraffe" },
+    { id: "horse", name: "Horse" },
+    { id: "iguana", name: "Iguana" },
+    { id: "jaguar", name: "Jaguar" },
+    { id: "kangaroo", name: "Kangaroo" },
+    { id: "lion", name: "Lion" },
+    { id: "monkey", name: "Monkey" }
+];
+
+export const SearchableMultiSelect = {
+    render: args => {
+        return (
+            <MultiSelect
+                {...args}
+                items={ANIMALS}
+                isFilterable
+                searchFieldProps={{ placeholder: "Search animals…" }}
+            >
+                {item => <MultiSelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</MultiSelectItem>}
+            </MultiSelect>
+        );
+    },
+    args: {
+        defaultValue: ["cat", "dog"]
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorLG
+} satisfies Story;

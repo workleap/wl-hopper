@@ -1,4 +1,4 @@
-import { Select, SelectItem, type SelectProps, SelectSection } from "@hopper-ui/components";
+import { Select, SelectItem, type SelectProps, SelectSection, useAsyncList } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
@@ -672,3 +672,94 @@ export const Styling = {
     decorators: marginBottomDecoratorSM
 } satisfies Story;
 
+const ANIMALS = [
+    { id: "aardvark", name: "Aardvark" },
+    { id: "albatross", name: "Albatross" },
+    { id: "alligator", name: "Alligator" },
+    { id: "bear", name: "Bear" },
+    { id: "cat", name: "Cat" },
+    { id: "dog", name: "Dog" },
+    { id: "elephant", name: "Elephant" },
+    { id: "fox", name: "Fox" },
+    { id: "giraffe", name: "Giraffe" },
+    { id: "horse", name: "Horse" },
+    { id: "iguana", name: "Iguana" },
+    { id: "jaguar", name: "Jaguar" },
+    { id: "kangaroo", name: "Kangaroo" },
+    { id: "lion", name: "Lion" },
+    { id: "monkey", name: "Monkey" }
+];
+
+export const SearchableSelect = {
+    render: args => {
+        return (
+            <Select
+                {...args}
+                aria-label="Animals"
+                items={ANIMALS}
+                isFilterable
+            >
+                {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
+            </Select>
+        );
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorMD
+} satisfies Story;
+
+const MOCK_POKEMON_DATA = [
+    [
+        { name: "bulbasaur" }, { name: "ivysaur" }, { name: "venusaur" }, { name: "charmander" },
+        { name: "charmeleon" }, { name: "charizard" }, { name: "squirtle" }, { name: "wartortle" },
+        { name: "blastoise" }, { name: "caterpie" }
+    ],
+    [
+        { name: "metapod" }, { name: "butterfree" }, { name: "weedle" }, { name: "kakuna" },
+        { name: "beedrill" }, { name: "pidgey" }, { name: "pidgeotto" }, { name: "pidgeot" },
+        { name: "rattata" }, { name: "raticate" }
+    ],
+    [
+        { name: "spearow" }, { name: "fearow" }, { name: "ekans" }, { name: "arbok" },
+        { name: "pikachu" }, { name: "raichu" }, { name: "sandshrew" }, { name: "sandslash" },
+        { name: "nidoran" }, { name: "nidorina" }
+    ]
+];
+
+export const SearchableSelectWithLoadMore = {
+    render: args => {
+        interface Character {
+            name: string;
+        }
+        const list = useAsyncList<Character>({
+            async load({ cursor }) {
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 300));
+
+                const pageIndex = cursor ? parseInt(cursor, 10) : 0;
+                const hasMore = pageIndex < MOCK_POKEMON_DATA.length - 1;
+
+                return {
+                    items: MOCK_POKEMON_DATA[pageIndex],
+                    cursor: hasMore ? String(pageIndex + 1) : undefined
+                };
+            }
+        });
+        return (
+            <Select
+                {...args}
+                isFilterable
+                items={list.items}
+                isLoading={list.isLoading}
+                onLoadMore={() => list.loadMore()}
+            >
+                {item => {
+                    const { name } = item as Character;
+
+                    return <SelectItem id={name}>{name}</SelectItem>;
+                }}
+            </Select>
+        );
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorMD
+} satisfies Story;
