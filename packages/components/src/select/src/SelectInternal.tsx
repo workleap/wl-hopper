@@ -20,6 +20,7 @@ import { BadgeContext } from "../../badge/index.ts";
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
+import { useLocalizedString } from "../../i18n/index.ts";
 import { SearchField, type SearchFieldProps } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
 import { ListBox, type ListBoxProps, type SelectionIndicator } from "../../list-box/index.ts";
@@ -130,6 +131,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
     [props, ref] = useContextProps(props, ref, SelectContext);
     props = useFormProps(props);
     const { contains } = useFilter({ sensitivity: "base" });
+    const stringFormatter = useLocalizedString();
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const {
@@ -174,7 +176,6 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
     const { stylingProps: searchFieldStylingProps, ...searchFieldOwnProps } = useStyledSystem(searchFieldProps ?? {});
     const {
         className: searchFieldClassName,
-        style: searchFieldStyleProp,
         ...otherSearchFieldProps
     } = searchFieldOwnProps;
 
@@ -232,13 +233,6 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         ),
         searchFieldStylingProps.className
     );
-
-    const searchFieldStyle = composeRenderProps(searchFieldStyleProp, prev => {
-        return {
-            ...searchFieldStylingProps.style,
-            ...prev
-        };
-    });
 
     const popoverContainerClassNames = cssModule(
         styles,
@@ -344,7 +338,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                                         size={size}
                                         isFluid
                                         className={searchFieldClassNames}
-                                        style={searchFieldStyle}
+                                        placeholder={stringFormatter.format("Select.searchPlaceholder")}
                                         {...otherSearchFieldProps}
                                     />
                                     {listBoxMarkup}
