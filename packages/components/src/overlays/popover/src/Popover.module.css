@@ -105,7 +105,7 @@
     --hop-Popover-footer-dropdown-margin: var(--hop-Popover-dropdown-padding) calc(-1 * var(--hop-Popover-dropdown-padding)) calc(-1 * var(--hop-Popover-dropdown-padding));
     --hop-Popover-footer-dropdown-footer-padding: var(--hop-space-inset-sm);
     --hop-Popover-footer-dropdown-footer-border-top: 0.0625rem solid var(--hop-neutral-border-weak);
-    --hop-Popover-max-block-outline: none;
+    --hop-Popover-outline: none;
     --hop-Popover-overflow: auto;
 
     /* Internal variables */
