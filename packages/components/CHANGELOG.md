@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.1
+
+### Patch Changes
+
+- a2a7920: Fix cases where Popover and Menus would overflow outside their containers
+
 ## 1.16.0
 
 ### Minor Changes
