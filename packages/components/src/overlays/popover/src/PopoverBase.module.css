@@ -9,6 +9,7 @@
     --hop-Popover-font-weight: var(--hop-body-md-font-weight);
     --hop-Popover-line-height: var(--hop-body-md-line-height);
     --hop-Popover-font-smoothing: antialiased;
+    --hop-Popover-overflow: hidden;
 
     isolation: isolate;
 
@@ -34,7 +35,8 @@
     outline: none;
     box-shadow: var(--hop-Popover-box-shadow);
 
-    transition: opacity  var(--hop-easing-duration-2) ;
+    transition: opacity  var(--hop-easing-duration-2);
+    overflow: var(--hop-Popover-overflow);
 }
 
 .hop-PopoverBase[data-entering]{

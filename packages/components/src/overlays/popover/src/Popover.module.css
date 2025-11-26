@@ -105,6 +105,8 @@
     --hop-Popover-footer-dropdown-margin: var(--hop-Popover-dropdown-padding) calc(-1 * var(--hop-Popover-dropdown-padding)) calc(-1 * var(--hop-Popover-dropdown-padding));
     --hop-Popover-footer-dropdown-footer-padding: var(--hop-space-inset-sm);
     --hop-Popover-footer-dropdown-footer-border-top: 0.0625rem solid var(--hop-neutral-border-weak);
+    --hop-Popover-max-block-outline: none;
+    --hop-Popover-overflow: auto;
 
     /* Internal variables */
     --font-family: var(--hop-Popover-font-family);
@@ -126,6 +128,10 @@
     border: var(--hop-Popover-border);
     border-radius: var(--hop-Popover-border-radius);
     box-shadow: var(--hop-Popover-box-shadow);
+
+    max-block-size: inherit;
+    outline: var(--hop-Popover-outline);
+    overflow: var(--hop-Popover-overflow);
 }
 
 .hop-Popover__dropdown {

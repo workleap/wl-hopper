@@ -1,17 +1,16 @@
 .hop-Menu  {
-    --hop-Menu-overflow-y: auto;
+    --hop-Menu-overflow: auto;
     --hop-Menu-padding-block: var(--hop-space-inset-sm);
     --hop-Menu-outline: none;
     --hop-Menu-min-inline-size: 12.5rem;
     --hop-Menu-max-inline-size: 20rem;
-    --hop-Menu-max-block-size: stretch;
     --hop-Menu-inline-size: max-content;
 
-    overflow-y: var(--hop-Menu-overflow-y);
+    overflow: var(--hop-Menu-overflow);
 
     box-sizing: border-box;
     inline-size: var(--hop-Menu-inline-size);
-    max-block-size: var(--hop-Menu-max-block-size);
+    max-block-size: inherit;
     min-inline-size: var(--hop-Menu-min-inline-size);
     max-inline-size: var(--hop-Menu-max-inline-size);
     padding-block: var(--hop-Menu-padding-block);
