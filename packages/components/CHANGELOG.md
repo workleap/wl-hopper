@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.0
+
+### Minor Changes
+
+- ecd3601: The Select component now has a isFilterable option.
+
 ## 1.15.11
 
 ### Patch Changes
