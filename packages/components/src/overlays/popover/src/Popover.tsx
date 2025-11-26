@@ -1,4 +1,4 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, useColorSchemeContext, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, type ForwardedRef } from "react";
 import type { Placement } from "react-aria";
@@ -11,7 +11,6 @@ import {
 } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext, LinkButtonContext } from "../../../buttons/index.ts";
-import { HopperProvider, useForwardedHopperContext } from "../../../hopper-provider/index.ts";
 import { ContentContext, FooterContext } from "../../../layout/index.ts";
 import { LinkContext } from "../../../link/index.ts";
 import { ListBoxContext } from "../../../list-box/index.ts";
@@ -52,7 +51,8 @@ export interface PopoverProps extends StyledComponentProps<Omit<RACPopoverProps,
 function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, PopoverContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const prevContextProps = useForwardedHopperContext();
+    const { colorScheme } = useColorSchemeContext();
+
     const {
         isAutoWidth,
         children,
@@ -84,6 +84,7 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
             "hop-Popover",
             isNonDialog && "non-dialog"
         ),
+        getRootCSSClasses(colorScheme),
         stylingProps.className
     );
 
@@ -121,7 +122,7 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
 
                 if (isNonDialog) {
                     return (
-                        <HopperProvider {...prevContextProps} className={styles["hop-Popover__wrapper"]}>
+                        <div className={styles["hop-Popover__wrapper"]}>
                             <div
                                 {...containerOtherProps}
                                 className={containerClassNames}
@@ -145,49 +146,47 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
                                     {content}
                                 </SlotProvider>
                             </div>
-                        </HopperProvider>
+                        </div>
                     );
                 }
 
                 return (
-                    <HopperProvider {...prevContextProps}>
-                        <Dialog {...containerOtherProps} className={containerClassNames} style={containerStyle}>
-                            <SlotProvider values={[
-                                [HeadingContext, {
-                                    slot: "title",
-                                    className: styles["hop-Popover__title"],
-                                    size: "unset"
-                                }],
-                                [ButtonContext, {
-                                    size: "sm",
-                                    className: styles["hop-Popover__action"]
-                                }],
-                                [LinkButtonContext, {
-                                    size: "sm",
-                                    className: styles["hop-Popover__action"]
-                                }],
-                                [ButtonGroupContext, {
-                                    size: "sm",
-                                    align: "end",
-                                    className: styles["hop-Popover__actions"]
-                                }],
-                                [ContentContext, {
-                                    className: styles["hop-Popover__content"]
-                                }],
-                                [FooterContext, {
-                                    className: styles["hop-Popover__footer"]
-                                }],
-                                [LinkContext, {
-                                    size: "sm",
-                                    variant: "primary",
-                                    isQuiet: true
-                                }]
-                            ]}
-                            >
-                                {content}
-                            </SlotProvider>
-                        </Dialog>
-                    </HopperProvider>
+                    <Dialog {...containerOtherProps} className={containerClassNames} style={containerStyle}>
+                        <SlotProvider values={[
+                            [HeadingContext, {
+                                slot: "title",
+                                className: styles["hop-Popover__title"],
+                                size: "unset"
+                            }],
+                            [ButtonContext, {
+                                size: "sm",
+                                className: styles["hop-Popover__action"]
+                            }],
+                            [LinkButtonContext, {
+                                size: "sm",
+                                className: styles["hop-Popover__action"]
+                            }],
+                            [ButtonGroupContext, {
+                                size: "sm",
+                                align: "end",
+                                className: styles["hop-Popover__actions"]
+                            }],
+                            [ContentContext, {
+                                className: styles["hop-Popover__content"]
+                            }],
+                            [FooterContext, {
+                                className: styles["hop-Popover__footer"]
+                            }],
+                            [LinkContext, {
+                                size: "sm",
+                                variant: "primary",
+                                isQuiet: true
+                            }]
+                        ]}
+                        >
+                            {content}
+                        </SlotProvider>
+                    </Dialog>
                 );
             }}
         </RACPopover>

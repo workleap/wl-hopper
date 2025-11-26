@@ -1,4 +1,5 @@
 import { Button, ButtonGroup, Content, Div, Footer, Heading, Link } from "@hopper-ui/components";
+import { hopperParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Popover } from "../../src/Popover.tsx";
@@ -127,6 +128,30 @@ export const NoHeading = {
             <Button>{TRIGGER}</Button>
             <Popover {...args} >
                 <Content>{CONTENT}</Content>
+            </Popover>
+        </PopoverTrigger>
+    )
+} satisfies Story;
+
+export const LongContent = {
+    parameters: {
+        ...hopperParameters({ colorSchemes: ["light"] }),
+        chromatic: {
+            modes: {
+                "Small height": { viewport: { height: 200 } }
+            }
+        }
+    },
+    render: args => (
+        <PopoverTrigger>
+            <Button>{TRIGGER}</Button>
+            <Popover {...args} >
+                <Heading>{TITLE}</Heading>
+                <Content>
+                    {Array.from({ length: 20 }, (_, i) => (
+                        <p key={i}>This is line {i + 1} of a long content inside the Popover component.</p>
+                    ))}
+                </Content>
             </Popover>
         </PopoverTrigger>
     )
