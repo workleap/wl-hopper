@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.2
+
+### Patch Changes
+
+- 9ba4c7c: Fix issue where text and icons would have no space in between in MenuItem
+
 ## 1.16.1
 
 ### Patch Changes
