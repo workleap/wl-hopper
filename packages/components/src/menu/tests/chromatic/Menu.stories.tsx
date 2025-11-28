@@ -375,6 +375,18 @@ export const SingleSelectionMode = {
     }
 } satisfies Story;
 
+export const LongSelectedItem = {
+    render: args => (
+        <Menu {...args}>
+            <MenuItem id="long">Very Long Selected Item</MenuItem>
+        </Menu>
+    ),
+    args: {
+        selectionMode: "single",
+        selectedKeys: ["long"]
+    }
+} satisfies Story;
+
 export const MultipleSelectionMode = {
     render: args => (
         <Menu {...args}>

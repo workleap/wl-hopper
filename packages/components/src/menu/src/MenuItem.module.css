@@ -131,12 +131,14 @@
 .hop-MenuItem__checkmark {
     grid-area: end-panel;
     order: 3;
+    padding-inline-start: var(--hop-MenuItem-gap);
     margin-inline-start: auto;
 }
 
 .hop-MenuItem__arrow {
     grid-area: end-panel;
     order: 3;
+    padding-inline-start: var(--hop-MenuItem-gap);
     margin-inline-start: auto;
     color: var(--hop-MenuItem-icon-color);
 }
