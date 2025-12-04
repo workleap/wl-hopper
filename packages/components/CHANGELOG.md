@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.3
+
+### Patch Changes
+
+- a6e4399: Add a visual state on the menu item when it's expanded
+
 ## 1.16.2
 
 ### Patch Changes
