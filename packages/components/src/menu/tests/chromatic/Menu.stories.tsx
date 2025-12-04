@@ -2,7 +2,7 @@ import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons"
 import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
-import { userEvent } from "storybook/test";
+import { screen, userEvent } from "storybook/test";
 
 import { Avatar } from "../../../avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";
@@ -428,4 +428,37 @@ export const Overflowing = {
             <MenuItem>Print</MenuItem>
         </Menu>
     )
+} satisfies Story;
+
+export const MenuHover = {
+    parameters: {
+        ...hopperParameters({
+            colorSchemes: ["light"]
+        }),
+        disableWrapper: true
+    },
+    render: args => (
+        <MenuTrigger isOpen align="end" direction="bottom">
+            <Button variant="secondary" aria-label="Actions for selected resource">
+                <KebabIcon />
+            </Button>
+            <Menu {...args}>
+                <MenuItem id="favorite">Favorite</MenuItem>
+                <MenuItem id="edit">Edit</MenuItem>
+                <SubmenuTrigger>
+                    <MenuItem id="share">Share</MenuItem>
+                    <Menu>
+                        <MenuItem>SMS</MenuItem>
+                        <MenuItem>Email</MenuItem>
+                    </Menu>
+                </SubmenuTrigger>
+            </Menu>
+        </MenuTrigger>
+    ),
+    play: async () => {
+        const shareMenuItem = await screen.findByRole("menuitem", { name: "Share" });
+        await userEvent.click(shareMenuItem);
+        const emailMenuItem = await screen.findByRole("menuitem", { name: "Email" });
+        await userEvent.hover(emailMenuItem);
+    }
 } satisfies Story;

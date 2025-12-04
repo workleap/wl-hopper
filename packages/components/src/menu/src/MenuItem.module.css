@@ -68,6 +68,7 @@
 }
 
 .hop-MenuItem[data-hovered],
+.hop-MenuItem[aria-expanded],
 .hop-MenuItem[data-focused] {
     --background-color: var(--hop-neutral-surface-hover);
 }
