@@ -316,7 +316,6 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
                             >
                                 <ListBox
                                     size={size}
-                                    isInvalid={isInvalid}
                                     items={items}
                                     isLoading={isLoading}
                                     onLoadMore={onLoadMore}
