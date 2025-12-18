@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.4
+
+### Patch Changes
+
+- aafd4d5: Fixed an issue where Select and ComboBox dropdown items would display red text when the component was in an invalid state. The invalid styling now only applies to the trigger border, not the dropdown items.
+
 ## 1.16.3
 
 ### Patch Changes
