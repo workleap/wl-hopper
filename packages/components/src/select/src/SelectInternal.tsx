@@ -283,7 +283,6 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         >
             <ListBox
                 size={size}
-                isInvalid={isInvalid}
                 items={items}
                 isLoading={isLoading}
                 onLoadMore={onLoadMore}
