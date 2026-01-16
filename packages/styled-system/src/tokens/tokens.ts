@@ -7,5 +7,4 @@ export const Tokens = {
     DarkSemantic: DarkSemanticTokens
 };
 
-export type HopperTokenKey = keyof typeof CoreTokens | keyof typeof SemanticTokens | keyof typeof DarkSemanticTokens;
-export type HopperCssVar = `var(${HopperTokenKey})`;
+export type { HopperCssVar, HopperTokenKey } from "./generated/styledSystemToTokenMappings.ts";
