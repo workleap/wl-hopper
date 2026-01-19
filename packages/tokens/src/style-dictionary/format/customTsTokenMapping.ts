@@ -1,5 +1,6 @@
 import type { Dictionary, TransformedToken } from "style-dictionary";
 
+import { HOPPER_PREFIX, StyledSystemRootCssClass } from "../constant.ts";
 import { isColorType } from "../filter/isColorType.ts";
 import { handleTypes } from "../helpers/index.ts";
 
@@ -30,15 +31,17 @@ function getTokensByFamily(family: string, tokens: TransformedToken[]) {
         return token.filePath.includes(family);
     });
 }
-export const customTsTokenMapping = function ({ dictionary }: { dictionary: Dictionary }) {
+export const customTsTokenMapping = function ({ dictionary}: { dictionary: Dictionary }) {
     const types = handleTypes(dictionary.allTokens);
 
     let mappings = "";
     if (types !== undefined) {
         const coreTokens = getTokensByFamily("core", dictionary.allTokens);
         const semanticTokens = getTokensByFamily("semantic", dictionary.allTokens);
-        const hopperPrefix = "--hop";
-        mappings += `export const HopperVariablePrefix = "${hopperPrefix}";\n\n`;
+        const cssPrefix = `--${HOPPER_PREFIX}`;
+        mappings += `export const HopperRootCssClass = "${HOPPER_PREFIX}";\n`;
+        mappings += `export const StyledSystemRootCssClass = "${StyledSystemRootCssClass}";\n`;
+        mappings += `export const HopperVariablePrefix = "${cssPrefix}";\n\n`;
 
         mappings += mapColors(coreTokens, semanticTokens);
         mappings += mapElevation(coreTokens, semanticTokens);
@@ -47,7 +50,7 @@ export const customTsTokenMapping = function ({ dictionary }: { dictionary: Dict
         mappings += mapSpace(coreTokens, semanticTokens);
         mappings += mapMotions(coreTokens);
 
-        mappings += `export type HopperTokenKey = \`${hopperPrefix}-\${${Object.values(MappingType).map(x => `typeof ${x}[keyof typeof ${x}]`).join(" | ")}}\`;\n`;
+        mappings += `export type HopperTokenKey = \`${cssPrefix}-\${${Object.values(MappingType).map(x => `typeof ${x}[keyof typeof ${x}]`).join(" | ")}}\`;\n`;
         mappings += `export type HopperCssVar = \`var(\${HopperTokenKey})\`;\n`;
     }
 

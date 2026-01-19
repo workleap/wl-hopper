@@ -1,6 +1,7 @@
 import type { Config, File } from "style-dictionary";
 
-const PREFIX = "hop";
+import { HOPPER_PREFIX } from "./constant.ts";
+
 const BUILD_PATH = "dist/";
 const STORYBOOK_BUILD_PATH = "../src/stories";
 const DOCS_BUILD_PATH = "../../../apps/docs";
@@ -40,7 +41,7 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark"): Config {
             "typescript": {
                 "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
                 "buildPath": STYLED_SYSTEM_BUILD_PATH,
-                "prefix": PREFIX,
+                "prefix": HOPPER_PREFIX,
                 "options": {
                     "fileHeader": "typescript-file-header"
                 },
@@ -59,31 +60,33 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark"): Config {
     };
 }
 
-export const styledSystemTokenMappingConfig: Config = {
-    "source": [
-        "src/tokens/core/*.tokens.json",
-        "src/tokens/semantic/light/*.tokens.json"
-    ],
-    "platforms": {
-        "typescript": {
-            "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
-            "buildPath": STYLED_SYSTEM_BUILD_PATH,
-            "prefix": PREFIX,
-            "options": {
-                "fileHeader": "typescript-file-header"
-            },
-            "files": [
-                {
-                    "destination": "styledSystemToTokenMappings.ts",
-                    "format": "custom/ts-token-mapping",
-                    "options": {
-                        "outputReferences": true
+export function getStyledSystemTokenMappingConfig(): Config {
+    return {
+        "source": [
+            "src/tokens/core/*.tokens.json",
+            "src/tokens/semantic/light/*.tokens.json"
+        ],
+        "platforms": {
+            "typescript": {
+                "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
+                "buildPath": STYLED_SYSTEM_BUILD_PATH,
+                "prefix": HOPPER_PREFIX,
+                "options": {
+                    "fileHeader": "typescript-file-header"
+                },
+                "files": [
+                    {
+                        "destination": "styledSystemToTokenMappings.ts",
+                        "format": "custom/ts-token-mapping",
+                        "options": {
+                            "outputReferences": true
+                        }
                     }
-                }
-            ]
+                ]
 
+            }
         }
-    }
+    };
 };
 
 export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
@@ -115,7 +118,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
             "css": {
                 "transformGroup": "custom/css",
                 "buildPath": BUILD_PATH,
-                "prefix": PREFIX,
+                "prefix": HOPPER_PREFIX,
                 "files": [
                     isLightMode ? lightConfig : darkConfig,
                     {

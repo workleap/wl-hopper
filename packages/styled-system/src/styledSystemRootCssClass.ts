@@ -1,12 +1,9 @@
 import type { ColorScheme } from "@hopper-ui/components";
 
-import packageJson from "../package.json" with { type: "json" };
+import { HopperRootCssClass, StyledSystemRootCssClass } from "./tokens/generated/styledSystemToTokenMappings.ts";
 
-export const HopperRootCssClass = "hop";
-
-// We read the version from the packageJson and replace all dots with dashes.
 // This ensures that multiple versions of the Styled System can be used on the same page.
-export const StyledSystemRootCssClass = `${HopperRootCssClass}-${packageJson.version.replaceAll(".", "-")}`;
+export { HopperRootCssClass, StyledSystemRootCssClass };
 
 /**
  * The CSS Variables that are used by the Styled System are injected targeting those classes.

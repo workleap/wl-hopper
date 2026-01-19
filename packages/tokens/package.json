@@ -20,9 +20,7 @@
     },
     "type": "module",
     "exports": {
-        "./tokens.css": "./dist/tokens.css",
-        "./fonts.css": "./dist/fonts.css",
-        "./dark/tokens.css": "./dist/dark/tokens.css"
+        "./*": "./dist/*"
     },
     "files": [
         "dist",

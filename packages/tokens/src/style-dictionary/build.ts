@@ -1,10 +1,11 @@
 import StyleDictionary from "style-dictionary";
 
-import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokensConfig, styledSystemTokenMappingConfig } from "./config.ts";
+import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokenMappingConfig, getStyledSystemTokensConfig } from "./config.ts";
 import { isColorType } from "./filter/isColorType.ts";
 import { isDarkTokens } from "./filter/isDarkTokens.ts";
 import { customTsTokenMapping } from "./format/customTsTokenMapping.ts";
-import { cssDarkMode, customDoc, customJson, customTsTokens, fontFace } from "./format/index.ts";
+import { cssDarkMode, customDoc, customJson, fontFace } from "./format/index.ts";
+import { getAvailableThemes } from "./helpers/getThemes.ts";
 import { w3cTokenJsonParser } from "./parser/w3cTokenParser.ts";
 import { attributeFont, isSizeType, pxToRem } from "./transform/index.ts";
 
@@ -62,13 +63,6 @@ StyleDictionary.registerFormat({
 });
 
 StyleDictionary.registerFormat({
-    name: "custom/ts-tokens",
-    formatter: ({ dictionary, file }) => {
-        return fileHeader({ file }) + customTsTokens({ dictionary });
-    }
-});
-
-StyleDictionary.registerFormat({
     name: "custom/ts-token-mapping",
     formatter: ({ dictionary, file }) => {
         return fileHeader({ file }) + customTsTokenMapping({ dictionary });
@@ -94,19 +88,27 @@ console.log("\nBuild started...");
 console.log("\n|- 🔤 Building fonts...");
 StyleDictionary.extend(fontsConfig).buildAllPlatforms();
 
-console.log("\n|- 🌞️ Default tokens...");
-StyleDictionary.extend(getStyleDictionaryConfig("light")).buildAllPlatforms();
+console.log("\n|- 🔤 Detecting Themes...");
+const themes = getAvailableThemes();
+console.log(`   - Found themes: ${themes.join(", ")}`);
 
-console.log("\n|- 🌙 Building dark mode...");
-StyleDictionary.extend(getStyleDictionaryConfig("dark")).buildAllPlatforms();
+for (const theme of themes) {
+    console.log(`\n|- 🎨 Building theme: ${theme}...`);
 
-console.log("\n|- 💅 Building Styled System tokens... (1/3)");
-StyleDictionary.extend(getStyledSystemTokensConfig("light")).buildAllPlatforms();
+    console.log(`\n|- 🌞️ Default tokens for \`${theme}\`...`);
+    StyleDictionary.extend(getStyleDictionaryConfig("light", theme)).buildAllPlatforms();
 
-console.log("\n|- 💅 Building Styled System dark tokens... (2/3)");
-StyleDictionary.extend(getStyledSystemTokensConfig("dark")).buildAllPlatforms();
+    console.log(`\n|- 🌙 Building dark mode for \`${theme}\`...`);
+    StyleDictionary.extend(getStyleDictionaryConfig("dark", theme)).buildAllPlatforms();
 
-console.log("\n|- 💅 Building Styled System token mappings... (3/3)");
-StyleDictionary.extend(styledSystemTokenMappingConfig).buildAllPlatforms();
+    console.log(`\n|- 💅 Building Styled System tokens for \`${theme}\`... `);
+    StyleDictionary.extend(getStyledSystemTokensConfig("light", theme)).buildAllPlatforms();
+
+    console.log(`\n|- 💅 Building Styled System dark tokens for \`${theme}\`...`);
+    StyleDictionary.extend(getStyledSystemTokensConfig("dark", theme)).buildAllPlatforms();
+}
+
+console.log("\n|- 💅 Building Styled System token mappings...");
+StyleDictionary.extend(getStyledSystemTokenMappingConfig(themes.find(theme => theme === "workleap") || themes[0])).buildAllPlatforms();
 
 console.log("\n🚀 Build completed!\n");
