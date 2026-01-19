@@ -77,6 +77,7 @@ export function useForwardedHopperContext() {
     return {
         locale: context?.locale,
         colorScheme: context?.colorScheme,
+        theme: context?.theme,
         navigate: context?.navigate,
         useHref: context?.useHref,
         withCssVariables: false // we never need to re-add css variables in a nested provider
@@ -89,7 +90,6 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
         locale,
         withBodyStyle = false,
         colorScheme = "light",
-        withCssVariables = true,
         className,
         navigate,
         useHref,
@@ -112,7 +112,6 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
                 ref={ref}
                 withBodyStyle={withBodyStyle}
                 colorScheme={colorScheme}
-                withCssVariables={withCssVariables}
                 className={classNames}
                 {...rest}
             >

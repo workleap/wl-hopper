@@ -11,8 +11,8 @@ import "./overview.css";
 import { allComponents, categories } from "./util.ts";
 
 const Overview = () => {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme } = useContext(ThemeContext);
+    const theme = colorScheme!;
 
     const overviewSection = categories.map(category => {
         if (!category) {

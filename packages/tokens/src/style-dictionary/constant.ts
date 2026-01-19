@@ -10,6 +10,6 @@ export const BUILD_PATH = "dist/";
 export const STORYBOOK_BUILD_PATH = "../src/stories";
 export const DOCS_BUILD_PATH = "../../../apps/docs";
 export const STYLED_SYSTEM_BUILD_PATH = "../styled-system/src/tokens/generated/";
-export const STYLED_SYSTEM_THEME_BUILD_PATH = "../styled-system/src/theme/";
+export const STYLED_SYSTEM_THEME_BUILD_PATH = "../styled-system/src/theme/generated/";
 
 export const THEME_SRC_PATH = "src/tokens/semantic/";

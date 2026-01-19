@@ -21,14 +21,21 @@ export default function RootLayout({ children }: {
 }) {
     const setInitialTheme = `
     function getUserPreference() {
-      if(window.localStorage.getItem("hdTheme")) {
-        return window.localStorage.getItem("hdTheme");
+      if(window.localStorage.getItem("hdColorScheme")) {
+        return window.localStorage.getItem("hdColorScheme");
       }
       return window.matchMedia("(prefers-color-scheme: dark)").matches
                 ? "dark"
                 : "light";
     }
-    document.documentElement.dataset.theme = getUserPreference();
+    function getUserTheme() {
+      if(window.localStorage.getItem("hdTheme")) {
+        return window.localStorage.getItem("hdTheme");
+      }
+      return "workleap";
+    }
+    document.documentElement.dataset["color-scheme"] = getUserPreference();
+    document.documentElement.dataset.theme = getUserTheme();
   `;
 
     return (

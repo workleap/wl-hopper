@@ -12,8 +12,8 @@ interface ComposedComponentsProps {
 }
 
 const ComposedComponents = ({ components }: ComposedComponentsProps) => {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme } = useContext(ThemeContext);
+    const theme = colorScheme!;
 
     const sortedComponents = [...components].sort((a, b) => a.localeCompare(b));
 

@@ -1,6 +1,6 @@
 import type { Config, File } from "style-dictionary";
 
-import { BUILD_PATH, DOCS_BUILD_PATH, HOPPER_PREFIX, STORYBOOK_BUILD_PATH, STYLED_SYSTEM_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
+import { BUILD_PATH, DOCS_BUILD_PATH, HOPPER_PREFIX, STORYBOOK_BUILD_PATH, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
 
 export const fontsConfig: Config = {
     "source": ["src/tokens/asset/*.tokens.json"],
@@ -33,9 +33,9 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: strin
             `src/tokens/components/${theme}/*.tokens.json`
         ],
         "platforms": {
-            "typescript": {
+            "css": {
                 "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
-                "buildPath": STYLED_SYSTEM_BUILD_PATH,
+                "buildPath": STYLED_SYSTEM_THEME_BUILD_PATH,
                 "prefix": HOPPER_PREFIX,
                 "options": {
                     "fileHeader": "typescript-file-header"

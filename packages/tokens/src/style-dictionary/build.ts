@@ -128,7 +128,7 @@ function buildStyledSystemConstants(themes: string[]) {
     mappings += `export const HopperRootCssClass = "${HOPPER_PREFIX}";\n`;
     mappings += `export const StyledSystemRootCssClass = "${StyledSystemRootCssClass}";\n`;
     mappings += `export const HopperVariablePrefix = "${cssPrefix}";\n\n`;
-    mappings += `export type Theme = "${themes.join(" | ")}";\n`;
+    mappings += `export type Theme = ${themes.map(x => `"${x}"`).join(" | ")};\n`;
 
     if (!fs.existsSync(STYLED_SYSTEM_BUILD_PATH)) {
         fs.mkdirSync(STYLED_SYSTEM_BUILD_PATH, { recursive: true });
@@ -138,8 +138,8 @@ function buildStyledSystemConstants(themes: string[]) {
 
 function buildStyleSystemTheme(theme: string) {
     let themeFile = `/** ${AUTO_GENERATED_COMMENT} */\n\n`;
-    themeFile += `@import url("../tokens/generated/${theme}/light.css");\n`;
-    themeFile += `@import url("../tokens/generated/${theme}/dark.css");\n`;
+    themeFile += `@import url("./${theme}/light.css");\n`;
+    themeFile += `@import url("./${theme}/dark.css");\n`;
 
     fs.writeFileSync(path.join(STYLED_SYSTEM_THEME_BUILD_PATH, `${theme}.css`), themeFile);
 }

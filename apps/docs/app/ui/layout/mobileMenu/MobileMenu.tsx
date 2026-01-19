@@ -25,7 +25,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     const pathname = usePathname();
     let firstPathLevel: string;
 
-    const { colorMode, setColorMode } = useContext(ThemeContext);
+    const { colorScheme, setColorScheme } = useContext(ThemeContext);
     const [isAnimating, setIsAnimating] = useState(false);
     const [animationDirection, setAnimationDirection] = useState<"opening" | "closing">("opening");
 
@@ -61,11 +61,11 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     }, [isOpen, onClose]);
 
     const toggleTheme = () => {
-        const theme: ColorScheme = colorMode === "dark"
+        const theme: ColorScheme = colorScheme === "dark"
             ? "light"
             : "dark";
 
-        setColorMode(theme);
+        setColorScheme(theme);
     };
 
     const navItems = navigation.map(item => {
@@ -123,7 +123,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                             <li>
                                 <ThemeSwitch
                                     onChange={toggleTheme}
-                                    colorMode={colorMode!}
+                                    colorScheme={colorScheme!}
                                     text="Appearance"
                                     className="hd-mobile-menu-footer-button"
                                 />

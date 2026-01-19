@@ -33,7 +33,7 @@ function getIconNumericSize(iconSize: "sm" | "md" | "lg" | "xl") {
 }
 
 function IconTable({ size, type, items, filter }: IconTableProps) {
-    const { colorMode } = useContext(ThemeContext);
+    const { colorScheme } = useContext(ThemeContext);
     const listItems = items.filter(name => {
         const formattedName = name.replace("RichIcon", "").replace("Icon", "");
 
@@ -54,7 +54,7 @@ function IconTable({ size, type, items, filter }: IconTableProps) {
     });
 
     return (
-        <HopperProvider colorScheme={colorMode}>
+        <HopperProvider colorScheme={colorScheme}>
             <div className="hd-icon-table">
                 {listItems}
             </div>

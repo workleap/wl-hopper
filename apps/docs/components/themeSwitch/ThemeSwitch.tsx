@@ -10,18 +10,18 @@ interface ThemeSwitchProps {
     text?: string;
     className?: string;
     onChange: () => void;
-    colorMode: ColorScheme;
+    colorScheme: ColorScheme;
 }
 
-const ThemeSwitch = ({ text, className, colorMode, onChange }: ThemeSwitchProps) => {
-    if (colorMode) {
+const ThemeSwitch = ({ text, className, colorScheme, onChange }: ThemeSwitchProps) => {
+    if (colorScheme) {
         return (
             <ToggleButton
                 className={clsx("hd-theme-switch__button", className)}
                 onChange={onChange}
                 aria-label="Toggle theme"
             >
-                <Icon icon={colorMode === "dark" ? "sun" : "moon"} />
+                <Icon icon={colorScheme === "dark" ? "sun" : "moon"} />
                 <span>{text}</span>
             </ToggleButton>
         );

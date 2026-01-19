@@ -4,17 +4,17 @@
     --hd-header-border-color: var(--hd-color-neutral-border-weak);
     --hd-header-height: var(--hd-space-8);
     --hd-header-shadow-1-block-color: rgb(175 182 225 / 80%);
-    --hd-header-shadow-2-block-color: #F0E9E1;
+    --hd-header-shadow-2-block-color: #f0e9e1;
     --hd-header-shadow-3-block-color: var(--hd-accent-100);
     --hd-header-shadow-1-top-position: -18.75rem;
     --hd-header-shadow-2-top-position: -21.25rem;
     --hd-header-shadow-3-top-position: -10.5rem;
 }
 
-[data-theme="dark"] {
+[data-color-scheme="dark"] {
     --hd-header-background-color: rgb(41 40 41 / 80%);
     --hd-header-shadow-1-block-color: rgb(175 182 225 / 70%);
-    --hd-header-shadow-2-block-color: #F0E9E1;
+    --hd-header-shadow-2-block-color: #f0e9e1;
     --hd-header-shadow-3-block-color: var(--hd-accent-900);
     --hd-header-shadow-1-top-position: -18.75rem;
     --hd-header-shadow-2-top-position: -31.25rem;

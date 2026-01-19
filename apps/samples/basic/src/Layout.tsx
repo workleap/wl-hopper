@@ -1,4 +1,4 @@
-import { Button, Div, H1, HopperProvider, HtmlHeader, Link, Main, useColorSchemeContext } from "@hopper-ui/components";
+import { Button, Div, H1, HopperProvider, HtmlHeader, Inline, Link, Main, useColorSchemeContext, useThemeContext } from "@hopper-ui/components";
 import { Outlet, useHref, useNavigate } from "react-router-dom";
 
 export function Layout() {
@@ -13,6 +13,7 @@ export function Layout() {
 
 function InnerLayout() {
     const { setColorScheme, colorScheme } = useColorSchemeContext();
+    const { setTheme, theme } = useThemeContext();
 
     return (
         <Div>
@@ -25,17 +26,27 @@ function InnerLayout() {
                     top="10px"
                     right="10px"
                     display="fixed"
-                    UNSAFE_width="200px"
                 >
-                    <Button
-                        size="sm"
-                        variant="secondary"
-                        onPress={() => {
-                            setColorScheme(colorScheme === "light" ? "dark" : "light");
-                        }}
-                    >
-                        Change Theme
-                    </Button>
+                    <Inline>
+                        <Button
+                            size="sm"
+                            variant="secondary"
+                            onPress={() => {
+                                setColorScheme(colorScheme === "light" ? "dark" : "light");
+                            }}
+                        >
+                            Change Color Scheme
+                        </Button>
+                        <Button
+                            size="sm"
+                            variant="secondary"
+                            onPress={() => {
+                                setTheme(theme === "workleap" ? "sharegate" : "workleap");
+                            }}
+                        >
+                            Change Theme
+                        </Button>
+                    </Inline>
                 </Div>
             </HtmlHeader>
             <Main padding="inset-lg">

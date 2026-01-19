@@ -38,7 +38,7 @@ const BackIcon = () => (
 );
 
 const Header = () => {
-    const { colorMode, setColorMode } = useContext(ThemeContext);
+    const { colorScheme, setColorScheme } = useContext(ThemeContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const isMobile = useIsMobile("52.25rem");
     const { logRocketAppId } = useEnvironmentContext();
@@ -58,11 +58,11 @@ const Header = () => {
     }, [isMobileMenuOpen]);
 
     const toggleTheme = () => {
-        const theme: ColorScheme = colorMode === "dark"
+        const theme: ColorScheme = colorScheme === "dark"
             ? "light"
             : "dark";
 
-        setColorMode(theme);
+        setColorScheme(theme);
     };
 
     const handleMobileMenuToggle = () => {
@@ -85,7 +85,7 @@ const Header = () => {
                     </div>
                     <div className="hd-header__quick-actions">
                         {/*<input type="search" placeholder="Search" />*/}
-                        <ThemeSwitch onChange={toggleTheme} colorMode={colorMode!} />
+                        <ThemeSwitch onChange={toggleTheme} colorScheme={colorScheme!} />
                         <LinkIconButton href="https://github.com/workleap/wl-hopper" target="_blank" aria-label="View source on Github">
                             <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 {}

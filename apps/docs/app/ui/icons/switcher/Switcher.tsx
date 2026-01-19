@@ -17,7 +17,7 @@ interface SwitcherProps {
 type AvailableSizes = "sm" | "md" | "lg" | "xl";
 
 const Switcher = memo(({ type, headLine, iconType = "icon" }: SwitcherProps) => {
-    const { colorMode } = useContext(ThemeContext);
+    const { colorScheme } = useContext(ThemeContext);
     const [filter, setFilter] = useState("");
     const [selectedSize, setSelectedSize] = useState<AvailableSizes>(iconType === "icon" ? "md" : "lg");
 
@@ -38,7 +38,7 @@ const Switcher = memo(({ type, headLine, iconType = "icon" }: SwitcherProps) => 
                     <SwitcherChoice value="lg" preview={<Icon size="lg" />} />
                     {iconType === "richIcon" && <SwitcherChoice value="xl" preview={<SparklesRichIcon size="xl" />} />}
                 </RadioGroup>
-                <HopperProvider colorScheme={colorMode}>
+                <HopperProvider colorScheme={colorScheme}>
                     <SearchField aria-label="Filter icons" placeholder="Search" value={filter} onChange={onTextFieldChange} />
                 </HopperProvider>
                 <IconTable type={type} size={selectedSize} filter={filter} items={iconList} />

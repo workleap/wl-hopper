@@ -5,39 +5,43 @@
     --hd-codeblock-border-size: 0.125rem;
     --hd-codeblock-padding: var(--hd-space-2);
     --hd-codeblock-line-line-number-color: var(--hd-neutral-400);
-    --hd-codeblock-line-highlighted-background-color: #434C5E;
-    --hd-codeblock-line-highlighted-border-color: #88C0D0;
-    --hd-codeblock-word-selection-background-color: #4B586A;
-    --hd-codeblock-word-color: #AF168D;
+    --hd-codeblock-line-highlighted-background-color: #434c5e;
+    --hd-codeblock-line-highlighted-border-color: #88c0d0;
+    --hd-codeblock-word-selection-background-color: #4b586a;
+    --hd-codeblock-word-color: #af168d;
 }
 
-code[data-theme*=' '],
-code[data-theme*=' '] span {
+code[data-color-scheme*=" "],
+code[data-color-scheme*=" "] span {
     color: var(--shiki-light);
 }
 
-[data-theme="dark"] {
-    code[data-theme*=' '],
-    code[data-theme*=' '] span {
+[data-color-scheme="dark"] {
+    code[data-color-scheme*=" "],
+    code[data-color-scheme*=" "] span {
         color: var(--shiki-dark, var(--hd-color-neutral-text));
     }
 }
 
 .hd-props-table [style*="--shiki-light: #98C379"] {
     --shiki-light: var(--hd-color-primary-text) !important
+;
 }
 
 .hd-props-table [style*="--shiki-light: #E06C75"],
 .hd-props-table[style*="--shiki-light: #C678DD"] {
     --shiki-light: var(--hd-codeblock-word-color) !important
+;
 }
 
 .hd-props-table [style*="--shiki-light: #56B6C2"] {
     --shiki-light: var(--hd-neutral-700) !important
+;
 }
 
 .hd-props-table [style*="--shiki-light: #E5C07B"] {
     --shiki-light: var(--hd-color-accent-text) !important
+;
 }
 
 [data-rehype-pretty-code-figure] pre {
@@ -62,7 +66,8 @@ code[data-theme*=' '] span {
 [data-rehype-pretty-code-figure] .word {
     border-radius: var(--hd-border-radius-sm);
     background-color: var(--hd-codeblock-word-selection-background-color);
-    box-shadow: 0 0 0 var(--hd-space-05) var(--hd-codeblock-word-selection-background-color);
+    box-shadow: 0 0 0 var(--hd-space-05)
+        var(--hd-codeblock-word-selection-background-color);
 }
 
 [data-rehype-pretty-code-figure] pre code [data-highlighted-chars] {
@@ -96,9 +101,8 @@ code[data-theme*=' '] span {
     color: var(--hd-color-primary-text);
     border-radius: var(--hd-space-1);
     font-style: italic;
-    font-size: .875rem;
+    font-size: 0.875rem;
 }
-
 
 .highlighted {
     background-color: var(--hd-codeblock-line-highlighted-background-color);

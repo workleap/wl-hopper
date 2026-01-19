@@ -16,26 +16,26 @@ interface ComponentPreviewWrapperProps {
 }
 
 const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleButton, minHeight = "13rem" }: ComponentPreviewWrapperProps) => {
-    const { colorMode = "light" } = useContext(ThemeContext);
-    const [localColorMode, setLocalColorMode] = useState(colorMode);
+    const { colorScheme = "light" } = useContext(ThemeContext);
+    const [localColorScheme, setLocalColorScheme] = useState(colorScheme);
 
     useEffect(() => {
         // keep the local color mode in sync with the global color mode when the global changes
-        setLocalColorMode(colorMode);
-    }, [colorMode]);
+        setLocalColorScheme(colorScheme);
+    }, [colorScheme]);
 
     const toggleTheme = useCallback(() => {
-        const theme: ColorScheme = localColorMode === "dark"
+        const theme: ColorScheme = localColorScheme === "dark"
             ? "light"
             : "dark";
 
-        setLocalColorMode(theme);
-    }, [localColorMode]);
+        setLocalColorScheme(theme);
+    }, [localColorScheme]);
 
     return (
         <div
             className="hd-component-preview-wrapper"
-            data-schema={localColorMode}
+            data-schema={localColorScheme}
             style={{ minHeight: minHeight }}
         >
             <div className="hd-component-preview-wrapper__actions">
@@ -44,10 +44,10 @@ const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleB
                 <ThemeSwitch
                     className="hd-component-preview-wrapper__action"
                     onChange={toggleTheme}
-                    colorMode={localColorMode}
+                    colorScheme={localColorScheme}
                 />
             </div>
-            <HopperProvider colorScheme={localColorMode} locale="en-US">
+            <HopperProvider colorScheme={localColorScheme} locale="en-US">
                 <Card className="hd-component-preview-wrapper__card" size="sm" style={{ minHeight: minHeight }}>
                     {preview}
                 </Card>

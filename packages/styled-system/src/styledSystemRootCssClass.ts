@@ -8,9 +8,11 @@ export function getRootCSSClasses(colorScheme: ColorScheme, theme: string): stri
     return [
         HopperRootCssClass,
         `${HopperRootCssClass}-${colorScheme}`,
+        `${HopperRootCssClass}-${theme}`,
         `${HopperRootCssClass}-${theme}-${colorScheme}`,
         StyledSystemRootCssClass,
         `${StyledSystemRootCssClass}-${colorScheme}`,
+        `${StyledSystemRootCssClass}-${theme}`,
         `${StyledSystemRootCssClass}-${theme}-${colorScheme}`
     ].join(" ");
 }

@@ -44,8 +44,8 @@ export interface DosAndDontsProps {
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme } = useContext(ThemeContext);
+    const theme = colorScheme!;
 
     const renderCard = (variant: Variant, item?: DosAndDontsItem) => {
         if (!item || item.isForAiOnly) {
