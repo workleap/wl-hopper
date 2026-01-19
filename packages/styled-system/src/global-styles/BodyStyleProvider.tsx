@@ -1,8 +1,8 @@
 import { useRef, useState, type RefObject } from "react";
 
 import { useColorSchemeContext, type ColorScheme } from "../color-scheme/ColorSchemeContext.ts";
-import { StyledSystemRootCssClass } from "../styledSystemRootCssClass.ts";
-import type { HopperTokenKey } from "../tokens/tokens.ts";
+import { StyledSystemRootCssClass } from "../tokens/generated/styledSystemConstants.ts";
+import type { HopperTokenKey } from "../tokens/generated/styledSystemToTokenMappings.ts";
 import { isNil } from "../utils/assertion.ts";
 import { useInsertStyleElement } from "../utils/useInsertStyleElement.ts";
 import { useIsomorphicLayoutEffect } from "../utils/useIsomorphicLayoutEffect.ts";

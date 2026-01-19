@@ -1,6 +1,6 @@
 import type { Dictionary, TransformedToken } from "style-dictionary";
 
-import { HOPPER_PREFIX, StyledSystemRootCssClass } from "../constant.ts";
+import { HOPPER_PREFIX } from "../constant.ts";
 import { isColorType } from "../filter/isColorType.ts";
 import { handleTypes } from "../helpers/index.ts";
 
@@ -39,9 +39,6 @@ export const customTsTokenMapping = function ({ dictionary}: { dictionary: Dicti
         const coreTokens = getTokensByFamily("core", dictionary.allTokens);
         const semanticTokens = getTokensByFamily("semantic", dictionary.allTokens);
         const cssPrefix = `--${HOPPER_PREFIX}`;
-        mappings += `export const HopperRootCssClass = "${HOPPER_PREFIX}";\n`;
-        mappings += `export const StyledSystemRootCssClass = "${StyledSystemRootCssClass}";\n`;
-        mappings += `export const HopperVariablePrefix = "${cssPrefix}";\n\n`;
 
         mappings += mapColors(coreTokens, semanticTokens);
         mappings += mapElevation(coreTokens, semanticTokens);

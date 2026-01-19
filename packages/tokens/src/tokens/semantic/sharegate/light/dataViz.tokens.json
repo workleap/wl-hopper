@@ -1,0 +1,1136 @@
+{
+    "dataviz": {
+        "monochromatic": {
+            "primary": {
+                "25": {
+                    "$type": "color",
+                    "$value": "#f5f6ff"
+                },
+                "50": {
+                    "$type": "color",
+                    "$value": "#e6ebff"
+                },
+                "75": {
+                    "$type": "color",
+                    "$value": "#d6e0ff"
+                },
+                "100": {
+                    "$type": "color",
+                    "$value": "#b9cbff"
+                },
+                "200": {
+                    "$type": "color",
+                    "$value": "#95b1ff"
+                },
+                "300": {
+                    "$type": "color",
+                    "$value": "#6c8ffd"
+                },
+                "400": {
+                    "$type": "color",
+                    "$value": "#4767fe"
+                },
+                "500": {
+                    "$type": "color",
+                    "$value": "#3b57ff"
+                },
+                "600": {
+                    "$type": "color",
+                    "$value": "#2a43e8"
+                },
+                "700": {
+                    "$type": "color",
+                    "$value": "#2040c7"
+                },
+                "800": {
+                    "$type": "color",
+                    "$value": "#1b3587"
+                },
+                "900": {
+                    "$type": "color",
+                    "$value": "#152450"
+                },
+                "25-hover": {
+                    "$type": "color",
+                    "$value": "#e6ebff"
+                },
+                "50-hover": {
+                    "$type": "color",
+                    "$value": "#d6e0ff"
+                },
+                "75-hover": {
+                    "$type": "color",
+                    "$value": "#b9cbff"
+                },
+                "100-hover": {
+                    "$type": "color",
+                    "$value": "#95b1ff"
+                },
+                "200-hover": {
+                    "$type": "color",
+                    "$value": "#6c8ffd"
+                },
+                "300-hover": {
+                    "$type": "color",
+                    "$value": "#4767fe"
+                },
+                "400-hover": {
+                    "$type": "color",
+                    "$value": "#3b57ff"
+                },
+                "500-hover": {
+                    "$type": "color",
+                    "$value": "#2a43e8"
+                },
+                "600-hover": {
+                    "$type": "color",
+                    "$value": "#2040c7"
+                },
+                "700-hover": {
+                    "$type": "color",
+                    "$value": "#1b3587"
+                },
+                "800-hover": {
+                    "$type": "color",
+                    "$value": "#152450"
+                },
+                "900-hover": {
+                    "$type": "color",
+                    "$value": "#0b173a"
+                }
+            },
+            "positive": {
+                "25": {
+                    "$type": "color",
+                    "$value": "#f4f9e9"
+                },
+                "50": {
+                    "$type": "color",
+                    "$value": "#e3f3b9"
+                },
+                "75": {
+                    "$type": "color",
+                    "$value": "#cde8ac"
+                },
+                "100": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "200": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "300": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "400": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "500": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "600": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "700": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "800": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "900": {
+                    "$type": "color",
+                    "$value": "#132a27"
+                },
+                "25-hover": {
+                    "$type": "color",
+                    "$value": "#e3f3b9"
+                },
+                "50-hover": {
+                    "$type": "color",
+                    "$value": "#cde8ac"
+                },
+                "75-hover": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "100-hover": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "200-hover": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "300-hover": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "400-hover": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "500-hover": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "600-hover": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "700-hover": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "800-hover": {
+                    "$type": "color",
+                    "$value": "#132a27"
+                },
+                "900-hover": {
+                    "$type": "color",
+                    "$value": "#0a1716"
+                }
+            },
+            "negative": {
+                "25": {
+                    "$type": "color",
+                    "$value": "#fdf6f6"
+                },
+                "50": {
+                    "$type": "color",
+                    "$value": "#fde6e5"
+                },
+                "75": {
+                    "$type": "color",
+                    "$value": "#ffd6d3"
+                },
+                "100": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "200": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "300": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "400": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "500": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "600": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "700": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "800": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "900": {
+                    "$type": "color",
+                    "$value": "#431a17"
+                },
+                "25-hover": {
+                    "$type": "color",
+                    "$value": "#fde6e5"
+                },
+                "50-hover": {
+                    "$type": "color",
+                    "$value": "#ffd6d3"
+                },
+                "75-hover": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "100-hover": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "200-hover": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "300-hover": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "400-hover": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "500-hover": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "600-hover": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "700-hover": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "800-hover": {
+                    "$type": "color",
+                    "$value": "#431a17"
+                },
+                "900-hover": {
+                    "$type": "color",
+                    "$value": "#2d100d"
+                }
+            }
+        },
+        "diverging": {
+            "sequence 1": {
+                "positive9": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "positive9-hover": {
+                    "$type": "color",
+                    "$value": "#132a27"
+                },
+                "positive8": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "positive8-hover": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "positive7": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "positive7-hover": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "positive6": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "positive6-hover": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "positive5": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "positive5-hover": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "positive4": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "positive-4-hover": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "positive3": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "positive3-hover": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "positive2": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "positive2-hover": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "positive1": {
+                    "$type": "color",
+                    "$value": "#cde8ac"
+                },
+                "positive1-hover": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "neutral": {
+                    "$type": "color",
+                    "$value": "#f7e694"
+                },
+                "neutral-hover": {
+                    "$type": "color",
+                    "$value": "#eac96d"
+                },
+                "negative1": {
+                    "$type": "color",
+                    "$value": "#ffd8be"
+                },
+                "negative1-hover": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "negative2": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "negative2-hover": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "negative3": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "negative3-hover": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "negative4": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "negative4-hover": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "negative5": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "negative5-hover": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "negative6": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "negative6-hover": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "negative7": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "negative7-hover": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "negative8": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "negative8-hover": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "negative9": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "negative9-hover": {
+                    "$type": "color",
+                    "$value": "#431a17"
+                }
+            },
+            "sequence 2": {
+                "positive10": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "positive10-hover": {
+                    "$type": "color",
+                    "$value": "#132a27"
+                },
+                "positive9": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "positive9-hover": {
+                    "$type": "color",
+                    "$value": "#16433d"
+                },
+                "positive8": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "positive8-hover": {
+                    "$type": "color",
+                    "$value": "#115a52"
+                },
+                "positive7": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "positive7-hover": {
+                    "$type": "color",
+                    "$value": "#0a6f64"
+                },
+                "positive6": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "positive6-hover": {
+                    "$type": "color",
+                    "$value": "#0c796b"
+                },
+                "positive5": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "positive5-hover": {
+                    "$type": "color",
+                    "$value": "#188a71"
+                },
+                "positive4": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "positive4-hover": {
+                    "$type": "color",
+                    "$value": "#47a584"
+                },
+                "positive3": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "positive3-hover": {
+                    "$type": "color",
+                    "$value": "#7dc291"
+                },
+                "positive2": {
+                    "$type": "color",
+                    "$value": "#cde8ac"
+                },
+                "positive2-hover": {
+                    "$type": "color",
+                    "$value": "#aad89d"
+                },
+                "positive1": {
+                    "$type": "color",
+                    "$value": "#e3f3b9"
+                },
+                "positive1-hover": {
+                    "$type": "color",
+                    "$value": "#cde8ac"
+                },
+                "negative1": {
+                    "$type": "color",
+                    "$value": "#fde6e5"
+                },
+                "negative1-hover": {
+                    "$type": "color",
+                    "$value": "#ffd6d3"
+                },
+                "negative2": {
+                    "$type": "color",
+                    "$value": "#ffd6d3"
+                },
+                "negative2-hover": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "negative3": {
+                    "$type": "color",
+                    "$value": "#ffbcb7"
+                },
+                "negative3-hover": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "negative4": {
+                    "$type": "color",
+                    "$value": "#ff8e8e"
+                },
+                "negative4-hover": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "negative5": {
+                    "$type": "color",
+                    "$value": "#f56263"
+                },
+                "negative5-hover": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "negative6": {
+                    "$type": "color",
+                    "$value": "#df3236"
+                },
+                "negative6-hover": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "negative7": {
+                    "$type": "color",
+                    "$value": "#cb2e31"
+                },
+                "negative7-hover": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "negative8": {
+                    "$type": "color",
+                    "$value": "#ba2d2d"
+                },
+                "negative8-hover": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "negative9": {
+                    "$type": "color",
+                    "$value": "#952927"
+                },
+                "negative9-hover": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "negative10": {
+                    "$type": "color",
+                    "$value": "#6c2320"
+                },
+                "negative10-hover": {
+                    "$type": "color",
+                    "$value": "#431a17"
+                }
+            }
+        },
+        "categorical": {
+            "sequence": {
+                "category1": {
+                    "$type": "color",
+                    "$value": "#c7ebff"
+                },
+                "category1-hover": {
+                    "$type": "color",
+                    "$value": "#ade2ff"
+                },
+                "category2": {
+                    "$type": "color",
+                    "$value": "#ecd599"
+                },
+                "category2-hover": {
+                    "$type": "color",
+                    "$value": "#e6c675"
+                },
+                "category3": {
+                    "$type": "color",
+                    "$value": "#d2cdf8"
+                },
+                "category3-hover": {
+                    "$type": "color",
+                    "$value": "#bfb8f5"
+                },
+                "category4": {
+                    "$type": "color",
+                    "$value": "#b6bead"
+                },
+                "category4-hover": {
+                    "$type": "color",
+                    "$value": "#a4ae98"
+                },
+                "category5": {
+                    "$type": "color",
+                    "$value": "#fbbdcf"
+                },
+                "category5-hover": {
+                    "$type": "color",
+                    "$value": "#f99fb8"
+                },
+                "category6": {
+                    "$type": "color",
+                    "$value": "#bfdca9"
+                },
+                "category6-hover": {
+                    "$type": "color",
+                    "$value": "#a9d08b"
+                },
+                "category7": {
+                    "$type": "color",
+                    "$value": "#fbe997"
+                },
+                "category7-hover": {
+                    "$type": "color",
+                    "$value": "#fae275"
+                },
+                "category8": {
+                    "$type": "color",
+                    "$value": "#e8ddd0"
+                },
+                "category8-hover": {
+                    "$type": "color",
+                    "$value": "#ddcebb"
+                },
+                "category9": {
+                    "$type": "color",
+                    "$value": "#a7e6dc"
+                },
+                "category9-hover": {
+                    "$type": "color",
+                    "$value": "#90e0d2"
+                },
+                "category10": {
+                    "$type": "color",
+                    "$value": "#aecdd5"
+                },
+                "category10-hover": {
+                    "$type": "color",
+                    "$value": "#93bdc8"
+                },
+                "category11": {
+                    "$type": "color",
+                    "$value": "#ffbf92"
+                },
+                "category11-hover": {
+                    "$type": "color",
+                    "$value": "#ffac70"
+                },
+                "category12": {
+                    "$type": "color",
+                    "$value": "#a0b8fa"
+                },
+                "category12-hover": {
+                    "$type": "color",
+                    "$value": "#779af8"
+                },
+                "category13": {
+                    "$type": "color",
+                    "$value": "#69bfa0"
+                },
+                "category13-hover": {
+                    "$type": "color",
+                    "$value": "#54b692"
+                }
+            },
+            "2colorgroup": {
+                "option6": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#ffbf92"
+                    }
+                },
+                "option5": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#a0b8fa"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#a7e6dc"
+                    }
+                },
+                "option4": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#6c8ffd"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#bfdca9"
+                    }
+                },
+                "option3": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#ff9b3f"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#2f48ff"
+                    }
+                },
+                "option2": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#fbbdcf"
+                    }
+                },
+                "option1": {
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#c7ebff"
+                    },
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    }
+                }
+            },
+            "3colorgroup": {
+                "option1": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#bfdca9"
+                    }
+                },
+                "option2": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#ecd599"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#a7e6dc"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    }
+                },
+                "option3": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#aecdd5"
+                    }
+                },
+                "option4": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#a0b8fa"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#fbbdcf"
+                    }
+                }
+            },
+            "4colorgroup": {
+                "option1": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#cde8ac"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#fbbdcf"
+                    }
+                },
+                "option2": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#c7ebff"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#84d0b4"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    }
+                },
+                "option3": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#ffbf92"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#2e70a8"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#ecd599"
+                    }
+                },
+                "option4": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#c7ebff"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#fa4d59"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    }
+                }
+            },
+            "5colorgroup": {
+                "option1": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#ff9b3f"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#bfdca9"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#ecd599"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    }
+                },
+                "option2": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#ff9b3f"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#2e70a8"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#c5bef6"
+                    }
+                },
+                "option3": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#ecd599"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#aecdd5"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#ffbf92"
+                    }
+                },
+                "option4": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#c7ebff"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#fa4d59"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    }
+                }
+            },
+            "6colorgroup": {
+                "option1": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#a0b8fa"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#bfdca9"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#fa4d59"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#ecd599"
+                    },
+                    "category6": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    }
+                },
+                "option2": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#2e70a8"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#69bfa0"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#ff9b3f"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#a7e6dc"
+                    },
+                    "category6": {
+                        "$type": "color",
+                        "$value": "#d2cdf8"
+                    }
+                },
+                "option3": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#b6bead"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#aecdd5"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#e8ddd0"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#a7e6dc"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#2e70a8"
+                    },
+                    "category6": {
+                        "$type": "color",
+                        "$value": "#fbbdcf"
+                    }
+                },
+                "option4": {
+                    "category1": {
+                        "$type": "color",
+                        "$value": "#fbbdcf"
+                    },
+                    "category2": {
+                        "$type": "color",
+                        "$value": "#a0b8fa"
+                    },
+                    "category3": {
+                        "$type": "color",
+                        "$value": "#ffbf92"
+                    },
+                    "category4": {
+                        "$type": "color",
+                        "$value": "#c7ebff"
+                    },
+                    "category5": {
+                        "$type": "color",
+                        "$value": "#bfdca9"
+                    },
+                    "category6": {
+                        "$type": "color",
+                        "$value": "#fbe997"
+                    }
+                }
+            }
+        },
+        "unavailable": {
+            "$type": "color",
+            "$value": "{rock.75}"
+        },
+        "unavailable-weak": {
+            "$type": "color",
+            "$value": "{rock.50}"
+        },
+        "unavailable-strong": {
+            "$type": "color",
+            "$value": "{rock.100}"
+        },
+        "text-onlight": {
+            "$type": "color",
+            "$value": "{rock.800}"
+        },
+        "text-ondark": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        }
+    }
+}

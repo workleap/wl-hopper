@@ -1,0 +1,24 @@
+{
+    "dataviz": {
+        "unavailable": {
+            "$type": "color",
+            "$value": "{rock.600}"
+        },
+        "unavailable-weak": {
+            "$type": "color",
+            "$value": "{rock.400}"
+        },
+        "unavailable-strong": {
+            "$type": "color",
+            "$value": "{rock.700}"
+        },
+        "text-onlight": {
+            "$type": "color",
+            "$value": "{rock.800}"
+        },
+        "text-ondark": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        }
+    }
+}

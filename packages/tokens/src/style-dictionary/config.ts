@@ -1,11 +1,6 @@
 import type { Config, File } from "style-dictionary";
 
-import { HOPPER_PREFIX } from "./constant.ts";
-
-const BUILD_PATH = "dist/";
-const STORYBOOK_BUILD_PATH = "../src/stories";
-const DOCS_BUILD_PATH = "../../../apps/docs";
-const STYLED_SYSTEM_BUILD_PATH = "../styled-system/src/tokens/generated/";
+import { BUILD_PATH, DOCS_BUILD_PATH, HOPPER_PREFIX, STORYBOOK_BUILD_PATH, STYLED_SYSTEM_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
 
 export const fontsConfig: Config = {
     "source": ["src/tokens/asset/*.tokens.json"],
@@ -29,13 +24,13 @@ export const fontsConfig: Config = {
     }
 };
 
-export function getStyledSystemTokensConfig(mode: "light" | "dark"): Config {
+export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: string): Config {
     const isLightMode = mode === "light";
-
     return {
         "source": [
             "src/tokens/core/*.tokens.json",
-            `src/tokens/semantic/${mode}/*.tokens.json`
+            `src/tokens/semantic/${theme}/${mode}/*.tokens.json`,
+            `src/tokens/components/${theme}/*.tokens.json`
         ],
         "platforms": {
             "typescript": {
@@ -47,10 +42,11 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark"): Config {
                 },
                 "files": [
                     {
-                        "destination": `${isLightMode ? "lightSemanticTokens" : "darkSemanticTokens"}.ts`,
-                        "format": "custom/ts-tokens",
+                        "destination": `${theme}/${mode}.css`,
+                        "format": "css/variables",
                         "options": {
-                            "outputReferences": true
+                            "outputReferences": true,
+                            "selector": isLightMode ? `.${StyledSystemRootCssClass}-${theme}` : `.${StyledSystemRootCssClass}-${theme}-${mode}`
                         }
                     }
                 ]
@@ -60,11 +56,11 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark"): Config {
     };
 }
 
-export function getStyledSystemTokenMappingConfig(): Config {
+export function getStyledSystemTokenMappingConfig(theme: string): Config {
     return {
         "source": [
             "src/tokens/core/*.tokens.json",
-            "src/tokens/semantic/light/*.tokens.json"
+            `src/tokens/semantic/${theme}/light/*.tokens.json`
         ],
         "platforms": {
             "typescript": {
@@ -89,11 +85,11 @@ export function getStyledSystemTokenMappingConfig(): Config {
     };
 };
 
-export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
+export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string): Config {
     const isLightMode = mode === "light";
 
     const lightConfig: File = {
-        "destination": "tokens.css",
+        "destination": `${theme}/tokens.css`,
         "format": "css/variables",
         "options": {
             "outputReferences": true
@@ -101,7 +97,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
     };
 
     const darkConfig: File = {
-        "destination": "dark/tokens.css",
+        "destination": `${theme}/dark/tokens.css`,
         "format": "css/dark-mode",
         "options": {
             "outputReferences": true
@@ -110,9 +106,9 @@ export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
 
     return {
         "source": [
-            `src/tokens/semantic/${mode}/*.tokens.json`,
+            `src/tokens/semantic/${theme}/${mode}/*.tokens.json`,
             "src/tokens/core/*.tokens.json",
-            "src/tokens/components/*.tokens.json"
+            `src/tokens/components/${theme}/*.tokens.json`
         ],
         "platforms": {
             "css": {
@@ -122,7 +118,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
                 "files": [
                     isLightMode ? lightConfig : darkConfig,
                     {
-                        "destination": isLightMode ? `${STORYBOOK_BUILD_PATH}/datas/tokens.json` : `${STORYBOOK_BUILD_PATH}/datas/tokens-dark.json`,
+                        "destination": isLightMode ? `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens.json` : `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
                         "format": "custom/doc",
                         "filter": "colors",
                         "options": {
@@ -130,7 +126,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark"): Config {
                         }
                     },
                     {
-                        "destination": isLightMode ? `${DOCS_BUILD_PATH}/datas/tokens.json` : `${DOCS_BUILD_PATH}/datas/tokens-dark.json`,
+                        "destination": isLightMode ? `${DOCS_BUILD_PATH}/datas/${theme}/tokens.json` : `${DOCS_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
                         "format": "custom/json",
                         "options": {
                             "outputReferences": true

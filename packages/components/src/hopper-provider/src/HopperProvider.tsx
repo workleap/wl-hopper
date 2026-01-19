@@ -69,7 +69,7 @@ export function useHopperContext() {
 /**
  * This hook is used to get the HopperProviderProps from the nearest HopperProvider ancestor.
  * It will only return the props that would need to be forwarded to the next HopperProvider.
- * @deprecated This hook is deprecated and should not be used in new code. Prefer setting `getRootCSSClasses(colorScheme)` instead of creating a new HopperProvider in portals.
+ * @deprecated This hook is deprecated and should not be used in new code. Prefer setting `getRootCSSClasses(colorScheme, theme)` instead of creating a new HopperProvider in portals.
  */
 export function useForwardedHopperContext() {
     const context = useContext(HopperContext);

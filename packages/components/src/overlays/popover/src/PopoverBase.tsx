@@ -1,4 +1,4 @@
-import { getRootCSSClasses, useColorSchemeContext, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, useColorSchemeContext, useResponsiveValue, useStyledSystem, useThemeContext, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
 import { forwardRef, type ForwardedRef } from "react";
 import type { Placement } from "react-aria";
 import {
@@ -28,6 +28,7 @@ function PopoverBase(props: PopoverBaseProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, PopoverBaseContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const { colorScheme } = useColorSchemeContext();
+    const { theme } = useThemeContext();
 
     const {
         children,
@@ -47,7 +48,7 @@ function PopoverBase(props: PopoverBaseProps, ref: ForwardedRef<HTMLElement>) {
             styles,
             "hop-PopoverBase"
         ),
-        getRootCSSClasses(colorScheme),
+        getRootCSSClasses(colorScheme, theme),
         stylingProps.className
     );
 

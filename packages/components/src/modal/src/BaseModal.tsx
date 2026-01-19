@@ -1,4 +1,4 @@
-import { getRootCSSClasses, type ResponsiveProp, type StyledComponentProps, useColorSchemeContext, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, type ResponsiveProp, type StyledComponentProps, useColorSchemeContext, useResponsiveValue, useStyledSystem, useThemeContext } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
 import { ModalOverlay, type ModalOverlayProps, Modal as RACModal, useContextProps } from "react-aria-components";
@@ -45,6 +45,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const { colorScheme } = useColorSchemeContext();
+    const { theme } = useThemeContext();
     const internalTriggerContext = useContext(InternalModalTriggerContext);
 
     useEffect(() => {
@@ -62,7 +63,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
             size.toLowerCase(),
             hasImage && "image"
         ),
-        getRootCSSClasses(colorScheme),
+        getRootCSSClasses(colorScheme, theme),
         stylingProps.className,
         className
     );
