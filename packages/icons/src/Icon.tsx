@@ -13,7 +13,7 @@ export const GlobalIconCssSelector = "hop-Icon";
 
 export type IconSize = "sm" | "md" | "lg";
 
-export interface IconProps extends SlotProps, StyledComponentProps<"svg"> {
+export interface IconProps extends SlotProps, Omit<StyledComponentProps<"svg">, "slot"> {
     /**
     * The size of the icon.
     * @default "md"

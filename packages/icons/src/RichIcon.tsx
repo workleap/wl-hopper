@@ -15,7 +15,7 @@ export type RichIconDecorativeVariant = "option1" | "option2" | "option3" | "opt
 export type RichIconStatusVariant = "success" | "warning" | "danger" | "information" | "upsell";
 export type RichIconVariant = RichIconDecorativeVariant | RichIconStatusVariant;
 
-export interface RichIconProps extends SlotProps, StyledComponentProps<"svg"> {
+export interface RichIconProps extends SlotProps, Omit<StyledComponentProps<"svg">, "slot"> {
     /**
      * The visual style of the icon.
      * @default "option7"
