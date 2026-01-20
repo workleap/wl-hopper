@@ -6,6 +6,7 @@ interface TypographyVariantTableProps {
 }
 
 const TypographyVariantTable = ({ type, tokenType }: TypographyVariantTableProps) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tokenData = (getTokens()[tokenType] as any)["fontWeight"];
 
     const filteredDataByType: Array<TokenValue> = tokenData.filter((item: TokenValue) =>
