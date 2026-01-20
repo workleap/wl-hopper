@@ -3,9 +3,6 @@ title: Color
 description: Design tokens are design decisions, translated into data. Explore the core color design tokens.
 ---
 
-import tokensDark from '../../../datas/tokens-dark.json';
-import tokens from '../../../datas/tokens.json';
-
 ## Tokens
 
-<TokenTable tokenType={"core"} category="color" data={tokens.core.color} />
+<TokenTable tokenType={"core"} category="color" data={(tokens) => tokens.core.color} />

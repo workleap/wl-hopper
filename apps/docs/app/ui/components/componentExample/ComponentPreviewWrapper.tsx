@@ -49,12 +49,7 @@ const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleB
                     onChange={toggleColorScheme}
                     colorScheme={localColorScheme}
                 />
-                <ThemeSwitch
-                    onThemeChange={theme => {
-                        setLocalTheme(theme);
-                    }}
-                    theme={localTheme}
-                />
+                <ThemeSwitch onThemeChange={setLocalTheme} theme={localTheme} />
             </div>
             <HopperProvider theme={localTheme} colorScheme={localColorScheme} locale="en-US">
                 <Card className="hd-component-preview-wrapper__card" size="sm" style={{ minHeight: minHeight }}>

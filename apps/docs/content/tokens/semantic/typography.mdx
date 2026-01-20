@@ -3,8 +3,6 @@ title: Typography
 description: Design tokens are design decisions, translated into data. Explore the semantic typography design tokens.
 ---
 
-import tokens from '../../../datas/tokens.json';
-
 Typography tokens are composite tokens, meaning they are made up of multiple other tokens. This allows us to create a consistent typographic scale across our products.
 
 ## Guidelines
@@ -20,11 +18,11 @@ Typography tokens are composite tokens, meaning they are made up of multiple oth
 
 Headings are used to create a hierarchy of content. They are used to help users scan and understand the content on a page.
 
-<TypographyTable type="heading" data={tokens.semantic} />
+<TypographyTable type="heading" data={(tokens) => tokens.semantic} />
 
 #### Variations
 
-<TypographyVariantTable type="heading" data={tokens.semantic} />
+<TypographyVariantTable type="heading" data={(tokens) => tokens.semantic} />
 
 ### Overline
 
@@ -32,23 +30,23 @@ Used to introduce a headline.
 
 _Adding a text-transform of uppercase is necessary in order to render overline as intended by the Design. A letter spacing of `0.24px` is also necessary._
 
-<TypographyTable type="overline" data={tokens.semantic} />
+<TypographyTable type="overline" data={(tokens) => tokens.semantic} />
 
 ### Body
 
 Body text is used to communicate the main content of a page.
 
-<TypographyTable type="body" data={tokens.semantic} />
+<TypographyTable type="body" data={(tokens) => tokens.semantic} />
 
 #### Variations
 
-<TypographyVariantTable type="body" data={tokens.semantic} />
+<TypographyVariantTable type="body" data={(tokens) => tokens.semantic} />
 
 ### Accent
 
 Accent text is used to highlight important information on a page.
 
-<TypographyTable type="accent" data={tokens.semantic} />
+<TypographyTable type="accent" data={(tokens) => tokens.semantic} />
 
 <Footnote name="offset-tokens">
     1. These values are meant to be used in tandem, they have been meticulously crafted to trim unwanted blank space in the *ABC Favorit* typeface, and it's *Mono* variant. They have been generated using [Eight Shape tool](https://text-crop.eightshapes.com/) and adjusted to fit our needs. You can see how and when to use them in the [Use text-crop when a font looks off-centered](#guidelines) section.

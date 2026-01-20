@@ -1,7 +1,7 @@
 import { components } from "@/components/mdx/components.ai";
 import { iconData } from "@/content/icons/overview/data";
-import tokensDark from "@/datas/tokens-dark.json";
-import tokens from "@/datas/tokens.json";
+import tokensDark from "@/datas/workleap/tokens-dark.json";
+import tokens from "@/datas/workleap/tokens.json";
 import { compileMDX } from "next-mdx-remote/rsc";
 import type { ComponentType, ReactElement } from "react";
 import { renderToPipeableStream } from "react-dom/server";

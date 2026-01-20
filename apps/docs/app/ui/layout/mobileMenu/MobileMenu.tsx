@@ -14,6 +14,7 @@ import CloseIcon from "./assets/close.svg";
 import GithubLogo from "./assets/github.svg";
 import HopperLogo from "./assets/hopper-logo.svg";
 
+import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import "./mobileMenu.css";
 
 interface MobileMenuProps {
@@ -25,7 +26,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     const pathname = usePathname();
     let firstPathLevel: string;
 
-    const { colorScheme, setColorScheme } = useContext(ThemeContext);
+    const { colorScheme, setColorScheme, theme, setTheme } = useContext(ThemeContext);
     const [isAnimating, setIsAnimating] = useState(false);
     const [animationDirection, setAnimationDirection] = useState<"opening" | "closing">("opening");
 
@@ -126,6 +127,14 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                                     colorScheme={colorScheme!}
                                     text="Appearance"
                                     className="hd-mobile-menu-footer-button"
+                                />
+                            </li>
+                            <li>
+                                <ThemeSwitch
+                                    onThemeChange={setTheme}
+                                    theme={theme!}
+                                    className="hd-mobile-menu-footer-button"
+                                    text="Select theme"
                                 />
                             </li>
                         </ul>

@@ -9,6 +9,7 @@ import {
 } from "@/app/lib/getTypographyTokens";
 import { typographyTableRow } from "./TypographyTableRow";
 
+import { getDataTokens } from "../getTokens";
 import "./tokenTable.css";
 
 // maps the raw token list of a list filtered by property
@@ -28,13 +29,13 @@ function transformDataToTokenData(inputData: Record<string, { name: string; valu
 
 interface TypographyTableProps {
     type: string;
-    data: Record<string, { name: string; value: string }[]>;
+    data: (tokens: ReturnType<typeof getDataTokens>) => Record<string, { name: string; value: string }[]>;
 }
 
 const TypographyTable = ({ type, data }: TypographyTableProps) => {
     const hasNoSizes = type === "overline";
 
-    const tokenData = transformDataToTokenData(data);
+    const tokenData = transformDataToTokenData(data(getDataTokens()));
     const listItems = hasNoSizes ? [generateSizelessRows(tokenData, type)] : generateSizeRows(tokenData, type);
 
     return (

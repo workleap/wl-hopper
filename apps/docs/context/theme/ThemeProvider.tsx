@@ -6,7 +6,7 @@ import { createContext, useEffect, useState, type ReactNode } from "react";
 import { getInitialColorScheme, getInitialTheme } from "./getInitialColorScheme.ts";
 
 interface ThemeContextType {
-    theme: Theme | undefined;
+    theme: Theme;
     colorScheme: ColorScheme | undefined;
     setColorScheme: (newColorScheme: ColorScheme) => void;
     setTheme: (newTheme: Theme) => void;
@@ -20,12 +20,8 @@ interface ThemeProviderProps {
 export const ThemeContext = createContext<ThemeContextType>({
     colorScheme: "light",
     theme: "workleap",
-    setColorScheme: () => {
-        console.log("setColorScheme called from default context");
-    },
-    setTheme: () => {
-        console.log("setTheme called from default context");
-    }
+    setColorScheme: () => {},
+    setTheme: () => {}
 });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {

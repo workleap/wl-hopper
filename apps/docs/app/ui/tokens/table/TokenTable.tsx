@@ -4,21 +4,22 @@ import Preview from "@/app/ui/tokens/preview/Preview";
 import Code from "@/components/code/Code";
 
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
-import type { ReactNode } from "react";
+import { type ReactNode } from "react";
+import { getDataTokens } from "../getTokens";
 import "./tokenTable.css";
 
 interface TableProps {
     category: string;
     noPreview?: boolean;
     tokenType?: "core" | "semantic" | null;
-    data: {
+    data: (tok: ReturnType<typeof getDataTokens>) => {
         name: string;
         value: string;
     }[];
 }
 
 const TokenTable = ({ category, data, noPreview = false, tokenType }: TableProps) => {
-    const formattedData = data.map(token => {
+    const formattedData = data(getDataTokens()).map(token => {
         const { name, value } = token;
         const values: Record<string, ReactNode> = {
             name: <Code value={`--${name}`}>{`--${name}`}</Code>,

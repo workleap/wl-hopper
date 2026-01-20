@@ -1,4 +1,4 @@
-import { Button, Menu, MenuItem, MenuTrigger, type Theme } from "@hopper-ui/components";
+import { Button, Menu, MenuItem, MenuTrigger, Text, type Theme } from "@hopper-ui/components";
 
 import { Icon } from "@hopper-ui/icons";
 import { forwardRef } from "react";
@@ -7,13 +7,16 @@ import "./colorSchemeSwitch.css";
 interface ColorSchemeSwitchProps {
     onThemeChange?: (theme: Theme) => void;
     theme: Theme;
+    className?: string;
+    text?: string;
 }
 
-const ThemeSwitch = ({ onThemeChange, theme }: ColorSchemeSwitchProps & { theme: Theme }) => {
+const ThemeSwitch = ({ onThemeChange, theme, className, text }: ColorSchemeSwitchProps & { theme: Theme }) => {
     return (
         <MenuTrigger>
-            <Button aria-label="Select theme" variant="ghost-secondary">
+            <Button aria-label="Select theme" variant="ghost-secondary" className={className}>
                 <Icon src16={ColorPaletteIcon} src24={ColorPaletteIcon} src32={ColorPaletteIcon} />
+                {text && <Text>{text}</Text>}
             </Button>
             <Menu selectionMode="single" selectedKeys={[theme]}>
                 <MenuItem id="workleap" onAction={() => onThemeChange?.("workleap")}>Change to Workleap Theme</MenuItem>

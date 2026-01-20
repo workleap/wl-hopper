@@ -2,15 +2,16 @@ import TypographyPreview from "@/app/ui/tokens/preview/TypographyPreview";
 import Code from "@/components/code/Code";
 import Table from "@/components/table/Table";
 
+import { getDataTokens } from "../getTokens";
 import "./tokenTable.css";
 
 interface TypographyVariantTableProps {
-    data: Record<string, { name: string; value: string }[]>;
+    data: (tokens: ReturnType<typeof getDataTokens>) => Record<string, { name: string; value: string }[]>;
     type: string;
 }
 
 const TypographyVariantTable = ({ type, data }: TypographyVariantTableProps) => {
-    const tokenData = data["fontWeight"];
+    const tokenData = data(getDataTokens())["fontWeight"];
 
     const filteredDataByType: Array<{ name: string; value: string }> = tokenData.filter(item =>
         item.name.includes(type)

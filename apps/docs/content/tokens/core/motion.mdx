@@ -3,7 +3,6 @@ title: Motion
 description: Design tokens are design decisions, translated into data. Explore the core motion design tokens.
 ---
 
-import tokens from '../../../datas/tokens.json';
 
 Motion brings meaning and a sense of life to the experience. It should be purposeful, intuitive, and seamless. Our motion utilities consists of two set of values, *durations* and *easings*.
 
@@ -44,7 +43,7 @@ In an animation declaration:
 
 Hopper exposes 5 durations, they help convey a message and makes animations smooth and responsive.
 
-<TokenTable category={"duration"} data={tokens.core["duration"]} noPreview />
+<TokenTable category={"duration"} data={(tokens) => tokens.core["duration"]} noPreview />
 
 ### Easings
 
@@ -62,8 +61,8 @@ Used in animations that are designed to draw the user's attention on what change
 
 Used in animations that are meant to give a sense of completeness or resolution to the user. Use them sparsely.
 
-<TokenTable category={"timingFunction"} data={tokens.core["timingFunction"]} noPreview />
+<TokenTable category={"timingFunction"} data={(tokens) => tokens.core["timingFunction"]} noPreview />
 
 ### Playground
 
-<MotionPreview durations={tokens.core["duration"]} easings={tokens.core["timingFunction"]} noPreview />
+<MotionPreview noPreview />

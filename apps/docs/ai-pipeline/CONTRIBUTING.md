@@ -16,7 +16,7 @@ The main configuration is in `config.ts` and follows this structure:
 ```typescript
 export const aiDocsConfig: AiDocsConfig = {
     buildRootPath: "dist",
-    filesFolder: "ai-docs", 
+    filesFolder: "ai-docs",
     routes: {
         "route-key": {
             build: { /* build configuration */ },
@@ -213,7 +213,7 @@ All generated markdown files can be served from the same route. However, if your
         template: "/content/ai/templates/api-guide.mdx",
         merge: [
             "/api/introduction.md",
-            "/api/authentication.md", 
+            "/api/authentication.md",
             "/api/endpoints/*.md"
         ],
         keepOriginalLeveling: true
@@ -301,7 +301,7 @@ The system automatically transforms relative links in markdown content to ensure
 By default, the system applies these transformations to relative links:
 
 1. **Preserves full URLs**: Links with valid URI schemes (http:, https:, ftp:, mailto:, etc.) remain unchanged
-2. **Preserves hash-only links**: Internal document references like `#section` remain unchanged  
+2. **Preserves hash-only links**: Internal document references like `#section` remain unchanged
 3. **Transforms relative links**: Adds `.txt` extension to relative links while preserving:
    - Query parameters (`?param=value`)
    - Hash fragments (`#section`)
@@ -312,7 +312,7 @@ By default, the system applies these transformations to relative links:
 ```markdown
 <!-- Original links -->
 [Full URL](https://example.com/page)           → No change
-[Hash link](#introduction)                     → No change  
+[Hash link](#introduction)                     → No change
 [Relative link](../components/button)          → ../components/button.txt
 [With hash](../guide#installation)            → ../guide.txt#installation
 [With query](./api?version=2)                 → ./api.txt?version=2
