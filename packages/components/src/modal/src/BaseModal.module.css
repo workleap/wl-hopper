@@ -53,9 +53,7 @@
 .hop-BaseModal__modal {
     --hop-BaseModal__modal-display: flex;
     --hop-BaseModal__modal-flex-direction: column;
-    /* stylelint-disable-next-line unit-allowed-list */
     --hop-BaseModal__modal-max-inline-size: 90dvw;
-    /* stylelint-disable-next-line unit-allowed-list */
     --hop-BaseModal__modal-max-block-size: 90dvh;
     --hop-BaseModal__modal-background: var(--hop-neutral-surface);
     --hop-BaseModal__modal-border-radius: var(--hop-shape-rounded-md);
@@ -84,14 +82,12 @@
     /* Fullscreen */
     --hop-BaseModal__modal-fullscreen-max-width: none;
     --hop-BaseModal__modal-fullscreen-max-height: none;
-    /* stylelint-disable unit-allowed-list */
     --hop-BaseModal__modal-fullscreen-width: calc(100dvw - 2.5rem);
     --hop-BaseModal__modal-fullscreen-height: calc(100dvh - 2.5rem);
 
     /* Fullscreentakeover */
     --hop-BaseModal__modal-fullscreentakeover-width: 100dvw;
     --hop-BaseModal__modal-fullscreentakeover-height: 100dvh;
-    /* stylelint-enable unit-allowed-list */
     --hop-BaseModal__modal-fullscreentakeover-border-radius: 0;
 
     /* Internal variables */

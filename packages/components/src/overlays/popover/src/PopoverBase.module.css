@@ -19,7 +19,6 @@
     box-sizing: border-box;
 
     /* Don't be larger than full screen minus 2 * containerPadding. --container-padding is coming from JS */
-    /* stylelint-disable-next-line unit-allowed-list */
     max-inline-size: calc(100dvw - 2* var(--container-padding, 0));
 
     font-family: var(--hop-Popover-font-family);
