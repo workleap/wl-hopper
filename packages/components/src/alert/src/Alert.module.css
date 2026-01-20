@@ -1,6 +1,8 @@
 .hop-Alert  {
-    --hop-Alert-max-inline-size: 90vw;
-    --hop-Alert-max-block-size: 90vh;
+    /* stylelint-disable unit-allowed-list */
+    --hop-Alert-max-inline-size: 90dvw;
+    --hop-Alert-max-block-size: 90dvh;
+    /* stylelint-enable unit-allowed-list */
     --hop-Alert-background: var(--hop-neutral-surface);
     --hop-Alert-border-radius: var(--hop-shape-rounded-md);
     --hop-Alert-outline: none;
