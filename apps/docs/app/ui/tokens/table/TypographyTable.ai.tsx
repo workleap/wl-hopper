@@ -7,7 +7,7 @@ import {
     type Size,
     type TokenData
 } from "@/app/lib/getTypographyTokens";
-import type { TokenValue } from "../allDataTokens";
+import { getTokens, type TokenValue } from "../allDataTokens";
 
 // maps the raw token list of a list filtered by property
 function transformDataToTokenData(inputData: Record<string, TokenValue[]>): TokenData {
@@ -26,13 +26,14 @@ function transformDataToTokenData(inputData: Record<string, TokenValue[]>): Toke
 
 interface TypographyTableProps {
     type: string;
-    data: Record<string, TokenValue[]>;
+    tokenType: "core" | "semantic";
 }
 
-const TypographyTable = ({ type, data }: TypographyTableProps) => {
+const TypographyTable = ({ type, tokenType }: TypographyTableProps) => {
     const hasNoSizes = type === "overline";
+    const data = getTokens()[tokenType];
 
-    const tokenData = transformDataToTokenData(data);
+    const tokenData = transformDataToTokenData(data as Record<string, TokenValue[]>);
     const listItems = hasNoSizes ? generateSizelessRows(tokenData, type) : generateSizeRows(tokenData, type);
 
     return (

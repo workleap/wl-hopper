@@ -1,20 +1,17 @@
 import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 
 import { useMemo } from "react";
-
-interface TokenProps {
-    name: string;
-    value: string;
-}
+import { getTokensFromKey, type AllTokensKeys } from "../allDataTokens";
 
 interface TableSectionProps {
-    tokens: TokenProps[];
     categories: string[];
     excludedCategories?: string[];
-    tokenType?: "core" | "semantic";
+    categoryKey: string;
+    tokenType: "core" | "semantic";
 }
 
-const TableSection = ({ tokens, categories, excludedCategories, tokenType }: TableSectionProps) => {
+const TableSection = ({ categoryKey, categories, excludedCategories, tokenType }: TableSectionProps) => {
+    const tokens = getTokensFromKey(`${tokenType}.${categoryKey}` as AllTokensKeys);
     const categoryTokens = useMemo(() => {
         return tokens.filter(token => {
             const excludedCategoryTokens = excludedCategories?.some(category => token.name.includes(category));
@@ -24,7 +21,7 @@ const TableSection = ({ tokens, categories, excludedCategories, tokenType }: Tab
     }, [tokens, categories, excludedCategories]);
 
     return (
-        <TokenTable tokenType={tokenType} data={categoryTokens} />
+        <TokenTable tokenType={tokenType} category={categoryKey} data={categoryTokens} />
     );
 };
 

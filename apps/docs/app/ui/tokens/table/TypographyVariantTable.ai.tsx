@@ -1,14 +1,14 @@
-import type { TokenValue } from "../allDataTokens";
+import { getTokens, type TokenValue } from "../allDataTokens";
 
 interface TypographyVariantTableProps {
-    data: Record<string, TokenValue[]>;
+    tokenType: "semantic";
     type: string;
 }
 
-const TypographyVariantTable = ({ type, data }: TypographyVariantTableProps) => {
-    const tokenData = data["fontWeight"];
+const TypographyVariantTable = ({ type, tokenType }: TypographyVariantTableProps) => {
+    const tokenData = (getTokens()[tokenType] as any)["fontWeight"];
 
-    const filteredDataByType: Array<TokenValue> = tokenData.filter(item =>
+    const filteredDataByType: Array<TokenValue> = tokenData.filter((item: TokenValue) =>
         item.name.includes(type)
     );
 

@@ -1,15 +1,15 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
+import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
 
 interface TableProps {
+    category: string;
     tokenType?: "core" | "semantic" | null;
-    data: {
-        name: string;
-        value: string;
-    }[];
+    data?: TokenValue[];
 }
 
-const TokenTable = ({ data, tokenType }: TableProps) => {
-    const formattedData = data.map(token => {
+const TokenTable = ({ data, tokenType, category }: TableProps) => {
+    const tokens = data === undefined ? getTokensFromKey(`${tokenType}.${category}` as AllTokensKeys) : data;
+    const formattedData = tokens.map(token => {
         const { name, value } = token;
         const values: Item = {
             name: name,
