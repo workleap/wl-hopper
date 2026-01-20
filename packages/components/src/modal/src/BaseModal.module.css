@@ -53,10 +53,10 @@
 .hop-BaseModal__modal {
     --hop-BaseModal__modal-display: flex;
     --hop-BaseModal__modal-flex-direction: column;
-    /* stylelint-disable-next-line unit-allowed-list */
+    /* stylelint-disable unit-allowed-list */
     --hop-BaseModal__modal-max-inline-size: 90dvw;
-    /* stylelint-disable-next-line unit-allowed-list */
     --hop-BaseModal__modal-max-block-size: 90dvh;
+    /* stylelint-enable unit-allowed-list */
     --hop-BaseModal__modal-background: var(--hop-neutral-surface);
     --hop-BaseModal__modal-border-radius: var(--hop-shape-rounded-md);
     --hop-BaseModal__modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
