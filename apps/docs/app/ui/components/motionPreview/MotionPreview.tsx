@@ -3,12 +3,12 @@
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { useContext, useState, type CSSProperties } from "react";
 import { Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue, type Key } from "react-aria-components";
-import { getDataTokens } from "../../tokens/getTokens";
+import { getTokens } from "../../tokens/allDataTokens";
 import "./MotionPreview.css";
 
 function MotionPreview() {
-    const { colorScheme } = useContext(ThemeContext);
-    const tokens = getDataTokens ({ colorScheme });
+    const { theme, colorScheme } = useContext(ThemeContext);
+    const tokens = getTokens(theme, colorScheme);
     const durations = tokens.core["duration"];
     const easings = tokens.core["timingFunction"];
     const [isAnimated, setAnimated] = useState(false);
