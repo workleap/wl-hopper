@@ -1,25 +1,29 @@
+"use client";
+
 import Table from "@/components/table/Table";
 
 import Preview from "@/app/ui/tokens/preview/Preview";
 import Code from "@/components/code/Code";
 
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
-import { type ReactNode } from "react";
-import { getDataTokens } from "../getTokens";
+import { ThemeContext } from "@/context/theme/ThemeProvider";
+import type { ColorScheme } from "@hopper-ui/styled-system";
+import { useContext, type ReactNode } from "react";
+import { AllTokensKeys, getTokensFromKey, type TokenValue } from "../allDataTokens";
 import "./tokenTable.css";
 
 interface TableProps {
     category: string;
     noPreview?: boolean;
-    tokenType?: "core" | "semantic" | null;
-    data: (tok: ReturnType<typeof getDataTokens>) => {
-        name: string;
-        value: string;
-    }[];
+    tokenType: "core" | "semantic" | "components";
+    data?: TokenValue[];
+    colorScheme?: ColorScheme;
 }
 
-const TokenTable = ({ category, data, noPreview = false, tokenType }: TableProps) => {
-    const formattedData = data(getDataTokens()).map(token => {
+const TokenTable = ({ category, data, noPreview = false, tokenType, colorScheme }: TableProps) => {
+    const { theme } = useContext(ThemeContext);
+    const tokens = data === undefined ? getTokensFromKey(`${tokenType}.${category}` as AllTokensKeys, theme, colorScheme) : data;
+    const formattedData = tokens.map(token => {
         const { name, value } = token;
         const values: Record<string, ReactNode> = {
             name: <Code value={`--${name}`}>{`--${name}`}</Code>,

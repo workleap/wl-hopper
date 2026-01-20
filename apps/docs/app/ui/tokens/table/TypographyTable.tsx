@@ -1,3 +1,5 @@
+"use client";
+
 import Table from "@/components/table/Table";
 import clsx from "clsx";
 
@@ -9,11 +11,13 @@ import {
 } from "@/app/lib/getTypographyTokens";
 import { typographyTableRow } from "./TypographyTableRow";
 
-import { getDataTokens } from "../getTokens";
+import { ThemeContext } from "@/context/theme/ThemeProvider";
+import { useContext } from "react";
+import { getTokens, type TokenValue } from "../allDataTokens";
 import "./tokenTable.css";
 
 // maps the raw token list of a list filtered by property
-function transformDataToTokenData(inputData: Record<string, { name: string; value: string }[]>): TokenData {
+function transformDataToTokenData(inputData: Record<string, TokenValue[]>): TokenData {
     const tokenData: TokenData = {};
 
     for (const propertyKey in inputData) {
@@ -29,13 +33,15 @@ function transformDataToTokenData(inputData: Record<string, { name: string; valu
 
 interface TypographyTableProps {
     type: string;
-    data: (tokens: ReturnType<typeof getDataTokens>) => Record<string, { name: string; value: string }[]>;
+    tokenType: "core" | "semantic";
 }
 
-const TypographyTable = ({ type, data }: TypographyTableProps) => {
+const TypographyTable = ({ type, tokenType }: TypographyTableProps) => {
     const hasNoSizes = type === "overline";
+    const { theme } = useContext(ThemeContext);
+    const data = getTokens(theme)[tokenType];
 
-    const tokenData = transformDataToTokenData(data(getDataTokens()));
+    const tokenData = transformDataToTokenData(data as Record<string, TokenValue[]>);
     const listItems = hasNoSizes ? [generateSizelessRows(tokenData, type)] : generateSizeRows(tokenData, type);
 
     return (

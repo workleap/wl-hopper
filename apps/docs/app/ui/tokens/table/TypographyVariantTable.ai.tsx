@@ -1,16 +1,18 @@
+import type { TokenValue } from "../allDataTokens";
+
 interface TypographyVariantTableProps {
-    data: Record<string, { name: string; value: string }[]>;
+    data: Record<string, TokenValue[]>;
     type: string;
 }
 
 const TypographyVariantTable = ({ type, data }: TypographyVariantTableProps) => {
     const tokenData = data["fontWeight"];
 
-    const filteredDataByType: Array<{ name: string; value: string }> = tokenData.filter(item =>
+    const filteredDataByType: Array<TokenValue> = tokenData.filter(item =>
         item.name.includes(type)
     );
 
-    const filteredDataByWeightVariation: Array<{ name: string; value: string }> = filteredDataByType.filter(item =>
+    const filteredDataByWeightVariation: Array<TokenValue> = filteredDataByType.filter(item =>
         item.name.includes("bold") ||
         item.name.includes("semibold") ||
         item.name.includes("medium")

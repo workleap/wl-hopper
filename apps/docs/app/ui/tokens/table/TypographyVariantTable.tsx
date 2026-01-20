@@ -1,23 +1,29 @@
+"use client";
+
 import TypographyPreview from "@/app/ui/tokens/preview/TypographyPreview";
 import Code from "@/components/code/Code";
 import Table from "@/components/table/Table";
 
-import { getDataTokens } from "../getTokens";
+import { ThemeContext } from "@/context/theme/ThemeProvider";
+import { useContext } from "react";
+import { getTokens, type TokenValue } from "../allDataTokens";
 import "./tokenTable.css";
 
 interface TypographyVariantTableProps {
-    data: (tokens: ReturnType<typeof getDataTokens>) => Record<string, { name: string; value: string }[]>;
+    tokenType: "semantic";
     type: string;
 }
 
-const TypographyVariantTable = ({ type, data }: TypographyVariantTableProps) => {
-    const tokenData = data(getDataTokens())["fontWeight"];
+const TypographyVariantTable = ({ type, tokenType }: TypographyVariantTableProps) => {
+    const { theme } = useContext(ThemeContext);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tokenData = (getTokens(theme)[tokenType] as any)["fontWeight"];
 
-    const filteredDataByType: Array<{ name: string; value: string }> = tokenData.filter(item =>
+    const filteredDataByType: Array<TokenValue> = tokenData.filter((item: TokenValue) =>
         item.name.includes(type)
     );
 
-    const filteredDataByWeightVariation: Array<{ name: string; value: string }> = filteredDataByType.filter(item =>
+    const filteredDataByWeightVariation: Array<TokenValue> = filteredDataByType.filter(item =>
         item.name.includes("bold") ||
         item.name.includes("semibold") ||
         item.name.includes("medium")

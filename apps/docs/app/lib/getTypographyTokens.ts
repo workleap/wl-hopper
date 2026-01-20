@@ -1,3 +1,5 @@
+import type { TokenValue } from "../ui/tokens/allDataTokens";
+
 export const Sizes = ["3xl", "2xl", "xl", "lg", "md", "sm", "xs"] as const;
 export const FontProperties = ["fontSize", "fontWeight", "lineHeight", "fontFamily", "topOffset", "bottomOffset"] as const;
 
@@ -11,7 +13,7 @@ export type FontProperties = Partial<Record<FontProperty, {
 export type FontPropertiesBySizes = Partial<Record<Size, FontProperties>>;
 
 export interface TokenData {
-    [category: string]: { name: string; value: string }[];
+    [category: string]: TokenValue[];
 }
 
 /**

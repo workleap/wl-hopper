@@ -7,9 +7,10 @@ import {
     type Size,
     type TokenData
 } from "@/app/lib/getTypographyTokens";
+import type { TokenValue } from "../allDataTokens";
 
 // maps the raw token list of a list filtered by property
-function transformDataToTokenData(inputData: Record<string, { name: string; value: string }[]>): TokenData {
+function transformDataToTokenData(inputData: Record<string, TokenValue[]>): TokenData {
     const tokenData: TokenData = {};
 
     for (const propertyKey in inputData) {
@@ -25,7 +26,7 @@ function transformDataToTokenData(inputData: Record<string, { name: string; valu
 
 interface TypographyTableProps {
     type: string;
-    data: Record<string, { name: string; value: string }[]>;
+    data: Record<string, TokenValue[]>;
 }
 
 const TypographyTable = ({ type, data }: TypographyTableProps) => {
