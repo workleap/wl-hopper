@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { forwardRef, useCallback, useState, type ForwardedRef, type ReactNode } from "react";
+import { forwardRef, useCallback, useEffect, useState, type ForwardedRef, type ReactNode } from "react";
 
 import {
     ColorSchemeContext,
@@ -70,6 +70,10 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
     const [remoteColorScheme, setRemoteColorScheme] = useState<ColorScheme>();
     const [internalTheme, setInternalTheme] = useState<Theme>(theme);
     const computedColorScheme = useColorScheme(remoteColorScheme ?? colorScheme, defaultColorScheme);
+
+    useEffect(() => {
+        setInternalTheme(theme);
+    }, [theme]);
 
     const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(newColorScheme => {
         setRemoteColorScheme(newColorScheme);

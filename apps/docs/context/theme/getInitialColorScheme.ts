@@ -1,4 +1,4 @@
-import type { ColorScheme } from "./ThemeProvider";
+import type { ColorScheme, Theme } from "./ThemeProvider";
 
 export function getInitialColorScheme(): ColorScheme {
     const persistedColorPreference = window.localStorage.getItem("hdColorScheme");
@@ -13,4 +13,7 @@ export function getInitialColorScheme(): ColorScheme {
     }
 
     return "light";
+}
+export function getInitialTheme(): Theme {
+    return window.localStorage.getItem("hdTheming") as Theme;
 }

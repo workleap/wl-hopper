@@ -1,5 +1,7 @@
 @import url("./tokens.css");
 @import url("./rehype.css");
+@import url("@hopper-ui/styled-system/theme/workleap.css");
+@import url("@hopper-ui/styled-system/theme/sharegate.css");
 
 @font-face {
     font-family: "ABC Favorit Mono";

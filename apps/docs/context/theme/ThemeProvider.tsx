@@ -1,8 +1,9 @@
 "use client";
 
+import { HopperProvider } from "@hopper-ui/components";
 import type { ColorScheme, Theme } from "@hopper-ui/styled-system";
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { getInitialColorScheme } from "./getInitialColorScheme.ts";
+import { getInitialColorScheme, getInitialTheme } from "./getInitialColorScheme.ts";
 
 interface ThemeContextType {
     theme: Theme | undefined;
@@ -19,8 +20,12 @@ interface ThemeProviderProps {
 export const ThemeContext = createContext<ThemeContextType>({
     colorScheme: "light",
     theme: "workleap",
-    setColorScheme: () => {},
-    setTheme: () => {}
+    setColorScheme: () => {
+        console.log("setColorScheme called from default context");
+    },
+    setTheme: () => {
+        console.log("setTheme called from default context");
+    }
 });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
@@ -42,13 +47,14 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     useEffect(() => {
         if (theme) {
             document.documentElement.setAttribute("data-theme", theme);
-            window.localStorage.setItem("hdTheme", theme);
+            window.localStorage.setItem("hdTheming", theme);
         }
     }, [theme]);
 
     useEffect(() => {
         setColorScheme(getInitialColorScheme());
-    }, [setColorScheme]);
+        setTheme(getInitialTheme());
+    }, [setColorScheme, setTheme]);
 
     return (
         <ThemeContext.Provider value={{
@@ -58,7 +64,9 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
             setColorScheme
         }}
         >
-            {children}
+            <HopperProvider theme={theme ?? "workleap"} colorScheme={colorScheme ?? "light"}>
+                {children}
+            </HopperProvider>
         </ThemeContext.Provider>
     );
 };

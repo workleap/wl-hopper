@@ -1,10 +1,11 @@
 "use client";
 
 import Card from "@/app/ui/components/card/Card";
-import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch.tsx";
+import ColorSchemeSwitch from "@/components/themeSwitch/ColorSchemeSwitch";
 import { ThemeContext, type ColorScheme } from "@/context/theme/ThemeProvider.tsx";
 import { memo, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
 
+import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import { HopperProvider } from "@hopper-ui/components";
 import "./componentPreviewWrapper.css";
 
@@ -16,20 +17,22 @@ interface ComponentPreviewWrapperProps {
 }
 
 const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleButton, minHeight = "13rem" }: ComponentPreviewWrapperProps) => {
-    const { colorScheme = "light" } = useContext(ThemeContext);
+    const { colorScheme = "light", theme = "workleap" } = useContext(ThemeContext);
     const [localColorScheme, setLocalColorScheme] = useState(colorScheme);
+    const [localTheme, setLocalTheme] = useState(theme);
 
     useEffect(() => {
         // keep the local color mode in sync with the global color mode when the global changes
         setLocalColorScheme(colorScheme);
-    }, [colorScheme]);
+        setLocalTheme(theme);
+    }, [colorScheme, theme]);
 
-    const toggleTheme = useCallback(() => {
-        const theme: ColorScheme = localColorScheme === "dark"
+    const toggleColorScheme = useCallback(() => {
+        const cs: ColorScheme = localColorScheme === "dark"
             ? "light"
             : "dark";
 
-        setLocalColorScheme(theme);
+        setLocalColorScheme(cs);
     }, [localColorScheme]);
 
     return (
@@ -41,13 +44,19 @@ const ComponentPreviewWrapper = memo(({ openInStackblitzButton, preview, toggleB
             <div className="hd-component-preview-wrapper__actions">
                 {openInStackblitzButton}
                 {toggleButton}
-                <ThemeSwitch
+                <ColorSchemeSwitch
                     className="hd-component-preview-wrapper__action"
-                    onChange={toggleTheme}
+                    onChange={toggleColorScheme}
                     colorScheme={localColorScheme}
                 />
+                <ThemeSwitch
+                    onThemeChange={theme => {
+                        setLocalTheme(theme);
+                    }}
+                    theme={localTheme}
+                />
             </div>
-            <HopperProvider colorScheme={localColorScheme} locale="en-US">
+            <HopperProvider theme={localTheme} colorScheme={localColorScheme} locale="en-US">
                 <Card className="hd-component-preview-wrapper__card" size="sm" style={{ minHeight: minHeight }}>
                     {preview}
                 </Card>

@@ -11,14 +11,14 @@
     --hd-codeblock-word-color: #af168d;
 }
 
-code[data-color-scheme*=" "],
-code[data-color-scheme*=" "] span {
+code[data-theme*=" "],
+code[data-theme*=" "] span {
     color: var(--shiki-light);
 }
 
-[data-color-scheme="dark"] {
-    code[data-color-scheme*=" "],
-    code[data-color-scheme*=" "] span {
+[data-theme="dark"] {
+    code[data-theme*=" "],
+    code[data-theme*=" "] span {
         color: var(--shiki-dark, var(--hd-color-neutral-text));
     }
 }

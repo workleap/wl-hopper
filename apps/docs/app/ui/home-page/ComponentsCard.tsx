@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export const ComponentsCard = () => {
-    const { colorScheme } = useContext(ThemeContext);
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     return (
         <Link href="/components/component-list" className="hd-home-sample__item hd-home-sample__item-components">
@@ -41,7 +41,7 @@ export const ComponentsCard = () => {
                 </div>
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
-                        <HopperProvider colorScheme={colorScheme}>
+                        <HopperProvider theme={theme} colorScheme={colorScheme}>
                             <div className="hd-home-sample-components__buttons">
                                 <HopperButton excludeFromTabOrder>Confirm</HopperButton>
                                 <HopperButton excludeFromTabOrder variant="secondary">I need

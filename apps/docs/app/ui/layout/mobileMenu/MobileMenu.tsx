@@ -2,7 +2,7 @@
 
 import Wrapper from "@/app/ui/layout/wrapper/Wrapper";
 import IconButton from "@/components/iconButton/IconButton";
-import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
+import ColorSchemeSwitch from "@/components/themeSwitch/ColorSchemeSwitch";
 import { navigation } from "@/configs/navigation";
 import { type ColorScheme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import clsx from "clsx";
@@ -121,7 +121,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                                 </Link>
                             </li>
                             <li>
-                                <ThemeSwitch
+                                <ColorSchemeSwitch
                                     onChange={toggleTheme}
                                     colorScheme={colorScheme!}
                                     text="Appearance"
