@@ -70,7 +70,7 @@
         "@types/node": "24.5.1",
         "@types/react": "18.3.13",
         "@workleap/eslint-configs": "0.0.7",
-        "@workleap/stylelint-configs": "2.1.0",
+        "@workleap/stylelint-configs": "2.1.6",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
         "axe-playwright": "2.2.2",
