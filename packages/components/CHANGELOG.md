@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 1.16.5
+
+### Patch Changes
+
+- 81c7b29: Fix issue where using fixed viewport units caused some components to overflow off of mobile screens. Dynamic viewport units are now preferred.
+
 ## 1.16.4
 
 ### Patch Changes
