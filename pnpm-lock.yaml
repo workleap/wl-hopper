@@ -240,6 +240,9 @@ importers:
       '@hopper-ui/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@hopper-ui/svg-icons':
+        specifier: workspace:*
+        version: link:../../packages/svg-icons
       '@hopper-ui/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
