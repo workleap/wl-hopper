@@ -2,7 +2,6 @@ import { Button, Menu, MenuItem, MenuTrigger, Text, type Theme } from "@hopper-u
 
 import { Icon } from "@hopper-ui/icons";
 import { forwardRef } from "react";
-import "./colorSchemeSwitch.css";
 
 export const DocumentationThemes = ["workleap", "sharegate"] as const;
 
