@@ -3,7 +3,7 @@ import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
-import { ColorSchemeGlobalKey, colorSchemesGlobalTypes } from "./color-scheme.ts";
+import { ColorSchemeGlobalKey } from "./color-scheme.ts";
 import "./disableAnimations.css";
 import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 
@@ -21,7 +21,7 @@ export interface HopperStorybookAddonOptions {
 export interface WithHopperStorybookAddonParameter {
     [AddonName]?: HopperStorybookAddonOptions;
 }
-export const ColorSchemes = Object.values(colorSchemesGlobalTypes).map(x => x.value);
+export const ColorSchemes = ["light", "dark"] satisfies ColorScheme[];
 
 export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
