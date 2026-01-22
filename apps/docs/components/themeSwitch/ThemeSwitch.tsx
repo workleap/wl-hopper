@@ -4,6 +4,8 @@ import { Icon } from "@hopper-ui/icons";
 import { forwardRef } from "react";
 import "./colorSchemeSwitch.css";
 
+export const DocumentationThemes = ["workleap", "sharegate"] as const;
+
 interface ColorSchemeSwitchProps {
     onThemeChange?: (theme: Theme) => void;
     theme: Theme;

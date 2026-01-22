@@ -1,7 +1,8 @@
 import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 
-import { useMemo } from "react";
-import { getTokensFromKey, type AllTokensKeys } from "../allDataTokens";
+import { DocumentationThemes } from "@/components/themeSwitch/ThemeSwitch";
+import { Fragment } from "react";
+import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
 
 interface TableSectionProps {
     categories: string[];
@@ -10,18 +11,29 @@ interface TableSectionProps {
     tokenType: "core" | "semantic";
 }
 
+function getCategory(tokens: TokenValue[], { categories, excludedCategories }: TableSectionProps) {
+    return tokens.filter(token => {
+        const excludedCategoryTokens = excludedCategories?.some(category => token.name.includes(category));
+
+        return categories.some(category => token.name.includes(category)) && !excludedCategoryTokens;
+    });
+}
+
 const TableSection = ({ categoryKey, categories, excludedCategories, tokenType }: TableSectionProps) => {
-    const tokens = getTokensFromKey(`${tokenType}.${categoryKey}` as AllTokensKeys);
-    const categoryTokens = useMemo(() => {
-        return tokens.filter(token => {
-            const excludedCategoryTokens = excludedCategories?.some(category => token.name.includes(category));
-
-            return categories.some(category => token.name.includes(category)) && !excludedCategoryTokens;
-        });
-    }, [tokens, categories, excludedCategories]);
-
     return (
-        <TokenTable tokenType={tokenType} category={categoryKey} data={categoryTokens} />
+        <>
+            {DocumentationThemes.map(theme => {
+                const data = getTokensFromKey(`${tokenType}.${categoryKey}` as AllTokensKeys, theme);
+                const categoryTokens = getCategory(data, { categoryKey, categories, excludedCategories, tokenType });
+
+                return (
+                    <Fragment key={theme}>
+                        <div>Tokens for theme: {theme}</div>
+                        <TokenTable tokenType={tokenType} category={categoryKey} data={categoryTokens} />
+                    </Fragment>
+                );
+            })}
+        </>
     );
 };
 

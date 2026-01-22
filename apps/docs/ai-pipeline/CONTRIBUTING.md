@@ -128,7 +128,7 @@ For generating JSON from design token data:
 "route-key": {
     build: {
         type: "tokens-json",
-        source: "datas/tokens.json",
+        source: "datas/workleap/tokens.json",
     }
 }
 ```
@@ -241,7 +241,7 @@ All generated markdown files can be served from the same route. However, if your
 "tokens/maps/full": {
     build: {
         type: "tokens-json",
-        source: "datas/tokens.json",
+        source: "datas/workleap/tokens.json",
     }
 }
 ```

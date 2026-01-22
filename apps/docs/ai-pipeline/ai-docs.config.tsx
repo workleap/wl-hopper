@@ -255,7 +255,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "tokens/maps": {
             build: {
                 type: "tokens-json",
-                source: "datas/tokens.json"
+                source: "datas/workleap/tokens.json"
             }
         },
 
