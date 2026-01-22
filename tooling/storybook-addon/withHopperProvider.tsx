@@ -1,4 +1,5 @@
 import { type ColorScheme, HopperProvider } from "@hopper-ui/components";
+import isChromatic from "chromatic/isChromatic";
 import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
@@ -28,8 +29,16 @@ export const withHopperProvider = makeDecorator({
     parameterName: AddonName,
     wrapper: (getStory, context, settings) => {
         const options = settings as HopperStorybookAddonOptions;
+        let colorSchemes: ColorScheme[];
+        const hasModes = context.parameters.chromatic?.modes;
+        if (isChromatic() && !hasModes) {
+            // In Chromatic without specific modes: render all color schemes
+            colorSchemes = ColorSchemes;
+        } else {
+            // In Storybook locally OR in Chromatic with specific modes: use the current global
+            colorSchemes = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
+        }
 
-        const colorSchemes: ColorScheme[] = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
         const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
         const disabled = options.disabled || false;
 
