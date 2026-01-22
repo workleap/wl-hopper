@@ -1,3 +1,4 @@
+import { allViewportModes } from "@hopper-ui/storybook-addon";
 import type { DivProps } from "@hopper-ui/styled-system";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
@@ -6,8 +7,6 @@ import { fitContent, minmax, repeat } from "../../src/grid-helpers.ts";
 import { Grid } from "../../src/Grid.tsx";
 import { Inline } from "../../src/Inline.tsx";
 import { Stack } from "../../src/Stack.tsx";
-
-const viewports = [640, 768, 1024, 1280, 1440];
 
 function Square(props: DivProps) {
     return (
@@ -28,7 +27,7 @@ const meta = {
     component: Grid,
     parameters: {
         chromatic: {
-            viewports: viewports
+            modes: allViewportModes
         }
     }
 } satisfies Meta<typeof Grid>;

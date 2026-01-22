@@ -1,4 +1,4 @@
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { getModes } from "@hopper-ui/storybook-addon";
 import { isWeekend, parseDate, type DateValue } from "@internationalized/date";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { userEvent, within } from "storybook/test";
@@ -99,7 +99,9 @@ export const UnavailableDates = {
 export const HoverDate = {
     ...Default,
     parameters: {
-        ...hopperParameters({ colorSchemes: ["light"] })
+        chromatic: {
+            modes: getModes("workleap light")
+        }
     },
     play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);

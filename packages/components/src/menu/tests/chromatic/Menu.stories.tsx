@@ -1,5 +1,5 @@
 import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { allColorModes, getModes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { screen, userEvent } from "storybook/test";
@@ -329,7 +329,7 @@ export const Validation = {
     }
 } satisfies Story;
 
-export const SubmenuLight = {
+export const Submenu = {
     render: args => (
         <Menu {...args}>
             <MenuItem>Favorite</MenuItem>
@@ -344,20 +344,15 @@ export const SubmenuLight = {
         </Menu>
     ),
     parameters: {
-        ...hopperParameters({ colorSchemes: ["light"] })
+        chromatic: {
+            modes: allColorModes
+        }
     },
     play: async () => {
         await userEvent.keyboard("{ArrowDown}");
         await userEvent.keyboard("{ArrowDown}");
         await userEvent.keyboard("{ArrowDown}");
         await userEvent.keyboard("{Enter}");
-    }
-} satisfies Story;
-
-export const SubmenuDark = {
-    ...SubmenuLight,
-    parameters: {
-        ...hopperParameters({ colorSchemes: ["dark"] })
     }
 } satisfies Story;
 
@@ -403,13 +398,11 @@ export const MultipleSelectionMode = {
 
 export const Overflowing = {
     parameters: {
-        ...hopperParameters({
-            colorSchemes: ["light"]
-        }),
+        hopper: {
+            height: 200
+        },
         chromatic: {
-            modes: {
-                "Small height": { viewport: { height: 200 } }
-            }
+            modes: getModes("workleap light")
         }
     },
     render: args => (
@@ -432,9 +425,9 @@ export const Overflowing = {
 
 export const MenuHover = {
     parameters: {
-        ...hopperParameters({
-            colorSchemes: ["light"]
-        }),
+        chromatic: {
+            modes: getModes("workleap light")
+        },
         disableWrapper: true
     },
     render: args => (

@@ -1,4 +1,7 @@
-import { viewport, withHopperProvider } from "@hopper-ui/storybook-addon";
+import { ColorSchemeGlobalKey, colorSchemesGlobalTypes, LocaleGlobalKey, localesGlobalTypes, ThemeGlobalKey, themesGlobalTypes, viewport, withHopperProvider, type ColorSchemeKeys, type LocaleKeys, type ThemeKeys } from "@hopper-ui/storybook-addon";
+import "@hopper-ui/styled-system/theme/sharegate.css";
+import "@hopper-ui/styled-system/theme/workleap.css";
+import "@hopper-ui/tokens/fonts.css";
 import {
     Description,
     Stories,
@@ -6,13 +9,6 @@ import {
     Title
 } from "@storybook/addon-docs/blocks";
 import type { Preview } from "@storybook/react-webpack5";
-
-import "@hopper-ui/styled-system/theme/sharegate.css";
-import "@hopper-ui/styled-system/theme/workleap.css";
-import "@hopper-ui/tokens/fonts.css";
-import { allColorSchemes, ColorSchemeGlobalKey, type ColorSchemeKeys } from "tooling/storybook-addon/color-schemes.ts";
-import { allLocales, LocaleGlobalKey, type LocaleKeys } from "tooling/storybook-addon/locale.ts";
-import { allThemes, ThemeGlobalKey, type ThemeKeys } from "tooling/storybook-addon/themes.ts";
 import "./stories.css";
 
 const preview: Preview = {
@@ -60,17 +56,17 @@ const preview: Preview = {
             toolbar: {
                 title: "Locale",
                 icon: "globe",
-                items: allLocales,
+                items: localesGlobalTypes,
                 dynamicTitle: true
             }
         },
         [ColorSchemeGlobalKey]: {
-            description: "Global color schemes for components",
+            description: "Global color scheme for components",
             defaultValue: "light" satisfies ColorSchemeKeys,
             toolbar: {
                 title: "Color Scheme",
                 icon: "circlehollow",
-                items: allColorSchemes,
+                items: colorSchemesGlobalTypes,
                 dynamicTitle: true
             }
         },
@@ -80,7 +76,7 @@ const preview: Preview = {
             toolbar: {
                 title: "Theme",
                 icon: "paintbrush",
-                items: allThemes,
+                items: themesGlobalTypes,
                 dynamicTitle: true
             }
         }

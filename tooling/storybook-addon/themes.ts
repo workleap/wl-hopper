@@ -1,7 +1,7 @@
-export const allThemes = [
+export const themesGlobalTypes = [
     { value: "workleap", title: "Workleap" } as const,
     { value: "sharegate", title: "Sharegate" } as const
 ];
 
-export type ThemeKeys = typeof allThemes[number]["value"]; // "workleap" | "sharegate"
+export type ThemeKeys = typeof themesGlobalTypes[number]["value"]; // "workleap" | "sharegate"
 export const ThemeGlobalKey = "theme";

@@ -12,16 +12,18 @@ import {
     Modal,
     Text
 } from "@hopper-ui/components";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { allColorModes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Frog, MossyFrog } from "../assets/index.ts";
 
 const meta = {
-    title: "Components/Modal/dark",
+    title: "Components/Modal",
     component: Modal,
     parameters: {
-        ...hopperParameters({ colorSchemes: ["dark"] })
+        chromatic: {
+            modes: allColorModes
+        }
     },
     decorators: [
         Story => (

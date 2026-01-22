@@ -38,6 +38,9 @@ importers:
       '@storybook/addon-links':
         specifier: 9.1.9
         version: 9.1.9(react@18.3.1)(storybook@9.1.9(@testing-library/dom@10.4.1)(prettier@3.6.2))
+      '@storybook/addon-viewport':
+        specifier: 9.0.8
+        version: 9.0.8
       '@storybook/addon-webpack5-compiler-swc':
         specifier: 4.0.1
         version: 4.0.1(@swc/helpers@0.5.17)(storybook@9.1.9(@testing-library/dom@10.4.1)(prettier@3.6.2))(webpack@5.102.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(esbuild@0.25.11))
@@ -69,8 +72,8 @@ importers:
         specifier: 0.0.7
         version: 0.0.7(@eslint/js@9.38.0)(@types/estree@1.0.8)(@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.5.4))(eslint@9.38.0(jiti@2.6.1))(typescript@5.5.4))(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.5.4))(eslint@9.38.0(jiti@2.6.1))(jest@29.7.0(@types/node@24.5.1)(ts-node@10.9.2(@swc/core@1.13.5(@swc/helpers@0.5.17))(@types/node@24.5.1)(typescript@5.5.4)))(jsonc-eslint-parser@2.4.0)(storybook@9.1.9(@testing-library/dom@10.4.1)(prettier@3.6.2))(typescript-eslint@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.5.4))(typescript@5.5.4)
       '@workleap/stylelint-configs':
-        specifier: 2.1.0
-        version: 2.1.0(prettier@3.6.2)(stylelint@16.24.0(typescript@5.5.4))
+        specifier: 2.1.6
+        version: 2.1.6(prettier@3.6.2)(stylelint@16.24.0(typescript@5.5.4))
       '@workleap/swc-configs':
         specifier: 2.3.0
         version: 2.3.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(@swc/helpers@0.5.17)(@swc/jest@0.2.39(@swc/core@1.13.5(@swc/helpers@0.5.17)))(browserslist@4.26.3)
@@ -80,6 +83,9 @@ importers:
       axe-playwright:
         specifier: 2.2.2
         version: 2.2.2(playwright@1.56.1)
+      chromatic:
+        specifier: 13.3.5
+        version: 13.3.5
       cross-env:
         specifier: 10.1.0
         version: 10.1.0
@@ -3671,6 +3677,9 @@ packages:
       react:
         optional: true
 
+  '@storybook/addon-viewport@9.0.8':
+    resolution: {integrity: sha512-HgIFDzNXvMx0zQBM5mhwBoAJlrF9KRlxNCZnJbqrFLCJO4Ps2PMtB0HRGHcg0gm3RLcqyps0DpiF7wll3udb7Q==}
+
   '@storybook/addon-webpack5-compiler-swc@4.0.1':
     resolution: {integrity: sha512-ZwdELxsMAnkE2loDP8mgogcMaMcSvY1xwifIze4TM3rgn2AXjS6QmWCM32MQOn3ej2hK681MPI5y2NLVB7m4hQ==}
     engines: {node: '>=18'}
@@ -4578,11 +4587,11 @@ packages:
     peerDependencies:
       postcss: ^8.5.6
 
-  '@workleap/stylelint-configs@2.1.0':
-    resolution: {integrity: sha512-03tRkAf5dpiiLJ1s6yj8c2Zx97C50Toe/VcR6SlLHx8TE8k90dlhectBM6u5pSTRMfyafpdeNm0aUJaWUugBDg==}
+  '@workleap/stylelint-configs@2.1.6':
+    resolution: {integrity: sha512-kTHmKkjfGl2gyxmQvVPNgfkrgvY3Nz13hO6HkyScAv9OlbR6Ofm4Vr8X+NSJ3spo7ZR2+bDlnXzrKOX6whRqsA==}
     peerDependencies:
-      prettier: ^3.6.2
-      stylelint: ^16.21.1
+      prettier: ^3.7.4
+      stylelint: ^16.26.1
     peerDependenciesMeta:
       prettier:
         optional: true
@@ -5138,6 +5147,18 @@ packages:
 
   chromatic@12.2.0:
     resolution: {integrity: sha512-GswmBW9ZptAoTns1BMyjbm55Z7EsIJnUvYKdQqXIBZIKbGErmpA+p4c0BYA+nzw5B0M+rb3Iqp1IaH8TFwIQew==}
+    hasBin: true
+    peerDependencies:
+      '@chromatic-com/cypress': ^0.*.* || ^1.0.0
+      '@chromatic-com/playwright': ^0.*.* || ^1.0.0
+    peerDependenciesMeta:
+      '@chromatic-com/cypress':
+        optional: true
+      '@chromatic-com/playwright':
+        optional: true
+
+  chromatic@13.3.5:
+    resolution: {integrity: sha512-MzPhxpl838qJUo0A55osCF2ifwPbjcIPeElr1d4SHcjnHoIcg7l1syJDrAYK/a+PcCBrOGi06jPNpQAln5hWgw==}
     hasBin: true
     peerDependencies:
       '@chromatic-com/cypress': ^0.*.* || ^1.0.0
@@ -9826,17 +9847,17 @@ packages:
     peerDependencies:
       stylelint: '>=14'
 
-  stylelint-config-recommended@16.0.0:
-    resolution: {integrity: sha512-4RSmPjQegF34wNcK1e1O3Uz91HN8P1aFdFzio90wNK9mjgAI19u5vsU868cVZboKzCaa5XbpvtTzAAGQAxpcXA==}
+  stylelint-config-recommended@17.0.0:
+    resolution: {integrity: sha512-WaMSdEiPfZTSFVoYmJbxorJfA610O0tlYuU2aEwY33UQhSPgFbClrVJYWvy3jGJx+XW37O+LyNLiZOEXhKhJmA==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.16.0
+      stylelint: ^16.23.0
 
-  stylelint-config-standard@38.0.0:
-    resolution: {integrity: sha512-uj3JIX+dpFseqd/DJx8Gy3PcRAJhlEZ2IrlFOc4LUxBX/PNMEQ198x7LCOE2Q5oT9Vw8nyc4CIL78xSqPr6iag==}
+  stylelint-config-standard@39.0.1:
+    resolution: {integrity: sha512-b7Fja59EYHRNOTa3aXiuWnhUWXFU2Nfg6h61bLfAb5GS5fX3LMUD0U5t4S8N/4tpHQg3Acs2UVPR9jy2l1g/3A==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^16.18.0
+      stylelint: ^16.23.0
 
   stylelint-order@6.0.4:
     resolution: {integrity: sha512-0UuKo4+s1hgQ/uAxlYU4h0o0HS4NiQDud0NAUNI0aa8FJdmYHA5ZZTFHiV5FpmE3071e9pZx5j0QpVJW5zOCUA==}
@@ -14468,6 +14489,8 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
 
+  '@storybook/addon-viewport@9.0.8': {}
+
   '@storybook/addon-webpack5-compiler-swc@4.0.1(@swc/helpers@0.5.17)(storybook@9.1.9(@testing-library/dom@10.4.1)(prettier@3.6.2))(webpack@5.102.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(esbuild@0.25.11))':
     dependencies:
       '@swc/core': 1.13.5(@swc/helpers@0.5.17)
@@ -15653,9 +15676,9 @@ snapshots:
       - tsx
       - yaml
 
-  '@workleap/stylelint-configs@2.1.0(prettier@3.6.2)(stylelint@16.24.0(typescript@5.5.4))':
+  '@workleap/stylelint-configs@2.1.6(prettier@3.6.2)(stylelint@16.24.0(typescript@5.5.4))':
     dependencies:
-      stylelint-config-standard: 38.0.0(stylelint@16.24.0(typescript@5.5.4))
+      stylelint-config-standard: 39.0.1(stylelint@16.24.0(typescript@5.5.4))
       stylelint-prettier: 5.0.3(prettier@3.6.2)(stylelint@16.24.0(typescript@5.5.4))
     optionalDependencies:
       prettier: 3.6.2
@@ -16313,6 +16336,8 @@ snapshots:
       readdirp: 4.1.2
 
   chromatic@12.2.0: {}
+
+  chromatic@13.3.5: {}
 
   chrome-trace-event@1.0.4: {}
 
@@ -22528,14 +22553,14 @@ snapshots:
       stylelint: 16.24.0(typescript@5.5.4)
       stylelint-order: 6.0.4(stylelint@16.24.0(typescript@5.5.4))
 
-  stylelint-config-recommended@16.0.0(stylelint@16.24.0(typescript@5.5.4)):
+  stylelint-config-recommended@17.0.0(stylelint@16.24.0(typescript@5.5.4)):
     dependencies:
       stylelint: 16.24.0(typescript@5.5.4)
 
-  stylelint-config-standard@38.0.0(stylelint@16.24.0(typescript@5.5.4)):
+  stylelint-config-standard@39.0.1(stylelint@16.24.0(typescript@5.5.4)):
     dependencies:
       stylelint: 16.24.0(typescript@5.5.4)
-      stylelint-config-recommended: 16.0.0(stylelint@16.24.0(typescript@5.5.4))
+      stylelint-config-recommended: 17.0.0(stylelint@16.24.0(typescript@5.5.4))
 
   stylelint-order@6.0.4(stylelint@16.24.0(typescript@5.5.4)):
     dependencies:

@@ -1,5 +1,5 @@
 import { Button, Div, PopoverTrigger } from "@hopper-ui/components";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { getModes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { PopoverBase } from "../../src/PopoverBase.tsx";
@@ -13,9 +13,9 @@ const meta = {
         UNSAFE_width: "400px"
     },
     parameters: {
-        ...hopperParameters({
-            colorSchemes: ["light"]
-        })
+        chromatic: {
+            modes: getModes("workleap light")
+        }
     },
     decorators: [
         Story => (

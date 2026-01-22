@@ -1,23 +1,19 @@
-import { type ColorScheme, HopperProvider, type Theme } from "@hopper-ui/components";
+import { HopperProvider } from "@hopper-ui/components";
+import isChromatic from "chromatic/isChromatic";
 import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
-import { ColorSchemeGlobalKey } from "./color-schemes.ts";
+import { ColorSchemeGlobalKey, type ColorSchemeKeys } from "./color-scheme.ts";
 import "./disableAnimations.css";
-import { ThemeGlobalKey } from "./themes.ts";
+import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
+import { ThemeGlobalKey, type ThemeKeys } from "./themes.ts";
 
 const AddonName = "hopper";
 
 export interface HopperStorybookAddonOptions {
     /** Whether to disable the hopperProvider. Defaults to true. */
     disabled?: boolean;
-    /** The locale. Defaults to en-US. */
-    locale?: string;
-    /** The color schemes to render. Defaults to all color schemes. */
-    colorSchemes?: ColorScheme[];
-    /** The themes to render. Defaults to all themes. */
-    themes?: Theme[];
     /** The height of the preview. Defaults to 1000px. */
     height?: number;
     /** Whether to disable animations. Defaults to false. */
@@ -27,24 +23,28 @@ export interface HopperStorybookAddonOptions {
 export interface WithHopperStorybookAddonParameter {
     [AddonName]?: HopperStorybookAddonOptions;
 }
-
-export function hopperParameters(parameters: HopperStorybookAddonOptions): WithHopperStorybookAddonParameter {
-    return {
-        [AddonName]: parameters
-    };
-}
-
-export const ColorSchemes = ["light", "dark"] satisfies HopperStorybookAddonOptions["colorSchemes"];
-export const Themes = ["workleap", "sharegate"] satisfies HopperStorybookAddonOptions["themes"];
+export const ColorSchemes = ["light", "dark"] satisfies ColorSchemeKeys[];
+export const Themes = ["workleap", "sharegate"] satisfies ThemeKeys[];
 
 export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
     parameterName: AddonName,
     wrapper: (getStory, context, settings) => {
-        const options = settings as HopperStorybookAddonOptions;
-        const colorSchemes: ColorScheme[] = options.colorSchemes || (context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
-        const themes: Theme[] = options.themes || (context.globals[ThemeGlobalKey] ? [context.globals[ThemeGlobalKey]] : Themes);
-        const locale: string = options.locale || (context.globals.locale ? context.globals.locale : "en-US");
+        const options = { ...settings.options, ...settings.parameters } as HopperStorybookAddonOptions;
+        let colorSchemes: ColorSchemeKeys[];
+        let themes: ThemeKeys[];
+        const hasModes = context.parameters.chromatic?.modes;
+        if (isChromatic() && !hasModes) {
+            // In Chromatic without specific modes: render all color schemes
+            colorSchemes = ColorSchemes;
+            themes = Themes;
+        } else {
+            // In Storybook locally OR in Chromatic with specific modes: use the current global
+            colorSchemes = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
+            themes = context.globals[ThemeGlobalKey] ? [context.globals[ThemeGlobalKey]] : Themes;
+        }
+
+        const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
         const disabled = options.disabled || false;
 
         if (disabled) {

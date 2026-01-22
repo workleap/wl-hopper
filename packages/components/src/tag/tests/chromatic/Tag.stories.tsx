@@ -1,5 +1,4 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Avatar } from "../../../avatar/index.ts";
@@ -378,9 +377,9 @@ export const TagNotTheFirstToOverflow = {
 
 export const TagWithTooltip = {
     parameters: {
-        ...hopperParameters({
+        hopper: {
             height: 1000
-        })
+        }
     },
     render: props => {
         return (

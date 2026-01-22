@@ -1,14 +1,14 @@
 import { Breakpoints } from "@hopper-ui/components";
 
-interface Viewport {
+export interface Viewport {
     name: string;
     styles: { height: string; width: string };
     type: "desktop" | "mobile" | "tablet";
 }
 
-type BreakpointViewports = Record<keyof typeof Breakpoints, Viewport>;
-
-const BreakpointToDeviceType: Record<keyof typeof Breakpoints, Viewport["type"]> = {
+export type ViewportKeys = keyof typeof Breakpoints;
+export type BreakpointViewports = Record<ViewportKeys, Viewport>;
+const BreakpointToDeviceType: Record<ViewportKeys, Viewport["type"]> = {
     xs: "mobile",
     sm: "mobile",
     md: "tablet",
@@ -16,7 +16,7 @@ const BreakpointToDeviceType: Record<keyof typeof Breakpoints, Viewport["type"]>
     xl: "desktop"
 };
 
-const viewports = (Object.keys(Breakpoints) as (keyof typeof Breakpoints)[]).reduce((acc, key) => {
+const viewports = (Object.keys(Breakpoints) as (ViewportKeys)[]).reduce((acc, key) => {
     acc[key] = {
         name: `Breakpoint ${key}`,
         styles: {
@@ -32,3 +32,4 @@ const viewports = (Object.keys(Breakpoints) as (keyof typeof Breakpoints)[]).red
 export const viewport = {
     viewports
 };
+export const ViewportGlobalKey = "viewport";
