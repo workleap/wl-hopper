@@ -4,6 +4,9 @@ import { defineBuildConfig } from "@workleap/tsup-configs";
 
 import packageJson from "./package.json";
 
+/**
+ * We disable treeshaking and dts for netlify builds in order to speed up the process and reduce memory usage
+ */
 const isNetlify = process.env.NETLIFY === "true";
 
 export default defineBuildConfig({
