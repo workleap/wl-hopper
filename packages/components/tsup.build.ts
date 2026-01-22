@@ -5,8 +5,6 @@ import { defineBuildConfig } from "@workleap/tsup-configs";
 import packageJson from "./package.json";
 
 const isNetlify = process.env.NETLIFY === "true";
-// eslint-disable-next-line no-console
-console.log("Is building on netlify: ", isNetlify);
 
 export default defineBuildConfig({
     entry: isNetlify ? ["./src/index.(ts|tsx)"] : ["./src/index.(ts|tsx)", "./src/**/src/**/*.(ts|tsx)"],
