@@ -23,7 +23,9 @@ const meta = {
     title: "Components/Alert",
     component: Alert,
     parameters: {
-        modes: allColorModes
+        chromatic: {
+            modes: allColorModes
+        }
     },
     decorators: [
         Story => (
