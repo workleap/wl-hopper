@@ -1,6 +1,6 @@
 import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 
-import { DocumentationThemes } from "@/components/themeSwitch/ThemeSwitch";
+import { DocumentationThemes } from "@/components/themeSwitch/documentation-theme";
 import { Fragment } from "react";
 import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
 

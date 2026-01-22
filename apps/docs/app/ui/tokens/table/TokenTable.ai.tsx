@@ -1,5 +1,5 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
-import { DocumentationThemes } from "@/components/themeSwitch/ThemeSwitch";
+import { DocumentationThemes } from "@/components/themeSwitch/documentation-theme";
 import type { ColorScheme } from "@hopper-ui/styled-system";
 import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
 

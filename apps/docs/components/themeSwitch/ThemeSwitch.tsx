@@ -2,8 +2,7 @@ import { Button, Menu, MenuItem, MenuTrigger, Text, type Theme } from "@hopper-u
 
 import { Icon } from "@hopper-ui/icons";
 import { forwardRef } from "react";
-
-export const DocumentationThemes = ["workleap", "sharegate"] as const;
+import { DocumentationThemes } from "./documentation-theme";
 
 interface ColorSchemeSwitchProps {
     onThemeChange?: (theme: Theme) => void;
@@ -20,8 +19,9 @@ const ThemeSwitch = ({ onThemeChange, theme, className, text }: ColorSchemeSwitc
                 {text && <Text>{text}</Text>}
             </Button>
             <Menu selectionMode="single" selectedKeys={[theme]}>
-                <MenuItem id="workleap" onAction={() => onThemeChange?.("workleap")}>Change to Workleap Theme</MenuItem>
-                <MenuItem id="sharegate" onAction={() => onThemeChange?.("sharegate")}>Change to ShareGate Theme</MenuItem>
+                {DocumentationThemes.map(t => (
+                    <MenuItem key={t} id={t} onAction={() => onThemeChange?.(t)}>{`Change to ${t.charAt(0).toUpperCase() + t.slice(1)} Theme`}</MenuItem>
+                ))}
             </Menu>
         </MenuTrigger>
     );
