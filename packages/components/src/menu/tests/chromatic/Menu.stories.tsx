@@ -1,5 +1,4 @@
 import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { screen, userEvent } from "storybook/test";
@@ -344,7 +343,9 @@ export const SubmenuLight = {
         </Menu>
     ),
     parameters: {
-        ...hopperParameters({ colorSchemes: ["light"] })
+        hopper: {
+            colorSchemes: ["light"]
+        }
     },
     play: async () => {
         await userEvent.keyboard("{ArrowDown}");
@@ -357,7 +358,9 @@ export const SubmenuLight = {
 export const SubmenuDark = {
     ...SubmenuLight,
     parameters: {
-        ...hopperParameters({ colorSchemes: ["dark"] })
+        hopper: {
+            colorSchemes: ["dark"]
+        }
     }
 } satisfies Story;
 
@@ -403,9 +406,9 @@ export const MultipleSelectionMode = {
 
 export const Overflowing = {
     parameters: {
-        ...hopperParameters({
+        hopper: {
             colorSchemes: ["light"]
-        }),
+        },
         chromatic: {
             modes: {
                 "Small height": { viewport: { height: 200 } }
@@ -432,9 +435,9 @@ export const Overflowing = {
 
 export const MenuHover = {
     parameters: {
-        ...hopperParameters({
+        hopper: {
             colorSchemes: ["light"]
-        }),
+        },
         disableWrapper: true
     },
     render: args => (

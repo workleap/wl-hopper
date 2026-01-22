@@ -1,4 +1,5 @@
-import { viewport, withHopperProvider } from "@hopper-ui/storybook-addon";
+import { ColorSchemeGlobalKey, colorSchemesGlobalTypes, LocaleGlobalKey, localesGlobalTypes, viewport, withHopperProvider, type ColorSchemeKeys, type LocaleKeys } from "@hopper-ui/storybook-addon";
+import "@hopper-ui/tokens/fonts.css";
 import {
     Description,
     Stories,
@@ -6,8 +7,6 @@ import {
     Title
 } from "@storybook/addon-docs/blocks";
 import type { Preview } from "@storybook/react-webpack5";
-
-import "@hopper-ui/tokens/fonts.css";
 import "./stories.css";
 
 const preview: Preview = {
@@ -49,29 +48,23 @@ const preview: Preview = {
         }
     },
     globalTypes: {
-        locale: {
+        [LocaleGlobalKey]: {
             description: "Internationalization locale",
-            defaultValue: "en-US",
+            defaultValue: "en-US" satisfies LocaleKeys,
             toolbar: {
                 title: "Locale",
                 icon: "globe",
-                items: [
-                    { value: "en-US", right: "US", title: "English" },
-                    { value: "fr-CA", right: "FR", title: "Français" }
-                ],
+                items: localesGlobalTypes,
                 dynamicTitle: true
             }
         },
-        theme: {
-            description: "Global theme for components",
-            defaultValue: "light",
+        [ColorSchemeGlobalKey]: {
+            description: "Global color scheme for components",
+            defaultValue: "light" satisfies ColorSchemeKeys,
             toolbar: {
-                title: "Theme",
+                title: "Color Scheme",
                 icon: "circlehollow",
-                items: [
-                    { value: "light", title: "Light" },
-                    { value: "dark", title: "Dark" }
-                ],
+                items: colorSchemesGlobalTypes,
                 dynamicTitle: true
             }
         }

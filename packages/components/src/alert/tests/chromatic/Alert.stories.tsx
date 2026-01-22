@@ -1,4 +1,4 @@
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { allColorModes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { within } from "storybook/test";
@@ -20,10 +20,10 @@ const viewports = {
 };
 
 const meta = {
-    title: "Components/Alert/light",
+    title: "Components/Alert",
     component: Alert,
     parameters: {
-        ...hopperParameters({ colorSchemes: ["light"] })
+        modes: allColorModes
     },
     decorators: [
         Story => (

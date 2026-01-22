@@ -3,7 +3,9 @@ import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
+import { ColorSchemeGlobalKey } from "./color-scheme.ts";
 import "./disableAnimations.css";
+import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 
 const AddonName = "hopper";
 
@@ -24,23 +26,16 @@ export interface WithHopperStorybookAddonParameter {
     [AddonName]?: HopperStorybookAddonOptions;
 }
 
-export function hopperParameters(parameters: HopperStorybookAddonOptions): WithHopperStorybookAddonParameter {
-    return {
-        [AddonName]: parameters
-    };
-}
-
 export const ColorSchemes = ["light", "dark"] satisfies HopperStorybookAddonOptions["colorSchemes"];
 
 export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
     parameterName: AddonName,
-    wrapper: (getStory, context, { options: optionProp, parameters }) => {
-        const options = { ...optionProp, ...parameters } as HopperStorybookAddonOptions;
-        const isDocStory = context.viewMode === "docs";
+    wrapper: (getStory, context, settings) => {
+        const options = settings as HopperStorybookAddonOptions;
 
-        const colorSchemes: ColorScheme[] = options.colorSchemes || (isDocStory && context.globals.theme ? [context.globals.theme] : ColorSchemes);
-        const locale: string = options.locale || (isDocStory && context.globals.locale ? context.globals.locale : "en-US");
+        const colorSchemes: ColorScheme[] = options.colorSchemes || (context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
+        const locale: LocaleKeys = options.locale || (context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US");
         const disabled = options.disabled || false;
 
         if (disabled) {

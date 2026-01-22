@@ -1,4 +1,4 @@
-import { a11yParameters, hopperParameters } from "@hopper-ui/storybook-addon";
+import { a11yParameters } from "@hopper-ui/storybook-addon";
 import { Div, useColorSchemeContext } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { useEffect } from "react";
@@ -22,7 +22,9 @@ const meta = {
         children: <ColoredDiv />
     },
     parameters: {
-        ...hopperParameters({ disabled: true }),
+        hopper: {
+            disabled: true
+        },
         ...a11yParameters({ disableContrastCheck: true })
     }
 } satisfies Meta<typeof HopperProvider>;

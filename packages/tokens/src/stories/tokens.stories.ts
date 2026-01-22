@@ -1,4 +1,3 @@
-import { hopperParameters } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { List, type Style, type TokenType } from "./components/List.tsx";
@@ -9,7 +8,9 @@ const meta = {
     title: "Tokens/Colors",
     component: List,
     parameters: {
-        ...hopperParameters({ disabled: true }) // the story handle their own color scheme
+        hopper: {
+            disabled: true // the story handle their own color scheme
+        }
     }
 } satisfies Meta<typeof List>;
 
