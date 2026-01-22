@@ -1,19 +1,18 @@
 import { type ColorScheme, HopperProvider } from "@hopper-ui/components";
+import isChromatic from "chromatic/isChromatic";
 import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
+import { ColorSchemeGlobalKey } from "./color-scheme.ts";
 import "./disableAnimations.css";
+import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 
 const AddonName = "hopper";
 
 export interface HopperStorybookAddonOptions {
     /** Whether to disable the hopperProvider. Defaults to true. */
     disabled?: boolean;
-    /** The locale. Defaults to en-US. */
-    locale?: string;
-    /** The color schemes to render. Defaults to all color schemes. */
-    colorSchemes?: ColorScheme[];
     /** The height of the preview. Defaults to 1000px. */
     height?: number;
     /** Whether to disable animations. Defaults to false. */
@@ -23,24 +22,24 @@ export interface HopperStorybookAddonOptions {
 export interface WithHopperStorybookAddonParameter {
     [AddonName]?: HopperStorybookAddonOptions;
 }
-
-export function hopperParameters(parameters: HopperStorybookAddonOptions): WithHopperStorybookAddonParameter {
-    return {
-        [AddonName]: parameters
-    };
-}
-
-export const ColorSchemes = ["light", "dark"] satisfies HopperStorybookAddonOptions["colorSchemes"];
+export const ColorSchemes = ["light", "dark"] satisfies ColorScheme[];
 
 export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
     parameterName: AddonName,
-    wrapper: (getStory, context, { options: optionProp, parameters }) => {
-        const options = { ...optionProp, ...parameters } as HopperStorybookAddonOptions;
-        const isDocStory = context.viewMode === "docs";
+    wrapper: (getStory, context, settings) => {
+        const options = { ...settings.options, ...settings.parameters } as HopperStorybookAddonOptions;
+        let colorSchemes: ColorScheme[];
+        const hasModes = context.parameters.chromatic?.modes;
+        if (isChromatic() && !hasModes) {
+            // In Chromatic without specific modes: render all color schemes
+            colorSchemes = ColorSchemes;
+        } else {
+            // In Storybook locally OR in Chromatic with specific modes: use the current global
+            colorSchemes = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
+        }
 
-        const colorSchemes: ColorScheme[] = options.colorSchemes || (isDocStory && context.globals.theme ? [context.globals.theme] : ColorSchemes);
-        const locale: string = options.locale || (isDocStory && context.globals.locale ? context.globals.locale : "en-US");
+        const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
         const disabled = options.disabled || false;
 
         if (disabled) {

@@ -1,9 +1,7 @@
+import { allViewportModes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Div, type DivProps } from "../../src/html-wrappers/html.ts";
-import { Breakpoints } from "../../src/responsive/Breakpoints.ts";
-
-const viewports = Object.values(Breakpoints);
 
 const meta = {
     title: "Styled System/useStyledSystem",
@@ -11,7 +9,7 @@ const meta = {
     parameters: {
         chromatic: {
             delay: 100,
-            viewports: viewports
+            modes: allViewportModes
         },
         controls: { hideNoControlsWarning: true }
     },

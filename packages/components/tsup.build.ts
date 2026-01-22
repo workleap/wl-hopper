@@ -4,9 +4,15 @@ import { defineBuildConfig } from "@workleap/tsup-configs";
 
 import packageJson from "./package.json";
 
+/**
+ * We disable treeshaking and dts for netlify builds in order to speed up the process and reduce memory usage
+ */
+const isNetlify = process.env.NETLIFY === "true";
+
 export default defineBuildConfig({
-    entry: ["./src/index.(ts|tsx)", "./src/**/src/**/*.(ts|tsx)"],
+    entry: isNetlify ? ["./src/index.(ts|tsx)"] : ["./src/index.(ts|tsx)", "./src/**/src/**/*.(ts|tsx)"],
     target: "es2019", // We set target ES2019 since ES2020 syntax is not supported by older versions of storybook (used in orbiter)
+    dts: !isNetlify,
     esbuildPlugins: [
         createCssModuleEsbuildPlugin({
             generateScopedName: "[name]__[local]___[hash:base64:5]",

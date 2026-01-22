@@ -6,14 +6,16 @@ import {
     Heading,
     Text
 } from "@hopper-ui/components";
-import { hopperParameters } from "@hopper-ui/storybook-addon";
+import { allColorModes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 const meta = {
-    title: "Components/Modal/CustomModal/dark",
+    title: "Components/Modal/CustomModal",
     component: CustomModal,
     parameters: {
-        ...hopperParameters({ colorSchemes: ["dark"] })
+        chromatic: {
+            modes: allColorModes
+        }
     },
     decorators: [
         Story => (
@@ -42,8 +44,8 @@ export const Default = {
         <CustomModal {...args}>
             <CloseButton position="absolute" top="24px" right="24px" />
             <Heading slot="title" paddingBottom="inset-lg">Fascinating Frog Facts!</Heading>
-            <Content alignContent="center">
-                <Text> Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
+            <Content>
+                <Text>Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
             </Content>
         </CustomModal>
     )
