@@ -1,4 +1,5 @@
 import { Button, ButtonGroup, Content, Div, Footer, Heading, Link } from "@hopper-ui/components";
+import { getModes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Popover } from "../../src/Popover.tsx";
@@ -135,12 +136,10 @@ export const NoHeading = {
 export const LongContent = {
     parameters: {
         hopper: {
-            colorSchemes: ["light"]
+            height: 200
         },
         chromatic: {
-            modes: {
-                "Small height": { viewport: { height: 200 } }
-            }
+            modes: getModes("light")
         }
     },
     render: args => (

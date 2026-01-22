@@ -379,7 +379,7 @@ export const TagWithTooltip = {
     parameters: {
         hopper: {
             height: 1000
-        },
+        }
     },
     render: props => {
         return (

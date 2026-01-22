@@ -3,7 +3,7 @@ import type { JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
-import { ColorSchemeGlobalKey } from "./color-scheme.ts";
+import { ColorSchemeGlobalKey, colorSchemesGlobalTypes } from "./color-scheme.ts";
 import "./disableAnimations.css";
 import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 
@@ -12,10 +12,6 @@ const AddonName = "hopper";
 export interface HopperStorybookAddonOptions {
     /** Whether to disable the hopperProvider. Defaults to true. */
     disabled?: boolean;
-    /** The locale. Defaults to en-US. */
-    locale?: string;
-    /** The color schemes to render. Defaults to all color schemes. */
-    colorSchemes?: ColorScheme[];
     /** The height of the preview. Defaults to 1000px. */
     height?: number;
     /** Whether to disable animations. Defaults to false. */
@@ -25,8 +21,7 @@ export interface HopperStorybookAddonOptions {
 export interface WithHopperStorybookAddonParameter {
     [AddonName]?: HopperStorybookAddonOptions;
 }
-
-export const ColorSchemes = ["light", "dark"] satisfies HopperStorybookAddonOptions["colorSchemes"];
+export const ColorSchemes = Object.values(colorSchemesGlobalTypes).map(x => x.value);
 
 export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
@@ -34,8 +29,8 @@ export const withHopperProvider = makeDecorator({
     wrapper: (getStory, context, settings) => {
         const options = settings as HopperStorybookAddonOptions;
 
-        const colorSchemes: ColorScheme[] = options.colorSchemes || (context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
-        const locale: LocaleKeys = options.locale || (context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US");
+        const colorSchemes: ColorScheme[] = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
+        const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
         const disabled = options.disabled || false;
 
         if (disabled) {
