@@ -28,7 +28,7 @@ export const withHopperProvider = makeDecorator({
     name: "withHopperProvider",
     parameterName: AddonName,
     wrapper: (getStory, context, settings) => {
-        const options = settings as HopperStorybookAddonOptions;
+        const options = { ...settings.options, ...settings.parameters } as HopperStorybookAddonOptions;
         let colorSchemes: ColorScheme[];
         const hasModes = context.parameters.chromatic?.modes;
         if (isChromatic() && !hasModes) {
