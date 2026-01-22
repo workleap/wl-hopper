@@ -132,7 +132,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                             <li>
                                 <ThemeSwitch
                                     onThemeChange={setTheme}
-                                    theme={theme!}
+                                    theme={theme}
                                     className="hd-mobile-menu-footer-button"
                                     text="Select theme"
                                 />
