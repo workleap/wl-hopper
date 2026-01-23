@@ -89,7 +89,7 @@ Start a watch process for the basic sample website. The main goal was to test th
 pnpm dev:basic
 ```
 
-### storybook 
+### storybook
 
 You can then run storybook to see the components in action:
 
@@ -115,5 +115,6 @@ pnpm lint
 
 ## Contributing to packages
 
+- [Tokens](./contributing/tokens.md)
 - [Icons](./contributing/icons.md)
 - [Hopper components](./contributing/components.md)

@@ -1,6 +1,3 @@
 @import url("@hopper-ui/icons/index.css");
 @import url("@hopper-ui/tokens/fonts.css");
 @import url("@hopper-ui/styled-system/index.css");
-
-/* TODO: Remove in the next major version */
-@import url("@hopper-ui/styled-system/theme/workleap.css");
