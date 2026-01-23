@@ -41,7 +41,7 @@ const meta = {
     parameters: {
         chromatic: {
             // we do the themes separately because the otherwise the test crashes due to its size
-            modes: getModes("workleap all", "sharegate all")
+            modes: getModes("workleap light", "workleap dark", "sharegate light", "sharegate dark")
         }
     }
 } satisfies Meta<typeof List>;

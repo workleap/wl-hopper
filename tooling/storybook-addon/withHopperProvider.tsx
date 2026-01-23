@@ -10,7 +10,6 @@ import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 import { ThemeGlobalKey, type ThemeKeys } from "./themes.ts";
 
 const AddonName = "hopper";
-export const HopperAddonName = AddonName;
 
 export interface HopperStorybookAddonOptions {
     /** Whether to disable the hopperProvider. Defaults to true. */

@@ -2,7 +2,7 @@ import { ColorSchemeGlobalKey, type ColorSchemeKeys } from "./color-scheme.ts";
 import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 import { ThemeGlobalKey, type ThemeKeys } from "./themes.ts";
 import { ViewportGlobalKey, type ViewportKeys } from "./viewports.ts";
-import { HopperAddonName, type WithHopperStorybookAddonParameter } from "./withHopperProvider.tsx";
+import { type WithHopperStorybookAddonParameter } from "./withHopperProvider.tsx";
 
 export interface Mode extends WithHopperStorybookAddonParameter {
     [ViewportGlobalKey]?: ViewportKeys;
@@ -38,12 +38,10 @@ export const allViewportModes = {
 } satisfies Record<ViewportKeys, Mode>;
 type ViewPortModes = keyof typeof allViewportModes;
 
-const AllColorSchemeModeKey = "all";
 type ModeCombinations = ColorSchemeModes
     | LocaleModes
     | ViewPortModes
     | ThemeKeys
-    | `${ThemeModes} ${typeof AllColorSchemeModeKey}`
     | `${ThemeModes} ${ColorSchemeModes}`
     | `${ThemeModes} ${ColorSchemeModes} ${LocaleModes}`
     | `${ThemeModes} ${ColorSchemeModes} ${LocaleModes} ${ViewPortModes}`;
@@ -56,18 +54,6 @@ function getAllModes() {
         ...allViewportModes,
         ...allThemes
     } as Modes;
-
-    for (const theme in allThemes) {
-        modes = {
-            ...modes,
-            [`${theme} ${AllColorSchemeModeKey}`]: {
-                [ThemeGlobalKey]: theme as ThemeKeys,
-                [HopperAddonName]: {
-                    colorSchemes: Object.values(allColorModes).map(x => x.colorScheme)
-                }
-            } satisfies Mode
-        };
-    }
 
     for (const colorScheme in allColorModes) {
         for (const theme in allThemes) {

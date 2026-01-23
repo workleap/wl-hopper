@@ -27,7 +27,7 @@ const meta = {
     parameters: {
         chromatic: {
             // we do the themes separately because the file exceed the maximum allowed snapshot height when combining color schemes and themes
-            modes: getModes("workleap all", "sharegate all")
+            modes: getModes("workleap light", "workleap dark", "sharegate light", "sharegate dark")
         }
     }
 } satisfies Meta<typeof ListBox>;
