@@ -1,4 +1,4 @@
-import { getModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { isWeekend, parseDate, type DateValue } from "@internationalized/date";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { userEvent, within } from "storybook/test";
@@ -105,7 +105,7 @@ export const HoverDate = {
     ...Default,
     parameters: {
         chromatic: {
-            modes: getModes("workleap light")
+            modes: allColorModesAndThemes
         }
     },
     play: async ({ canvasElement }) => {

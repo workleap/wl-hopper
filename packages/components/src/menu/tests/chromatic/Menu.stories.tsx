@@ -1,5 +1,5 @@
 import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons";
-import { allColorModesAndThemes, getModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { screen, userEvent } from "storybook/test";
@@ -16,6 +16,11 @@ import { Menu, MenuItem, MenuSection, MenuTrigger, SubmenuTrigger } from "../../
 const meta = {
     title: "Components/Menu",
     component: Menu,
+    parameters: {
+        chromatic: {
+            modes: allColorModesAndThemes
+        }
+    },
     decorators: [
         (Story, { parameters }) => (
             parameters.disableWrapper ? (
@@ -343,11 +348,6 @@ export const Submenu = {
             </SubmenuTrigger>
         </Menu>
     ),
-    parameters: {
-        chromatic: {
-            modes: allColorModesAndThemes
-        }
-    },
     play: async () => {
         await userEvent.keyboard("{ArrowDown}");
         await userEvent.keyboard("{ArrowDown}");
@@ -400,9 +400,6 @@ export const Overflowing = {
     parameters: {
         hopper: {
             height: 200
-        },
-        chromatic: {
-            modes: getModes("workleap light")
         }
     },
     render: args => (
@@ -425,9 +422,6 @@ export const Overflowing = {
 
 export const MenuHover = {
     parameters: {
-        chromatic: {
-            modes: getModes("workleap light")
-        },
         disableWrapper: true
     },
     render: args => (

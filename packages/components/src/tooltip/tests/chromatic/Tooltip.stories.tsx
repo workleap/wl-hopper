@@ -1,5 +1,4 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import { getModes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -24,11 +23,6 @@ const meta = {
     component: Tooltip,
     args: {
         children: childrenText
-    },
-    parameters: {
-        chromatic: {
-            modes: getModes("workleap light")
-        }
     },
     decorators: [
         (Story, context) => {
