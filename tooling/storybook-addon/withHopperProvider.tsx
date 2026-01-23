@@ -91,7 +91,7 @@ export const withHopperProvider = makeDecorator({
                                 {getStory(context) as JSX.Element}
                             </HopperProvider>
                         ))}
-                    </F>
+                    </Fragment>
                 ))}
             </DisableAnimations>
         );
