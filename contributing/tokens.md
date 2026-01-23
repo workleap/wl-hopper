@@ -84,22 +84,18 @@ To add a new theme to Hopper, follow these steps:
    - Keep the token structure and names consistent with other themes
    - Update both light and dark variants as needed
 
-4. **Register the theme in the configuration**
-   - Update `packages/tokens/src/style-dictionary/constant.ts` to include your new theme
-   - Add your theme to the theme list and define its color schemes
-
-5. **Update Storybook modes (official themes only)**
+4. **Update Storybook modes (official themes only)**
    - If this is an official theme, update `tooling/storybook-addon/modes.ts` to add your theme as a selectable mode
    - This allows theme testing in Storybook
 
-6. **Update documentation (official themes only)**
+5. **Update documentation (official themes only)**
    - If this is an official theme, update the theme picker in the Hopper documentation
    - Add your theme to the available theme options for users
 
-7. **Test your theme**
+6. **Test your theme**
    - Run `pnpm build` to generate tokens
    - Verify all color contrasts meet WCAG accessibility standards
    - Test components with the new theme in Storybook
 
-8. **Commit the theme files generated**
+7. **Commit the theme files generated**
    - Files are generated here: packages\styled-system\src\theme\generated
