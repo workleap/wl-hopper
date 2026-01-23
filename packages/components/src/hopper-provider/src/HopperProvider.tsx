@@ -79,8 +79,7 @@ export function useForwardedHopperContext() {
         colorScheme: context?.colorScheme,
         theme: context?.theme,
         navigate: context?.navigate,
-        useHref: context?.useHref,
-        withCssVariables: false // we never need to re-add css variables in a nested provider
+        useHref: context?.useHref
     } satisfies Partial<HopperProviderProps>;
 }
 
