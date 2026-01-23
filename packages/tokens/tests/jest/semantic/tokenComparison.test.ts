@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const semanticDir = path.join(__dirname, "..", "..", "..", "src", "tokens", "semantic");
+const semanticDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "src", "tokens", "semantic");
 
 const isDirectory = (targetPath: string): boolean => fs.statSync(targetPath).isDirectory();
 

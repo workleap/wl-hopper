@@ -1,5 +1,5 @@
 {
-    "comp-button2": {
+    "comp-button": {
         "border-color": {
             "$type": "color",
             "$value": "{amanita.100}"

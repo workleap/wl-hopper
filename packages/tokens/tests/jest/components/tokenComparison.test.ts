@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
 
-const componentsDir = path.join(__dirname, "..", "..", "..", "src", "tokens", "components");
+const componentsDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "src", "tokens", "components");
 
 const isDirectory = (targetPath: string): boolean => fs.statSync(targetPath).isDirectory();
 
