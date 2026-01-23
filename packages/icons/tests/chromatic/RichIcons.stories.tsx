@@ -1,3 +1,4 @@
+import { allThemes } from "@hopper-ui/storybook-addon";
 import { LI, UL } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -36,7 +37,13 @@ const List = ({ ...iconProps }: ListProps) => {
 
 const meta = {
     component: List,
-    title: "Icons/RichIcons"
+    title: "Icons/RichIcons",
+    parameters: {
+        chromatic: {
+            // we do the themes separately because the otherwise the test crashes due to its size
+            modes: allThemes
+        }
+    }
 } satisfies Meta<typeof List>;
 
 export default meta;
