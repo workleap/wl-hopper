@@ -41,7 +41,7 @@
         "test": "jest"
     },
     "peerDependencies": {
-        "@hopper-ui/styled-system": "^2.4",
+        "@hopper-ui/styled-system": "*",
         "react": "^18 || ^19",
         "react-aria-components": "^1.13.0",
         "react-dom": "^18 || ^19"

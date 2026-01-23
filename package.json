@@ -30,6 +30,7 @@
         "build:pkg": "turbo run build --filter=./packages/*",
         "build:apps": "turbo run build --filter=./apps/samples/*",
         "changeset": "changeset",
+        "ci-version-packages": "changeset version && pnpm build:tokens",
         "ci-release": "pnpm build:pkg && changeset publish",
         "install-react19": "pnpm -r --filter \"{packages/**}\" add -D react@19 react-dom@19 @types/react@19 @types/react-dom@19 && pnpm add -D -w react@19 react-dom@19 @types/react@19 @types/react-dom@19",
         "generate-icons": "pnpm --filter=\"svg-icons\" generate-icons && pnpm --filter=\"@hopper-ui/icons*\" generate-icons",

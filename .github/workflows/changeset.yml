@@ -30,5 +30,6 @@ jobs:
                     commit: "ci(changesets): version packages"
                     title: "Changeset: New Version"
                     publish: pnpm run ci-release
+                    version: "pnpm run ci-version-packages"
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

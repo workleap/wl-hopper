@@ -42,14 +42,14 @@
         "find-types": "tsx scripts/findImportedTypes.ts"
     },
     "peerDependencies": {
-        "@hopper-ui/styled-system": "^2.4",
+        "@hopper-ui/styled-system": "*",
         "react": "^18 || ^19",
         "react-aria": "^3.44.0",
         "react-aria-components": "^1.13.0",
         "react-dom": "^18 || ^19"
     },
     "dependencies": {
-        "@hopper-ui/icons": "^2.10.2",
+        "@hopper-ui/icons": "*",
         "@internationalized/date": "^3.10.0",
         "@react-aria/interactions": "^3.25.6",
         "@react-aria/ssr": "^3.9.10",
