@@ -1,4 +1,4 @@
-import { ColorSchemeGlobalKey, colorSchemesGlobalTypes, LocaleGlobalKey, localesGlobalTypes, ThemeGlobalKey, themesGlobalTypes, viewport, withHopperProvider, type ColorSchemeKeys, type LocaleKeys, type ThemeKeys } from "@hopper-ui/storybook-addon";
+import { ColorSchemeDefaultValue, ColorSchemeGlobalKey, colorSchemesGlobalTypes, LocaleGlobalKey, localesGlobalTypes, ThemeDefaultValue, ThemeGlobalKey, themesGlobalTypes, viewport, withHopperProvider, type LocaleKeys } from "@hopper-ui/storybook-addon";
 import "@hopper-ui/styled-system/theme/sharegate.css";
 import "@hopper-ui/styled-system/theme/workleap.css";
 import "@hopper-ui/tokens/fonts.css";
@@ -62,7 +62,7 @@ const preview: Preview = {
         },
         [ColorSchemeGlobalKey]: {
             description: "Global color scheme for components",
-            defaultValue: "light" satisfies ColorSchemeKeys,
+            defaultValue: ColorSchemeDefaultValue,
             toolbar: {
                 title: "Color Scheme",
                 icon: "circlehollow",
@@ -72,7 +72,7 @@ const preview: Preview = {
         },
         [ThemeGlobalKey]: {
             description: "Global theme for components",
-            defaultValue: "sharegate" satisfies ThemeKeys,
+            defaultValue: ThemeDefaultValue,
             toolbar: {
                 title: "Theme",
                 icon: "paintbrush",

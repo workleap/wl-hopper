@@ -1,5 +1,5 @@
 import { DeleteIcon, EditIcon, KebabIcon, SparklesIcon } from "@hopper-ui/icons";
-import { allColorModes, getModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes, getModes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { screen, userEvent } from "storybook/test";
@@ -345,7 +345,7 @@ export const Submenu = {
     ),
     parameters: {
         chromatic: {
-            modes: allColorModes
+            modes: allColorModesAndThemes
         }
     },
     play: async () => {

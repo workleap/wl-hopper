@@ -5,3 +5,4 @@ export const colorSchemesGlobalTypes = [
 
 export type ColorSchemeKeys = typeof colorSchemesGlobalTypes[number]["value"]; // "light" | "dark"
 export const ColorSchemeGlobalKey = "colorScheme";
+export const ColorSchemeDefaultValue = "light" satisfies ColorSchemeKeys;
