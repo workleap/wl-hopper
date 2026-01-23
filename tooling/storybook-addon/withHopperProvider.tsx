@@ -45,9 +45,8 @@ export const withHopperProvider = makeDecorator({
             colorSchemes = options.colorSchemes ? options.colorSchemes : (hasModes ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
             themes = options.themes ? options.themes : (hasModes ? [context.globals[ThemeGlobalKey]] : Themes);
         } else {
-            // in storybook, we always use the themes from the globals
-            colorSchemes = context.globals[ColorSchemeGlobalKey];
-            themes = context.globals[ThemeGlobalKey];
+            colorSchemes = [context.globals[ColorSchemeGlobalKey]];
+            themes = [context.globals[ThemeGlobalKey]];
         }
 
         const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
