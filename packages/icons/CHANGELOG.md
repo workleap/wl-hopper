@@ -1,5 +1,17 @@
 # @hopper-ui/icons
 
+## 3.0.0
+
+### Major Changes
+
+- cd95303: BREAKING
+  - The peer dependency for `@hopper-ui/styled-system` has been updated to version 3. Make sure to update it in your project to avoid any compatibility issues.
+
+### Patch Changes
+
+- Updated dependencies [cd95303]
+  - @hopper-ui/styled-system@3.0.0
+
 ## 2.10.4
 
 ### Patch Changes
