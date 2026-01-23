@@ -25,7 +25,7 @@ export const DESIGN_TOKEN_PREFIXES_AND_SUFFIXES = [
 
 export function formatStyledSystemName(name: string, tokenType?: "core" | "semantic" | "components" | null): string {
     if (tokenType === "components") {
-        throw new Error("Styled-System naming convention for component tokens is not implemented.");
+        return name;
     }
 
     let prefix = "";
