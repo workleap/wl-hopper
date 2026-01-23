@@ -1,6 +1,6 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 import { DocumentationThemes } from "@/components/themeSwitch/documentation-theme";
-import type { ColorScheme } from "@hopper-ui/styled-system";
+import { type ColorScheme } from "@/context/theme/ThemeProvider";
 import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
 
 interface TableProps {

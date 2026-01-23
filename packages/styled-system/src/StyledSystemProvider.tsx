@@ -17,7 +17,7 @@ import {
 } from "./responsive/BreakpointProvider.tsx";
 import { getRootCSSClasses } from "./styledSystemRootCssClass.ts";
 import { ThemeContext } from "./theme/ThemeContext.ts";
-import { Theme } from "./tokens/generated/styledSystemConstants.ts";
+import type { Theme } from "./tokens/generated/styledSystemConstants.ts";
 
 export const GlobalStyledSystemProviderCssSelector = "hop-StyledSystemProvider";
 
@@ -48,11 +48,6 @@ export interface StyledSystemProviderProps extends BreakpointProviderProps, DivP
      * @default "light"
      */
     defaultColorScheme?: ColorScheme;
-
-    /**
-     * @deprecated Importing CSS Variable is now done by importing a separate CSS file.
-     */
-    withCssVariables?: boolean;
 }
 
 const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRef<HTMLDivElement>) => {

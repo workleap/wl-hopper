@@ -6,8 +6,7 @@ import Preview from "@/app/ui/tokens/preview/Preview";
 import Code from "@/components/code/Code";
 
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
-import { ThemeContext } from "@/context/theme/ThemeProvider";
-import type { ColorScheme } from "@hopper-ui/styled-system";
+import { ThemeContext, type ColorScheme } from "@/context/theme/ThemeProvider";
 import { useContext, type ReactNode } from "react";
 import { AllTokensKeys, getTokensFromKey, type TokenValue } from "../allDataTokens";
 import "./tokenTable.css";

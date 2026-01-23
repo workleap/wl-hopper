@@ -1,5 +1,4 @@
-import { Theme } from "@/context/theme/ThemeProvider";
-import type { ColorScheme } from "@hopper-ui/styled-system";
+import { Theme, type ColorScheme } from "@/context/theme/ThemeProvider";
 import sharegateDarkTokens from "../../../datas/sharegate/tokens-dark.json" with { type: "json" };
 import sharegateTokens from "../../../datas/sharegate/tokens.json" with { type: "json" };
 import workleapDarkTokens from "../../../datas/workleap/tokens-dark.json" with { type: "json" };

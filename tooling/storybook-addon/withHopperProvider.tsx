@@ -1,6 +1,6 @@
 import { HopperProvider } from "@hopper-ui/components";
 import isChromatic from "chromatic/isChromatic";
-import type { JSX } from "react";
+import { Fragment, type JSX } from "react";
 import { makeDecorator } from "storybook/preview-api";
 
 import { DisableAnimations } from "./DisableAnimations.tsx";
@@ -63,7 +63,7 @@ export const withHopperProvider = makeDecorator({
         return (
             <DisableAnimations disableAnimations={options.disableAnimations}>
                 {themes.map(theme => (
-                    <>
+                    <Fragment key={theme}>
                         {themes.length > 1 && (
                             <>
                                 <h1>{theme}</h1>
@@ -91,7 +91,7 @@ export const withHopperProvider = makeDecorator({
                                 {getStory(context) as JSX.Element}
                             </HopperProvider>
                         ))}
-                    </>
+                    </F>
                 ))}
             </DisableAnimations>
         );

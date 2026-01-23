@@ -1,7 +1,6 @@
 "use client";
 
-import { HopperProvider } from "@hopper-ui/components";
-import type { ColorScheme, Theme } from "@hopper-ui/styled-system";
+import { ColorScheme, HopperProvider, Theme } from "@hopper-ui/components";
 import { createContext, useEffect, useState, type ReactNode } from "react";
 import { getInitialColorScheme, getInitialTheme } from "./getInitialColorScheme.ts";
 
@@ -12,7 +11,7 @@ interface ThemeContextType {
     setTheme: (newTheme: Theme) => void;
 }
 
-export { ColorScheme, Theme };
+export type { ColorScheme, Theme };
 interface ThemeProviderProps {
     children: ReactNode;
 }

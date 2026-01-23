@@ -67,12 +67,6 @@ body {
 }
 ```
 
-### Inject CSS Variables
-
-`withCssVariables` determines whether Hopper's CSS variables should be added to your application. By default, it is set to true and should not be changed unless you want to manage CSS variables via a CSS file. Note that in this case, you will need to add the tokens manually, ideally using the `@hopper-ui/tokens` package.
-
-<CodeOnlyExample src="hopper-provider/docs/hopper-provider/inject-css-var" />
-
 ### useHopperContext
 
 If you need to access the HopperProvider properties in a component, you can use the `useHopperContext` hook. This hook returns the Hopper context object, which includes the color scheme, locale, and other settings.

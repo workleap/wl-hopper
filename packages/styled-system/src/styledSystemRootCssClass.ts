@@ -1,4 +1,4 @@
-import { ColorScheme } from "./color-scheme/ColorSchemeContext.ts";
+import type { ColorScheme } from "./color-scheme/ColorSchemeContext.ts";
 import { HopperRootCssClass, StyledSystemRootCssClass } from "./tokens/generated/styledSystemConstants.ts";
 /**
  * The CSS Variables that are used by the Styled System are injected targeting those classes.

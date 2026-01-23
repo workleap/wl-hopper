@@ -23,7 +23,11 @@ export const DESIGN_TOKEN_PREFIXES_AND_SUFFIXES = [
     "line-height-"
 ] as const;
 
-export function formatStyledSystemName(name: string, tokenType?: "core" | "semantic" | null | "components"): string {
+export function formatStyledSystemName(name: string, tokenType?: "core" | "semantic" | "components" | null): string {
+    if (tokenType === "components") {
+        throw new Error("Styled-System naming convention for component tokens is not implemented.");
+    }
+
     let prefix = "";
     if (tokenType === "core") {
         prefix = "core_";

@@ -19,7 +19,7 @@ const ColorSchemeSwitch = ({ text, className, colorScheme, onChange }: ColorSche
             <ToggleButton
                 className={clsx("hd-color-scheme-switch__button", className)}
                 onChange={onChange}
-                aria-label="Toggle theme"
+                aria-label="Toggle color scheme"
             >
                 <Icon icon={colorScheme === "dark" ? "sun" : "moon"} />
                 <span>{text}</span>

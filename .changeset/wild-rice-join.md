@@ -10,4 +10,4 @@ BREAKING
 - The tokens files needs to be imported from the proper theme now.
 - Before : `@hopper-ui/tokens/tokens.css` and `@hopper-ui/tokens/dark/tokens.css`
 - Now : `@hopper-ui/tokens/workleap/tokens.css` and `@hopper-ui/tokens/workleap/dark/tokens.css`
-
+- The `withCssVariable` property is no longer available on the `HopperProvider`. You need to manually import the tokens now.
