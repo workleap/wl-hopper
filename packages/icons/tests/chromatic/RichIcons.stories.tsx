@@ -1,4 +1,4 @@
-import { allThemes } from "@hopper-ui/storybook-addon";
+import { getModes } from "@hopper-ui/storybook-addon";
 import { LI, UL } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -41,7 +41,7 @@ const meta = {
     parameters: {
         chromatic: {
             // we do the themes separately because the otherwise the test crashes due to its size
-            modes: allThemes
+            modes: getModes("workleap all", "sharegate all")
         }
     }
 } satisfies Meta<typeof List>;

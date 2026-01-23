@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import { allThemes } from "@hopper-ui/storybook-addon";
+import { getModes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { within } from "storybook/test";
@@ -27,7 +27,7 @@ const meta = {
     parameters: {
         chromatic: {
             // we do the themes separately because the file exceed the maximum allowed snapshot height when combining color schemes and themes
-            modes: allThemes
+            modes: getModes("workleap all", "sharegate all")
         }
     }
 } satisfies Meta<typeof ListBox>;

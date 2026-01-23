@@ -10,12 +10,17 @@ import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
 import { ThemeGlobalKey, type ThemeKeys } from "./themes.ts";
 
 const AddonName = "hopper";
+export const HopperAddonName = AddonName;
 
 export interface HopperStorybookAddonOptions {
     /** Whether to disable the hopperProvider. Defaults to true. */
     disabled?: boolean;
     /** The height of the preview. Defaults to 1000px. */
     height?: number;
+    /** The color schemes to render. Defaults to all color schemes. */
+    colorSchemes?: ColorSchemeKeys[];
+    /** The themes to render. Defaults to all themes. */
+    themes?: ThemeKeys[];
     /** Whether to disable animations. Defaults to false. */
     disableAnimations?: boolean;
 }
@@ -34,14 +39,16 @@ export const withHopperProvider = makeDecorator({
         let colorSchemes: ColorSchemeKeys[];
         let themes: ThemeKeys[];
         const hasModes = context.parameters.chromatic?.modes;
-        if (isChromatic() && !hasModes) {
-            // In Chromatic without specific modes: render all color schemes
-            colorSchemes = ColorSchemes;
-            themes = Themes;
+
+        if (isChromatic()) {
+            // In chromatic, we always use the options if they are provided. Otherwise, if modes are provided, we use the current global.
+            // Finally, if no modes are provided, we use all color schemes and themes.
+            colorSchemes = options.colorSchemes ? options.colorSchemes : (hasModes ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
+            themes = options.themes ? options.themes : (hasModes ? [context.globals[ThemeGlobalKey]] : Themes);
         } else {
-            // In Storybook locally OR in Chromatic with specific modes: use the current global
-            colorSchemes = context.globals[ColorSchemeGlobalKey] ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes;
-            themes = context.globals[ThemeGlobalKey] ? [context.globals[ThemeGlobalKey]] : Themes;
+            // in storybook, we always use the themes from the globals
+            colorSchemes = context.globals[ColorSchemeGlobalKey];
+            themes = context.globals[ThemeGlobalKey];
         }
 
         const locale: LocaleKeys = context.globals[LocaleGlobalKey] ? context.globals[LocaleGlobalKey] : "en-US";
