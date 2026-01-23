@@ -3,7 +3,7 @@ import { EnvironmentContextProvider } from "@/context/env/EnvironmentProvider";
 import { RACProvider } from "@/context/rac/RACProvider";
 import { ThemeProvider } from "@/context/theme/ThemeProvider";
 import "@hopper-ui/tokens/fonts.css";
-import "@hopper-ui/tokens/tokens.css";
+
 import type { ReactNode } from "react";
 import "./globals.css";
 import "./layout.css";
@@ -21,14 +21,21 @@ export default function RootLayout({ children }: {
 }) {
     const setInitialTheme = `
     function getUserPreference() {
-      if(window.localStorage.getItem("hdTheme")) {
-        return window.localStorage.getItem("hdTheme");
+      if(window.localStorage.getItem("hdColorScheme")) {
+        return window.localStorage.getItem("hdColorScheme");
       }
       return window.matchMedia("(prefers-color-scheme: dark)").matches
                 ? "dark"
                 : "light";
     }
-    document.documentElement.dataset.theme = getUserPreference();
+    function getUserTheme() {
+      if(window.localStorage.getItem("hdTheming")) {
+        return window.localStorage.getItem("hdTheming");
+      }
+      return "workleap";
+    }
+    document.documentElement.dataset.colorScheme = getUserPreference();
+    document.documentElement.dataset.theme = getUserTheme();
   `;
 
     return (

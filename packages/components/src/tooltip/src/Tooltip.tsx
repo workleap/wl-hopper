@@ -1,4 +1,4 @@
-import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, useThemeContext, type StyledComponentProps } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { forwardRef, useContext, type CSSProperties, type ForwardedRef } from "react";
 import { Provider, Tooltip as RACTooltip, useContextProps, type TooltipProps as RACTooltipProps } from "react-aria-components";
@@ -21,6 +21,7 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TooltipContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const { colorScheme } = useColorSchemeContext();
+    const { theme } = useThemeContext();
     const { containerPadding, crossOffset, offset, placement = "top", shouldFlip } = useContext(TooltipTriggerContext);
 
     const {
@@ -32,7 +33,7 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const classNames = clsx(
         GlobalTooltipCssSelector,
-        getRootCSSClasses(colorScheme),
+        getRootCSSClasses(colorScheme, theme),
         cssModule(
             styles,
             "hop-Tooltip",

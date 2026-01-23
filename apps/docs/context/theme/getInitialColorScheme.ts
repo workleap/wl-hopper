@@ -1,7 +1,7 @@
-import type { ColorScheme } from "./ThemeProvider";
+import type { ColorScheme, Theme } from "./ThemeProvider";
 
-export function getInitialColorMode(): ColorScheme {
-    const persistedColorPreference = window.localStorage.getItem("hdTheme");
+export function getInitialColorScheme(): ColorScheme {
+    const persistedColorPreference = window.localStorage.getItem("hdColorScheme");
     const hasPersistedPreference = typeof persistedColorPreference === "string";
     if (hasPersistedPreference) {
         return persistedColorPreference as ColorScheme;
@@ -13,4 +13,7 @@ export function getInitialColorMode(): ColorScheme {
     }
 
     return "light";
+}
+export function getInitialTheme(): Theme {
+    return window.localStorage.getItem("hdTheming") as Theme;
 }

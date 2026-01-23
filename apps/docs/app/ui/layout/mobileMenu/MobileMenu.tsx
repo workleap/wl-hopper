@@ -2,7 +2,7 @@
 
 import Wrapper from "@/app/ui/layout/wrapper/Wrapper";
 import IconButton from "@/components/iconButton/IconButton";
-import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
+import ColorSchemeSwitch from "@/components/themeSwitch/ColorSchemeSwitch";
 import { navigation } from "@/configs/navigation";
 import { type ColorScheme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import clsx from "clsx";
@@ -14,6 +14,7 @@ import CloseIcon from "./assets/close.svg";
 import GithubLogo from "./assets/github.svg";
 import HopperLogo from "./assets/hopper-logo.svg";
 
+import ThemeSwitch from "@/components/themeSwitch/ThemeSwitch";
 import "./mobileMenu.css";
 
 interface MobileMenuProps {
@@ -25,7 +26,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     const pathname = usePathname();
     let firstPathLevel: string;
 
-    const { colorMode, setColorMode } = useContext(ThemeContext);
+    const { colorScheme, setColorScheme, theme, setTheme } = useContext(ThemeContext);
     const [isAnimating, setIsAnimating] = useState(false);
     const [animationDirection, setAnimationDirection] = useState<"opening" | "closing">("opening");
 
@@ -61,11 +62,11 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     }, [isOpen, onClose]);
 
     const toggleTheme = () => {
-        const theme: ColorScheme = colorMode === "dark"
+        const theme: ColorScheme = colorScheme === "dark"
             ? "light"
             : "dark";
 
-        setColorMode(theme);
+        setColorScheme(theme);
     };
 
     const navItems = navigation.map(item => {
@@ -121,11 +122,19 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
                                 </Link>
                             </li>
                             <li>
-                                <ThemeSwitch
+                                <ColorSchemeSwitch
                                     onChange={toggleTheme}
-                                    colorMode={colorMode!}
+                                    colorScheme={colorScheme!}
                                     text="Appearance"
                                     className="hd-mobile-menu-footer-button"
+                                />
+                            </li>
+                            <li>
+                                <ThemeSwitch
+                                    onThemeChange={setTheme}
+                                    theme={theme}
+                                    className="hd-mobile-menu-footer-button"
+                                    text="Select theme"
                                 />
                             </li>
                         </ul>

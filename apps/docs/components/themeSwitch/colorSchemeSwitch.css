@@ -1,4 +1,4 @@
-.hd-theme-switch__button {
+.hd-color-scheme-switch__button {
     @media screen and (width >= 37.5rem) {
         &[data-selected] {
             background-color: transparent;

@@ -1,1 +1,3 @@
-@import url("@hopper-ui/components/index.css")
+@import url("@hopper-ui/components/index.css");
+@import url("@hopper-ui/styled-system/theme/workleap.css");
+@import url("@hopper-ui/styled-system/theme/sharegate.css");

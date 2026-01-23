@@ -1,44 +1,47 @@
 :root {
     --hd-default-font-size: 1rem;
-    --hd-default-font-family: -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    --hd-mono-font-family: fira code vf, ui-monospace, sfmono-regular, menlo, monaco, consolas, liberation mono, courier new, monospace;
+    --hd-default-font-family:
+        -apple-system, blinkmacsystemfont, "Segoe UI", roboto, helvetica, arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --hd-mono-font-family:
+        fira code vf, ui-monospace, sfmono-regular, menlo, monaco, consolas,
+        liberation mono, courier new, monospace;
     --hd-opacity: 1;
-    --hd-step-minus-1: clamp(0.84rem, calc(0.90rem + -0.08vw), 0.89rem);
-    --hd-step-0: clamp(1.00rem, calc(0.96rem + 0.22vw), 1.13rem);
-    --hd-step-1: clamp(1.13rem, calc(0.99rem + 0.65vw), 1.50rem);
-    --hd-step-2: clamp(1.27rem, calc(1.01rem + 1.28vw), 2.00rem);
+    --hd-step-minus-1: clamp(0.84rem, calc(0.9rem + -0.08vw), 0.89rem);
+    --hd-step-0: clamp(1rem, calc(0.96rem + 0.22vw), 1.13rem);
+    --hd-step-1: clamp(1.13rem, calc(0.99rem + 0.65vw), 1.5rem);
+    --hd-step-2: clamp(1.27rem, calc(1.01rem + 1.28vw), 2rem);
     --hd-step-3: clamp(1.42rem, calc(0.99rem + 2.16vw), 2.66rem);
-    --hd-step-4: clamp(1.60rem, calc(0.92rem + 3.39vw), 3.55rem);
-    --hd-step-5: clamp(1.80rem, calc(0.78rem + 5.10vw), 4.74rem);
-    --hd-white: #FFFFFF;
-    --hd-neutral-0: #FFFFFF;
-    --hd-neutral-20: #FCFBFB;
-    --hd-neutral-50: #ECEBE8;
-    --hd-neutral-75: #E0DFDD;
-    --hd-neutral-100: #D7D6D6;
+    --hd-step-4: clamp(1.6rem, calc(0.92rem + 3.39vw), 3.55rem);
+    --hd-step-5: clamp(1.8rem, calc(0.78rem + 5.1vw), 4.74rem);
+    --hd-white: #ffffff;
+    --hd-neutral-0: #ffffff;
+    --hd-neutral-20: #fcfbfb;
+    --hd-neutral-50: #ecebe8;
+    --hd-neutral-75: #e0dfdd;
+    --hd-neutral-100: #d7d6d6;
     --hd-neutral-300: #959593;
     --hd-neutral-400: #777775;
     --hd-neutral-700: #505050;
-    --hd-neutral-750: #4B4B4B;
-    --hd-neutral-800: #3C3C3C;
+    --hd-neutral-750: #4b4b4b;
+    --hd-neutral-800: #3c3c3c;
     --hd-neutral-900: #292929;
-    --hd-primary-0: #EDFCF6;
-    --hd-primary-100: #D2F9E8;
-    --hd-primary-200: #A9F1D6;
-    --hd-primary-300: #72E3C0;
-    --hd-primary-400: #39CEA5;
-    --hd-primary-500: #17C097;
-    --hd-primary-600: #11A77C;
-    --hd-primary-700: #08745F;
-    --hd-primary-800: #095C4C;
-    --hd-primary-900: #084C40;
-    --hd-primary-950: #032B25;
-    --hd-accent-100: #E4E5F5;
-    --hd-accent-300: #AFB6E1;
-    --hd-accent-400: #888FD2;
-    --hd-accent-700: #564EA7;
-    --hd-accent-900: #3E3A6E;
+    --hd-primary-0: #edfcf6;
+    --hd-primary-100: #d2f9e8;
+    --hd-primary-200: #a9f1d6;
+    --hd-primary-300: #72e3c0;
+    --hd-primary-400: #39cea5;
+    --hd-primary-500: #17c097;
+    --hd-primary-600: #11a77c;
+    --hd-primary-700: #08745f;
+    --hd-primary-800: #095c4c;
+    --hd-primary-900: #084c40;
+    --hd-primary-950: #032b25;
+    --hd-accent-100: #e4e5f5;
+    --hd-accent-300: #afb6e1;
+    --hd-accent-400: #888fd2;
+    --hd-accent-700: #564ea7;
+    --hd-accent-900: #3e3a6e;
     --hd-space-05: 0.25rem;
     --hd-space-1: 0.5rem;
     --hd-space-2: 1rem;
@@ -62,7 +65,7 @@
     --hd-z-index-1000: 1000;
 }
 
-[data-theme="light"] {
+[data-color-scheme="light"] {
     --hd-color-white-surface: var(--hd-white);
     --hd-color-neutral-surface: var(--hd-neutral-20);
     --hd-color-neutral-surface-weak: var(--hd-neutral-50);
@@ -93,27 +96,38 @@
     --hd-color-accent-border: var(--hd-accent-700);
     --hd-color-accent-surface: var(--hd-accent-100);
     --hd-color-accent-surface-strong: var(--hd-accent-700);
-    --hd-color-information-surface: #D9EFFF;
-    --hd-color-information-icon: #2E70A8;
+    --hd-color-information-surface: #d9efff;
+    --hd-color-information-icon: #2e70a8;
     --hd-color-message-surface: var(--hd-accent-100);
     --hd-color-message-icon: var(--hd-accent-700);
-    --hd-color-warning-surface: #FFF8D6;
-    --hd-color-warning-icon: #E57723;
-    --hd-color-error-surface: #FDE6E5;
-    --hd-color-error-icon: #CB2E31;
+    --hd-color-warning-surface: #fff8d6;
+    --hd-color-warning-icon: #e57723;
+    --hd-color-error-surface: #fde6e5;
+    --hd-color-error-icon: #cb2e31;
     --hd-color-success-surface: var(--hd-primary-100);
     --hd-color-success-icon: var(--hd-primary-600);
-    --hd-color-surface-neutral-gradient: linear-gradient(0deg, #151515 0%, #353434 100%);
-    --hd-color-surface-neutral-gradient-hover: linear-gradient(0deg, #353434 0%, #151515 100%);
-    --hd-focus-ring: 0 0 0 0.125rem var(--hd-neutral-20), 0 0 0 0.25rem var(--hd-neutral-900);
-    --hd-color-shadow-neutral-gradient: 0 0.0625 0 0 rgb(255 255 255 / 15%) inset, 0 0 0 0.0625 rgb(11 11 11 / 60%) inset;
+    --hd-color-surface-neutral-gradient: linear-gradient(
+        0deg,
+        #151515 0%,
+        #353434 100%
+    );
+    --hd-color-surface-neutral-gradient-hover: linear-gradient(
+        0deg,
+        #353434 0%,
+        #151515 100%
+    );
+    --hd-focus-ring:
+        0 0 0 0.125rem var(--hd-neutral-20), 0 0 0 0.25rem var(--hd-neutral-900);
+    --hd-color-shadow-neutral-gradient:
+        0 0.0625 0 0 rgb(255 255 255 / 15%) inset,
+        0 0 0 0.0625 rgb(11 11 11 / 60%) inset;
     --hd-color-shadow-collapsible: 0 0.25rem 0.625rem 0.25rem rgb(60 60 60 / 8%);
     --hd-color-dotted-surface: var(--hd-neutral-50);
     --hd-scrollbar-color: #eaeaea;
 }
 
 /* Dark Theme Overrides */
-[data-theme="dark"] {
+[data-color-scheme="dark"] {
     --hd-color-white-surface: var(--hd-neutral-800);
     --hd-color-neutral-surface: var(--hd-neutral-900);
     --hd-color-neutral-surface-weak: var(--hd-neutral-800);
@@ -144,20 +158,32 @@
     --hd-color-accent-border: var(--hd-accent-400);
     --hd-color-accent-surface: var(--hd-accent-900);
     --hd-color-accent-surface-strong: var(--hd-accent-400);
-    --hd-color-information-surface: #D9EFFF;
-    --hd-color-information-icon: #2E70A8;
+    --hd-color-information-surface: #d9efff;
+    --hd-color-information-icon: #2e70a8;
     --hd-color-message-surface: var(--hd-accent-100);
     --hd-color-message-icon: var(--hd-accent-700);
-    --hd-color-warning-surface: #FFF8D6;
-    --hd-color-warning-icon: #E57723;
-    --hd-color-error-surface: #FDE6E5;
-    --hd-color-error-icon: #CB2E31;
+    --hd-color-warning-surface: #fff8d6;
+    --hd-color-warning-icon: #e57723;
+    --hd-color-error-surface: #fde6e5;
+    --hd-color-error-icon: #cb2e31;
     --hd-color-success-surface: var(--hd-primary-100);
     --hd-color-success-icon: var(--hd-primary-600);
-    --hd-color-surface-neutral-gradient: linear-gradient(0deg, #F4F3EE 0%, var(--hd-neutral-0) 100%);
-    --hd-color-surface-neutral-gradient-hover: linear-gradient(0deg, var(--hd-neutral-0) 0%, #F4F3EE 100%);
-    --hd-focus-ring: 0 0 0 0.125rem var(--hd-neutral-800), 0 0 0 0.25rem var(--hd-neutral-20);
-    --hd-color-shadow-neutral-gradient: 0 0.0625 0 0 rgb(245 245 245 / 50%) inset, 0 0 0 0.0625 rgb(0 0 0 / 10%) inset;
-    --hd-color-shadow-collapsible: 0 0.25rem 0.625rem 0.25rem rgb(245 245 245 / 5%);
+    --hd-color-surface-neutral-gradient: linear-gradient(
+        0deg,
+        #f4f3ee 0%,
+        var(--hd-neutral-0) 100%
+    );
+    --hd-color-surface-neutral-gradient-hover: linear-gradient(
+        0deg,
+        var(--hd-neutral-0) 0%,
+        #f4f3ee 100%
+    );
+    --hd-focus-ring:
+        0 0 0 0.125rem var(--hd-neutral-800), 0 0 0 0.25rem var(--hd-neutral-20);
+    --hd-color-shadow-neutral-gradient:
+        0 0.0625 0 0 rgb(245 245 245 / 50%) inset,
+        0 0 0 0.0625 rgb(0 0 0 / 10%) inset;
+    --hd-color-shadow-collapsible: 0 0.25rem 0.625rem 0.25rem
+        rgb(245 245 245 / 5%);
     --hd-color-dotted-surface: var(--hd-neutral-800);
 }

@@ -1,0 +1,26 @@
+---
+title: Theming
+description: Learn how themes work in Hopper
+order: 6
+---
+
+## Introduction
+
+Hopper supports a multiple themes for different product lines. Themes allow applications to customize the appearance of all Hopper components to match a specific brand.
+
+## Applying a theme
+
+A theme needs to be provided to a [HopperProvider](./HopperProvider).
+
+<Example src="hopper-provider/docs/theme/apply" isOpen />
+
+Theme can also be nested. This might be useful for certain experiences, such as theme previews, where you want to showcase a specific theme.
+
+<Example src="hopper-provider/docs/theme/apply-nested" isOpen />
+
+## Context Hooks
+
+To manage the theme in your application, Hopper exposes a `ThemeContext` and a `useThemeContext` hook.
+Make sure that your application includes all the css files required for the themes you want to support.
+
+<Example src="hopper-provider/docs/theme/changing" isOpen />

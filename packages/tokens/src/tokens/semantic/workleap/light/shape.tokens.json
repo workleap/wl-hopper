@@ -1,0 +1,24 @@
+{
+    "shape": {
+        "circle": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.9999}"
+        },
+        "pill": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.4}"
+        },
+        "rounded-lg": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.3}"
+        },
+        "rounded-md": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.2}"
+        },
+        "rounded-sm": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.1}"
+        }
+    }
+}

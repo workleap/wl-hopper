@@ -1,12 +1,12 @@
 {
-  "extends": "@workleap/typescript-configs/web-application.json",
-  "exclude": ["dist", "node_modules"],
-  "include": ["**/*", "../../../types"],
-  "compilerOptions": {
+    "extends": "@workleap/typescript-configs/web-application.json",
+    "exclude": ["dist", "node_modules"],
+    "include": ["**/*", "../../../types"],
+    "compilerOptions": {
         "incremental": true,
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
         "paths": {
             "@hopper-ui/components": ["../../../packages/components/src/index.ts"],
         }
-  }
+    }
 }

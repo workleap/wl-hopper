@@ -69,7 +69,7 @@ export function useHopperContext() {
 /**
  * This hook is used to get the HopperProviderProps from the nearest HopperProvider ancestor.
  * It will only return the props that would need to be forwarded to the next HopperProvider.
- * @deprecated This hook is deprecated and should not be used in new code. Prefer setting `getRootCSSClasses(colorScheme)` instead of creating a new HopperProvider in portals.
+ * @deprecated This hook is deprecated and should not be used in new code. Prefer setting `getRootCSSClasses(colorScheme, theme)` instead of creating a new HopperProvider in portals.
  */
 export function useForwardedHopperContext() {
     const context = useContext(HopperContext);
@@ -77,9 +77,9 @@ export function useForwardedHopperContext() {
     return {
         locale: context?.locale,
         colorScheme: context?.colorScheme,
+        theme: context?.theme,
         navigate: context?.navigate,
-        useHref: context?.useHref,
-        withCssVariables: false // we never need to re-add css variables in a nested provider
+        useHref: context?.useHref
     } satisfies Partial<HopperProviderProps>;
 }
 
@@ -89,7 +89,6 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
         locale,
         withBodyStyle = false,
         colorScheme = "light",
-        withCssVariables = true,
         className,
         navigate,
         useHref,
@@ -112,7 +111,6 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
                 ref={ref}
                 withBodyStyle={withBodyStyle}
                 colorScheme={colorScheme}
-                withCssVariables={withCssVariables}
                 className={classNames}
                 {...rest}
             >

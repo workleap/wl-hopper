@@ -1,0 +1,20 @@
+{
+    "elevation": {
+        "none": {
+            "$type": "shadow",
+            "$value": "{shadow.none}"
+        },
+        "raised": {
+            "$type": "shadow",
+            "$value": "{shadow.sm}"
+        },
+        "lifted": {
+            "$type": "shadow",
+            "$value": "{shadow.md}"
+        },
+        "floating": {
+            "$type": "shadow",
+            "$value": "{shadow.lg}"
+        }
+    }
+}

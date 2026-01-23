@@ -5,6 +5,9 @@ import { type ResponsiveProp, parseResponsiveValue } from "../responsive/useResp
 import { isNil, isObject } from "../utils/assertion.ts";
 
 import {
+    HopperVariablePrefix
+} from "./generated/styledSystemConstants.ts";
+import {
     BackgroundColors,
     BorderColors,
     CoreSpace,
@@ -14,7 +17,6 @@ import {
     FontSize,
     FontWeight,
     HopperColors,
-    HopperVariablePrefix,
     IconColors,
     LineHeight,
     SemanticComplexMarginSpace,

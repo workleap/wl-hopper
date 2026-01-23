@@ -25,8 +25,7 @@ export function typographyTableRow(type: string, properties: FontProperties, siz
         };
     }
 
-    return ({
-        name: size,
+    const valueAndPreview = {
         value: <PropertiesCell properties={properties} />,
         preview: (
             <TypographyPreview
@@ -41,7 +40,16 @@ export function typographyTableRow(type: string, properties: FontProperties, siz
                 }}
             />
         )
-    });
+    };
+
+    if (size) {
+        return ({
+            name: size,
+            ...valueAndPreview
+        });
+    } else {
+        return valueAndPreview;
+    }
 }
 
 interface PropertiesCellProps {

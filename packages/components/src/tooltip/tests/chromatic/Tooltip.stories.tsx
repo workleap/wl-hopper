@@ -1,5 +1,5 @@
 import { SparklesIcon } from "@hopper-ui/icons";
-import { getModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -25,11 +25,6 @@ const meta = {
     args: {
         children: childrenText
     },
-    parameters: {
-        chromatic: {
-            modes: getModes("light")
-        }
-    },
     decorators: [
         (Story, context) => {
             if (context.parameters.skipGlobalDecorator) {
@@ -42,7 +37,12 @@ const meta = {
                 </Flex>
             );
         }
-    ]
+    ],
+    parameters: {
+        chromatic: {
+            modes: allColorModesAndThemes
+        }
+    }
 } satisfies Meta<typeof Tooltip>;
 
 export default meta;

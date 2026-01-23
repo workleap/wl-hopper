@@ -23,7 +23,11 @@ export const DESIGN_TOKEN_PREFIXES_AND_SUFFIXES = [
     "line-height-"
 ] as const;
 
-export function formatStyledSystemName(name: string, tokenType: "core" | "semantic" | null) {
+export function formatStyledSystemName(name: string, tokenType?: "core" | "semantic" | "components" | null): string {
+    if (tokenType === "components") {
+        return name;
+    }
+
     let prefix = "";
     if (tokenType === "core") {
         prefix = "core_";

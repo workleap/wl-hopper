@@ -44,8 +44,7 @@ export interface DosAndDontsProps {
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     const renderCard = (variant: Variant, item?: DosAndDontsItem) => {
         if (!item || item.isForAiOnly) {
@@ -75,7 +74,7 @@ function DosAndDonts({ items }: DosAndDontsProps) {
     };
 
     return (
-        <HopperProvider colorScheme={theme}>
+        <HopperProvider theme={theme} colorScheme={colorScheme}>
             <Grid
                 width="100%"
                 gap="inline-md"

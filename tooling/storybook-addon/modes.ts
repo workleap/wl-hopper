@@ -1,72 +1,90 @@
-import type { ColorSchemeGlobalKey, ColorSchemeKeys } from "./color-scheme.ts";
-import type { LocaleGlobalKey, LocaleKeys } from "./locale.ts";
-import { type ViewportKeys } from "./viewports.ts";
+import { ColorSchemeDefaultValue, ColorSchemeGlobalKey, type ColorSchemeKeys } from "./color-scheme.ts";
+import { LocaleGlobalKey, type LocaleKeys } from "./locale.ts";
+import { ThemeDefaultValue, ThemeGlobalKey, type ThemeKeys } from "./themes.ts";
+import { ViewportGlobalKey, type ViewportKeys } from "./viewports.ts";
 
 export interface Mode {
-    viewport?: ViewportKeys;
+    [ViewportGlobalKey]?: ViewportKeys;
     [ColorSchemeGlobalKey]?: ColorSchemeKeys;
     [LocaleGlobalKey]?: LocaleKeys;
+    [ThemeGlobalKey]?: ThemeKeys;
 }
+
+export const allThemes = {
+    "workleap": {
+        [ThemeGlobalKey]: "workleap",
+        [ColorSchemeGlobalKey]: ColorSchemeDefaultValue
+    },
+    "sharegate": {
+        [ThemeGlobalKey]: "sharegate",
+        [ColorSchemeGlobalKey]: ColorSchemeDefaultValue
+    }
+} satisfies Record<string, Mode>;
 
 export const allColorModes = {
-    "light": { colorScheme: "light" },
-    "dark": { colorScheme: "dark" }
+    "light": {
+        [ThemeGlobalKey]: ThemeDefaultValue,
+        [ColorSchemeGlobalKey]: "light"
+    },
+    "dark": {
+        [ThemeGlobalKey]: ThemeDefaultValue,
+        [ColorSchemeGlobalKey]: "dark"
+    }
 } satisfies Record<string, Mode>;
-type ColorSchemeModes = keyof typeof allColorModes;
+
+export const allColorModesAndThemes = {
+    "workleap light": {
+        [ThemeGlobalKey]: "workleap",
+        [ColorSchemeGlobalKey]: "light"
+    },
+    "workleap dark": {
+        [ThemeGlobalKey]: "workleap",
+        [ColorSchemeGlobalKey]: "dark"
+    },
+    "sharegate light": {
+        [ThemeGlobalKey]: "sharegate",
+        [ColorSchemeGlobalKey]: "light"
+    },
+    "sharegate dark": {
+        [ThemeGlobalKey]: "sharegate",
+        [ColorSchemeGlobalKey]: "dark"
+    }
+} satisfies Record<string, Mode>;
 
 export const allLocales = {
-    "en": { locale: "en-US" },
-    "fr": { locale: "fr-CA" }
+    "en": {
+        [LocaleGlobalKey]: "en-US"
+    },
+    "fr": {
+        [LocaleGlobalKey]: "fr-CA"
+    }
 } satisfies Record<string, Mode>;
-type LocaleModes = keyof typeof allLocales;
 
 export const allViewportModes = {
-    xs: { viewport: "xs" },
-    sm: { viewport: "sm" },
-    md: { viewport: "md" },
-    lg: { viewport: "lg" },
-    xl: { viewport: "xl" }
-} satisfies Record<ViewportKeys, Mode>;
-type ViewPortModes = keyof typeof allViewportModes;
-
-type ModeCombinations = ColorSchemeModes | LocaleModes | ViewPortModes | `${ColorSchemeModes} ${LocaleModes}` | `${ColorSchemeModes} ${LocaleModes} ${ViewPortModes}`;
-type Modes = Record<ModeCombinations, Mode>;
-
-function getAllModes() {
-    let modes = {
-        ...allColorModes,
-        ...allLocales,
-        ...allViewportModes
-    } as Modes;
-
-    for (const colorScheme in allColorModes) {
-        for (const locale in allLocales) {
-            modes = {
-                ...modes,
-                [`${colorScheme} ${locale}`]: {
-                    colorScheme: colorScheme as ColorSchemeKeys,
-                    locale: locale as LocaleKeys
-                } satisfies Mode
-            };
-            for (const viewport in allViewportModes) {
-                const name = `${colorScheme} ${locale} ${viewport}` as ModeCombinations;
-
-                modes = {
-                    ...modes,
-                    [name]: {
-                        viewport: viewport as ViewportKeys,
-                        colorScheme: colorScheme as ColorSchemeKeys,
-                        locale: locale as LocaleKeys
-                    } satisfies Mode
-                };
-            }
-        }
+    xs: {
+        [ViewportGlobalKey]: "xs"
+    },
+    sm: {
+        [ViewportGlobalKey]: "sm"
+    },
+    md: {
+        [ViewportGlobalKey]: "md"
+    },
+    lg: {
+        [ViewportGlobalKey]: "lg"
+    },
+    xl: {
+        [ViewportGlobalKey]: "xl"
     }
+} satisfies Record<ViewportKeys, Mode>;
 
-    return modes;
-}
-
-export const allModes = getAllModes();
+export const allModes = {
+    ...allThemes,
+    ...allColorModes,
+    ...allColorModesAndThemes,
+    ...allLocales,
+    ...allViewportModes
+};
 
 export type ModesKeys = keyof typeof allModes;
 

@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { forwardRef, useCallback, useState, type ForwardedRef, type ReactNode } from "react";
+import { forwardRef, useCallback, useEffect, useState, type ForwardedRef, type ReactNode } from "react";
 
 import {
     ColorSchemeContext,
@@ -16,7 +16,8 @@ import {
     type BreakpointProviderProps
 } from "./responsive/BreakpointProvider.tsx";
 import { getRootCSSClasses } from "./styledSystemRootCssClass.ts";
-import { TokenProvider } from "./tokens/TokenProvider.tsx";
+import { ThemeContext } from "./theme/ThemeContext.ts";
+import type { Theme } from "./tokens/generated/styledSystemConstants.ts";
 
 export const GlobalStyledSystemProviderCssSelector = "hop-StyledSystemProvider";
 
@@ -37,33 +38,37 @@ export interface StyledSystemProviderProps extends BreakpointProviderProps, DivP
     colorScheme?: ColorSchemeOrSystem;
 
     /**
+     * The theme to use.
+     * @default "workleap"
+     */
+    theme?: Theme;
+
+    /**
      * Default color scheme to use when a user preferred color scheme (system) is not available.
      * @default "light"
      */
     defaultColorScheme?: ColorScheme;
-
-    /**
-     * Determines whether token CSS variables should be added to the document's head
-     * By default, it is set to `true`, you should not change it unless you want to manage CSS variables via `.css` files
-     * @default true
-     */
-    withCssVariables?: boolean;
 }
 
 const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRef<HTMLDivElement>) => {
     const {
         children,
         withBodyStyle = false,
-        withCssVariables = true,
         colorScheme = "light",
         defaultColorScheme = "light",
         unsupportedMatchMediaBreakpoint = DefaultUnsupportedMatchMediaBreakpoint,
         className,
+        theme = "workleap",
         ...rest
     } = props;
 
     const [remoteColorScheme, setRemoteColorScheme] = useState<ColorScheme>();
+    const [internalTheme, setInternalTheme] = useState<Theme>(theme);
     const computedColorScheme = useColorScheme(remoteColorScheme ?? colorScheme, defaultColorScheme);
+
+    useEffect(() => {
+        setInternalTheme(theme);
+    }, [theme]);
 
     const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(newColorScheme => {
         setRemoteColorScheme(newColorScheme);
@@ -72,7 +77,7 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
     const classNames = clsx(
         className,
         GlobalStyledSystemProviderCssSelector,
-        getRootCSSClasses(computedColorScheme)
+        getRootCSSClasses(computedColorScheme, internalTheme)
     );
 
     return (
@@ -82,13 +87,18 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
                 setColorScheme
             }}
         >
-            <BreakpointProvider unsupportedMatchMediaBreakpoint={unsupportedMatchMediaBreakpoint}>
-                <Div ref={ref} className={classNames} {...rest}>
-                    {withBodyStyle && <BodyStyleProvider />}
-                    {withCssVariables && <TokenProvider />}
-                    {children}
-                </Div>
-            </BreakpointProvider>
+            <ThemeContext.Provider value={{
+                theme: internalTheme,
+                setTheme: setInternalTheme
+            }}
+            >
+                <BreakpointProvider unsupportedMatchMediaBreakpoint={unsupportedMatchMediaBreakpoint}>
+                    <Div ref={ref} className={classNames} {...rest}>
+                        {withBodyStyle && <BodyStyleProvider />}
+                        {children}
+                    </Div>
+                </BreakpointProvider>
+            </ThemeContext.Provider>
         </ColorSchemeContext.Provider>
     );
 };

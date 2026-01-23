@@ -21,7 +21,7 @@ Hopper aims to provide a three-tier token system, with each tier serving a speci
 
 These tokens represent fundamental values like hexadecimal color codes, border widths, or font sizes. They serve as the building blocks of the design system.
 
-<TokenTable tokenType={"core"} category="color" data={[{
+<TokenTable tokenType="core" category="color" data={[{
     "name": "hop-sapphire-200",
     "value": "#95b1ff"
 }]} />
@@ -32,14 +32,14 @@ Semantic tokens convey design intent and are context-aware. They should be used 
 
 #### Light
 
-<TokenTable tokenType={"semantic"} category="color" data={[{
+<TokenTable tokenType="semantic" category="color" data={[{
     "name": "hop-primary-surface-disabled",
     "value": "#95b1ff"
 }]} />
 
 #### Dark
 
-<TokenTable tokenType={"semantic"} category="color" data={[{
+<TokenTable tokenType="semantic" category="color" data={[{
     "name": "hop-primary-surface-disabled",
     "value": "#2040c7"
 }]} />
@@ -48,19 +48,17 @@ Semantic tokens convey design intent and are context-aware. They should be used 
 
 These tokens cover the essential details of component implementation and are provided by the components themselves. They are linked to their specific components and should only be used when building components with a technology other than React.
 
-_Note: These tokens will be available in a future release._
-
 #### Light
 
-<TokenTable category="color" data={[{
-    "name": "hop-button-primary-disabled",
+<TokenTable tokenType="components" category="color" data={[{
+    "name": "hop-comp-button-primary-disabled",
     "value": "#95b1ff"
 }]} />
 
 #### Dark
 
-<TokenTable category="color" data={[{
-    "name": "hop-button-primary-disabled",
+<TokenTable tokenType="components" category="color" data={[{
+    "name": "hop-comp-button-primary-disabled",
     "value": "#2040c7"
 }]} />
 

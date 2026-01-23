@@ -1,22 +1,18 @@
-import type { ColorScheme } from "@hopper-ui/components";
-
-import packageJson from "../package.json" with { type: "json" };
-
-export const HopperRootCssClass = "hop";
-
-// We read the version from the packageJson and replace all dots with dashes.
-// This ensures that multiple versions of the Styled System can be used on the same page.
-export const StyledSystemRootCssClass = `${HopperRootCssClass}-${packageJson.version.replaceAll(".", "-")}`;
-
+import type { ColorScheme } from "./color-scheme/ColorSchemeContext.ts";
+import { HopperRootCssClass, StyledSystemRootCssClass } from "./tokens/generated/styledSystemConstants.ts";
 /**
  * The CSS Variables that are used by the Styled System are injected targeting those classes.
  * Therefore, any portaled component or any Hopper Provider must have one of these classes on the root element.
  */
-export function getRootCSSClasses(colorScheme: ColorScheme) {
+export function getRootCSSClasses(colorScheme: ColorScheme, theme: string): string {
     return [
         HopperRootCssClass,
         `${HopperRootCssClass}-${colorScheme}`,
+        `${HopperRootCssClass}-${theme}`,
+        `${HopperRootCssClass}-${theme}-${colorScheme}`,
         StyledSystemRootCssClass,
-        `${StyledSystemRootCssClass}-${colorScheme}`
+        `${StyledSystemRootCssClass}-${colorScheme}`,
+        `${StyledSystemRootCssClass}-${theme}`,
+        `${StyledSystemRootCssClass}-${theme}-${colorScheme}`
     ].join(" ");
 }

@@ -1,5 +1,6 @@
 import { MultiSelect, MultiSelectItem, type MultiSelectProps, MultiSelectSection } from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
 import { userEvent, within } from "storybook/test";
@@ -15,6 +16,11 @@ const meta = {
     args: {
         children: [],
         "aria-label": "Animals"
+    },
+    parameters: {
+        chromatic: {
+            modes: allColorModesAndThemes
+        }
     }
 } satisfies Meta<typeof MultiSelect>;
 

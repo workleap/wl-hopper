@@ -1,0 +1,118 @@
+{
+    "danger": {
+        "border-active": {
+            "$type": "color",
+            "$value": "{amanita.300}"
+        },
+        "icon-active": {
+            "$type": "color",
+            "$value": "{amanita.50}"
+        },
+        "icon-weak-active": {
+            "$type": "color",
+            "$value": "{amanita.300}"
+        },
+        "surface-active": {
+            "$type": "color",
+            "$value": "{amanita.600}"
+        },
+        "surface-weak-active": {
+            "$type": "color",
+            "$value": "{amanita.600}"
+        },
+        "text-active": {
+            "$type": "color",
+            "$value": "{amanita.50}"
+        },
+        "text-weak-active": {
+            "$type": "color",
+            "$value": "{amanita.300}"
+        }
+    },
+    "neutral": {
+        "border-active": {
+            "$type": "color",
+            "$value": "{rock.700}"
+        },
+        "icon-active": {
+            "$type": "color",
+            "$value": "{toad.25}"
+        },
+        "icon-weak-active": {
+            "$type": "color",
+            "$value": "{rock.50}"
+        },
+        "surface-active": {
+            "$type": "color",
+            "$value": "{rock.700}"
+        },
+        "surface-weak-active": {
+            "$type": "color",
+            "$value": "{rock.600}"
+        },
+        "text-active": {
+            "$type": "color",
+            "$value": "{toad.25}"
+        },
+        "text-weak-active": {
+            "$type": "color",
+            "$value": "{rock.50}"
+        }
+    },
+    "primary": {
+        "border-active": {
+            "$type": "color",
+            "$value": "{sapphire.500}"
+        },
+        "icon-active": {
+            "$type": "color",
+            "$value": "{sapphire.75}"
+        },
+        "surface-active": {
+            "$type": "color",
+            "$value": "{sapphire.500}"
+        },
+        "surface-strong-active": {
+            "$type": "color",
+            "$value": "{sapphire.600}"
+        },
+        "surface-weak-active": {
+            "$type": "color",
+            "$value": "{sapphire.600}"
+        },
+        "text-active": {
+            "$type": "color",
+            "$value": "{sapphire.75}"
+        }
+    },
+    "upsell": {
+        "border-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.400}"
+        },
+        "icon-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.900}"
+        },
+        "icon-weak-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.300}"
+        },
+        "surface-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.300}"
+        },
+        "surface-weak-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.600}"
+        },
+        "text-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.900}"
+        },
+        "text-weak-active": {
+            "$type": "color",
+            "$value": "{sunken-treasure.300}"
+        }
+    }
+}

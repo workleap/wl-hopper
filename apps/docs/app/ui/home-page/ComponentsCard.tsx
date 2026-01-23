@@ -8,7 +8,7 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export const ComponentsCard = () => {
-    const { colorMode } = useContext(ThemeContext);
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     return (
         <Link href="/components/component-list" className="hd-home-sample__item hd-home-sample__item-components">
@@ -22,7 +22,7 @@ export const ComponentsCard = () => {
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
                         <Image
-                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-avatar-group-${colorMode}.png`}
+                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-avatar-group-${colorScheme}.png`}
                             width="137"
                             height="32"
                             alt="Avatar Group component preview"
@@ -32,7 +32,7 @@ export const ComponentsCard = () => {
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
                         <Image
-                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-select-field-${colorMode}.png`}
+                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-select-field-${colorScheme}.png`}
                             width="220"
                             height="40"
                             alt="Select Field component preview"
@@ -41,7 +41,7 @@ export const ComponentsCard = () => {
                 </div>
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
-                        <HopperProvider colorScheme={colorMode}>
+                        <HopperProvider theme={theme} colorScheme={colorScheme}>
                             <div className="hd-home-sample-components__buttons">
                                 <HopperButton excludeFromTabOrder>Confirm</HopperButton>
                                 <HopperButton excludeFromTabOrder variant="secondary">I need
@@ -54,7 +54,7 @@ export const ComponentsCard = () => {
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
                         <Image
-                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-radio-group-${colorMode}.png`}
+                            src={`https://cdn.platform.workleap.com/hopper/webdoc/component-radio-group-${colorScheme}.png`}
                             width="99"
                             height="48"
                             alt="Radio Group Component preview"

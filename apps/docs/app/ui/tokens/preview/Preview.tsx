@@ -75,6 +75,8 @@ const Preview = ({ category, name, value }: PreviewProps) => {
             };
             break;
         case "size":
+        case "paddingSize":
+        case "marginSize":
             preview = {
                 style: { width: value }
             };

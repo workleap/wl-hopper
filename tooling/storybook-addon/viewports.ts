@@ -32,3 +32,4 @@ const viewports = (Object.keys(Breakpoints) as (ViewportKeys)[]).reduce((acc, ke
 export const viewport = {
     viewports
 };
+export const ViewportGlobalKey = "viewport";

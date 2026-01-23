@@ -2,7 +2,7 @@ import fs from "fs";
 import { glob } from "glob";
 import path from "path";
 
-const CONTENT_FILES = path.join(process.cwd(), "content", "components", "**", "*.mdx");
+const CONTENT_FILES = path.join(process.cwd(), "content", "components", "**", "*.mdx").replace(/\\/g, "/");
 const OUTPUT_FILE = "Preview.ts";
 const OUTPUT_DIR = "examples";
 

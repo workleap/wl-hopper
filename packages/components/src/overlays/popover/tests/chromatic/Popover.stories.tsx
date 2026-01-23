@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Content, Div, Footer, Heading, Link } from "@hopper-ui/components";
-import { getModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Popover } from "../../src/Popover.tsx";
@@ -24,7 +24,12 @@ const meta = {
                 <Story />
             </Div>
         )
-    ]
+    ],
+    parameters: {
+        chromatic: {
+            modes: allColorModesAndThemes
+        }
+    }
 } satisfies Meta<typeof Popover>;
 
 export default meta;
@@ -137,9 +142,6 @@ export const LongContent = {
     parameters: {
         hopper: {
             height: 200
-        },
-        chromatic: {
-            modes: getModes("light")
         }
     },
     render: args => (

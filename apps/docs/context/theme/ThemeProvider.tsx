@@ -1,48 +1,67 @@
 "use client";
 
+import { ColorScheme, HopperProvider, Theme } from "@hopper-ui/components";
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import { getInitialColorMode } from "./getInitialColorMode";
+import { getInitialColorScheme, getInitialTheme } from "./getInitialColorScheme.ts";
 
-interface ColorSchemeContextType {
-    colorMode: ColorScheme | undefined;
-    setColorMode: (newColorScheme: ColorScheme) => void;
+interface ThemeContextType {
+    theme: Theme;
+    colorScheme: ColorScheme | undefined;
+    setColorScheme: (newColorScheme: ColorScheme) => void;
+    setTheme: (newTheme: Theme) => void;
 }
 
+export type { ColorScheme, Theme };
 interface ThemeProviderProps {
     children: ReactNode;
 }
 
-export type ColorScheme = "light" | "dark";
-
-export const ThemeContext = createContext<ColorSchemeContextType>({
-    colorMode: "light",
-
-    setColorMode: () => {}
+export const ThemeContext = createContext<ThemeContextType>({
+    colorScheme: "light",
+    theme: "workleap",
+    setColorScheme: () => {},
+    setTheme: () => {}
 });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const [colorMode, setColorMode] = useState<ColorScheme | undefined>(
+    const [colorScheme, setColorScheme] = useState<ColorScheme | undefined>(
+        undefined
+    );
+
+    const [theme, setTheme] = useState<Theme | undefined>(
         undefined
     );
 
     useEffect(() => {
-        if (colorMode) {
-            document.documentElement.setAttribute("data-theme", colorMode);
-            window.localStorage.setItem("hdTheme", colorMode);
+        if (colorScheme) {
+            document.documentElement.setAttribute("data-color-scheme", colorScheme);
+            window.localStorage.setItem("hdColorScheme", colorScheme);
         }
-    }, [colorMode]);
+    }, [colorScheme]);
 
     useEffect(() => {
-        setColorMode(getInitialColorMode());
-    }, [setColorMode]);
+        if (theme) {
+            document.documentElement.setAttribute("data-theme", theme);
+            window.localStorage.setItem("hdTheming", theme);
+        }
+    }, [theme]);
+
+    useEffect(() => {
+        setColorScheme(getInitialColorScheme());
+        setTheme(getInitialTheme());
+    }, [setColorScheme, setTheme]);
 
     return (
         <ThemeContext.Provider value={{
-            colorMode: colorMode ?? "light",
-            setColorMode
+            theme: theme ?? "workleap",
+            setTheme,
+            colorScheme: colorScheme ?? "light",
+            setColorScheme
         }}
         >
-            {children}
+            <HopperProvider theme={theme ?? "workleap"} colorScheme={colorScheme ?? "light"}>
+                {children}
+            </HopperProvider>
         </ThemeContext.Provider>
     );
 };

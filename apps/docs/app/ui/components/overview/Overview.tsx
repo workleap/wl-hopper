@@ -11,8 +11,7 @@ import "./overview.css";
 import { allComponents, categories } from "./util.ts";
 
 const Overview = () => {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     const overviewSection = categories.map(category => {
         if (!category) {
@@ -27,7 +26,7 @@ const Overview = () => {
                     className="hd-component-overview-category__title"
                 >{category}
                 </Title>
-                <HopperProvider colorScheme={theme}>
+                <HopperProvider theme={theme} colorScheme={colorScheme}>
                     <div className="hd-component-overview">
                         {allComponents.filter(component =>
                             component.category &&

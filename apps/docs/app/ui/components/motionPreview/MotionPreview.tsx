@@ -1,15 +1,16 @@
 "use client";
 
-import { useState, type CSSProperties } from "react";
+import { ThemeContext } from "@/context/theme/ThemeProvider";
+import { useContext, useState, type CSSProperties } from "react";
 import { Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue, type Key } from "react-aria-components";
+import { getTokens } from "../../tokens/allDataTokens";
 import "./MotionPreview.css";
 
-interface MotionPreviewProps {
-    durations: { name: string; value: string }[];
-    easings: { name: string; value: string }[];
-}
-
-function MotionPreview({ durations, easings }: MotionPreviewProps) {
+function MotionPreview() {
+    const { theme, colorScheme } = useContext(ThemeContext);
+    const tokens = getTokens(theme, colorScheme);
+    const durations = tokens.core["duration"];
+    const easings = tokens.core["timingFunction"];
     const [isAnimated, setAnimated] = useState(false);
     const [duration, setDuration] = useState("hop-easing-duration-1");
     const [easing, setEasing] = useState("hop-easing-expressive");
@@ -17,12 +18,16 @@ function MotionPreview({ durations, easings }: MotionPreviewProps) {
         setAnimated(!isAnimated);
     };
 
-    const handleSelectDuration = (selected: Key) => {
-        setDuration(selected.toString());
+    const handleSelectDuration = (selected: Key | null) => {
+        if (selected) {
+            setDuration(selected.toString());
+        }
     };
 
-    const handleSelectEasing = (selected: Key) => {
-        setEasing(selected.toString());
+    const handleSelectEasing = (selected: Key | null) => {
+        if (selected) {
+            setEasing(selected.toString());
+        }
     };
 
     return (

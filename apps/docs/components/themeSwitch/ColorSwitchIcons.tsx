@@ -1,5 +1,5 @@
 import type { SVGProps } from "react";
-import "./themeSwitchIcons.css";
+import "./colorSwitchIcons.css";
 
 export interface IconTypes {
     iconProps?: SVGProps<SVGSVGElement>;

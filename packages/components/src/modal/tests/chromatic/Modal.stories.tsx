@@ -12,7 +12,7 @@ import {
     Modal,
     Text
 } from "@hopper-ui/components";
-import { allColorModes } from "@hopper-ui/storybook-addon";
+import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Frog, MossyFrog } from "../assets/index.ts";
@@ -22,7 +22,7 @@ const meta = {
     component: Modal,
     parameters: {
         chromatic: {
-            modes: allColorModes
+            modes: allColorModesAndThemes
         }
     },
     decorators: [

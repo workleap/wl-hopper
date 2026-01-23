@@ -9,9 +9,10 @@
     border-radius: var(--hd-space-2);
     border: var(--hd-border-size) solid var(--hd-color-neutral-border);
     padding: var(--hd-space-4);
-    background: linear-gradient(90deg, var(--background) 0.625rem, transparent 1%) 50%,
-    linear-gradient(var(--background) 0.625rem, transparent 1%) 50%,
-    var(--dot-background);
+    background:
+        linear-gradient(90deg, var(--background) 0.625rem, transparent 1%) 50%,
+        linear-gradient(var(--background) 0.625rem, transparent 1%) 50%,
+        var(--dot-background);
     background-position: 0 0;
     background-size: 0.75rem 0.75rem;
     color: var(--color);
@@ -41,8 +42,7 @@
     padding: 0;
 }
 
-[data-theme="dark"] .hd-card {
+[data-color-scheme="dark"] .hd-card {
     --background: var(--hd-neutral-900);
     --dot-background: var(--hd-neutral-800);
 }
-

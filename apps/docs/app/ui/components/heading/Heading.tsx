@@ -23,7 +23,7 @@ export interface HeadingProps {
 }
 
 const Heading = ({ title, tag, alpha, className, description, links, aiDocAbsolutePath, sectionTitle, sectionPath }: HeadingProps) => {
-    const { colorMode } = useContext(ThemeContext);
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     return (
         <div className={clsx("hd-heading", className)}>
@@ -33,7 +33,7 @@ const Heading = ({ title, tag, alpha, className, description, links, aiDocAbsolu
             </div>
             {alpha && (
                 <div className="hd-heading__alpha">
-                    <HopperProvider colorScheme={colorMode}>
+                    <HopperProvider theme={theme} colorScheme={colorScheme}>
                         <HopperCallout variant="warning">
                             <HopperHeading>Alpha component</HopperHeading>
                             <Content>{alpha}</Content>

@@ -35,7 +35,7 @@ import Link from "next/link";
 import { useContext } from "react";
 
 export const IconsCard = () => {
-    const { colorMode } = useContext(ThemeContext);
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     return (
         <Link
@@ -47,7 +47,7 @@ export const IconsCard = () => {
                 <ArrowIcon className="hd-home-sample__title-icon" />
             </h3>
             <p className="hd-home-sample__tagline">A set of commonly used interface icons.</p>
-            <HopperProvider colorScheme={colorMode} className="hd-home-sample__icons">
+            <HopperProvider theme={theme} colorScheme={colorScheme} className="hd-home-sample__icons">
                 <div className="hd-home-sample__icons-row">
                     <CalendarIcon className="hd-home-sample__icons-icon" size="sm" />
                     <ChartBarIcon className="hd-home-sample__icons-icon" size="sm" />

@@ -12,13 +12,12 @@ interface ComposedComponentsProps {
 }
 
 const ComposedComponents = ({ components }: ComposedComponentsProps) => {
-    const { colorMode } = useContext(ThemeContext);
-    const theme = colorMode!;
+    const { colorScheme, theme } = useContext(ThemeContext);
 
     const sortedComponents = [...components].sort((a, b) => a.localeCompare(b));
 
     return (
-        <HopperProvider colorScheme={theme}>
+        <HopperProvider theme={theme} colorScheme={colorScheme}>
             <div className="hd-composed-components__wrapper">
                 {sortedComponents.map(component => (
                     <OverviewTile title={component} key={component} />
