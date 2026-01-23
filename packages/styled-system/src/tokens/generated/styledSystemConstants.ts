@@ -1,5 +1,5 @@
 export const HopperRootCssClass = "hop";
-export const StyledSystemRootCssClass = "hop-4-4-7";
+export const StyledSystemRootCssClass = "hop-5-0-0";
 export const HopperVariablePrefix = "--hop";
 
 export type Theme = "sharegate" | "workleap";
