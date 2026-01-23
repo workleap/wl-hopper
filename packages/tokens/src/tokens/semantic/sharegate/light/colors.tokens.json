@@ -744,39 +744,39 @@
     "primary": {
         "border": {
             "$type": "color",
-            "$value": "{quetzal.400}"
+            "$value": "{sapphire.400}"
         },
         "border-selected": {
             "$type": "color",
-            "$value": "{quetzal.400}"
+            "$value": "{sapphire.400}"
         },
         "border-focus": {
             "$type": "color",
-            "$value": "{quetzal.500}"
+            "$value": "{sapphire.500}"
         },
         "border-press": {
             "$type": "color",
-            "$value": "{quetzal.300}"
+            "$value": "{sapphire.300}"
         },
         "icon": {
             "$type": "color",
-            "$value": "{quetzal.500}"
+            "$value": "{sapphire.500}"
         },
         "icon-selected": {
             "$type": "color",
-            "$value": "{quetzal.500}"
+            "$value": "{sapphire.500}"
         },
         "icon-disabled": {
             "$type": "color",
-            "$value": "{quetzal.200}"
+            "$value": "{sapphire.200}"
         },
         "icon-hover": {
             "$type": "color",
-            "$value": "{quetzal.600}"
+            "$value": "{sapphire.600}"
         },
         "icon-press": {
             "$type": "color",
-            "$value": "{quetzal.700}"
+            "$value": "{sapphire.700}"
         },
         "icon-strong": {
             "$type": "color",
@@ -788,75 +788,75 @@
         },
         "surface": {
             "$type": "color",
-            "$value": "{quetzal.50}"
+            "$value": "{sapphire.50}"
         },
         "surface-selected": {
             "$type": "color",
-            "$value": "{quetzal.50}"
+            "$value": "{sapphire.50}"
         },
         "surface-disabled": {
             "$type": "color",
-            "$value": "{quetzal.200}"
+            "$value": "{sapphire.200}"
         },
         "surface-focus": {
             "$type": "color",
-            "$value": "{quetzal.25}"
+            "$value": "{sapphire.25}"
         },
         "surface-hover": {
             "$type": "color",
-            "$value": "{quetzal.200}"
+            "$value": "{sapphire.200}"
         },
         "surface-press": {
             "$type": "color",
-            "$value": "{quetzal.300}"
+            "$value": "{sapphire.300}"
         },
         "surface-strong": {
             "$type": "color",
-            "$value": "{quetzal.400}"
+            "$value": "{sapphire.400}"
         },
         "surface-strong-selected": {
             "$type": "color",
-            "$value": "{quetzal.50}"
+            "$value": "{sapphire.50}"
         },
         "surface-strong-hover": {
             "$type": "color",
-            "$value": "{quetzal.600}"
+            "$value": "{sapphire.600}"
         },
         "surface-strong-press": {
             "$type": "color",
-            "$value": "{quetzal.700}"
+            "$value": "{sapphire.700}"
         },
         "surface-weak": {
             "$type": "color",
-            "$value": "{quetzal.25}"
+            "$value": "{sapphire.25}"
         },
         "surface-weak-hover": {
             "$type": "color",
-            "$value": "{quetzal.50}"
+            "$value": "{sapphire.50}"
         },
         "surface-weak-press": {
             "$type": "color",
-            "$value": "{quetzal.75}"
+            "$value": "{sapphire.75}"
         },
         "text": {
             "$type": "color",
-            "$value": "{quetzal.500}"
+            "$value": "{sapphire.500}"
         },
         "text-selected": {
             "$type": "color",
-            "$value": "{quetzal.500}"
+            "$value": "{sapphire.500}"
         },
         "text-disabled": {
             "$type": "color",
-            "$value": "{quetzal.200}"
+            "$value": "{sapphire.200}"
         },
         "text-hover": {
             "$type": "color",
-            "$value": "{quetzal.600}"
+            "$value": "{sapphire.600}"
         },
         "text-press": {
             "$type": "color",
-            "$value": "{quetzal.700}"
+            "$value": "{sapphire.700}"
         },
         "text-strong": {
             "$type": "color",
