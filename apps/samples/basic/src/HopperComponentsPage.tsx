@@ -22,6 +22,14 @@ export function HopperComponentsPage() {
                     <Button variant="ghost-primary" isDisabled>Ghost Primary Button</Button>
                     <Button variant="ghost-secondary" isDisabled>Ghost Secondary Button</Button>
                     <Button variant="ghost-danger" isDisabled>Ghost Danger Button</Button>
+                    Loading:
+                    <Button variant="primary" isLoading>Primary Button</Button>
+                    <Button variant="secondary" isLoading>Secondary Button</Button>
+                    <Button variant="danger" isLoading>Danger Button</Button>
+                    <Button variant="upsell" isLoading>Upsell Button</Button>
+                    <Button variant="ghost-primary" isLoading>Ghost Primary Button</Button>
+                    <Button variant="ghost-secondary" isLoading>Ghost Secondary Button</Button>
+                    <Button variant="ghost-danger" isLoading>Ghost Danger Button</Button>
                 </Grid>
             </Card>
 
