@@ -1,5 +1,4 @@
 .hop-Button {
-    --hop-Button-border-radius: var(--hop-comp-button-border-radius);
     --hop-Button-focus-ring-color: var(--hop-primary-border-focus);
     --hop-Button-column-gap: var(--hop-space-inline-xs);
     --hop-Button-icon-only-column-gap: 0;
@@ -98,7 +97,7 @@
 
     background-color: var(--background-color);
     border: var(--border);
-    border-radius: var(--hop-Button-border-radius);
+    border-radius: var(--hop-comp-button-border-radius);
     outline: none;
     outline-offset: var(--hop-Button-outline-size);
 

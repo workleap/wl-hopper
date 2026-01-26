@@ -2,7 +2,7 @@
     "comp-button": {
         "border-radius": {
             "$type": "borderRadius",
-            "$value": "{border-radius.2}"
+            "$value": "0"
         },
         "primary": {
             "color": {
