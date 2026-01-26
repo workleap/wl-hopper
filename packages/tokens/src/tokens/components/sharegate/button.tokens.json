@@ -2,7 +2,7 @@
     "comp-button": {
         "border-radius": {
             "$type": "borderRadius",
-            "$value": "0"
+            "$value": "{shape.rounded-md}"
         },
         "primary": {
             "color": {
