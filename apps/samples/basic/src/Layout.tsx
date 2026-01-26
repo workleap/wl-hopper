@@ -21,7 +21,6 @@ function InnerLayout() {
                 <H1>React App</H1>
                 <Link href="/">Main Page</Link> &nbsp;
                 <Link href="/store">Store</Link> &nbsp;
-                <Link href="/hopper-components">Hopper Components</Link>
                 <Div
                     position="absolute"
                     top="10px"
