@@ -1,41 +1,6 @@
 .hop-ToggleButton {
     --hop-ToggleButton-border-size: var(--hop-space-10);
 
-    /* Primary Selected */
-    --hop-ToggleButton-primary-color-selected: var(--hop-primary-text-selected);
-    --hop-ToggleButton-primary-background-color-selected: var(--hop-primary-surface-selected);
-    --hop-ToggleButton-primary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-primary-border-selected);
-
-    /* Secondary Selected */
-    --hop-ToggleButton-secondary-color-selected: var(--hop-neutral-text-selected);
-    --hop-ToggleButton-secondary-background-color-selected: var(--hop-neutral-surface-selected);
-    --hop-ToggleButton-secondary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-neutral-border-selected);
-
-    /* Upsell Selected */
-    --hop-ToggleButton-upsell-color-selected: var(--hop-upsell-text-selected);
-    --hop-ToggleButton-upsell-background-color-selected: var(--hop-upsell-surface-selected);
-    --hop-ToggleButton-upsell-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-upsell-border-selected);
-
-    /* Danger Selected */
-    --hop-ToggleButton-danger-color-selected: var(--hop-danger-text-selected);
-    --hop-ToggleButton-danger-background-color-selected: var(--hop-danger-surface-selected);
-    --hop-ToggleButton-danger-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-danger-border-selected);
-
-    /* Ghost Primary Selected */
-    --hop-ToggleButton-ghost-primary-color-selected: var(--hop-primary-text-press);
-    --hop-ToggleButton-ghost-primary-background-color-selected: var(--hop-primary-surface-weak-press);
-    --hop-ToggleButton-ghost-primary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-primary-background-color-selected);
-
-    /* Ghost Secondary Selected */
-    --hop-ToggleButton-ghost-secondary-color-selected: var(--hop-neutral-text-weak-press);
-    --hop-ToggleButton-ghost-secondary-background-color-selected: var(--hop-neutral-surface-press);
-    --hop-ToggleButton-ghost-secondary-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-secondary-background-color-selected);
-
-    /* Ghost Danger Selected */
-    --hop-ToggleButton-ghost-danger-color-selected: var(--hop-danger-text-press);
-    --hop-ToggleButton-ghost-danger-background-color-selected: var(--hop-danger-surface-weak-press);
-    --hop-ToggleButton-ghost-danger-border-selected: var(--hop-ToggleButton-border-size) solid var(--hop-ToggleButton-ghost-danger-background-color-selected);
-
     composes: hop-Button from "./Button.module.css";
 }
 
@@ -67,9 +32,9 @@
 }
 
 .hop-ToggleButton--primary[data-selected] {
-    --background-color: var(--hop-ToggleButton-primary-background-color-selected);
-    --color: var(--hop-ToggleButton-primary-color-selected);
-    --border: var(--hop-ToggleButton-primary-border-selected);
+    --background-color: var(--hop-comp-button-primary-background-color-selected);
+    --color: var(--hop-comp-button-primary-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-primary-border-color-selected);
 }
 
 .hop-ToggleButton--secondary {
@@ -77,9 +42,9 @@
 }
 
 .hop-ToggleButton--secondary[data-selected] {
-    --background-color: var(--hop-ToggleButton-secondary-background-color-selected);
-    --color: var(--hop-ToggleButton-secondary-color-selected);
-    --border: var(--hop-ToggleButton-secondary-border-selected);
+    --background-color: var(--hop-comp-button-secondary-background-color-selected);
+    --color: var(--hop-comp-button-secondary-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-secondary-border-color-selected);
 }
 
 .hop-ToggleButton--upsell {
@@ -87,9 +52,9 @@
 }
 
 .hop-ToggleButton--upsell[data-selected] {
-    --background-color: var(--hop-ToggleButton-upsell-background-color-selected);
-    --color: var(--hop-ToggleButton-upsell-color-selected);
-    --border: var(--hop-ToggleButton-upsell-border-selected);
+    --background-color: var(--hop-comp-button-upsell-background-color-selected);
+    --color: var(--hop-comp-button-upsell-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-upsell-border-color-selected);
 }
 
 .hop-ToggleButton--danger {
@@ -97,9 +62,9 @@
 }
 
 .hop-ToggleButton--danger[data-selected] {
-    --background-color: var(--hop-ToggleButton-danger-background-color-selected);
-    --color: var(--hop-ToggleButton-danger-color-selected);
-    --border: var(--hop-ToggleButton-danger-border-selected);
+    --background-color: var(--hop-comp-button-danger-background-color-selected);
+    --color: var(--hop-comp-button-danger-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-danger-border-color-selected);
 }
 
 .hop-ToggleButton--ghost-primary {
@@ -107,9 +72,9 @@
 }
 
 .hop-ToggleButton--ghost-primary[data-selected] {
-    --background-color: var(--hop-ToggleButton-ghost-primary-background-color-selected);
-    --color: var(--hop-ToggleButton-ghost-primary-color-selected);
-    --border: var(--hop-ToggleButton-ghost-primary-border-selected);
+    --background-color: var(--hop-comp-button-ghost-primary-background-color-selected);
+    --color: var(--hop-comp-button-ghost-primary-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-ghost-primary-border-color-selected);
 }
 
 .hop-ToggleButton--ghost-secondary {
@@ -117,9 +82,9 @@
 }
 
 .hop-ToggleButton--ghost-secondary[data-selected] {
-    --background-color: var(--hop-ToggleButton-ghost-secondary-background-color-selected);
-    --color: var(--hop-ToggleButton-ghost-secondary-color-selected);
-    --border: var(--hop-ToggleButton-ghost-secondary-border-selected);
+    --background-color: var(--hop-comp-button-ghost-secondary-background-color-selected);
+    --color: var(--hop-comp-button-ghost-secondary-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-ghost-secondary-border-color-selected);
 }
 
 .hop-ToggleButton--ghost-danger {
@@ -127,9 +92,9 @@
 }
 
 .hop-ToggleButton--ghost-danger[data-selected] {
-    --background-color: var(--hop-ToggleButton-ghost-danger-background-color-selected);
-    --color: var(--hop-ToggleButton-ghost-danger-color-selected);
-    --border: var(--hop-ToggleButton-ghost-danger-border-selected);
+    --background-color: var(--hop-comp-button-ghost-danger-background-color-selected);
+    --color: var(--hop-comp-button-ghost-danger-color-selected);
+    --border: var(--hop-ToggleButton-border-size) solid var(--hop-comp-button-ghost-danger-border-color-selected);
 }
 
 /* Loading - uses Button's component tokens directly */
