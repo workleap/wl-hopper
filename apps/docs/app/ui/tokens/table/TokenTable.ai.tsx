@@ -68,8 +68,6 @@ interface Item {
 function TokenTableRender({ items, showStyledSystemValue, theme }: { items: Item[]; showStyledSystemValue: boolean; theme?: string }) {
     return (
         <div>
-            <div>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </div>
-            <div>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the related mapping value from the <strong>Component Prop Value</strong> column by searching this table.</div>
             {theme && <div>The values of these tokens are only valid if the current theme is {theme}</div>}
             <table>
                 <thead>
@@ -89,6 +87,10 @@ function TokenTableRender({ items, showStyledSystemValue, theme }: { items: Item
                     ))}
                 </tbody>
             </table>
+            <div>
+                <p>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </p>
+                <p>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the related mapping value from the <strong>Component Prop Value</strong> column by searching this table.</p>
+            </div>
         </div>
     );
 }

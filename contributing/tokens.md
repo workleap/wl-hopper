@@ -62,9 +62,6 @@ Component tokens allow you to customize the appearance of components per theme. 
    - Check the generated token files in the dist folder
    - Ensure no breaking changes are introduced
 
-5. **Commit the theme files generated**
-   - Files are generated here: packages\styled-system\src\theme\generated
-
 ## Adding a New Theme
 
 To add a new theme to Hopper, follow these steps:
@@ -97,5 +94,4 @@ To add a new theme to Hopper, follow these steps:
    - Verify all color contrasts meet WCAG accessibility standards
    - Test components with the new theme in Storybook
 
-7. **Commit the theme files generated**
-   - Files are generated here: packages\styled-system\src\theme\generated
+> **Note:** Theme CSS files in `packages/styled-system/src/theme/generated/` are auto-generated during the build process and are not committed to version control.

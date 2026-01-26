@@ -756,11 +756,11 @@
         },
         "border-press": {
             "$type": "color",
-            "$value": "{sapphire.500}"
+            "$value": "{sapphire.400}"
         },
         "icon": {
             "$type": "color",
-            "$value": "{sapphire.200}"
+            "$value": "{sapphire.100}"
         },
         "icon-selected": {
             "$type": "color",
@@ -784,7 +784,7 @@
         },
         "icon-strong-hover": {
             "$type": "color",
-            "$value": "{sapphire.300}"
+            "$value": "{samoyed}"
         },
         "surface": {
             "$type": "color",
@@ -829,6 +829,10 @@
         "surface-weak": {
             "$type": "color",
             "$value": "{sapphire.800}"
+        },
+        "surface-weak-selected": {
+            "$type": "color",
+            "$value": "{sapphire.600}"
         },
         "surface-weak-hover": {
             "$type": "color",
