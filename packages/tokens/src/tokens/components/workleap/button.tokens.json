@@ -5,15 +5,15 @@
             "$value": "{border-radius.2}"
         },
         "primary": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{primary.text-strong}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{primary.text-strong-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{primary.text-strong}"
             },
@@ -43,15 +43,15 @@
             }
         },
         "secondary": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{neutral.text}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{neutral.text-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{neutral.text-press}"
             },
@@ -81,15 +81,15 @@
             }
         },
         "upsell": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{upsell.text}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{upsell.text-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{upsell.text-press}"
             },
@@ -119,15 +119,15 @@
             }
         },
         "danger": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{danger.text-strong}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{danger.text-strong-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{danger.text-strong-hover}"
             },
@@ -157,15 +157,15 @@
             }
         },
         "ghost-primary": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{primary.text}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{primary.text-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{primary.text-press}"
             },
@@ -195,15 +195,15 @@
             }
         },
         "ghost-secondary": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{neutral.text-weak}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{neutral.text-weak-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{neutral.text-weak-press}"
             },
@@ -233,15 +233,15 @@
             }
         },
         "ghost-danger": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{danger.text-weak}"
             },
-            "text-color-hover": {
+            "color-hover": {
                 "$type": "color",
                 "$value": "{danger.text-hover}"
             },
-            "text-color-pressed": {
+            "color-pressed": {
                 "$type": "color",
                 "$value": "{danger.text-press}"
             },
@@ -271,7 +271,7 @@
             }
         },
         "disabled": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{neutral.text-disabled}"
             },
@@ -285,7 +285,7 @@
             }
         },
         "ghost-disabled": {
-            "text-color": {
+            "color": {
                 "$type": "color",
                 "$value": "{neutral.text-disabled}"
             },
