@@ -30,13 +30,9 @@ jobs:
               with:
                   fetch-depth: 1
             - name: Setup Node and PNPM
-              uses: ./.github/composite-actions/frontend-setup
-            - name: Setup MSW
-              run: pnpm exec msw init
-              working-directory: src/frontend/client
-            - name: Setup Playwright
-              run: pnpm run test:init
-              working-directory: src/frontend/client
+              uses: ./.github/composite-actions/setup
+            - name: Install dependencies
+              run: pnpm i --frozen-lockfile
             - name: Run Claude Code
               id: claude
               uses: anthropics/claude-code-action@v1
