@@ -13,6 +13,7 @@ export const MOCK_UNSAFE_PROPS = [
     "UNSAFE_fontSize",
     "UNSAFE_fontWeight",
     "UNSAFE_fill",
+    "UNSAFE_stroke",
     "UNSAFE_width",
     "UNSAFE_height",
 ];

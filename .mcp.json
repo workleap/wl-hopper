@@ -1,5 +1,5 @@
 {
-    "servers": {
+    "mcpServers": {
         "hopper": {
             "url": "https://hopper.workleap.design/mcp",
             "type": "http"
@@ -9,7 +9,6 @@
             "url": "https://mcp.figma.com/mcp"
         },
         "chrome-devtools": {
-            "type": "stdio",
             "command": "npx",
             "args": ["-y", "chrome-devtools-mcp@latest"]
         }
