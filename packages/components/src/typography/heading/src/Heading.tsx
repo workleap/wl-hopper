@@ -82,10 +82,10 @@ export { _Heading as Heading };
 function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
     const level = parseInt(as[1]);
 
-    return forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+    return slotFn("heading", forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
         // eslint-disable-next-line
         return <_Heading {...props} ref={ref} level={level}/>;
-    });
+    }));
 }
 
 /**
