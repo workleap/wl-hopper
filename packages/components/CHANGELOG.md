@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.1
+
+### Patch Changes
+
+- 6a1af78: Added default heading slot to H1-H6 elements
+
 ## 2.0.0
 
 ### Major Changes
