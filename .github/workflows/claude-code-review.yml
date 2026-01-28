@@ -34,7 +34,6 @@ jobs:
                   plugins: "code-review@claude-code-plugins"
                   prompt: |
                       /code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}
-                      - Also run validate_hopper_code on any frontend code changes
                   claude_args: |
                       --allowedTools "
                         mcp__hopper__*,
