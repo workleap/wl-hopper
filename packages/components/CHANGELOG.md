@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.2
+
+### Patch Changes
+
+- 1ed26d7: Fixed an issue with the ContextualHelp with popoverProps were not forwarded properly
+
 ## 2.0.1
 
 ### Patch Changes
