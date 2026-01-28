@@ -6,16 +6,66 @@ import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
 import { validationMessage } from "./validationMessages";
 
+// Color-related props that should not use core color tokens
+export const COLOR_PROPS = new Set([
+    "backgroundColor",
+    "color",
+    "borderColor",
+    "fill",
+    "stroke",
+    "outlineColor",
+    "caretColor",
+    "textDecorationColor"
+]);
+
+// Core color tokens always start with "core_" prefix (e.g., "core_coastal-25", "core_sapphire-500")
+const CORE_TOKEN_PREFIX = "core_";
+
 export async function isToken(value: string): Promise<boolean> {
     const allTokens = await getAllTokens();
 
     return allTokens.has(value);
 }
 
+export function isCoreToken(value: string): boolean {
+    // Core color tokens always have the "core_" prefix in their propValue
+    return value.startsWith(CORE_TOKEN_PREFIX);
+}
+
 async function isTokenSupportedProp(propName: string): Promise<boolean> {
     const tokenSupportedProps = await getTokenSupportedProps();
 
     return tokenSupportedProps.has(propName);
+}
+
+export function validateNoCoreColorToken(
+    propValue: string,
+    propName: string,
+    loc: TSESTree.SourceLocation | undefined,
+    result: ValidationResult,
+    displayPropName?: string
+): boolean {
+    // Only check color-related props
+    if (!COLOR_PROPS.has(propName)) {
+        return true;
+    }
+
+    // Check if this is a core color token
+    if (!isCoreToken(propValue)) {
+        return true;
+    }
+
+    result.errors.push({
+        message: validationMessage("core-color-token-not-allowed", {
+            value: propValue,
+            propName: displayPropName ?? propName,
+            guideSection: "tokens"
+        }),
+        line: loc?.start.line,
+        column: loc?.start.column
+    });
+
+    return false;
 }
 
 async function validateTokenFormat(
@@ -91,6 +141,8 @@ export async function validateDesignSystemTokensUsage({ propValue, propName, loc
         if (!await validateTokenFormat(value, propName, loc, propValuesValidation)) {
             invalidValuesCount++;
         } else if (!await validateTokenUsageOnUnsupportedProp(value, propName, loc, propValuesValidation)) {
+            invalidValuesCount++;
+        } else if (!validateNoCoreColorToken(value, propName, loc, propValuesValidation)) {
             invalidValuesCount++;
         }
     }

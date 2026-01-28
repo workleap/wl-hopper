@@ -26,7 +26,8 @@ const validationMessages = {
 
         "token-format-error": "The token value '{value}' for prop '{propName}' is wrong. Change it to '{formatted}'.",
         "token-not-allowed-unsafe": "The token value '{value}' is not allowed for prop '{propName}'. You have to use the safe prop '{suggestedProp}' directly when tokens are available. Check the Hopper '{guideSection}' guide for details.",
-        "token-not-allowed": "The token value '{value}' is not allowed for prop '{propName}'. Only certain props support design tokens. Check the Hopper '{guideSection}' guide for details."
+        "token-not-allowed": "The token value '{value}' is not allowed for prop '{propName}'. Only certain props support design tokens. Check the Hopper '{guideSection}' guide for details.",
+        "core-color-token-not-allowed": "Core color token '{value}' is STRONGLY discouraged for prop '{propName}'. Core tokens are raw values that don't support dark/light mode or theming. Use semantic color tokens instead (e.g., 'primary', 'danger', 'neutral-surface'). Check the Hopper '{guideSection}' guide for details."
 
     },
     warnings: {

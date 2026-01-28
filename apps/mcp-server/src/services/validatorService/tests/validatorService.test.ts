@@ -1,6 +1,6 @@
+import { validateHopperCode } from "..";
 import { MOCK_TOKENS_FULL } from "../../../tests/mocks/tokensData";
 import { MOCK_UNSAFE_PROPS } from "../../../tests/mocks/unsafePropsData";
-import { validateHopperCode } from "..";
 
 // Mock the fs/promises module to return our mock data
 jest.mock("fs/promises", () => ({
@@ -1296,10 +1296,10 @@ describe("validateHopperCode", () => {
             expect(result.errors).toHaveLength(0);
         });
 
-        it("should allow token values on token-supported props", async () => {
+        it("should allow semantic token values on token-supported props", async () => {
             const code = `<Div
                 backgroundColor="danger-active"
-                color="core_coastal-25"
+                color="success"
                 fontSize="core_120"
             >Content</Div>`;
             const result = await validateHopperCode(code);
@@ -1872,6 +1872,157 @@ describe("validateHopperCode", () => {
                 // Should handle gracefully without errors
                 expect(result.isValid).toBe(true);
             });
+        });
+    });
+
+    describe("Core color token validation", () => {
+        it("should error when core color token is used on backgroundColor", async () => {
+            const code = "<Div backgroundColor='core_coastal-25'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("Core color token 'core_coastal-25' is STRONGLY discouraged");
+            expect(result.errors[0].message).toContain("backgroundColor");
+            expect(result.errors[0].message).toContain("don't support dark/light mode or theming");
+            expect(result.errors[0].message).toContain("Use semantic color tokens instead");
+        });
+
+        it("should error when core color token is used on color prop", async () => {
+            const code = "<Text color='core_coastal-25'>Hello</Text>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("Core color token 'core_coastal-25' is STRONGLY discouraged");
+            expect(result.errors[0].message).toContain("color");
+        });
+
+        it("should error when core color token is used on borderColor", async () => {
+            const code = "<Div borderColor='core_coastal-25'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("Core color token 'core_coastal-25' is STRONGLY discouraged");
+            expect(result.errors[0].message).toContain("borderColor");
+        });
+
+        it("should error when core color token is used on fill", async () => {
+            const code = "<Icon fill='core_coastal-25' />";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("Core color token 'core_coastal-25' is STRONGLY discouraged");
+            expect(result.errors[0].message).toContain("fill");
+        });
+
+        it("should error when core color token is used on stroke", async () => {
+            const code = "<Icon stroke='core_coastal-25' />";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("Core color token 'core_coastal-25' is STRONGLY discouraged");
+            expect(result.errors[0].message).toContain("stroke");
+        });
+
+        it("should allow semantic color tokens on color props", async () => {
+            const code = "<Div backgroundColor='danger-active' color='success' borderColor='neutral'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should allow core non-color tokens (e.g., fontSize) on their respective props", async () => {
+            const code = "<Text fontSize='core_120'>Hello</Text>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should error for multiple core color tokens on different color props", async () => {
+            const code = `<Div
+                backgroundColor="core_coastal-25"
+                color="core_coastal-25"
+                borderColor="core_coastal-25"
+            >Content</Div>`;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(3);
+            expect(result.errors[0].message).toContain("backgroundColor");
+            expect(result.errors[1].message).toContain("color");
+            expect(result.errors[2].message).toContain("borderColor");
+        });
+
+        it("should not error for core color tokens on non-color props (those are handled by other validators)", async () => {
+            // Core color tokens on non-color props like 'top' are invalid for a different reason
+            // (they're tokens on non-supported props), not because they're core color tokens
+            const code = "<Div top='core_coastal-25'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            // This should be caught by the token-on-unsupported-prop validator, not the core color validator
+            expect(result.errors[0].message).toContain("not allowed for prop 'top'");
+            expect(result.errors[0].message).not.toContain("Core color token");
+        });
+
+        it("should handle nested components with core color tokens", async () => {
+            const code = `<Div backgroundColor="core_coastal-25">
+                <Text color="core_coastal-25">Hello</Text>
+            </Div>`;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+        });
+
+        it("should only validate literal string values for core color tokens", async () => {
+            const code = `<Div
+                backgroundColor={coreColorVariable}
+                color={\`\${core}_coastal-25\`}
+            >Content</Div>`;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(true);
+            expect(result.errors).toHaveLength(0);
+        });
+
+        it("should error when core color token is used with UNSAFE_backgroundColor", async () => {
+            const code = "<Div UNSAFE_backgroundColor='core_coastal-25'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            // Core tokens with UNSAFE_ props get caught by the generic token validator
+            // which suggests using the safe prop instead
+            expect(result.errors[0].message).toContain("core_coastal-25");
+            expect(result.errors[0].message).toContain("UNSAFE_backgroundColor");
+            expect(result.errors[0].message).toContain("use the safe prop 'backgroundColor'");
+        });
+
+        it("should error when core color token is used with UNSAFE_color", async () => {
+            const code = "<Text UNSAFE_color='core_coastal-25'>Hello</Text>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("core_coastal-25");
+            expect(result.errors[0].message).toContain("UNSAFE_color");
+            expect(result.errors[0].message).toContain("use the safe prop 'color'");
+        });
+
+        it("should error when core color token is used with UNSAFE_borderColor", async () => {
+            const code = "<Div UNSAFE_borderColor='core_coastal-25'>Content</Div>";
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain("core_coastal-25");
+            expect(result.errors[0].message).toContain("UNSAFE_borderColor");
+            expect(result.errors[0].message).toContain("use the safe prop 'borderColor'");
+        });
+
+        it("should error for multiple UNSAFE_ color props with core color tokens", async () => {
+            const code = `<Div
+                UNSAFE_backgroundColor="core_coastal-25"
+                UNSAFE_color="core_coastal-25"
+            >Content</Div>`;
+            const result = await validateHopperCode(code);
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(2);
+            expect(result.errors[0].message).toContain("UNSAFE_backgroundColor");
+            expect(result.errors[1].message).toContain("UNSAFE_color");
         });
     });
 });

@@ -4,6 +4,7 @@ import { PERCENTAGE_SAFE_PROPS, PROHIBITED_PROPS } from "./constants";
 import { EXACT_CSS_MATCH_CONFIG } from "./cssValueMatcher";
 import { getAllTokensData, getUnsafeProps } from "./data";
 import { extractAllConstantStrings, type PropInfo } from "./jsxHelpers";
+import { validateNoCoreColorToken } from "./tokenValidator";
 import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
 import { validationMessage } from "./validationMessages";
@@ -219,6 +220,8 @@ export async function validateUnsafePropsUsage(
         } else if (!await validateTokenUsageWithUnsafeProp(propName, value, loc, propValuesValidation, isToken)) {
             invalidValuesCount++;
         } else if (!await validateUseOfCustomValueWithUnsafeProp(propName, value, loc, propValuesValidation, isToken)) {
+            invalidValuesCount++;
+        } else if (!validateNoCoreColorToken(value, propName.replace("UNSAFE_", ""), loc, propValuesValidation, propName)) {
             invalidValuesCount++;
         }
     }
