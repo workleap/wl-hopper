@@ -195,6 +195,7 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
                         offset={offset}
                         placement={placement}
                         shouldFlip={shouldFlip}
+                        {...popoverProps}
                         className={clsx(popoverProps?.className, styles["hop-ContextualHelp__popover"])}
                     >
                         <Provider
