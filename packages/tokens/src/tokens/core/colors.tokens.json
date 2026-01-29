@@ -656,55 +656,55 @@
     "rock": {
         "20": {
             "$type": "color",
-            "$value": "#fcfbfb"
+            "$value": "#fafbfc"
         },
         "25": {
             "$type": "color",
-            "$value": "#f8f6f3"
+            "$value": "#f8f9fa"
         },
         "50": {
             "$type": "color",
-            "$value": "#ecebe8"
+            "$value": "#eef0f2"
         },
         "75": {
             "$type": "color",
-            "$value": "#e0dfdd"
+            "$value": "#e1e3e7"
         },
         "100": {
             "$type": "color",
-            "$value": "#ccccca"
+            "$value": "#cbcdd2"
         },
         "200": {
             "$type": "color",
-            "$value": "#b3b3b1"
+            "$value": "#b3b5ba"
         },
         "300": {
             "$type": "color",
-            "$value": "#959593"
+            "$value": "#96989d"
         },
         "400": {
             "$type": "color",
-            "$value": "#777775"
+            "$value": "#787a7e"
         },
         "500": {
             "$type": "color",
-            "$value": "#6c6c6b"
+            "$value": "#6c6e72"
         },
         "600": {
             "$type": "color",
-            "$value": "#636362"
+            "$value": "#5e6064"
         },
         "700": {
             "$type": "color",
-            "$value": "#505050"
+            "$value": "#484a4d"
         },
         "800": {
             "$type": "color",
-            "$value": "#3c3c3c"
+            "$value": "#313335"
         },
         "900": {
             "$type": "color",
-            "$value": "#292929"
+            "$value": "#232426"
         }
     },
     "samoyed": {
