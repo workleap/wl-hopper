@@ -1,9 +1,7 @@
-import { getRootCSSClasses, type ResponsiveProp, type StyledComponentProps, useColorSchemeContext, useResponsiveValue, useStyledSystem, useThemeContext } from "@hopper-ui/styled-system";
+import { getRootCSSClasses, type StyledComponentProps, useColorSchemeContext, useStyledSystem, useThemeContext } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type ComponentProps, type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
 import { ModalOverlay, type ModalOverlayProps, Modal as RACModal, useContextProps } from "react-aria-components";
-
-import { cssModule } from "../../utils/index.ts";
 
 import { BaseModalContext } from "./BaseModalContext.ts";
 import { InternalModalTriggerContext } from "./ModalContext.ts";
@@ -13,15 +11,6 @@ import styles from "./BaseModal.module.css";
 export const GlobalBaseModalCssSelector = "hop-BaseModal";
 
 export interface BaseModalProps extends StyledComponentProps<ModalOverlayProps> {
-    /**
-     * The size of the modal.
-     * @default "md"
-     */
-    size?: ResponsiveProp<"sm" | "md" | "lg" | "xl" | "fullscreen" | "fullscreenTakeover">;
-    /**
-     * Whether the modal has an image.
-     */
-    hasImage?: boolean;
     /**
      * Handler that is called when the base modal's open state changes.
      * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
@@ -41,15 +30,11 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
         className,
         style,
         slot,
-        size: sizeProp,
         children,
-        hasImage,
         onOpenChange,
         modalProps,
         ...otherProps
     } = ownProps;
-
-    const size = useResponsiveValue(sizeProp) ?? "md";
     const { colorScheme } = useColorSchemeContext();
     const { theme } = useThemeContext();
     const internalTriggerContext = useContext(InternalModalTriggerContext);
@@ -63,12 +48,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
 
     const classNames = clsx(
         GlobalBaseModalCssSelector,
-        cssModule(
-            styles,
-            GlobalBaseModalCssSelector,
-            size.toLowerCase(),
-            hasImage && "image"
-        ),
+        styles[GlobalBaseModalCssSelector],
         getRootCSSClasses(colorScheme, theme),
         stylingProps.className,
         className

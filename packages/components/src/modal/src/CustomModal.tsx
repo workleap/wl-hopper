@@ -1,11 +1,11 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
+import { composeRenderProps, Dialog, type DialogProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
-import { BaseModal } from "./BaseModal.tsx";
+import { BaseModal, type BaseModalProps } from "./BaseModal.tsx";
 import { CustomModalContext } from "./CustomModalContext.ts";
 import { ModalTrigger } from "./ModalTrigger.tsx";
 
@@ -15,7 +15,7 @@ export const GlobalCustomModalCssSelector = "hop-CustomModal";
 
 export interface CustomModalProps extends
     StyledComponentProps<DialogProps>,
-    Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
+    Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
     /**
      * Whether the Modal is dismissable.
      * @default true
@@ -39,7 +39,7 @@ export interface CustomModalProps extends
     /**
      * The props of the overlay
      */
-    overlayProps?: Partial<ModalOverlayProps>;
+    overlayProps?: Partial<BaseModalProps>;
     /**
      * Handler that is called when the custom modal's open state changes.
      * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
@@ -95,9 +95,17 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
             isOpen={isOpen}
             defaultOpen={defaultOpen}
             onOpenChange={onOpenChange}
-            size={size}
             isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
+            className={clsx(styles["hop-CustomModal__overlay"], overlayProps?.className)}
+            modalProps={{
+                ...overlayProps?.modalProps,
+                className: cssModule(
+                    styles,
+                    "hop-CustomModal__base-modal",
+                    size.toLowerCase()
+                )
+            }}
         >
             <Dialog
                 {...otherProps}

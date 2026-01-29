@@ -19,9 +19,6 @@
     --hop-BaseModal-font-smoothing: antialiased;
     --hop-BaseModal-color: var(--hop-neutral-text);
 
-    /* Exiting */
-    --hop-basemodal-exiting-opacity: 0;
-
     isolation: var(--hop-BaseModal-isolation);
     position: var(--hop-BaseModal-position);
     z-index: var(--hop-BaseModal-z-index);
@@ -46,8 +43,6 @@
 
     /* hop-rock-800 with a 60% transparency */
     background-color: var(--hop-BaseModal-background-color);
-
-    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
 }
 
 .hop-BaseModal__modal {
@@ -57,112 +52,18 @@
     --hop-BaseModal__modal-max-block-size: 90dvh;
     --hop-BaseModal__modal-background: var(--hop-neutral-surface);
     --hop-BaseModal__modal-border-radius: var(--hop-shape-rounded-md);
-    --hop-BaseModal__modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
-
-    /* Entering */
-    --hop-BaseModal__modal-entering-opacity: 0;
-    --hop-BaseModal__modal-entering-transform: translateY(1.25rem);
-
-    /* Exiting */
-    --hop-BaseModal__modal-exiting-opacity: 0;
-    --hop-BaseModal__modal-exiting-transition: opacity var(--hop-easing-duration-1) ease-in-out 0, transform var(--hop-easing-duration-1) ease-in-out 0;
-
-    /* Small */
-    --hop-BaseModal__modal-sm-width: 28.75rem;
-
-    /* Medium */
-    --hop-BaseModal__modal-md-width: 36.5rem;
-
-    /* Large */
-    --hop-BaseModal__modal-lg-width: 41.5rem;
-
-    /* Extra Large */
-    --hop-BaseModal__modal-xl-width: 50rem;
-
-    /* Fullscreen */
-    --hop-BaseModal__modal-fullscreen-max-width: none;
-    --hop-BaseModal__modal-fullscreen-max-height: none;
-    --hop-BaseModal__modal-fullscreen-width: calc(100dvw - 2.5rem);
-    --hop-BaseModal__modal-fullscreen-height: calc(100dvh - 2.5rem);
-
-    /* Fullscreentakeover */
-    --hop-BaseModal__modal-fullscreentakeover-width: 100dvw;
-    --hop-BaseModal__modal-fullscreentakeover-height: 100dvh;
-    --hop-BaseModal__modal-fullscreentakeover-border-radius: 0;
 
     /* Internal variables */
     --border-radius: var(--hop-BaseModal__modal-border-radius);
     --max-inline-size: var(--hop-BaseModal__modal-max-inline-size);
     --max-block-size: var(--hop-BaseModal__modal-max-block-size);
-    --image-size: 0rem;
 
     display: var(--hop-BaseModal__modal-display);
     flex-direction: var(--hop-BaseModal__modal-flex-direction);
 
-    inline-size: var(--width);
     max-inline-size: var(--max-inline-size);
-    block-size: var(--height);
     max-block-size: var(--max-block-size);
 
     background: var(--hop-BaseModal__modal-background);
     border-radius: var(--border-radius);
-
-    transition: var(--hop-BaseModal__modal-transition);
-}
-
-@media screen and (min-width: 48rem) {
-    .hop-BaseModal--image .hop-BaseModal__modal {
-        --image-size: 16rem;
-    }
-}
-
-.hop-BaseModal[data-entering] {
-    opacity: var(--hop-BaseModal-entering-opacity);
-}
-
-.hop-BaseModal[data-entering]  .hop-BaseModal__modal {
-    transform: var(--hop-BaseModal__modal-entering-transform);
-    opacity: var(--hop-BaseModal__modal-entering-opacity);
-}
-
-.hop-BaseModal[data-exiting] {
-    opacity: var(--hop-BaseModal-exiting-opacity);
-}
-
-.hop-BaseModal[data-exiting] .hop-BaseModal__modal {
-    opacity: var(--hop-BaseModal__modal-exiting-opacity);
-    transition: var(--hop-BaseModal__modal-exiting-transition);
-}
-
-.hop-BaseModal--sm .hop-BaseModal__modal {
-    --width: calc(var(--image-size) + var(--hop-BaseModal__modal-sm-width));
-}
-
-.hop-BaseModal--md .hop-BaseModal__modal {
-    --width: calc(var(--image-size) + var(--hop-BaseModal__modal-md-width));
-}
-
-.hop-BaseModal--lg .hop-BaseModal__modal {
-    --width: calc(var(--image-size) + var(--hop-BaseModal__modal-lg-width));
-}
-
-.hop-BaseModal--xl .hop-BaseModal__modal {
-    --width: calc(var(--image-size) + var(--hop-BaseModal__modal-xl-width));
-}
-
-.hop-BaseModal--fullscreen .hop-BaseModal__modal {
-    --width: var(--hop-BaseModal__modal-fullscreen-width);
-    --height: var(--hop-BaseModal__modal-fullscreen-height);
-}
-
-.hop-BaseModal--fullscreentakeover .hop-BaseModal__modal {
-    --width: var(--hop-BaseModal__modal-fullscreentakeover-width);
-    --height: var(--hop-BaseModal__modal-fullscreentakeover-height);
-    --border-radius: var(--hop-BaseModal__modal-fullscreentakeover-border-radius);
-}
-
-.hop-BaseModal--fullscreen .hop-BaseModal__modal,
-.hop-BaseModal--fullscreentakeover .hop-BaseModal__modal {
-    --max-inline-size: var(--hop-BaseModal__modal-fullscreen-max-width);
-    --max-block-size: var(--hop-BaseModal__modal-fullscreen-max-height);
 }
