@@ -1,6 +1,6 @@
 import { getRootCSSClasses, type ResponsiveProp, type StyledComponentProps, useColorSchemeContext, useResponsiveValue, useStyledSystem, useThemeContext } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
+import { type ComponentProps, type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
 import { ModalOverlay, type ModalOverlayProps, Modal as RACModal, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -27,6 +27,11 @@ export interface BaseModalProps extends StyledComponentProps<ModalOverlayProps> 
      * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
      */
     onOpenChange?: (isOpen: boolean) => void;
+
+    /**
+     * Additional props to pass to the underlying Modal component.
+     */
+    modalProps?: Partial<ComponentProps<typeof RACModal>>;
 }
 
 const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => {
@@ -40,6 +45,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
         children,
         hasImage,
         onOpenChange,
+        modalProps,
         ...otherProps
     } = ownProps;
 
@@ -81,7 +87,7 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
             slot={slot}
             {...otherProps}
         >
-            <RACModal ref={ref} className={styles["hop-BaseModal__modal"]}>
+            <RACModal ref={ref} {...modalProps} className={clsx(styles["hop-BaseModal__modal"], modalProps?.className)}>
                 {children}
             </RACModal>
         </ModalOverlay>
