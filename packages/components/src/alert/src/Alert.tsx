@@ -127,10 +127,18 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
 
     return (
         <BaseModal
-            size={size}
+            {...overlayProps}
             isDismissable={isDismissable && !isLoading}
             isKeyboardDismissDisabled={isDismissable && !isLoading}
-            {...overlayProps}
+            className={clsx(styles["hop-Alert__overlay"], overlayProps?.className)}
+            modalProps={{
+                ...overlayProps?.modalProps,
+                className: clsx(overlayProps?.modalProps?.className, cssModule(
+                    styles,
+                    "hop-Alert__base-modal",
+                    size
+                ))
+            }}
         >
             <Dialog
                 role="alertdialog"

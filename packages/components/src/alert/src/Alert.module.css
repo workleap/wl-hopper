@@ -87,3 +87,52 @@
     grid-area: content;
     margin-block-start: var(--hop-Alert__content-margin-top);
 }
+
+/* BaseModal size and animation styling */
+.hop-Alert__base-modal {
+    /* Small */
+    --hop-Alert__base-modal-sm-width: 28.75rem;
+
+    /* Medium */
+    --hop-Alert__base-modal-md-width: 36.5rem;
+    --hop-Alert__base-modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
+
+    /* Entering */
+    --hop-Alert__base-modal-entering-opacity: 0;
+    --hop-Alert__base-modal-entering-transform: translateY(1.25rem);
+
+    /* Exiting */
+    --hop-Alert__base-modal-exiting-opacity: 0;
+    --hop-Alert__base-modal-exiting-transition: opacity var(--hop-easing-duration-1) ease-in-out 0, transform var(--hop-easing-duration-1) ease-in-out 0;
+
+    inline-size: var(--width);
+    transition: var(--hop-Alert__base-modal-transition);
+}
+
+.hop-Alert__base-modal--sm {
+    --width: var(--hop-Alert__base-modal-sm-width);
+}
+
+.hop-Alert__base-modal--md {
+    --width: var(--hop-Alert__base-modal-md-width);
+}
+
+.hop-Alert__overlay[data-entering] .hop-Alert__base-modal {
+    transform: var(--hop-Alert__base-modal-entering-transform);
+    opacity: var(--hop-Alert__base-modal-entering-opacity);
+}
+
+.hop-Alert__overlay[data-exiting] .hop-Alert__base-modal {
+    opacity: var(--hop-Alert__base-modal-exiting-opacity);
+    transition: var(--hop-Alert__base-modal-exiting-transition);
+}
+
+.hop-Alert__overlay[data-entering]:has(.hop-Alert__base-modal) {
+    opacity: 0;
+    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
+}
+
+.hop-Alert__overlay[data-exiting]:has(.hop-Alert__base-modal) {
+    opacity: 0;
+    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
+}

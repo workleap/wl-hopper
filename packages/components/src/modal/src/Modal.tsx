@@ -1,7 +1,7 @@
 import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { composeRenderProps, Dialog, type DialogProps, type ModalOverlayProps, OverlayTriggerStateContext, Provider, useContextProps } from "react-aria-components";
+import { composeRenderProps, Dialog, type DialogProps, OverlayTriggerStateContext, Provider, useContextProps } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext, CloseButton } from "../../buttons/index.ts";
 import { HeaderContext } from "../../header/index.ts";
@@ -10,7 +10,7 @@ import { ContentContext, FooterContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
 import { cssModule, useSlot } from "../../utils/index.ts";
 
-import { BaseModal } from "./BaseModal.tsx";
+import { BaseModal, type BaseModalProps } from "./BaseModal.tsx";
 import { ModalContext } from "./ModalContext.ts";
 
 import styles from "./Modal.module.css";
@@ -22,7 +22,7 @@ const ClearContexts = [ImageContext, HeadingContext, HeaderContext, ContentConte
 
 export interface ModalProps extends
     StyledComponentProps<DialogProps>,
-    Pick<ModalOverlayProps, "isOpen" | "defaultOpen"> {
+    Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
     /**
      * Whether the Modal is dismissable.
      * @default true
@@ -46,7 +46,7 @@ export interface ModalProps extends
     /**
      * The props of the overlay
      */
-    overlayProps?: Partial<ModalOverlayProps>;
+    overlayProps?: Partial<BaseModalProps>;
     /**
      * Handler that is called when the modal's open state changes.
      * This handler is only called when the modal is not used inside a `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead if it's part of a trigger
@@ -103,10 +103,18 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
             isOpen={isOpen}
             defaultOpen={defaultOpen}
             onOpenChange={onOpenChange}
-            hasImage={hasImage} // TODO: BaseModal should not need a hasImage prop. If we need some style for this, we should pass it through the className instead.
-            size={size}
             isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
+            className={clsx(styles["hop-Modal__overlay"], overlayProps?.className)}
+            modalProps={{
+                ...overlayProps?.modalProps,
+                className: clsx(overlayProps?.modalProps?.className, cssModule(
+                    styles,
+                    "hop-Modal__base-modal",
+                    size,
+                    hasImage && "has-image"
+                ))
+            }}
         >
             <Dialog
                 {...otherProps}
