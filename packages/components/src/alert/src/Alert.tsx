@@ -133,11 +133,11 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             className={clsx(styles["hop-Alert__overlay"], overlayProps?.className)}
             modalProps={{
                 ...overlayProps?.modalProps,
-                className: cssModule(
+                className: clsx(overlayProps?.modalProps?.className, cssModule(
                     styles,
                     "hop-Alert__base-modal",
                     size
-                )
+                ))
             }}
         >
             <Dialog

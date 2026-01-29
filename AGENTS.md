@@ -9,11 +9,6 @@
 
 ## Workflow Rules
 
-### Branch Creation
-- Always ask for the related Jira ticket
-- Branch naming convention: `{feature|bug|chore|spike}/{JIRA_PROJECT}-{JIRA_TICKET_NO}-{short-description}`
-- If no Jira ticket exists, halt work and notify. This is MANDATORY.
-
 ## Use the token system
 
 Title: Use the token system

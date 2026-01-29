@@ -108,12 +108,12 @@ const Modal = (props: ModalProps, ref: ForwardedRef<HTMLDivElement>) => {
             className={clsx(styles["hop-Modal__overlay"], overlayProps?.className)}
             modalProps={{
                 ...overlayProps?.modalProps,
-                className: cssModule(
+                className: clsx(overlayProps?.modalProps?.className, cssModule(
                     styles,
                     "hop-Modal__base-modal",
                     size,
                     hasImage && "has-image"
-                )
+                ))
             }}
         >
             <Dialog
