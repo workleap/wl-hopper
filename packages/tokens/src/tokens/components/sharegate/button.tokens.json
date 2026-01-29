@@ -2,7 +2,11 @@
     "comp-button": {
         "border-radius": {
             "$type": "borderRadius",
-            "$value": "{shape.circle}"
+            "$value": "{shape.rounded-md}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{shadow.inset-bevel}"
         },
         "primary": {
             "color": {

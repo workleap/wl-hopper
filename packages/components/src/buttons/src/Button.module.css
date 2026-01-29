@@ -23,6 +23,7 @@
     --hop-Button-border-disabled: var(--hop-Button-border-size) solid var(--hop-comp-button-disabled-border-color);
     --hop-Button-ghost-border-disabled: var(--hop-Button-border-size) solid var(--hop-comp-button-ghost-disabled-border-color);
 
+
     /* Primary */
     --hop-Button-primary-border: var(--hop-Button-border-size) solid var(--hop-comp-button-primary-border-color);
     --hop-Button-primary-border-hover: var(--hop-Button-border-size) solid var(--hop-comp-button-primary-border-color-hover);
@@ -100,6 +101,7 @@
     border-radius: var(--hop-comp-button-border-radius);
     outline: none;
     outline-offset: var(--hop-Button-outline-size);
+    box-shadow: var(--hop-comp-button-box-shadow);
 
     transition:
         color var(--hop-easing-duration-2) var(--hop-easing-productive),

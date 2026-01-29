@@ -4,6 +4,10 @@
             "$type": "borderRadius",
             "$value": "{shape.rounded-md}"
         },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{shadow.none}"
+        },
         "primary": {
             "color": {
                 "$type": "color",
