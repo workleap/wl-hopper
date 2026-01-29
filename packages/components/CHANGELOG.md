@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.3
+
+### Patch Changes
+
+- 5bb8d7a: Internal changes. The BaseModal internal component no longer handles sizes and animations. This will allow the creation of drawers using this internal components.
+
 ## 2.0.2
 
 ### Patch Changes
