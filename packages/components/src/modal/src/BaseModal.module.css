@@ -19,6 +19,10 @@
     --hop-BaseModal-font-smoothing: antialiased;
     --hop-BaseModal-color: var(--hop-neutral-text);
 
+    /* Exiting */
+    --hop-BaseModal-entering-opacity: 0;
+    --hop-BaseModal-exiting-opacity: 0;
+
     isolation: var(--hop-BaseModal-isolation);
     position: var(--hop-BaseModal-position);
     z-index: var(--hop-BaseModal-z-index);
@@ -43,6 +47,16 @@
 
     /* hop-rock-800 with a 60% transparency */
     background-color: var(--hop-BaseModal-background-color);
+
+    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
+}
+
+.hop-BaseModal[data-entering] {
+    opacity: var(--hop-BaseModal-entering-opacity);
+}
+
+.hop-BaseModal[data-exiting] {
+    opacity: var(--hop-BaseModal-exiting-opacity);
 }
 
 .hop-BaseModal__modal {

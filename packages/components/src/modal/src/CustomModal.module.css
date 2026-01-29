@@ -41,14 +41,6 @@
     --hop-CustomModal__base-modal-fullscreentakeover-border-radius: 0;
     --hop-CustomModal__base-modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
 
-    /* Entering */
-    --hop-CustomModal__base-modal-entering-opacity: 0;
-    --hop-CustomModal__base-modal-entering-transform: translateY(1.25rem);
-
-    /* Exiting */
-    --hop-CustomModal__base-modal-exiting-opacity: 0;
-    --hop-CustomModal__base-modal-exiting-transition: opacity var(--hop-easing-duration-1) ease-in-out 0, transform var(--hop-easing-duration-1) ease-in-out 0;
-
     inline-size: var(--width);
     block-size: var(--height);
     transition: var(--hop-CustomModal__base-modal-transition);
@@ -85,24 +77,4 @@
 .hop-CustomModal__base-modal--fullscreentakeover {
     --max-inline-size: var(--hop-CustomModal__base-modal-fullscreen-max-width);
     --max-block-size: var(--hop-CustomModal__base-modal-fullscreen-max-height);
-}
-
-.hop-CustomModal__overlay[data-entering] .hop-CustomModal__base-modal {
-    transform: var(--hop-CustomModal__base-modal-entering-transform);
-    opacity: var(--hop-CustomModal__base-modal-entering-opacity);
-}
-
-.hop-CustomModal__overlay[data-exiting] .hop-CustomModal__base-modal {
-    opacity: var(--hop-CustomModal__base-modal-exiting-opacity);
-    transition: var(--hop-CustomModal__base-modal-exiting-transition);
-}
-
-.hop-CustomModal__overlay[data-entering]:has(.hop-CustomModal__base-modal) {
-    opacity: 0;
-    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
-}
-
-.hop-CustomModal__overlay[data-exiting]:has(.hop-CustomModal__base-modal) {
-    opacity: 0;
-    transition: opacity var(--hop-easing-duration-2) var(--hop-easing-productive);
 }

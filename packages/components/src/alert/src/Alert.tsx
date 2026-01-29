@@ -130,7 +130,6 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             {...overlayProps}
             isDismissable={isDismissable && !isLoading}
             isKeyboardDismissDisabled={isDismissable && !isLoading}
-            className={clsx(styles["hop-Alert__overlay"], overlayProps?.className)}
             modalProps={{
                 ...overlayProps?.modalProps,
                 className: clsx(overlayProps?.modalProps?.className, cssModule(

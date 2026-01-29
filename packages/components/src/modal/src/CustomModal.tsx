@@ -97,7 +97,6 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
             onOpenChange={onOpenChange}
             isDismissable={isDismissable ?? isDismissible}
             isKeyboardDismissDisabled={isKeyboardDismissDisabled}
-            className={clsx(styles["hop-CustomModal__overlay"], overlayProps?.className)}
             modalProps={{
                 ...overlayProps?.modalProps,
                 className: clsx(overlayProps?.modalProps?.className, cssModule(
