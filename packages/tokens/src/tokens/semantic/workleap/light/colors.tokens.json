@@ -756,7 +756,7 @@
         },
         "border-press": {
             "$type": "color",
-            "$value": "{sapphire.300}"
+            "$value": "{sapphire.500}"
         },
         "icon": {
             "$type": "color",
@@ -829,6 +829,10 @@
         "surface-weak": {
             "$type": "color",
             "$value": "{sapphire.25}"
+        },
+        "surface-weak-selected": {
+            "$type": "color",
+            "$value": "{sapphire.100}"
         },
         "surface-weak-hover": {
             "$type": "color",
