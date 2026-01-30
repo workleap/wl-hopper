@@ -1,4 +1,4 @@
-import { Button, Div, H1, HopperProvider, HtmlHeader, Inline, Link, Main, useColorSchemeContext, useThemeContext } from "@hopper-ui/components";
+import { Div, H1, HopperProvider, HtmlHeader, Inline, Link, Main, SegmentedControl, SegmentedControlItem, useColorSchemeContext, useThemeContext, type Key } from "@hopper-ui/components";
 import { Outlet, useHref, useNavigate } from "react-router-dom";
 
 export function Layout() {
@@ -20,7 +20,7 @@ function InnerLayout() {
             <HtmlHeader borderBottom="neutral" padding="inset-sm">
                 <H1>React App</H1>
                 <Link href="/">Main Page</Link> &nbsp;
-                <Link href="/store">Store</Link>
+                <Link href="/store">Store</Link> &nbsp;
                 <Div
                     position="absolute"
                     top="10px"
@@ -28,24 +28,24 @@ function InnerLayout() {
                     display="fixed"
                 >
                     <Inline>
-                        <Button
+                        <SegmentedControl
                             size="sm"
-                            variant="secondary"
-                            onPress={() => {
-                                setColorScheme(colorScheme === "light" ? "dark" : "light");
-                            }}
+                            aria-label="Color scheme"
+                            selectedKey={colorScheme}
+                            onSelectionChange={(key: Key) => setColorScheme(key as "light" | "dark")}
                         >
-                            Change Color Scheme
-                        </Button>
-                        <Button
+                            <SegmentedControlItem id="light">Light</SegmentedControlItem>
+                            <SegmentedControlItem id="dark">Dark</SegmentedControlItem>
+                        </SegmentedControl>
+                        <SegmentedControl
                             size="sm"
-                            variant="secondary"
-                            onPress={() => {
-                                setTheme(theme === "workleap" ? "sharegate" : "workleap");
-                            }}
+                            aria-label="Theme"
+                            selectedKey={theme}
+                            onSelectionChange={(key: Key) => setTheme(key as "workleap" | "sharegate")}
                         >
-                            Change Theme
-                        </Button>
+                            <SegmentedControlItem id="workleap">Workleap</SegmentedControlItem>
+                            <SegmentedControlItem id="sharegate">Sharegate</SegmentedControlItem>
+                        </SegmentedControl>
                     </Inline>
                 </Div>
             </HtmlHeader>
