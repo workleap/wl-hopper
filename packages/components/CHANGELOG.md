@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 2.0.4
+
+### Patch Changes
+
+- b166e85: Add overflow-wrap: anywhere; to tooltip to prevent overflow
+- b166e85: Fixed an issue where a children with the number 0 would not be wrapped properly by a text component.
+
 ## 2.0.3
 
 ### Patch Changes
