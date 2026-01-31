@@ -42,4 +42,22 @@ describe("is-text-only-children", () => {
 
         expect(result).toBe(false);
     });
+
+    it("should return true when children is the number 0", () => {
+        const result = isTextOnlyChildren(0);
+
+        expect(result).toBe(true);
+    });
+
+    it("should return true when children is null", () => {
+        const result = isTextOnlyChildren(null);
+
+        expect(result).toBe(true);
+    });
+
+    it("should return true when children is undefined", () => {
+        const result = isTextOnlyChildren(undefined);
+
+        expect(result).toBe(true);
+    });
 });
