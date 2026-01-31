@@ -30,6 +30,7 @@
     background: var(--hop-Tooltip-background);
     border-radius: var(--hop-Tooltip-border-radius);
     box-shadow: var(--hop-Tooltip-box-shadow);
+    overflow-wrap: anywhere;
 }
 
 .hop-Tooltip--top {
