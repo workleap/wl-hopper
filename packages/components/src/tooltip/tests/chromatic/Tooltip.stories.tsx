@@ -305,3 +305,15 @@ export const LongText = {
         </TooltipTrigger>
     )
 } satisfies Story;
+
+export const LongWord = {
+    args: {
+        children: "ThisIsAVeryLongWordThatShouldBeDisplayedProperlyWithoutAnyIssuesToEnsureThatTheTextWrappingAndLayoutAreFunctioningAsExpectedWithinTheTooltipComponent"
+    },
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Button isDisabled>{buttonText}</Button>
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
