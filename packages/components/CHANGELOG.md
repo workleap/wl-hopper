@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.5
+
+### Patch Changes
+
+- b884213: Add inputProps property to all fields
+
 ## 2.0.4
 
 ### Patch Changes
