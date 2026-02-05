@@ -1,28 +1,42 @@
 import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import { join } from "path";
-import type { TokenCategory } from "../config/constants";
-import { TokenMapFiles } from "../config/fileMappings";
+import type { ColorScheme, Theme, TokenCategory } from "../config/constants";
+import { DefaultColorScheme, DefaultTheme } from "../config/constants";
+import { getTokenMapFiles } from "../config/fileMappings";
 import { env } from "../env";
 import { content } from "../utils/formatter";
 import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../utils/tokenFilters";
 
 const tokenDataCache: Map<string, TokenFileRootNode> = new Map();
 
-async function loadTokenData(path: string, category: TokenCategory): Promise<TokenFileRootNode> {
-    if (!tokenDataCache.has(path)) {
+function getCacheKey(path: string, theme: Theme, colorScheme: ColorScheme): string {
+    return `${theme}:${colorScheme}:${path}`;
+}
+
+async function loadTokenData(
+    path: string,
+    category: TokenCategory,
+    theme: Theme,
+    colorScheme: ColorScheme
+): Promise<TokenFileRootNode> {
+    const cacheKey = getCacheKey(path, theme, colorScheme);
+
+    if (!tokenDataCache.has(cacheKey)) {
         const tokensMap = join(env.DOCS_PATH, path);
         if (!existsSync(tokensMap)) {
-            const error = new Error(`Tokens map not found for category: ${category}, path: ${tokensMap}`);
+            const error = new Error(
+                `Tokens map not found for category: ${category}, theme: ${theme}, colorScheme: ${colorScheme}, path: ${tokensMap}`
+            );
             throw error;
         }
 
         const fileContent = await readFile(tokensMap, "utf-8");
         const tokensData = JSON.parse(fileContent) as TokenFileRootNode;
-        tokenDataCache.set(path, tokensData);
+        tokenDataCache.set(cacheKey, tokensData);
     }
 
-    return tokenDataCache.get(path)!;
+    return tokenDataCache.get(cacheKey)!;
 }
 
 export function clearTokenDataCache() {
@@ -34,13 +48,15 @@ export async function getDesignTokens(
     filter_by_token_names: string[] | undefined = [],
     filter_by_css_values: string[] | undefined = [],
     filter_by_supported_props: string[] | undefined = [],
-    include_css_values: boolean
+    include_css_values: boolean,
+    theme: Theme = DefaultTheme,
+    colorScheme: ColorScheme = DefaultColorScheme
 ) {
-    const mapFiles = TokenMapFiles[category];
+    const mapFiles = getTokenMapFiles(theme, colorScheme)[category];
 
     const result = await Promise.all(mapFiles.map(async map => {
         try {
-            const tokensData = await loadTokenData(map.path, category);
+            const tokensData = await loadTokenData(map.path, category, theme, colorScheme);
             const filteredTokensData = filterTokens(tokensData, {
                 tokenNames: filter_by_token_names,
                 cssValues: filter_by_css_values,

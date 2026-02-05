@@ -227,7 +227,7 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
-        //tokens
+        //tokens guides
         "tokens": {
             build: {
                 source: "content/tokens",
@@ -248,14 +248,6 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"
                 ]
-            }
-        },
-
-        // tokens map (json)
-        "tokens/maps": {
-            build: {
-                type: "tokens-json",
-                source: "datas/workleap/tokens.json"
             }
         },
 
@@ -292,6 +284,37 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"
                 ]
+            }
+        },
+
+        // tokens map (json)
+        "tokens/maps/workleap/light": {
+            build: {
+                type: "tokens-json",
+                source: "datas/workleap/tokens.json"
+            }
+        },
+
+        "tokens/maps/workleap/dark": {
+            build: {
+                type: "tokens-json",
+                source: "datas/workleap/tokens-dark.json",
+                fallbackSource: "datas/workleap/tokens.json"
+            }
+        },
+
+        "tokens/maps/sharegate/light": {
+            build: {
+                type: "tokens-json",
+                source: "datas/sharegate/tokens.json"
+            }
+        },
+
+        "tokens/maps/sharegate/dark": {
+            build: {
+                type: "tokens-json",
+                source: "datas/sharegate/tokens-dark.json",
+                fallbackSource: "datas/sharegate/tokens.json"
             }
         },
 

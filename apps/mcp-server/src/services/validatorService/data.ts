@@ -57,8 +57,8 @@ export async function getAllTokensData(): Promise<TokenFileRootNode> {
     }
 
     try {
-        // Get the path to the tokens data file (use full version)
-        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.all.path);
+        // Get the path to the tokens data file (use full version, default to workleap/light)
+        const tokensDataPath = join(env.DOCS_PATH, files.tokens.maps.workleap.light.all.path);
         const fileContents = await readFile(tokensDataPath, "utf-8");
         const tokensData = JSON.parse(fileContents) as TokenFileRootNode;
 

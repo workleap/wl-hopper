@@ -1,5 +1,5 @@
 import { files } from "@docs/ai";
-import type { GuideSection, TokenCategory } from "./constants";
+import type { ColorScheme, GuideSection, Theme, TokenCategory } from "./constants";
 
 export interface UrlGuideFile {
     url: string;
@@ -53,28 +53,39 @@ export const TokenGuideFiles: Record<TokenCategory, IndexFile> = {
     all: files.tokens.index
 };
 
-export const TokenMapFiles: Record<TokenCategory, IndexFile[]> = {
-    all: [files.tokens.maps.all],
-    "all-core": [files.tokens.maps.core],
-    "all-semantic": [files.tokens.maps.semantic],
-    "core-border-radius": [files.tokens.maps.coreBorderRadius],
-    "core-color": [files.tokens.maps.coreColor],
-    "core-dimensions": [files.tokens.maps.coreSize],
-    "core-font-family": [files.tokens.maps.coreFontFamily],
-    "core-font-size": [files.tokens.maps.coreFontSize],
-    "core-font-weight": [files.tokens.maps.coreFontWeight],
-    "core-line-height": [files.tokens.maps.coreLineHeight],
-    "core-motion": [files.tokens.maps.coreDuration, files.tokens.maps.coreTimingFunction],
-    "core-shadow": [files.tokens.maps.coreShadow],
-    "semantic-shape": [files.tokens.maps.semanticBorderRadius],
-    "semantic-space": [files.tokens.maps.semanticPaddingSize, files.tokens.maps.semanticMarginSize],
-    "semantic-typography": [
-        files.tokens.maps.semanticFontFamily,
-        files.tokens.maps.semanticFontSize,
-        files.tokens.maps.semanticFontWeight,
-        files.tokens.maps.semanticLineHeight,
-        files.tokens.maps.semanticTopOffset
-    ],
-    "semantic-color": [files.tokens.maps.semanticColor],
-    "semantic-elevation": [files.tokens.maps.semanticShadow]
-};
+export function getTokenMapFiles(
+    theme: Theme,
+    colorScheme: ColorScheme
+): Record<TokenCategory, IndexFile[]> {
+    const themeMaps = files.tokens.maps[theme]?.[colorScheme];
+
+    if (!themeMaps) {
+        throw new Error(`Token maps not found for theme: ${theme}, colorScheme: ${colorScheme}`);
+    }
+
+    return {
+        all: [themeMaps.all],
+        "all-core": [themeMaps.core],
+        "all-semantic": [themeMaps.semantic],
+        "core-border-radius": [themeMaps.coreBorderRadius],
+        "core-color": [themeMaps.coreColor],
+        "core-dimensions": [themeMaps.coreSize],
+        "core-font-family": [themeMaps.coreFontFamily],
+        "core-font-size": [themeMaps.coreFontSize],
+        "core-font-weight": [themeMaps.coreFontWeight],
+        "core-line-height": [themeMaps.coreLineHeight],
+        "core-motion": [themeMaps.coreDuration, themeMaps.coreTimingFunction],
+        "core-shadow": [themeMaps.coreShadow],
+        "semantic-shape": [themeMaps.semanticBorderRadius],
+        "semantic-space": [themeMaps.semanticPaddingSize, themeMaps.semanticMarginSize],
+        "semantic-typography": [
+            themeMaps.semanticFontFamily,
+            themeMaps.semanticFontSize,
+            themeMaps.semanticFontWeight,
+            themeMaps.semanticLineHeight,
+            themeMaps.semanticTopOffset
+        ],
+        "semantic-color": [themeMaps.semanticColor],
+        "semantic-elevation": [themeMaps.semanticShadow]
+    };
+}

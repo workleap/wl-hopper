@@ -129,9 +129,15 @@ For generating JSON from design token data:
     build: {
         type: "tokens-json",
         source: "datas/workleap/tokens.json",
+        fallbackSource?: "datas/workleap/tokens-light.json" // Optional fallback for missing tokens
     }
 }
 ```
+
+**Options:**
+
+- **`source`**: Path to the primary token data file
+- **`fallbackSource`**: Optional path to a fallback token file. Missing sections/subsections in the primary source will be merged from this file. This is useful for dark theme tokens that only contain color overrides - non-color tokens (typography, spacing, etc.) can be merged from the light theme fallback.
 
 #### E. Unsafe Props JSON Build
 
@@ -238,10 +244,20 @@ All generated markdown files can be served from the same route. However, if your
 ### Example 4: Tokens JSON
 
 ```typescript
-"tokens/maps/full": {
+// Light theme - primary source
+"tokens/maps/workleap/light": {
     build: {
         type: "tokens-json",
-        source: "datas/workleap/tokens.json",
+        source: "datas/workleap/tokens.json"
+    }
+}
+
+// Dark theme - with fallback for non-color tokens
+"tokens/maps/workleap/dark": {
+    build: {
+        type: "tokens-json",
+        source: "datas/workleap/tokens-dark.json",
+        fallbackSource: "datas/workleap/tokens.json" // Merges missing tokens from light theme
     }
 }
 ```

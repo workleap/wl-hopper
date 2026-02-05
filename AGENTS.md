@@ -7,8 +7,6 @@
 - Lint: `pnpm lint`
 - Test: `pnpm test`
 
-## Workflow Rules
-
 ## Use the token system
 
 Title: Use the token system

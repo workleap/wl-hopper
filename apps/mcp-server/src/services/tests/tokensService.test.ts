@@ -9,13 +9,37 @@ import {
 } from "../../tests/mocks/tokensData";
 import { clearTokenDataCache, getDesignTokens } from "../tokensService";
 
+// Mock file map with paths for all theme/colorScheme combinations
+// The tests primarily use workleap/light (default), but we also support other combinations
 const MOCK_FILE_MAP = {
-    "/tokens/maps/all.json": MOCK_TOKENS_FULL,
-    "/tokens/maps/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    "/tokens/maps/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    "/tokens/maps/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
+    // workleap/light (default)
+    "/tokens/maps/workleap/light/all.json": MOCK_TOKENS_FULL,
+    "/tokens/maps/workleap/light/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+    "/tokens/maps/workleap/light/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+    "/tokens/maps/workleap/light/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/workleap/light/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    "/tokens/maps/workleap/light/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+    // workleap/dark
+    "/tokens/maps/workleap/dark/all.json": MOCK_TOKENS_FULL,
+    "/tokens/maps/workleap/dark/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+    "/tokens/maps/workleap/dark/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+    "/tokens/maps/workleap/dark/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/workleap/dark/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    "/tokens/maps/workleap/dark/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+    // sharegate/light
+    "/tokens/maps/sharegate/light/all.json": MOCK_TOKENS_FULL,
+    "/tokens/maps/sharegate/light/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+    "/tokens/maps/sharegate/light/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+    "/tokens/maps/sharegate/light/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/sharegate/light/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    "/tokens/maps/sharegate/light/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+    // sharegate/dark
+    "/tokens/maps/sharegate/dark/all.json": MOCK_TOKENS_FULL,
+    "/tokens/maps/sharegate/dark/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+    "/tokens/maps/sharegate/dark/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+    "/tokens/maps/sharegate/dark/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+    "/tokens/maps/sharegate/dark/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+    "/tokens/maps/sharegate/dark/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
 } as const;
 
 jest.mock("fs/promises", () => ({
@@ -433,6 +457,79 @@ describe("getDesignTokens", () => {
             // Should find tokens matching either color
             expect(content.semantic.color.tokens).toBeDefined();
             expect(Object.keys(content.semantic.color.tokens).length).toBe(3);
+        });
+    });
+
+    describe("Theme and Color Scheme support", () => {
+        beforeEach(() => {
+            clearTokenDataCache();
+        });
+
+        it("should use workleap/light as default when no theme/colorScheme specified", async () => {
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false);
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+
+            const content = JSON.parse(result[0].text);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+
+        it("should accept theme parameter", async () => {
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false, "sharegate");
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+
+            const content = JSON.parse(result[0].text);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+
+        it("should accept colorScheme parameter", async () => {
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false, "workleap", "dark");
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+
+            const content = JSON.parse(result[0].text);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+
+        it("should accept both theme and colorScheme parameters", async () => {
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false, "sharegate", "dark");
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+
+            const content = JSON.parse(result[0].text);
+            expect(content).toEqual(MOCK_TOKENS_BRIEF);
+        });
+
+        it("should cache tokens separately for different theme/colorScheme combinations", async () => {
+            // First call with workleap/light
+            await getDesignTokens("all", undefined, undefined, undefined, false, "workleap", "light");
+
+            // Second call with sharegate/dark should not use the same cache
+            const result = await getDesignTokens("all", undefined, undefined, undefined, false, "sharegate", "dark");
+
+            expect(result).toHaveLength(1);
+            expect(result[0]).toHaveProperty("type", "text");
+        });
+
+        it("should filter tokens with theme parameter", async () => {
+            const result = await getDesignTokens("all", ["coastal"], undefined, undefined, false, "sharegate", "light");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text);
+            expect(content.core.color.tokens).toHaveProperty("hop-coastal-25");
+        });
+
+        it("should filter by CSS values with colorScheme parameter", async () => {
+            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, false, "workleap", "dark");
+
+            expect(result).toHaveLength(1);
+            const content = JSON.parse(result[0].text);
+            expect(content.semantic.color.tokens).toBeDefined();
         });
     });
 });

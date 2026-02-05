@@ -178,17 +178,48 @@ function extractSubsection(data: TokensData, sectionKey: string, subsectionKey: 
     return [];
 }
 
+function mergeTokensData(primary: TokensData, fallback: TokensData): TokensData {
+    const merged: TokensData = JSON.parse(JSON.stringify(primary));
+
+    for (const [sectionKey, sectionValue] of Object.entries(fallback)) {
+        if (!merged[sectionKey]) {
+            // Section doesn't exist in primary, add it entirely from fallback
+            merged[sectionKey] = sectionValue;
+        } else {
+            // Section exists, check for missing subsections
+            for (const [subsectionKey, subsectionValue] of Object.entries(sectionValue)) {
+                if (!merged[sectionKey][subsectionKey]) {
+                    // Subsection doesn't exist in primary, add it from fallback
+                    merged[sectionKey][subsectionKey] = subsectionValue;
+                }
+            }
+        }
+    }
+
+    return merged;
+}
+
 export async function generateTokensMaps({
     outputPath,
-    sourceFile
+    sourceFile,
+    fallbackSourceFile
 }: {
     outputPath: string;
     sourceFile: string;
+    fallbackSourceFile?: string;
 }) {
     try {
         // Read the source JSON file
         const sourceContent = await fs.readFile(sourceFile, "utf8");
-        const sourceData = JSON.parse(sourceContent) as TokensData;
+        let sourceData = JSON.parse(sourceContent) as TokensData;
+
+        // If fallback source is provided, merge missing tokens from it
+        if (fallbackSourceFile) {
+            const fallbackContent = await fs.readFile(fallbackSourceFile, "utf8");
+            const fallbackData = JSON.parse(fallbackContent) as TokensData;
+            sourceData = mergeTokensData(sourceData, fallbackData);
+            console.log(`📦 Merged missing tokens from fallback: ${fallbackSourceFile}`);
+        }
 
         // Discover the structure dynamically
         const { sections, subsections } = discoverStructure(sourceData);

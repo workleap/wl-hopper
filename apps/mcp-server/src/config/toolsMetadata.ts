@@ -1,5 +1,5 @@
-import { GuideDescriptions, type GuideSection, TokenCategoryDescriptions } from "./constants";
-import { GuideFiles, TokenGuideFiles, TokenMapFiles } from "./fileMappings";
+import { DefaultColorScheme, DefaultTheme, GuideDescriptions, type GuideSection, TokenCategoryDescriptions } from "./constants";
+import { getTokenMapFiles, GuideFiles, TokenGuideFiles } from "./fileMappings";
 
 export function generateDesignTokensDescription(): string {
     let description = "Available token categories:\n";
@@ -15,9 +15,10 @@ export function generateDesignTokensDescription(): string {
 
 export function generateTokenMapsDescription(): string {
     let description = "Available token categories:\n";
+    const tokenMapFiles = getTokenMapFiles(DefaultTheme, DefaultColorScheme);
 
     for (const [category, categoryDescription] of Object.entries(TokenCategoryDescriptions)) {
-        const mapFiles = TokenMapFiles[category as keyof typeof TokenMapFiles];
+        const mapFiles = tokenMapFiles[category as keyof typeof tokenMapFiles];
         const totalTokens = mapFiles ? mapFiles.reduce((sum, file) => sum + (file.estimatedTokens || 0), 0) : 0;
         description += `        - ${category}: ${categoryDescription} (size: ${totalTokens} LLM tokens)\n`;
     }
@@ -65,9 +66,16 @@ export const toolsInfo = {
     get_design_tokens: {
         name: "get_design_tokens",
         title: "Search design system tokens and get their map to component props as JSON",
-        description: "Get all design tokens mapped to component props in JSON format.\n- This is very helpful when you are generating code from Figma design.\n- You can use this service to find the right value for each component prop or get all tokens mapped to all component props. E.g hop-information-text-weak -> information-weak",
+        description: `
+        Get all design tokens mapped to component props in JSON format.
+            - This is very helpful when you are generating code from Figma design.
+            - You can use this service to find the right value for each component prop or get all tokens mapped to all component props.
+            - You should provide the theme and color scheme to get accurate mapping. The default is 'workleap' theme and 'light' color scheme.
+        E.g hop-information-text-weak -> information-weak`,
         parameters: {
             category: generateTokenMapsDescription(),
+            theme: "The design system theme to use. Available: 'workleap' (default), 'sharegate'",
+            color_scheme: "The color scheme to use. Available: 'light' (default), 'dark'",
             search_token_names: {
                 name: "search_token_names",
                 description: "Filter tokens by their Hopper token names (case-insensitive, partial match). Pass actual token names like 'hop-neutral-text', NOT CSS values like '#3c3c3c'. Examples: ['hop-neutral-text', 'hop-primary-surface', 'hop-space-stack-md']"
