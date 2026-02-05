@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 3.0.1
+
+### Patch Changes
+
+- b7e55be: Improve typing of useColorSchemeValue
+
 ## 3.0.0
 
 ### Major Changes
