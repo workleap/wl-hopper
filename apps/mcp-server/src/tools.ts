@@ -3,7 +3,7 @@ import type {
     CallToolResult
 } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { type GuideSection, GuideSections, TokenCategories } from "./config/constants";
+import { ColorSchemes, DefaultColorScheme, DefaultTheme, type GuideSection, GuideSections, Themes, TokenCategories } from "./config/constants";
 import { paginationParamsInfo, toolsInfo } from "./config/toolsMetadata";
 import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/componentsService";
 import { getDesignTokenGuide, getGuide } from "./services/guidesService";
@@ -67,6 +67,8 @@ export function tools(server: McpServer) {
         description: toolsInfo.get_design_tokens.description,
         inputSchema: {
             category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens.parameters.category),
+            theme: z.enum(Themes).optional().default(DefaultTheme).describe(toolsInfo.get_design_tokens.parameters.theme),
+            color_scheme: z.enum(ColorSchemes).optional().default(DefaultColorScheme).describe(toolsInfo.get_design_tokens.parameters.color_scheme),
             search_token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
             search_css_values: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
             search_supported_props: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
@@ -75,11 +77,11 @@ export function tools(server: McpServer) {
         annotations: {
             readOnlyHint: true
         }
-    }, async ({ category, include_css_values, search_token_names, search_css_values, search_supported_props }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens.name, { category, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
+    }, async ({ category, theme, color_scheme, include_css_values, search_token_names, search_css_values, search_supported_props }, e): Promise<CallToolResult> => {
+        trackEvent(toolsInfo.get_design_tokens.name, { category, theme, color_scheme, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
 
         try {
-            const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values);
+            const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values, theme, color_scheme);
 
             return result.length > 0 ?
                 toolContent(

@@ -41,6 +41,12 @@ export interface PropsJsonBuild {
 export interface TokensJsonBuild {
     type: "tokens-json";
     source: string;
+    /**
+     * Optional fallback source file to merge missing tokens from.
+     * Useful for dark themes that only contain color tokens - non-color tokens
+     * will be merged from the fallback (light theme) source.
+     */
+    fallbackSource?: string;
 }
 
 export interface UnsafePropsJsonBuild {

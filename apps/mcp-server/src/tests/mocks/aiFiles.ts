@@ -2096,125 +2096,113 @@ const files = {
       "estimatedTokens": 58192
     },
     "maps": {
-      "all": {
-        "path": "/tokens/maps/all.json",
-        "size": 164639,
-        "estimatedTokens": 47040
+      "workleap": {
+        "light": {
+          "all": { "path": "/tokens/maps/workleap/light/all.json", "size": 164639, "estimatedTokens": 47040 },
+          "coreBorderRadius": { "path": "/tokens/maps/workleap/light/core-borderRadius.json", "size": 915, "estimatedTokens": 262 },
+          "coreColor": { "path": "/tokens/maps/workleap/light/core-color.json", "size": 15644, "estimatedTokens": 4470 },
+          "coreDuration": { "path": "/tokens/maps/workleap/light/core-duration.json", "size": 693, "estimatedTokens": 198 },
+          "coreFontFamily": { "path": "/tokens/maps/workleap/light/core-fontFamily.json", "size": 598, "estimatedTokens": 171 },
+          "coreFontSize": { "path": "/tokens/maps/workleap/light/core-fontSize.json", "size": 1204, "estimatedTokens": 344 },
+          "coreFontWeight": { "path": "/tokens/maps/workleap/light/core-fontWeight.json", "size": 875, "estimatedTokens": 250 },
+          "coreLineHeight": { "path": "/tokens/maps/workleap/light/core-lineHeight.json", "size": 916, "estimatedTokens": 262 },
+          "coreShadow": { "path": "/tokens/maps/workleap/light/core-shadow.json", "size": 626, "estimatedTokens": 179 },
+          "coreSize": { "path": "/tokens/maps/workleap/light/core-size.json", "size": 2111, "estimatedTokens": 604 },
+          "coreTimingFunction": { "path": "/tokens/maps/workleap/light/core-timingFunction.json", "size": 529, "estimatedTokens": 152 },
+          "core": { "path": "/tokens/maps/workleap/light/core.json", "size": 23949, "estimatedTokens": 6843 },
+          "semanticBorderRadius": { "path": "/tokens/maps/workleap/light/semantic-borderRadius.json", "size": 815, "estimatedTokens": 233 },
+          "semanticBottomOffset": { "path": "/tokens/maps/workleap/light/semantic-bottomOffset.json", "size": 1334, "estimatedTokens": 382 },
+          "semanticColor": { "path": "/tokens/maps/workleap/light/semantic-color.json", "size": 116135, "estimatedTokens": 33182 },
+          "semanticFontFamily": { "path": "/tokens/maps/workleap/light/semantic-fontFamily.json", "size": 5281, "estimatedTokens": 1509 },
+          "semanticFontSize": { "path": "/tokens/maps/workleap/light/semantic-fontSize.json", "size": 4129, "estimatedTokens": 1180 },
+          "semanticFontWeight": { "path": "/tokens/maps/workleap/light/semantic-fontWeight.json", "size": 4086, "estimatedTokens": 1168 },
+          "semanticLineHeight": { "path": "/tokens/maps/workleap/light/semantic-lineHeight.json", "size": 4223, "estimatedTokens": 1207 },
+          "semanticMarginSize": { "path": "/tokens/maps/workleap/light/semantic-marginSize.json", "size": 1402, "estimatedTokens": 401 },
+          "semanticPaddingSize": { "path": "/tokens/maps/workleap/light/semantic-paddingSize.json", "size": 1579, "estimatedTokens": 452 },
+          "semanticShadow": { "path": "/tokens/maps/workleap/light/semantic-shadow.json", "size": 650, "estimatedTokens": 186 },
+          "semanticTopOffset": { "path": "/tokens/maps/workleap/light/semantic-topOffset.json", "size": 1278, "estimatedTokens": 366 },
+          "semantic": { "path": "/tokens/maps/workleap/light/semantic.json", "size": 140692, "estimatedTokens": 40198 }
+        },
+        "dark": {
+          "all": { "path": "/tokens/maps/workleap/dark/all.json", "size": 164639, "estimatedTokens": 47040 },
+          "coreBorderRadius": { "path": "/tokens/maps/workleap/dark/core-borderRadius.json", "size": 915, "estimatedTokens": 262 },
+          "coreColor": { "path": "/tokens/maps/workleap/dark/core-color.json", "size": 15644, "estimatedTokens": 4470 },
+          "coreDuration": { "path": "/tokens/maps/workleap/dark/core-duration.json", "size": 693, "estimatedTokens": 198 },
+          "coreFontFamily": { "path": "/tokens/maps/workleap/dark/core-fontFamily.json", "size": 598, "estimatedTokens": 171 },
+          "coreFontSize": { "path": "/tokens/maps/workleap/dark/core-fontSize.json", "size": 1204, "estimatedTokens": 344 },
+          "coreFontWeight": { "path": "/tokens/maps/workleap/dark/core-fontWeight.json", "size": 875, "estimatedTokens": 250 },
+          "coreLineHeight": { "path": "/tokens/maps/workleap/dark/core-lineHeight.json", "size": 916, "estimatedTokens": 262 },
+          "coreShadow": { "path": "/tokens/maps/workleap/dark/core-shadow.json", "size": 626, "estimatedTokens": 179 },
+          "coreSize": { "path": "/tokens/maps/workleap/dark/core-size.json", "size": 2111, "estimatedTokens": 604 },
+          "coreTimingFunction": { "path": "/tokens/maps/workleap/dark/core-timingFunction.json", "size": 529, "estimatedTokens": 152 },
+          "core": { "path": "/tokens/maps/workleap/dark/core.json", "size": 23949, "estimatedTokens": 6843 },
+          "semanticBorderRadius": { "path": "/tokens/maps/workleap/dark/semantic-borderRadius.json", "size": 815, "estimatedTokens": 233 },
+          "semanticBottomOffset": { "path": "/tokens/maps/workleap/dark/semantic-bottomOffset.json", "size": 1334, "estimatedTokens": 382 },
+          "semanticColor": { "path": "/tokens/maps/workleap/dark/semantic-color.json", "size": 116135, "estimatedTokens": 33182 },
+          "semanticFontFamily": { "path": "/tokens/maps/workleap/dark/semantic-fontFamily.json", "size": 5281, "estimatedTokens": 1509 },
+          "semanticFontSize": { "path": "/tokens/maps/workleap/dark/semantic-fontSize.json", "size": 4129, "estimatedTokens": 1180 },
+          "semanticFontWeight": { "path": "/tokens/maps/workleap/dark/semantic-fontWeight.json", "size": 4086, "estimatedTokens": 1168 },
+          "semanticLineHeight": { "path": "/tokens/maps/workleap/dark/semantic-lineHeight.json", "size": 4223, "estimatedTokens": 1207 },
+          "semanticMarginSize": { "path": "/tokens/maps/workleap/dark/semantic-marginSize.json", "size": 1402, "estimatedTokens": 401 },
+          "semanticPaddingSize": { "path": "/tokens/maps/workleap/dark/semantic-paddingSize.json", "size": 1579, "estimatedTokens": 452 },
+          "semanticShadow": { "path": "/tokens/maps/workleap/dark/semantic-shadow.json", "size": 650, "estimatedTokens": 186 },
+          "semanticTopOffset": { "path": "/tokens/maps/workleap/dark/semantic-topOffset.json", "size": 1278, "estimatedTokens": 366 },
+          "semantic": { "path": "/tokens/maps/workleap/dark/semantic.json", "size": 140692, "estimatedTokens": 40198 }
+        }
       },
-      "coreBorderRadius": {
-        "path": "/tokens/maps/core-borderRadius.json",
-        "size": 915,
-        "estimatedTokens": 262
-      },
-      "coreColor": {
-        "path": "/tokens/maps/core-color.json",
-        "size": 15644,
-        "estimatedTokens": 4470
-      },
-      "coreDuration": {
-        "path": "/tokens/maps/core-duration.json",
-        "size": 693,
-        "estimatedTokens": 198
-      },
-      "coreFontFamily": {
-        "path": "/tokens/maps/core-fontFamily.json",
-        "size": 598,
-        "estimatedTokens": 171
-      },
-      "coreFontSize": {
-        "path": "/tokens/maps/core-fontSize.json",
-        "size": 1204,
-        "estimatedTokens": 344
-      },
-      "coreFontWeight": {
-        "path": "/tokens/maps/core-fontWeight.json",
-        "size": 875,
-        "estimatedTokens": 250
-      },
-      "coreLineHeight": {
-        "path": "/tokens/maps/core-lineHeight.json",
-        "size": 916,
-        "estimatedTokens": 262
-      },
-      "coreShadow": {
-        "path": "/tokens/maps/core-shadow.json",
-        "size": 626,
-        "estimatedTokens": 179
-      },
-      "coreSize": {
-        "path": "/tokens/maps/core-size.json",
-        "size": 2111,
-        "estimatedTokens": 604
-      },
-      "coreTimingFunction": {
-        "path": "/tokens/maps/core-timingFunction.json",
-        "size": 529,
-        "estimatedTokens": 152
-      },
-      "core": {
-        "path": "/tokens/maps/core.json",
-        "size": 23949,
-        "estimatedTokens": 6843
-      },
-      "semanticBorderRadius": {
-        "path": "/tokens/maps/semantic-borderRadius.json",
-        "size": 815,
-        "estimatedTokens": 233
-      },
-      "semanticBottomOffset": {
-        "path": "/tokens/maps/semantic-bottomOffset.json",
-        "size": 1334,
-        "estimatedTokens": 382
-      },
-      "semanticColor": {
-        "path": "/tokens/maps/semantic-color.json",
-        "size": 116135,
-        "estimatedTokens": 33182
-      },
-      "semanticFontFamily": {
-        "path": "/tokens/maps/semantic-fontFamily.json",
-        "size": 5281,
-        "estimatedTokens": 1509
-      },
-      "semanticFontSize": {
-        "path": "/tokens/maps/semantic-fontSize.json",
-        "size": 4129,
-        "estimatedTokens": 1180
-      },
-      "semanticFontWeight": {
-        "path": "/tokens/maps/semantic-fontWeight.json",
-        "size": 4086,
-        "estimatedTokens": 1168
-      },
-      "semanticLineHeight": {
-        "path": "/tokens/maps/semantic-lineHeight.json",
-        "size": 4223,
-        "estimatedTokens": 1207
-      },
-      "semanticMarginSize": {
-        "path": "/tokens/maps/semantic-marginSize.json",
-        "size": 1402,
-        "estimatedTokens": 401
-      },
-      "semanticPaddingSize": {
-        "path": "/tokens/maps/semantic-paddingSize.json",
-        "size": 1579,
-        "estimatedTokens": 452
-      },
-      "semanticShadow": {
-        "path": "/tokens/maps/semantic-shadow.json",
-        "size": 650,
-        "estimatedTokens": 186
-      },
-      "semanticTopOffset": {
-        "path": "/tokens/maps/semantic-topOffset.json",
-        "size": 1278,
-        "estimatedTokens": 366
-      },
-      "semantic": {
-        "path": "/tokens/maps/semantic.json",
-        "size": 140692,
-        "estimatedTokens": 40198
+      "sharegate": {
+        "light": {
+          "all": { "path": "/tokens/maps/sharegate/light/all.json", "size": 164639, "estimatedTokens": 47040 },
+          "coreBorderRadius": { "path": "/tokens/maps/sharegate/light/core-borderRadius.json", "size": 915, "estimatedTokens": 262 },
+          "coreColor": { "path": "/tokens/maps/sharegate/light/core-color.json", "size": 15644, "estimatedTokens": 4470 },
+          "coreDuration": { "path": "/tokens/maps/sharegate/light/core-duration.json", "size": 693, "estimatedTokens": 198 },
+          "coreFontFamily": { "path": "/tokens/maps/sharegate/light/core-fontFamily.json", "size": 598, "estimatedTokens": 171 },
+          "coreFontSize": { "path": "/tokens/maps/sharegate/light/core-fontSize.json", "size": 1204, "estimatedTokens": 344 },
+          "coreFontWeight": { "path": "/tokens/maps/sharegate/light/core-fontWeight.json", "size": 875, "estimatedTokens": 250 },
+          "coreLineHeight": { "path": "/tokens/maps/sharegate/light/core-lineHeight.json", "size": 916, "estimatedTokens": 262 },
+          "coreShadow": { "path": "/tokens/maps/sharegate/light/core-shadow.json", "size": 626, "estimatedTokens": 179 },
+          "coreSize": { "path": "/tokens/maps/sharegate/light/core-size.json", "size": 2111, "estimatedTokens": 604 },
+          "coreTimingFunction": { "path": "/tokens/maps/sharegate/light/core-timingFunction.json", "size": 529, "estimatedTokens": 152 },
+          "core": { "path": "/tokens/maps/sharegate/light/core.json", "size": 23949, "estimatedTokens": 6843 },
+          "semanticBorderRadius": { "path": "/tokens/maps/sharegate/light/semantic-borderRadius.json", "size": 815, "estimatedTokens": 233 },
+          "semanticBottomOffset": { "path": "/tokens/maps/sharegate/light/semantic-bottomOffset.json", "size": 1334, "estimatedTokens": 382 },
+          "semanticColor": { "path": "/tokens/maps/sharegate/light/semantic-color.json", "size": 116135, "estimatedTokens": 33182 },
+          "semanticFontFamily": { "path": "/tokens/maps/sharegate/light/semantic-fontFamily.json", "size": 5281, "estimatedTokens": 1509 },
+          "semanticFontSize": { "path": "/tokens/maps/sharegate/light/semantic-fontSize.json", "size": 4129, "estimatedTokens": 1180 },
+          "semanticFontWeight": { "path": "/tokens/maps/sharegate/light/semantic-fontWeight.json", "size": 4086, "estimatedTokens": 1168 },
+          "semanticLineHeight": { "path": "/tokens/maps/sharegate/light/semantic-lineHeight.json", "size": 4223, "estimatedTokens": 1207 },
+          "semanticMarginSize": { "path": "/tokens/maps/sharegate/light/semantic-marginSize.json", "size": 1402, "estimatedTokens": 401 },
+          "semanticPaddingSize": { "path": "/tokens/maps/sharegate/light/semantic-paddingSize.json", "size": 1579, "estimatedTokens": 452 },
+          "semanticShadow": { "path": "/tokens/maps/sharegate/light/semantic-shadow.json", "size": 650, "estimatedTokens": 186 },
+          "semanticTopOffset": { "path": "/tokens/maps/sharegate/light/semantic-topOffset.json", "size": 1278, "estimatedTokens": 366 },
+          "semantic": { "path": "/tokens/maps/sharegate/light/semantic.json", "size": 140692, "estimatedTokens": 40198 }
+        },
+        "dark": {
+          "all": { "path": "/tokens/maps/sharegate/dark/all.json", "size": 164639, "estimatedTokens": 47040 },
+          "coreBorderRadius": { "path": "/tokens/maps/sharegate/dark/core-borderRadius.json", "size": 915, "estimatedTokens": 262 },
+          "coreColor": { "path": "/tokens/maps/sharegate/dark/core-color.json", "size": 15644, "estimatedTokens": 4470 },
+          "coreDuration": { "path": "/tokens/maps/sharegate/dark/core-duration.json", "size": 693, "estimatedTokens": 198 },
+          "coreFontFamily": { "path": "/tokens/maps/sharegate/dark/core-fontFamily.json", "size": 598, "estimatedTokens": 171 },
+          "coreFontSize": { "path": "/tokens/maps/sharegate/dark/core-fontSize.json", "size": 1204, "estimatedTokens": 344 },
+          "coreFontWeight": { "path": "/tokens/maps/sharegate/dark/core-fontWeight.json", "size": 875, "estimatedTokens": 250 },
+          "coreLineHeight": { "path": "/tokens/maps/sharegate/dark/core-lineHeight.json", "size": 916, "estimatedTokens": 262 },
+          "coreShadow": { "path": "/tokens/maps/sharegate/dark/core-shadow.json", "size": 626, "estimatedTokens": 179 },
+          "coreSize": { "path": "/tokens/maps/sharegate/dark/core-size.json", "size": 2111, "estimatedTokens": 604 },
+          "coreTimingFunction": { "path": "/tokens/maps/sharegate/dark/core-timingFunction.json", "size": 529, "estimatedTokens": 152 },
+          "core": { "path": "/tokens/maps/sharegate/dark/core.json", "size": 23949, "estimatedTokens": 6843 },
+          "semanticBorderRadius": { "path": "/tokens/maps/sharegate/dark/semantic-borderRadius.json", "size": 815, "estimatedTokens": 233 },
+          "semanticBottomOffset": { "path": "/tokens/maps/sharegate/dark/semantic-bottomOffset.json", "size": 1334, "estimatedTokens": 382 },
+          "semanticColor": { "path": "/tokens/maps/sharegate/dark/semantic-color.json", "size": 116135, "estimatedTokens": 33182 },
+          "semanticFontFamily": { "path": "/tokens/maps/sharegate/dark/semantic-fontFamily.json", "size": 5281, "estimatedTokens": 1509 },
+          "semanticFontSize": { "path": "/tokens/maps/sharegate/dark/semantic-fontSize.json", "size": 4129, "estimatedTokens": 1180 },
+          "semanticFontWeight": { "path": "/tokens/maps/sharegate/dark/semantic-fontWeight.json", "size": 4086, "estimatedTokens": 1168 },
+          "semanticLineHeight": { "path": "/tokens/maps/sharegate/dark/semantic-lineHeight.json", "size": 4223, "estimatedTokens": 1207 },
+          "semanticMarginSize": { "path": "/tokens/maps/sharegate/dark/semantic-marginSize.json", "size": 1402, "estimatedTokens": 401 },
+          "semanticPaddingSize": { "path": "/tokens/maps/sharegate/dark/semantic-paddingSize.json", "size": 1579, "estimatedTokens": 452 },
+          "semanticShadow": { "path": "/tokens/maps/sharegate/dark/semantic-shadow.json", "size": 650, "estimatedTokens": 186 },
+          "semanticTopOffset": { "path": "/tokens/maps/sharegate/dark/semantic-topOffset.json", "size": 1278, "estimatedTokens": 366 },
+          "semantic": { "path": "/tokens/maps/sharegate/dark/semantic.json", "size": 140692, "estimatedTokens": 40198 }
+        }
       }
     },
     "overview": {

@@ -5,6 +5,15 @@ export const GuideSections = [
     "changelog"
 ] as const;
 
+export const Themes = ["workleap", "sharegate"] as const;
+export type Theme = typeof Themes[number];
+
+export const ColorSchemes = ["light", "dark"] as const;
+export type ColorScheme = typeof ColorSchemes[number];
+
+export const DefaultTheme: Theme = "workleap";
+export const DefaultColorScheme: ColorScheme = "light";
+
 export const TokenCategories = [
     //semantic
     "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography",
