@@ -33,7 +33,7 @@ import {
     type FieldProps
 } from "../../utils/index.ts";
 
-import { Input, InputProps } from "./Input.tsx";
+import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { RemainingCharacterCount, type RemainingCharacterCountProps } from "./RemainingCharacterCount.tsx";
 import { TextFieldContext } from "./TextFieldContext.ts";
