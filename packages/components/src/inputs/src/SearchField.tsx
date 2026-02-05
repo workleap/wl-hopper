@@ -23,7 +23,7 @@ import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
 import { ClearContainerSlots, composeClassnameRenderProps, cssModule, SlotProvider, type FieldProps } from "../../utils/index.ts";
 
-import { Input } from "./Input.tsx";
+import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { SearchFieldContext } from "./SearchFieldContext.ts";
 
@@ -61,14 +61,19 @@ export interface SearchFieldProps extends Omit<StyledComponentProps<RACSearchFie
     inputRef?: MutableRefObject<HTMLInputElement | null>;
 
     /**
+     * The props for the Input.
+     */
+    inputProps?: Partial<InputProps>;
+
+    /**
      * The props for the InputGroup.
      */
-    inputGroupProps?: InputGroupProps;
+    inputGroupProps?: Partial<InputGroupProps>;
 
     /**
      * The props for the EmbeddedButton.
      */
-    clearButtonProps?: ClearButtonProps;
+    clearButtonProps?: Partial<ClearButtonProps>;
 }
 
 function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -100,6 +105,7 @@ function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>)
         label,
         description,
         errorMessage,
+        inputProps,
         ...otherProps
     } = ownProps;
 
@@ -147,7 +153,7 @@ function SearchField(props: SearchFieldProps, ref: ForwardedRef<HTMLDivElement>)
                 >
                     {icon}
                 </SlotProvider>
-                <Input size={size} ref={inputRef} placeholder={placeholder} />
+                <Input size={size} ref={inputRef} placeholder={placeholder} {...inputProps} />
                 {isClearable && !isReadOnly &&
                     <ClearButton size="lg" isDisabled={isDisabled} className={clearButtonClassNames} {...otherClearButtonProps} />}
             </InputGroup>

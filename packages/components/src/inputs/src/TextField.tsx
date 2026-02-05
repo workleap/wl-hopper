@@ -33,7 +33,7 @@ import {
     type FieldProps
 } from "../../utils/index.ts";
 
-import { Input } from "./Input.tsx";
+import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { RemainingCharacterCount, type RemainingCharacterCountProps } from "./RemainingCharacterCount.tsx";
 import { TextFieldContext } from "./TextFieldContext.ts";
@@ -87,9 +87,14 @@ export interface TextFieldProps extends Omit<StyledComponentProps<RACTextFieldPr
     inputRef?: MutableRefObject<HTMLInputElement | null>;
 
     /**
+     * The props for the Input.
+     */
+    inputProps?: Partial<InputProps>;
+
+    /**
      * The props for the InputGroup.
      */
-    inputGroupProps?: InputGroupProps;
+    inputGroupProps?: Partial<InputGroupProps>;
 
     /**
      * The props for the RemainingCharacterCount.
@@ -134,6 +139,7 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
         contextualHelp,
         description,
         errorMessage,
+        inputProps,
         ...otherProps
     } = ownProps;
 
@@ -216,7 +222,7 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
                 {...otherInputGroupProps}
             >
                 {prefixMarkup}
-                <Input ref={inputRef} placeholder={placeholder} size={size} />
+                <Input ref={inputRef} placeholder={placeholder} size={size} {...inputProps} />
 
                 {showCharacterCount && maxLength && (
                     <RemainingCharacterCount

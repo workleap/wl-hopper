@@ -58,17 +58,17 @@ export interface PasswordFieldProps extends Omit<StyledComponentProps<Omit<RACTe
     /**
      * The props for the InputGroup.
      */
-    inputGroupProps?: InputGroupProps;
+    inputGroupProps?: Partial<InputGroupProps>;
 
     /**
      * The props for the Input.
      */
-    inputProps?: InputProps;
+    inputProps?: Partial<InputProps>;
 
     /**
      * The props for the EmbeddedButton.
      */
-    embeddedButtonProps?: EmbeddedButtonProps;
+    embeddedButtonProps?: Partial<EmbeddedButtonProps>;
 }
 
 function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivElement>) {

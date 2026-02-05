@@ -5,7 +5,7 @@ import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
 import { forwardRef, useCallback, useMemo, useState, type ForwardedRef, type MutableRefObject } from "react";
 import { useObjectRef } from "react-aria";
-import { composeRenderProps, TextArea as RACTextArea, TextField as RACTextField, useContextProps, type TextFieldProps as RACTextFieldProps } from "react-aria-components";
+import { composeRenderProps, TextArea as RACTextArea, TextAreaProps as RACTextAreaProps, TextField as RACTextField, useContextProps, type TextFieldProps as RACTextFieldProps } from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
@@ -81,7 +81,12 @@ export interface TextAreaProps extends Omit<StyledComponentProps<RACTextFieldPro
     /**
      * The props for the InputGroup.
      */
-    inputGroupProps?: InputGroupProps;
+    inputGroupProps?: Partial<InputGroupProps>;
+
+    /**
+     * The props for the Input.
+     */
+    inputProps?: Partial<RACTextAreaProps>;
 
     /**
      * The props for the  RemainingCharacterCount.
@@ -168,6 +173,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         label,
         description,
         errorMessage,
+        inputProps,
         ...otherProps
     } = ownProps;
 
@@ -285,6 +291,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
                     cols={cols}
                     rows={rows}
                     className={textAreaClassNames}
+                    {...inputProps}
                 />
 
                 {showCharacterCount && maxLength && (
