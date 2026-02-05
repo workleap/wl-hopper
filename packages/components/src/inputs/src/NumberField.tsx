@@ -31,7 +31,7 @@ import {
     type FieldProps
 } from "../../utils/index.ts";
 
-import { Input } from "./Input.tsx";
+import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { NumberFieldContext } from "./NumberFieldContext.ts";
 
@@ -55,6 +55,11 @@ export interface NumberFieldProps extends Omit<StyledComponentProps<RACNumberFie
      * A ref for the HTML input element.
      */
     inputRef?: MutableRefObject<HTMLInputElement | null>;
+
+    /**
+     * The props for the Input.
+     */
+    inputProps?: Partial<InputProps>;
 
     /**
      * The props for the InputGroup.
@@ -118,6 +123,7 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
         label,
         description,
         errorMessage,
+        inputProps,
         ...otherProps
     } = ownProps;
 
@@ -167,7 +173,7 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
                 {...otherInputGroupProps}
             >
                 {prefixMarkup}
-                <Input ref={inputRef} className={styles["hop-NumberField__input"]} size={size} />
+                <Input ref={inputRef} className={styles["hop-NumberField__input"]} size={size} {...inputProps} />
                 <div className={styles["hop-NumberField__steppers"]}>
                     <StepperButton direction="increment" />
                     <StepperButton direction="decrement" />
