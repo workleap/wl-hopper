@@ -20,8 +20,8 @@ jobs:
         runs-on: workleap
         permissions:
             contents: read
-            pull-requests: read
-            issues: read
+            pull-requests: write
+            issues: write
             id-token: write
             actions: read # Required for Claude to read CI results on PRs
         steps:
@@ -54,6 +54,8 @@ jobs:
                         Bash(pnpm test:*),
                         Bash(pnpm test run:*),
                         Bash(pnpm tsc:*),
+                        Read,Write,Grep,Glob,Skill,
+                        mcp__github_inline_comment__*,
                         mcp__hopper__*,
                         mcp__hopper__get_guide,
                         mcp__hopper__get_component_doc,

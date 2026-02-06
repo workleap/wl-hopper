@@ -15,8 +15,8 @@ jobs:
         runs-on: workleap
         permissions:
             contents: read
-            pull-requests: read
-            issues: read
+            pull-requests: write
+            issues: write
             id-token: write
 
         steps:
@@ -36,7 +36,8 @@ jobs:
                       /code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}
                   claude_args: |
                       --allowedTools "
-                        mcp__hopper__*,
+                        Read,Write,Grep,Glob,Skill,
+                        mcp__github_inline_comment__*,
                         mcp__hopper__get_guide,
                         mcp__hopper__get_component_doc,
                         mcp__hopper__validate_hopper_code,
