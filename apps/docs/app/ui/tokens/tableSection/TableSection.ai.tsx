@@ -28,7 +28,7 @@ const TableSection = ({ categoryKey, categories, excludedCategories, tokenType }
 
                 return (
                     <Fragment key={theme}>
-                        <div>Tokens for theme: {theme}</div>
+                        <strong>🎨 {theme.charAt(0).toUpperCase() + theme.slice(1)} theme tokens:</strong>
                         <TokenTable tokenType={tokenType} category={categoryKey} data={categoryTokens} />
                     </Fragment>
                 );
