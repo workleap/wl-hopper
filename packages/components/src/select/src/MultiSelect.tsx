@@ -4,7 +4,7 @@ import { ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxSection
 
 import { SelectInternal, type InternalSelectProps } from "./SelectInternal.tsx";
 
-export type MultiSelectProps<T extends object> = Omit<InternalSelectProps<T, "multiple">, "selectionMode" | "selectionIndicator">;
+export type MultiSelectProps<T extends object> = Omit<InternalSelectProps<T, "multiple">, "selectionMode">;
 
 /**
  * MultiSelect components enable users to choose multiple option from a collapsible list, optimizing space efficiency.

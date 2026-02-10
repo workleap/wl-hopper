@@ -745,3 +745,18 @@ export const SearchableMultiSelect = {
     play: playFn,
     decorators: marginBottomDecoratorLG
 } satisfies Story;
+
+export const SelectionIndicator = {
+    render: args => (
+        <MultiSelect {...args} selectionIndicator="input">
+            <MultiSelectItem id="dog">Dog</MultiSelectItem>
+            <MultiSelectItem id="cat">Cat</MultiSelectItem>
+            <MultiSelectItem id="frog">Frog</MultiSelectItem>
+        </MultiSelect>
+    ),
+    args: {
+        defaultValue: ["cat"]
+    },
+    play: playFn,
+    decorators: marginBottomDecoratorSM
+} satisfies Story;
