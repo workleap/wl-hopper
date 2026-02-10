@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.7
+
+### Patch Changes
+
+- 7719d62: Expose `selectionIndicator` prop on `MultiSelect` component by removing it from the type omit.
+
 ## 2.0.6
 
 ### Patch Changes
