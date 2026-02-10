@@ -3,14 +3,9 @@
     --hop-Input-placeholder-font-size: inherit;
     --hop-Input-placeholder-font-weight: inherit;
     --hop-Input-placeholder-line-height: inherit;
-    --hop-Input-placeholder-color: var(--hop-neutral-text-weakest);
-    --hop-Input-placeholder-color-disabled: var(--hop-neutral-text-disabled);
     --hop-Input-sm-block-size: 1.875rem; /** calc(2rem - 0.125rem) account for border */
     --hop-Input-md-block-size: 2.375rem; /** calc(2.5rem - 0.125rem) account for border */
-    --hop-Input-color: inherit;
-    --hop-Input-color-disabled: var(--hop-neutral-text-disabled);
     --hop-Input-background: transparent;
-    --hop-Input-background-disabled: var(--hop-neutral-surface-disabled);
     --hop-Input-sm-font-family: var(--hop-body-sm-font-family);
     --hop-Input-sm-font-size: var(--hop-body-sm-font-size);
     --hop-Input-sm-font-weight: var(--hop-body-sm-font-weight);
@@ -23,13 +18,12 @@
     --hop-Input-min-inline-size: 0;
 
     /** Internal */
-    --input-placeholder-color: var(--hop-Input-placeholder-color);
     --font-family: var(--hop-Input-md-font-family);
     --font-size: var(--hop-Input-md-font-size);
     --font-weight: var(--hop-Input-md-font-weight);
     --line-height: var(--hop-Input-md-line-height);
     --block-size: var(--hop-Input-md-block-size);
-    --color: var(--hop-Input-color);
+    --color: var(--hop-comp-field-text-color);
     --background-color: var(--hop-Input-background);
 
     overflow: hidden;
@@ -66,11 +60,14 @@
     font-size: var(--hop-Input-placeholder-font-size);
     font-weight: var(--hop-Input-placeholder-font-weight);
     line-height: var(--hop-Input-placeholder-line-height);
-    color: var(--input-placeholder-color);
+    color: var(--hop-comp-field-placeholder-color);
+}
+
+.hop-Input[data-disabled]::placeholder {
+    color: var(--hop-comp-field-text-color-disabled);
 }
 
 .hop-Input[data-disabled] {
-    --input-placeholder-color: var(--hop-Input-placeholder-color-disabled);
-    --color: var(--hop-Input-color-disabled);
-    --background-color: var(--hop-Input-background-disabled);
+    --color: var(--hop-comp-field-text-color-disabled);
+    --background-color: var(--hop-comp-field-background-color-disabled);
 }

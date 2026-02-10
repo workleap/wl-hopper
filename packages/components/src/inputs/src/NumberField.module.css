@@ -2,13 +2,12 @@
     --hop-NumberField-gap: var(--hop-space-stack-xs);
     --hop-NumberField-inline-size: 20rem;
     --hop-NumberField-inline-size-fluid: 100%;
-    --hop-NumberField-prefix-color: var(--hop-neutral-text-weak);
 
     /* Stepper */
-    --hop-NumberField-stepper-color: var(--hop-neutral-icon);
-    --hop-NumberField-stepper-color-hovered: var(--hop-neutral-icon-hover);
-    --hop-NumberField-stepper-color-pressed: var(--hop-neutral-icon-press);
-    --hop-NumberField-stepper-color-disabled: var(--hop-neutral-icon-disabled);
+    --hop-NumberField-stepper-color: var(--hop-comp-field-icon-color);
+    --hop-NumberField-stepper-color-hovered: var(--hop-comp-field-icon-color-hover);
+    --hop-NumberField-stepper-color-pressed: var(--hop-comp-field-icon-color-press);
+    --hop-NumberField-stepper-color-disabled: var(--hop-comp-field-icon-color-disabled);
     --hop-NumberField-stepper-background-color: var(--hop-neutral-surface);
     --hop-NumberField-stepper-background-color-hovered: var(--hop-neutral-surface-hover);
     --hop-NumberField-stepper-background-color-pressed: var(--hop-neutral-surface-press);
@@ -52,7 +51,7 @@
 .hop-NumberField__prefix {
     order: 1;
     margin-inline-end: var(--hop-NumberField-prefix-margin-inline-end);
-    color: var(--hop-NumberField-prefix-color);
+    color: var(--hop-comp-field-prefill-color);
 }
 
 .hop-NumberField__InputGroup {

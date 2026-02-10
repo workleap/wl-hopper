@@ -1,18 +1,14 @@
 .hop-RemainingCharacterCount {
-    --hop-RemainingCharacterCount-color: var(--hop-neutral-text-weak);
-    --hop-RemainingCharacterCount-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-RemainingCharacterCount-color-invalid: var(--hop-danger-text-weak);
-
     /* Internal Variables */
-    --char-count-color: var(--hop-RemainingCharacterCount-color);
+    --char-count-color: var(--hop-comp-field-prefill-color);
 
     color: var(--char-count-color);
 }
 
 .hop-RemainingCharacterCount[data-invalid] {
-    --char-count-color: var(--hop-RemainingCharacterCount-color-invalid);
+    --char-count-color: var(--hop-comp-field-text-color-error);
 }
 
 .hop-RemainingCharacterCount[data-disabled] {
-    --char-count-color: var(--hop-RemainingCharacterCount-color-disabled);
+    --char-count-color: var(--hop-comp-field-text-color-disabled);
 }

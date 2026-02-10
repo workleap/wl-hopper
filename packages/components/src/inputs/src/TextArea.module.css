@@ -1,7 +1,6 @@
 .hop-TextArea  {
     --hop-TextArea-gap: var(--hop-space-stack-xs);
     --hop-TextArea-inline-size: 20rem;
-    --hop-TextArea-prefix-color: var(--hop-neutral-text-weak);
     --hop-TextArea-input-min-height: 2rem;
     --hop-TextArea-sm-font-family: var(--hop-body-sm-font-family);
     --hop-TextArea-sm-font-size: var(--hop-body-sm-font-size);
@@ -11,14 +10,10 @@
     --hop-TextArea-md-font-size: var(--hop-body-md-font-size);
     --hop-TextArea-md-font-weight: var(--hop-body-md-font-weight);
     --hop-TextArea-md-line-height: var(--hop-body-md-line-height);
-    --hop-TextArea-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-TextArea-placeholder-color: var(--hop-neutral-text-weakest);
-    --hop-TextArea-placeholder-color-disabled: var(--hop-neutral-text-disabled);
 
     /* Internal Variables */
     --inline-size: var(--hop-TextArea-inline-size);
     --resize: none;
-    --input-placeholder-color: var(--hop-TextArea-placeholder-color);
     --font-family: var(--hop-TextArea-md-font-family);
     --font-size: var(--hop-TextArea-md-font-size);
     --font-weight: var(--hop-TextArea-md-font-weight);
@@ -54,7 +49,7 @@
 }
 
 .hop-TextArea__prefix {
-    color: var(--hop-TextArea-prefix-color);
+    color: var(--hop-comp-field-prefill-color);
 }
 
 .hop-TextArea__RemainingCharacterCount{
@@ -98,7 +93,7 @@
     font-size: var(--font-size);
     font-weight: var(--font-weight);
     line-height: var(--line-height);
-    color: inherit;
+    color: var(--hop-comp-field-text-color);
 
     background-color: transparent;
     border: 0;
@@ -121,11 +116,13 @@
     font-size: var(--hop-TextArea-placeholder-font-size);
     font-weight: var(--hop-TextArea-placeholder-font-weight);
     line-height: var(--hop-TextArea-placeholder-line-height);
-    color: var(--input-placeholder-color);
+    color: var(--hop-comp-field-placeholder-color);
+}
+
+.hop-TextArea__textarea[data-disabled]::placeholder {
+    color: var(--hop-comp-field-text-color-disabled);
 }
 
 .hop-TextArea__textarea[data-disabled] {
-    --input-placeholder-color: var(--hop-TextArea-placeholder-color-disabled);
-
-    color: var(--hop-TextArea-color-disabled);
+    color: var(--hop-comp-field-text-color-disabled);
 }

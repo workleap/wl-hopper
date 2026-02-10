@@ -1,7 +1,6 @@
 .hop-TextField  {
     --hop-TextField-gap: var(--hop-space-stack-xs);
     --hop-TextField-inline-size: 20rem;
-    --hop-TextField-prefix-color: var(--hop-neutral-text-weak);
 
     /* Internal Variables */
     --inline-size: var(--hop-TextField-inline-size);
@@ -23,7 +22,7 @@
 }
 
 .hop-TextField__prefix {
-    color: var(--hop-TextField-prefix-color);
+    color: var(--hop-comp-field-prefill-color);
 }
 
 .hop-TextField__InputGroup {
