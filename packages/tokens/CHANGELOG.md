@@ -1,5 +1,13 @@
 # @hopper-ui/tokens
 
+## 5.1.1
+
+### Patch Changes
+
+- d55064b: Add Button component tokens for themeable branding:
+  - Add `comp-button` tokens for all variants: primary, secondary, upsell, danger, ghost-primary, ghost-secondary, ghost-danger, and disabled states
+  - Migrate Button and ToggleButton CSS from hardcoded semantic values to `--hop-comp-button-*` tokens.
+
 ## 5.1.0
 
 ### Minor Changes
