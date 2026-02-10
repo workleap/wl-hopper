@@ -111,5 +111,5 @@
         "url": "https://github.com/workleap/wl-hopper/issues"
     },
     "homepage": "https://github.com/workleap/wl-hopper#readme",
-    "packageManager": "pnpm@10.19.0"
+    "packageManager": "pnpm@10.29.2"
 }

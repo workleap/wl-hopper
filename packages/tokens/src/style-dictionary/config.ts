@@ -26,12 +26,15 @@ export const fontsConfig: Config = {
 
 export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: string): Config {
     const isLightMode = mode === "light";
+
+    const core = "src/tokens/core/*.tokens.json";
+    const semanticLight = `src/tokens/semantic/${theme}/light/*.tokens.json`;
+    const semanticDark = `src/tokens/semantic/${theme}/dark/*.tokens.json`;
+    const components = `src/tokens/components/${theme}/*.tokens.json`;
+
     return {
-        "source": [
-            "src/tokens/core/*.tokens.json",
-            `src/tokens/semantic/${theme}/${mode}/*.tokens.json`,
-            `src/tokens/components/${theme}/*.tokens.json`
-        ],
+        "source": isLightMode ? [core, semanticLight, components] : [semanticDark],
+        "include": isLightMode ? [] : [core],
         "platforms": {
             "css": {
                 "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
@@ -104,12 +107,14 @@ export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string):
         }
     };
 
+    const core = "src/tokens/core/*.tokens.json";
+    const semanticLight = `src/tokens/semantic/${theme}/light/*.tokens.json`;
+    const semanticDark = `src/tokens/semantic/${theme}/dark/*.tokens.json`;
+    const components = `src/tokens/components/${theme}/*.tokens.json`;
+
     return {
-        "source": [
-            `src/tokens/semantic/${theme}/${mode}/*.tokens.json`,
-            "src/tokens/core/*.tokens.json",
-            `src/tokens/components/${theme}/*.tokens.json`
-        ],
+        "source": isLightMode ? [core, semanticLight, components] : [semanticDark],
+        "include": isLightMode ? [] : [core],
         "platforms": {
             "css": {
                 "transformGroup": "custom/css",

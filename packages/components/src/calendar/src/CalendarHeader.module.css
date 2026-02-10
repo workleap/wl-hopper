@@ -11,7 +11,7 @@
 }
 
 .hop-CalendarHeader-button {
-    --hop-Button-ghost-secondary-color: var(--hop-neutral-icon);
+    --hop-comp-button-ghost-secondary-text-color: var(--hop-neutral-icon); /* TODO: It is temporary. We should fix it when getting back to Calender branding */
 }
 
 .hop-CalendarHeader-heading {
