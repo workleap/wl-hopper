@@ -1,5 +1,13 @@
 # @hopper-ui/tokens
 
+## 5.1.2
+
+### Patch Changes
+
+- 8dc9376: Add Input component tokens for themeable branding:
+  - Add `-comp-field` tokens for background, border, text, icon, placeholder, and prefill colors across all states (default, hover, focus, disabled, error)
+  - Migrate Input, InputGroup, TextArea, TextField, SearchField, NumberField, and RemainingCharacterCount CSS from hardcoded semantic values to `--hop-comp-field-*` tokens.
+
 ## 5.1.1
 
 ### Patch Changes
