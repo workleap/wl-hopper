@@ -18,7 +18,9 @@ const meta = {
 
 export default meta;
 
-function filterByTokenType(styles: Style[], tokenType: TokenType) {
+function filterByTokenType(allStyles: Style[], tokenType: TokenType) {
+    const styles = allStyles.filter(style => !style.name.includes("comp")); // filter out component tokens
+
     switch (tokenType) {
         case "core":
             return styles.filter(style =>
@@ -27,8 +29,7 @@ function filterByTokenType(styles: Style[], tokenType: TokenType) {
                 !style.name.includes("border") &&
                 !style.name.includes("text") &&
                 !style.name.includes("icon") &&
-                !style.name.includes("dataviz") &&
-                !style.name.includes("comp")
+                !style.name.includes("dataviz")
             );
         case "background":
             return styles.filter(style => style.name.includes("surface"));
