@@ -100,7 +100,7 @@
 .hop-Select__button[data-focus-visible] {
     --button-background-color: var(--hop-comp-field-background-color-hover);
     --button-border-color: var(--hop-comp-field-border-color-focus);
-    --button-color: var(--hop-comp-field-text-color-hover);
+    --button-color: var(--hop-comp-select-text-color-hover);
     --button-icon-color: var(--hop-comp-field-icon-color-hover);
 
     outline: var(--hop-Select-button-border-size) solid var(--hop-comp-field-border-color-focus);
