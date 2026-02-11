@@ -1,7 +1,6 @@
 .hop-SearchField  {
     --hop-SearchField-gap: var(--hop-space-stack-xs);
     --hop-SearchField-inline-size: 20rem;
-    --hop-SearchField-color: var(--hop-neutral-text-weak);
     --hop-SearchField-padding: var(--hop-space-inset-md);
 
     /* Internal Variables */
@@ -27,7 +26,7 @@
 }
 
 .hop-SearchField__prefix {
-    color: var(--hop-SearchField-color);
+    color: var(--hop-comp-field-prefill-color);
 }
 
 .hop-SearchField__InputGroup {

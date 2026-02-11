@@ -1,24 +1,14 @@
 .hop-InputGroup {
-    --hop-InputGroup-background: var(--hop-neutral-surface);
-    --hop-InputGroup-border-color: var(--hop-neutral-border);
     --hop-InputGroup-border-width: 0.0625rem;
     --hop-InputGroup-gap: var(--hop-space-inline-sm);
     --hop-InputGroup-inline-size: fit-content;
-    --hop-InputGroup-border-radius: var(--hop-shape-rounded-md);
     --hop-InputGroup-padding-inline: var(--hop-space-inset-md);
     --hop-InputGroup-padding-block: 0;
-    --hop-InputGroup-border-color-hover: var(--hop-neutral-border-hover);
-    --hop-InputGroup-border-color-focus: var(--hop-primary-border-focus);
-    --hop-InputGroup-background-hover: var(--hop-neutral-surface-hover);
-    --hop-InputGroup-background-focus: var(--hop-neutral-surface);
-    --hop-InputGroup-border-color-invalid: var(--hop-danger-border-strong);
-    --hop-InputGroup-background-disabled: var(--hop-neutral-surface-disabled);
-    --hop-InputGroup-border-color-disabled: var(--hop-neutral-border-disabled);
 
     /* Internal Variables */
     --inline-size: var(--hop-InputGroup-inline-size);
-    --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color);
-    --background: var(--hop-InputGroup-background);
+    --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color);
+    --background: var(--hop-comp-field-background-color);
 
     position: relative;
 
@@ -34,7 +24,7 @@
 
     background: var(--background);
     border: var(--border);
-    border-radius: var(--hop-InputGroup-border-radius)
+    border-radius: var(--hop-comp-field-border-radius);
 }
 
 .hop-InputGroup--fluid {
@@ -42,20 +32,20 @@
 }
 
 .hop-InputGroup[data-hovered] {
-    --background: var(--hop-InputGroup-background-hover);
-    --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color-hover)
+    --background: var(--hop-comp-field-background-color-hover);
+    --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color-hover);
 }
 
 .hop-InputGroup[data-focus-within] {
-    --background: var(--hop-InputGroup-background-focus);
-    --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color-focus)
+    --background: var(--hop-comp-field-background-color-focus);
+    --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color-focus);
 }
 
 .hop-InputGroup[data-invalid] {
-    --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color-invalid)
+    --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color-error);
 }
 
 .hop-InputGroup[data-disabled] {
-    --background: var(--hop-InputGroup-background-disabled);
-    --border: var(--hop-InputGroup-border-width) solid var(--hop-InputGroup-border-color-disabled);
+    --background: var(--hop-comp-field-background-color-disabled);
+    --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color-disabled);
 }

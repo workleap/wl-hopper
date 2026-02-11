@@ -1,0 +1,80 @@
+{
+    "comp-field": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-hover}"
+        },
+        "background-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border}"
+        },
+        "border-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.border-hover}"
+        },
+        "border-color-focus": {
+            "$type": "color",
+            "$value": "{primary.border-focus}"
+        },
+        "border-color-error": {
+            "$type": "color",
+            "$value": "{danger.border-strong}"
+        },
+        "border-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.border-disabled}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "text-color-error": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "placeholder-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weakest}"
+        },
+        "prefill-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        }
+    }
+}
