@@ -1,6 +1,5 @@
 .hop-Card {
     /* Default */
-    --hop-Card-border-radius: var(--hop-shape-rounded-md);
     --hop-Card-border-size:  0.0625rem;
     --hop-Card-font-size: var(--hop-body-md-font-size);
     --hop-Card-font-family: var(--hop-body-md-font-family);
@@ -8,12 +7,10 @@
     --hop-Card-line-height: var(--hop-body-md-line-height);
 
     /* Main */
-    --hop-Card-main-border: var(--hop-Card-border-size) solid var(--hop-neutral-border-weak);
-    --hop-Card-main-background-color: var(--hop-neutral-surface);
+    --hop-Card-main-border: var(--hop-Card-border-size) solid var(--hop-comp-card-main-border-color);
 
     /* Second-level */
-    --hop-Card-second-level-border: var(--hop-Card-border-size) solid var(--hop-neutral-surface-weakest);
-    --hop-Card-second-level-background-color: var(--hop-neutral-surface-weakest);
+    --hop-Card-second-level-border: var(--hop-Card-border-size) solid var(--hop-comp-card-second-level-border-color);
 
     display: flex;
     flex-direction: column;
@@ -25,16 +22,20 @@
 
     background-color: var(--background-color);
     border: var(--border);
-    border-radius: var(--hop-Card-border-radius);
+    border-radius: var(--hop-comp-card-border-radius);
 
 }
 
 .hop-Card--main {
-    --background-color: var(--hop-Card-main-background-color);
+    --background-color: var(--hop-comp-card-main-background-color);
     --border: var(--hop-Card-main-border);
+
+    box-shadow: var(--hop-comp-card-main-box-shadow);
 }
 
 .hop-Card--second-level {
-    --background-color: var(--hop-Card-second-level-background-color);
+    --background-color: var(--hop-comp-card-second-level-background-color);
     --border: var(--hop-Card-second-level-border);
+
+    box-shadow: var(--hop-comp-card-second-level-box-shadow);
 }

@@ -12,10 +12,6 @@
             "$type": "color",
             "$value": "{neutral.surface-weak-hover}"
         },
-        "background-color-focus": {
-            "$type": "color",
-            "$value": "{neutral.surface-weak}"
-        },
         "background-color-disabled": {
             "$type": "color",
             "$value": "{neutral.surface}"

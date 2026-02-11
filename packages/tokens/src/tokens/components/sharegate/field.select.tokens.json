@@ -1,0 +1,16 @@
+{
+    "comp-select": {
+        "background-color-active": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-selected}"
+        },
+        "border-color-active": {
+            "$type": "color",
+            "$value": "{primary.border}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        }
+    }
+}

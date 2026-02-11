@@ -18,7 +18,9 @@ const meta = {
 
 export default meta;
 
-function filterByTokenType(styles: Style[], tokenType: TokenType) {
+function filterByTokenType(allStyles: Style[], tokenType: TokenType) {
+    const styles = allStyles.filter(style => !style.name.includes("comp")); // filter out component tokens
+
     switch (tokenType) {
         case "core":
             return styles.filter(style =>
