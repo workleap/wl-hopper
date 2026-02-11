@@ -27,7 +27,8 @@ function filterByTokenType(styles: Style[], tokenType: TokenType) {
                 !style.name.includes("border") &&
                 !style.name.includes("text") &&
                 !style.name.includes("icon") &&
-                !style.name.includes("dataviz")
+                !style.name.includes("dataviz") &&
+                !style.name.includes("comp")
             );
         case "background":
             return styles.filter(style => style.name.includes("surface"));
