@@ -6,65 +6,24 @@
     --hop-Select-max-inline-size: 100%;
 
     /* Select Button */
-    --hop-Select-button-background-color: var(--hop-neutral-surface);
-    --hop-Select-button-border-color: var(--hop-neutral-border);
-    --hop-Select-button-border-radius: var(--hop-shape-rounded-md);
     --hop-Select-button-border-size: var(--hop-space-10);
     --hop-Select-button-outline-offset: calc(-1 * var(--hop-space-20));
-    --hop-Select-button-color: var(--hop-neutral-text);
     --hop-Select-button-cursor: pointer;
     --hop-Select-button-padding-inline: var(--hop-space-inset-md);
     --hop-Select-button-padding-block: 0;
-    --hop-Select-button-placeholder-color: var(--hop-neutral-text-weakest);
     --hop-Select-button-column-gap: var(--hop-space-inline-sm);
     --hop-Select-button-sm-block-size: 2rem;
     --hop-Select-button-md-block-size: 2.5rem;
 
-    /* Prefix */
-    --hop-Select-prefix-color: var(--hop-neutral-text-weak);
-
-    /* Button Icon */
-    --hop-Select-button-icon-color: var(--hop-neutral-icon);
-
-    /* Hovered */
-    --hop-Select-button-background-color-hovered: var(--hop-neutral-surface-hover);
-    --hop-Select-button-border-color-hovered: var(--hop-neutral-border-hover);
-    --hop-Select-button-color-hovered: var(--hop-neutral-text-hover);
-    --hop-Select-button-icon-color-hovered: var(--hop-neutral-icon-hover);
-
-    /* Focused */
-    --hop-Select-button-background-color-focused: var(--hop-neutral-surface-hover);
-    --hop-Select-button-border-color-focused: var(--hop-primary-border-focus);
-    --hop-Select-button-color-focused: var(--hop-neutral-text-hover);
-    --hop-Select-button-icon-color-focused: var(--hop-neutral-icon-hover);
-    --hop-Select-button-outline-color-focused: var(--hop-primary-border-focus);
-
-    /**
-    * Selected
-    * Note: The selected state is the pressed state in RAC. Pressed is activated when the dropdown is open.
-    * This can be viewed here: https://github.com/adobe/react-spectrum/blob/7336849a1ddb754ba264f0adb4a1e898e49e1579/packages/react-aria-components/src/Select.tsx#L170
-    */
-    --hop-Select-button-background-color-selected: var(--hop-neutral-surface);
-    --hop-Select-button-border-color-selected: var(--hop-neutral-border-selected);
-    --hop-Select-button-color-selected: var(--hop-neutral-text);
-    --hop-Select-button-icon-color-selected: var(--hop-neutral-icon);
-
-    /* Invalid */
-    --hop-Select-button-border-color-invalid: var(--hop-danger-border-strong);
-
     /* Disabled */
-    --hop-Select-button-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Select-button-border-color-disabled: var(--hop-neutral-border-disabled);
-    --hop-Select-button-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-Select-button-icon-color-disabled: var(--hop-neutral-icon-disabled);
     --hop-Select-button-cursor-disabled: not-allowed;
 
     /* Internal Variables */
     --inline-size: var(--hop-Select-inline-size);
-    --button-background-color: var(--hop-Select-button-background-color);
-    --button-border-color: var(--hop-Select-button-border-color);
-    --button-color: var(--hop-Select-button-color);
-    --button-icon-color: var(--hop-Select-button-icon-color);
+    --button-background-color: var(--hop-comp-input-background-color);
+    --button-border-color: var(--hop-comp-input-border-color);
+    --button-color: var(--hop-comp-input-text-color);
+    --button-icon-color: var(--hop-comp-input-icon-color);
     --button-cursor: var(--hop-Select-button-cursor);
 
     display: flex;
@@ -103,7 +62,7 @@
 
     background-color: var(--button-background-color);
     border: var(--hop-Select-button-border-size) solid var(--button-border-color);
-    border-radius: var(--hop-Select-button-border-radius);
+    border-radius: var(--hop-comp-input-border-radius);
     outline: none;
 }
 
@@ -116,47 +75,52 @@
 }
 
 .hop-Select__button[data-hovered] {
-    --button-background-color: var(--hop-Select-button-background-color-hovered);
-    --button-border-color: var(--hop-Select-button-border-color-hovered);
-    --button-color: var(--hop-Select-button-color-hovered);
-    --button-icon-color: var(--hop-Select-button-icon-color-hovered);
+    --button-background-color: var(--hop-comp-input-background-color-hover);
+    --button-border-color: var(--hop-comp-input-border-color-hover);
+    --button-color: var(--hop-comp-select-text-color-hover);
+    --button-icon-color: var(--hop-comp-input-icon-color-hover);
 }
 
+/**
+* Active
+* Note: The active state is the pressed state in RAC. Pressed is activated when the dropdown is open.
+* This can be viewed here: https://github.com/adobe/react-spectrum/blob/7336849a1ddb754ba264f0adb4a1e898e49e1579/packages/react-aria-components/src/Select.tsx#L170
+*/
 .hop-Select__button[data-pressed] {
-    --button-background-color: var(--hop-Select-button-background-color-selected);
-    --button-border-color: var(--hop-Select-button-border-color-selected);
-    --button-color: var(--hop-Select-button-color-selected);
-    --button-icon-color: var(--hop-Select-button-icon-color-selected);
+    --button-background-color: var(--hop-comp-select-background-color-active);
+    --button-border-color: var(--hop-comp-select-border-color-active);
+    --button-color: var(--hop-comp-input-text-color);
+    --button-icon-color: var(--hop-comp-input-icon-color);
 }
 
 .hop-Select__button[data-invalid] {
-    --button-border-color: var(--hop-Select-button-border-color-invalid);
+    --button-border-color: var(--hop-comp-input-border-color-error);
 }
 
 .hop-Select__button[data-focus-visible] {
-    --button-background-color: var(--hop-Select-button-background-color-focused);
-    --button-border-color: var(--hop-Select-button-border-color-focused);
-    --button-color: var(--hop-Select-button-color-focused);
-    --button-icon-color: var(--hop-Select-button-icon-color-focused);
+    --button-background-color: var(--hop-comp-input-background-color-focus);
+    --button-border-color: var(--hop-comp-input-border-color-focus);
+    --button-color: var(--hop-comp-input-text-color-focus);
+    --button-icon-color: var(--hop-comp-input-icon-color-focus);
 
-    outline: var(--hop-Select-button-border-size) solid var(--hop-Select-button-outline-color-focused);
+    outline: var(--hop-Select-button-border-size) solid var(--hop-comp-input-border-color-focus);
     outline-offset: var(--hop-Select-button-outline-offset);
 }
 
 .hop-Select__button:has([data-placeholder]) {
-    --button-color: var(--hop-Select-button-placeholder-color);
+    --button-color: var(--hop-comp-input-placeholder-color);
 }
 
 .hop-Select__button[data-disabled] {
-    --button-background-color: var(--hop-Select-button-background-color-disabled);
-    --button-border-color: var(--hop-Select-button-border-color-disabled);
-    --button-color: var(--hop-Select-button-color-disabled);
-    --button-icon-color: var(--hop-Select-button-icon-color-disabled);
+    --button-background-color: var(--hop-comp-input-background-color-disabled);
+    --button-border-color: var(--hop-comp-input-border-color-disabled);
+    --button-color: var(--hop-comp-input-text-color-disabled);
+    --button-icon-color: var(--hop-comp-input-icon-color-disabled);
     --button-cursor: var(--hop-Select-button-cursor-disabled);
 }
 
 .hop-Select__prefix {
-    color: var(--hop-Select-prefix-color);
+    color: var(--hop-comp-input-prefill-color);
 }
 
 .hop-Select__button-icon {

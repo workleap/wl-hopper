@@ -5,12 +5,6 @@
     --hop-ComboBox-inline-size-fluid: 100%;
     --hop-ComboBox-max-inline-size: 100%;
 
-    /* Prefix */
-    --hop-ComboBox-prefix-color: var(--hop-neutral-text-weak);
-
-    /* Button */
-    --hop-ComboBox-button-color-disabled: var(--hop-neutral-icon-disabled);
-
     /* Internal Variables */
     --inline-size: var(--hop-ComboBox-inline-size);
 
@@ -59,12 +53,12 @@
 
 .hop-ComboBox__button[data-disabled] {
     cursor: default;
-    color: var(--hop-ComboBox-button-color-disabled);
+    color: var(--hop-comp-input-icon-color-disabled);
 }
 
 .hop-ComboBox__prefix {
     align-self: center;
-    color: var(--hop-ComboBox-prefix-color);
+    color: var(--hop-comp-input-prefill-color);
 }
 
 .hop-ComboBox__helper-message,
