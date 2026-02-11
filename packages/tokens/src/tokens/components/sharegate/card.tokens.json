@@ -1,0 +1,36 @@
+{
+    "comp-card": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-lg}"
+        },
+        "main": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-weakest}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-weakest}"
+            },
+            "box-shadow": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
+            }
+        },
+        "second-level": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{neutral.border-weakest}"
+            },
+            "box-shadow": {
+                "$type": "shadow",
+                "$value": "0 12px 12px 0 rgba(0, 0, 0, 0.05)"
+            }
+        }
+    }
+}

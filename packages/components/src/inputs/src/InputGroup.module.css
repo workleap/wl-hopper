@@ -37,7 +37,7 @@
 }
 
 .hop-InputGroup[data-focus-within] {
-    --background: var(--hop-comp-field-background-color-focus);
+    --background: var(--hop-comp-field-background-color);
     --border: var(--hop-InputGroup-border-width) solid var(--hop-comp-field-border-color-focus);
 }
 
