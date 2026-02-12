@@ -1,0 +1,8 @@
+{
+    "comp-radio": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
+        }
+    }
+}

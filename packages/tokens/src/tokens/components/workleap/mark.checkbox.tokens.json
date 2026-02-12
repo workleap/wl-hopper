@@ -1,0 +1,8 @@
+{
+    "comp-checkbox": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        }
+    }
+}
