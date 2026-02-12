@@ -1,0 +1,48 @@
+{
+    "comp-switch": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.pill}"
+        },
+        "track-filter": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "track-box-shadow": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "thumb-filter": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "thumb-filter-selected": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-selected}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        }
+    }
+}

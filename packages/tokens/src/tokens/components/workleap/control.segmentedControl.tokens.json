@@ -1,0 +1,32 @@
+{
+    "comp-segmented-control": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-selected}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "box-shadow-selected": {
+            "$type": "shadow",
+            "$value": "none"
+        }
+    }
+}
