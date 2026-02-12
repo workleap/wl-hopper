@@ -3,6 +3,18 @@
         "border-radius": {
             "$type": "borderRadius",
             "$value": "{shape.circle}"
+        },
+        "background-color-error-hover": {
+            "$type": "color",
+            "$value": "{danger.surface}"
+        },
+        "background-color-error-press": {
+            "$type": "color",
+            "$value": "{danger.surface-weak}"
+        },
+        "border-color-error-focus": {
+            "$type": "color",
+            "$value": "{danger.border-strong}"
         }
     }
 }

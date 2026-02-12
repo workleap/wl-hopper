@@ -51,6 +51,26 @@
         "border-color-error": {
             "$type": "color",
             "$value": "{danger.border-strong}"
+        },
+        "border-color-error-press": {
+            "$type": "color",
+            "$value": "{danger.border-press}"
+        },
+        "background-color-error-focus": {
+            "$type": "color",
+            "$value": "{danger.surface}"
+        },
+        "indicator-color": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        },
+        "indicator-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "indicator-color-error": {
+            "$type": "color",
+            "$value": "{danger.icon-strong}"
         }
     }
 }

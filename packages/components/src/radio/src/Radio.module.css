@@ -2,7 +2,6 @@
     /* Default */
     --hop-Radio-box-border-size: 0.0625rem;
     --hop-Radio-box-outline-size: 0.125rem;
-    --hop-Radio-bullet-color: var(--hop-neutral-icon-selected);
     --hop-Radio-bullet-display: none;
     --hop-Radio-text-color: var(--hop-neutral-text);
     --hop-Radio-icon-color: var(--hop-neutral-icon);
@@ -21,7 +20,6 @@
     --hop-Radio-icon-color-selected: var(--hop-neutral-icon);
 
     /* Disabled */
-    --hop-Radio-bullet-color-disabled: var(--hop-neutral-icon-disabled);
     --hop-Radio-text-color-disabled: var(--hop-neutral-text-disabled);
     --hop-Radio-icon-color-disabled: var(--hop-neutral-icon-disabled);
 
@@ -30,11 +28,6 @@
     --hop-Radio-icon-color-focused: var(--hop-neutral-icon);
 
     /* Invalid  */
-    --hop-Radio-box-background-color-hovered-invalid: var(--hop-danger-surface);
-    --hop-Radio-box-border-color-pressed-invalid: var(--hop-danger-border-press);
-    --hop-Radio-box-background-color-pressed-invalid: var(--hop-danger-surface-weak);
-    --hop-Radio-box-background-color-focused-invalid: var(--hop-danger-surface);
-    --hop-Radio-bullet-color-invalid: var(--hop-danger-icon-strong);
     --hop-Radio-text-color-invalid: var(--hop-danger-text-weak);
     --hop-Radio-icon-color-invalid: var(--hop-danger-icon-weak);
     --hop-Radio-text-color-hovered-invalid: var(--hop-danger-text-weak-hover);
@@ -58,7 +51,7 @@
     --box-background-color: var(--hop-comp-mark-background-color);
     --box-border-color: var(--hop-comp-mark-border-color);
     --box-border-radius: var(--hop-comp-radio-border-radius);
-    --bullet-color: var(--hop-Radio-bullet-color);
+    --bullet-color: var(--hop-comp-mark-indicator-color);
     --bullet-display: var(--hop-Radio-bullet-display);
     --cursor: pointer;
     --text-color: var(--hop-Radio-text-color);
@@ -110,26 +103,26 @@
 .hop-Radio[data-invalid] {
     --box-background-color: var(--hop-comp-mark-background-color);
     --box-border-color: var(--hop-comp-mark-border-color-error);
-    --bullet-color: var(--hop-Radio-bullet-color-invalid);
+    --bullet-color: var(--hop-comp-mark-indicator-color-error);
     --text-color: var(--hop-Radio-text-color-invalid);
     --icon-color: var(--hop-Radio-icon-color-invalid);
 }
 
 .hop-Radio:where([data-invalid])[data-focus-visible] {
-    --box-background-color: var(--hop-Radio-box-background-color-focused-invalid);
-    --box-border-color: var(--hop-comp-mark-border-color-error);
+    --box-background-color: var(--hop-comp-mark-background-color-error-focus);
+    --box-border-color: var(--hop-comp-radio-border-color-error-focus);
 }
 
 .hop-Radio:where([data-invalid])[data-hovered] {
-    --box-background-color: var(--hop-Radio-box-background-color-hovered-invalid);
+    --box-background-color: var(--hop-comp-radio-background-color-error-hover);
     --box-border-color: var(--hop-comp-mark-border-color-error);
     --text-color: var(--hop-Radio-text-color-hovered-invalid);
     --icon-color: var(--hop-Radio-text-color-hovered-invalid);
 }
 
 .hop-Radio:where([data-invalid])[data-pressed] {
-    --box-background-color: var(--hop-Radio-box-background-color-pressed-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-pressed-invalid);
+    --box-background-color: var(--hop-comp-radio-background-color-error-press);
+    --box-border-color: var(--hop-comp-mark-border-color-error-press);
     --text-color: var(--hop-Radio-text-color-pressed-invalid);
     --icon-color: var(--hop-Radio-icon-color-pressed-invalid);
 }
@@ -142,7 +135,7 @@
 .hop-Radio[data-disabled] {
     --box-background-color: var(--hop-comp-mark-background-color-disabled);
     --box-border-color: var(--hop-comp-mark-border-color-disabled);
-    --bullet-color: var(--hop-Radio-bullet-color-disabled);
+    --bullet-color: var(--hop-comp-mark-indicator-color-disabled);
     --cursor: not-allowed;
     --text-color: var(--hop-Radio-text-color-disabled);
     --icon-color: var(--hop-Radio-icon-color-disabled);
