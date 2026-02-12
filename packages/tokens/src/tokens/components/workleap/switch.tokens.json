@@ -1,0 +1,32 @@
+{
+    "comp-switch": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.pill}"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-selected}"
+        },
+        "icon-color-default": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        }
+    }
+}
