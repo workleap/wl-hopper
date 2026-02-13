@@ -1,64 +1,11 @@
 .hop-Radio {
     /* Default */
     --hop-Radio-box-border-size: 0.0625rem;
-    --hop-Radio-box-border-color: var(--hop-neutral-border);
-    --hop-Radio-box-background-color: var(--hop-neutral-surface);
     --hop-Radio-box-outline-size: 0.125rem;
-    --hop-Radio-box-outline-color: var(--hop-primary-border-focus);
-    --hop-Radio-bullet-color: var(--hop-neutral-icon-selected);
     --hop-Radio-bullet-display: none;
-    --hop-Radio-text-color: var(--hop-neutral-text);
-    --hop-Radio-icon-color: var(--hop-neutral-icon);
-
-    /* Hovered */
-    --hop-Radio-box-border-color-hovered: var(--hop-neutral-border-hover);
-    --hop-Radio-box-background-color-hovered: var(--hop-neutral-surface-hover);
-    --hop-Radio-text-color-hovered: var(--hop-neutral-text-hover);
-    --hop-Radio-icon-color-hovered: var(--hop-neutral-icon-hover);
-
-    /* Pressed */
-    --hop-Radio-box-border-color-pressed: var(--hop-neutral-border-press);
-    --hop-Radio-box-background-color-pressed: var(--hop-neutral-surface-press);
-    --hop-Radio-text-color-pressed: var(--hop-neutral-text-press);
-    --hop-Radio-icon-color-pressed: var(--hop-neutral-icon-press);
 
     /* Selected */
-    --hop-Radio-box-border-color-selected: var(--hop-neutral-border-selected);
-    --hop-Radio-box-background-color-selected: var(--hop-neutral-surface-selected);
     --hop-Radio-bullet-display-selected: block;
-    --hop-Radio-text-color-selected: var(--hop-neutral-text);
-    --hop-Radio-icon-color-selected: var(--hop-neutral-icon);
-
-    /* Disabled */
-    --hop-Radio-box-border-color-disabled: var(--hop-neutral-border-disabled);
-    --hop-Radio-box-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Radio-bullet-color-disabled: var(--hop-neutral-icon-disabled);
-    --hop-Radio-text-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-Radio-icon-color-disabled: var(--hop-neutral-icon-disabled);
-
-    /* Focused */
-    --hop-Radio-box-border-color-focused: var(--hop-neutral-border-hover);
-    --hop-Radio-box-background-color-focused: var(--hop-neutral-surface-hover);
-    --hop-Radio-text-color-focused: var(--hop-neutral-text);
-    --hop-Radio-icon-color-focused: var(--hop-neutral-icon);
-
-    /* Invalid  */
-    --hop-Radio-box-border-color-invalid: var(--hop-danger-border-strong);
-    --hop-Radio-box-background-color-invalid: var(--hop-neutral-surface);
-    --hop-Radio-box-border-color-hovered-invalid: var(--hop-danger-border-strong);
-    --hop-Radio-box-background-color-hovered-invalid: var(--hop-danger-surface);
-    --hop-Radio-box-border-color-pressed-invalid: var(--hop-danger-border-press);
-    --hop-Radio-box-background-color-pressed-invalid: var(--hop-danger-surface-weak);
-    --hop-Radio-box-border-color-focused-invalid: var(--hop-danger-border-strong);
-    --hop-Radio-box-background-color-focused-invalid: var(--hop-danger-surface);
-    --hop-Radio-box-border-color-selected-invalid: var(--hop-danger-border-strong);
-    --hop-Radio-box-background-color-selected-invalid: var(--hop-danger-surface-strong);
-    --hop-Radio-bullet-color-invalid: var(--hop-danger-icon-strong);
-    --hop-Radio-text-color-invalid: var(--hop-danger-text-weak);
-    --hop-Radio-icon-color-invalid: var(--hop-danger-icon-weak);
-    --hop-Radio-text-color-hovered-invalid: var(--hop-danger-text-weak-hover);
-    --hop-Radio-icon-color-hovered-invalid: var(--hop-danger-icon-weak-hover);
-    --hop-Radio-text-color-pressed-invalid: var(--hop-danger-text-weak-press);
 
     /* Small */
     --hop-Radio-box-sm-inline-size: 1rem;
@@ -73,14 +20,14 @@
     --hop-Radio-text-md-margin-inline-start: calc(var(--hop-space-inline-md) - var(--hop-space-inline-xs));
 
     /* Internal variable */
-    --box-background-color: var(--hop-Radio-box-background-color);
-    --box-border-color: var(--hop-Radio-box-border-color);
-    --box-border-radius: var(--hop-shape-circle);
-    --bullet-color: var(--hop-Radio-bullet-color);
+    --box-background-color: var(--hop-comp-mark-background-color);
+    --box-border-color: var(--hop-comp-mark-border-color);
+    --box-border-radius: var(--hop-comp-radio-border-radius);
+    --bullet-color: var(--hop-comp-mark-indicator-color);
     --bullet-display: var(--hop-Radio-bullet-display);
     --cursor: pointer;
-    --text-color: var(--hop-Radio-text-color);
-    --icon-color: var(--hop-Radio-icon-color);
+    --text-color: var(--hop-comp-label-text-color);
+    --icon-color: var(--hop-comp-label-icon-color);
     --transition-duration: var(--hop-easing-duration-2);
 
     cursor: var(--cursor);
@@ -96,74 +43,74 @@
 }
 
 .hop-Radio[data-focus-visible] {
-    --box-background-color: var(--hop-Radio-box-background-color-focused);
-    --box-border-color: var(--hop-Radio-box-border-color-focused);
-    --box-outline: var(--hop-Radio-box-outline-size) solid var(--hop-Radio-box-outline-color);
-    --text-color: var(--hop-Radio-text-color-focused);
-    --icon-color: var(--hop-Radio-icon-color-focused);
+    --box-background-color: var(--hop-comp-mark-background-color-hover);
+    --box-border-color: var(--hop-comp-mark-border-color-hover);
+    --box-outline: var(--hop-Radio-box-outline-size) solid var(--hop-comp-mark-border-color-focus);
+    --text-color: var(--hop-comp-label-text-color-focus);
+    --icon-color: var(--hop-comp-label-icon-color-focus);
 }
 
 .hop-Radio[data-hovered] {
-    --box-background-color: var(--hop-Radio-box-background-color-hovered);
-    --box-border-color: var(--hop-Radio-box-border-color-hovered);
-    --text-color: var(--hop-Radio-text-color-hovered);
-    --icon-color: var(--hop-Radio-icon-color-hovered);
+    --box-background-color: var(--hop-comp-mark-background-color-hover);
+    --box-border-color: var(--hop-comp-mark-border-color-hover);
+    --text-color: var(--hop-comp-label-text-color-hover);
+    --icon-color: var(--hop-comp-label-icon-color-hover);
 }
 
 .hop-Radio[data-pressed] {
-    --box-background-color: var(--hop-Radio-box-background-color-pressed);
-    --box-border-color: var(--hop-Radio-box-border-color-pressed);
-    --text-color: var(--hop-Radio-text-color-pressed);
-    --icon-color: var(--hop-Radio-icon-color-pressed);
+    --box-background-color: var(--hop-comp-mark-background-color-press);
+    --box-border-color: var(--hop-comp-mark-border-color-press);
+    --text-color: var(--hop-comp-label-text-color-press);
+    --icon-color: var(--hop-comp-label-icon-color-press);
 }
 
 .hop-Radio[data-selected] {
-    --box-background-color: var(--hop-Radio-box-background-color-selected);
-    --box-border-color: var(--hop-Radio-box-border-color-selected);
+    --box-background-color: var(--hop-comp-mark-background-color-selected);
+    --box-border-color: var(--hop-comp-mark-border-color-selected);
     --bullet-display: var(--hop-Radio-bullet-display-selected);
-    --text-color: var(--hop-Radio-text-color-selected);
-    --icon-color: var(--hop-Radio-icon-color-selected);
+    --text-color: var(--hop-comp-label-text-color-selected);
+    --icon-color: var(--hop-comp-label-icon-color-selected);
 }
 
 .hop-Radio[data-invalid] {
-    --box-background-color: var(--hop-Radio-box-background-color-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-invalid);
-    --bullet-color: var(--hop-Radio-bullet-color-invalid);
-    --text-color: var(--hop-Radio-text-color-invalid);
-    --icon-color: var(--hop-Radio-icon-color-invalid);
+    --box-background-color: var(--hop-comp-mark-background-color);
+    --box-border-color: var(--hop-comp-mark-border-color-error);
+    --bullet-color: var(--hop-comp-mark-indicator-color-error);
+    --text-color: var(--hop-comp-label-text-color-error);
+    --icon-color: var(--hop-comp-label-icon-color-error);
 }
 
 .hop-Radio:where([data-invalid])[data-focus-visible] {
-    --box-background-color: var(--hop-Radio-box-background-color-focused-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-focused-invalid);
+    --box-background-color: var(--hop-comp-mark-background-color-error-focus);
+    --box-border-color: var(--hop-comp-mark-border-color-error-focus);
 }
 
 .hop-Radio:where([data-invalid])[data-hovered] {
-    --box-background-color: var(--hop-Radio-box-background-color-hovered-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-hovered-invalid);
-    --text-color: var(--hop-Radio-text-color-hovered-invalid);
-    --icon-color: var(--hop-Radio-text-color-hovered-invalid);
+    --box-background-color: var(--hop-comp-mark-background-color-error-hover);
+    --box-border-color: var(--hop-comp-mark-border-color-error);
+    --text-color: var(--hop-comp-label-text-color-error-hover);
+    --icon-color: var(--hop-comp-label-icon-color-error-hover);
 }
 
 .hop-Radio:where([data-invalid])[data-pressed] {
-    --box-background-color: var(--hop-Radio-box-background-color-pressed-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-pressed-invalid);
-    --text-color: var(--hop-Radio-text-color-pressed-invalid);
-    --icon-color: var(--hop-Radio-icon-color-pressed-invalid);
+    --box-background-color: var(--hop-comp-mark-background-color-error-press);
+    --box-border-color: var(--hop-comp-mark-border-color-error-press);
+    --text-color: var(--hop-comp-label-text-color-error-press);
+    --icon-color: var(--hop-comp-label-icon-color-error-press);
 }
 
 .hop-Radio:where([data-invalid])[data-selected] {
-    --box-background-color: var(--hop-Radio-box-background-color-selected-invalid);
-    --box-border-color: var(--hop-Radio-box-border-color-selected-invalid);
+    --box-background-color: var(--hop-comp-mark-background-color-error);
+    --box-border-color: var(--hop-comp-mark-border-color-error);
 }
 
 .hop-Radio[data-disabled] {
-    --box-background-color: var(--hop-Radio-box-background-color-disabled);
-    --box-border-color: var(--hop-Radio-box-border-color-disabled);
-    --bullet-color: var(--hop-Radio-bullet-color-disabled);
+    --box-background-color: var(--hop-comp-mark-background-color-disabled);
+    --box-border-color: var(--hop-comp-mark-border-color-disabled);
+    --bullet-color: var(--hop-comp-mark-indicator-color-disabled);
     --cursor: not-allowed;
-    --text-color: var(--hop-Radio-text-color-disabled);
-    --icon-color: var(--hop-Radio-icon-color-disabled);
+    --text-color: var(--hop-comp-label-text-color-disabled);
+    --icon-color: var(--hop-comp-label-icon-color-disabled);
 }
 
 .hop-Radio--sm {
@@ -208,6 +155,8 @@
 
     transition: background-color var(--transition-duration) var(--hop-easing-productive),
     border var(--transition-duration) var(--hop-easing-productive);
+
+    box-shadow: var(--hop-comp-radio-box-shadow);
 }
 
 /* Check */

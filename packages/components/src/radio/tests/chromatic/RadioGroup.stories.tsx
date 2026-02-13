@@ -68,26 +68,26 @@ export const Vertical = {
                 </RadioField>
             </RadioGroup>
             <h1>Disabled</h1>
-            <RadioGroup {...props} isDisabled>
+            <RadioGroup {...props} isDisabled defaultValue="developer">
                 <Radio value="developer">Developer</Radio>
                 <Radio value="designer">Designer</Radio>
                 <Radio value="manager">Manager</Radio>
             </RadioGroup>
             <h1>Invalid</h1>
             <Inline alignY="start">
-                <RadioGroup {...props} size="sm" isInvalid errorMessage="This field is required">
+                <RadioGroup {...props} size="sm" isInvalid errorMessage="This field is required" defaultValue="developer">
                     <Radio value="developer">Developer</Radio>
                     <Radio value="designer">Designer</Radio>
                     <Radio value="manager">Manager</Radio>
                 </RadioGroup>
-                <RadioGroup {...props} size="md" isInvalid errorMessage="This field is required">
+                <RadioGroup {...props} size="md" isInvalid errorMessage="This field is required" defaultValue="developer">
                     <Radio value="developer">Developer</Radio>
                     <Radio value="designer">Designer</Radio>
                     <Radio value="manager">Manager</Radio>
                 </RadioGroup>
             </Inline>
             <h1>Invalid & Disabled</h1>
-            <RadioGroup {...props} isDisabled isInvalid>
+            <RadioGroup {...props} isDisabled isInvalid defaultValue="developer">
                 <Radio value="developer">Developer</Radio>
                 <Radio value="designer">Designer</Radio>
                 <Radio value="manager">Manager</Radio>

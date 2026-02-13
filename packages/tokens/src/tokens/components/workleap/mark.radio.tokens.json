@@ -1,0 +1,12 @@
+{
+    "comp-radio": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{shadow.none}"
+        }
+    }
+}

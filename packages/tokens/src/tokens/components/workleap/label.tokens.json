@@ -1,0 +1,76 @@
+{
+    "comp-label": {
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "text-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-error": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "text-color-error-hover": {
+            "$type": "color",
+            "$value": "{danger.text-weak-hover}"
+        },
+        "text-color-error-press": {
+            "$type": "color",
+            "$value": "{danger.text-weak-press}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "icon-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-error": {
+            "$type": "color",
+            "$value": "{danger.icon-weak}"
+        },
+        "icon-color-error-hover": {
+            "$type": "color",
+            "$value": "{danger.icon-weak-hover}"
+        },
+        "icon-color-error-press": {
+            "$type": "color",
+            "$value": "{danger.icon-weak-press}"
+        }
+    }
+}
