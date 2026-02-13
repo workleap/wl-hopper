@@ -3,37 +3,9 @@
     --hop-Checkbox-box-border-size: 0.0625rem;
     --hop-Checkbox-box-outline-size: 0.125rem;
     --hop-Checkbox-check-display: none;
-    --hop-Checkbox-text-color: var(--hop-neutral-text);
-    --hop-Checkbox-icon-color: var(--hop-neutral-icon);
-
-    /* Hovered */
-    --hop-Checkbox-text-color-hovered: var(--hop-neutral-text-hover);
-    --hop-Checkbox-icon-color-hovered: var(--hop-neutral-icon-hover);
-
-    /* Pressed */
-    --hop-Checkbox-text-color-pressed: var(--hop-neutral-text-press);
-    --hop-Checkbox-icon-color-pressed: var(--hop-neutral-icon-press);
 
     /* Selected */
     --hop-Checkbox-check-display-selected: block;
-    --hop-Checkbox-text-color-selected: var(--hop-neutral-text);
-    --hop-Checkbox-icon-color-selected: var(--hop-neutral-icon);
-
-    /* Disabled */
-    --hop-Checkbox-text-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-Checkbox-icon-color-disabled: var(--hop-neutral-icon-disabled);
-
-    /* Focus */
-    --hop-Checkbox-text-color-focused: var(--hop-neutral-text-hover);
-    --hop-Checkbox-icon-color-focused: var(--hop-neutral-icon-hover);
-
-    /* Invalid  */
-    --hop-Checkbox-text-color-invalid: var(--hop-danger-text-weak);
-    --hop-Checkbox-text-color-hovered-invalid: var(--hop-danger-text-weak-hover);
-    --hop-Checkbox-text-color-pressed-invalid: var(--hop-danger-text-weak-press);
-    --hop-Checkbox-icon-color-invalid: var(--hop-danger-icon-weak);
-    --hop-Checkbox-icon-color-hovered-invalid: var(--hop-danger-icon-weak-hover);
-    --hop-Checkbox-icon-color-pressed-invalid: var(--hop-danger-icon-weak-press);
 
     /* Small */
     --hop-Checkbox-box-sm-block-size: 1rem;
@@ -54,8 +26,8 @@
     --check-color: var(--hop-comp-mark-indicator-color);
     --check-display: var(--hop-Checkbox-check-display);
     --cursor: pointer;
-    --text-color: var(--hop-Checkbox-text-color);
-    --icon-color: var(--hop-Checkbox-icon-color);
+    --text-color: var(--hop-comp-label-text-color);
+    --icon-color: var(--hop-comp-label-icon-color);
     --transition-duration: var(--hop-easing-duration-2);
 
     cursor: var(--cursor);
@@ -74,38 +46,38 @@
     --box-background-color: var(--hop-comp-mark-background-color-hover);
     --box-border-color: var(--hop-comp-mark-border-color-hover);
     --box-outline: var(--hop-Checkbox-box-outline-size) solid var(--hop-comp-mark-border-color-focus);
-    --text-color: var(--hop-Checkbox-text-color-focused);
-    --icon-color: var(--hop-Checkbox-icon-color-focused);
+    --text-color: var(--hop-comp-label-text-color-focus);
+    --icon-color: var(--hop-comp-label-icon-color-focus);
 }
 
 .hop-Checkbox[data-hovered] {
     --box-background-color: var(--hop-comp-mark-background-color-hover);
     --box-border-color: var(--hop-comp-mark-border-color-hover);
-    --text-color: var(--hop-Checkbox-text-color-hovered);
-    --icon-color: var(--hop-Checkbox-icon-color-hovered);
+    --text-color: var(--hop-comp-label-text-color-hover);
+    --icon-color: var(--hop-comp-label-icon-color-hover);
 }
 
 .hop-Checkbox[data-pressed] {
     --box-background-color: var(--hop-comp-mark-background-color-press);
     --box-border-color: var(--hop-comp-mark-border-color-press);
-    --text-color: var(--hop-Checkbox-text-color-pressed);
-    --icon-color: var(--hop-Checkbox-icon-color-pressed);
+    --text-color: var(--hop-comp-label-text-color-press);
+    --icon-color: var(--hop-comp-label-icon-color-press);
 }
 
 .hop-Checkbox[data-selected] {
     --box-background-color: var(--hop-comp-mark-background-color-selected);
     --box-border-color: var(--hop-comp-mark-border-color-selected);
     --check-display: var(--hop-Checkbox-check-display-selected);
-    --text-color: var(--hop-Checkbox-text-color-selected);
-    --icon-color: var(--hop-Checkbox-icon-color-selected);
+    --text-color: var(--hop-comp-label-text-color-selected);
+    --icon-color: var(--hop-comp-label-icon-color-selected);
 }
 
 .hop-Checkbox[data-invalid] {
     --box-background-color: var(--hop-comp-mark-background-color);
     --box-border-color: var(--hop-comp-mark-border-color-error);
     --check-color: var(--hop-comp-mark-indicator-color-error);
-    --text-color: var(--hop-Checkbox-text-color-invalid);
-    --icon-color: var(--hop-Checkbox-icon-color-invalid);
+    --text-color: var(--hop-comp-label-text-color-error);
+    --icon-color: var(--hop-comp-label-icon-color-error);
 }
 
 .hop-Checkbox[data-invalid]:where([data-focus-visible]) {
@@ -116,15 +88,15 @@
 .hop-Checkbox[data-invalid]:where([data-hovered]) {
     --box-background-color: var(--hop-comp-mark-background-color-error-hover);
     --box-border-color: var(--hop-comp-mark-border-color-error);
-    --text-color: var(--hop-Checkbox-text-color-hovered-invalid);
-    --icon-color: var(--hop-Checkbox-icon-color-hovered-invalid);
+    --text-color: var(--hop-comp-label-text-color-error-hover);
+    --icon-color: var(--hop-comp-label-icon-color-error-hover);
 }
 
 .hop-Checkbox[data-invalid]:where([data-pressed]){
     --box-background-color: var(--hop-comp-mark-background-color-error-press);
     --box-border-color: var(--hop-comp-mark-border-color-error-press);
-    --text-color: var(--hop-Checkbox-text-color-pressed-invalid);
-    --icon-color: var(--hop-Checkbox-icon-color-pressed-invalid);
+    --text-color: var(--hop-comp-label-text-color-error-press);
+    --icon-color: var(--hop-comp-label-icon-color-error-press);
 }
 
 .hop-Checkbox:where([data-invalid])[data-selected] {
@@ -137,8 +109,8 @@
     --box-border-color: var(--hop-comp-mark-border-color-disabled);
     --check-color: var(--hop-comp-mark-indicator-color-disabled);
     --cursor: not-allowed;
-    --text-color: var(--hop-Checkbox-text-color-disabled);
-    --icon-color: var(--hop-Checkbox-icon-color-disabled);
+    --text-color: var(--hop-comp-label-text-color-disabled);
+    --icon-color: var(--hop-comp-label-icon-color-disabled);
 }
 
 .hop-Checkbox--sm {
