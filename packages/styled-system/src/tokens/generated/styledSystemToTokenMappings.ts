@@ -998,7 +998,7 @@ export const Elevation = {
     "core_sm": "shadow-sm",
     "core_md": "shadow-md",
     "core_lg": "shadow-lg",
-    "core_inset-bevel": "shadow-inset-bevel",
+    "core_tactility-button": "shadow-tactility-button",
     "core_tactility-control": "shadow-tactility-control",
     "none": "elevation-none",
     "raised": "elevation-raised",

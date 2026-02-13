@@ -16,7 +16,7 @@
             "$type": "shadow",
             "$value": "0 10px 18px 8px rgba(60, 60, 60, 0.08)"
         },
-        "inset-bevel": {
+        "tactility-button": {
             "$type": "shadow",
             "$value": "0 2px 1px 0 rgba(255, 255, 255, 0.25) inset, 0 -2px 2px 0 rgba(0, 0, 0, 0.25) inset"
         },
