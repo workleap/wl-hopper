@@ -110,18 +110,18 @@
 
 .hop-Radio:where([data-invalid])[data-focus-visible] {
     --box-background-color: var(--hop-comp-mark-background-color-error-focus);
-    --box-border-color: var(--hop-comp-radio-border-color-error-focus);
+    --box-border-color: var(--hop-comp-mark-border-color-error-focus);
 }
 
 .hop-Radio:where([data-invalid])[data-hovered] {
-    --box-background-color: var(--hop-comp-radio-background-color-error-hover);
+    --box-background-color: var(--hop-comp-mark-background-color-error-hover);
     --box-border-color: var(--hop-comp-mark-border-color-error);
     --text-color: var(--hop-Radio-text-color-hovered-invalid);
     --icon-color: var(--hop-Radio-text-color-hovered-invalid);
 }
 
 .hop-Radio:where([data-invalid])[data-pressed] {
-    --box-background-color: var(--hop-comp-radio-background-color-error-press);
+    --box-background-color: var(--hop-comp-mark-background-color-error-press);
     --box-border-color: var(--hop-comp-mark-border-color-error-press);
     --text-color: var(--hop-Radio-text-color-pressed-invalid);
     --icon-color: var(--hop-Radio-icon-color-pressed-invalid);

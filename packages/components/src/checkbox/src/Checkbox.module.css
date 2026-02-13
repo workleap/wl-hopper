@@ -110,18 +110,18 @@
 
 .hop-Checkbox[data-invalid]:where([data-focus-visible]) {
     --box-background-color: var(--hop-comp-mark-background-color-error-focus);
-    --box-border-color: var(--hop-comp-checkbox-border-color-error-focus);
+    --box-border-color: var(--hop-comp-mark-border-color-error-focus);
 }
 
 .hop-Checkbox[data-invalid]:where([data-hovered]) {
-    --box-background-color: var(--hop-comp-checkbox-background-color-error-hover);
+    --box-background-color: var(--hop-comp-mark-background-color-error-hover);
     --box-border-color: var(--hop-comp-mark-border-color-error);
     --text-color: var(--hop-Checkbox-text-color-hovered-invalid);
     --icon-color: var(--hop-Checkbox-icon-color-hovered-invalid);
 }
 
 .hop-Checkbox[data-invalid]:where([data-pressed]){
-    --box-background-color: var(--hop-comp-checkbox-background-color-error-press);
+    --box-background-color: var(--hop-comp-mark-background-color-error-press);
     --box-border-color: var(--hop-comp-mark-border-color-error-press);
     --text-color: var(--hop-Checkbox-text-color-pressed-invalid);
     --icon-color: var(--hop-Checkbox-icon-color-pressed-invalid);

@@ -56,9 +56,21 @@
             "$type": "color",
             "$value": "{danger.border-press}"
         },
+        "background-color-error-hover": {
+            "$type": "color",
+            "$value": "{danger.surface-weak-hover}"
+        },
+        "background-color-error-press": {
+            "$type": "color",
+            "$value": "{danger.surface-weak-press}"
+        },
         "background-color-error-focus": {
             "$type": "color",
             "$value": "{danger.surface}"
+        },
+        "border-color-error-focus": {
+            "$type": "color",
+            "$value": "{danger.border-press}"
         },
         "indicator-color": {
             "$type": "color",
