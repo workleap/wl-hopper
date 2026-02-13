@@ -7,7 +7,7 @@
         "primary": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.inset-bevel}"
+                "$value": "{shadow.tactility-button}"
             },
             "text-color": {
                 "$type": "color",
@@ -61,7 +61,7 @@
         "secondary": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.inset-bevel}"
+                "$value": "{shadow.tactility-button}"
             },
             "text-color": {
                 "$type": "color",
@@ -115,7 +115,7 @@
         "upsell": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.inset-bevel}"
+                "$value": "{shadow.tactility-button}"
             },
             "text-color": {
                 "$type": "color",
@@ -169,7 +169,7 @@
         "danger": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.inset-bevel}"
+                "$value": "{shadow.tactility-button}"
             },
             "text-color": {
                 "$type": "color",
