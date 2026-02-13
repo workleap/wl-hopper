@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { forwardRef, useCallback, useEffect, useState, type ForwardedRef, type ReactNode } from "react";
+import { forwardRef, useCallback, useState, type ForwardedRef, type ReactNode } from "react";
 
 import {
     ColorSchemeContext,
@@ -38,7 +38,8 @@ export interface StyledSystemProviderProps extends BreakpointProviderProps, DivP
     colorScheme?: ColorSchemeOrSystem;
 
     /**
-     * The theme to use.
+     * The theme to use (controlled).
+     * When provided, it acts as the controlled value for the theme. It can still be overridden by `setTheme` from `useThemeContext`.
      * @default "workleap"
      */
     theme?: Theme;
@@ -56,19 +57,16 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
         withBodyStyle = false,
         colorScheme = "light",
         defaultColorScheme = "light",
+        theme = "workleap",
         unsupportedMatchMediaBreakpoint = DefaultUnsupportedMatchMediaBreakpoint,
         className,
-        theme = "workleap",
         ...rest
     } = props;
 
     const [remoteColorScheme, setRemoteColorScheme] = useState<ColorScheme>();
-    const [internalTheme, setInternalTheme] = useState<Theme>(theme);
+    const [remoteTheme, setRemoteTheme] = useState<Theme>();
     const computedColorScheme = useColorScheme(remoteColorScheme ?? colorScheme, defaultColorScheme);
-
-    useEffect(() => {
-        setInternalTheme(theme);
-    }, [theme]);
+    const computedTheme = remoteTheme ?? theme;
 
     const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(newColorScheme => {
         setRemoteColorScheme(newColorScheme);
@@ -77,7 +75,7 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
     const classNames = clsx(
         className,
         GlobalStyledSystemProviderCssSelector,
-        getRootCSSClasses(computedColorScheme, internalTheme)
+        getRootCSSClasses(computedColorScheme, computedTheme)
     );
 
     return (
@@ -88,8 +86,8 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
             }}
         >
             <ThemeContext.Provider value={{
-                theme: internalTheme,
-                setTheme: setInternalTheme
+                theme: computedTheme,
+                setTheme: setRemoteTheme
             }}
             >
                 <BreakpointProvider unsupportedMatchMediaBreakpoint={unsupportedMatchMediaBreakpoint}>
