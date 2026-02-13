@@ -77,7 +77,7 @@ describe("HopperProvider", () => {
 });
 
 describe("Theme", () => {
-    it("should default to 'workleap' when no theme or defaultTheme is provided", () => {
+    it("should default to 'workleap' when no theme is provided", () => {
         const { result } = renderHook(() => useThemeContext(), {
             wrapper: ({ children }) => (
                 <HopperProvider>{children}</HopperProvider>
@@ -97,36 +97,10 @@ describe("Theme", () => {
         expect(result.current.theme).toBe("sharegate");
     });
 
-    it("should use the defaultTheme prop when theme is not provided", () => {
-        const { result } = renderHook(() => useThemeContext(), {
-            wrapper: ({ children }) => (
-                <HopperProvider defaultTheme="sharegate">{children}</HopperProvider>
-            )
-        });
-
-        expect(result.current.theme).toBe("sharegate");
-    });
-
     it("should allow setTheme to override the theme prop", () => {
         const { result } = renderHook(() => useThemeContext(), {
             wrapper: ({ children }) => (
                 <HopperProvider theme="workleap">{children}</HopperProvider>
-            )
-        });
-
-        expect(result.current.theme).toBe("workleap");
-
-        act(() => {
-            result.current.setTheme("sharegate");
-        });
-
-        expect(result.current.theme).toBe("sharegate");
-    });
-
-    it("should allow setTheme to override the defaultTheme prop", () => {
-        const { result } = renderHook(() => useThemeContext(), {
-            wrapper: ({ children }) => (
-                <HopperProvider defaultTheme="workleap">{children}</HopperProvider>
             )
         });
 
@@ -167,16 +141,6 @@ describe("Theme", () => {
         });
 
         // setTheme value should persist
-        expect(result.current.theme).toBe("sharegate");
-    });
-
-    it("should prefer theme prop over defaultTheme", () => {
-        const { result } = renderHook(() => useThemeContext(), {
-            wrapper: ({ children }) => (
-                <HopperProvider theme="sharegate" defaultTheme="workleap">{children}</HopperProvider>
-            )
-        });
-
         expect(result.current.theme).toBe("sharegate");
     });
 });

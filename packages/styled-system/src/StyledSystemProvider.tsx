@@ -38,16 +38,11 @@ export interface StyledSystemProviderProps extends BreakpointProviderProps, DivP
     colorScheme?: ColorSchemeOrSystem;
 
     /**
-     * The theme to use.
+     * The theme to use (controlled).
      * When provided, it acts as the controlled value for the theme. It can still be overridden by `setTheme` from `useThemeContext`.
-     */
-    theme?: Theme;
-
-    /**
-     * Default theme to use when `theme` is not provided.
      * @default "workleap"
      */
-    defaultTheme?: Theme;
+    theme?: Theme;
 
     /**
      * Default color scheme to use when a user preferred color scheme (system) is not available.
@@ -62,17 +57,16 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
         withBodyStyle = false,
         colorScheme = "light",
         defaultColorScheme = "light",
-        defaultTheme = "workleap",
+        theme = "workleap",
         unsupportedMatchMediaBreakpoint = DefaultUnsupportedMatchMediaBreakpoint,
         className,
-        theme,
         ...rest
     } = props;
 
     const [remoteColorScheme, setRemoteColorScheme] = useState<ColorScheme>();
     const [remoteTheme, setRemoteTheme] = useState<Theme>();
     const computedColorScheme = useColorScheme(remoteColorScheme ?? colorScheme, defaultColorScheme);
-    const computedTheme = remoteTheme ?? theme ?? defaultTheme;
+    const computedTheme = remoteTheme ?? theme;
 
     const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(newColorScheme => {
         setRemoteColorScheme(newColorScheme);
