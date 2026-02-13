@@ -29,7 +29,7 @@
             },
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "0 12px 12px 0 rgba(0, 0, 0, 0.05)"
+                "$value": "{shadow.tactility-card}"
             }
         }
     }

@@ -999,6 +999,7 @@ export const Elevation = {
     "core_md": "shadow-md",
     "core_lg": "shadow-lg",
     "core_tactility-button": "shadow-tactility-button",
+    "core_tactility-card": "shadow-tactility-card",
     "core_tactility-control": "shadow-tactility-control",
     "none": "elevation-none",
     "raised": "elevation-raised",
