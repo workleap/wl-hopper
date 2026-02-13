@@ -1,0 +1,76 @@
+{
+    "comp-segmented-control": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "background-color-default": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-hover}"
+        },
+        "background-color-press": {
+            "$type": "color",
+            "$value": "{neutral.surface-press}"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-selected}"
+        },
+        "background-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "background-color-error": {
+            "$type": "color",
+            "$value": "{danger.surface-strong}"
+        },
+        "border-color-default": {
+            "$type": "color",
+            "$value": "{neutral.border}"
+        },
+        "border-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.border-hover}"
+        },
+        "border-color-press": {
+            "$type": "color",
+            "$value": "{neutral.border-press}"
+        },
+        "border-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.border-selected}"
+        },
+        "border-color-focus": {
+            "$type": "color",
+            "$value": "{primary.border-focus}"
+        },
+        "border-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.border-disabled}"
+        },
+        "border-color-error": {
+            "$type": "color",
+            "$value": "{danger.border-strong}"
+        },
+        "text-color-default": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-selected}"
+        },
+        "icon-color-default": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        }
+    }
+}
