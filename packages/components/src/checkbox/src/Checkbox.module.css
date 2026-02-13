@@ -155,6 +155,8 @@
 
     transition: background-color var(--transition-duration) var(--hop-easing-productive),
     border var(--transition-duration) var(--hop-easing-productive);
+
+    box-shadow: var(--hop-comp-checkbox-box-shadow);
 }
 
 /* Check */
