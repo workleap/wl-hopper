@@ -1,41 +1,41 @@
 .hop-Switch {
     /* Default */
     --hop-Switch-border-size: 0.0625rem;
-    --hop-Switch-border-color: var(--hop-neutral-border);
-    --hop-Switch-border-radius: var(--hop-shape-rounded-lg);
-    --hop-Switch-background-color: var(--hop-neutral-surface);
-    --hop-Switch-thumb-color: var(--hop-neutral-icon);
+    --hop-Switch-border-color: var(--hop-comp-control-border-color);
+    --hop-Switch-border-radius: var(--hop-comp-switch-border-radius);
+    --hop-Switch-background-color: var(--hop-comp-control-background-color);
+    --hop-Switch-thumb-color: var(--hop-comp-switch-icon-color);
     --hop-Switch-text-color: var(--hop-neutral-text);
 
     /* Hover */
-    --hop-Switch-border-color-hover: var(--hop-neutral-border-hover);
-    --hop-Switch-background-color-hover: var(--hop-neutral-surface-hover);
-    --hop-Switch-thumb-color-hover: var(--hop-neutral-icon-hover);
+    --hop-Switch-border-color-hover: var(--hop-comp-control-border-color-hover);
+    --hop-Switch-background-color-hover: var(--hop-comp-control-background-color-hover);
+    --hop-Switch-thumb-color-hover: var(--hop-comp-switch-icon-color-hover);
     --hop-Switch-text-color-hover: var(--hop-neutral-text-hover);
 
     /* Pressed */
-    --hop-Switch-border-color-pressed: var(--hop-neutral-border-press);
-    --hop-Switch-background-color-pressed: var(--hop-neutral-surface-press);
-    --hop-Switch-thumb-color-pressed: var(--hop-neutral-icon-press);
+    --hop-Switch-border-color-pressed: var(--hop-comp-control-border-color-press);
+    --hop-Switch-background-color-pressed: var(--hop-comp-control-background-color-press);
+    --hop-Switch-thumb-color-pressed: var(--hop-comp-switch-icon-color-press);
     --hop-Switch-text-color-pressed: var(--hop-neutral-text-press);
 
     /* Focus Visible */
-    --hop-Switch-border-color-focus: var(--hop-neutral-border-hover);
-    --hop-Switch-background-color-focus: var(--hop-neutral-surface-hover);
-    --hop-Switch-thumb-color-focus: var(--hop-neutral-icon-hover);
-    --hop-Switch-focus-ring-color: var(--hop-primary-border-focus);
+    --hop-Switch-border-color-focus: var(--hop-comp-control-border-color-hover);
+    --hop-Switch-background-color-focus: var(--hop-comp-control-background-color-hover);
+    --hop-Switch-thumb-color-focus: var(--hop-comp-switch-icon-color-hover);
+    --hop-Switch-focus-ring-color: var(--hop-comp-control-border-color-focus);
     --hop-Switch-text-color-focus: var(--hop-neutral-text);
 
     /* Selected */
-    --hop-Switch-border-color-selected: var(--hop-neutral-border-selected);
-    --hop-Switch-background-color-selected: var(--hop-neutral-surface-selected);
-    --hop-Switch-thumb-color-selected: var(--hop-neutral-icon-selected);
+    --hop-Switch-border-color-selected: var(--hop-comp-control-border-color-selected);
+    --hop-Switch-background-color-selected: var(--hop-comp-switch-background-color-selected);
+    --hop-Switch-thumb-color-selected: var(--hop-comp-switch-icon-color-selected);
     --hop-Switch-text-color-selected: var(--hop-neutral-text);
 
     /* Disabled */
-    --hop-Switch-border-color-disabled: var(--hop-neutral-border-disabled);
-    --hop-Switch-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Switch-thumb-color-disabled: var(--hop-neutral-icon-disabled);
+    --hop-Switch-border-color-disabled: var(--hop-comp-control-border-color-disabled);
+    --hop-Switch-background-color-disabled: var(--hop-comp-control-background-color-disabled);
+    --hop-Switch-thumb-color-disabled: var(--hop-comp-switch-icon-color-disabled);
     --hop-Switch-text-color-disabled: var(--hop-neutral-text-disabled);
 
     /* Medium */
@@ -60,6 +60,7 @@
     --column-gap: var(--hop-space-inline-sm);
     --thumb-color: var(--hop-Switch-thumb-color);
     --thumb-transform: translate(0, -50%);
+    --thumb-filter: var(--hop-comp-switch-thumb-filter);
     --outline: none;
     --cursor: pointer;
     --text-color: var(--hop-Switch-text-color);
@@ -124,6 +125,7 @@
     var(--thumb-size, var(--hop-Switch-thumb-size-md)) -
     (2 * var(--inset-inline-start, var(--hop-Switch-inset-inline-start-md))) -
     (2 * var(--border-size))), -50%);
+    --thumb-filter: var(--hop-comp-switch-thumb-filter-selected);
     --text-color: var(--hop-Switch-text-color-selected);
 }
 
@@ -135,6 +137,7 @@
     --cursor: not-allowed;
 }
 
+/* Track */
 .hop-Switch__indicator {
     position: relative;
 
@@ -150,9 +153,15 @@
     outline: var(--outline);
     outline-offset: 0.125rem;
 
+    filter: var(--hop-comp-switch-track-filter);
+    box-shadow: var(--hop-comp-switch-track-box-shadow);
+
+
+
     transition: background var(--hop-easing-duration-2), border-color var(--hop-easing-duration-2);
 }
 
+/* Thumb */
 .hop-Switch__indicator::before {
     content: "";
 
@@ -170,6 +179,8 @@
 
     background-color: var(--thumb-color);
     border-radius: var(--hop-shape-circle);
+
+    filter: var(--thumb-filter);
 
     transition: transform var(--hop-easing-duration-2), background var(--hop-easing-duration-2);
 

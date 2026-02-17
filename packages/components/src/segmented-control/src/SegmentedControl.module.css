@@ -2,9 +2,9 @@
     --hop-SegmentedControl-gap: var(--hop-space-inline-xs);
     --hop-SegmentedControl-padding: var(--hop-space-inset-xs);
     --hop-SegmentedControl-width: fit-content;
-    --hop-SegmentedControl-background: var(--hop-neutral-surface);
-    --hop-SegmentedControl-border: 0.0625rem solid var(--hop-neutral-border);
-    --hop-SegmentedControl-border-radius: var(--hop-shape-rounded-md);
+    --hop-SegmentedControl-background: var(--hop-comp-control-background-color);
+    --hop-SegmentedControl-border: 0.0625rem solid var(--hop-comp-control-border-color);
+    --hop-SegmentedControl-border-radius: var(--hop-comp-segmented-control-border-radius);
     --hop-SegmentedControl-display: flex;
 
     display: var(--hop-SegmentedControl-display);
@@ -16,6 +16,7 @@
     background: var(--hop-SegmentedControl-background);
     border: var(--hop-SegmentedControl-border);
     border-radius: var(--hop-SegmentedControl-border-radius);
+    box-shadow: var(--hop-comp-segmented-control-box-shadow);
 }
 
 

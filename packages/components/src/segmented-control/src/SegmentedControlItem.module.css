@@ -1,10 +1,10 @@
 .hop-SegmentedControlItem {
     /* Default */
     --hop-SegmentedControlItem-gap: var(--hop-space-inline-xs);
-    --hop-SegmentedControlItem-color: var(--hop-neutral-text);
+    --hop-SegmentedControlItem-color: var(--hop-comp-segmented-control-text-color);
     --hop-SegmentedControlItem-background: transparent;
     --hop-SegmentedControlItem-border: none;
-    --hop-SegmentedControlItem-border-radius: var(--hop-shape-rounded-sm);
+    --hop-SegmentedControlItem-border-radius: var(--hop-comp-segmented-control-item-border-radius);
     --hop-SegmentedControlItem-cursor: pointer;
     --hop-SegmentedControlItem-position: relative;
     --hop-SegmentedControlItem-display: flex;
@@ -13,7 +13,7 @@
     --hop-SegmentedControlItem-transition: color 0.3s;
     --hop-SegmentedControlItem-outline: none;
     --hop-SegmentedControlItem-outline-offset: var(--hop-space-20);
-    --hop-SegmentedControlItem-focus-ring-color: var(--hop-primary-border-focus);
+    --hop-SegmentedControlItem-focus-ring-color: var(--hop-comp-control-border-color-focus);
     --hop-SegmentedControlItem-user-select: none;
     --hop-SegmentedControlItem-whitespace: nowrap;
 
@@ -24,30 +24,30 @@
     --hop-SegmentedControlItem-md-padding: 0.375rem var(--hop-space-inset-md);
 
     /* Slider */
-    --hop-SegmentedControlItem-slider-background: var(--hop-neutral-surface-selected);
+    --hop-SegmentedControlItem-slider-background: var(--hop-comp-control-background-color-selected);
     --hop-SegmentedControlItem-slider-position: absolute;
     --hop-SegmentedControlItem-slider-width: 100%;
     --hop-SegmentedControlItem-slider-height: 100%;
 
     /* Focused */
-    --hop-SegmentedControlItem-color-focused: var(--hop-neutral-text-hover);
-    --hop-SegmentedControlItem-background-focused: var(--hop-neutral-surface-hover);
+    --hop-SegmentedControlItem-color-focused: var(--hop-comp-segmented-control-text-color);
+    --hop-SegmentedControlItem-background-focused: var(--hop-comp-control-background-color-hover);
 
     /* Hovered */
-    --hop-SegmentedControlItem-color-hovered: var(--hop-neutral-text-hover);
-    --hop-SegmentedControlItem-background-hovered: var(--hop-neutral-surface-hover);
+    --hop-SegmentedControlItem-color-hovered: var(--hop-comp-segmented-control-text-color);
+    --hop-SegmentedControlItem-background-hovered: var(--hop-comp-control-background-color-hover);
 
     /* Pressed */
-    --hop-SegmentedControlItem-color-pressed: var(--hop-neutral-text-press);
-    --hop-SegmentedControlItem-background-pressed: var(--hop-neutral-surface-press);
+    --hop-SegmentedControlItem-color-pressed: var(--hop-comp-segmented-control-text-color);
+    --hop-SegmentedControlItem-background-pressed: var(--hop-comp-control-background-color-press);
 
     /* Selected */
-    --hop-SegmentedControlItem-color-selected: var(--hop-neutral-text-selected);
+    --hop-SegmentedControlItem-color-selected: var(--hop-comp-segmented-control-text-color-selected);
     --hop-SegmentedControlItem-background-selected: transparent;
 
     /* Disabled */
     --hop-SegmentedControlItem-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-SegmentedControlItem-background-disabled: var(--hop-neutral-surface);
+    --hop-SegmentedControlItem-background-disabled: var(--hop-comp-control-background-color-disabled);
     --hop-SegmentedControlItem-cursor-disabled: auto;
 
     /* Internal variables */
@@ -119,12 +119,16 @@
 .hop-SegmentedControlItem[data-selected] {
     --color: var(--hop-SegmentedControlItem-color-selected);
     --background: var(--hop-SegmentedControlItem-background-selected);
+
+    box-shadow: var(--hop-comp-segmented-control-item-box-shadow-selected);
 }
 
 .hop-SegmentedControlItem[data-disabled] {
     --cursor: var(--hop-SegmentedControlItem-cursor-disabled);
     --color: var(--hop-SegmentedControlItem-color-disabled);
     --background: var(--hop-SegmentedControlItem-background-disabled);
+
+    box-shadow: var(--hop-comp-segmented-control-item-box-shadow-disabled);
 }
 
 .hop-SegmentedControlItem--md {

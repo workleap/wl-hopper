@@ -1,0 +1,40 @@
+{
+    "comp-segmented-control": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weakest}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon-weakest}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "1.5px 1.5px 1.5px 0 rgb(0 0 0 / 3%), 0.5px 1.5px 5px 0 rgb(0 0 0 / 10%) inset, -2.5px 2.5px 5px 0 rgb(255 255 255 / 50%) inset"
+        },
+        "item-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "item-box-shadow-selected": {
+            "$type": "shadow",
+            "$value": "-2.5px -2.5px 5px 0 rgb(255 255 255 / 50%), 2.5px 2.5px 5px 0 rgb(0 0 0 / 5%)"
+        },
+        "item-box-shadow-disabled": {
+            "$type": "shadow",
+            "$value": "none"
+        }
+    }
+}

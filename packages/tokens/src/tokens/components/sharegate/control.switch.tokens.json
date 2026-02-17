@@ -1,0 +1,48 @@
+{
+    "comp-switch": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.pill}"
+        },
+        "track-filter": {
+            "$type": "shadow",
+            "$value": "drop-shadow(1.5px 1.5px 1.5px rgb(0 0 0 / 3%))"
+        },
+        "track-box-shadow": {
+            "$type": "shadow",
+            "$value": "0.5px 1.5px 5px 0 rgb(0 0 0 / 10%) inset, -2.5px 2.5px 5px 0 rgb(255 255 255 / 50%) inset"
+        },
+        "thumb-filter": {
+            "$type": "shadow",
+            "$value": "drop-shadow(2.5px 2.5px 5px rgb(0 0 0 / 5%)) drop-shadow(-2.5px -2.5px 5px rgb(255 255 255 / 50%))"
+        },
+        "thumb-filter-selected": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{primary.surface-selected}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon-strong}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-strong}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-strong}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-selected}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        }
+    }
+}
