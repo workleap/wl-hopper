@@ -24,7 +24,15 @@
             "$type": "shadow",
             "$value": "none"
         },
-        "box-shadow-selected": {
+        "item-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "item-box-shadow-selected": {
+            "$type": "shadow",
+            "$value": "none"
+        },
+        "item-box-shadow-disabled": {
             "$type": "shadow",
             "$value": "none"
         }

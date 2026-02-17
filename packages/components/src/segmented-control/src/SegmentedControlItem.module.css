@@ -4,7 +4,7 @@
     --hop-SegmentedControlItem-color: var(--hop-comp-segmented-control-text-color);
     --hop-SegmentedControlItem-background: transparent;
     --hop-SegmentedControlItem-border: none;
-    --hop-SegmentedControlItem-border-radius: var(--hop-comp-segmented-control-border-radius);
+    --hop-SegmentedControlItem-border-radius: var(--hop-comp-segmented-control-item-border-radius);
     --hop-SegmentedControlItem-cursor: pointer;
     --hop-SegmentedControlItem-position: relative;
     --hop-SegmentedControlItem-display: flex;
@@ -120,13 +120,15 @@
     --color: var(--hop-SegmentedControlItem-color-selected);
     --background: var(--hop-SegmentedControlItem-background-selected);
 
-    box-shadow: var(--hop-comp-segmented-control-box-shadow-selected);
+    box-shadow: var(--hop-comp-segmented-control-item-box-shadow-selected);
 }
 
 .hop-SegmentedControlItem[data-disabled] {
     --cursor: var(--hop-SegmentedControlItem-cursor-disabled);
     --color: var(--hop-SegmentedControlItem-color-disabled);
     --background: var(--hop-SegmentedControlItem-background-disabled);
+
+    box-shadow: var(--hop-comp-segmented-control-item-box-shadow-disabled);
 }
 
 .hop-SegmentedControlItem--md {
