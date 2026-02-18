@@ -16,7 +16,7 @@ import styles from "./Alert.module.css";
 
 export const GlobalAlertCssSelector = "hop-Alert";
 
-export interface AlertProps extends StyledComponentProps<DialogProps> {
+export interface AlertProps extends StyledComponentProps<DialogProps>, Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
     /**
      * The button to focus by default when the alert open.
      */
@@ -47,6 +47,10 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      */
     primaryButtonDisabled?: boolean;
     /**
+     * Whether or not the primary button is loading.
+     */
+    primaryButtonLoading?: boolean;
+    /**
      * The primary button label.
      */
     primaryButtonLabel: string;
@@ -54,6 +58,10 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Whether or not the secondary button is disabled.
      */
     secondaryButtonDisabled?: boolean;
+    /**
+     * Whether or not the secondary button is loading.
+     */
+    secondaryButtonLoading?: boolean;
     /**
      * The secondary button label.
      */
@@ -76,6 +84,11 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Whether or not the Alert is loading.
      */
     isLoading?: boolean;
+    /**
+     * Handler that is called when the alert's open state changes.
+     * This handler is only called when the alert is not used inside a `AlertTrigger`. Use the `onOpenChange` prop of `AlertTrigger` instead if it's part of a trigger
+     */
+    onOpenChange?: (isOpen: boolean) => void;
 }
 
 function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -95,11 +108,16 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         onSecondaryButtonClick,
         primaryButtonDisabled,
         primaryButtonLabel,
+        primaryButtonLoading,
         secondaryButtonDisabled,
+        secondaryButtonLoading,
         secondaryButtonLabel,
         variant = "confirmation",
         overlayProps,
         isLoading,
+        isOpen,
+        defaultOpen,
+        onOpenChange,
         ...otherProps
     } = ownProps;
 
@@ -131,6 +149,9 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             isDismissable={isDismissable && !isLoading}
             isKeyboardDismissDisabled={isDismissable && !isLoading}
             className={clsx(styles["hop-Alert__overlay"], overlayProps?.className)}
+            isOpen={isOpen}
+            defaultOpen={defaultOpen}
+            onOpenChange={onOpenChange}
             modalProps={{
                 ...overlayProps?.modalProps,
                 className: clsx(overlayProps?.modalProps?.className, cssModule(
@@ -186,6 +207,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                     onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
                                     isDisabled={isLoading || secondaryButtonDisabled}
+                                    isLoading={isLoading || secondaryButtonLoading}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}
@@ -193,7 +215,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             )}
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
-                                isLoading={isLoading}
+                                isLoading={isLoading || primaryButtonLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
                                 onPress={() => chain(onPrimaryButtonClick?.(), renderProps.close)}
