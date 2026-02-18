@@ -2,4 +2,4 @@
 "@hopper-ui/components": patch
 ---
 
-Adds loading and open state to Alert
+Adds isOpen, defaultOpen state and onOpenChange to Alert
