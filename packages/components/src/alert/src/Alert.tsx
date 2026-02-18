@@ -197,7 +197,6 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                     onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
                                     isDisabled={isLoading || secondaryButtonDisabled}
-                                    isLoading={isLoading}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}

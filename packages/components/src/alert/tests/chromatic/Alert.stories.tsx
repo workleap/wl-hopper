@@ -1,10 +1,13 @@
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { within } from "storybook/test";
 
+import { Button } from "../../../buttons/index.ts";
 import { Content } from "../../../layout/index.ts";
 import { Heading } from "../../../typography/index.ts";
 import { Alert } from "../../src/Alert.tsx";
+import { AlertTrigger } from "../../src/AlertTrigger.tsx";
 
 const viewports = {
     mobile: {
@@ -24,10 +27,6 @@ const meta = {
             modes: allColorModesAndThemes
         }
     },
-    args: {
-        isOpen: true,
-        primaryButtonLabel: "Leap ahead!"
-    },
     decorators: [
         Story => (
             <Div
@@ -35,10 +34,22 @@ const meta = {
                 // Important for chromatic tests.
                 UNSAFE_minHeight="800px"
             >
-                <Story />
+                <AlertTrigger>
+                    <Button variant="secondary">Open alert</Button>
+                    <Story />
+                </AlertTrigger>
             </Div>
         )
-    ]
+    ],
+    args: {
+        primaryButtonLabel: "Leap ahead!"
+    },
+    play: ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+        const button = canvas.getByRole("button");
+
+        button.click();
+    }
 } satisfies Meta<typeof Alert>;
 
 export default meta;
