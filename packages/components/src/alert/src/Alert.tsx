@@ -47,10 +47,6 @@ export interface AlertProps extends StyledComponentProps<DialogProps>, Pick<Base
      */
     primaryButtonDisabled?: boolean;
     /**
-     * Whether or not the primary button is loading.
-     */
-    primaryButtonLoading?: boolean;
-    /**
      * The primary button label.
      */
     primaryButtonLabel: string;
@@ -58,10 +54,6 @@ export interface AlertProps extends StyledComponentProps<DialogProps>, Pick<Base
      * Whether or not the secondary button is disabled.
      */
     secondaryButtonDisabled?: boolean;
-    /**
-     * Whether or not the secondary button is loading.
-     */
-    secondaryButtonLoading?: boolean;
     /**
      * The secondary button label.
      */
@@ -108,9 +100,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         onSecondaryButtonClick,
         primaryButtonDisabled,
         primaryButtonLabel,
-        primaryButtonLoading,
         secondaryButtonDisabled,
-        secondaryButtonLoading,
         secondaryButtonLabel,
         variant = "confirmation",
         overlayProps,
@@ -207,7 +197,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                                     onPress={() => chain(onSecondaryButtonClick?.(), renderProps.close())}
                                     variant="secondary"
                                     isDisabled={isLoading || secondaryButtonDisabled}
-                                    isLoading={isLoading || secondaryButtonLoading}
+                                    isLoading={isLoading}
                                     autoFocus={autoFocusButton === "secondary"}
                                 >
                                     {secondaryButtonLabel}
@@ -215,7 +205,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                             )}
                             <Button
                                 variant={variant === "confirmation" ? "primary" : "danger"}
-                                isLoading={isLoading || primaryButtonLoading}
+                                isLoading={isLoading}
                                 isDisabled={primaryButtonDisabled}
                                 autoFocus={autoFocusButton === "primary"}
                                 onPress={() => chain(onPrimaryButtonClick?.(), renderProps.close)}
