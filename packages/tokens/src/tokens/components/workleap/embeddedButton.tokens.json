@@ -99,23 +99,23 @@
         "progress": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.progress-icon}"
+                "$value": "{status.progress.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.progress-icon-hover}"
+                "$value": "{status.progress.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.progress-icon-hover}"
+                "$value": "{status.progress.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.progress-icon-press}"
+                "$value": "{status.progress.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.progress-icon-disabled}"
+                "$value": "{status.progress.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -123,15 +123,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.progress-surface-hover}"
+                "$value": "{status.progress.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.progress-surface-hover}"
+                "$value": "{status.progress.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.progress-surface-press}"
+                "$value": "{status.progress.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -141,23 +141,23 @@
         "positive": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.positive-icon}"
+                "$value": "{status.positive.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.positive-icon-hover}"
+                "$value": "{status.positive.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.positive-icon-hover}"
+                "$value": "{status.positive.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.positive-icon-press}"
+                "$value": "{status.positive.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.positive-icon-disabled}"
+                "$value": "{status.positive.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -165,15 +165,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.positive-surface-hover}"
+                "$value": "{status.positive.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.positive-surface-hover}"
+                "$value": "{status.positive.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.positive-surface-press}"
+                "$value": "{status.positive.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -183,23 +183,23 @@
         "caution": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.caution-icon}"
+                "$value": "{status.caution.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.caution-icon-hover}"
+                "$value": "{status.caution.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.caution-icon-hover}"
+                "$value": "{status.caution.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.caution-icon-press}"
+                "$value": "{status.caution.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.caution-icon-disabled}"
+                "$value": "{status.caution.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -207,15 +207,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.caution-surface-hover}"
+                "$value": "{status.caution.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.caution-surface-hover}"
+                "$value": "{status.caution.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.caution-surface-press}"
+                "$value": "{status.caution.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -225,23 +225,23 @@
         "negative": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.negative-icon}"
+                "$value": "{status.negative.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.negative-icon-hover}"
+                "$value": "{status.negative.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.negative-icon-hover}"
+                "$value": "{status.negative.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.negative-icon-press}"
+                "$value": "{status.negative.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.negative-icon-disabled}"
+                "$value": "{status.negative.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -249,15 +249,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.negative-surface-hover}"
+                "$value": "{status.negative.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.negative-surface-hover}"
+                "$value": "{status.negative.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.negative-surface-press}"
+                "$value": "{status.negative.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -267,23 +267,23 @@
         "option1": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option1-icon}"
+                "$value": "{status.option1.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option1-icon-hover}"
+                "$value": "{status.option1.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option1-icon-hover}"
+                "$value": "{status.option1.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option1-icon-press}"
+                "$value": "{status.option1.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option1-icon-disabled}"
+                "$value": "{status.option1.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -291,15 +291,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option1-surface-hover}"
+                "$value": "{status.option1.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option1-surface-hover}"
+                "$value": "{status.option1.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option1-surface-press}"
+                "$value": "{status.option1.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -309,23 +309,23 @@
         "option2": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option2-icon}"
+                "$value": "{status.option2.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option2-icon-hover}"
+                "$value": "{status.option2.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option2-icon-hover}"
+                "$value": "{status.option2.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option2-icon-press}"
+                "$value": "{status.option2.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option2-icon-disabled}"
+                "$value": "{status.option2.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -333,15 +333,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option2-surface-hover}"
+                "$value": "{status.option2.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option2-surface-hover}"
+                "$value": "{status.option2.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option2-surface-press}"
+                "$value": "{status.option2.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -351,23 +351,23 @@
         "option3": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option3-icon}"
+                "$value": "{status.option3.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option3-icon-hover}"
+                "$value": "{status.option3.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option3-icon-hover}"
+                "$value": "{status.option3.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option3-icon-press}"
+                "$value": "{status.option3.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option3-icon-disabled}"
+                "$value": "{status.option3.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -375,15 +375,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option3-surface-hover}"
+                "$value": "{status.option3.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option3-surface-hover}"
+                "$value": "{status.option3.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option3-surface-press}"
+                "$value": "{status.option3.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -393,23 +393,23 @@
         "option4": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option4-icon}"
+                "$value": "{status.option4.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option4-icon-hover}"
+                "$value": "{status.option4.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option4-icon-hover}"
+                "$value": "{status.option4.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option4-icon-press}"
+                "$value": "{status.option4.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option4-icon-disabled}"
+                "$value": "{status.option4.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -417,15 +417,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option4-surface-hover}"
+                "$value": "{status.option4.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option4-surface-hover}"
+                "$value": "{status.option4.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option4-surface-press}"
+                "$value": "{status.option4.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -435,23 +435,23 @@
         "option5": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option5-icon}"
+                "$value": "{status.option5.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option5-icon-hover}"
+                "$value": "{status.option5.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option5-icon-hover}"
+                "$value": "{status.option5.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option5-icon-press}"
+                "$value": "{status.option5.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option5-icon-disabled}"
+                "$value": "{status.option5.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -459,15 +459,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option5-surface-hover}"
+                "$value": "{status.option5.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option5-surface-hover}"
+                "$value": "{status.option5.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option5-surface-press}"
+                "$value": "{status.option5.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",
@@ -477,23 +477,23 @@
         "option6": {
             "icon-color": {
                 "$type": "color",
-                "$value": "{status.option6-icon}"
+                "$value": "{status.option6.icon}"
             },
             "icon-color-hover": {
                 "$type": "color",
-                "$value": "{status.option6-icon-hover}"
+                "$value": "{status.option6.icon-hover}"
             },
             "icon-color-focus": {
                 "$type": "color",
-                "$value": "{status.option6-icon-hover}"
+                "$value": "{status.option6.icon-hover}"
             },
             "icon-color-press": {
                 "$type": "color",
-                "$value": "{status.option6-icon-press}"
+                "$value": "{status.option6.icon-press}"
             },
             "icon-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option6-icon-disabled}"
+                "$value": "{status.option6.icon-disabled}"
             },
             "effect-background-color": {
                 "$type": "color",
@@ -501,15 +501,15 @@
             },
             "effect-background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option6-surface-hover}"
+                "$value": "{status.option6.surface-hover}"
             },
             "effect-background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option6-surface-hover}"
+                "$value": "{status.option6.surface-hover}"
             },
             "effect-background-color-press": {
                 "$type": "color",
-                "$value": "{status.option6-surface-press}"
+                "$value": "{status.option6.surface-press}"
             },
             "effect-background-color-disabled": {
                 "$type": "color",

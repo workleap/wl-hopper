@@ -135,11 +135,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.progress-surface}"
+                "$value": "{status.progress.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.progress-text}"
+                "$value": "{status.progress.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -147,11 +147,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.progress-surface-hover}"
+                "$value": "{status.progress.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.progress-text-hover}"
+                "$value": "{status.progress.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -159,11 +159,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.progress-surface-hover}"
+                "$value": "{status.progress.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.progress-text-hover}"
+                "$value": "{status.progress.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -171,11 +171,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.progress-surface-press}"
+                "$value": "{status.progress.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.progress-text-press}"
+                "$value": "{status.progress.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -183,11 +183,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.progress-surface-disabled}"
+                "$value": "{status.progress.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.progress-text-disabled}"
+                "$value": "{status.progress.text-disabled}"
             }
         },
         "positive": {
@@ -197,11 +197,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.positive-surface}"
+                "$value": "{status.positive.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.positive-text}"
+                "$value": "{status.positive.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -209,11 +209,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.positive-surface-hover}"
+                "$value": "{status.positive.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.positive-text-hover}"
+                "$value": "{status.positive.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -221,11 +221,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.positive-surface-hover}"
+                "$value": "{status.positive.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.positive-text-hover}"
+                "$value": "{status.positive.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -233,11 +233,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.positive-surface-press}"
+                "$value": "{status.positive.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.positive-text-press}"
+                "$value": "{status.positive.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -245,11 +245,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.positive-surface-disabled}"
+                "$value": "{status.positive.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.positive-text-disabled}"
+                "$value": "{status.positive.text-disabled}"
             }
         },
         "caution": {
@@ -259,11 +259,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.caution-surface}"
+                "$value": "{status.caution.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.caution-text}"
+                "$value": "{status.caution.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -271,11 +271,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.caution-surface-hover}"
+                "$value": "{status.caution.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.caution-text-hover}"
+                "$value": "{status.caution.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -283,11 +283,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.caution-surface-hover}"
+                "$value": "{status.caution.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.caution-text-hover}"
+                "$value": "{status.caution.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -295,11 +295,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.caution-surface-press}"
+                "$value": "{status.caution.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.caution-text-press}"
+                "$value": "{status.caution.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -307,11 +307,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.caution-surface-disabled}"
+                "$value": "{status.caution.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.caution-text-disabled}"
+                "$value": "{status.caution.text-disabled}"
             }
         },
         "negative": {
@@ -321,11 +321,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.negative-surface}"
+                "$value": "{status.negative.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.negative-text}"
+                "$value": "{status.negative.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -333,11 +333,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.negative-surface-hover}"
+                "$value": "{status.negative.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.negative-text-hover}"
+                "$value": "{status.negative.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -345,11 +345,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.negative-surface-hover}"
+                "$value": "{status.negative.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.negative-text-hover}"
+                "$value": "{status.negative.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -357,11 +357,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.negative-surface-press}"
+                "$value": "{status.negative.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.negative-text-press}"
+                "$value": "{status.negative.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -369,11 +369,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.negative-surface-disabled}"
+                "$value": "{status.negative.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.negative-text-disabled}"
+                "$value": "{status.negative.text-disabled}"
             }
         },
         "option1": {
@@ -383,11 +383,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option1-surface}"
+                "$value": "{status.option1.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option1-text}"
+                "$value": "{status.option1.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -395,11 +395,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option1-surface-hover}"
+                "$value": "{status.option1.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option1-text-hover}"
+                "$value": "{status.option1.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -407,11 +407,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option1-surface-hover}"
+                "$value": "{status.option1.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option1-text-hover}"
+                "$value": "{status.option1.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -419,11 +419,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option1-surface-press}"
+                "$value": "{status.option1.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option1-text-press}"
+                "$value": "{status.option1.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -431,11 +431,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option1-surface-disabled}"
+                "$value": "{status.option1.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option1-text-disabled}"
+                "$value": "{status.option1.text-disabled}"
             }
         },
         "option2": {
@@ -445,11 +445,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option2-surface}"
+                "$value": "{status.option2.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option2-text}"
+                "$value": "{status.option2.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -457,11 +457,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option2-surface-hover}"
+                "$value": "{status.option2.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option2-text-hover}"
+                "$value": "{status.option2.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -469,11 +469,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option2-surface-hover}"
+                "$value": "{status.option2.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option2-text-hover}"
+                "$value": "{status.option2.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -481,11 +481,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option2-surface-press}"
+                "$value": "{status.option2.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option2-text-press}"
+                "$value": "{status.option2.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -493,11 +493,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option2-surface-disabled}"
+                "$value": "{status.option2.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option2-text-disabled}"
+                "$value": "{status.option2.text-disabled}"
             }
         },
         "option3": {
@@ -507,11 +507,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option3-surface}"
+                "$value": "{status.option3.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option3-text}"
+                "$value": "{status.option3.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -519,11 +519,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option3-surface-hover}"
+                "$value": "{status.option3.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option3-text-hover}"
+                "$value": "{status.option3.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -531,11 +531,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option3-surface-hover}"
+                "$value": "{status.option3.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option3-text-hover}"
+                "$value": "{status.option3.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -543,11 +543,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option3-surface-press}"
+                "$value": "{status.option3.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option3-text-press}"
+                "$value": "{status.option3.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -555,11 +555,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option3-surface-disabled}"
+                "$value": "{status.option3.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option3-text-disabled}"
+                "$value": "{status.option3.text-disabled}"
             }
         },
         "option4": {
@@ -569,11 +569,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option4-surface}"
+                "$value": "{status.option4.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option4-text}"
+                "$value": "{status.option4.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -581,11 +581,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option4-surface-hover}"
+                "$value": "{status.option4.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option4-text-hover}"
+                "$value": "{status.option4.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -593,11 +593,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option4-surface-hover}"
+                "$value": "{status.option4.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option4-text-hover}"
+                "$value": "{status.option4.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -605,11 +605,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option4-surface-press}"
+                "$value": "{status.option4.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option4-text-press}"
+                "$value": "{status.option4.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -617,11 +617,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option4-surface-disabled}"
+                "$value": "{status.option4.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option4-text-disabled}"
+                "$value": "{status.option4.text-disabled}"
             }
         },
         "option5": {
@@ -631,11 +631,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option5-surface}"
+                "$value": "{status.option5.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option5-text}"
+                "$value": "{status.option5.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -643,11 +643,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option5-surface-hover}"
+                "$value": "{status.option5.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option5-text-hover}"
+                "$value": "{status.option5.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -655,11 +655,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option5-surface-hover}"
+                "$value": "{status.option5.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option5-text-hover}"
+                "$value": "{status.option5.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -667,11 +667,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option5-surface-press}"
+                "$value": "{status.option5.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option5-text-press}"
+                "$value": "{status.option5.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -679,11 +679,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option5-surface-disabled}"
+                "$value": "{status.option5.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option5-text-disabled}"
+                "$value": "{status.option5.text-disabled}"
             }
         },
         "option6": {
@@ -693,11 +693,11 @@
             },
             "background-color": {
                 "$type": "color",
-                "$value": "{status.option6-surface}"
+                "$value": "{status.option6.surface}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{status.option6-text}"
+                "$value": "{status.option6.text}"
             },
             "border-color-hover": {
                 "$type": "color",
@@ -705,11 +705,11 @@
             },
             "background-color-hover": {
                 "$type": "color",
-                "$value": "{status.option6-surface-hover}"
+                "$value": "{status.option6.surface-hover}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{status.option6-text-hover}"
+                "$value": "{status.option6.text-hover}"
             },
             "border-color-focus": {
                 "$type": "color",
@@ -717,11 +717,11 @@
             },
             "background-color-focus": {
                 "$type": "color",
-                "$value": "{status.option6-surface-hover}"
+                "$value": "{status.option6.surface-hover}"
             },
             "text-color-focus": {
                 "$type": "color",
-                "$value": "{status.option6-text-hover}"
+                "$value": "{status.option6.text-hover}"
             },
             "border-color-press": {
                 "$type": "color",
@@ -729,11 +729,11 @@
             },
             "background-color-press": {
                 "$type": "color",
-                "$value": "{status.option6-surface-press}"
+                "$value": "{status.option6.surface-press}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{status.option6-text-press}"
+                "$value": "{status.option6.text-press}"
             },
             "border-color-disabled": {
                 "$type": "color",
@@ -741,11 +741,11 @@
             },
             "background-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option6-surface-disabled}"
+                "$value": "{status.option6.surface-disabled}"
             },
             "text-color-disabled": {
                 "$type": "color",
-                "$value": "{status.option6-text-disabled}"
+                "$value": "{status.option6.text-disabled}"
             }
         },
         "selected": {
