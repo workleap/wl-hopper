@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.12
+
+### Patch Changes
+
+- b089886: Added isOpen, defaultOpen and onOpenChange to Alert to allow an alert to be opened without a trigger
+
 ## 2.0.11
 
 ### Patch Changes
