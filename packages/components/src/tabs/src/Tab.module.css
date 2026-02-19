@@ -3,29 +3,29 @@
     --hop-Tab-gap: var(--hop-space-inset-sm);
     --hop-Tab-align-items: center;
     --hop-Tab-justify-content: center;
-    --hop-Tab-color: var(--hop-neutral-text-weak);
+    --hop-Tab-color: var(--hop-comp-tab-text-color);
     --hop-Tab-white-space: nowrap;
-    --hop-Tab-border-radius: var(--hop-shape-rounded-md);
+    --hop-Tab-border-radius: var(--hop-comp-tab-border-radius);
     --hop-Tab-outline: none;
     --hop-Tab-padding: var(--hop-space-inset-sm);
     --hop-Tab-text-decoration: none;
     --hop-Tab-cursor: pointer;
 
     /* Selected */
-    --hop-Tab-selected-color: var(--hop-neutral-text);
+    --hop-Tab-selected-color: var(--hop-comp-tab-text-color-selected);
 
     /* Hovered */
-    --hop-Tab-hovered-color: var(--hop-neutral-text-hover);
+    --hop-Tab-hovered-color: var(--hop-comp-tab-text-color-hover);
 
     /* Pressed */
-    --hop-Tab-pressed-color: var(--hop-neutral-text-press);
+    --hop-Tab-pressed-color: var(--hop-comp-tab-text-color-press);
 
     /* Focus */
-    --hop-Tab-focus-color: var(--hop-neutral-text-hover);
+    --hop-Tab-focus-color: var(--hop-comp-tab-text-color-focus);
     --hop-Tab-focus-outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
 
     /* Disabled */
-    --hop-Tab-disabled-color: var(--hop-neutral-text-disabled);
+    --hop-Tab-disabled-color: var(--hop-comp-tab-text-color-disabled);
 
     /* Medium */
     --hop-Tab-medium-padding: var(--hop-space-20);
@@ -116,10 +116,10 @@
     inline-size: 100%;
     block-size: 0.125rem;
 
-    background-color: var(--hop-neutral-border-selected);
+    background-color: var(--hop-comp-tab-selector-border-color-selected);
     border-style: none;
 }
 
 .hop-Tab__selector--disabled .hop-Tab__selector--inner {
-    background-color: var(--hop-neutral-border-disabled);
+    background-color: var(--hop-comp-tab-selector-border-color-disabled);
 }

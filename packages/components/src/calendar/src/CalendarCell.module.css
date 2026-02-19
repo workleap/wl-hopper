@@ -5,8 +5,8 @@
     --hop-CalendarCell-inline-size: 2.5rem;
     --hop-CalendarCell-block-size: 2.5rem;
     --hop-CalendarCell-outline: none;
-    --hop-CalendarCell-border-radius: var(--hop-shape-circle);
-    --hop-CalendarCell-color: var(--hop-neutral-text);
+    --hop-CalendarCell-border-radius: var(--hop-comp-calendar-cell-border-radius);
+    --hop-CalendarCell-color: var(--hop-comp-calendar-cell-text-color);
     --hop-CalendarCell-font-family: var(--hop-body-sm-font-family);
     --hop-CalendarCell-font-size: var(--hop-body-sm-font-size);
     --hop-CalendarCell-font-weight: var(--hop-body-sm-font-weight);
@@ -38,8 +38,8 @@
 }
 
 .hop-CalendarCell[data-hovered]:not([data-unavailable], [data-selected]) {
-    --hop-CalendarCell-data-hovered-background: var(--hop-neutral-surface-hover);
-    --hop-CalendarCell-data-hovered-color: var(--hop-neutral-text-hover);
+    --hop-CalendarCell-data-hovered-background: var(--hop-comp-calendar-cell-background-color-hover);
+    --hop-CalendarCell-data-hovered-color: var(--hop-comp-calendar-cell-text-color-hover);
 
     color: var(--hop-CalendarCell-data-hovered-color);
     background: var(--hop-CalendarCell-data-hovered-background);
@@ -52,37 +52,37 @@
 }
 
 .hop-CalendarCell[data-pressed] {
-    --hop-CalendarCell-data-pressed-background: var(--hop-neutral-surface-press);
-    --hop-CalendarCell-data-pressed-color: var(--hop-neutral-text-hover);
+    --hop-CalendarCell-data-pressed-background: var(--hop-comp-calendar-cell-background-color-press);
+    --hop-CalendarCell-data-pressed-color: var(--hop-comp-calendar-cell-text-color-press);
 
     color: var(--hop-CalendarCell-data-pressed-color);
     background: var(--hop-CalendarCell-data-pressed-background);
 }
 
 .hop-CalendarCell[data-selected] {
-    --hop-CalendarCell-data-selected-background: var(--hop-neutral-surface-selected);
-    --hop-CalendarCell-data-selected-color: var(--hop-neutral-text-selected);
+    --hop-CalendarCell-data-selected-background: var(--hop-comp-calendar-cell-background-color-selected);
+    --hop-CalendarCell-data-selected-color: var(--hop-comp-calendar-cell-text-color-selected);
 
     color: var(--hop-CalendarCell-data-selected-color);
     background: var(--hop-CalendarCell-data-selected-background);
 }
 
 .hop-CalendarCell[data-disabled] {
-    --hop-CalendarCell-data-disabled-color: var(--hop-neutral-text-disabled);
+    --hop-CalendarCell-data-disabled-color: var(--hop-comp-calendar-cell-text-color-disabled);
 
     color: var(--hop-CalendarCell-data-disabled-color);
 }
 
 .hop-CalendarCell[data-invalid] {
-    --hop-CalendarCell-data-invalid-color: var(--hop-danger-text-strong);
-    --hop-CalendarCell-data-invalid-background: var(--hop-danger-surface-strong);
+    --hop-CalendarCell-data-invalid-color: var(--hop-comp-calendar-cell-text-color-invalid);
+    --hop-CalendarCell-data-invalid-background: var(--hop-comp-calendar-cell-background-color-invalid);
 
     color: var(--hop-CalendarCell-data-invalid-color);
     background: var(--hop-CalendarCell-data-invalid-background);
 }
 
 .hop-CalendarCell[data-unavailable] {
-    --hop-CalendarCell-data-unavailable-color: var(--hop-danger-text-weak);
+    --hop-CalendarCell-data-unavailable-color: var(--hop-comp-calendar-cell-text-color-unavailable);
     --hop-CalendarCell-data-unavailable-text-decoration: line-through;
 
     color: var(--hop-CalendarCell-data-unavailable-color);
@@ -90,14 +90,14 @@
 }
 
 .hop-CalendarCell[data-today]:not([data-selected]) {
-    --hop-CalendarCell-data-today-border: 0.125rem solid var(--hop-neutral-border-strong);
+    --hop-CalendarCell-data-today-border: 0.125rem solid var(--hop-comp-calendar-cell-border-color-today);
 
     border: var(--hop-CalendarCell-data-today-border);
 }
 
 .hop-CalendarCell[data-disabled][data-selected] {
-    --hop-CalendarCell-data-selected-disabled-background: var(--hop-neutral-surface-disabled);
-    --hop-CalendarCell-data-selected-disabled-color: var(--hop-neutral-text-disabled);
+    --hop-CalendarCell-data-selected-disabled-background: var(--hop-comp-calendar-cell-background-color-selected-disabled);
+    --hop-CalendarCell-data-selected-disabled-color: var(--hop-comp-calendar-cell-text-color-selected-disabled);
 
     color: var(--hop-CalendarCell-data-selected-disabled-color);
     background: var(--hop-CalendarCell-data-selected-disabled-background);

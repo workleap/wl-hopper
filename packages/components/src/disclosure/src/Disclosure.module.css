@@ -6,25 +6,25 @@
 
     /* With Header */
     --hop-Disclosure-with-header-panel-padding: var(--hop-space-inset-md);
-    --hop-Disclosure-with-header-panel-background-color: var(--hop-neutral-surface);
+    --hop-Disclosure-with-header-panel-background-color: var(--hop-comp-disclosure-background-color);
 
     /* Standalone */
-    --hop-Disclosure-standalone-border-radius: var(--hop-shape-rounded-md);
-    --hop-Disclosure-standalone-box-shadow: var(--hop-elevation-raised);
+    --hop-Disclosure-standalone-border-radius: var(--hop-comp-disclosure-border-radius);
+    --hop-Disclosure-standalone-box-shadow: var(--hop-comp-disclosure-box-shadow);
     --hop-Disclosure-standalone-panel-border-size: 0;
     --hop-Disclosure-standalone-panel-border-size-expanded: 0 var(--hop-space-10) var(--hop-space-10) var(--hop-space-10);
-    --hop-Disclosure-standalone-panel-border-color: var(--hop-neutral-border-weak);
+    --hop-Disclosure-standalone-panel-border-color: var(--hop-comp-disclosure-border-color);
 
     /* Inline */
     --hop-Disclosure-inline-border-radius: 0;
     --hop-Disclosure-inline-box-shadow: none;
     --hop-Disclosure-inline-panel-border-size: 0 0 var(--hop-space-10) 0;
     --hop-Disclosure-inline-panel-border-size-expanded: 0 0 var(--hop-space-10) 0;
-    --hop-Disclosure-inline-panel-border-color: var(--hop-neutral-border-weak);
+    --hop-Disclosure-inline-panel-border-color: var(--hop-comp-disclosure-border-color);
 
     /* Disabled */
     --hop-Disclosure-box-shadow-disabled: none;
-    --hop-Disclosure-panel-border-color-disabled: var(--hop-neutral-border-disabled);
+    --hop-Disclosure-panel-border-color-disabled: var(--hop-comp-disclosure-border-color-disabled);
 
     /* Internal Variables */
     --panel-background-color: var(--hop-Disclosure-panel-background-color);

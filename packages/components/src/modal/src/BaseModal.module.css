@@ -17,7 +17,7 @@
     --hop-BaseModal-font-weight: var(--hop-body-md-font-weight);
     --hop-BaseModal-line-height: var(--hop-body-md-line-height);
     --hop-BaseModal-font-smoothing: antialiased;
-    --hop-BaseModal-color: var(--hop-neutral-text);
+    --hop-BaseModal-color: var(--hop-comp-modal-text-color);
 
     isolation: var(--hop-BaseModal-isolation);
     position: var(--hop-BaseModal-position);
@@ -50,8 +50,8 @@
     --hop-BaseModal__modal-flex-direction: column;
     --hop-BaseModal__modal-max-inline-size: 90dvw;
     --hop-BaseModal__modal-max-block-size: 90dvh;
-    --hop-BaseModal__modal-background: var(--hop-neutral-surface);
-    --hop-BaseModal__modal-border-radius: var(--hop-shape-rounded-md);
+    --hop-BaseModal__modal-background: var(--hop-comp-modal-background-color);
+    --hop-BaseModal__modal-border-radius: var(--hop-comp-modal-border-radius);
 
     /* Internal variables */
     --border-radius: var(--hop-BaseModal__modal-border-radius);

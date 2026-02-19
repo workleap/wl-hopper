@@ -1,8 +1,5 @@
 .hop-ListBox  {
     /* Default */
-    --hop-ListBox-background-color: var(--hop-neutral-surface);
-    --hop-ListBox-border-color: var(--hop-neutral-border-weak);
-    --hop-ListBox-border-radius: var(--hop-shape-rounded-md);
     --hop-ListBox-border-size: 0.0625rem;
     --hop-ListBox-padding-inline: var(--hop-space-inset-sm);
     --hop-ListBox-padding-block: var(--hop-space-inset-sm);
@@ -20,10 +17,9 @@
     --hop-ListBox-section-margin-block: var(--hop-space-stack-sm);
     --hop-ListBox-section-margin-inline: calc(-1 * var(--hop-ListBox-padding-inline));
     --hop-ListBox-section-border-size: var(--hop-ListBox-border-size);
-    --hop-ListBox-section-border-color: var(--hop-ListBox-border-color);
+    --hop-ListBox-section-border-color: var(--hop-comp-listbox-border-color);
 
     /* Section Header */
-    --hop-ListBox-section-header-color: var(--hop-neutral-text-weak);
     --hop-ListBox-section-header-font-family: var(--hop-overline-font-family);
     --hop-ListBox-section-header-font-size: var(--hop-overline-font-size);
     --hop-ListBox-section-header-font-weight: var(--hop-overline-font-weight);
@@ -53,9 +49,9 @@
     padding-block: var(--hop-ListBox-padding-block);
     padding-inline: var(--hop-ListBox-padding-inline);
 
-    background-color: var(--hop-ListBox-background-color);
-    border: var(--hop-ListBox-border-size) solid var(--hop-ListBox-border-color);
-    border-radius: var(--hop-ListBox-border-radius);
+    background-color: var(--hop-comp-listbox-background-color);
+    border: var(--hop-ListBox-border-size) solid var(--hop-comp-listbox-border-color);
+    border-radius: var(--hop-comp-listbox-border-radius);
 }
 
 .hop-ListBox--fluid {
@@ -101,7 +97,7 @@
     font-size: var(--hop-ListBox-section-header-font-size);
     font-weight: var(--hop-ListBox-section-header-font-weight);
     line-height: var(--hop-ListBox-section-header-line-height);
-    color: var(--hop-ListBox-section-header-color);
+    color: var(--hop-comp-listbox-section-header-text-color);
     text-transform: var(--hop-ListBox-section-header-text-transform);
     letter-spacing: var(--hop-ListBox-section-header-letter-spacing);
 }

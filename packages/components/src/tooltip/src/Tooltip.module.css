@@ -1,15 +1,15 @@
 .hop-Tooltip {
     --hop-Tooltip-max-inline-size: 20rem;
     --hop-Tooltip-slide-amount: 0.25rem; /* Tokens not available here */
-    --hop-Tooltip-background: var(--hop-neutral-surface-strong);
-    --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
-    --hop-Tooltip-box-shadow: var(--hop-elevation-raised);
+    --hop-Tooltip-background: var(--hop-comp-tooltip-background-color);
+    --hop-Tooltip-border-radius: var(--hop-comp-tooltip-border-radius);
+    --hop-Tooltip-box-shadow: var(--hop-comp-tooltip-box-shadow);
     --hop-Tooltip-font-family: var(--hop-body-xs-font-family);
     --hop-Tooltip-font-size: var(--hop-body-xs-font-size);
     --hop-Tooltip-font-weight: var(--hop-body-xs-font-weight);
     --hop-Tooltip-line-height: var(--hop-body-xs-line-height);
     --hop-Tooltip-font-smoothing: antialiased;
-    --hop-Tooltip-color: var(--hop-neutral-text-strong);
+    --hop-Tooltip-color: var(--hop-comp-tooltip-text-color);
     --hop-Tooltip-padding: var(--hop-space-inset-squish-md);
 
     /* Internal Variables */

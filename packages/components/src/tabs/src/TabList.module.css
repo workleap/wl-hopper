@@ -2,19 +2,19 @@
     --hop-TabList-display: flex;
     --hop-TabList-position: relative;
     --hop-TabList-overflow-y: auto;
-    --hop-Tablist-border-radius: var(--hop-shape-rounded-md);
+    --hop-Tablist-border-radius: var(--hop-comp-tab-list-border-radius);
     --hop-TabList-padding-inline: var(--hop-space-inset-xs);
 
     /* This is to ensure to the proper height of the TabList */
     --hop-TabList-padding-block: calc(var(--hop-space-inset-xs) + var(--hop-space-10));
 
     /* Standalone */
-    --hop-TabList-standalone-background: var(--hop-neutral-surface-weakest);
-    --hop-TabList-standalone-border: 0.0625rem solid var(--hop-neutral-border-weak);
+    --hop-TabList-standalone-background: var(--hop-comp-tab-list-background-color);
+    --hop-TabList-standalone-border: 0.0625rem solid var(--hop-comp-tab-list-border-color);
 
     /* In card */
-    --hop-TabList-in-card-background: var(--hop-neutral-surface-weakest);
-    --hop-TabList-in-card-border: 0.0625rem solid var(--hop-neutral-border-weak);
+    --hop-TabList-in-card-background: var(--hop-comp-tab-list-background-color);
+    --hop-TabList-in-card-border: 0.0625rem solid var(--hop-comp-tab-list-border-color);
 
     /* Internal */
     --padding-inline: var(--hop-TabList-padding-inline);

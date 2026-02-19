@@ -1,0 +1,92 @@
+{
+    "comp-calendar": {
+        "cell-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
+        },
+        "cell-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "cell-background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-hover}"
+        },
+        "cell-text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "cell-background-color-press": {
+            "$type": "color",
+            "$value": "{neutral.surface-press}"
+        },
+        "cell-text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "cell-background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-selected}"
+        },
+        "cell-text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-selected}"
+        },
+        "cell-text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "cell-background-color-invalid": {
+            "$type": "color",
+            "$value": "{danger.surface-strong}"
+        },
+        "cell-text-color-invalid": {
+            "$type": "color",
+            "$value": "{danger.text-strong}"
+        },
+        "cell-text-color-unavailable": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "cell-border-color-today": {
+            "$type": "color",
+            "$value": "{neutral.border-strong}"
+        },
+        "cell-background-color-selected-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "cell-text-color-selected-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "grid-body-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "grid-body-border-color": {
+            "$type": "color",
+            "$value": "{neutral.border}"
+        },
+        "header-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "range-cell-background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-selected}"
+        },
+        "range-cell-text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "range-cell-edge-background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-selected}"
+        },
+        "range-cell-edge-text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-selected}"
+        }
+    }
+}

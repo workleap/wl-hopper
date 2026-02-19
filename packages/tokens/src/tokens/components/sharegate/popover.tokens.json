@@ -1,0 +1,32 @@
+{
+    "comp-popover": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "content-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "footer-link-text-color": {
+            "$type": "color",
+            "$value": "{primary.text}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.lifted}"
+        }
+    }
+}

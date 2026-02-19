@@ -1,0 +1,52 @@
+{
+    "comp-tab": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "selector-border-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.border-selected}"
+        },
+        "selector-border-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.border-disabled}"
+        },
+        "list-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "list-background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface-weakest}"
+        },
+        "list-border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        }
+    }
+}
