@@ -16,7 +16,7 @@ import styles from "./Alert.module.css";
 
 export const GlobalAlertCssSelector = "hop-Alert";
 
-export interface AlertProps extends StyledComponentProps<DialogProps> {
+export interface AlertProps extends StyledComponentProps<DialogProps>, Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
     /**
      * The button to focus by default when the alert open.
      */
@@ -76,6 +76,11 @@ export interface AlertProps extends StyledComponentProps<DialogProps> {
      * Whether or not the Alert is loading.
      */
     isLoading?: boolean;
+    /**
+     * Handler that is called when the alert's open state changes.
+     * This handler is only called when the alert is not used inside a `AlertTrigger`. Use the `onOpenChange` prop of `AlertTrigger` instead if it's part of a trigger
+     */
+    onOpenChange?: (isOpen: boolean) => void;
 }
 
 function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -100,6 +105,9 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
         variant = "confirmation",
         overlayProps,
         isLoading,
+        isOpen,
+        defaultOpen,
+        onOpenChange,
         ...otherProps
     } = ownProps;
 
@@ -127,10 +135,12 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
 
     return (
         <BaseModal
-            {...overlayProps}
             isDismissable={isDismissable && !isLoading}
             isKeyboardDismissDisabled={isDismissable && !isLoading}
             className={clsx(styles["hop-Alert__overlay"], overlayProps?.className)}
+            isOpen={isOpen}
+            defaultOpen={defaultOpen}
+            onOpenChange={onOpenChange}
             modalProps={{
                 ...overlayProps?.modalProps,
                 className: clsx(overlayProps?.modalProps?.className, cssModule(
@@ -139,6 +149,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
                     size
                 ))
             }}
+            {...overlayProps}
         >
             <Dialog
                 role="alertdialog"
