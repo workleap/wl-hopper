@@ -9,7 +9,7 @@ import { Alert, AlertContext } from "../../src/index.ts";
 describe("Alert", () => {
     it("should render with default class", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" isOpen>
+            <Alert primaryButtonLabel="Confirm" overlayProps={{ isOpen: true }}>
                 <Heading>Test</Heading>
             </Alert>
         );
@@ -20,7 +20,7 @@ describe("Alert", () => {
 
     it("should support custom class", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" className="test" isOpen>
+            <Alert primaryButtonLabel="Confirm" className="test" overlayProps={{ isOpen: true }}>
                 <Heading>Test</Heading>
             </Alert>
         );
@@ -32,7 +32,7 @@ describe("Alert", () => {
 
     it("should support custom style", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" marginTop="stack-sm" style={{ marginBottom: "13px" }} isOpen>
+            <Alert primaryButtonLabel="Confirm" marginTop="stack-sm" style={{ marginBottom: "13px" }} overlayProps={{ isOpen: true }}>
                 <Heading>Test</Heading>
             </Alert>
         );
@@ -43,7 +43,7 @@ describe("Alert", () => {
 
     it("should support DOM props", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" aria-label="alert options" data-foo="bar" isOpen>
+            <Alert primaryButtonLabel="Confirm" aria-label="alert options" data-foo="bar" overlayProps={{ isOpen: true }}>
                 <Heading>Test</Heading>
             </Alert>
         );
@@ -55,7 +55,7 @@ describe("Alert", () => {
     it("should support slots", () => {
         render(
             <AlertContext.Provider value={{ slots: { test: { "aria-label": "test", primaryButtonLabel: "Confirm" } } }}>
-                <Alert primaryButtonLabel="Confirm" slot="test" isOpen>
+                <Alert primaryButtonLabel="Confirm" slot="test" overlayProps={{ isOpen: true }}>
                     <Heading>Test</Heading>
                 </Alert>
             </AlertContext.Provider>
@@ -70,7 +70,7 @@ describe("Alert", () => {
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
         render(
-            <Alert primaryButtonLabel="Confirm" aria-label="alert options" ref={ref} isOpen>
+            <Alert primaryButtonLabel="Confirm" aria-label="alert options" ref={ref} overlayProps={{ isOpen: true }}>
                 <Heading>Test</Heading>
             </Alert>
         );
