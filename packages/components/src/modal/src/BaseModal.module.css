@@ -10,7 +10,7 @@
     --hop-BaseModal-justify-content: center;
     --hop-BaseModal-inline-size: 100%;
     --hop-BaseModal-block-size: 100%;
-    --hop-BaseModal-background-color: #3c3c3c99;
+    --hop-BaseModal-background-color: #3c3c3c99; /* TODO: Backdrop overlay color is #3c3c3c99 (hardcoded hex with alpha). Needs a semantic token (e.g., {neutral.surface-overlay}) to support theming. */
     --hop-BaseModal-z-index: 10000;
     --hop-BaseModal-font-family: var(--hop-body-md-font-family);
     --hop-BaseModal-font-size: var(--hop-body-md-font-size);
