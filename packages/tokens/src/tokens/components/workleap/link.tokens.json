@@ -1,0 +1,44 @@
+{
+    "comp-link": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "primary": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{primary.text}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{primary.text-hover}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{primary.text-press}"
+            },
+            "text-color-disabled": {
+                "$type": "color",
+                "$value": "{primary.text-disabled}"
+            }
+        },
+        "neutral": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.text-hover}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{neutral.text-press}"
+            },
+            "text-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.text-disabled}"
+            }
+        }
+    }
+}

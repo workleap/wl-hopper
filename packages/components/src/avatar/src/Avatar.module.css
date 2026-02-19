@@ -1,27 +1,6 @@
 .hop-Avatar  {
     /* Default */
-    --hop-Avatar-border-radius: var(--hop-shape-circle);
     --hop-Avatar-mix-blend-mode: normal;
-
-    /* Colors */
-    --hop-Avatar-decorative-1-background-color: var(--hop-decorative-option1-surface-strong);
-    --hop-Avatar-decorative-2-background-color: var(--hop-decorative-option2-surface-strong);
-    --hop-Avatar-decorative-3-background-color: var(--hop-decorative-option3-surface-strong);
-    --hop-Avatar-decorative-4-background-color: var(--hop-decorative-option4-surface-strong);
-    --hop-Avatar-decorative-5-background-color: var(--hop-decorative-option5-surface-strong);
-    --hop-Avatar-decorative-6-background-color: var(--hop-decorative-option6-surface-strong);
-    --hop-Avatar-decorative-7-background-color: var(--hop-decorative-option7-surface-strong);
-    --hop-Avatar-decorative-8-background-color: var(--hop-decorative-option8-surface-strong);
-    --hop-Avatar-decorative-9-background-color: var(--hop-decorative-option9-surface-strong);
-    --hop-Avatar-decorative-1-text-color: var(--hop-decorative-option1-text);
-    --hop-Avatar-decorative-2-text-color: var(--hop-decorative-option2-text);
-    --hop-Avatar-decorative-3-text-color: var(--hop-decorative-option3-text);
-    --hop-Avatar-decorative-4-text-color: var(--hop-decorative-option4-text);
-    --hop-Avatar-decorative-5-text-color: var(--hop-decorative-option5-text);
-    --hop-Avatar-decorative-6-text-color: var(--hop-decorative-option6-text);
-    --hop-Avatar-decorative-7-text-color: var(--hop-decorative-option7-text);
-    --hop-Avatar-decorative-8-text-color: var(--hop-decorative-option8-text);
-    --hop-Avatar-decorative-9-text-color: var(--hop-decorative-option9-text);
 
     /* Sizes */
     --hop-Avatar-xs-size: 1rem;
@@ -32,8 +11,6 @@
     --hop-Avatar-2xl-size: 6rem;
 
     /* disabled */
-    --hop-Avatar-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Avatar-text-color-disabled: var(--hop-neutral-text-disabled);
     --hop-Avatar-mix-blend-mode-disabled: luminosity;
 
     /* Internal variables */
@@ -56,7 +33,7 @@
     color: var(--text-color, var(--hop-neutral-text));
 
     background-color: var(--background-color, transparent);
-    border-radius: var(--hop-Avatar-border-radius);
+    border-radius: var(--hop-comp-avatar-border-radius);
     outline: none;
 }
 
@@ -94,53 +71,53 @@
 
 /* Colors */
 .hop-Avatar--decorative-option1 {
-    --background-color: var(--hop-Avatar-decorative-1-background-color);
-    --text-color: var(--hop-Avatar-decorative-1-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option1-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option1-text-color);
 }
 
 .hop-Avatar--decorative-option2 {
-    --background-color: var(--hop-Avatar-decorative-2-background-color);
-    --text-color: var(--hop-Avatar-decorative-2-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option2-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option2-text-color);
 }
 
 .hop-Avatar--decorative-option3 {
-    --background-color: var(--hop-Avatar-decorative-3-background-color);
-    --text-color: var(--hop-Avatar-decorative-3-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option3-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option3-text-color);
 }
 
 .hop-Avatar--decorative-option4 {
-    --background-color: var(--hop-Avatar-decorative-4-background-color);
-    --text-color: var(--hop-Avatar-decorative-4-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option4-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option4-text-color);
 }
 
 .hop-Avatar--decorative-option5 {
-    --background-color: var(--hop-Avatar-decorative-5-background-color);
-    --text-color: var(--hop-Avatar-decorative-5-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option5-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option5-text-color);
 }
 
 .hop-Avatar--decorative-option6 {
-    --background-color: var(--hop-Avatar-decorative-6-background-color);
-    --text-color: var(--hop-Avatar-decorative-6-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option6-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option6-text-color);
 }
 
 .hop-Avatar--decorative-option7 {
-    --background-color: var(--hop-Avatar-decorative-7-background-color);
-    --text-color: var(--hop-Avatar-decorative-7-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option7-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option7-text-color);
 }
 
 .hop-Avatar--decorative-option8 {
-    --background-color: var(--hop-Avatar-decorative-8-background-color);
-    --text-color: var(--hop-Avatar-decorative-8-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option8-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option8-text-color);
 }
 
 .hop-Avatar--decorative-option9 {
-    --background-color: var(--hop-Avatar-decorative-9-background-color);
-    --text-color: var(--hop-Avatar-decorative-9-text-color);
+    --background-color: var(--hop-comp-avatar-decorative-option9-background-color);
+    --text-color: var(--hop-comp-avatar-decorative-option9-text-color);
 }
 
 .hop-Avatar[data-disabled] {
-    --background-color: var(--hop-Avatar-background-color-disabled);
-    --text-color: var(--hop-Avatar-text-color-disabled);
+    --background-color: var(--hop-comp-avatar-disabled-background-color);
+    --text-color: var(--hop-comp-avatar-disabled-text-color);
     --mix-blend-mode: var(--hop-Avatar-mix-blend-mode-disabled);
 
     isolation: isolate;

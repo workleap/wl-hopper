@@ -1,0 +1,208 @@
+{
+    "comp-listbox": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        },
+        "section-header-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "item": {
+            "border-radius": {
+                "$type": "borderRadius",
+                "$value": "{shape.rounded-md}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text}"
+            },
+            "icon-color": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "description-text-color": {
+                "$type": "color",
+                "$value": "{neutral.text-weak}"
+            },
+            "hover": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "{neutral.surface-hover}"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{neutral.text-hover}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{neutral.icon-hover}"
+                }
+            },
+            "press": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "{neutral.surface-press}"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{neutral.text-press}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{neutral.icon-press}"
+                }
+            },
+            "focus": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "{neutral.surface-hover}"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{neutral.text-hover}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{neutral.icon-hover}"
+                }
+            },
+            "selected": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "transparent"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{neutral.text}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{neutral.icon}"
+                }
+            },
+            "disabled": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "transparent"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{neutral.text-disabled}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{neutral.icon-disabled}"
+                }
+            },
+            "invalid": {
+                "background-color": {
+                    "$type": "color",
+                    "$value": "transparent"
+                },
+                "text-color": {
+                    "$type": "color",
+                    "$value": "{danger.text-weak}"
+                },
+                "icon-color": {
+                    "$type": "color",
+                    "$value": "{danger.icon-weak}"
+                },
+                "hover": {
+                    "background-color": {
+                        "$type": "color",
+                        "$value": "{danger.surface-hover}"
+                    },
+                    "text-color": {
+                        "$type": "color",
+                        "$value": "{danger.text-strong}"
+                    },
+                    "icon-color": {
+                        "$type": "color",
+                        "$value": "{danger.icon-strong}"
+                    },
+                    "description-text-color": {
+                        "$type": "color",
+                        "$value": "inherit"
+                    }
+                },
+                "press": {
+                    "background-color": {
+                        "$type": "color",
+                        "$value": "{danger.surface-press}"
+                    },
+                    "text-color": {
+                        "$type": "color",
+                        "$value": "{danger.text-strong}"
+                    },
+                    "icon-color": {
+                        "$type": "color",
+                        "$value": "{danger.icon-strong}"
+                    },
+                    "description-text-color": {
+                        "$type": "color",
+                        "$value": "inherit"
+                    }
+                },
+                "focus": {
+                    "background-color": {
+                        "$type": "color",
+                        "$value": "{danger.surface-hover}"
+                    },
+                    "text-color": {
+                        "$type": "color",
+                        "$value": "{danger.text-strong}"
+                    },
+                    "icon-color": {
+                        "$type": "color",
+                        "$value": "{danger.icon-strong}"
+                    },
+                    "description-text-color": {
+                        "$type": "color",
+                        "$value": "inherit"
+                    }
+                },
+                "selected": {
+                    "background-color": {
+                        "$type": "color",
+                        "$value": "transparent"
+                    },
+                    "text-color": {
+                        "$type": "color",
+                        "$value": "{danger.text-weak}"
+                    },
+                    "icon-color": {
+                        "$type": "color",
+                        "$value": "{danger.icon-weak}"
+                    }
+                },
+                "disabled": {
+                    "background-color": {
+                        "$type": "color",
+                        "$value": "transparent"
+                    },
+                    "text-color": {
+                        "$type": "color",
+                        "$value": "{danger.text-disabled}"
+                    },
+                    "icon-color": {
+                        "$type": "color",
+                        "$value": "{danger.icon-disabled}"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "comp-divider": {
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        }
+    }
+}

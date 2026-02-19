@@ -1,0 +1,124 @@
+{
+    "comp-badge": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.pill}"
+        },
+        "indeterminate-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
+        },
+        "primary": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{primary.text-strong}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{primary.surface-strong}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{primary.text-strong-hover}"
+            },
+            "background-color-hover": {
+                "$type": "color",
+                "$value": "{primary.surface-strong-hover}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{primary.text-strong}"
+            },
+            "background-color-press": {
+                "$type": "color",
+                "$value": "{primary.surface-strong-press}"
+            },
+            "text-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.text-selected}"
+            },
+            "background-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.surface-selected}"
+            }
+        },
+        "secondary": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text-strong}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-strong}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.text-strong}"
+            },
+            "background-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.surface-strong}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{neutral.text-strong}"
+            },
+            "background-color-press": {
+                "$type": "color",
+                "$value": "{neutral.surface-strong}"
+            },
+            "text-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.text-selected}"
+            },
+            "background-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.surface-selected}"
+            }
+        },
+        "subdued": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text-weak}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.text-weak-hover}"
+            },
+            "background-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-hover}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{neutral.text-weak-press}"
+            },
+            "background-color-press": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-press}"
+            },
+            "text-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.text-weak-selected}"
+            },
+            "background-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-selected}"
+            }
+        },
+        "disabled": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text-disabled}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
+            }
+        }
+    }
+}

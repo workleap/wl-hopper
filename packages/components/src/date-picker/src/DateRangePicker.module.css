@@ -68,7 +68,7 @@ button.hop-DateRangePicker__Button {
 }
 
 .hop-DateRangePicker__Button {
-    --hop-Button-ghost-secondary-background-color: var(--hop-neutral-surface);
+    --hop-Button-ghost-secondary-background-color: var(--hop-neutral-surface); /* TODO: we should use component tokens */
 }
 
 .hop-DateRangePicker__InputGroup[data-disabled] button.hop-DateRangePicker__Button {

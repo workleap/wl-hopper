@@ -1,10 +1,10 @@
 .hop-Accordion {
     /* Standalone */
     --hop-Accordion-standalone-border-size: var(--hop-space-10);
-    --hop-Accordion-standalone-border-color: var(--hop-neutral-border-weak);
-    --hop-Accordion-standalone-border-radius: var(--hop-shape-rounded-md);
-    --hop-Accordion-standalone-box-shadow: var(--hop-elevation-raised);
-    --hop-Accordion-standalone-disclosure-border-radius-size: var(--hop-shape-rounded-md);
+    --hop-Accordion-standalone-border-color: var(--hop-comp-disclosure-border-color);
+    --hop-Accordion-standalone-border-radius: var(--hop-comp-disclosure-border-radius);
+    --hop-Accordion-standalone-box-shadow: var(--hop-comp-disclosure-box-shadow);
+    --hop-Accordion-standalone-disclosure-border-radius-size: var(--hop-comp-disclosure-border-radius);
     --hop-Accordion-standalone-disclosure-last-child-border-block-end-size: 0;
 
     /* Inline */
