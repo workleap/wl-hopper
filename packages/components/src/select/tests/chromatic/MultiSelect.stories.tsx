@@ -746,6 +746,16 @@ export const SearchableMultiSelect = {
     decorators: marginBottomDecoratorLG
 } satisfies Story;
 
+export const EmptyCollection = {
+    render: args => (
+        <MultiSelect {...args} allowsEmptyCollection listBoxProps={{ renderEmptyState: () => <Text>No results available.</Text> }}>
+            {[]}
+        </MultiSelect>
+    ),
+    play: playFn,
+    decorators: marginBottomDecoratorSM
+} satisfies Story;
+
 export const SelectionIndicator = {
     render: args => (
         <MultiSelect {...args} selectionIndicator="input">

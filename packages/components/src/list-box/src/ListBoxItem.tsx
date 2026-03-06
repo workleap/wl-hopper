@@ -270,7 +270,7 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
 
     return (
         <RACListBoxItem
-            ref={ref as ForwardedRef<T>} /* Needed until this bug is fixed: https://github.com/adobe/react-spectrum/issues/6799 */
+            ref={ref as ForwardedRef<HTMLDivElement>} /* Needed until this bug is fixed: https://github.com/adobe/react-spectrum/issues/6799 */
             className={classNames}
             style={style}
             textValue={textValue}
