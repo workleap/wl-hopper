@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.1.6
+
+### Patch Changes
+
+- 33aedf7: Fixed Workleap control disabled background color token using neutral.surface instead of neutral.surface-disabled, causing disabled Switch and SegmentedControl to appear white instead of grey
+
 ## 5.1.5
 
 ### Patch Changes
