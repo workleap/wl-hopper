@@ -1,0 +1,64 @@
+{
+    "comp-callout": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "information": {
+            "border-color": {
+                "$type": "color",
+                "$value": "{information.border}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{information.surface}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{information.text}"
+            }
+        },
+        "success": {
+            "border-color": {
+                "$type": "color",
+                "$value": "{success.border}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{success.surface}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{success.text}"
+            }
+        },
+        "warning": {
+            "border-color": {
+                "$type": "color",
+                "$value": "{warning.border}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{warning.surface}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{warning.text}"
+            }
+        },
+        "upsell": {
+            "border-color": {
+                "$type": "color",
+                "$value": "{upsell.border}"
+            },
+            "background-color": {
+                "$type": "color",
+                "$value": "{upsell.surface}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{upsell.text}"
+            }
+        }
+    }
+}

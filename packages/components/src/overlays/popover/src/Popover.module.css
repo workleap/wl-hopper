@@ -63,12 +63,12 @@
 
 .hop-Popover__dialog,
 .hop-Popover__dropdown {
-    --hop-Popover-background: var(--hop-neutral-surface);
+    --hop-Popover-background: var(--hop-comp-popover-background-color);
     --hop-Popover-font-family: var(--hop-body-sm-font-family);
     --hop-Popover-font-size: var(--hop-body-sm-font-size);
     --hop-Popover-font-weight: var(--hop-body-sm-font-weight);
     --hop-Popover-line-height: var(--hop-body-sm-line-height);
-    --hop-Popover-color: var(--hop-neutral-text);
+    --hop-Popover-color: var(--hop-comp-popover-text-color);
     --hop-Popover-grid-template:
                             "header header"
                             "content content" 1fr
@@ -86,14 +86,14 @@
     --hop-Popover-content-font-family: var(--hop-body-sm-font-family);
     --hop-Popover-content-font-weight: var(--hop-body-sm-font-weight);
     --hop-Popover-content-line-height: var(--hop-body-sm-line-height);
-    --hop-Popover-content-color: var(--hop-neutral-text-weak);
+    --hop-Popover-content-color: var(--hop-comp-popover-content-text-color);
     --hop-Popover-footer-font-size: var(--hop-body-sm-font-size);
     --hop-Popover-footer-line-height: var(--hop-body-sm-line-height);
-    --hop-Popover-footer-link-color: var(--hop-primary-text);
+    --hop-Popover-footer-link-color: var(--hop-comp-popover-footer-link-text-color);
     --hop-Popover-footer-margin: var(--hop-space-stack-md) 0 0;
-    --hop-Popover-border: 0.0625rem solid var(--hop-neutral-border-weak);
-    --hop-Popover-border-radius: var(--hop-shape-rounded-md);
-    --hop-Popover-box-shadow: var(--hop-elevation-lifted);
+    --hop-Popover-border: 0.0625rem solid var(--hop-comp-popover-border-color);
+    --hop-Popover-border-radius: var(--hop-comp-popover-border-radius);
+    --hop-Popover-box-shadow: var(--hop-comp-popover-box-shadow);
 
     /* Dropdown Variables */
     --hop-Popover-dropdown-grid-template:
@@ -104,7 +104,7 @@
     --hop-Popover-list-box-dropdown-max-height: 18.75rem;
     --hop-Popover-footer-dropdown-margin: var(--hop-Popover-dropdown-padding) calc(-1 * var(--hop-Popover-dropdown-padding)) calc(-1 * var(--hop-Popover-dropdown-padding));
     --hop-Popover-footer-dropdown-footer-padding: var(--hop-space-inset-sm);
-    --hop-Popover-footer-dropdown-footer-border-top: 0.0625rem solid var(--hop-neutral-border-weak);
+    --hop-Popover-footer-dropdown-footer-border-top: 0.0625rem solid var(--hop-comp-popover-border-color);
     --hop-Popover-outline: none;
     --hop-Popover-overflow: auto;
 

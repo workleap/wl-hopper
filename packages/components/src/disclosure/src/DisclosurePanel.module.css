@@ -1,14 +1,14 @@
 .hop-DisclosurePanel {
-    --hop-DisclosurePanel-text-color: var(--hop-neutral-text-weak);
+    --hop-DisclosurePanel-text-color: var(--hop-comp-disclosure-panel-text-color);
     
     /* Standalone */
-    --hop-DisclosurePanel-standalone-border-radius: 0 0 var(--hop-shape-rounded-md) var(--hop-shape-rounded-md);
+    --hop-DisclosurePanel-standalone-border-radius: 0 0 var(--hop-comp-disclosure-border-radius) var(--hop-comp-disclosure-border-radius);
 
     /* Inline */
     --hop-DisclosurePanel-inline-border-radius: 0;
 
     /* Disabled */
-    --hop-DisclosurePanel-color-disabled: var(--hop-neutral-text-disabled);
+    --hop-DisclosurePanel-color-disabled: var(--hop-comp-disclosure-panel-text-color-disabled);
 
     /* Internal Variables */
     --transition-duration: var(--hop-easing-duration-2);

@@ -1,9 +1,9 @@
 .hop-PopoverBase {
-    --hop-Popover-background: var(--hop-neutral-surface);
-    --hop-Popover-border: 0.0625rem solid var(--hop-neutral-border-weak);
-    --hop-Popover-border-radius: var(--hop-shape-rounded-md);
-    --hop-Popover-box-shadow: var(--hop-elevation-lifted);
-    --hop-Popover-color: var(--hop-neutral-text);
+    --hop-Popover-background: var(--hop-comp-popover-background-color);
+    --hop-Popover-border: 0.0625rem solid var(--hop-comp-popover-border-color);
+    --hop-Popover-border-radius: var(--hop-comp-popover-border-radius);
+    --hop-Popover-box-shadow: var(--hop-comp-popover-box-shadow);
+    --hop-Popover-color: var(--hop-comp-popover-text-color);
     --hop-Popover-font-family: var(--hop-body-md-font-family);
     --hop-Popover-font-size: var(--hop-body-md-font-size);
     --hop-Popover-font-weight: var(--hop-body-md-font-weight);

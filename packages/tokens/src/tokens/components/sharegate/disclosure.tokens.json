@@ -1,0 +1,92 @@
+{
+    "comp-disclosure": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.raised}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        },
+        "border-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.border-disabled}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-hover}"
+        },
+        "background-color-press": {
+            "$type": "color",
+            "$value": "{neutral.surface-press}"
+        },
+        "background-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "description-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "description-text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "outline-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.border-hover}"
+        },
+        "outline-color-press": {
+            "$type": "color",
+            "$value": "{neutral.border-press}"
+        },
+        "panel-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "panel-text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        }
+    }
+}

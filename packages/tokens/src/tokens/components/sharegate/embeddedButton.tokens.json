@@ -1,0 +1,530 @@
+{
+    "comp-embedded-button": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "effect-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
+        },
+        "effect-square-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "neutral": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "subdued": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "progress": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.progress.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.progress.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.progress.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.progress.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.progress.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.progress.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.progress.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.progress.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "positive": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.positive.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.positive.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.positive.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.positive.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.positive.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.positive.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.positive.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.positive.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "caution": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.caution.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.caution.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.caution.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.caution.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.caution.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.caution.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.caution.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.caution.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "negative": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.negative.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.negative.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.negative.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.negative.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.negative.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.negative.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.negative.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.negative.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option1": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option1.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option1.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option1.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option1.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option1.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option1.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option1.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option1.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option2": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option2.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option2.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option2.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option2.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option2.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option2.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option2.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option2.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option3": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option3.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option3.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option3.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option3.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option3.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option3.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option3.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option3.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option4": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option4.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option4.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option4.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option4.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option4.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option4.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option4.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option4.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option5": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option5.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option5.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option5.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option5.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option5.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option5.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option5.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option5.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "option6": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{status.option6.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{status.option6.icon-hover}"
+            },
+            "icon-color-focus": {
+                "$type": "color",
+                "$value": "{status.option6.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{status.option6.icon-press}"
+            },
+            "icon-color-disabled": {
+                "$type": "color",
+                "$value": "{status.option6.icon-disabled}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "effect-background-color-hover": {
+                "$type": "color",
+                "$value": "{status.option6.surface-hover}"
+            },
+            "effect-background-color-focus": {
+                "$type": "color",
+                "$value": "{status.option6.surface-hover}"
+            },
+            "effect-background-color-press": {
+                "$type": "color",
+                "$value": "{status.option6.surface-press}"
+            },
+            "effect-background-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
+            }
+        },
+        "selected": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-selected}"
+            },
+            "effect-background-color": {
+                "$type": "color",
+                "$value": "{neutral.surface-weak-selected}"
+            }
+        }
+    }
+}

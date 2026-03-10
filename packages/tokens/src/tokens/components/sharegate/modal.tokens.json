@@ -1,0 +1,16 @@
+{
+    "comp-modal": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        }
+    }
+}

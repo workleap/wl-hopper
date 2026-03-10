@@ -5,18 +5,18 @@
     --hop-DisclosureHeader-outline-offset: calc(-1 * var(--hop-space-10));
 
     /* Default */
-    --hop-DisclosureHeader-background-color: var(--hop-neutral-surface);
-    --hop-DisclosureHeader-color: var(--hop-neutral-text);
-    --hop-DisclosureHeader-icon-color: var(--hop-neutral-icon);
-    --hop-DisclosureHeader-description-color: var(--hop-neutral-text-weak);
+    --hop-DisclosureHeader-background-color: var(--hop-comp-disclosure-background-color);
+    --hop-DisclosureHeader-color: var(--hop-comp-disclosure-text-color);
+    --hop-DisclosureHeader-icon-color: var(--hop-comp-disclosure-icon-color);
+    --hop-DisclosureHeader-description-color: var(--hop-comp-disclosure-description-text-color);
     --hop-DisclosureHeader-border-radius-transition: 0s var(--hop-easing-productive) var(--hop-easing-duration-2); /* has a delay so it only happens after the other transitions */
 
     /* Standalone */
     --hop-DisclosureHeader-standalone-outline-size: var(--hop-space-10);
     --hop-DisclosureHeader-standalone-outline-color: transparent;
     --hop-DisclosureHeader-standalone-border-size: var(--hop-space-10);
-    --hop-DisclosureHeader-standalone-border-color: var(--hop-neutral-border-weak);
-    --hop-DisclosureHeader-standalone-border-radius: var(--hop-shape-rounded-md);
+    --hop-DisclosureHeader-standalone-border-color: var(--hop-comp-disclosure-border-color);
+    --hop-DisclosureHeader-standalone-border-radius: var(--hop-comp-disclosure-border-radius);
 
     /* Inline */
     --hop-DisclosureHeader-inline-outline-size: 0;
@@ -26,31 +26,31 @@
     --hop-DisclosureHeader-inline-border-radius: 0;
 
     /* Expanded */
-    --hop-DisclosureHeader-background-color-expanded: var(--hop-neutral-surface);
-    --hop-DisclosureHeader-color-expanded: var(--hop-neutral-text);
-    --hop-DisclosureHeader-icon-color-expanded: var(--hop-neutral-icon);
-    --hop-DisclosureHeader-standalone-border-radius-expanded: var(--hop-shape-rounded-md) var(--hop-shape-rounded-md) 0 0;
+    --hop-DisclosureHeader-background-color-expanded: var(--hop-comp-disclosure-background-color);
+    --hop-DisclosureHeader-color-expanded: var(--hop-comp-disclosure-text-color);
+    --hop-DisclosureHeader-icon-color-expanded: var(--hop-comp-disclosure-icon-color);
+    --hop-DisclosureHeader-standalone-border-radius-expanded: var(--hop-comp-disclosure-border-radius) var(--hop-comp-disclosure-border-radius) 0 0;
     --hop-DisclosureHeader-inline-border-radius-expanded: 0;
     --hop-DisclosureHeader-border-radius-transition-expanded: 0s var(--hop-easing-productive) 0s;
 
     /* Hovered */
-    --hop-DisclosureHeader-background-color-hovered: var(--hop-neutral-surface-hover);
-    --hop-DisclosureHeader-color-hovered: var(--hop-neutral-text-hover);
-    --hop-DisclosureHeader-icon-color-hovered: var(--hop-neutral-icon-hover);
-    --hop-DisclosureHeader-standalone-outline-color-hovered: var(--hop-neutral-border-hover);
+    --hop-DisclosureHeader-background-color-hovered: var(--hop-comp-disclosure-background-color-hover);
+    --hop-DisclosureHeader-color-hovered: var(--hop-comp-disclosure-text-color-hover);
+    --hop-DisclosureHeader-icon-color-hovered: var(--hop-comp-disclosure-icon-color-hover);
+    --hop-DisclosureHeader-standalone-outline-color-hovered: var(--hop-comp-disclosure-outline-color-hover);
     --hop-DisclosureHeader-inline-outline-color-hovered: transparent;
 
     /* Pressed */
-    --hop-DisclosureHeader-background-color-pressed: var(--hop-neutral-surface-press);
-    --hop-DisclosureHeader-color-pressed: var(--hop-neutral-text-press);
-    --hop-DisclosureHeader-icon-color-pressed: var(--hop-neutral-icon-press);
-    --hop-DisclosureHeader-standalone-outline-color-pressed: var(--hop-neutral-border-press);
+    --hop-DisclosureHeader-background-color-pressed: var(--hop-comp-disclosure-background-color-press);
+    --hop-DisclosureHeader-color-pressed: var(--hop-comp-disclosure-text-color-press);
+    --hop-DisclosureHeader-icon-color-pressed: var(--hop-comp-disclosure-icon-color-press);
+    --hop-DisclosureHeader-standalone-outline-color-pressed: var(--hop-comp-disclosure-outline-color-press);
     --hop-DisclosureHeader-inline-outline-color-pressed: transparent;
 
     /* Focused */
-    --hop-DisclosureHeader-background-color-focused: var(--hop-neutral-surface-hover);
-    --hop-DisclosureHeader-color-focused: var(--hop-neutral-text-hover);
-    --hop-DisclosureHeader-icon-color-focused: var(--hop-neutral-icon-hover);
+    --hop-DisclosureHeader-background-color-focused: var(--hop-comp-disclosure-background-color-hover);
+    --hop-DisclosureHeader-color-focused: var(--hop-comp-disclosure-text-color-hover);
+    --hop-DisclosureHeader-icon-color-focused: var(--hop-comp-disclosure-icon-color-hover);
     --hop-DisclosureHeader-standalone-outline-size-focused:  var(--hop-space-20);
     --hop-DisclosureHeader-standalone-outline-color-focused: var(--hop-primary-border-focus);
     --hop-DisclosureHeader-inline-outline-size-focused:  var(--hop-space-20);
@@ -58,11 +58,11 @@
     --hop-DisclosureHeader-outline-offset-focused: calc(-1 * var(--hop-space-20));
 
     /* Disabled */
-    --hop-DisclosureHeader-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-DisclosureHeader-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-DisclosureHeader-icon-color-disabled: var(--hop-neutral-icon-disabled);
-    --hop-DisclosureHeader-description-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-DisclosureHeader-standalone-border-color-disabled: var(--hop-neutral-border-disabled);
+    --hop-DisclosureHeader-background-color-disabled: var(--hop-comp-disclosure-background-color-disabled);
+    --hop-DisclosureHeader-color-disabled: var(--hop-comp-disclosure-text-color-disabled);
+    --hop-DisclosureHeader-icon-color-disabled: var(--hop-comp-disclosure-icon-color-disabled);
+    --hop-DisclosureHeader-description-color-disabled: var(--hop-comp-disclosure-description-text-color-disabled);
+    --hop-DisclosureHeader-standalone-border-color-disabled: var(--hop-comp-disclosure-border-color-disabled);
     --hop-DisclosureHeader-inline-border-color-disabled: transparent;
 
     /* Internal Variables */

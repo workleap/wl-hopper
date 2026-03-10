@@ -28,7 +28,7 @@
     --hop-Menu-header-font-size: var(--hop-overline-font-size);
     --hop-Menu-header-font-weight: var(--hop-overline-font-weight);
     --hop-Menu-header-line-height: var(--hop-overline-line-height);
-    --hop-Menu-header-color: var(--hop-neutral-text-weak);
+    --hop-Menu-header-color: var(--hop-comp-menu-header-text-color);
     --hop-Menu-header-text-transform: uppercase;
     --hop-Menu-header-font-family: var(--hop-overline-font-family);
     --hop-Menu-header-letter-spacing: 0.015rem;
