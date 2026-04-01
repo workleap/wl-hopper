@@ -6,4 +6,16 @@
     flex-shrink: 0;
     color: inherit;
     fill: currentcolor;
+    outline: none;
+}
+
+/*
+    Icons are not focusable elements, and should not receive focus to be accessible
+    However, in product codebase, there is multiple instances where icons are used as focusable elements
+    So we add this style to make sure that when icons receive focus, they don't have a default focus outline, but
+    instead have a custom focus style that is consistent with the design system
+ */
+:where(.hop-Icon):focus-visible {
+    border-radius: var(--hop-shape-rounded-sm);
+    outline: 0.125rem solid var(--hop-primary-border-focus);
 }
