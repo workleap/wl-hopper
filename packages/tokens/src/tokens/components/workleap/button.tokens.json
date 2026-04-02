@@ -25,6 +25,9 @@
                 "$type": "color",
                 "$value": "{primary.text-selected}"
             },
+            "background-image": {
+                "$value": "none"
+            },
             "background-color": {
                 "$type": "color",
                 "$value": "{primary.surface-strong}"

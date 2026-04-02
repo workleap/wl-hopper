@@ -16,6 +16,7 @@ import {
     FontFamily,
     FontSize,
     FontWeight,
+    GradientColors,
     HopperColors,
     IconColors,
     LineHeight,
@@ -61,6 +62,7 @@ function createOutlineValueTemplate(value: string) {
 // mappings
 export const ColorMapping = createMapping(HopperColors);
 export const DataVizColorMapping = createMapping(DataVizColors);
+export const GradientColorMapping = createMapping(GradientColors);
 
 export const BackgroundColorMapping = {
     ...createMapping(BackgroundColors),

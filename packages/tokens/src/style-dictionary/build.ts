@@ -10,7 +10,7 @@ import { customTsTokenMapping } from "./format/customTsTokenMapping.ts";
 import { cssDarkMode, customDoc, customJson, fontFace } from "./format/index.ts";
 import { getAvailableThemes } from "./helpers/getThemes.ts";
 import { w3cTokenJsonParser } from "./parser/w3cTokenParser.ts";
-import { attributeFont, isSizeType, pxToRem } from "./transform/index.ts";
+import { attributeFont, isLinearGradientType, isSizeType, linearGradientTransform, pxToRem } from "./transform/index.ts";
 
 const { fileHeader } = StyleDictionary.formatHelpers;
 
@@ -39,9 +39,17 @@ StyleDictionary.registerTransform({
     transformer: attributeFont
 });
 
+StyleDictionary.registerTransform({
+    name: "linearGradient",
+    type: "value",
+    transitive: true,
+    matcher: isLinearGradientType,
+    transformer: linearGradientTransform
+});
+
 StyleDictionary.registerTransformGroup({
     name: "custom/css",
-    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem"])
+    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem", "linearGradient"])
 });
 
 // Format
