@@ -1004,6 +1004,9 @@ importers:
       style-dictionary:
         specifier: 3.9.2
         version: 3.9.2
+      style-dictionary-utils:
+        specifier: 2.4.1
+        version: 2.4.1(style-dictionary@3.9.2)
       tsx:
         specifier: 4.20.6
         version: 4.20.6
@@ -5325,6 +5328,9 @@ packages:
 
   color-name@1.1.4:
     resolution: {integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==}
+
+  color2k@2.0.3:
+    resolution: {integrity: sha512-zW190nQTIoXcGCaU08DvVNFTmQhUpnJfVuAKfWqUQkflXKpaDdpaYoM0iluLS9lgJNHyBF58KKA2FBEwkD7wog==}
 
   colord@2.9.3:
     resolution: {integrity: sha512-jeC1axXpnb0/2nn/Y1LPuLdgXBLH7aDcHu4KEKfqw3CUhX7ZpfBSlPKyqXE6btIgEzfWtrX3/tyBCaCvXvMkOw==}
@@ -9853,6 +9859,11 @@ packages:
   strip-json-comments@3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
+
+  style-dictionary-utils@2.4.1:
+    resolution: {integrity: sha512-Ged3wCzzswC6vw8Fh74IKUJg7ajPiH0ersYsPi0VT2ENWCq/gx6uAYOr1rjslqjSyQUfAVvNnOPxuWGJ2mdncQ==}
+    peerDependencies:
+      style-dictionary: ^3.7.1
 
   style-dictionary@3.9.2:
     resolution: {integrity: sha512-M2pcQ6hyRtqHOh+NyT6T05R3pD/gwNpuhREBKvxC1En0vyywx+9Wy9nXWT1SZ9ePzv1vAo65ItnpA16tT9ZUCg==}
@@ -16483,6 +16494,8 @@ snapshots:
 
   color-name@1.1.4: {}
 
+  color2k@2.0.3: {}
+
   colord@2.9.3: {}
 
   colorette@2.0.20: {}
@@ -22561,6 +22574,13 @@ snapshots:
   strip-json-comments@1.0.4: {}
 
   strip-json-comments@3.1.1: {}
+
+  style-dictionary-utils@2.4.1(style-dictionary@3.9.2):
+    dependencies:
+      color2k: 2.0.3
+      json5: 2.2.3
+      prettier: 2.8.8
+      style-dictionary: 3.9.2
 
   style-dictionary@3.9.2:
     dependencies:

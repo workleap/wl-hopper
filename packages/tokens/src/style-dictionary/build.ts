@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import StyleDictionary from "style-dictionary";
+import "style-dictionary-utils"; // auto-registers gradient/css transform
 
 import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokenMappingConfig, getStyledSystemTokensConfig } from "./config.ts";
 import { AUTO_GENERATED_COMMENT, HOPPER_PREFIX, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
@@ -10,7 +11,7 @@ import { customTsTokenMapping } from "./format/customTsTokenMapping.ts";
 import { cssDarkMode, customDoc, customJson, fontFace } from "./format/index.ts";
 import { getAvailableThemes } from "./helpers/getThemes.ts";
 import { w3cTokenJsonParser } from "./parser/w3cTokenParser.ts";
-import { attributeFont, isSizeType, pxToRem } from "./transform/index.ts";
+import { attributeFont, gradientCssLinear, isGradientToken, isSizeType, pxToRem } from "./transform/index.ts";
 
 const { fileHeader } = StyleDictionary.formatHelpers;
 
@@ -39,9 +40,17 @@ StyleDictionary.registerTransform({
     transformer: attributeFont
 });
 
+StyleDictionary.registerTransform({
+    name: "gradient/css-linear",
+    type: "value",
+    transitive: true,
+    matcher: isGradientToken,
+    transformer: gradientCssLinear
+});
+
 StyleDictionary.registerTransformGroup({
     name: "custom/css",
-    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem"])
+    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem", "gradient/css", "gradient/css-linear", "shadow/css"])
 });
 
 // Format

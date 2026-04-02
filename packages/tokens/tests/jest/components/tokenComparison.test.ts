@@ -40,7 +40,9 @@ const collectKeys = (jsonPath: string): string[] => {
         Object.keys(node).forEach(key => {
             const currentPath = prefix ? `${prefix}.${key}` : key;
             keys.push(currentPath);
-            visit((node)[key], currentPath);
+            if (key !== "$value") {
+                visit((node)[key], currentPath);
+            }
         });
     };
 

@@ -11,6 +11,7 @@ const MappingType = {
     IconColors: "IconColors",
     BorderColors: "BorderColors",
     DataVizColors: "DataVizColors",
+    GradientColors: "GradientColors",
     Elevation: "Elevation",
     FontFamily: "FontFamily",
     FontWeight: "FontWeight",
@@ -41,6 +42,7 @@ export const customTsTokenMapping = function ({ dictionary}: { dictionary: Dicti
         const cssPrefix = `--${HOPPER_PREFIX}`;
 
         mappings += mapColors(coreTokens, semanticTokens);
+        mappings += mapGradients(coreTokens, semanticTokens);
         mappings += mapElevation(coreTokens, semanticTokens);
         mappings += mapFonts(coreTokens, semanticTokens);
         mappings += mapShape(coreTokens, semanticTokens);
@@ -84,6 +86,16 @@ function createMapping(name: string, tokenPartToRemove?: string, prefixToAdd?: s
     }
 
     return tokenMapping;
+}
+
+function mapGradients(coreTokens: TransformedToken[], semanticTokens: TransformedToken[]) {
+    const coreGradientTokens = coreTokens.filter(t => t.type === "gradient").map(x => x.name);
+    const semanticGradientTokens = semanticTokens.filter(t => t.type === "gradient").map(x => x.name);
+
+    return formatTokenMapping(MappingType.GradientColors, [
+        ...coreGradientTokens.map(name => createMapping(name, undefined, "core")),
+        ...semanticGradientTokens.map(name => createMapping(name))
+    ]);
 }
 
 function mapElevation(coreTokens: TransformedToken[], semanticTokens: TransformedToken[]) {
