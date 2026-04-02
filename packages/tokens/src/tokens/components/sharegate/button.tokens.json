@@ -25,6 +25,13 @@
                 "$type": "color",
                 "$value": "{neutral.text-strong}"
             },
+            "background-image": {
+                "$type": "linearGradient",
+                "$value": {
+                    "topColor": "{iris.300}",
+                    "bottomColor": "{iris.600}"
+                }
+            },
             "background-color": {
                 "$type": "color",
                 "$value": "{primary.surface-strong}"

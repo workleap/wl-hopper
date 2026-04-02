@@ -97,6 +97,7 @@
     text-decoration: none;
     white-space: nowrap;
 
+    background-image: var(--background-image, none);
     background-color: var(--background-color);
     border: var(--border);
     border-radius: var(--hop-comp-button-border-radius);
@@ -147,6 +148,7 @@
 
 /** Variants */
 .hop-Button--primary {
+    --background-image: var(--hop-comp-button-primary-background-image);
     --background-color: var(--hop-comp-button-primary-background-color);
     --color: var(--hop-comp-button-primary-text-color);
     --border: var(--hop-Button-primary-border);

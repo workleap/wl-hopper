@@ -993,6 +993,10 @@ export const DataVizColors = {
     "dataviz_text-ondark": "dataviz-text-ondark"
 } as const;
 
+export const GradientColors = {
+
+} as const;
+
 export const Elevation = {
     "core_none": "shadow-none",
     "core_sm": "shadow-sm",
@@ -1276,5 +1280,5 @@ export const Motions = {
     "easing-expressive": "easing-expressive"
 } as const;
 
-export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
+export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof GradientColors[keyof typeof GradientColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
 export type HopperCssVar = `var(${HopperTokenKey})`;
