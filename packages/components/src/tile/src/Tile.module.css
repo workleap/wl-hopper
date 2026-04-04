@@ -1,14 +1,10 @@
 .hop-Tile {
     /* Default */
-    --hop-Tile-color: var(--hop-neutral-text);
-    --hop-Tile-background: var(--hop-neutral-surface);
     --hop-Tile-border-witdh: 0.0625rem;
     --hop-Tile-border-style: solid;
-    --hop-Tile-border-color: var(--hop-neutral-border-strong);
-    --hop-Tile-border-radius: var(--hop-shape-rounded-md);
     --hop-Tile-cursor: pointer;
     --hop-Tile-outline-offset: 0rem;
-    --hop-Tile-outline-color: transparent;
+    --hop-Tile-outline-color: var(--hop-comp-tile-outline-color);
     --hop-Tile-outline-width: var(--hop-space-20);
     --hop-Tile-display: grid;
     --hop-Tile-grid-template:
@@ -16,33 +12,7 @@
         "container" 1fr
         / auto;
 
-    /* Focused */
-    --hop-Tile-color-focused: var(--hop-neutral-text-hover);
-    --hop-Tile-background-focused: var(--hop-neutral-surface-hover);
-    --hop-Tile-outline-color-focused: var(--hop-primary-border-focus);
-    --hop-Tile-border-color-focused: transparent;
-
-    /* Hovered */
-    --hop-Tile-color-hovered: var(--hop-neutral-text-hover);
-    --hop-Tile-background-hovered: var(--hop-neutral-surface-hover);
-    --hop-Tile-border-color-hovered: var(--hop-neutral-border-strong-hover);
-
-    /* Pressed */
-    --hop-Tile-color-pressed: var(--hop-neutral-text-press);
-    --hop-Tile-background-pressed: var(--hop-neutral-surface-press);
-    --hop-Tile-border-color-pressed: var(--hop-neutral-border-strong);
-
-    /* Selected */
-    --hop-Tile-color-selected: var(--hop-neutral-text);
-    --hop-Tile-background-selected: var(--hop-neutral-surface-weak-selected);
-    --hop-Tile-outline-color-selected: var(--hop-neutral-border-strong);
-    --hop-Tile-border-color-selected: transparent;
-
     /* Disabled */
-    --hop-Tile-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-Tile-background-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Tile-border-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Tile-outline-color-disabled: transparent;
     --hop-Tile-cursor-disabled: auto;
 
     /* Readonly */
@@ -51,16 +21,10 @@
     /* Icon */
     --hop-Tile-color-icon: transparent;
 
-    /* Icon | Selected */
-    --hop-Tile-color-icon-selected: var(--hop-neutral-icon);
-
-    /* Icon | Disabled */
-    --hop-Tile-color-icon-disabled: var(--hop-neutral-icon-disabled);
-
     /* Internal variables */
-    --color: var(--hop-Tile-color);
-    --background: var(--hop-Tile-background);
-    --border-color:  var(--hop-Tile-border-color);
+    --color: var(--hop-comp-tile-text-color);
+    --background: var(--hop-comp-tile-background-color);
+    --border-color: var(--hop-comp-tile-border-color);
     --cursor: var(--hop-Tile-cursor);
 
     cursor: var(--cursor);
@@ -72,7 +36,7 @@
 
     background: var(--background);
     border: var(--hop-Tile-border-witdh) var(--hop-Tile-border-style) var(--border-color);
-    border-radius: var(--hop-Tile-border-radius);
+    border-radius: var(--hop-comp-tile-border-radius);
     outline: var(--hop-Tile-outline-offset) solid var(--hop-Tile-outline-color);
     outline-width: var(--hop-Tile-outline-width);
 }
@@ -85,37 +49,37 @@
 }
 
 .hop-Tile[data-hovered] {
-    --color: var(--hop-Tile-color-hovered);
-    --background: var(--hop-Tile-background-hovered);
-    --border-color: var(--hop-Tile-border-color-hovered);
+    --color: var(--hop-comp-tile-hover-text-color);
+    --background: var(--hop-comp-tile-hover-background-color);
+    --border-color: var(--hop-comp-tile-hover-border-color);
 }
 
 .hop-Tile[data-pressed] {
-    --color: var(--hop-Tile-color-pressed);
-    --background: var(--hop-Tile-background-pressed);
-    --border-color: var(--hop-Tile-border-color-pressed);
+    --color: var(--hop-comp-tile-press-text-color);
+    --background: var(--hop-comp-tile-press-background-color);
+    --border-color: var(--hop-comp-tile-press-border-color);
 }
 
 .hop-Tile[data-focus-visible] {
-    --color: var(--hop-Tile-color-focused);
-    --background: var(--hop-Tile-background-focused);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-focused);
-    --border-color: var(--hop-Tile-border-color-focused);
+    --color: var(--hop-comp-tile-focus-text-color);
+    --background: var(--hop-comp-tile-focus-background-color);
+    --hop-Tile-outline-color: var(--hop-comp-tile-focus-outline-color);
+    --border-color: var(--hop-comp-tile-focus-border-color);
 }
 
 .hop-Tile[data-selected] {
-    --color: var(--hop-Tile-color-selected);
-    --background: var(--hop-Tile-background-selected);
-    --border-color: var(--hop-Tile-border-color-selected);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-selected);
-    --hop-Tile-color-icon: var(--hop-Tile-color-icon-selected);
+    --color: var(--hop-comp-tile-selected-text-color);
+    --background: var(--hop-comp-tile-selected-background-color);
+    --border-color: var(--hop-comp-tile-selected-border-color);
+    --hop-Tile-outline-color: var(--hop-comp-tile-selected-outline-color);
+    --hop-Tile-color-icon: var(--hop-comp-tile-selected-icon-color);
 }
 
 .hop-Tile[data-disabled]:not(.hop-Tile--readonly) {
-    --color: var(--hop-Tile-color-disabled);
-    --background: var(--hop-Tile-background-disabled);
-    --border-color: var(--hop-Tile-border-color-disabled);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-disabled);
+    --color: var(--hop-comp-tile-disabled-text-color);
+    --background: var(--hop-comp-tile-disabled-background-color);
+    --border-color: var(--hop-comp-tile-disabled-border-color);
+    --hop-Tile-outline-color: var(--hop-comp-tile-disabled-outline-color);
     --cursor: var(--hop-Tile-cursor-disabled);
 }
 
@@ -124,7 +88,7 @@
 }
 
 .hop-Tile[data-disabled][data-selected] {
-    --hop-Tile-color-icon: var(--hop-Tile-color-icon-disabled)
+    --hop-Tile-color-icon: var(--hop-comp-tile-disabled-icon-color)
 }
 
 .hop-Tile__image, .hop-Tile__illustration {
@@ -132,16 +96,16 @@
 }
 
 .hop-Tile--vertical .hop-Tile__illustration {
-    border-start-start-radius: var(--hop-Tile-border-radius);
-    border-start-end-radius: var(--hop-Tile-border-radius);
+    border-start-start-radius: var(--hop-comp-tile-border-radius);
+    border-start-end-radius: var(--hop-comp-tile-border-radius);
 }
 
 .hop-Tile--horizontal .hop-Tile__illustration {
     --hop-Tile-horizontal-illustration-block-size: 100%;
 
     block-size: var(--hop-Tile-horizontal-illustration-block-size);
-    border-start-start-radius: var(--hop-Tile-border-radius);
-    border-end-start-radius: var(--hop-Tile-border-radius);
+    border-start-start-radius: var(--hop-comp-tile-border-radius);
+    border-end-start-radius: var(--hop-comp-tile-border-radius);
 }
 
 .hop-Tile__container {

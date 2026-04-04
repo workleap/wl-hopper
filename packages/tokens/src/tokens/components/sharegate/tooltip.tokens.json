@@ -1,0 +1,20 @@
+{
+    "comp-tooltip": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface-strong}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-strong}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.raised}"
+        }
+    }
+}

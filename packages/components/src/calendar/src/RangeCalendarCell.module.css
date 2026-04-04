@@ -1,6 +1,6 @@
 .hop-RangeCalendarCell {
     --hop-RangeCalendarCell-position: relative;
-    --hop-RangeCalendarCell-border-radius: var(--hop-shape-circle);
+    --hop-RangeCalendarCell-border-radius: var(--hop-comp-calendar-cell-border-radius);
 
     composes: hop-CalendarCell from "./CalendarCell.module.css";
     position: var(--hop-RangeCalendarCell-position);
@@ -8,9 +8,9 @@
 }
 
 .hop-RangeCalendarCell[data-selected] {
-    --hop-RangeCalendarCell-data-selected-background: var(--hop-neutral-surface-weak-selected);
+    --hop-RangeCalendarCell-data-selected-background: var(--hop-comp-calendar-range-cell-background-color-selected);
     --hop-RangeCalendarCell-data-selected-border-radius: 0;
-    --hop-RangeCalendarCell-data-selected-color: var(--hop-neutral-text);
+    --hop-RangeCalendarCell-data-selected-color: var(--hop-comp-calendar-range-cell-text-color-selected);
 
     color: var(--hop-RangeCalendarCell-data-selected-color);
     background: var(--hop-RangeCalendarCell-data-selected-background);
@@ -28,7 +28,7 @@
 }
 
 .hop-RangeCalendarCell[data-selection-start]:not([data-disabled])::before, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled])::before {
-    --hop-RangeCalendarCell-data-selected-edge-background: var(--hop-neutral-surface-selected);
+    --hop-RangeCalendarCell-data-selected-edge-background: var(--hop-comp-calendar-range-cell-edge-background-color-selected);
 
     content: "";
 
@@ -46,7 +46,7 @@
 }
 
 .hop-RangeCalendarCell[data-selection-start]:not([data-disabled]) span, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled]) span {
-    --hop-RangeCalendarCell-data-edge-selected-color: var(--hop-neutral-text-selected);
+    --hop-RangeCalendarCell-data-edge-selected-color: var(--hop-comp-calendar-range-cell-edge-text-color-selected);
 
     z-index: 2;
     color: var(--hop-RangeCalendarCell-data-edge-selected-color);

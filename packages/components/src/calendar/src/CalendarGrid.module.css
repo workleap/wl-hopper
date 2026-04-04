@@ -16,10 +16,10 @@
 }
 
 .hop-CalendarGrid__body {
-    --hop-CalendarGrid__body-border-radius: var(--hop-shape-rounded-md);
+    --hop-CalendarGrid__body-border-radius: var(--hop-comp-calendar-grid-body-border-radius);
 
     border-radius: var(--hop-CalendarGrid__body-border-radius);
-    box-shadow: 0 0 0 0.0625rem var(--hop-neutral-border);
+    box-shadow: 0 0 0 0.0625rem var(--hop-comp-calendar-grid-body-border-color);
 }
 
 .hop-CalendarGrid__body td {
@@ -45,7 +45,7 @@
 }
 
 .hop-CalendarGrid__header-cell {
-    --hop-CalendarGrid__header-cell-text-color: var(--hop-neutral-text);
+    --hop-CalendarGrid__header-cell-text-color: var(--hop-comp-calendar-header-text-color);
     --hop-CalendarGrid__header-cell-text-text-align: center;
     --hop-CalendarGrid__header-cell-text-font-size: var(--hop-body-sm-font-size);
     --hop-CalendarGrid__header-cell-text-font-weight: var(--hop-body-sm-font-weight);

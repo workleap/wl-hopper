@@ -1,0 +1,76 @@
+{
+    "comp-menu": {
+        "header-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "item-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "item-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "item-icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "item-description-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        },
+        "item-background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "item-background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-hover}"
+        },
+        "item-background-color-press": {
+            "$type": "color",
+            "$value": "{neutral.surface-press}"
+        },
+        "item-invalid-text-color": {
+            "$type": "color",
+            "$value": "{danger.text-selected}"
+        },
+        "item-invalid-icon-color": {
+            "$type": "color",
+            "$value": "{danger.icon-selected}"
+        },
+        "item-invalid-description-text-color": {
+            "$type": "color",
+            "$value": "{danger.text-selected}"
+        },
+        "item-invalid-background-color-hover": {
+            "$type": "color",
+            "$value": "{danger.surface-hover}"
+        },
+        "item-invalid-text-color-hover": {
+            "$type": "color",
+            "$value": "{danger.text-strong-hover}"
+        },
+        "item-invalid-icon-color-hover": {
+            "$type": "color",
+            "$value": "{danger.icon-strong-hover}"
+        },
+        "item-invalid-description-text-color-hover": {
+            "$type": "color",
+            "$value": "{danger.text-strong-hover}"
+        },
+        "item-disabled-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "item-disabled-icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "item-disabled-description-text-color": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        }
+    }
+}

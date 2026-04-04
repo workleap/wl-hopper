@@ -1,10 +1,10 @@
 .hop-EmbeddedButton {
-    --hop-EmbeddedButton-border-radius: var(--hop-shape-rounded-md);
+    --hop-EmbeddedButton-border-radius: var(--hop-comp-embedded-button-border-radius);
     --hop-EmbeddedButton-focus-ring-color: var(--hop-primary-border-focus);
-    --hop-EmbeddedButton-effect-border-radius: var(--hop-shape-circle);
+    --hop-EmbeddedButton-effect-border-radius: var(--hop-comp-embedded-button-effect-border-radius);
 
     /* Square */
-    --hop-EmbeddedButton-effect-square-border-radius: var(--hop-shape-rounded-sm);
+    --hop-EmbeddedButton-effect-square-border-radius: var(--hop-comp-embedded-button-effect-square-border-radius);
 
     /* Medium */
     --hop-EmbeddedButton-md-height: 1.5rem;
@@ -19,152 +19,152 @@
     --hop-EmbeddedButton-lg-effect-width: 1.5rem;
 
     /* Neutral */
-    --hop-EmbeddedButton-neutral-color: var(--hop-neutral-icon-weak);
-    --hop-EmbeddedButton-neutral-color-hovered: var(--hop-neutral-icon-weak-hover);
-    --hop-EmbeddedButton-neutral-color-focused: var(--hop-neutral-icon-weak-hover);
-    --hop-EmbeddedButton-neutral-color-pressed: var(--hop-neutral-icon-weak-press);
-    --hop-EmbeddedButton-neutral-color-disabled: var(--hop-neutral-icon-disabled);
-    --hop-EmbeddedButton-neutral-effect-background-color: transparent;
-    --hop-EmbeddedButton-neutral-effect-background-color-hovered: var(--hop-neutral-surface-weak-hover);
-    --hop-EmbeddedButton-neutral-effect-background-color-focused: var(--hop-neutral-surface-weak-hover);
-    --hop-EmbeddedButton-neutral-effect-background-color-pressed: var(--hop-neutral-surface-weak-press);
-    --hop-EmbeddedButton-neutral-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-neutral-color: var(--hop-comp-embedded-button-neutral-icon-color);
+    --hop-EmbeddedButton-neutral-color-hovered: var(--hop-comp-embedded-button-neutral-icon-color-hover);
+    --hop-EmbeddedButton-neutral-color-focused: var(--hop-comp-embedded-button-neutral-icon-color-focus);
+    --hop-EmbeddedButton-neutral-color-pressed: var(--hop-comp-embedded-button-neutral-icon-color-press);
+    --hop-EmbeddedButton-neutral-color-disabled: var(--hop-comp-embedded-button-neutral-icon-color-disabled);
+    --hop-EmbeddedButton-neutral-effect-background-color: var(--hop-comp-embedded-button-neutral-effect-background-color);
+    --hop-EmbeddedButton-neutral-effect-background-color-hovered: var(--hop-comp-embedded-button-neutral-effect-background-color-hover);
+    --hop-EmbeddedButton-neutral-effect-background-color-focused: var(--hop-comp-embedded-button-neutral-effect-background-color-focus);
+    --hop-EmbeddedButton-neutral-effect-background-color-pressed: var(--hop-comp-embedded-button-neutral-effect-background-color-press);
+    --hop-EmbeddedButton-neutral-effect-background-color-disabled: var(--hop-comp-embedded-button-neutral-effect-background-color-disabled);
 
     /* Subdued */
-    --hop-EmbeddedButton-subdued-color: var(--hop-neutral-icon-weak);
-    --hop-EmbeddedButton-subdued-color-hovered: var(--hop-neutral-icon-weak-hover);
-    --hop-EmbeddedButton-subdued-color-focused: var(--hop-neutral-icon-weak-hover);
-    --hop-EmbeddedButton-subdued-color-pressed: var(--hop-neutral-icon-weak-press);
-    --hop-EmbeddedButton-subdued-color-disabled: var(--hop-neutral-icon-disabled);
-    --hop-EmbeddedButton-subdued-effect-background-color: transparent;
-    --hop-EmbeddedButton-subdued-effect-background-color-hovered: var(--hop-neutral-surface-weak-hover);
-    --hop-EmbeddedButton-subdued-effect-background-color-focused: var(--hop-neutral-surface-weak-hover);
-    --hop-EmbeddedButton-subdued-effect-background-color-pressed: var(--hop-neutral-surface-weak-press);
-    --hop-EmbeddedButton-subdued-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-subdued-color: var(--hop-comp-embedded-button-subdued-icon-color);
+    --hop-EmbeddedButton-subdued-color-hovered: var(--hop-comp-embedded-button-subdued-icon-color-hover);
+    --hop-EmbeddedButton-subdued-color-focused: var(--hop-comp-embedded-button-subdued-icon-color-focus);
+    --hop-EmbeddedButton-subdued-color-pressed: var(--hop-comp-embedded-button-subdued-icon-color-press);
+    --hop-EmbeddedButton-subdued-color-disabled: var(--hop-comp-embedded-button-subdued-icon-color-disabled);
+    --hop-EmbeddedButton-subdued-effect-background-color: var(--hop-comp-embedded-button-subdued-effect-background-color);
+    --hop-EmbeddedButton-subdued-effect-background-color-hovered: var(--hop-comp-embedded-button-subdued-effect-background-color-hover);
+    --hop-EmbeddedButton-subdued-effect-background-color-focused: var(--hop-comp-embedded-button-subdued-effect-background-color-focus);
+    --hop-EmbeddedButton-subdued-effect-background-color-pressed: var(--hop-comp-embedded-button-subdued-effect-background-color-press);
+    --hop-EmbeddedButton-subdued-effect-background-color-disabled: var(--hop-comp-embedded-button-subdued-effect-background-color-disabled);
 
     /* Progress */
-    --hop-EmbeddedButton-progress-color: var(--hop-status-progress-icon);
-    --hop-EmbeddedButton-progress-color-hovered: var(--hop-status-progress-icon-hover);
-    --hop-EmbeddedButton-progress-color-focused: var(--hop-status-progress-icon-hover);
-    --hop-EmbeddedButton-progress-color-pressed: var(--hop-status-progress-icon-press);
-    --hop-EmbeddedButton-progress-color-disabled: var(--hop-status-progress-icon-disabled);
-    --hop-EmbeddedButton-progress-effect-background-color: transparent;
-    --hop-EmbeddedButton-progress-effect-background-color-hovered: var(--hop-status-progress-surface-hover);
-    --hop-EmbeddedButton-progress-effect-background-color-focused: var(--hop-status-progress-surface-hover);
-    --hop-EmbeddedButton-progress-effect-background-color-pressed: var(--hop-status-progress-surface-press);
-    --hop-EmbeddedButton-progress-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-progress-color: var(--hop-comp-embedded-button-progress-icon-color);
+    --hop-EmbeddedButton-progress-color-hovered: var(--hop-comp-embedded-button-progress-icon-color-hover);
+    --hop-EmbeddedButton-progress-color-focused: var(--hop-comp-embedded-button-progress-icon-color-focus);
+    --hop-EmbeddedButton-progress-color-pressed: var(--hop-comp-embedded-button-progress-icon-color-press);
+    --hop-EmbeddedButton-progress-color-disabled: var(--hop-comp-embedded-button-progress-icon-color-disabled);
+    --hop-EmbeddedButton-progress-effect-background-color: var(--hop-comp-embedded-button-progress-effect-background-color);
+    --hop-EmbeddedButton-progress-effect-background-color-hovered: var(--hop-comp-embedded-button-progress-effect-background-color-hover);
+    --hop-EmbeddedButton-progress-effect-background-color-focused: var(--hop-comp-embedded-button-progress-effect-background-color-focus);
+    --hop-EmbeddedButton-progress-effect-background-color-pressed: var(--hop-comp-embedded-button-progress-effect-background-color-press);
+    --hop-EmbeddedButton-progress-effect-background-color-disabled: var(--hop-comp-embedded-button-progress-effect-background-color-disabled);
 
     /* Positive */
-    --hop-EmbeddedButton-positive-color: var(--hop-status-positive-icon);
-    --hop-EmbeddedButton-positive-color-hovered: var(--hop-status-positive-icon-hover);
-    --hop-EmbeddedButton-positive-color-focused: var(--hop-status-positive-icon-hover);
-    --hop-EmbeddedButton-positive-color-pressed: var(--hop-status-positive-icon-press);
-    --hop-EmbeddedButton-positive-color-disabled: var(--hop-status-positive-icon-disabled);
-    --hop-EmbeddedButton-positive-effect-background-color: transparent;
-    --hop-EmbeddedButton-positive-effect-background-color-hovered: var(--hop-status-positive-surface-hover);
-    --hop-EmbeddedButton-positive-effect-background-color-focused: var(--hop-status-positive-surface-hover);
-    --hop-EmbeddedButton-positive-effect-background-color-pressed: var(--hop-status-positive-surface-press);
-    --hop-EmbeddedButton-positive-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-positive-color: var(--hop-comp-embedded-button-positive-icon-color);
+    --hop-EmbeddedButton-positive-color-hovered: var(--hop-comp-embedded-button-positive-icon-color-hover);
+    --hop-EmbeddedButton-positive-color-focused: var(--hop-comp-embedded-button-positive-icon-color-focus);
+    --hop-EmbeddedButton-positive-color-pressed: var(--hop-comp-embedded-button-positive-icon-color-press);
+    --hop-EmbeddedButton-positive-color-disabled: var(--hop-comp-embedded-button-positive-icon-color-disabled);
+    --hop-EmbeddedButton-positive-effect-background-color: var(--hop-comp-embedded-button-positive-effect-background-color);
+    --hop-EmbeddedButton-positive-effect-background-color-hovered: var(--hop-comp-embedded-button-positive-effect-background-color-hover);
+    --hop-EmbeddedButton-positive-effect-background-color-focused: var(--hop-comp-embedded-button-positive-effect-background-color-focus);
+    --hop-EmbeddedButton-positive-effect-background-color-pressed: var(--hop-comp-embedded-button-positive-effect-background-color-press);
+    --hop-EmbeddedButton-positive-effect-background-color-disabled: var(--hop-comp-embedded-button-positive-effect-background-color-disabled);
 
     /* Caution */
-    --hop-EmbeddedButton-caution-color: var(--hop-status-caution-icon);
-    --hop-EmbeddedButton-caution-color-hovered: var(--hop-status-caution-icon-hover);
-    --hop-EmbeddedButton-caution-color-focused: var(--hop-status-caution-icon-hover);
-    --hop-EmbeddedButton-caution-color-pressed: var(--hop-status-caution-icon-press);
-    --hop-EmbeddedButton-caution-color-disabled: var(--hop-status-caution-icon-disabled);
-    --hop-EmbeddedButton-caution-effect-background-color: transparent;
-    --hop-EmbeddedButton-caution-effect-background-color-hovered: var(--hop-status-caution-surface-hover);
-    --hop-EmbeddedButton-caution-effect-background-color-focused: var(--hop-status-caution-surface-hover);
-    --hop-EmbeddedButton-caution-effect-background-color-pressed: var(--hop-status-caution-surface-press);
-    --hop-EmbeddedButton-caution-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-caution-color: var(--hop-comp-embedded-button-caution-icon-color);
+    --hop-EmbeddedButton-caution-color-hovered: var(--hop-comp-embedded-button-caution-icon-color-hover);
+    --hop-EmbeddedButton-caution-color-focused: var(--hop-comp-embedded-button-caution-icon-color-focus);
+    --hop-EmbeddedButton-caution-color-pressed: var(--hop-comp-embedded-button-caution-icon-color-press);
+    --hop-EmbeddedButton-caution-color-disabled: var(--hop-comp-embedded-button-caution-icon-color-disabled);
+    --hop-EmbeddedButton-caution-effect-background-color: var(--hop-comp-embedded-button-caution-effect-background-color);
+    --hop-EmbeddedButton-caution-effect-background-color-hovered: var(--hop-comp-embedded-button-caution-effect-background-color-hover);
+    --hop-EmbeddedButton-caution-effect-background-color-focused: var(--hop-comp-embedded-button-caution-effect-background-color-focus);
+    --hop-EmbeddedButton-caution-effect-background-color-pressed: var(--hop-comp-embedded-button-caution-effect-background-color-press);
+    --hop-EmbeddedButton-caution-effect-background-color-disabled: var(--hop-comp-embedded-button-caution-effect-background-color-disabled);
 
     /* Negative */
-    --hop-EmbeddedButton-negative-color: var(--hop-status-negative-icon);
-    --hop-EmbeddedButton-negative-color-hovered: var(--hop-status-negative-icon-hover);
-    --hop-EmbeddedButton-negative-color-focused: var(--hop-status-negative-icon-hover);
-    --hop-EmbeddedButton-negative-color-pressed: var(--hop-status-negative-icon-press);
-    --hop-EmbeddedButton-negative-color-disabled: var(--hop-status-negative-icon-disabled);
-    --hop-EmbeddedButton-negative-effect-background-color: transparent;
-    --hop-EmbeddedButton-negative-effect-background-color-hovered: var(--hop-status-negative-surface-hover);
-    --hop-EmbeddedButton-negative-effect-background-color-focused: var(--hop-status-negative-surface-hover);
-    --hop-EmbeddedButton-negative-effect-background-color-pressed: var(--hop-status-negative-surface-press);
-    --hop-EmbeddedButton-negative-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-negative-color: var(--hop-comp-embedded-button-negative-icon-color);
+    --hop-EmbeddedButton-negative-color-hovered: var(--hop-comp-embedded-button-negative-icon-color-hover);
+    --hop-EmbeddedButton-negative-color-focused: var(--hop-comp-embedded-button-negative-icon-color-focus);
+    --hop-EmbeddedButton-negative-color-pressed: var(--hop-comp-embedded-button-negative-icon-color-press);
+    --hop-EmbeddedButton-negative-color-disabled: var(--hop-comp-embedded-button-negative-icon-color-disabled);
+    --hop-EmbeddedButton-negative-effect-background-color: var(--hop-comp-embedded-button-negative-effect-background-color);
+    --hop-EmbeddedButton-negative-effect-background-color-hovered: var(--hop-comp-embedded-button-negative-effect-background-color-hover);
+    --hop-EmbeddedButton-negative-effect-background-color-focused: var(--hop-comp-embedded-button-negative-effect-background-color-focus);
+    --hop-EmbeddedButton-negative-effect-background-color-pressed: var(--hop-comp-embedded-button-negative-effect-background-color-press);
+    --hop-EmbeddedButton-negative-effect-background-color-disabled: var(--hop-comp-embedded-button-negative-effect-background-color-disabled);
 
     /* Option 1 */
-    --hop-EmbeddedButton-option1-color: var(--hop-status-option1-icon);
-    --hop-EmbeddedButton-option1-color-hovered: var(--hop-status-option1-icon-hover);
-    --hop-EmbeddedButton-option1-color-focused: var(--hop-status-option1-icon-hover);
-    --hop-EmbeddedButton-option1-color-pressed: var(--hop-status-option1-icon-press);
-    --hop-EmbeddedButton-option1-color-disabled: var(--hop-status-option1-icon-disabled);
-    --hop-EmbeddedButton-option1-effect-background-color: transparent;
-    --hop-EmbeddedButton-option1-effect-background-color-hovered: var(--hop-status-option1-surface-hover);
-    --hop-EmbeddedButton-option1-effect-background-color-focused: var(--hop-status-option1-surface-hover);
-    --hop-EmbeddedButton-option1-effect-background-color-pressed: var(--hop-status-option1-surface-press);
-    --hop-EmbeddedButton-option1-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option1-color: var(--hop-comp-embedded-button-option1-icon-color);
+    --hop-EmbeddedButton-option1-color-hovered: var(--hop-comp-embedded-button-option1-icon-color-hover);
+    --hop-EmbeddedButton-option1-color-focused: var(--hop-comp-embedded-button-option1-icon-color-focus);
+    --hop-EmbeddedButton-option1-color-pressed: var(--hop-comp-embedded-button-option1-icon-color-press);
+    --hop-EmbeddedButton-option1-color-disabled: var(--hop-comp-embedded-button-option1-icon-color-disabled);
+    --hop-EmbeddedButton-option1-effect-background-color: var(--hop-comp-embedded-button-option1-effect-background-color);
+    --hop-EmbeddedButton-option1-effect-background-color-hovered: var(--hop-comp-embedded-button-option1-effect-background-color-hover);
+    --hop-EmbeddedButton-option1-effect-background-color-focused: var(--hop-comp-embedded-button-option1-effect-background-color-focus);
+    --hop-EmbeddedButton-option1-effect-background-color-pressed: var(--hop-comp-embedded-button-option1-effect-background-color-press);
+    --hop-EmbeddedButton-option1-effect-background-color-disabled: var(--hop-comp-embedded-button-option1-effect-background-color-disabled);
 
     /* Option 2 */
-    --hop-EmbeddedButton-option2-color: var(--hop-status-option2-icon);
-    --hop-EmbeddedButton-option2-color-hovered: var(--hop-status-option2-icon-hover);
-    --hop-EmbeddedButton-option2-color-focused: var(--hop-status-option2-icon-hover);
-    --hop-EmbeddedButton-option2-color-pressed: var(--hop-status-option2-icon-press);
-    --hop-EmbeddedButton-option2-color-disabled: var(--hop-status-option2-icon-disabled);
-    --hop-EmbeddedButton-option2-effect-background-color: transparent;
-    --hop-EmbeddedButton-option2-effect-background-color-hovered: var(--hop-status-option2-surface-hover);
-    --hop-EmbeddedButton-option2-effect-background-color-focused: var(--hop-status-option2-surface-hover);
-    --hop-EmbeddedButton-option2-effect-background-color-pressed: var(--hop-status-option2-surface-press);
-    --hop-EmbeddedButton-option2-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option2-color: var(--hop-comp-embedded-button-option2-icon-color);
+    --hop-EmbeddedButton-option2-color-hovered: var(--hop-comp-embedded-button-option2-icon-color-hover);
+    --hop-EmbeddedButton-option2-color-focused: var(--hop-comp-embedded-button-option2-icon-color-focus);
+    --hop-EmbeddedButton-option2-color-pressed: var(--hop-comp-embedded-button-option2-icon-color-press);
+    --hop-EmbeddedButton-option2-color-disabled: var(--hop-comp-embedded-button-option2-icon-color-disabled);
+    --hop-EmbeddedButton-option2-effect-background-color: var(--hop-comp-embedded-button-option2-effect-background-color);
+    --hop-EmbeddedButton-option2-effect-background-color-hovered: var(--hop-comp-embedded-button-option2-effect-background-color-hover);
+    --hop-EmbeddedButton-option2-effect-background-color-focused: var(--hop-comp-embedded-button-option2-effect-background-color-focus);
+    --hop-EmbeddedButton-option2-effect-background-color-pressed: var(--hop-comp-embedded-button-option2-effect-background-color-press);
+    --hop-EmbeddedButton-option2-effect-background-color-disabled: var(--hop-comp-embedded-button-option2-effect-background-color-disabled);
 
     /* Option 3 */
-    --hop-EmbeddedButton-option3-color: var(--hop-status-option3-icon);
-    --hop-EmbeddedButton-option3-color-hovered: var(--hop-status-option3-icon-hover);
-    --hop-EmbeddedButton-option3-color-focused: var(--hop-status-option3-icon-hover);
-    --hop-EmbeddedButton-option3-color-pressed: var(--hop-status-option3-icon-press);
-    --hop-EmbeddedButton-option3-color-disabled: var(--hop-status-option3-icon-disabled);
-    --hop-EmbeddedButton-option3-effect-background-color: transparent;
-    --hop-EmbeddedButton-option3-effect-background-color-hovered: var(--hop-status-option3-surface-hover);
-    --hop-EmbeddedButton-option3-effect-background-color-focused: var(--hop-status-option3-surface-hover);
-    --hop-EmbeddedButton-option3-effect-background-color-pressed: var(--hop-status-option3-surface-press);
-    --hop-EmbeddedButton-option3-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option3-color: var(--hop-comp-embedded-button-option3-icon-color);
+    --hop-EmbeddedButton-option3-color-hovered: var(--hop-comp-embedded-button-option3-icon-color-hover);
+    --hop-EmbeddedButton-option3-color-focused: var(--hop-comp-embedded-button-option3-icon-color-focus);
+    --hop-EmbeddedButton-option3-color-pressed: var(--hop-comp-embedded-button-option3-icon-color-press);
+    --hop-EmbeddedButton-option3-color-disabled: var(--hop-comp-embedded-button-option3-icon-color-disabled);
+    --hop-EmbeddedButton-option3-effect-background-color: var(--hop-comp-embedded-button-option3-effect-background-color);
+    --hop-EmbeddedButton-option3-effect-background-color-hovered: var(--hop-comp-embedded-button-option3-effect-background-color-hover);
+    --hop-EmbeddedButton-option3-effect-background-color-focused: var(--hop-comp-embedded-button-option3-effect-background-color-focus);
+    --hop-EmbeddedButton-option3-effect-background-color-pressed: var(--hop-comp-embedded-button-option3-effect-background-color-press);
+    --hop-EmbeddedButton-option3-effect-background-color-disabled: var(--hop-comp-embedded-button-option3-effect-background-color-disabled);
 
     /* Option 4 */
-    --hop-EmbeddedButton-option4-color: var(--hop-status-option4-icon);
-    --hop-EmbeddedButton-option4-color-hovered: var(--hop-status-option4-icon-hover);
-    --hop-EmbeddedButton-option4-color-focused: var(--hop-status-option4-icon-hover);
-    --hop-EmbeddedButton-option4-color-pressed: var(--hop-status-option4-icon-press);
-    --hop-EmbeddedButton-option4-color-disabled: var(--hop-status-option4-icon-disabled);
-    --hop-EmbeddedButton-option4-effect-background-color: transparent;
-    --hop-EmbeddedButton-option4-effect-background-color-hovered: var(--hop-status-option4-surface-hover);
-    --hop-EmbeddedButton-option4-effect-background-color-focused: var(--hop-status-option4-surface-hover);
-    --hop-EmbeddedButton-option4-effect-background-color-pressed: var(--hop-status-option4-surface-press);
-    --hop-EmbeddedButton-option4-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option4-color: var(--hop-comp-embedded-button-option4-icon-color);
+    --hop-EmbeddedButton-option4-color-hovered: var(--hop-comp-embedded-button-option4-icon-color-hover);
+    --hop-EmbeddedButton-option4-color-focused: var(--hop-comp-embedded-button-option4-icon-color-focus);
+    --hop-EmbeddedButton-option4-color-pressed: var(--hop-comp-embedded-button-option4-icon-color-press);
+    --hop-EmbeddedButton-option4-color-disabled: var(--hop-comp-embedded-button-option4-icon-color-disabled);
+    --hop-EmbeddedButton-option4-effect-background-color: var(--hop-comp-embedded-button-option4-effect-background-color);
+    --hop-EmbeddedButton-option4-effect-background-color-hovered: var(--hop-comp-embedded-button-option4-effect-background-color-hover);
+    --hop-EmbeddedButton-option4-effect-background-color-focused: var(--hop-comp-embedded-button-option4-effect-background-color-focus);
+    --hop-EmbeddedButton-option4-effect-background-color-pressed: var(--hop-comp-embedded-button-option4-effect-background-color-press);
+    --hop-EmbeddedButton-option4-effect-background-color-disabled: var(--hop-comp-embedded-button-option4-effect-background-color-disabled);
 
     /* Option 5 */
-    --hop-EmbeddedButton-option5-color: var(--hop-status-option5-icon);
-    --hop-EmbeddedButton-option5-color-hovered: var(--hop-status-option5-icon-hover);
-    --hop-EmbeddedButton-option5-color-focused: var(--hop-status-option5-icon-hover);
-    --hop-EmbeddedButton-option5-color-pressed: var(--hop-status-option5-icon-press);
-    --hop-EmbeddedButton-option5-color-disabled: var(--hop-status-option5-icon-disabled);
-    --hop-EmbeddedButton-option5-effect-background-color: transparent;
-    --hop-EmbeddedButton-option5-effect-background-color-hovered: var(--hop-status-option5-surface-hover);
-    --hop-EmbeddedButton-option5-effect-background-color-focused: var(--hop-status-option5-surface-hover);
-    --hop-EmbeddedButton-option5-effect-background-color-pressed: var(--hop-status-option5-surface-press);
-    --hop-EmbeddedButton-option5-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option5-color: var(--hop-comp-embedded-button-option5-icon-color);
+    --hop-EmbeddedButton-option5-color-hovered: var(--hop-comp-embedded-button-option5-icon-color-hover);
+    --hop-EmbeddedButton-option5-color-focused: var(--hop-comp-embedded-button-option5-icon-color-focus);
+    --hop-EmbeddedButton-option5-color-pressed: var(--hop-comp-embedded-button-option5-icon-color-press);
+    --hop-EmbeddedButton-option5-color-disabled: var(--hop-comp-embedded-button-option5-icon-color-disabled);
+    --hop-EmbeddedButton-option5-effect-background-color: var(--hop-comp-embedded-button-option5-effect-background-color);
+    --hop-EmbeddedButton-option5-effect-background-color-hovered: var(--hop-comp-embedded-button-option5-effect-background-color-hover);
+    --hop-EmbeddedButton-option5-effect-background-color-focused: var(--hop-comp-embedded-button-option5-effect-background-color-focus);
+    --hop-EmbeddedButton-option5-effect-background-color-pressed: var(--hop-comp-embedded-button-option5-effect-background-color-press);
+    --hop-EmbeddedButton-option5-effect-background-color-disabled: var(--hop-comp-embedded-button-option5-effect-background-color-disabled);
 
     /* Option 6 */
-    --hop-EmbeddedButton-option6-color: var(--hop-status-option6-icon);
-    --hop-EmbeddedButton-option6-color-hovered: var(--hop-status-option6-icon-hover);
-    --hop-EmbeddedButton-option6-color-focused: var(--hop-status-option6-icon-hover);
-    --hop-EmbeddedButton-option6-color-pressed: var(--hop-status-option6-icon-press);
-    --hop-EmbeddedButton-option6-color-disabled: var(--hop-status-option6-icon-disabled);
-    --hop-EmbeddedButton-option6-effect-background-color: transparent;
-    --hop-EmbeddedButton-option6-effect-background-color-hovered: var(--hop-status-option6-surface-hover);
-    --hop-EmbeddedButton-option6-effect-background-color-focused: var(--hop-status-option6-surface-hover);
-    --hop-EmbeddedButton-option6-effect-background-color-pressed: var(--hop-status-option6-surface-press);
-    --hop-EmbeddedButton-option6-effect-background-color-disabled: transparent;
+    --hop-EmbeddedButton-option6-color: var(--hop-comp-embedded-button-option6-icon-color);
+    --hop-EmbeddedButton-option6-color-hovered: var(--hop-comp-embedded-button-option6-icon-color-hover);
+    --hop-EmbeddedButton-option6-color-focused: var(--hop-comp-embedded-button-option6-icon-color-focus);
+    --hop-EmbeddedButton-option6-color-pressed: var(--hop-comp-embedded-button-option6-icon-color-press);
+    --hop-EmbeddedButton-option6-color-disabled: var(--hop-comp-embedded-button-option6-icon-color-disabled);
+    --hop-EmbeddedButton-option6-effect-background-color: var(--hop-comp-embedded-button-option6-effect-background-color);
+    --hop-EmbeddedButton-option6-effect-background-color-hovered: var(--hop-comp-embedded-button-option6-effect-background-color-hover);
+    --hop-EmbeddedButton-option6-effect-background-color-focused: var(--hop-comp-embedded-button-option6-effect-background-color-focus);
+    --hop-EmbeddedButton-option6-effect-background-color-pressed: var(--hop-comp-embedded-button-option6-effect-background-color-press);
+    --hop-EmbeddedButton-option6-effect-background-color-disabled: var(--hop-comp-embedded-button-option6-effect-background-color-disabled);
 
     /* Selected */
-    --hop-EmbeddedButton-selected-color: var(--hop-neutral-icon-weak-selected);
-    --hop-EmbeddedButton-selected-effect-background-color: var(--hop-neutral-surface-weak-selected);
+    --hop-EmbeddedButton-selected-color: var(--hop-comp-embedded-button-selected-icon-color);
+    --hop-EmbeddedButton-selected-effect-background-color: var(--hop-comp-embedded-button-selected-effect-background-color);
 
     /* Internal variable */
     --spinner: var(--hop-primary-icon-strong);

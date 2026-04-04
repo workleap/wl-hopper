@@ -4,9 +4,9 @@
     --hop-MenuItem-align-items: center;
     --hop-MenuItem-box-sizing: border-box;
     --hop-MenuItem-padding-inline: var(--hop-space-inset-md);
-    --hop-MenuItem-color: var(--hop-neutral-text);
+    --hop-MenuItem-color: var(--hop-comp-menu-item-text-color);
     --hop-MenuItem-text-decoration: none;
-    --hop-MenuItem-border-radius: var(--hop-shape-rounded-md);
+    --hop-MenuItem-border-radius: var(--hop-comp-menu-item-border-radius);
     --hop-MenuItem-outline: none;
     --hop-MenuItem-gap: var(--hop-space-inline-sm);
     --hop-MenuItem-margin-inline: var(--hop-space-inset-sm);
@@ -20,10 +20,10 @@
         / auto auto 1fr auto auto;
 
     /* Description */
-    --hop-MenuItem-description-color: var(--hop-neutral-text-weak);
+    --hop-MenuItem-description-color: var(--hop-comp-menu-item-description-text-color);
 
     /* Icon */
-    --hop-MenuItem-icon-color: var(--hop-neutral-icon);
+    --hop-MenuItem-icon-color: var(--hop-comp-menu-item-icon-color);
 
         /* XS */
     --hop-MenuItem-xs-padding-block: 0.374rem;
@@ -40,7 +40,7 @@
     /* Internal variable */
     --display: var(--hop-MenuItem-display);
     --align-items: var(--hop-MenuItem-align-items);
-    --background-color: var(--hop-neutral-surface);
+    --background-color: var(--hop-comp-menu-item-background-color);
     --cursor: var(--hop-MenuItem-cursor);
     --color: var(--hop-MenuItem-color);
     --padding-block: var(--hop-MenuItem-sm-padding-block);
@@ -70,11 +70,11 @@
 .hop-MenuItem[data-hovered],
 .hop-MenuItem[aria-expanded="true"],
 .hop-MenuItem[data-focused] {
-    --background-color: var(--hop-neutral-surface-hover);
+    --background-color: var(--hop-comp-menu-item-background-color-hover);
 }
 
 .hop-MenuItem[data-pressed] {
-    --background-color: var(--hop-neutral-surface-press);
+    --background-color: var(--hop-comp-menu-item-background-color-press);
 }
 
 .hop-MenuItem[data-selected]:not(.hop-MenuItem[data-has-submenu]) .hop-MenuItem__text {
@@ -82,23 +82,23 @@
 }
 
 .hop-MenuItem--invalid {
-    --hop-MenuItem-description-color: var(--hop-danger-text-selected);
-    --hop-MenuItem-icon-color: var(--hop-danger-icon-selected);
-    --color: var(--hop-danger-text-selected);
+    --hop-MenuItem-description-color: var(--hop-comp-menu-item-invalid-description-text-color);
+    --hop-MenuItem-icon-color: var(--hop-comp-menu-item-invalid-icon-color);
+    --color: var(--hop-comp-menu-item-invalid-text-color);
 }
 
 .hop-MenuItem--invalid[data-hovered] {
-    --hop-MenuItem-description-color: var(--hop-danger-text-strong-hover);
-    --hop-MenuItem-icon-color: var(--hop-danger-icon-strong-hover);
-    --background-color: var(--hop-danger-surface-hover);
-    --color: var(--hop-danger-text-strong-hover);
+    --hop-MenuItem-description-color: var(--hop-comp-menu-item-invalid-description-text-color-hover);
+    --hop-MenuItem-icon-color: var(--hop-comp-menu-item-invalid-icon-color-hover);
+    --background-color: var(--hop-comp-menu-item-invalid-background-color-hover);
+    --color: var(--hop-comp-menu-item-invalid-text-color-hover);
 }
 
 .hop-MenuItem[data-disabled] {
-    --hop-MenuItem-description-color: var(--hop-neutral-text-disabled);
-    --hop-MenuItem-icon-color: var(--hop-neutral-icon-disabled);
+    --hop-MenuItem-description-color: var(--hop-comp-menu-item-disabled-description-text-color);
+    --hop-MenuItem-icon-color: var(--hop-comp-menu-item-disabled-icon-color);
     --cursor: not-allowed;
-    --color: var(--hop-neutral-text-disabled);
+    --color: var(--hop-comp-menu-item-disabled-text-color);
 }
 
 .hop-MenuItem__avatar {
