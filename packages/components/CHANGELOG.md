@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.0.15
+
+### Patch Changes
+
+- 1401b04: Prevent close button from shrinking in flex containers
+
 ## 2.0.14
 
 ### Patch Changes
