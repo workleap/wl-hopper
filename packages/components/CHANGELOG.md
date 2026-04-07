@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 2.0.16
+
+### Patch Changes
+
+- 8d43263: - Add support for gradient color tokens: https://www.npmjs.com/package/style-dictionary-utils#gradientcss
+  - Add support for shadow tokens: https://www.npmjs.com/package/style-dictionary-utils#shadowcss
+
 ## 2.0.15
 
 ### Patch Changes
