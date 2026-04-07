@@ -3,9 +3,11 @@ button.hop-CloseButton {
     --hop-CloseButton-padding: 0rem;
     --hop-CloseButton-width: fit-content;
     --hop-CloseButton-height: fit-content;
+    --hop-CloseButton-flex-shrink: 0;
 
     inline-size: var(--hop-CloseButton-width);
     block-size: var(--hop-CloseButton-height);
     margin-block-start: var(--hop-CloseButton-margin-top);
     padding: var(--hop-CloseButton-padding);
+    flex-shrink: var(--hop-CloseButton-flex-shrink);
 }
