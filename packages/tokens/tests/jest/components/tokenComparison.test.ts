@@ -38,6 +38,9 @@ const collectKeys = (jsonPath: string): string[] => {
         }
 
         Object.keys(node).forEach(key => {
+            if (key === "$description") {
+                return;
+            }
             const currentPath = prefix ? `${prefix}.${key}` : key;
             keys.push(currentPath);
             if (key !== "$value") {

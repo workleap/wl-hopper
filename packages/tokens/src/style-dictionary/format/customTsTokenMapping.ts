@@ -32,7 +32,7 @@ function getTokensByFamily(family: string, tokens: TransformedToken[]) {
         return token.filePath.includes(family);
     });
 }
-export const customTsTokenMapping = function ({ dictionary}: { dictionary: Dictionary }) {
+export const customTsTokenMapping = function ({ dictionary }: { dictionary: Dictionary }) {
     const types = handleTypes(dictionary.allTokens);
 
     let mappings = "";

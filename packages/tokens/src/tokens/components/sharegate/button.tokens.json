@@ -4,110 +4,190 @@
             "$type": "borderRadius",
             "$value": "{shape.rounded-md}"
         },
+        "border-color-focus": {
+            "$type": "color",
+            "$value": "{primary.border-focus}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
         "primary": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.tactility-button}"
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{primary.text-strong}"
+                "$value": "{neutral.text-always-light}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{primary.text-strong-hover}"
+                "$value": "{neutral.text-always-light}"
             },
             "text-color-pressed": {
                 "$type": "color",
-                "$value": "{primary.text-strong}"
+                "$value": "{neutral.text-always-light}"
             },
             "text-color-selected": {
                 "$type": "color",
-                "$value": "{neutral.text-strong}"
+                "$value": "{neutral.text-always-light}"
             },
-            "background-color": {
+            "icon-color": {
                 "$type": "color",
-                "$value": "{primary.surface-strong}"
+                "$value": "{neutral.icon-always-light}"
             },
-            "background-color-hover": {
+            "icon-color-hover": {
                 "$type": "color",
-                "$value": "{primary.surface-strong-hover}"
+                "$value": "{neutral.icon-always-light}"
             },
-            "background-color-pressed": {
+            "icon-color-press": {
                 "$type": "color",
-                "$value": "{primary.surface-strong-press}"
+                "$value": "{neutral.icon-always-light}"
             },
-            "background-color-selected": {
+            "icon-color-selected": {
                 "$type": "color",
-                "$value": "{primary.surface-selected}"
+                "$value": "{neutral.icon-always-light}"
+            },
+            "background": {
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{iris.300}", "position": 0 },
+                    { "color": "{iris.600}", "position": 1 }
+                ]
+            },
+            "background-hover": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{primary.surface-strong-hover}", "position": 0 },
+                    { "color": "{primary.surface-strong-hover}", "position": 1 }
+                ]
+            },
+            "background-pressed": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{primary.surface-strong-press}", "position": 0 },
+                    { "color": "{primary.surface-strong-press}", "position": 1 }
+                ]
+            },
+            "background-selected": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{primary.surface-strong-selected}", "position": 0 },
+                    { "color": "{primary.surface-strong-selected}", "position": 1 }
+                ]
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
             },
             "border-color": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{primary.border}"
             },
             "border-color-selected": {
                 "$type": "color",
                 "$value": "{neutral.border-weakest}"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             }
         },
         "secondary": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.tactility-button}"
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{neutral.text}"
+                "$value": "{primary.text}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{neutral.text-hover}"
+                "$value": "{primary.text-hover}"
             },
             "text-color-pressed": {
                 "$type": "color",
-                "$value": "{neutral.text-press}"
+                "$value": "{primary.text-press}"
             },
             "text-color-selected": {
                 "$type": "color",
-                "$value": "{neutral.text}"
+                "$value": "{primary.text-selected}"
             },
-            "background-color": {
+            "icon-color": {
                 "$type": "color",
-                "$value": "{neutral.surface}"
+                "$value": "{primary.icon}"
             },
-            "background-color-hover": {
+            "icon-color-hover": {
                 "$type": "color",
-                "$value": "{neutral.surface-hover}"
+                "$value": "{primary.icon-hover}"
             },
-            "background-color-pressed": {
+            "icon-color-press": {
                 "$type": "color",
-                "$value": "{neutral.surface-press}"
+                "$value": "{primary.icon-press}"
             },
-            "background-color-selected": {
+            "icon-color-selected": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-selected}"
+                "$value": "{primary.icon-selected}"
+            },
+            "background": {
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{neutral.surface}", "position": 0 },
+                    { "color": "{neutral.surface-weak}", "position": 1 }
+                ]
+            },
+            "background-hover": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{neutral.surface-weak-hover}", "position": 0 },
+                    { "color": "{neutral.surface-weak-hover}", "position": 1 }
+                ]
+            },
+            "background-pressed": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{neutral.surface-weak-hover}", "position": 0 },
+                    { "color": "{neutral.surface-weak-hover}", "position": 1 }
+                ]
+            },
+            "background-selected": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{neutral.surface-weak-selected}", "position": 0 },
+                    { "color": "{neutral.surface-weak-selected}", "position": 1 }
+                ]
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
             },
             "border-color": {
                 "$type": "color",
                 "$value": "{neutral.border-weakest}"
             },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
             "border-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.border-weakest}"
+            },
+            "border-color-disabled": {
                 "$type": "color",
                 "$value": "transparent"
             }
@@ -115,11 +195,11 @@
         "upsell": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.tactility-button}"
+                "$value": "none"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{upsell.text}"
+                "$value": "{neutral.text-always-dark}"
             },
             "text-color-hover": {
                 "$type": "color",
@@ -127,49 +207,80 @@
             },
             "text-color-pressed": {
                 "$type": "color",
-                "$value": "{upsell.text-press}"
+                "$value": "{upsell.text-weak-press}"
             },
             "text-color-selected": {
                 "$type": "color",
                 "$value": "{upsell.text-selected}"
             },
-            "background-color": {
+            "icon-color": {
                 "$type": "color",
-                "$value": "{upsell.surface-weak}"
+                "$value": "{neutral.icon-always-dark}"
             },
-            "background-color-hover": {
+            "icon-color-hover": {
                 "$type": "color",
-                "$value": "{upsell.surface-weak-hover}"
+                "$value": "{upsell.icon-hover}"
             },
-            "background-color-pressed": {
+            "icon-color-press": {
                 "$type": "color",
-                "$value": "{upsell.surface-weak-press}"
+                "$value": "{upsell.icon-weak-press}"
             },
-            "background-color-selected": {
+            "icon-color-selected": {
                 "$type": "color",
-                "$value": "{upsell.surface-selected}"
+                "$value": "{upsell.icon-selected}"
+            },
+            "background": {
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{limeburst.50}", "position": 0 },
+                    { "color": "{persimmon.300}", "position": 1.5156 }
+                ]
+            },
+            "background-hover": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{upsell.surface-weak-hover}", "position": 0 },
+                    { "color": "{upsell.surface-weak-hover}", "position": 1 }
+                ]
+            },
+            "background-pressed": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{upsell.surface-weak-press}", "position": 0 },
+                    { "color": "{upsell.surface-weak-press}", "position": 1 }
+                ]
+            },
+            "background-selected": {
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{upsell.surface-weak-press}", "position": 0 },
+                    { "color": "{upsell.surface-weak-press}", "position": 1 }
+                ]
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
             },
             "border-color": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{upsell.border}"
             },
             "border-color-selected": {
                 "$type": "color",
                 "$value": "{upsell.border-selected}"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             }
         },
         "danger": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "{shadow.tactility-button}"
+                "$value": "none"
             },
             "text-color": {
                 "$type": "color",
@@ -187,37 +298,53 @@
                 "$type": "color",
                 "$value": "{danger.text-selected}"
             },
-            "background-color": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{danger.icon-strong}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{danger.icon-strong-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{danger.icon-strong-hover}"
+            },
+            "icon-color-selected": {
+                "$type": "color",
+                "$value": "{danger.icon-selected}"
+            },
+            "background": {
                 "$type": "color",
                 "$value": "{danger.surface-strong}"
             },
-            "background-color-hover": {
+            "background-hover": {
                 "$type": "color",
                 "$value": "{danger.surface-strong-hover}"
             },
-            "background-color-pressed": {
+            "background-pressed": {
                 "$type": "color",
                 "$value": "{danger.surface-press}"
             },
-            "background-color-selected": {
+            "background-selected": {
                 "$type": "color",
                 "$value": "{danger.surface-selected}"
             },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
+            },
             "border-color": {
                 "$type": "color",
-                "$value": "{danger.surface-strong}"
-            },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{danger.surface-strong-hover}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{danger.surface-press}"
+                "$value": "{neutral.border-weakest}"
             },
             "border-color-selected": {
                 "$type": "color",
                 "$value": "{danger.border-selected}"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.surface-disabled}"
             }
         },
         "ghost-primary": {
@@ -241,37 +368,53 @@
                 "$type": "color",
                 "$value": "{primary.text-press}"
             },
-            "background-color": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{primary.icon}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{primary.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{primary.icon-press}"
+            },
+            "icon-color-selected": {
+                "$type": "color",
+                "$value": "{primary.icon-press}"
+            },
+            "background": {
                 "$type": "color",
                 "$value": "transparent"
             },
-            "background-color-hover": {
+            "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
             },
-            "background-color-pressed": {
+            "background-pressed": {
                 "$type": "color",
                 "$value": "{primary.surface-weak-press}"
             },
-            "background-color-selected": {
+            "background-selected": {
                 "$type": "color",
                 "$value": "{primary.surface-weak-selected}"
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             },
             "border-color": {
                 "$type": "color",
                 "$value": "transparent"
             },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.surface-hover}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{primary.surface-weak-press}"
-            },
             "border-color-selected": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-selected}"
+                "$value": "transparent"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             }
         },
         "ghost-secondary": {
@@ -295,37 +438,53 @@
                 "$type": "color",
                 "$value": "{neutral.text-weak-press}"
             },
-            "background-color": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-press}"
+            },
+            "icon-color-selected": {
+                "$type": "color",
+                "$value": "{neutral.icon-weak-press}"
+            },
+            "background": {
                 "$type": "color",
                 "$value": "transparent"
             },
-            "background-color-hover": {
+            "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
             },
-            "background-color-pressed": {
+            "background-pressed": {
                 "$type": "color",
                 "$value": "{neutral.surface-press}"
             },
-            "background-color-selected": {
+            "background-selected": {
                 "$type": "color",
-                "$value": "{neutral.surface-press}"
+                "$value": "{neutral.surface-weak-selected}"
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             },
             "border-color": {
                 "$type": "color",
                 "$value": "transparent"
             },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.surface-hover}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{neutral.surface-press}"
-            },
             "border-color-selected": {
                 "$type": "color",
-                "$value": "{neutral.surface-press}"
+                "$value": "transparent"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             }
         },
         "ghost-danger": {
@@ -349,63 +508,51 @@
                 "$type": "color",
                 "$value": "{danger.text-press}"
             },
-            "background-color": {
+            "icon-color": {
+                "$type": "color",
+                "$value": "{danger.icon-weak}"
+            },
+            "icon-color-hover": {
+                "$type": "color",
+                "$value": "{danger.icon-hover}"
+            },
+            "icon-color-press": {
+                "$type": "color",
+                "$value": "{danger.icon-press}"
+            },
+            "icon-color-selected": {
+                "$type": "color",
+                "$value": "{danger.icon-press}"
+            },
+            "background": {
                 "$type": "color",
                 "$value": "transparent"
             },
-            "background-color-hover": {
+            "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
             },
-            "background-color-pressed": {
+            "background-pressed": {
                 "$type": "color",
                 "$value": "{danger.surface-weak-press}"
             },
-            "background-color-selected": {
+            "background-selected": {
                 "$type": "color",
-                "$value": "{danger.surface-weak-press}"
+                "$value": "{danger.surface-selected}"
+            },
+            "background-disabled": {
+                "$type": "color",
+                "$value": "transparent"
             },
             "border-color": {
                 "$type": "color",
                 "$value": "transparent"
-            },
-            "border-color-hover": {
-                "$type": "color",
-                "$value": "{neutral.surface-hover}"
-            },
-            "border-color-pressed": {
-                "$type": "color",
-                "$value": "{danger.surface-weak-press}"
             },
             "border-color-selected": {
                 "$type": "color",
-                "$value": "{danger.surface-weak-press}"
-            }
-        },
-        "disabled": {
-            "text-color": {
-                "$type": "color",
-                "$value": "{neutral.text-disabled}"
-            },
-            "background-color": {
-                "$type": "color",
-                "$value": "{neutral.surface-disabled}"
-            },
-            "border-color": {
-                "$type": "color",
-                "$value": "{neutral.surface-disabled}"
-            }
-        },
-        "ghost-disabled": {
-            "text-color": {
-                "$type": "color",
-                "$value": "{neutral.text-disabled}"
-            },
-            "background-color": {
-                "$type": "color",
                 "$value": "transparent"
             },
-            "border-color": {
+            "border-color-disabled": {
                 "$type": "color",
                 "$value": "transparent"
             }

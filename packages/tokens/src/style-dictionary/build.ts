@@ -50,7 +50,7 @@ StyleDictionary.registerTransform({
 
 StyleDictionary.registerTransformGroup({
     name: "custom/css",
-    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem", "gradient/css", "gradient/css-linear", "shadow/css"])
+    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem", "color/css", "gradient/css", "gradient/css-linear", "shadow/css"])
 });
 
 // Format
