@@ -644,6 +644,18 @@
             "$type": "color",
             "$value": "{rock.400}"
         },
+        "icon-inverse": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "icon-always-light": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "icon-always-dark": {
+            "$type": "color",
+            "$value": "{rock.900}"
+        },
         "surface": {
             "$type": "color",
             "$value": "{abyss}"
@@ -696,6 +708,18 @@
             "$type": "color",
             "$value": "{rock.800}"
         },
+        "surface-inverse": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "surface-always-light": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "surface-always-dark": {
+            "$type": "color",
+            "$value": "{rock.900}"
+        },
         "text": {
             "$type": "color",
             "$value": "{rock.25}"
@@ -739,6 +763,18 @@
         "text-weakest": {
             "$type": "color",
             "$value": "{rock.300}"
+        },
+        "text-inverse": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "text-always-light": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "text-always-dark": {
+            "$type": "color",
+            "$value": "{rock.900}"
         }
     },
     "primary": {
@@ -748,7 +784,7 @@
         },
         "border-selected": {
             "$type": "color",
-            "$value": "{persimmon.300}"
+            "$value": "{iris.300}"
         },
         "border-focus": {
             "$type": "color",
@@ -764,7 +800,7 @@
         },
         "icon-selected": {
             "$type": "color",
-            "$value": "{persimmon.200}"
+            "$value": "{iris.200}"
         },
         "icon-disabled": {
             "$type": "color",
@@ -792,7 +828,7 @@
         },
         "surface-selected": {
             "$type": "color",
-            "$value": "{persimmon.400}"
+            "$value": "{iris.300}"
         },
         "surface-disabled": {
             "$type": "color",
@@ -816,7 +852,7 @@
         },
         "surface-strong-selected": {
             "$type": "color",
-            "$value": "{persimmon.800}"
+            "$value": "{iris.800}"
         },
         "surface-strong-hover": {
             "$type": "color",
@@ -832,7 +868,7 @@
         },
         "surface-weak-selected": {
             "$type": "color",
-            "$value": "{persimmon.500}"
+            "$value": "{iris.500}"
         },
         "surface-weak-hover": {
             "$type": "color",
@@ -864,11 +900,141 @@
         },
         "text-selected": {
             "$type": "color",
-            "$value": "{persimmon.200}"
+            "$value": "{iris.200}"
         },
         "text-disabled": {
             "$type": "color",
             "$value": "{iris.700}"
+        }
+    },
+    "secondary": {
+        "text": {
+            "$type": "color",
+            "$value": "{persimmon.100}"
+        },
+        "text-hover": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "text-press": {
+            "$type": "color",
+            "$value": "{persimmon.75}"
+        },
+        "text-selected": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "text-disabled": {
+            "$type": "color",
+            "$value": "{persimmon.700}"
+        },
+        "text-strong": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "text-strong-hover": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "surface": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "surface-hover": {
+            "$type": "color",
+            "$value": "{persimmon.400}"
+        },
+        "surface-press": {
+            "$type": "color",
+            "$value": "{persimmon.500}"
+        },
+        "surface-selected": {
+            "$type": "color",
+            "$value": "{persimmon.800}"
+        },
+        "surface-focus": {
+            "$type": "color",
+            "$value": "{persimmon.900}"
+        },
+        "surface-disabled": {
+            "$type": "color",
+            "$value": "{persimmon.700}"
+        },
+        "surface-weak": {
+            "$type": "color",
+            "$value": "{persimmon.900}"
+        },
+        "surface-weak-hover": {
+            "$type": "color",
+            "$value": "{persimmon.800}"
+        },
+        "surface-weak-press": {
+            "$type": "color",
+            "$value": "{persimmon.700}"
+        },
+        "surface-weak-selected": {
+            "$type": "color",
+            "$value": "{persimmon.600}"
+        },
+        "surface-strong": {
+            "$type": "color",
+            "$value": "{persimmon.300}"
+        },
+        "surface-strong-hover": {
+            "$type": "color",
+            "$value": "{persimmon.100}"
+        },
+        "surface-strong-press": {
+            "$type": "color",
+            "$value": "{persimmon.75}"
+        },
+        "surface-strong-selected": {
+            "$type": "color",
+            "$value": "{persimmon.800}"
+        },
+        "border": {
+            "$type": "color",
+            "$value": "{persimmon.300}"
+        },
+        "border-press": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "border-selected": {
+            "$type": "color",
+            "$value": "{persimmon.100}"
+        },
+        "border-focus": {
+            "$type": "color",
+            "$value": "{persimmon.300}"
+        },
+        "icon": {
+            "$type": "color",
+            "$value": "{persimmon.100}"
+        },
+        "icon-hover": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "icon-press": {
+            "$type": "color",
+            "$value": "{persimmon.75}"
+        },
+        "icon-selected": {
+            "$type": "color",
+            "$value": "{persimmon.200}"
+        },
+        "icon-disabled": {
+            "$type": "color",
+            "$value": "{persimmon.700}"
+        },
+        "icon-strong": {
+            "$type": "color",
+            "$value": "{samoyed}"
+        },
+        "icon-strong-hover": {
+            "$type": "color",
+            "$value": "{samoyed}"
         }
     },
     "status": {
