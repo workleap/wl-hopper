@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 3.1.8
+
+### Patch Changes
+
+- 5cb9d07: Add new colors, `secondary`, `*-inverse`, `*-always-light`, `*-always-dark`, and update some primary colors for ShareGate theme.
+
 ## 3.1.7
 
 ### Patch Changes
