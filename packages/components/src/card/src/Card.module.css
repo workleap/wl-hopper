@@ -22,13 +22,14 @@
 
     background-color: var(--background-color);
     border: var(--border);
-    border-radius: var(--hop-comp-card-border-radius);
+    border-radius: var(--border-radius);
 
 }
 
 .hop-Card--main {
     --background-color: var(--hop-comp-card-main-background-color);
     --border: var(--hop-Card-main-border);
+    --border-radius: var(--hop-comp-card-main-border-radius);
 
     box-shadow: var(--hop-comp-card-main-box-shadow);
 }
@@ -36,6 +37,7 @@
 .hop-Card--second-level {
     --background-color: var(--hop-comp-card-second-level-background-color);
     --border: var(--hop-Card-second-level-border);
+    --border-radius: var(--hop-comp-card-second-level-border-radius);
 
     box-shadow: var(--hop-comp-card-second-level-box-shadow);
 }
