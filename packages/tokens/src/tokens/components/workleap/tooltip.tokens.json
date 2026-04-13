@@ -1,0 +1,28 @@
+{
+    "comp-tooltip": {
+        "backdrop-filter": {
+            "$type": "backdropFilter",
+            "$value": "none"
+        },
+        "background": {
+            "$type": "color",
+            "$value": "{neutral.surface-strong}"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.raised}"
+        },
+        "color": {
+            "$type": "color",
+            "$value": "{neutral.text-strong}"
+        },
+        "padding": {
+            "$type": "paddingSize",
+            "$value": "{space.inset-squish.md}"
+        }
+    }
+}
