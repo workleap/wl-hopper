@@ -50,8 +50,6 @@
     --hop-BaseModal__modal-flex-direction: column;
     --hop-BaseModal__modal-max-inline-size: 90dvw;
     --hop-BaseModal__modal-max-block-size: 90dvh;
-    --hop-BaseModal__modal-background: var(--hop-neutral-surface);
-    --hop-BaseModal__modal-border-radius: var(--hop-shape-rounded-md);
 
     /* Internal variables */
     --border-radius: var(--hop-BaseModal__modal-border-radius);
@@ -64,6 +62,9 @@
     max-inline-size: var(--max-inline-size);
     max-block-size: var(--max-block-size);
 
-    background: var(--hop-BaseModal__modal-background);
-    border-radius: var(--border-radius);
+    backdrop-filter: var(--hop-comp-modal-backdrop-filter);
+    background: var(--hop-comp-modal-background);
+    border: 0.0625rem solid var(--hop-comp-modal-border-color);
+    border-radius: var(--hop-comp-modal-border-radius);
+    box-shadow: var(--hop-comp-modal-box-shadow);
 }
