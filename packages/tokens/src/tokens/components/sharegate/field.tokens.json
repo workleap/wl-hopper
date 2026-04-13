@@ -2,19 +2,19 @@
     "comp-field": {
         "border-radius": {
             "$type": "borderRadius",
-            "$value": "{border-radius.2-5}"
+            "$value": "{shape.rounded-md}"
         },
         "background-color": {
             "$type": "color",
-            "$value": "{neutral.surface-weak}"
+            "$value": "{neutral.surface}"
         },
         "background-color-hover": {
             "$type": "color",
-            "$value": "{neutral.surface-weak-hover}"
+            "$value": "{neutral.surface-hover}"
         },
         "background-color-disabled": {
             "$type": "color",
-            "$value": "{neutral.surface}"
+            "$value": "{neutral.surface-disabled}"
         },
         "border-color": {
             "$type": "color",

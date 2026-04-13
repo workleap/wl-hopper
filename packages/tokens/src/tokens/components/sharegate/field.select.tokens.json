@@ -2,7 +2,7 @@
     "comp-select": {
         "background-color-active": {
             "$type": "color",
-            "$value": "{neutral.surface-weak-selected}"
+            "$value": "{neutral.surface}"
         },
         "border-color-active": {
             "$type": "color",
@@ -10,7 +10,7 @@
         },
         "text-color-hover": {
             "$type": "color",
-            "$value": "{neutral.text-press}"
+            "$value": "{neutral.text-hover}"
         }
     }
 }
