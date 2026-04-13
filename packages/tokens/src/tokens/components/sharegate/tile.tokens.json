@@ -1,0 +1,136 @@
+{
+    "comp-tile": {
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": [
+                {
+                    "color": "rgb(0 0 0 / 0.12)",
+                    "offsetX": 0,
+                    "offsetY": "-1px",
+                    "blur": "3px",
+                    "spread": 0,
+                    "inset": true
+                },
+                {
+                    "color": "rgb(255 255 255 / 0.1)",
+                    "offsetX": 0,
+                    "offsetY": "1px",
+                    "blur": 0,
+                    "spread": "1px"
+                }
+            ]
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-hover}"
+        },
+        "background-color-press": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-press}"
+        },
+        "background-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-hover}"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-selected}"
+        },
+        "background-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weakest}"
+        },
+        "border-color-hover": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-press": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-focus": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-selected": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-disabled": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "font-weight-selected": {
+            "$type": "fontWeight",
+            "$value": "{body.md.semibold.font-weight}"
+        },
+        "outline-color": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "outline-color-focus": {
+            "$type": "color",
+            "$value": "{primary.border-focus}"
+        },
+        "outline-color-selected": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "outline-color-disabled": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-focus": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "transition": {
+            "$type": "transition",
+            "$value": "color {easing-duration.2} {easing.productive}, background-color {easing-duration.2} {easing.productive}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        }
+    }
+}
