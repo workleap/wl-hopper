@@ -122,7 +122,7 @@
 
     backdrop-filter: var(--hop-comp-popover-backdrop-filter);
     background: var(--hop-comp-popover-background);
-    border: 0.0625rem solid var(--hop-comp-popover-border-color);
+    border: var(--hop-comp-popover-border);
     border-radius: var(--hop-comp-popover-border-radius);
     box-shadow: var(--hop-comp-popover-box-shadow);
 
