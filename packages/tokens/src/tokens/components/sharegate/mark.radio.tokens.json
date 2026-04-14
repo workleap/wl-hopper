@@ -6,7 +6,11 @@
         },
         "box-shadow": {
             "$type": "shadow",
-            "$value": "{shadow.tactility-control}"
+            "$value": [
+                { "offsetX": "1.5px", "offsetY": "1.5px", "blur": "1.5px", "spread": "0", "color": "rgba(0, 0, 0, 0.03)", "inset": false },
+                { "offsetX": "0.5px", "offsetY": "1.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true },
+                { "offsetX": "-2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.50)", "inset": true }
+            ]
         }
     }
 }
