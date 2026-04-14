@@ -69,6 +69,7 @@
     --box-border-color: var(--hop-comp-mark-border-color-selected);
     --check-display: var(--hop-Checkbox-check-display-selected);
     --text-color: var(--hop-comp-mark-text-color-selected);
+    --icon-color: var(--hop-comp-mark-icon-color-selected);
 }
 
 .hop-Checkbox[data-invalid] {
