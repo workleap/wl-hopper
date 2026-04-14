@@ -245,6 +245,7 @@ export const BackgroundColors = {
     "neutral-hover": "neutral-surface-hover",
     "neutral-press": "neutral-surface-press",
     "neutral-strong": "neutral-surface-strong",
+    "neutral-transparent": "neutral-surface-transparent",
     "neutral-weak": "neutral-surface-weak",
     "neutral-weak-selected": "neutral-surface-weak-selected",
     "neutral-weak-hover": "neutral-surface-weak-hover",

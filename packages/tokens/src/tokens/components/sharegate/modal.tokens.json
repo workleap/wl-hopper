@@ -1,0 +1,24 @@
+{
+    "comp-modal": {
+        "background": {
+            "$type": "color",
+            "$value": "{neutral.surface-transparent}"
+        },
+        "border": {
+            "$type": "border",
+            "$value": "{space.10} solid {neutral.border-weak}"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-lg}"
+        },
+        "backdrop-filter": {
+            "$type": "backdropFilter",
+            "$value": "blur(5px)"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "0 4px 10px 4px rgba(0, 0, 0, 0.08), 0 8px 24px 0 rgba(0, 0, 0, 0.12)"
+        }
+    }
+}

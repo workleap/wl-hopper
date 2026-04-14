@@ -4,12 +4,12 @@ import { isDarkTokens } from "../filter/isDarkTokens.ts";
 
 export const cssDarkMode = function ({ dictionary }: { dictionary: Dictionary }) {
     const darkTokens = dictionary.allTokens.filter(isDarkTokens).map(token => {
-        let value = token.value;
+        let value = token.original.value;
 
-        if (dictionary.usesReference(token.original.value)) {
-            const refs = dictionary.getReferences(token.original.value);
+        if (dictionary.usesReference(value)) {
+            const refs = dictionary.getReferences(value);
             refs.forEach(ref => {
-                value = token.value.replace(ref.value, () => `var(--${ref.name})`);
+                value = value.replaceAll(`{${ref.path.join(".")}}`, `var(--${ref.name})`);
             });
         }
 
