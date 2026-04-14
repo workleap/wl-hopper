@@ -55,6 +55,7 @@
     --border-radius: var(--hop-comp-modal-border-radius);
     --max-inline-size: var(--hop-BaseModal__modal-max-inline-size);
     --max-block-size: var(--hop-BaseModal__modal-max-block-size);
+    --border: var(--hop-comp-modal-border);
 
     display: var(--hop-BaseModal__modal-display);
     flex-direction: var(--hop-BaseModal__modal-flex-direction);
@@ -64,7 +65,7 @@
 
     backdrop-filter: var(--hop-comp-modal-backdrop-filter);
     background: var(--hop-comp-modal-background);
-    border: var(--hop-comp-modal-border);
+    border: var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--hop-comp-modal-box-shadow);
 }
