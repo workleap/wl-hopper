@@ -116,10 +116,6 @@
             "$type": "color",
             "$value": "{neutral.text-disabled}"
         },
-        "transition": {
-            "$type": "transition",
-            "$value": "color {easing-duration.2} {easing.productive}, background-color {easing-duration.2} {easing.productive}"
-        },
         "icon-color": {
             "$type": "color",
             "$value": "transparent"

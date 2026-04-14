@@ -1,5 +1,6 @@
 .hop-Tile {
     /* Default */
+    --hop-Tile-border-radius: var(--hop-comp-tile-border-radius);
     --hop-Tile-grid-template:
         "image" auto
         "container" 1fr
@@ -25,10 +26,9 @@
     box-shadow: var(--hop-comp-tile-box-shadow);
     background: var(--background);
     border: 0.0625rem solid var(--border-color);
-    border-radius: var(--hop-comp-tile-border-radius);
+    border-radius: var(--hop-Tile-border-radius);
     outline: 0 solid var(--outline-color);
     outline-width: var(--hop-space-20);
-    transition: var(--hop-comp-tile-transition);
 }
 
 .hop-Tile--horizontal {
@@ -44,16 +44,13 @@
     --border-color: var(--hop-comp-tile-border-color-hover);
 }
 
-/* In Sharegate, this is moved after the selected state */
-/* stylelint-disable-next-line selector-class-pattern */
-:global(.hop-workleap) .hop-Tile[data-pressed] {
+.hop-Tile[data-pressed] {
     --color: var(--hop-comp-tile-text-color-press);
     --background: var(--hop-comp-tile-background-color-press);
     --border-color: var(--hop-comp-tile-border-color-press);
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
-:global(.hop-workleap) .hop-Tile[data-focus-visible] {
+.hop-Tile[data-focus-visible] {
     --color: var(--hop-comp-tile-text-color-focus);
     --background: var(--hop-comp-tile-background-color-focus);
     --outline-color: var(--hop-comp-tile-outline-color-focus);
@@ -66,22 +63,6 @@
     --border-color: var(--hop-comp-tile-border-color-selected);
     --outline-color: var(--hop-comp-tile-outline-color-selected);
     --hop-Tile-color-icon: var(--hop-comp-tile-icon-color-selected);
-}
-
-/* In Workleap, this is moved before the selected state */
-/* stylelint-disable-next-line selector-class-pattern */
-:global(.hop-sharegate) .hop-Tile[data-focus-visible] {
-    --color: var(--hop-comp-tile-text-color-focus);
-    --background: var(--hop-comp-tile-background-color-focus);
-    --outline-color: var(--hop-comp-tile-outline-color-focus);
-    --border-color: var(--hop-comp-tile-border-color-focus);
-}
-
-/* stylelint-disable-next-line selector-class-pattern */
-:global(.hop-sharegate) .hop-Tile[data-pressed] {
-    --color: var(--hop-comp-tile-text-color-press);
-    --background: var(--hop-comp-tile-background-color-press);
-    --border-color: var(--hop-comp-tile-border-color-press);
 }
 
 .hop-Tile[data-disabled]:not(.hop-Tile--readonly) {

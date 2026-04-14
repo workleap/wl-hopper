@@ -100,10 +100,6 @@
             "$type": "color",
             "$value": "{neutral.text-disabled}"
         },
-        "transition": {
-            "$type": "transition",
-            "$value": "none"
-        },
         "icon-color": {
             "$type": "color",
             "$value": "transparent"
