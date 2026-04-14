@@ -1,0 +1,26 @@
+{
+    "comp-calendar": {
+        "grid": {
+            "border-color": {
+                "$type": "color",
+                "$value": "{neutral.border}"
+            }
+        },
+        "cell": {
+            "background-selected": {
+                "$type": "color",
+                "$value": "{neutral.surface-selected}"
+            },
+            "background-press": {
+                "$type": "color",
+                "$value": "{neutral.surface-press}"
+            },
+            "today": {
+                "border-color": {
+                    "$type": "color",
+                    "$value": "{neutral.border-strong}"
+                }
+            }
+        }
+    }
+}
