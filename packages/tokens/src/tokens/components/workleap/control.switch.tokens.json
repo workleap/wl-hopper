@@ -1,8 +1,16 @@
 {
     "comp-switch": {
-        "border-radius": {
+        "border-radius-md": {
             "$type": "borderRadius",
             "$value": "{shape.pill}"
+        },
+        "border-radius-sm": {
+            "$type": "borderRadius",
+            "$value": "{shape.pill}"
+        },
+        "thumb-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.circle}"
         },
         "track-filter": {
             "$type": "shadow",
@@ -12,11 +20,11 @@
             "$type": "shadow",
             "$value": "none"
         },
-        "thumb-filter": {
+        "thumb-box-shadow": {
             "$type": "shadow",
             "$value": "none"
         },
-        "thumb-filter-selected": {
+        "thumb-box-shadow-selected": {
             "$type": "shadow",
             "$value": "none"
         },
@@ -24,23 +32,47 @@
             "$type": "color",
             "$value": "{neutral.surface-selected}"
         },
-        "icon-color": {
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "text-color-error": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "thumb-color": {
             "$type": "color",
             "$value": "{neutral.icon}"
         },
-        "icon-color-hover": {
+        "thumb-color-hover": {
             "$type": "color",
             "$value": "{neutral.icon-hover}"
         },
-        "icon-color-press": {
+        "thumb-color-press": {
             "$type": "color",
             "$value": "{neutral.icon-press}"
         },
-        "icon-color-selected": {
+        "thumb-color-selected": {
             "$type": "color",
             "$value": "{neutral.icon-selected}"
         },
-        "icon-color-disabled": {
+        "thumb-color-error": {
+            "$type": "color",
+            "$value": "{danger.icon-weak}"
+        },
+        "thumb-color-disabled": {
             "$type": "color",
             "$value": "{neutral.icon-disabled}"
         }

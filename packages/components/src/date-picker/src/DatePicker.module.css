@@ -27,6 +27,7 @@
 }
 
 .hop-DatePicker .hop-DatePicker__Button {
+    --hop-comp-button-border-radius: var(--hop-comp-field-border-radius);
     --hop-DatePicker__Button-sm-block-size: 1.875rem; /** calc(2rem - 0.125rem) account for border */
     --hop-DatePicker__Button-md-block-size: 2.375rem; /** calc(2.5rem - 0.125rem) account for border */
     --hop-DatePicker__Button-border-inline-start: 0.0625rem solid var(--hop-neutral-border);
