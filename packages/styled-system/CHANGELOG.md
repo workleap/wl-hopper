@@ -1,5 +1,13 @@
 # @hopper-ui/styled-system
 
+## 3.1.9
+
+### Patch Changes
+
+- 171a611: - Updated Input and Card tokens for ShareGate theme
+  - Removed border-radius.2-5 from core tokens
+  - Removed tactility-card shadow from core tokens
+
 ## 3.1.8
 
 ### Patch Changes
