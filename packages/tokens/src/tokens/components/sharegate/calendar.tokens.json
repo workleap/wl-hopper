@@ -1,25 +1,21 @@
 {
     "comp-calendar": {
-        "grid": {
+        "grid-border-color": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "cell-background-selected": {
+            "$type": "color",
+            "$value": "{primary.surface-selected}"
+        },
+        "cell-background-press": {
+            "$type": "color",
+            "$value": "{primary.surface-press}"
+        },
+        "cell-today": {
             "border-color": {
                 "$type": "color",
-                "$value": "transparent"
-            }
-        },
-        "cell": {
-            "background-selected": {
-                "$type": "color",
-                "$value": "{primary.surface-selected}"
-            },
-            "background-press": {
-                "$type": "color",
-                "$value": "{primary.surface-press}"
-            },
-            "today": {
-                "border-color": {
-                    "$type": "color",
-                    "$value": "{primary.border-selected}"
-                }
+                "$value": "{primary.border-selected}"
             }
         }
     }
