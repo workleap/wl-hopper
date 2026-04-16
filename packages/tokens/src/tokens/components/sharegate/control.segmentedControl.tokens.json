@@ -2,7 +2,7 @@
     "comp-segmented-control": {
         "border-radius": {
             "$type": "borderRadius",
-            "$value": "{shape.rounded-md}"
+            "$value": "{shape.rounded-sm}"
         },
         "text-color": {
             "$type": "color",
@@ -22,7 +22,11 @@
         },
         "box-shadow": {
             "$type": "shadow",
-            "$value": "1.5px 1.5px 1.5px 0 rgb(0 0 0 / 3%), 0.5px 1.5px 5px 0 rgb(0 0 0 / 10%) inset, -2.5px 2.5px 5px 0 rgb(255 255 255 / 50%) inset"
+            "$value": [
+                { "offsetX": "1.5px", "offsetY": "1.5px", "blur": "1.5px", "spread": "0", "color": "rgba(0, 0, 0, 0.03)", "inset": false },
+                { "offsetX": "0.5px", "offsetY": "1.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true },
+                { "offsetX": "-2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.50)", "inset": true }
+            ]
         },
         "item-border-radius": {
             "$type": "borderRadius",
@@ -30,7 +34,10 @@
         },
         "item-box-shadow-selected": {
             "$type": "shadow",
-            "$value": "-2.5px -2.5px 5px 0 rgb(255 255 255 / 50%), 2.5px 2.5px 5px 0 rgb(0 0 0 / 5%)"
+            "$value": [
+                { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
+                { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.05)", "inset": false }
+            ]
         },
         "item-box-shadow-disabled": {
             "$type": "shadow",

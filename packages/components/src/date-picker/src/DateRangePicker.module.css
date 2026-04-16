@@ -54,6 +54,7 @@
 }
 
 button.hop-DateRangePicker__Button {
+    --hop-comp-button-border-radius: var(--hop-comp-field-border-radius);
     --hop-DateRangePicker__Button-border-inline-start: 0.0625rem solid var(--hop-neutral-border);
     --hop-DateRangePicker__Button-border-left-radius: 0;
     --hop-DateRangePicker__Button-flex-shrink: 0;

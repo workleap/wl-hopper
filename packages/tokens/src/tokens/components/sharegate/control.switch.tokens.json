@@ -1,22 +1,36 @@
 {
     "comp-switch": {
-        "border-radius": {
+        "border-radius-md": {
             "$type": "borderRadius",
-            "$value": "{shape.pill}"
+            "$value": "{shape.rounded-md}"
+        },
+        "border-radius-sm": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "thumb-border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
         },
         "track-filter": {
             "$type": "shadow",
-            "$value": "drop-shadow(1.5px 1.5px 1.5px rgb(0 0 0 / 3%))"
+            "$value": "drop-shadow(1.5px 1.5px 1.5px rgba(0, 0, 0, 0.03))"
         },
         "track-box-shadow": {
             "$type": "shadow",
-            "$value": "0.5px 1.5px 5px 0 rgb(0 0 0 / 10%) inset, -2.5px 2.5px 5px 0 rgb(255 255 255 / 50%) inset"
+            "$value": [
+                { "offsetX": "0.5px", "offsetY": "1.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true },
+                { "offsetX": "-2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.50)", "inset": true }
+            ]
         },
-        "thumb-filter": {
+        "thumb-box-shadow": {
             "$type": "shadow",
-            "$value": "drop-shadow(2.5px 2.5px 5px rgb(0 0 0 / 5%)) drop-shadow(-2.5px -2.5px 5px rgb(255 255 255 / 50%))"
+            "$value": [
+                { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
+                { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.05)", "inset": false }
+            ]
         },
-        "thumb-filter-selected": {
+        "thumb-box-shadow-selected": {
             "$type": "shadow",
             "$value": "none"
         },
@@ -24,23 +38,47 @@
             "$type": "color",
             "$value": "{primary.surface-selected}"
         },
-        "icon-color": {
+        "text-color": {
             "$type": "color",
-            "$value": "{neutral.icon-strong}"
+            "$value": "{neutral.text}"
         },
-        "icon-color-hover": {
+        "text-color-hover": {
             "$type": "color",
-            "$value": "{neutral.icon-strong}"
+            "$value": "{neutral.text-hover}"
         },
-        "icon-color-press": {
+        "text-color-press": {
             "$type": "color",
-            "$value": "{neutral.icon-strong}"
+            "$value": "{neutral.text-press}"
         },
-        "icon-color-selected": {
+        "text-color-disabled": {
             "$type": "color",
-            "$value": "{neutral.icon-selected}"
+            "$value": "{neutral.text-disabled}"
         },
-        "icon-color-disabled": {
+        "text-color-error": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "thumb-color": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        },
+        "thumb-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        },
+        "thumb-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        },
+        "thumb-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        },
+        "thumb-color-error": {
+            "$type": "color",
+            "$value": "{danger.icon-weak}"
+        },
+        "thumb-color-disabled": {
             "$type": "color",
             "$value": "{neutral.icon-disabled}"
         }
