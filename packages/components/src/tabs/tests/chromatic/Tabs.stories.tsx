@@ -387,7 +387,7 @@ export const States: Story = {
             <h1>Tab Disabled</h1>
             <Tabs {...args}>
                 <TabList>
-                    <Tab id="t4-frog-1" isDisabled>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t4-frog-1">Red-Eyed Tree Frog</Tab>
                     <Tab id="t4-frog-2" isDisabled>
                         <SparklesIcon />
                         <Text>Poison Dart Frog</Text>
