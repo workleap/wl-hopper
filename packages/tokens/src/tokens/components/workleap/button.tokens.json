@@ -57,6 +57,22 @@
                 "$type": "color",
                 "$value": "{primary.surface-strong}"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{primary.surface-strong}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{primary.icon-strong}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{primary.surface-strong-hover}"
@@ -126,6 +142,22 @@
             "background": {
                 "$type": "color",
                 "$value": "{neutral.surface}"
+            },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{neutral.surface}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "{neutral.border-strong}"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
             },
             "background-hover": {
                 "$type": "color",
@@ -197,6 +229,22 @@
                 "$type": "color",
                 "$value": "{upsell.surface-weak}"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{upsell.surface-weak}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{upsell.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{upsell.surface-weak-hover}"
@@ -266,6 +314,22 @@
             "background": {
                 "$type": "color",
                 "$value": "{danger.surface-strong}"
+            },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{danger.surface-strong}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{primary.icon-strong}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
             },
             "background-hover": {
                 "$type": "color",
@@ -337,6 +401,22 @@
                 "$type": "color",
                 "$value": "transparent"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
@@ -407,6 +487,22 @@
                 "$type": "color",
                 "$value": "transparent"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
@@ -476,6 +572,22 @@
             "background": {
                 "$type": "color",
                 "$value": "transparent"
+            },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "{shadow.none}"
             },
             "background-hover": {
                 "$type": "color",

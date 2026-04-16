@@ -24,31 +24,24 @@
 
     /* Primary */
     --hop-Button-primary-border: var(--hop-Button-border-size) solid var(--hop-comp-button-primary-border-color);
-    --hop-Button-primary-spinner-color: var(--hop-primary-icon-strong);
 
     /* Secondary */
     --hop-Button-secondary-border: var(--hop-Button-border-size) solid var(--hop-comp-button-secondary-border-color);
-    --hop-Button-secondary-spinner-color: var(--hop-neutral-icon);
 
     /* Upsell */
     --hop-Button-upsell-border: var(--hop-Button-border-size) solid var(--hop-comp-button-upsell-border-color);
-    --hop-Button-upsell-spinner-color: var(--hop-upsell-icon);
 
     /* Danger */
     --hop-Button-danger-border: var(--hop-Button-border-size) solid var(--hop-comp-button-danger-border-color);
-    --hop-Button-danger-spinner-color: var(--hop-primary-icon-strong);
 
     /* Ghost Primary */
     --hop-Button-ghost-primary-border: var(--hop-Button-border-size) solid var(--hop-comp-button-ghost-primary-border-color);
-    --hop-Button-ghost-primary-spinner-color: var(--hop-neutral-icon);
 
     /* Ghost Secondary */
     --hop-Button-ghost-secondary-border: var(--hop-Button-border-size) solid var(--hop-comp-button-ghost-secondary-border-color);
-    --hop-Button-ghost-secondary-spinner-color: var(--hop-neutral-icon);
 
     /* Ghost Danger */
     --hop-Button-ghost-danger-border: var(--hop-Button-border-size) solid var(--hop-comp-button-ghost-danger-border-color);
-    --hop-Button-ghost-danger-spinner-color: var(--hop-neutral-icon);
 
     /* Internal variable */
     --inline-size: max-content;
@@ -58,6 +51,9 @@
     --icon-color: var(--color);
     --column-gap: var(--hop-Button-column-gap);
     --spinner: var(--hop-primary-icon-strong);
+    --background-loading: var(--background);
+    --border-color-loading: transparent;
+    --box-shadow-loading: none;
     --border: 0;
     --padding: var(--hop-Button-md-padding);
     --box-shadow: none;
@@ -136,7 +132,10 @@
     --color: var(--hop-comp-button-primary-text-color);
     --icon-color: var(--hop-comp-button-primary-icon-color);
     --border: var(--hop-Button-primary-border);
-    --spinner-color: var(--hop-Button-primary-spinner-color);
+    --color-loading: var(--hop-comp-button-primary-color-loading);
+    --background-loading: var(--hop-comp-button-primary-background-loading);
+    --border-color-loading: var(--hop-comp-button-primary-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-primary-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-primary-box-shadow);
 }
 
@@ -161,7 +160,10 @@
     --color: var(--hop-comp-button-secondary-text-color);
     --icon-color: var(--hop-comp-button-secondary-icon-color);
     --border: var(--hop-Button-secondary-border);
-    --spinner-color: var(--hop-Button-secondary-spinner-color);
+    --color-loading: var(--hop-comp-button-secondary-color-loading);
+    --background-loading: var(--hop-comp-button-secondary-background-loading);
+    --border-color-loading: var(--hop-comp-button-secondary-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-secondary-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-secondary-box-shadow);
 }
 
@@ -185,7 +187,10 @@
     --color: var(--hop-comp-button-upsell-text-color);
     --icon-color: var(--hop-comp-button-upsell-icon-color);
     --border: var(--hop-Button-upsell-border);
-    --spinner-color: var(--hop-Button-upsell-spinner-color);
+    --color-loading: var(--hop-comp-button-upsell-color-loading);
+    --background-loading: var(--hop-comp-button-upsell-background-loading);
+    --border-color-loading: var(--hop-comp-button-upsell-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-upsell-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-upsell-box-shadow);
 }
 
@@ -209,7 +214,10 @@
     --color: var(--hop-comp-button-danger-text-color);
     --icon-color: var(--hop-comp-button-danger-icon-color);
     --border: var(--hop-Button-danger-border);
-    --spinner-color: var(--hop-Button-danger-spinner-color);
+    --color-loading: var(--hop-comp-button-danger-color-loading);
+    --background-loading: var(--hop-comp-button-danger-background-loading);
+    --border-color-loading: var(--hop-comp-button-danger-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-danger-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-danger-box-shadow);
 }
 
@@ -233,7 +241,10 @@
     --color: var(--hop-comp-button-ghost-primary-text-color);
     --icon-color: var(--hop-comp-button-ghost-primary-icon-color);
     --border: var(--hop-Button-ghost-primary-border);
-    --spinner-color: var(--hop-Button-ghost-primary-spinner-color);
+    --color-loading: var(--hop-comp-button-ghost-primary-color-loading);
+    --background-loading: var(--hop-comp-button-ghost-primary-background-loading);
+    --border-color-loading: var(--hop-comp-button-ghost-primary-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-ghost-primary-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-ghost-primary-box-shadow);
 }
 
@@ -257,7 +268,10 @@
     --color: var(--hop-comp-button-ghost-secondary-text-color);
     --icon-color: var(--hop-comp-button-ghost-secondary-icon-color);
     --border: var(--hop-Button-ghost-secondary-border);
-    --spinner-color: var(--hop-Button-ghost-secondary-spinner-color);
+    --color-loading: var(--hop-comp-button-ghost-secondary-color-loading);
+    --background-loading: var(--hop-comp-button-ghost-secondary-background-loading);
+    --border-color-loading: var(--hop-comp-button-ghost-secondary-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-ghost-secondary-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-ghost-secondary-box-shadow);
 }
 
@@ -281,7 +295,10 @@
     --color: var(--hop-comp-button-ghost-danger-text-color);
     --icon-color: var(--hop-comp-button-ghost-danger-icon-color);
     --border: var(--hop-Button-ghost-danger-border);
-    --spinner-color: var(--hop-Button-ghost-danger-spinner-color);
+    --color-loading: var(--hop-comp-button-ghost-danger-color-loading);
+    --background-loading: var(--hop-comp-button-ghost-danger-background-loading);
+    --border-color-loading: var(--hop-comp-button-ghost-danger-border-color-loading);
+    --box-shadow-loading: var(--hop-comp-button-ghost-danger-box-shadow-loading);
     --box-shadow: var(--hop-comp-button-ghost-danger-box-shadow);
 }
 
@@ -395,10 +412,16 @@
     --border: var(--hop-Button-ghost-danger-border);
 }
 
+.hop-Button--loading {
+    background: var(--background-loading);
+    color: var(--color-loading);
+    border-color: var(--border-color-loading);
+    box-shadow: var(--box-shadow-loading);
+}
+
 /** Elements */
 .hop-Button__Spinner {
     position: absolute;
-    color: var(--spinner-color)
 }
 
 .hop-Button__icon,

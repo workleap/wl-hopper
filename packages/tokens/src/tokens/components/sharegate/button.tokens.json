@@ -63,6 +63,25 @@
                     { "color": "{iris.600}", "position": 1 }
                 ]
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{primary.surface-strong}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{primary.icon-strong}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "{primary.border}"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
+            },
             "background-hover": {
                 "$type": "gradient",
                 "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
@@ -151,6 +170,28 @@
                     { "color": "{neutral.surface-weak}", "position": 1 }
                 ]
             },
+            "background-loading": {
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{neutral.surface}", "position": 0 },
+                    { "color": "{neutral.surface-weak}", "position": 1 }
+                ]
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "{neutral.border-weakest}"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
+            },
             "background-hover": {
                 "$type": "gradient",
                 "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
@@ -236,6 +277,28 @@
                     { "color": "{persimmon.300}", "position": 1.5156 }
                 ]
             },
+            "background-loading": {
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{neutral.surface}", "position": 0 },
+                    { "color": "{neutral.surface-weak}", "position": 1 }
+                ]
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "{neutral.border-weakest}"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
+            },
             "background-hover": {
                 "$type": "gradient",
                 "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
@@ -318,6 +381,22 @@
                 "$type": "color",
                 "$value": "{danger.surface-strong}"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "{danger.surface-strong}"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{primary.icon-strong}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "{neutral.border-weakest}"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "none"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{danger.surface-strong-hover}"
@@ -387,6 +466,22 @@
             "background": {
                 "$type": "color",
                 "$value": "transparent"
+            },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "none"
             },
             "background-hover": {
                 "$type": "color",
@@ -458,6 +553,22 @@
                 "$type": "color",
                 "$value": "transparent"
             },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "none"
+            },
             "background-hover": {
                 "$type": "color",
                 "$value": "{neutral.surface-hover}"
@@ -527,6 +638,22 @@
             "background": {
                 "$type": "color",
                 "$value": "transparent"
+            },
+            "background-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "color-loading": {
+                "$type": "color",
+                "$value": "{neutral.icon}"
+            },
+            "border-color-loading": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "box-shadow-loading": {
+                "$type": "shadow",
+                "$value": "none"
             },
             "background-hover": {
                 "$type": "color",
