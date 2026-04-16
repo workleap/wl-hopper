@@ -680,6 +680,10 @@
             "$type": "color",
             "$value": "{toad.25}"
         },
+        "surface-transparent": {
+            "$type": "color",
+            "$value": "rgb(35 36 38 / 0.75)"
+        },
         "surface-weakest": {
             "$type": "color",
             "$value": "{rock.900}"

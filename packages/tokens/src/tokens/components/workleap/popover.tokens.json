@@ -1,0 +1,24 @@
+{
+    "comp-popover": {
+        "background": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "border": {
+            "$type": "border",
+            "$value": "{space.10} solid {neutral.border-weak}"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "backdrop-filter": {
+            "$type": "backdropFilter",
+            "$value": "none"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.lifted}"
+        }
+    }
+}

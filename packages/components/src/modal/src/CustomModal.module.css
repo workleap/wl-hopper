@@ -39,6 +39,7 @@
     --hop-CustomModal__base-modal-fullscreentakeover-width: 100dvw;
     --hop-CustomModal__base-modal-fullscreentakeover-height: 100dvh;
     --hop-CustomModal__base-modal-fullscreentakeover-border-radius: 0;
+    --hop-CustomModal__base-modal-fullscreentakeover-border: none;
     --hop-CustomModal__base-modal-transition: opacity var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2), transform var(--hop-easing-duration-3) ease-in-out var(--hop-easing-duration-2);
 
     /* Entering */
@@ -79,6 +80,7 @@
     --width: var(--hop-CustomModal__base-modal-fullscreentakeover-width);
     --height: var(--hop-CustomModal__base-modal-fullscreentakeover-height);
     --border-radius: var(--hop-CustomModal__base-modal-fullscreentakeover-border-radius);
+    --border: var(--hop-CustomModal__base-modal-fullscreentakeover-border);
 }
 
 .hop-CustomModal__base-modal--fullscreen,

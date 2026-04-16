@@ -63,7 +63,6 @@
 
 .hop-Popover__dialog,
 .hop-Popover__dropdown {
-    --hop-Popover-background: var(--hop-neutral-surface);
     --hop-Popover-font-family: var(--hop-body-sm-font-family);
     --hop-Popover-font-size: var(--hop-body-sm-font-size);
     --hop-Popover-font-weight: var(--hop-body-sm-font-weight);
@@ -91,9 +90,6 @@
     --hop-Popover-footer-line-height: var(--hop-body-sm-line-height);
     --hop-Popover-footer-link-color: var(--hop-primary-text);
     --hop-Popover-footer-margin: var(--hop-space-stack-md) 0 0;
-    --hop-Popover-border: 0.0625rem solid var(--hop-neutral-border-weak);
-    --hop-Popover-border-radius: var(--hop-shape-rounded-md);
-    --hop-Popover-box-shadow: var(--hop-elevation-lifted);
 
     /* Dropdown Variables */
     --hop-Popover-dropdown-grid-template:
@@ -124,10 +120,11 @@
     min-block-size: 0;
     padding: var(--padding);
 
-    background-color: var(--hop-Popover-background);
-    border: var(--hop-Popover-border);
-    border-radius: var(--hop-Popover-border-radius);
-    box-shadow: var(--hop-Popover-box-shadow);
+    backdrop-filter: var(--hop-comp-popover-backdrop-filter);
+    background: var(--hop-comp-popover-background);
+    border: var(--hop-comp-popover-border);
+    border-radius: var(--hop-comp-popover-border-radius);
+    box-shadow: var(--hop-comp-popover-box-shadow);
 
     max-block-size: inherit;
     outline: var(--hop-Popover-outline);
