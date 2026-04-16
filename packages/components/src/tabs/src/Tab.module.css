@@ -31,7 +31,6 @@
     padding: var(--padding);
 
     color: var(--color, var(--hop-comp-tabs-tab-text-color));
-    text-decoration: var(--hop-Tab-text-transform);
     white-space: var(--hop-Tab-white-space);
 
     border-radius: var(--hop-comp-tabs-tab-border-radius);
