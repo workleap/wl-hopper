@@ -14,15 +14,14 @@
         },
         "box-shadow": {
             "$type": "shadow",
-            "$value": "0 4px 10px 4px rgba(0, 0, 0, 0.08), 0 8px 24px 0 rgba(0, 0, 0, 0.12)"
+            "$value": [
+                { "offsetX": "0", "offsetY": "4px", "blur": "10px", "spread": "4px", "color": "rgba(0, 0, 0, 0.08)" },
+                { "offsetX": "0", "offsetY": "8px", "blur": "24px", "spread": "0", "color": "rgba(0, 0, 0, 0.12)" }
+            ]
         },
         "color": {
             "$type": "color",
             "$value": "{neutral.text-always-light}"
-        },
-        "padding": {
-            "$type": "paddingSize",
-            "$value": "0.75rem {space.160}"
         }
     }
 }

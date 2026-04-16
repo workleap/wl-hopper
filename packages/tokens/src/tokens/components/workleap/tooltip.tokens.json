@@ -19,10 +19,6 @@
         "color": {
             "$type": "color",
             "$value": "{neutral.text-strong}"
-        },
-        "padding": {
-            "$type": "paddingSize",
-            "$value": "{space.inset-squish.md}"
         }
     }
 }
