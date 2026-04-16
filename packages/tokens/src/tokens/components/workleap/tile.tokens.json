@@ -56,10 +56,6 @@
             "$type": "borderRadius",
             "$value": "{shape.rounded-md}"
         },
-        "font-weight-selected": {
-            "$type": "fontWeight",
-            "$value": "{body.md.medium.font-weight}"
-        },
         "outline-color": {
             "$type": "color",
             "$value": "transparent"

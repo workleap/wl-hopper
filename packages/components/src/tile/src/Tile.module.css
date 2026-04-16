@@ -27,8 +27,7 @@
     background: var(--background);
     border: 0.0625rem solid var(--border-color);
     border-radius: var(--hop-Tile-border-radius);
-    outline: 0 solid var(--outline-color);
-    outline-width: var(--hop-space-20);
+    outline: var(--hop-space-20) solid var(--outline-color);
 }
 
 .hop-Tile--horizontal {
@@ -151,7 +150,7 @@
 }
 
 .hop-Tile[data-selected] .hop-Tile__content {
-    --hop-Tile__content-font-weight: var(--hop-comp-tile-font-weight-selected);
+    --hop-Tile__content-font-weight: var(--hop-body-md-semibold-font-weight);
 }
 
 .hop-Tile__icon-container {
