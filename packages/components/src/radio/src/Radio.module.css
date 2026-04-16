@@ -26,8 +26,8 @@
     --bullet-color: var(--hop-comp-mark-indicator-color);
     --bullet-display: var(--hop-Radio-bullet-display);
     --cursor: pointer;
-    --text-color: var(--hop-comp-label-text-color);
-    --icon-color: var(--hop-comp-label-icon-color);
+    --text-color: var(--hop-comp-mark-text-color);
+    --icon-color: var(--hop-comp-mark-icon-color);
     --transition-duration: var(--hop-easing-duration-2);
 
     cursor: var(--cursor);
@@ -46,38 +46,38 @@
     --box-background-color: var(--hop-comp-mark-background-color-hover);
     --box-border-color: var(--hop-comp-mark-border-color-hover);
     --box-outline: var(--hop-Radio-box-outline-size) solid var(--hop-comp-mark-border-color-focus);
-    --text-color: var(--hop-comp-label-text-color-focus);
-    --icon-color: var(--hop-comp-label-icon-color-focus);
+    --text-color: var(--hop-comp-mark-text-color-focus);
+    --icon-color: var(--hop-comp-mark-icon-color-focus);
 }
 
 .hop-Radio[data-hovered] {
     --box-background-color: var(--hop-comp-mark-background-color-hover);
     --box-border-color: var(--hop-comp-mark-border-color-hover);
-    --text-color: var(--hop-comp-label-text-color-hover);
-    --icon-color: var(--hop-comp-label-icon-color-hover);
+    --text-color: var(--hop-comp-mark-text-color-hover);
+    --icon-color: var(--hop-comp-mark-icon-color-hover);
 }
 
 .hop-Radio[data-pressed] {
     --box-background-color: var(--hop-comp-mark-background-color-press);
     --box-border-color: var(--hop-comp-mark-border-color-press);
-    --text-color: var(--hop-comp-label-text-color-press);
-    --icon-color: var(--hop-comp-label-icon-color-press);
+    --text-color: var(--hop-comp-mark-text-color-press);
+    --icon-color: var(--hop-comp-mark-icon-color-press);
 }
 
 .hop-Radio[data-selected] {
     --box-background-color: var(--hop-comp-mark-background-color-selected);
     --box-border-color: var(--hop-comp-mark-border-color-selected);
     --bullet-display: var(--hop-Radio-bullet-display-selected);
-    --text-color: var(--hop-comp-label-text-color-selected);
-    --icon-color: var(--hop-comp-label-icon-color-selected);
+    --text-color: var(--hop-comp-mark-text-color-selected);
+    --icon-color: var(--hop-comp-mark-icon-color-selected);
 }
 
 .hop-Radio[data-invalid] {
     --box-background-color: var(--hop-comp-mark-background-color);
     --box-border-color: var(--hop-comp-mark-border-color-error);
     --bullet-color: var(--hop-comp-mark-indicator-color-error);
-    --text-color: var(--hop-comp-label-text-color-error);
-    --icon-color: var(--hop-comp-label-icon-color-error);
+    --text-color: var(--hop-comp-mark-text-color-error);
+    --icon-color: var(--hop-comp-mark-icon-color-error);
 }
 
 .hop-Radio:where([data-invalid])[data-focus-visible] {
@@ -88,15 +88,15 @@
 .hop-Radio:where([data-invalid])[data-hovered] {
     --box-background-color: var(--hop-comp-mark-background-color-error-hover);
     --box-border-color: var(--hop-comp-mark-border-color-error);
-    --text-color: var(--hop-comp-label-text-color-error-hover);
-    --icon-color: var(--hop-comp-label-icon-color-error-hover);
+    --text-color: var(--hop-comp-mark-text-color-error-hover);
+    --icon-color: var(--hop-comp-mark-icon-color-error-hover);
 }
 
 .hop-Radio:where([data-invalid])[data-pressed] {
     --box-background-color: var(--hop-comp-mark-background-color-error-press);
     --box-border-color: var(--hop-comp-mark-border-color-error-press);
-    --text-color: var(--hop-comp-label-text-color-error-press);
-    --icon-color: var(--hop-comp-label-icon-color-error-press);
+    --text-color: var(--hop-comp-mark-text-color-error-press);
+    --icon-color: var(--hop-comp-mark-icon-color-error-press);
 }
 
 .hop-Radio:where([data-invalid])[data-selected] {
@@ -109,8 +109,8 @@
     --box-border-color: var(--hop-comp-mark-border-color-disabled);
     --bullet-color: var(--hop-comp-mark-indicator-color-disabled);
     --cursor: not-allowed;
-    --text-color: var(--hop-comp-label-text-color-disabled);
-    --icon-color: var(--hop-comp-label-icon-color-disabled);
+    --text-color: var(--hop-comp-mark-text-color-disabled);
+    --icon-color: var(--hop-comp-mark-icon-color-disabled);
 }
 
 .hop-Radio--sm {
