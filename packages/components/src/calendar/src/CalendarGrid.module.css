@@ -19,7 +19,7 @@
     --hop-CalendarGrid__body-border-radius: var(--hop-shape-rounded-md);
 
     border-radius: var(--hop-CalendarGrid__body-border-radius);
-    box-shadow: 0 0 0 0.0625rem var(--hop-neutral-border);
+    box-shadow: 0 0 0 0.0625rem var(--hop-comp-calendar-grid-border-color);
 }
 
 .hop-CalendarGrid__body td {
