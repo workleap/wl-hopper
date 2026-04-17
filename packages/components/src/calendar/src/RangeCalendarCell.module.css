@@ -28,8 +28,6 @@
 }
 
 .hop-RangeCalendarCell[data-selection-start]:not([data-disabled])::before, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled])::before {
-    --hop-RangeCalendarCell-data-selected-edge-background: var(--hop-neutral-surface-selected);
-
     content: "";
 
     position: absolute;
@@ -41,7 +39,7 @@
     inline-size: 100%;
     block-size: 100%;
 
-    background: var(--hop-RangeCalendarCell-data-selected-edge-background);
+    background: var(--hop-comp-calendar-cell-background-selected);
     border-radius: var(--hop-RangeCalendarCell-border-radius);
 }
 
