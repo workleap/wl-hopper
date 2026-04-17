@@ -293,7 +293,7 @@
             },
             "border-color-loading": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{upsell.border}"
             },
             "box-shadow-loading": {
                 "$type": "shadow",
