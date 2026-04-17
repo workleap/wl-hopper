@@ -35,6 +35,7 @@
 
     border-radius: var(--hop-comp-tabs-tab-border-radius);
     outline: var(--outline, var(--hop-Tab-outline));
+    text-decoration: var(--hop-Tab-text-decoration);
 }
 
 .hop-Tab--fluid {
