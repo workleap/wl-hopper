@@ -7,12 +7,6 @@
     /* This is to ensure to the proper height of the TabList */
     --hop-TabList-padding-block: calc(var(--hop-space-inset-xs) + var(--hop-space-10));
 
-    /* Standalone */
-    --hop-TabList-standalone-border: 0.0625rem solid var(--hop-comp-tabs-tab-list-border-color);
-
-    /* In card */
-    --hop-TabList-in-card-border: 0.0625rem solid var(--hop-comp-tabs-tab-list-border-color);
-
     /* Internal */
     --padding-inline: var(--hop-TabList-padding-inline);
 
@@ -26,13 +20,13 @@
     padding-inline: var(--padding-inline);
 
     background: var(--background);
-    border: var(--border);
 }
 
 .hop-TabList--standalone {
     --background: var(--hop-comp-tabs-tab-list-background-color);
-    --border: var(--hop-TabList-standalone-border);
 
+    border: var(--hop-comp-tabs-tab-list-border);
+    border-block-end: var(--hop-comp-tabs-tab-list-border-block-end);
     border-radius: var(--hop-comp-tabs-tab-list-border-radius);
 }
 
@@ -40,7 +34,7 @@
     --background: var(--hop-comp-tabs-tab-list-background-color);
 
     border: 0;
-    border-block-end: var(--hop-TabList-in-card-border);
+    border-block-end: var(--hop-comp-tabs-tab-list-border-block-end);
     border-radius: var(--hop-comp-tabs-tab-list-border-radius) var(--hop-comp-tabs-tab-list-border-radius) 0 0;
 }
 

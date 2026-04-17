@@ -47,9 +47,13 @@
                 "$type": "color",
                 "$value": "{neutral.surface-weakest}"
             },
-            "border-color": {
-                "$type": "color",
-                "$value": "{neutral.border-weak}"
+            "border": {
+                "$type": "border",
+                "$value": "{space.10} solid {neutral.border-weak}"
+            },
+            "border-block-end": {
+                "$type": "border",
+                "$value": "{space.10} solid {neutral.border-weak}"
             },
             "border-radius": {
                 "$type": "borderRadius",
