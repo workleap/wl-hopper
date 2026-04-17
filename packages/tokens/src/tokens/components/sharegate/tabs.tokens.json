@@ -1,0 +1,70 @@
+{
+    "comp-tabs": {
+        "tab": {
+            "text-color": {
+                "$type": "color",
+                "$value": "{neutral.text-weak}"
+            },
+            "text-color-hover": {
+                "$type": "color",
+                "$value": "{neutral.text-hover}"
+            },
+            "text-color-press": {
+                "$type": "color",
+                "$value": "{neutral.text-press}"
+            },
+            "text-color-selected": {
+                "$type": "color",
+                "$value": "{primary.text-selected}"
+            },
+            "text-color-focus": {
+                "$type": "color",
+                "$value": "{neutral.text-hover}"
+            },
+            "text-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.text-disabled}"
+            },
+            "border-color-selected": {
+                "$type": "color",
+                "$value": "{primary.border-selected}"
+            },
+            "border-color-focus": {
+                "$type": "color",
+                "$value": "{primary.border-focus}"
+            },
+            "border-color-disabled": {
+                "$type": "color",
+                "$value": "{neutral.border-disabled}"
+            },
+            "border-radius": {
+                "$type": "borderRadius",
+                "$value": "{shape.rounded-sm}"
+            }
+        },
+        "tab-list": {
+            "background-color": {
+                "$type": "color",
+                "$value": "transparent"
+            },
+            "border": {
+                "$type": "border",
+                "$value": "none"
+            },
+            "border-block-end": {
+                "$type": "border",
+                "$value": "{space.10} solid {neutral.border-weak}"
+            },
+            "border-radius": {
+                "$type": "borderRadius",
+                "$value": "none"
+            }
+        },
+        "tab-panel": {
+            "border-color-focus": {
+                "$type": "color",
+                "$value": "{primary.border-focus}"
+            }
+        }
+    }
+}

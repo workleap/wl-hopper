@@ -2,19 +2,10 @@
     --hop-TabList-display: flex;
     --hop-TabList-position: relative;
     --hop-TabList-overflow-y: auto;
-    --hop-Tablist-border-radius: var(--hop-shape-rounded-md);
     --hop-TabList-padding-inline: var(--hop-space-inset-xs);
 
     /* This is to ensure to the proper height of the TabList */
     --hop-TabList-padding-block: calc(var(--hop-space-inset-xs) + var(--hop-space-10));
-
-    /* Standalone */
-    --hop-TabList-standalone-background: var(--hop-neutral-surface-weakest);
-    --hop-TabList-standalone-border: 0.0625rem solid var(--hop-neutral-border-weak);
-
-    /* In card */
-    --hop-TabList-in-card-background: var(--hop-neutral-surface-weakest);
-    --hop-TabList-in-card-border: 0.0625rem solid var(--hop-neutral-border-weak);
 
     /* Internal */
     --padding-inline: var(--hop-TabList-padding-inline);
@@ -29,22 +20,22 @@
     padding-inline: var(--padding-inline);
 
     background: var(--background);
-    border: var(--border);
 }
 
 .hop-TabList--standalone {
-    --background: var(--hop-TabList-standalone-background);
-    --border: var(--hop-TabList-standalone-border);
+    --background: var(--hop-comp-tabs-tab-list-background-color);
 
-    border-radius: var(--hop-Tablist-border-radius);
+    border: var(--hop-comp-tabs-tab-list-border);
+    border-block-end: var(--hop-comp-tabs-tab-list-border-block-end);
+    border-radius: var(--hop-comp-tabs-tab-list-border-radius);
 }
 
 .hop-TabList--in-card {
-    --background: var(--hop-TabList-in-card-background);
+    --background: var(--hop-comp-tabs-tab-list-background-color);
 
     border: 0;
-    border-block-end: var(--hop-TabList-in-card-border);
-    border-radius: var(--hop-Tablist-border-radius) var(--hop-Tablist-border-radius) 0 0;
+    border-block-end: var(--hop-comp-tabs-tab-list-border-block-end);
+    border-radius: var(--hop-comp-tabs-tab-list-border-radius) var(--hop-comp-tabs-tab-list-border-radius) 0 0;
 }
 
 .hop-TabList__tablist {

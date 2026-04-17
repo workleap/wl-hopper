@@ -1,8 +1,10 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import { within } from "storybook/test";
 
 import { Badge } from "../../../badge/index.ts";
 import { Card } from "../../../card/index.ts";
+import { Stack } from "../../../layout/index.ts";
 import { Tag } from "../../../tag/index.ts";
 import { Text } from "../../../typography/index.ts";
 import { TabPanel } from "../../src/index.ts";
@@ -300,3 +302,121 @@ export const WithHref = {
         size: "md"
     }
 } satisfies Story;
+
+export const States: Story = {
+    parameters: {
+        chromatic: {
+            delay: 2000
+        }
+    },
+    play: async ({ canvasElement }) => {
+        const canvas = within(canvasElement);
+
+        const tabs = await canvas.findAllByRole("tab");
+        tabs.forEach(tab => {
+            if (tab.getAttribute("data-chromatic-force-focus")) {
+                tab.setAttribute("data-focus-visible", "true");
+                tab.removeAttribute("data-chromatic-force-focus");
+            }
+
+            if (tab.getAttribute("data-chromatic-force-hover")) {
+                tab.setAttribute("data-hovered", "true");
+                tab.removeAttribute("data-chromatic-force-hover");
+            }
+        });
+
+        const panels = await canvas.findAllByRole("tabpanel");
+        panels.forEach(panel => {
+            if (panel.getAttribute("data-chromatic-force-focus")) {
+                panel.setAttribute("data-focus-visible", "true");
+                panel.removeAttribute("data-chromatic-force-focus");
+            }
+        });
+    },
+    render: args => (
+        <Stack>
+            <h1>Tab Hovered</h1>
+            <Tabs {...args}>
+                <TabList>
+                    <Tab id="t1-frog-1" data-chromatic-force-hover>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t1-frog-2" data-chromatic-force-hover>
+                        <SparklesIcon />
+                        <Text>Poison Dart Frog</Text>
+                    </Tab>
+                    <Tab id="t1-frog-3" data-chromatic-force-hover>
+                        <Text>Goliath Frog</Text>
+                        <Badge>3</Badge>
+                    </Tab>
+                </TabList>
+                <TabPanel id="t1-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
+                <TabPanel id="t1-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
+                <TabPanel id="t1-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+            </Tabs>
+            <h1>Tab Focus Visible</h1>
+            <Tabs {...args}>
+                <TabList>
+                    <Tab id="t2-frog-1" data-chromatic-force-focus>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t2-frog-2" data-chromatic-force-focus>
+                        <SparklesIcon />
+                        <Text>Poison Dart Frog</Text>
+                    </Tab>
+                    <Tab id="t2-frog-3" data-chromatic-force-focus>
+                        <Text>Goliath Frog</Text>
+                        <Badge>3</Badge>
+                    </Tab>
+                </TabList>
+                <TabPanel id="t2-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
+                <TabPanel id="t2-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
+                <TabPanel id="t2-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+            </Tabs>
+            <h1>Tab Focus Visible and Hovered</h1>
+            <Tabs {...args}>
+                <TabList>
+                    <Tab id="t3-frog-1" data-chromatic-force-focus data-chromatic-force-hover>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t3-frog-2" data-chromatic-force-focus data-chromatic-force-hover>
+                        <SparklesIcon />
+                        <Text>Poison Dart Frog</Text>
+                    </Tab>
+                    <Tab id="t3-frog-3" data-chromatic-force-focus data-chromatic-force-hover>
+                        <Text>Goliath Frog</Text>
+                        <Badge>3</Badge>
+                    </Tab>
+                </TabList>
+                <TabPanel id="t3-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
+                <TabPanel id="t3-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
+                <TabPanel id="t3-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+            </Tabs>
+            <h1>Tab Disabled</h1>
+            <Tabs {...args}>
+                <TabList>
+                    <Tab id="t4-frog-1">Red-Eyed Tree Frog</Tab>
+                    <Tab id="t4-frog-2" isDisabled>
+                        <SparklesIcon />
+                        <Text>Poison Dart Frog</Text>
+                    </Tab>
+                    <Tab id="t4-frog-3" isDisabled>
+                        <Text>Goliath Frog</Text>
+                        <Badge>3</Badge>
+                    </Tab>
+                </TabList>
+                <TabPanel id="t4-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
+                <TabPanel id="t4-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
+                <TabPanel id="t4-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+            </Tabs>
+            <h1>Tab Panel Focus Visible</h1>
+            <Tabs {...args}>
+                <TabList>
+                    <Tab id="t5-frog-1">Red-Eyed Tree Frog</Tab>
+                    <Tab id="t5-frog-2">Poison Dart Frog</Tab>
+                    <Tab id="t5-frog-3">Goliath Frog</Tab>
+                </TabList>
+                <TabPanel id="t5-frog-1" padding="inset-md" data-chromatic-force-focus>The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
+                <TabPanel id="t5-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
+                <TabPanel id="t5-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+            </Tabs>
+        </Stack>
+    ),
+    args: {
+        "aria-label": "Frogs"
+    }
+};

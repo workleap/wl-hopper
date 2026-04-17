@@ -3,7 +3,7 @@
     --hop-TabPanel-outline-width: 0.125rem;
 
     /* Focus */
-    --hop-TabPanel-focus-outline: var(--hop-TabPanel-outline-width) solid var(--hop-primary-border-focus);
+    --hop-TabPanel-focus-outline: var(--hop-TabPanel-outline-width) solid var(--hop-comp-tabs-tab-panel-border-color-focus);
 
     box-sizing: border-box;
     outline: var(--outline, var(--hop-TabPanel-outline));
