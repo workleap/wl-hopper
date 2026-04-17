@@ -309,10 +309,11 @@ export const States: Story = {
             delay: 2000
         }
     },
-    play: ({ canvasElement }) => {
+    play: async ({ canvasElement }) => {
         const canvas = within(canvasElement);
 
-        canvas.getAllByRole("tab").forEach(tab => {
+        const tabs = await canvas.findAllByRole("tab");
+        tabs.forEach(tab => {
             if (tab.getAttribute("data-chromatic-force-focus")) {
                 tab.setAttribute("data-focus-visible", "true");
                 tab.removeAttribute("data-chromatic-force-focus");
@@ -324,7 +325,8 @@ export const States: Story = {
             }
         });
 
-        canvas.getAllByRole("tabpanel").forEach(panel => {
+        const panels = await canvas.findAllByRole("tabpanel");
+        panels.forEach(panel => {
             if (panel.getAttribute("data-chromatic-force-focus")) {
                 panel.setAttribute("data-focus-visible", "true");
                 panel.removeAttribute("data-chromatic-force-focus");
