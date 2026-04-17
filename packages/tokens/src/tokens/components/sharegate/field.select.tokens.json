@@ -11,6 +11,10 @@
         "text-color-hover": {
             "$type": "color",
             "$value": "{neutral.text-hover}"
+        },
+        "checkmark-color": {
+            "$type": "color",
+            "$value": "{primary.icon}"
         }
     }
 }

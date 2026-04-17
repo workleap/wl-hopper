@@ -67,7 +67,7 @@
     --hop-ListBoxItem-text-color-focused: var(--hop-neutral-text-hover);
     --hop-ListBoxItem-icon-color-focused: var(--hop-neutral-icon-hover);
 
-    /* Selected */ 
+    /* Selected */
     --hop-ListBoxItem-background-color-selected: transparent;
     --hop-ListBoxItem-text-color-selected: var(--hop-neutral-text);
     --hop-ListBoxItem-icon-color-selected: var(--hop-neutral-icon);
@@ -114,7 +114,7 @@
     --checkmark-transition: opacity 0.2s ease-in-out .2s;
 
     cursor: var(--cursor);
-    
+
     box-sizing: border-box;
 
     color: var(--text-color);
@@ -292,7 +292,7 @@
 
     margin-inline-end: var(--hop-ListBoxItem-column-gap);
 
-    color: var(--icon-color);
+    color: var(--hop-comp-select-checkmark-color);
 
     opacity: var(--checkmark-opacity);
 
