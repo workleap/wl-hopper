@@ -692,6 +692,10 @@
             "$type": "color",
             "$value": "{rock.800}"
         },
+        "surface-weak-transparent-always-dark": {
+            "$type": "color",
+            "$value": "rgb(49 51 53 / 0.75)"
+        },
         "surface-weak-selected": {
             "$type": "color",
             "$value": "{rock.800}"

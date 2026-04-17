@@ -52,19 +52,17 @@
 }
 
 .hop-CalendarCell[data-pressed] {
-    --hop-CalendarCell-data-pressed-background: var(--hop-neutral-surface-press);
     --hop-CalendarCell-data-pressed-color: var(--hop-neutral-text-hover);
 
     color: var(--hop-CalendarCell-data-pressed-color);
-    background: var(--hop-CalendarCell-data-pressed-background);
+    background: var(--hop-comp-calendar-cell-background-press);
 }
 
 .hop-CalendarCell[data-selected] {
-    --hop-CalendarCell-data-selected-background: var(--hop-neutral-surface-selected);
     --hop-CalendarCell-data-selected-color: var(--hop-neutral-text-selected);
 
     color: var(--hop-CalendarCell-data-selected-color);
-    background: var(--hop-CalendarCell-data-selected-background);
+    background: var(--hop-comp-calendar-cell-background-selected);
 }
 
 .hop-CalendarCell[data-disabled] {
@@ -90,9 +88,7 @@
 }
 
 .hop-CalendarCell[data-today]:not([data-selected]) {
-    --hop-CalendarCell-data-today-border: 0.125rem solid var(--hop-neutral-border-strong);
-
-    border: var(--hop-CalendarCell-data-today-border);
+    border: 0.125rem solid var(--hop-comp-calendar-cell-today-border-color);
 }
 
 .hop-CalendarCell[data-disabled][data-selected] {
