@@ -283,13 +283,13 @@
             "background-loading": {
                 "$type": "gradient",
                 "$value": [
-                    { "color": "{neutral.surface}", "position": 0 },
-                    { "color": "{neutral.surface-weak}", "position": 1 }
+                    { "color": "{limeburst.50}", "position": 0 },
+                    { "color": "{persimmon.300}", "position": 1.5156 }
                 ]
             },
             "color-loading": {
                 "$type": "color",
-                "$value": "{neutral.icon}"
+                "$value": "{neutral.icon-always-dark}"
             },
             "border-color-loading": {
                 "$type": "color",
