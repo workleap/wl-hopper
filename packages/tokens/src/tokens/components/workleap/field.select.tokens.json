@@ -15,6 +15,22 @@
         "checkmark-color": {
             "$type": "color",
             "$value": "{neutral.icon}"
+        },
+        "checkmark-color-hovered": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "checkmark-color-focused": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "checkmark-color-pressed": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "checkmark-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
         }
     }
 }

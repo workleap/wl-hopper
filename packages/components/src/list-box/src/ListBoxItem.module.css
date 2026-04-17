@@ -104,6 +104,7 @@
     --background-color: var(--hop-ListBoxItem-background-color);
     --text-color: var(--hop-ListBoxItem-text-color);
     --icon-color: var(--hop-ListBoxItem-icon-color);
+    --checkmark-color: var(--icon-color);
     --outline: none;
     --cursor: default;
     --checkmark-opacity: 0;
@@ -177,6 +178,7 @@
     --background-color: var(--hop-ListBoxItem-background-color-selected);
     --text-color: var(--hop-ListBoxItem-text-color-selected);
     --icon-color: var(--hop-ListBoxItem-icon-color-selected);
+    --checkmark-color: var(--hop-comp-select-checkmark-color);
     --checkmark-opacity: 1;
 }
 
@@ -200,6 +202,7 @@
     --background-color: var(--hop-ListBoxItem-background-color-focused);
     --text-color: var(--hop-ListBoxItem-text-color-focused);
     --icon-color: var(--hop-ListBoxItem-icon-color-focused);
+    --checkmark-color: var(--hop-comp-select-checkmark-color-focused);
     --outline: var(--hop-ListBoxItem-outline-size) solid var(--hop-ListBoxItem-outline-color);
 }
 
@@ -207,18 +210,21 @@
     --background-color: var(--hop-ListBoxItem-background-color-hovered);
     --text-color: var(--hop-ListBoxItem-text-color-hovered);
     --icon-color: var(--hop-ListBoxItem-icon-color-hovered);
+    --checkmark-color: var(--hop-comp-select-checkmark-color-hovered);
 }
 
 .hop-ListBoxItem[data-pressed] {
     --background-color: var(--hop-ListBoxItem-background-color-pressed);
     --text-color: var(--hop-ListBoxItem-text-color-pressed);
     --icon-color: var(--hop-ListBoxItem-icon-color-pressed);
+    --checkmark-color: var(--hop-comp-select-checkmark-color-pressed);
 }
 
 .hop-ListBoxItem[data-disabled] {
     --background-color: var(--hop-ListBoxItem-background-color-disabled);
     --text-color: var(--hop-ListBoxItem-text-color-disabled);
     --icon-color: var(--hop-ListBoxItem-icon-color-disabled);
+    --checkmark-color: var(--hop-comp-select-checkmark-color-disabled);
     --description-text-color: var(--hop-ListBoxItem-text-color-disabled);
     --cursor: not-allowed;
 }
@@ -233,6 +239,7 @@
     --background-color: var(--hop-ListBoxItem-background-color-invalid-selected);
     --text-color: var(--hop-ListBoxItem-text-color-invalid-selected);
     --icon-color: var(--hop-ListBoxItem-icon-color-invalid-selected);
+    --checkmark-color: var(--icon-color);
 }
 
 .hop-ListBoxItem[data-invalid][data-focus-visible] {
@@ -292,7 +299,7 @@
 
     margin-inline-end: var(--hop-ListBoxItem-column-gap);
 
-    color: var(--hop-comp-select-checkmark-color);
+    color: var(--checkmark-color);
 
     opacity: var(--checkmark-opacity);
 
