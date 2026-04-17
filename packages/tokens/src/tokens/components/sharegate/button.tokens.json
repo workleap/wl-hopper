@@ -64,8 +64,11 @@
                 ]
             },
             "background-loading": {
-                "$type": "color",
-                "$value": "{primary.surface-strong}"
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{iris.300}", "position": 0 },
+                    { "color": "{iris.600}", "position": 1 }
+                ]
             },
             "color-loading": {
                 "$type": "color",
