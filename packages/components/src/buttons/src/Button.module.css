@@ -369,49 +369,6 @@
 }
 
 /* Loading */
-
-.hop-Button--loading.hop-Button--primary {
-    --background: var(--hop-comp-button-primary-background);
-    --color: var(--hop-comp-button-primary-text-color);
-    --border: var(--hop-Button-primary-border);
-}
-
-.hop-Button--loading.hop-Button--secondary {
-    --background: var(--hop-comp-button-secondary-background);
-    --color: var(--hop-comp-button-secondary-text-color);
-    --border: var(--hop-Button-secondary-border);
-}
-
-.hop-Button--loading.hop-Button--upsell {
-    --background: var(--hop-comp-button-upsell-background);
-    --color: var(--hop-comp-button-upsell-text-color);
-    --border: var(--hop-Button-upsell-border);
-}
-
-.hop-Button--loading.hop-Button--danger {
-    --background: var(--hop-comp-button-danger-background);
-    --color: var(--hop-comp-button-danger-text-color);
-    --border: var(--hop-Button-danger-border);
-}
-
-.hop-Button--loading.hop-Button--ghost-primary {
-    --background: var(--hop-comp-button-ghost-primary-background);
-    --color: var(--hop-comp-button-ghost-primary-text-color);
-    --border: var(--hop-Button-ghost-primary-border);
-}
-
-.hop-Button--loading.hop-Button--ghost-secondary {
-    --background: var(--hop-comp-button-ghost-secondary-background);
-    --color: var(--hop-comp-button-ghost-secondary-text-color);
-    --border: var(--hop-Button-ghost-secondary-border);
-}
-
-.hop-Button--loading.hop-Button--ghost-danger {
-    --background: var(--hop-comp-button-ghost-danger-background);
-    --color: var(--hop-comp-button-ghost-danger-text-color);
-    --border: var(--hop-Button-ghost-danger-border);
-}
-
 .hop-Button--loading {
     background: var(--background-loading);
     color: var(--color-loading);
