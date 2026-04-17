@@ -1,80 +1,33 @@
 .hop-Tile {
     /* Default */
-    --hop-Tile-color: var(--hop-neutral-text);
-    --hop-Tile-background: var(--hop-neutral-surface);
-    --hop-Tile-border-witdh: 0.0625rem;
-    --hop-Tile-border-style: solid;
-    --hop-Tile-border-color: var(--hop-neutral-border-strong);
-    --hop-Tile-border-radius: var(--hop-shape-rounded-md);
-    --hop-Tile-cursor: pointer;
-    --hop-Tile-outline-offset: 0rem;
-    --hop-Tile-outline-color: transparent;
-    --hop-Tile-outline-width: var(--hop-space-20);
-    --hop-Tile-display: grid;
+    --hop-Tile-border-radius: var(--hop-comp-tile-border-radius);
     --hop-Tile-grid-template:
         "image" auto
         "container" 1fr
         / auto;
 
-    /* Focused */
-    --hop-Tile-color-focused: var(--hop-neutral-text-hover);
-    --hop-Tile-background-focused: var(--hop-neutral-surface-hover);
-    --hop-Tile-outline-color-focused: var(--hop-primary-border-focus);
-    --hop-Tile-border-color-focused: transparent;
-
-    /* Hovered */
-    --hop-Tile-color-hovered: var(--hop-neutral-text-hover);
-    --hop-Tile-background-hovered: var(--hop-neutral-surface-hover);
-    --hop-Tile-border-color-hovered: var(--hop-neutral-border-strong-hover);
-
-    /* Pressed */
-    --hop-Tile-color-pressed: var(--hop-neutral-text-press);
-    --hop-Tile-background-pressed: var(--hop-neutral-surface-press);
-    --hop-Tile-border-color-pressed: var(--hop-neutral-border-strong);
-
-    /* Selected */
-    --hop-Tile-color-selected: var(--hop-neutral-text);
-    --hop-Tile-background-selected: var(--hop-neutral-surface-weak-selected);
-    --hop-Tile-outline-color-selected: var(--hop-neutral-border-strong);
-    --hop-Tile-border-color-selected: transparent;
-
-    /* Disabled */
-    --hop-Tile-color-disabled: var(--hop-neutral-text-disabled);
-    --hop-Tile-background-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Tile-border-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Tile-outline-color-disabled: transparent;
-    --hop-Tile-cursor-disabled: auto;
-
-    /* Readonly */
-    --hop-Tile-cursor-readonly: auto;
-
     /* Icon */
-    --hop-Tile-color-icon: transparent;
-
-    /* Icon | Selected */
-    --hop-Tile-color-icon-selected: var(--hop-neutral-icon);
-
-    /* Icon | Disabled */
-    --hop-Tile-color-icon-disabled: var(--hop-neutral-icon-disabled);
+    --hop-Tile-color-icon: var(--hop-comp-tile-icon-color);
 
     /* Internal variables */
-    --color: var(--hop-Tile-color);
-    --background: var(--hop-Tile-background);
-    --border-color:  var(--hop-Tile-border-color);
-    --cursor: var(--hop-Tile-cursor);
+    --color: var(--hop-comp-tile-text-color);
+    --background: var(--hop-comp-tile-background-color);
+    --border-color:  var(--hop-comp-tile-border-color);
+    --outline-color: var(--hop-comp-tile-outline-color);
+    --cursor: pointer;
 
     cursor: var(--cursor);
 
-    display: var(--hop-Tile-display);
+    display: grid;
     grid-template: var(--hop-Tile-grid-template);
 
     color: var(--color);
 
+    box-shadow: var(--hop-comp-tile-box-shadow);
     background: var(--background);
-    border: var(--hop-Tile-border-witdh) var(--hop-Tile-border-style) var(--border-color);
+    border: 0.0625rem solid var(--border-color);
     border-radius: var(--hop-Tile-border-radius);
-    outline: var(--hop-Tile-outline-offset) solid var(--hop-Tile-outline-color);
-    outline-width: var(--hop-Tile-outline-width);
+    outline: var(--hop-space-20) solid var(--outline-color);
 }
 
 .hop-Tile--horizontal {
@@ -85,46 +38,46 @@
 }
 
 .hop-Tile[data-hovered] {
-    --color: var(--hop-Tile-color-hovered);
-    --background: var(--hop-Tile-background-hovered);
-    --border-color: var(--hop-Tile-border-color-hovered);
+    --color: var(--hop-comp-tile-text-color-hover);
+    --background: var(--hop-comp-tile-background-color-hover);
+    --border-color: var(--hop-comp-tile-border-color-hover);
 }
 
 .hop-Tile[data-pressed] {
-    --color: var(--hop-Tile-color-pressed);
-    --background: var(--hop-Tile-background-pressed);
-    --border-color: var(--hop-Tile-border-color-pressed);
+    --color: var(--hop-comp-tile-text-color-press);
+    --background: var(--hop-comp-tile-background-color-press);
+    --border-color: var(--hop-comp-tile-border-color-press);
 }
 
 .hop-Tile[data-focus-visible] {
-    --color: var(--hop-Tile-color-focused);
-    --background: var(--hop-Tile-background-focused);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-focused);
-    --border-color: var(--hop-Tile-border-color-focused);
+    --color: var(--hop-comp-tile-text-color-focus);
+    --background: var(--hop-comp-tile-background-color-focus);
+    --outline-color: var(--hop-comp-tile-outline-color-focus);
+    --border-color: var(--hop-comp-tile-border-color-focus);
 }
 
 .hop-Tile[data-selected] {
-    --color: var(--hop-Tile-color-selected);
-    --background: var(--hop-Tile-background-selected);
-    --border-color: var(--hop-Tile-border-color-selected);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-selected);
-    --hop-Tile-color-icon: var(--hop-Tile-color-icon-selected);
+    --color: var(--hop-comp-tile-text-color-selected);
+    --background: var(--hop-comp-tile-background-color-selected);
+    --border-color: var(--hop-comp-tile-border-color-selected);
+    --outline-color: var(--hop-comp-tile-outline-color-selected);
+    --hop-Tile-color-icon: var(--hop-comp-tile-icon-color-selected);
 }
 
 .hop-Tile[data-disabled]:not(.hop-Tile--readonly) {
-    --color: var(--hop-Tile-color-disabled);
-    --background: var(--hop-Tile-background-disabled);
-    --border-color: var(--hop-Tile-border-color-disabled);
-    --hop-Tile-outline-color: var(--hop-Tile-outline-color-disabled);
-    --cursor: var(--hop-Tile-cursor-disabled);
+    --color: var(--hop-comp-tile-text-color-disabled);
+    --background: var(--hop-comp-tile-background-color-disabled);
+    --border-color: var(--hop-comp-tile-border-color-disabled);
+    --outline-color: var(--hop-comp-tile-outline-color-disabled);
+    --cursor: auto;
 }
 
 .hop-Tile--readonly {
-    --cursor: var(--hop-Tile-cursor-readonly);
+    --cursor: auto;
 }
 
 .hop-Tile[data-disabled][data-selected] {
-    --hop-Tile-color-icon: var(--hop-Tile-color-icon-disabled)
+    --hop-Tile-color-icon: var(--hop-comp-tile-icon-color-disabled);
 }
 
 .hop-Tile__image, .hop-Tile__illustration {
@@ -194,6 +147,10 @@
     font-weight: var(--hop-Tile__content-font-weight);
     line-height: var(--hop-Tile__content-line-height);
     color: var(--color);
+}
+
+.hop-Tile[data-selected] .hop-Tile__content {
+    --hop-Tile__content-font-weight: var(--hop-body-md-semibold-font-weight);
 }
 
 .hop-Tile__icon-container {
