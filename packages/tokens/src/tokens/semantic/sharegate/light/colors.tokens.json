@@ -860,7 +860,7 @@
         },
         "surface-strong-selected": {
             "$type": "color",
-            "$value": "{iris.50}"
+            "$value": "{iris.800}"
         },
         "surface-strong-hover": {
             "$type": "color",
