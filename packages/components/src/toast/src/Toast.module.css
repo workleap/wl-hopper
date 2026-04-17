@@ -16,7 +16,7 @@
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 40rem)  {
+@media screen and (max-width: 40rem) {
     .hop-Toast {
         inline-size: 100%;
         border-radius: var(--hop-comp-toast-border-radius-mobile);

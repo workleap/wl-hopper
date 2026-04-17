@@ -17,34 +17,64 @@ export interface ToastOptions {
 export interface ToastQueue {
     success(message: string, options?: ToastOptions): string;
     error(message: string, options?: ToastOptions): string;
+    close(key: string): void;
+    clear(): void;
 }
 
 const QueueMap = new WeakMap<ToastQueue, UNSTABLE_ToastQueue<ToastContent>>();
 const ToastRegionMap = new WeakMap<ToastQueue, RefObject<HTMLElement | null>>();
 
 export function createToastQueue(): ToastQueue {
+    const pendingUpdates: Array<() => void> = [];
+    let scheduledMicrotask = false;
     const reactAriaQueue = new UNSTABLE_ToastQueue<ToastContent>({
         maxVisibleToasts: 5,
         wrapUpdate(fn) {
-            const ref = ToastRegionMap.get(hopperQueue);
-            if (ref?.current && "startViewTransition" in ref.current) {
-                (ref.current.startViewTransition as Document["startViewTransition"])(() => {
-                    flushSync(fn);
+            pendingUpdates.push(fn);
+
+            if (!scheduledMicrotask) {
+                scheduledMicrotask = true;
+                queueMicrotask(async () => {
+                    const currentUpdates = pendingUpdates.splice(0, pendingUpdates.length);
+                    scheduledMicrotask = false;
+
+                    const ref = ToastRegionMap.get(hopperQueue);
+                    if (ref?.current && "startViewTransition" in ref.current) {
+                        const transition = (ref.current.startViewTransition as Document["startViewTransition"])(() => {
+                            flushSync(() => currentUpdates.forEach(fn => fn()));
+                        });
+
+                        try {
+                            // We have to await the transitions to prevent an unhandled rejection error
+                            // See: https://jakearchibald.com/2023/unhandled-rejections/
+                            await transition.ready;
+                            await transition.finished;
+                            await transition.updateCallbackDone;
+                        } catch (e: unknown) {
+                            console.error(e);
+                        }
+                    } else {
+                        currentUpdates.forEach(fn => fn());
+                    }
                 });
-            } else {
-                fn();
             }
         }
     });
 
     const hopperQueue: ToastQueue = {
-        success(message: string, { timeout = 5000, onClose }: ToastOptions = {}) {
+        success(message: string, { timeout = 5000, onClose }: ToastOptions = {}): string {
             const key = reactAriaQueue.add({ variant: "success", title: message, timeout }, { onClose });
             return key;
         },
-        error(message: string, { timeout = 5000, onClose }: ToastOptions = {}) {
+        error(message: string, { timeout = 5000, onClose }: ToastOptions = {}): string {
             const key = reactAriaQueue.add({ variant: "error", title: message, timeout }, { onClose });
             return key;
+        },
+        close(key: string): void {
+            reactAriaQueue.close(key);
+        },
+        clear(): void {
+            reactAriaQueue.clear();
         }
     };
 
