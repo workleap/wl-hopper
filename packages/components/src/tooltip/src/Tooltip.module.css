@@ -1,16 +1,11 @@
 .hop-Tooltip {
     --hop-Tooltip-max-inline-size: 20rem;
     --hop-Tooltip-slide-amount: 0.25rem; /* Tokens not available here */
-    --hop-Tooltip-background: var(--hop-neutral-surface-strong);
-    --hop-Tooltip-border-radius: var(--hop-shape-rounded-md);
-    --hop-Tooltip-box-shadow: var(--hop-elevation-raised);
     --hop-Tooltip-font-family: var(--hop-body-xs-font-family);
     --hop-Tooltip-font-size: var(--hop-body-xs-font-size);
     --hop-Tooltip-font-weight: var(--hop-body-xs-font-weight);
     --hop-Tooltip-line-height: var(--hop-body-xs-line-height);
     --hop-Tooltip-font-smoothing: antialiased;
-    --hop-Tooltip-color: var(--hop-neutral-text-strong);
-    --hop-Tooltip-padding: var(--hop-space-inset-squish-md);
 
     /* Internal Variables */
     --origin-x: 0;
@@ -18,18 +13,19 @@
 
     /* Ensures there's always 2rem space around the tooltip, but it'll still have a max width of 20rem. */
     max-inline-size: min(var(--hop-Tooltip-max-inline-size), calc(100% - 4rem));
-    padding: var(--hop-Tooltip-padding);
+    padding: var(--hop-space-inset-sm) var(--hop-space-inset-md);
 
     font-family: var(--hop-Tooltip-font-family);
     font-size: var(--hop-Tooltip-font-size);
     font-weight: var(--hop-Tooltip-font-weight);
     -webkit-font-smoothing: var(--hop-Tooltip-font-smoothing);
     line-height: var(--hop-Tooltip-line-height);
-    color: var(--hop-Tooltip-color);
+    color: var(--hop-comp-tooltip-color);
 
-    background: var(--hop-Tooltip-background);
-    border-radius: var(--hop-Tooltip-border-radius);
-    box-shadow: var(--hop-Tooltip-box-shadow);
+    backdrop-filter: var(--hop-comp-tooltip-backdrop-filter);
+    background: var(--hop-comp-tooltip-background);
+    border-radius: var(--hop-comp-tooltip-border-radius);
+    box-shadow: var(--hop-comp-tooltip-box-shadow);
     overflow-wrap: anywhere;
 }
 
