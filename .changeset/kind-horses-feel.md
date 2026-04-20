@@ -4,4 +4,4 @@
 "@hopper-ui/tokens": patch
 ---
 
-Added new elevation prop to Card component
+Added a new `elevation` prop to the Card component, and made `flat` the default so cards render without shadow unless opted in.

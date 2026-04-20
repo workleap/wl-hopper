@@ -13,9 +13,11 @@
                 "$type": "color",
                 "$value": "{neutral.border-weak}"
             },
-            "box-shadow": {
-                "$type": "shadow",
-                "$value": "{shadow.none}"
+            "elevated": {
+                "box-shadow": {
+                    "$type": "shadow",
+                    "$value": "{shadow.none}"
+                }
             }
         },
         "second-level": {
@@ -31,9 +33,11 @@
                 "$type": "color",
                 "$value": "{neutral.surface-weakest}"
             },
-            "box-shadow": {
-                "$type": "shadow",
-                "$value": "{shadow.none}"
+            "elevated": {
+                "box-shadow": {
+                    "$type": "shadow",
+                    "$value": "{shadow.none}"
+                }
             }
         }
     }

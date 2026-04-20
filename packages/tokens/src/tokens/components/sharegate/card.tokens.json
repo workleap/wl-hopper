@@ -13,13 +13,15 @@
                 "$type": "color",
                 "$value": "{neutral.border-weakest}"
             },
-            "box-shadow": {
-                "$type": "shadow",
-                "$value": [
-                    { "offsetX": "0", "offsetY": "2px", "blur": "8px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": false },
-                    { "offsetX": "0", "offsetY": "1px", "blur": "0", "spread": "0", "color": "rgba(255, 255, 255, 0.40)", "inset": true },
-                    { "offsetX": "0", "offsetY": "-1px", "blur": "0", "spread": "0", "color": "rgba(0, 0, 0, 0.05)", "inset": true }
-                ]
+            "elevated": {
+                "box-shadow": {
+                    "$type": "shadow",
+                    "$value": [
+                        { "offsetX": "0", "offsetY": "2px", "blur": "8px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": false },
+                        { "offsetX": "0", "offsetY": "1px", "blur": "0", "spread": "0", "color": "rgba(255, 255, 255, 0.40)", "inset": true },
+                        { "offsetX": "0", "offsetY": "-1px", "blur": "0", "spread": "0", "color": "rgba(0, 0, 0, 0.05)", "inset": true }
+                    ]
+                }
             }
         },
         "second-level": {
@@ -35,12 +37,14 @@
                 "$type": "color",
                 "$value": "{neutral.border-weakest}"
             },
-            "box-shadow": {
-                "$type": "shadow",
-                "$value": [
-                    { "offsetX": "0", "offsetY": "1px", "blur": "0", "spread": "1px", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
-                    { "offsetX": "0", "offsetY": "-1px", "blur": "3px", "spread": "0", "color": "rgba(0, 0, 0, 0.12)", "inset": true }
-                ]
+            "elevated": {
+                "box-shadow": {
+                    "$type": "shadow",
+                    "$value": [
+                        { "offsetX": "0", "offsetY": "1px", "blur": "0", "spread": "1px", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
+                        { "offsetX": "0", "offsetY": "-1px", "blur": "3px", "spread": "0", "color": "rgba(0, 0, 0, 0.12)", "inset": true }
+                    ]
+                }
             }
         }
     }

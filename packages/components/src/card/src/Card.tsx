@@ -44,7 +44,11 @@ const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
             "hop-Card",
             variant
         ),
-        elevation === "flat" && styles["hop-Card--flat"],
+        cssModule(
+            styles,
+            "hop-Card",
+            elevation
+        ),
         stylingProps.className,
         className
     );

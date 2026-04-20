@@ -1,3 +1,4 @@
+import { Flex } from "@hopper-ui/components";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Card } from "../../src/Card.tsx";
@@ -45,7 +46,7 @@ export const SecondLevelElevated = {
 
 export const Embedded = {
     render: () => (
-        <div style={{ display: "flex", gap: "1rem" }}>
+        <Flex gap="inline-md">
             <Card elevation="elevated" padding="inset-sm" height="core_1280">
                 Above
                 <Card variant="second-level" elevation="elevated" padding="inset-sm" height="core_400">
@@ -84,6 +85,6 @@ export const Embedded = {
                 </Card>
                 Under
             </Card>
-        </div>
+        </Flex>
     )
 } satisfies Story;
