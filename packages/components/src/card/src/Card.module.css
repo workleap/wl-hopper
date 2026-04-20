@@ -41,3 +41,7 @@
 
     box-shadow: var(--hop-comp-card-second-level-box-shadow);
 }
+
+.hop-Card--flat {
+    box-shadow: none;
+}

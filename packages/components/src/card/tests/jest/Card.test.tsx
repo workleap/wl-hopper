@@ -53,4 +53,18 @@ describe("Card", () => {
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
     });
+
+    it("should apply flat class by default", () => {
+        render(<Card data-testid="Card">12</Card>);
+
+        const element = screen.getByTestId("Card");
+        expect(element).toHaveClass("hop-Card--flat");
+    });
+
+    it("should not apply flat class when elevation is elevated", () => {
+        render(<Card data-testid="Card" elevation="elevated">12</Card>);
+
+        const element = screen.getByTestId("Card");
+        expect(element).not.toHaveClass("hop-Card--flat");
+    });
 });

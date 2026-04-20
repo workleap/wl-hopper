@@ -17,6 +17,11 @@ export interface CardProps extends StyledComponentProps<BaseComponentDOMProps> {
      * @default "main"
      */
     variant?: "main" | "second-level";
+    /**
+     * Whether the card has a shadow or not.
+     * @default "flat"
+     */
+    elevation?: "flat" | "elevated";
 }
 
 const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
@@ -28,6 +33,7 @@ const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
         style,
         slot,
         variant = "main",
+        elevation = "flat",
         ...otherProps
     } = ownProps;
 
@@ -38,6 +44,7 @@ const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
             "hop-Card",
             variant
         ),
+        elevation === "flat" && styles["hop-Card--flat"],
         stylingProps.className,
         className
     );
