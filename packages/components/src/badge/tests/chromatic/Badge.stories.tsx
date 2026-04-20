@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Badge } from "../../src/Badge.tsx";
+import { BadgeContext } from "../../src/BadgeContext.ts";
 
 const meta = {
     title: "Components/Badge",
@@ -14,6 +15,60 @@ const meta = {
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+export const Default = {
+    render: () => (
+        <Stack gap="core_960">
+            <Stack>
+                <Badge>100</Badge>
+                <BadgeContext.Provider value={{ isHovered: true }}>
+                    <Badge>100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isPressed: true }}>
+                    <Badge>100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isSelected: true }}>
+                    <Badge>100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isDisabled: true }}>
+                    <Badge>100</Badge>
+                </BadgeContext.Provider>
+            </Stack>
+
+            <Stack>
+                <Badge variant="secondary">100</Badge>
+                <BadgeContext.Provider value={{ isHovered: true }}>
+                    <Badge variant="secondary">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isPressed: true }}>
+                    <Badge variant="secondary">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isSelected: true }}>
+                    <Badge variant="secondary">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isDisabled: true }}>
+                    <Badge variant="secondary">100</Badge>
+                </BadgeContext.Provider>
+            </Stack>
+
+            <Stack>
+                <Badge variant="subdued">100</Badge>
+                <BadgeContext.Provider value={{ isHovered: true }}>
+                    <Badge variant="subdued">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isPressed: true }}>
+                    <Badge variant="subdued">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isSelected: true }}>
+                    <Badge variant="subdued">100</Badge>
+                </BadgeContext.Provider>
+                <BadgeContext.Provider value={{ isDisabled: true }}>
+                    <Badge variant="subdued">100</Badge>
+                </BadgeContext.Provider>
+            </Stack>
+        </Stack>
+    )
+} satisfies Story;
 
 export const Primary = {
     render: props => (
