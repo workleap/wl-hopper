@@ -1,5 +1,22 @@
 # @hopper-ui/styled-system
 
+## 3.1.10
+
+### Patch Changes
+
+- dfc7fb4: Added a new `elevation` prop to the Card component, and made `flat` the default so cards render without shadow unless opted in.
+- 5790abf: Update Button tokens to match new ShareGate theme
+- 66466d6: Add Listbox checkmark tokens
+- db468be: Update Switch and SegmentedControl branding tokens
+- 71d9ff7: Add ShareGate tokens for Tooltip component
+- 781c702: Update background color of body when using ShareGate theme and withBodyStyle
+- f3fd95a: Add Tabs branding tokens
+- c0784b2: - Update Checkbox and Radio button tokens
+  - Remove tactility-control core token
+- 506256c: Update styles of Modal, Popover and PopoverBase in ShareGate theme.
+
+  Add neutral-surface-transparent token.
+
 ## 3.1.9
 
 ### Patch Changes

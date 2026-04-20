@@ -1,5 +1,24 @@
 # @hopper-ui/tokens
 
+## 5.1.10
+
+### Patch Changes
+
+- f416b8f: Update Tile tokens
+- dfc7fb4: Added a new `elevation` prop to the Card component, and made `flat` the default so cards render without shadow unless opted in.
+- 5790abf: Update Button tokens to match new ShareGate theme
+- 66466d6: Add Listbox checkmark tokens
+- c89ae41: Update tokens for Badge in ShareGate theme
+- db468be: Update Switch and SegmentedControl branding tokens
+- 71d9ff7: Add ShareGate tokens for Tooltip component
+- f3fd95a: Add Tabs branding tokens
+- c0784b2: - Update Checkbox and Radio button tokens
+  - Remove tactility-control core token
+- 4119ac6: Add Calendar and RangeCalendar tokens for ShareGate theme
+- 506256c: Update styles of Modal, Popover and PopoverBase in ShareGate theme.
+
+  Add neutral-surface-transparent token.
+
 ## 5.1.9
 
 ### Patch Changes
