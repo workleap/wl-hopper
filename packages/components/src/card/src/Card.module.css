@@ -30,14 +30,18 @@
     --background-color: var(--hop-comp-card-main-background-color);
     --border: var(--hop-Card-main-border);
     --border-radius: var(--hop-comp-card-main-border-radius);
-
-    box-shadow: var(--hop-comp-card-main-box-shadow);
 }
 
 .hop-Card--second-level {
     --background-color: var(--hop-comp-card-second-level-background-color);
     --border: var(--hop-Card-second-level-border);
     --border-radius: var(--hop-comp-card-second-level-border-radius);
+}
 
-    box-shadow: var(--hop-comp-card-second-level-box-shadow);
+.hop-Card--main.hop-Card--elevated {
+    box-shadow: var(--hop-comp-card-main-elevated-box-shadow);
+}
+
+.hop-Card--second-level.hop-Card--elevated {
+    box-shadow: var(--hop-comp-card-second-level-elevated-box-shadow);
 }
