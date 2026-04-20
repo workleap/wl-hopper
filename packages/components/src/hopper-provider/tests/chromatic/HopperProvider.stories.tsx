@@ -21,6 +21,7 @@ const meta = {
     args: {
         children: <ColoredDiv />
     },
+    render: (args, context) => <HopperProvider theme={context.globals.theme} {...args} />,
     parameters: {
         hopper: {
             disabled: true
