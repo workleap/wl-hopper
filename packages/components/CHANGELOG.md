@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 2.1.1
+
+### Patch Changes
+
+- d5d6077: Remove unnecssary background from Alert modal and Menu Items to support glassy popovers in ShareGate theme
+
 ## 2.1.0
 
 ### Minor Changes
