@@ -1,7 +1,6 @@
 .hop-Alert  {
     --hop-Alert-max-inline-size: 90dvw;
     --hop-Alert-max-block-size: 90dvh;
-    --hop-Alert-background: var(--hop-neutral-surface);
     --hop-Alert-border-radius: var(--hop-shape-rounded-md);
     --hop-Alert-outline: none;
     --hop-Alert-display: grid;
@@ -29,7 +28,6 @@
     max-block-size: var(--max-block-size);
     padding: var(--padding, var(--hop-space-inset-lg));
 
-    background: var(--hop-Alert-background);
     border-radius: var(--border-radius);
     outline: var(--hop-Alert-outline);
 }
