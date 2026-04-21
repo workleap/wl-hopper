@@ -18,7 +18,7 @@
         },
         "box-shadow": {
             "$type": "shadow",
-            "$value": "{elevation.none}"
+            "$value": ""
         }
     }
 }

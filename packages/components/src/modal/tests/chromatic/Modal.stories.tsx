@@ -270,3 +270,44 @@ export const FullscreenTakeover = {
         size: "fullscreenTakeover"
     }
 };
+
+export const GlassyBackground = {
+    render: args => (
+        <>
+
+            <Flex direction="column" gap="stack-lg" padding="inset-xl">
+                <Heading>Background Content</Heading>
+                <Text>This content sits behind the modal overlay to test the glass effect.</Text>
+                <Flex gap="stack-md">
+                    <Card flex={1}>
+                        <Image objectFit="cover" alt="Frog" src={Frog} />
+                        <Flex direction="column" gap="stack-sm" padding="inset-md">
+                            <Heading>Frog</Heading>
+                            <Content>Common frog found in ponds and marshes.</Content>
+                        </Flex>
+                    </Card>
+                    <Card flex={1}>
+                        <Image objectFit="cover" alt="Mossy Frog" src={MossyFrog} />
+                        <Flex direction="column" gap="stack-sm" padding="inset-md">
+                            <Heading>Mossy Frog</Heading>
+                            <Content>Camouflaged tree frog with bark-like skin.</Content>
+                        </Flex>
+                    </Card>
+                </Flex>
+            </Flex>
+            <Modal {...args}>
+                <Heading>Glassy Modal</Heading>
+                <Header>Glass effect test</Header>
+                <Content>
+                    <Text>
+                        This modal is rendered over a colorful gradient background to verify the glass/blur overlay effect looks correct.
+                    </Text>
+                </Content>
+                <ButtonGroup>
+                    <Button variant="secondary">Cancel</Button>
+                    <Button variant="primary">Save</Button>
+                </ButtonGroup>
+            </Modal>
+        </>
+    )
+} satisfies Story;

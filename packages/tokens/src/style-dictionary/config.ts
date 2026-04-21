@@ -47,6 +47,7 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: strin
                     {
                         "destination": `${theme}/${mode}.css`,
                         "format": "css/variables",
+                        "filter": "non-empty-value",
                         "options": {
                             "outputReferences": true,
                             "selector": isLightMode ? `.${StyledSystemRootCssClass}-${theme}` : `.${StyledSystemRootCssClass}-${theme}-${mode}`
@@ -94,6 +95,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string):
     const lightConfig: File = {
         "destination": `${theme}/tokens.css`,
         "format": "css/variables",
+        "filter": "non-empty-value",
         "options": {
             "outputReferences": true
         }
@@ -102,6 +104,7 @@ export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string):
     const darkConfig: File = {
         "destination": `${theme}/dark/tokens.css`,
         "format": "css/dark-mode",
+        "filter": "non-empty-value",
         "options": {
             "outputReferences": true
         }
