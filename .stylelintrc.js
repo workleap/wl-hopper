@@ -48,7 +48,7 @@ const config = {
                         ignoreKeywords: ["/^hop-.*$/"]
                     }
                 ],
-                "unit-allowed-list": ["vmax"]
+                "unit-allowed-list": ["em", "rem", "%", "fr", "deg", "vh", "vw", "dvh", "dvw", "s", "ch", "vmax"]
             }
         }
     ]
