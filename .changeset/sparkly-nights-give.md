@@ -4,4 +4,4 @@
 "@hopper-ui/styled-system": minor
 ---
 
-Support Glassy modals considering its back-drop
+Support Glassy modals with a backdrop
