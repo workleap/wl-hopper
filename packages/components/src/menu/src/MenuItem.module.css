@@ -40,7 +40,6 @@
     /* Internal variable */
     --display: var(--hop-MenuItem-display);
     --align-items: var(--hop-MenuItem-align-items);
-    --background-color: var(--hop-neutral-surface);
     --cursor: var(--hop-MenuItem-cursor);
     --color: var(--hop-MenuItem-color);
     --padding-block: var(--hop-MenuItem-sm-padding-block);
