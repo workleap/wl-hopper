@@ -1,6 +1,6 @@
 ---
 "@hopper-ui/components": patch
-"@hopper-ui/icons": patch
+"@hopper-ui/tokens": patch
 "@hopper-ui/styled-system": patch
 ---
 
