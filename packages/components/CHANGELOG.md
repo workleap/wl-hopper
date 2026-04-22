@@ -1,5 +1,15 @@
 # @hopper-ui/components
 
+## 2.2.0
+
+### Minor Changes
+
+- a5ae654: Support Glassy modals with a backdrop
+
+### Patch Changes
+
+- 7327855: Update icon-hover token in dark mode for ShareGate
+
 ## 2.1.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @hopper-ui/styled-system
 
+## 3.2.0
+
+### Minor Changes
+
+- a5ae654: Support Glassy modals with a backdrop
+
+### Patch Changes
+
+- 7327855: Update icon-hover token in dark mode for ShareGate
+
 ## 3.1.10
 
 ### Patch Changes
