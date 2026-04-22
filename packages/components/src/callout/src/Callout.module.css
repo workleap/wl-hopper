@@ -40,9 +40,12 @@
 }
 
 .hop-Callout__icon {
+    --hop-RichIcon-placeholder-background: var(--icon-background-color);
+    --hop-RichIcon-placeholder-shadow: var(--icon-shadow-color);
+    --hop-RichIcon-placeholder-fill: var(--icon-fill-color);
+
     grid-area: icon;
     margin-inline-end: var(--hop-Callout-margin-right-icon);
-
 }
 
 .hop-Callout__heading {
@@ -84,24 +87,36 @@
     --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-information-border-color);
     --background: var(--hop-comp-callout-information-background-color);
     --color: var(--hop-comp-callout-information-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-information-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-information-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-information-icon-fill-color);
 }
 
 .hop-Callout--success {
     --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-success-border-color);
     --background: var(--hop-comp-callout-success-background-color);
     --color: var(--hop-comp-callout-success-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-success-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-success-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-success-icon-fill-color);
 }
 
 .hop-Callout--warning {
     --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-warning-border-color);
     --background: var(--hop-comp-callout-warning-background-color);
     --color: var(--hop-comp-callout-warning-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-warning-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-warning-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-warning-icon-fill-color);
 }
 
 .hop-Callout--upsell {
     --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-upsell-border-color);
     --background: var(--hop-comp-callout-upsell-background-color);
     --color: var(--hop-comp-callout-upsell-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-upsell-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-upsell-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-upsell-icon-fill-color);
 }
 
 .hop-Callout--subtle-fill {

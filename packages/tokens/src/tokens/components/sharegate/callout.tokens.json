@@ -13,13 +13,17 @@
                 "$type": "color",
                 "$value": "{information.text}"
             },
-            "icon-color": {
+            "icon-shadow-color": {
                 "$type": "color",
                 "$value": "{information.icon}"
             },
-            "icon-color-bg": {
+            "icon-background-color": {
                 "$type": "color",
                 "$value": "{information.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
             }
         },
         "success": {
@@ -35,13 +39,17 @@
                 "$type": "color",
                 "$value": "{success.text}"
             },
-            "icon-color": {
+            "icon-shadow-color": {
                 "$type": "color",
                 "$value": "{success.icon}"
             },
-            "icon-color-bg": {
+            "icon-background-color": {
                 "$type": "color",
                 "$value": "{success.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
             }
         },
         "warning": {
@@ -57,13 +65,17 @@
                 "$type": "color",
                 "$value": "{warning.text}"
             },
-            "icon-color": {
+            "icon-shadow-color": {
                 "$type": "color",
                 "$value": "{warning.icon}"
             },
-            "icon-color-bg": {
+            "icon-background-color": {
                 "$type": "color",
                 "$value": "{warning.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
             }
         },
         "upsell": {
@@ -79,13 +91,17 @@
                 "$type": "color",
                 "$value": "{upsell.text}"
             },
-            "icon-color": {
+            "icon-shadow-color": {
                 "$type": "color",
                 "$value": "{upsell.icon}"
             },
-            "icon-color-bg": {
+            "icon-background-color": {
                 "$type": "color",
                 "$value": "{upsell.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
             }
         }
     }
