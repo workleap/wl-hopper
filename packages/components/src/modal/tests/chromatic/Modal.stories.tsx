@@ -12,6 +12,7 @@ import {
     Modal,
     Text
 } from "@hopper-ui/components";
+import { CheckmarkIcon, InfoIcon, MailIcon, StarIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -271,7 +272,52 @@ export const FullscreenTakeover = {
     }
 };
 
-export const GlassyBackground = {
+export const GlassyBackground_WithText = {
+    render: args => (
+        <>
+            <Flex direction="column" gap="stack-lg" padding="inset-xl">
+                <Heading>Background Content</Heading>
+                <Text>This content sits behind the modal overlay to test the glass effect.</Text>
+                <Flex gap="stack-md">
+                    <Flex direction="column" gap="stack-sm" flex={1}>
+                        <InfoIcon size="lg" />
+                        <Heading>Information</Heading>
+                        <Text>Important details about your account and recent activity are displayed here. Stay informed about changes, updates, and announcements relevant to your workspace. Regularly reviewing this section ensures you never miss critical information that may affect your workflow or team collaboration.</Text>
+                    </Flex>
+                    <Flex direction="column" gap="stack-sm" flex={1}>
+                        <CheckmarkIcon size="lg" />
+                        <Heading>Completed</Heading>
+                        <Text>All tasks have been reviewed and marked as done. Each completed item represents a step forward in your project's progress. Keeping track of finished work helps the team celebrate milestones, measure velocity, and plan upcoming sprints with greater confidence and accuracy.</Text>
+                    </Flex>
+                    <Flex direction="column" gap="stack-sm" flex={1}>
+                        <StarIcon size="lg" />
+                        <Heading>Favorites</Heading>
+                        <Text>Your starred items and bookmarked content appear here for quick access. Organize the resources, documents, and tools you use most often so you can get back to them without searching. A well-maintained favorites list dramatically reduces the time spent navigating large workspaces.</Text>
+                    </Flex>
+                    <Flex direction="column" gap="stack-sm" flex={1}>
+                        <MailIcon size="lg" />
+                        <Heading>Messages</Heading>
+                        <Text>Unread notifications and incoming messages from your team are collected in this section. Timely responses keep projects on track and foster a culture of open communication. Make sure to check this regularly to stay aligned with your colleagues and address any pending requests promptly.</Text>
+                    </Flex>
+                </Flex>
+            </Flex>
+            <Modal {...args}>
+                <Heading>Glassy Modal</Heading>
+                <Content>
+                    <Text>
+                        This modal is rendered over a text and icon background to verify the glass/blur overlay effect looks correct.
+                    </Text>
+                </Content>
+                <ButtonGroup>
+                    <Button variant="secondary">Cancel</Button>
+                    <Button variant="primary">Save</Button>
+                </ButtonGroup>
+            </Modal>
+        </>
+    )
+} satisfies Story;
+
+export const GlassyBackground_WithImage = {
     render: args => (
         <>
 
@@ -297,7 +343,6 @@ export const GlassyBackground = {
             </Flex>
             <Modal {...args}>
                 <Heading>Glassy Modal</Heading>
-                <Header>Glass effect test</Header>
                 <Content>
                     <Text>
                         This modal is rendered over a colorful gradient background to verify the glass/blur overlay effect looks correct.
