@@ -10,7 +10,7 @@
     --hop-BaseModal-justify-content: center;
     --hop-BaseModal-inline-size: 100%;
     --hop-BaseModal-block-size: 100%;
-    --hop-BaseModal-background-color: #3c3c3c99;
+    --hop-BaseModal-backdrop-color: #3c3c3c99;
     --hop-BaseModal-z-index: 10000;
     --hop-BaseModal-font-family: var(--hop-body-md-font-family);
     --hop-BaseModal-font-size: var(--hop-body-md-font-size);
@@ -67,5 +67,5 @@
     border-radius: var(--border-radius);
 
     /* hop-rock-800 with a 60% transparency for backdrop */
-    box-shadow: 0 0 0 100vmax var(--hop-BaseModal-background-color), var(--hop-comp-modal-box-shadow, 0 0 0 0 transparent);
+    box-shadow: 0 0 0 100vmax var(--hop-BaseModal-backdrop-color), var(--hop-comp-modal-box-shadow, 0 0 0 0 transparent);
 }

@@ -524,27 +524,27 @@
     "information": {
         "border": {
             "$type": "color",
-            "$value": "{coastal.400}"
+            "$value": "{coastal.600}"
         },
         "icon": {
             "$type": "color",
-            "$value": "{coastal.900}"
+            "$value": "{coastal.75}"
         },
         "icon-weakest": {
             "$type": "color",
-            "$value": "{coastal.200}"
+            "$value": "{coastal.700}"
         },
         "icon-weak": {
             "$type": "color",
-            "$value": "{coastal.300}"
+            "$value": "{coastal.400}"
         },
         "surface": {
             "$type": "color",
-            "$value": "{coastal.75}"
+            "$value": "{coastal.900}"
         },
         "surface-strong": {
             "$type": "color",
-            "$value": "{coastal.300}"
+            "$value": "{coastal.600}"
         },
         "surface-weak": {
             "$type": "color",
@@ -552,11 +552,11 @@
         },
         "text": {
             "$type": "color",
-            "$value": "{coastal.900}"
+            "$value": "{coastal.50}"
         },
         "text-weak": {
             "$type": "color",
-            "$value": "{coastal.75}"
+            "$value": "{coastal.400}"
         }
     },
     "neutral": {
@@ -682,7 +682,7 @@
         },
         "surface-transparent": {
             "$type": "color",
-            "$value": "rgb(35 36 38 / 0.75)"
+            "$value": "rgb(35 36 38 / 0.9)"
         },
         "surface-weakest": {
             "$type": "color",
@@ -2082,27 +2082,27 @@
     "success": {
         "border": {
             "$type": "color",
-            "$value": "{moss.500}"
+            "$value": "{moss.600}"
         },
         "icon": {
             "$type": "color",
-            "$value": "{moss.900}"
+            "$value": "{moss.75}"
         },
         "icon-weakest": {
             "$type": "color",
-            "$value": "{moss.200}"
+            "$value": "{moss.600}"
         },
         "icon-weak": {
             "$type": "color",
-            "$value": "{moss.75}"
+            "$value": "{moss.400}"
         },
         "surface": {
             "$type": "color",
-            "$value": "{moss.75}"
+            "$value": "{moss.900}"
         },
         "surface-strong": {
             "$type": "color",
-            "$value": "{moss.300}"
+            "$value": "{moss.600}"
         },
         "surface-weak": {
             "$type": "color",
@@ -2110,15 +2110,15 @@
         },
         "text": {
             "$type": "color",
-            "$value": "{moss.900}"
+            "$value": "{moss.75}"
         },
         "text-weak": {
             "$type": "color",
-            "$value": "{moss.75}"
+            "$value": "{moss.400}"
         },
         "text-hover": {
             "$type": "color",
-            "$value": "{moss.700}"
+            "$value": "{moss.50}"
         }
     },
     "upsell": {
@@ -2238,27 +2238,27 @@
     "warning": {
         "border": {
             "$type": "color",
-            "$value": "{koi.500}"
+            "$value": "{koi.600}"
         },
         "icon": {
             "$type": "color",
-            "$value": "{koi.900}"
+            "$value": "{koi.75}"
         },
         "icon-weakest": {
             "$type": "color",
-            "$value": "{koi.200}"
+            "$value": "{koi.600}"
         },
         "icon-weak": {
             "$type": "color",
-            "$value": "{koi.75}"
+            "$value": "{koi.400}"
         },
         "surface": {
             "$type": "color",
-            "$value": "{koi.75}"
+            "$value": "{koi.900}"
         },
         "surface-strong": {
             "$type": "color",
-            "$value": "{koi.300}"
+            "$value": "{koi.600}"
         },
         "surface-weak": {
             "$type": "color",
@@ -2266,11 +2266,11 @@
         },
         "text": {
             "$type": "color",
-            "$value": "{koi.900}"
+            "$value": "{koi.75}"
         },
         "text-weak": {
             "$type": "color",
-            "$value": "{koi.75}"
+            "$value": "{koi.400}"
         }
     }
 }
