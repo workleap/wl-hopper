@@ -40,9 +40,7 @@
     -webkit-font-smoothing: var(--hop-BaseModal-font-smoothing);
     line-height: var(--hop-BaseModal-line-height);
     color: var(--hop-BaseModal-color);
-
-    /* hop-rock-800 with a 60% transparency */
-    background-color: var(--hop-BaseModal-background-color);
+    background-color: transparent;
 }
 
 .hop-BaseModal__modal {
@@ -67,5 +65,7 @@
     background: var(--hop-comp-modal-background);
     border: var(--border);
     border-radius: var(--border-radius);
-    box-shadow: var(--hop-comp-modal-box-shadow);
+
+    /* hop-rock-800 with a 60% transparency for backdrop */
+    box-shadow: 0 0 0 100vmax var(--hop-BaseModal-background-color), var(--hop-comp-modal-box-shadow, 0 0 0 0 transparent);
 }

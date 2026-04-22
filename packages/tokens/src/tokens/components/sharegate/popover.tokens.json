@@ -14,7 +14,7 @@
         },
         "backdrop-filter": {
             "$type": "backdropFilter",
-            "$value": "blur(5px)"
+            "$value": "blur(15px)"
         },
         "box-shadow": {
             "$type": "shadow",

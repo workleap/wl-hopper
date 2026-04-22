@@ -5,6 +5,7 @@ import "style-dictionary-utils"; // auto-registers gradient/css transform
 
 import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokenMappingConfig, getStyledSystemTokensConfig } from "./config.ts";
 import { AUTO_GENERATED_COMMENT, HOPPER_PREFIX, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
+import { hasNonEmptyValue } from "./filter/hasNonEmptyValue.ts";
 import { isColorType } from "./filter/isColorType.ts";
 import { isDarkTokens } from "./filter/isDarkTokens.ts";
 import { customTsTokenMapping } from "./format/customTsTokenMapping.ts";
@@ -24,6 +25,11 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFilter({
     name: "colors",
     matcher: isColorType
+});
+
+StyleDictionary.registerFilter({
+    name: "non-empty-value",
+    matcher: hasNonEmptyValue
 });
 
 // Transform
