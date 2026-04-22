@@ -1,0 +1,92 @@
+{
+    "comp-callout": {
+        "information": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{information.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{information.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{information.text}"
+            },
+            "icon-color": {
+                "$type": "color",
+                "$value": "{information.icon}"
+            },
+            "icon-color-bg": {
+                "$type": "color",
+                "$value": "{information.icon-weakest}"
+            }
+        },
+        "success": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{success.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{success.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{success.text}"
+            },
+            "icon-color": {
+                "$type": "color",
+                "$value": "{success.icon}"
+            },
+            "icon-color-bg": {
+                "$type": "color",
+                "$value": "{success.icon-weakest}"
+            }
+        },
+        "warning": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{warning.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{warning.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{warning.text}"
+            },
+            "icon-color": {
+                "$type": "color",
+                "$value": "{warning.icon}"
+            },
+            "icon-color-bg": {
+                "$type": "color",
+                "$value": "{warning.icon-weakest}"
+            }
+        },
+        "upsell": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{upsell.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{upsell.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{upsell.text}"
+            },
+            "icon-color": {
+                "$type": "color",
+                "$value": "{upsell.icon}"
+            },
+            "icon-color-bg": {
+                "$type": "color",
+                "$value": "{upsell.icon-weakest}"
+            }
+        }
+    }
+}
