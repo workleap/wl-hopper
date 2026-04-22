@@ -816,7 +816,7 @@
         },
         "icon-hover": {
             "$type": "color",
-            "$value": "{iris.300}"
+            "$value": "{iris.200}"
         },
         "icon-press": {
             "$type": "color",
