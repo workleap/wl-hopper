@@ -71,7 +71,7 @@
         "subdued": {
             "background": {
                 "$type": "color",
-                "$value": "{primary.surface}"
+                "$value": "{primary.surface-weak-hover}"
             },
             "background-hover": {
                 "$type": "color",
