@@ -1,0 +1,108 @@
+{
+    "comp-callout": {
+        "information": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{information.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{information.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{information.text}"
+            },
+            "icon-shadow-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-always-dark}"
+            },
+            "icon-background-color": {
+                "$type": "color",
+                "$value": "{information.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
+            }
+        },
+        "success": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{success.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{success.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{success.text}"
+            },
+            "icon-shadow-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-always-dark}"
+            },
+            "icon-background-color": {
+                "$type": "color",
+                "$value": "{success.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
+            }
+        },
+        "warning": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{warning.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{warning.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{warning.text}"
+            },
+            "icon-shadow-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-always-dark}"
+            },
+            "icon-background-color": {
+                "$type": "color",
+                "$value": "{warning.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
+            }
+        },
+        "upsell": {
+            "background-color": {
+                "$type": "color",
+                "$value": "{upsell.surface}"
+            },
+            "border-color": {
+                "$type": "color",
+                "$value": "{upsell.border}"
+            },
+            "text-color": {
+                "$type": "color",
+                "$value": "{upsell.text}"
+            },
+            "icon-shadow-color": {
+                "$type": "color",
+                "$value": "{neutral.icon-always-dark}"
+            },
+            "icon-background-color": {
+                "$type": "color",
+                "$value": "{upsell.icon-weakest}"
+            },
+            "icon-fill-color": {
+                "$type": "color",
+                "$value": "{samoyed}"
+            }
+        }
+    }
+}

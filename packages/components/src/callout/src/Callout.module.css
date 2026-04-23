@@ -27,29 +27,6 @@
     --hop-Callout-content-font-weight: var(--hop-body-sm-font-weight);
     --hop-Callout-content-line-height: var(--hop-body-sm-line-height);
 
-    /* Information */
-    --hop-Callout-border-information: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-information-border);
-    --hop-Callout-background-information: var(--hop-information-surface);
-    --hop-Callout-color-information: var(--hop-information-text);
-
-    /* Success */
-    --hop-Callout-border-success: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-success-border);
-    --hop-Callout-background-success: var(--hop-success-surface);
-    --hop-Callout-color-success: var(--hop-success-text);
-
-    /* Warning */
-    --hop-Callout-border-warning: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-warning-border);
-    --hop-Callout-background-warning: var(--hop-warning-surface);
-    --hop-Callout-color-warning: var(--hop-warning-text);
-
-    /* Upsell */
-    --hop-Callout-border-upsell: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-upsell-border);
-    --hop-Callout-background-upsell: var(--hop-upsell-surface);
-    --hop-Callout-color-upsell: var(--hop-upsell-text);
-
-    /* Subtle */
-    --hop-Callout-border-subtle: transparent;
-
     display: var(--hop-Callout-display);
     grid-template-areas: var(--hop-Callout-grid-template-areas);
     grid-template-columns: var(--hop-Callout-grid-template-columns);
@@ -63,6 +40,10 @@
 }
 
 .hop-Callout__icon {
+    --hop-RichIcon-placeholder-background: var(--icon-background-color);
+    --hop-RichIcon-placeholder-shadow: var(--icon-shadow-color);
+    --hop-RichIcon-placeholder-fill: var(--icon-fill-color);
+
     grid-area: icon;
     margin-inline-end: var(--hop-Callout-margin-right-icon);
 }
@@ -103,29 +84,41 @@
 }
 
 .hop-Callout--information {
-    --border: var(--hop-Callout-border-information);
-    --background: var(--hop-Callout-background-information);
-    --color: var(--hop-Callout-color-information);
+    --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-information-border-color);
+    --background: var(--hop-comp-callout-information-background-color);
+    --color: var(--hop-comp-callout-information-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-information-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-information-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-information-icon-fill-color);
 }
 
 .hop-Callout--success {
-    --border: var(--hop-Callout-border-success);
-    --background: var(--hop-Callout-background-success);
-    --color: var(--hop-Callout-color-success);
+    --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-success-border-color);
+    --background: var(--hop-comp-callout-success-background-color);
+    --color: var(--hop-comp-callout-success-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-success-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-success-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-success-icon-fill-color);
 }
 
 .hop-Callout--warning {
-    --border: var(--hop-Callout-border-warning);
-    --background: var(--hop-Callout-background-warning);
-    --color: var(--hop-Callout-color-warning);
+    --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-warning-border-color);
+    --background: var(--hop-comp-callout-warning-background-color);
+    --color: var(--hop-comp-callout-warning-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-warning-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-warning-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-warning-icon-fill-color);
 }
 
 .hop-Callout--upsell {
-    --border: var(--hop-Callout-border-upsell);
-    --background: var(--hop-Callout-background-upsell);
-    --color: var(--hop-Callout-color-upsell);
+    --border: var(--hop-Callout-border-width) var(--hop-Callout-border-style) var(--hop-comp-callout-upsell-border-color);
+    --background: var(--hop-comp-callout-upsell-background-color);
+    --color: var(--hop-comp-callout-upsell-text-color);
+    --icon-shadow-color: var(--hop-comp-callout-upsell-icon-shadow-color);
+    --icon-background-color: var(--hop-comp-callout-upsell-icon-background-color);
+    --icon-fill-color: var(--hop-comp-callout-upsell-icon-fill-color);
 }
 
 .hop-Callout--subtle-fill {
-    --border: var(--hop-Callout-border-subtle);
+    --border: transparent;
 }
