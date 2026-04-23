@@ -1,5 +1,15 @@
 # @hopper-ui/tokens
 
+## 5.2.1
+
+### Patch Changes
+
+- ce0f650: - Add Callout and CompactCallout component tokens
+  - Add border-box to Card component
+- 964568d: - Update dark tokens for Information, Warning, Success for all themes.
+  - Update dark tokens for Upsell (only for Workleap theme).
+  - Update glassy modal related tokens.
+
 ## 5.2.0
 
 ### Minor Changes
