@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.2.2
+
+### Patch Changes
+
+- e022a83: Update some badge ShareGate component tokens
+
 ## 5.2.1
 
 ### Patch Changes
