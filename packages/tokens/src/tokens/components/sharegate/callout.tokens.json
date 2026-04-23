@@ -15,7 +15,7 @@
             },
             "icon-shadow-color": {
                 "$type": "color",
-                "$value": "{information.icon}"
+                "$value": "{neutral.icon-always-dark}"
             },
             "icon-background-color": {
                 "$type": "color",
@@ -41,7 +41,7 @@
             },
             "icon-shadow-color": {
                 "$type": "color",
-                "$value": "{success.icon}"
+                "$value": "{neutral.icon-always-dark}"
             },
             "icon-background-color": {
                 "$type": "color",
@@ -67,7 +67,7 @@
             },
             "icon-shadow-color": {
                 "$type": "color",
-                "$value": "{warning.icon}"
+                "$value": "{neutral.icon-always-dark}"
             },
             "icon-background-color": {
                 "$type": "color",
@@ -93,7 +93,7 @@
             },
             "icon-shadow-color": {
                 "$type": "color",
-                "$value": "{upsell.icon}"
+                "$value": "{neutral.icon-always-dark}"
             },
             "icon-background-color": {
                 "$type": "color",
