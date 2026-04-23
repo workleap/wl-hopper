@@ -37,49 +37,49 @@
         "secondary": {
             "background": {
                 "$type": "color",
-                "$value": "{neutral.surface-strong}"
+                "$value": "{primary.surface-strong}"
             },
             "background-hover": {
                 "$type": "color",
-                "$value": "{neutral.surface-strong}"
+                "$value": "{primary.surface-strong-hover}"
             },
             "background-press": {
                 "$type": "color",
-                "$value": "{neutral.surface-strong}"
+                "$value": "{primary.surface-strong-press}"
             },
             "background-selected": {
                 "$type": "color",
-                "$value": "{neutral.surface-selected}"
+                "$value": "{primary.surface-weak}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{neutral.text-strong}"
+                "$value": "{primary.text-strong}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{neutral.text-strong}"
+                "$value": "{primary.text-strong-hover}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{neutral.text-strong}"
+                "$value": "{primary.text-strong}"
             },
             "text-color-selected": {
                 "$type": "color",
-                "$value": "{neutral.text-selected}"
+                "$value": "{primary.text}"
             }
         },
         "subdued": {
             "background": {
                 "$type": "color",
-                "$value": "{primary.surface-weak}"
+                "$value": "{primary.surface}"
             },
             "background-hover": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-hover}"
+                "$value": "{primary.surface-hover}"
             },
             "background-press": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-press}"
+                "$value": "{primary.surface-press}"
             },
             "background-selected": {
                 "$type": "color",
