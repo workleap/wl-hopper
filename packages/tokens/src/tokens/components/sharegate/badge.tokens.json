@@ -71,15 +71,15 @@
         "subdued": {
             "background": {
                 "$type": "color",
-                "$value": "{primary.surface-weak}"
+                "$value": "{primary.surface-weak-hover}"
             },
             "background-hover": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-hover}"
+                "$value": "{primary.surface-hover}"
             },
             "background-press": {
                 "$type": "color",
-                "$value": "{primary.surface-weak-press}"
+                "$value": "{primary.surface-press}"
             },
             "background-selected": {
                 "$type": "color",
