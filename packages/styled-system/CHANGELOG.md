@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 3.2.2
+
+### Patch Changes
+
+- e022a83: Update some badge ShareGate component tokens
+
 ## 3.2.1
 
 ### Patch Changes
