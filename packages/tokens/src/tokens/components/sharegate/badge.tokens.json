@@ -37,35 +37,35 @@
         "secondary": {
             "background": {
                 "$type": "color",
-                "$value": "{primary.surface-strong}"
+                "$value": "{neutral.surface-strong}"
             },
             "background-hover": {
                 "$type": "color",
-                "$value": "{primary.surface-strong-hover}"
+                "$value": "{neutral.surface-strong}"
             },
             "background-press": {
                 "$type": "color",
-                "$value": "{primary.surface-strong-press}"
+                "$value": "{neutral.surface-strong}"
             },
             "background-selected": {
                 "$type": "color",
-                "$value": "{primary.surface-weak}"
+                "$value": "{neutral.surface-selected}"
             },
             "text-color": {
                 "$type": "color",
-                "$value": "{primary.text-strong}"
+                "$value": "{neutral.text-strong}"
             },
             "text-color-hover": {
                 "$type": "color",
-                "$value": "{primary.text-strong-hover}"
+                "$value": "{neutral.text-strong}"
             },
             "text-color-press": {
                 "$type": "color",
-                "$value": "{primary.text-strong}"
+                "$value": "{neutral.text-strong}"
             },
             "text-color-selected": {
                 "$type": "color",
-                "$value": "{primary.text}"
+                "$value": "{neutral.text-selected}"
             }
         },
         "subdued": {
