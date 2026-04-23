@@ -49,7 +49,7 @@
             },
             "border": {
                 "$type": "border",
-                "$value": "{space.10} solid {neutral.border-weak}"
+                "$value": "none"
             },
             "border-block-end": {
                 "$type": "border",
