@@ -1,0 +1,28 @@
+{
+    "comp-toast": {
+        "text-color":{
+            "$type": "color",
+            "$value": "{neutral.text-always-light}"
+        },
+        "backdrop-filter": {
+            "$type": "backdropFilter",
+            "$value": "blur(5px)"
+        },
+        "background": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak-transparent-always-dark}"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.2-5}"
+        },
+        "border-radius-mobile": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.2-5}"
+        },
+        "icon-color-close": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        }
+    }
+}

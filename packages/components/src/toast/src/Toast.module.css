@@ -1,0 +1,73 @@
+.hop-Toast {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: var(--hop-space-inline-sm);
+    padding: var(--hop-space-inset-md);
+    border-radius: var(--hop-comp-toast-border-radius);
+    backdrop-filter: var(--hop-comp-toast-backdrop-filter);
+    background: var(--hop-comp-toast-background);
+    outline: transparent;
+    outline-offset: var(--hop-space-10);
+    inline-size: 28.5rem;
+    max-inline-size: 100%;
+    pointer-events: auto;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 40rem) {
+    .hop-Toast {
+        inline-size: 100%;
+        border-radius: var(--hop-comp-toast-border-radius-mobile);
+    }
+}
+
+.hop-Toast:focus-visible {
+    outline: var(--hop-space-20) solid var(--hop-primary-border-focus);
+}
+
+.hop-Toast__title {
+    align-self: center;
+    color: var(--hop-comp-toast-text-color);
+    font-family: var(--hop-body-sm-medium-font-family);
+    font-size: var(--hop-body-sm-medium-font-size);
+    font-weight: var(--hop-body-sm-medium-font-weight);
+    line-height: var(--hop-body-sm-medium-line-height);
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.hop-Toast--success .hop-Toast__icon {
+    color: var(--hop-success-icon-weakest);
+}
+
+.hop-Toast--error .hop-Toast__icon {
+    color: var(--hop-danger-icon-weak);
+}
+
+.hop-Toast__progress {
+    position: absolute;
+    inset-block-end: 0;
+    block-size: 0.25rem;
+    inline-size: 100%;
+    animation: progress var(--timeout) linear forwards;
+}
+
+.hop-Toast--success .hop-Toast__progress {
+    background: var(--hop-success-surface-strong);
+}
+
+.hop-Toast--error .hop-Toast__progress {
+    background: var(--hop-danger-surface-strong);
+}
+
+.hop-Toast__close {
+    color: var(--hop-comp-toast-icon-color-close);
+}
+
+@keyframes progress {
+    to {
+       inline-size: 0%;
+    }
+}
