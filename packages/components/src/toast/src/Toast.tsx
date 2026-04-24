@@ -11,8 +11,6 @@ import { cssModule } from "../../utils/index.ts";
 
 import type { ToastContent } from "./ToastQueue.ts";
 
-import "./debug.css";
-
 import styles from "./Toast.module.css";
 
 export interface ToastProps extends StyledComponentProps<DivProps> {
