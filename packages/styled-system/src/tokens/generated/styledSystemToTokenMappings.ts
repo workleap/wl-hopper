@@ -237,6 +237,7 @@ export const BackgroundColors = {
     "danger-weak": "danger-surface-weak",
     "danger-weak-hover": "danger-surface-weak-hover",
     "danger-weak-press": "danger-surface-weak-press",
+    "danger-weak-selected": "danger-surface-weak-selected",
     "neutral-active": "neutral-surface-active",
     "neutral-weak-active": "neutral-surface-weak-active",
     "neutral": "neutral-surface",
