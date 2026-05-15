@@ -1,0 +1,164 @@
+{
+    "comp-tag": {
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-sm}"
+        },
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface}"
+        },
+        "background-color-hover": {
+            "$type": "color",
+            "$value": "{primary.surface-weak-hover}"
+        },
+        "background-color-press": {
+            "$type": "color",
+            "$value": "{primary.surface-weak-press}"
+        },
+        "background-color-selected": {
+            "$type": "color",
+            "$value": "{primary.surface-strong}"
+        },
+        "background-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.surface-disabled}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border-weak}"
+        },
+        "border-color-hover": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-press": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-selected": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-disabled": {
+            "$type": "color",
+            "$value": "transparent"
+        },
+        "border-color-error": {
+            "$type": "color",
+            "$value": "{danger.border-strong}"
+        },
+        "border-color-focus": {
+            "$type": "color",
+            "$value": "{primary.border-focus}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        },
+        "text-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.text-hover}"
+        },
+        "text-color-press": {
+            "$type": "color",
+            "$value": "{neutral.text-press}"
+        },
+        "text-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-always-light}"
+        },
+        "text-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.text-disabled}"
+        },
+        "text-color-error": {
+            "$type": "color",
+            "$value": "{danger.text-weak}"
+        },
+        "icon-color": {
+            "$type": "color",
+            "$value": "{neutral.icon}"
+        },
+        "icon-color-hover": {
+            "$type": "color",
+            "$value": "{neutral.icon-hover}"
+        },
+        "icon-color-press": {
+            "$type": "color",
+            "$value": "{neutral.icon-press}"
+        },
+        "icon-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.icon-always-light}"
+        },
+        "icon-color-disabled": {
+            "$type": "color",
+            "$value": "{neutral.icon-disabled}"
+        },
+        "icon-color-error": {
+            "$type": "color",
+            "$value": "{danger.icon-weak}"
+        },
+        "text-font": {
+            "$type": "fontFamily",
+            "$value": "{label.md.font-family}"
+        },
+        "text-font-weight": {
+            "$type": "fontWeight",
+            "$value": "{font.weight.410}"
+        },
+        "text-transform": {
+            "$type": "textCase",
+            "$value": "uppercase"
+        },
+        "text-font-size-xs": {
+            "$type": "fontSize",
+            "$value": "{label.sm.font-size}"
+        },
+        "text-font-lineheight-xs": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-20}"
+        },
+        "text-font-letterspacing-xs": {
+            "$type": "letterSpacing",
+            "$value": "{letter-spacing.wide-10}"
+        },
+        "text-font-size-sm": {
+            "$type": "fontSize",
+            "$value": "{label.md.font-size}"
+        },
+        "text-font-lineheight-sm": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-33}"
+        },
+        "text-font-letterspacing-sm": {
+            "$type": "letterSpacing",
+            "$value": "{letter-spacing.wide-20}"
+        },
+        "text-font-size-md": {
+            "$type": "fontSize",
+            "$value": "{label.md.font-size}"
+        },
+        "text-font-lineheight-md": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-33}"
+        },
+        "text-font-letterspacing-md": {
+            "$type": "letterSpacing",
+            "$value": "{letter-spacing.wide-20}"
+        },
+        "text-font-size-lg": {
+            "$type": "fontSize",
+            "$value": "{label.lg.font-size}"
+        },
+        "text-font-lineheight-lg": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-40}"
+        },
+        "text-font-letterspacing-lg": {
+            "$type": "letterSpacing",
+            "$value": "{letter-spacing.wide-30}"
+        }
+    }
+}
