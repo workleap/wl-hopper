@@ -130,39 +130,39 @@
         }
     },
     "letter-spacing": {
-        "minus-1": {
+        "dense-10": {
             "$type": "letterSpacing",
             "$value": "-1px"
         },
-        "minus-0-5": {
+        "dense-5": {
             "$type": "letterSpacing",
             "$value": "-0.5px"
         },
-        "0": {
+        "default": {
             "$type": "letterSpacing",
             "$value": "0"
         },
-        "0-5": {
+        "wide-5": {
             "$type": "letterSpacing",
             "$value": "0.5px"
         },
-        "1": {
+        "wide-10": {
             "$type": "letterSpacing",
             "$value": "1px"
         },
-        "1-5": {
+        "wide-20": {
             "$type": "letterSpacing",
             "$value": "1.5px"
         },
-        "2": {
+        "wide-30": {
             "$type": "letterSpacing",
             "$value": "2px"
         },
-        "2-5": {
+        "wide-40": {
             "$type": "letterSpacing",
             "$value": "2.5px"
         },
-        "3": {
+        "wide-50": {
             "$type": "letterSpacing",
             "$value": "3px"
         }

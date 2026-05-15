@@ -780,43 +780,5 @@
                 "$value": "{line-height.1-40}"
             }
         }
-    },
-    "letter-spacing": {
-        "dense-10": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.minus-1}"
-        },
-        "dense-5": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.minus-0-5}"
-        },
-        "default": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.0}"
-        },
-        "wide-5": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.0-5}"
-        },
-        "wide-10": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.1}"
-        },
-        "wide-20": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.1-5}"
-        },
-        "wide-30": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.2}"
-        },
-        "wide-40": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.2-5}"
-        },
-        "wide-50": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.3}"
-        }
     }
 }
