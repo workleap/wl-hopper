@@ -112,18 +112,6 @@
             "$type": "textCase",
             "$value": ""
         },
-        "text-font-size-xs": {
-            "$type": "fontSize",
-            "$value": "{body.xs.font-size}"
-        },
-        "text-font-lineheight-xs": {
-            "$type": "lineHeight",
-            "$value": "{line-height.1-33}"
-        },
-        "text-font-letterspacing-xs": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.default}"
-        },
         "text-font-size-sm": {
             "$type": "fontSize",
             "$value": "{body.xs.font-size}"

@@ -23,12 +23,6 @@ export const Default = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1" size="xs" {...props}>Tag 1</Tag>
-                    <Tag id="2" size="xs" {...props}>Tag 2</Tag>
-                    <Tag id="3" size="xs" {...props} style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
-                </Inline>
-
-                <Inline>
                     <Tag id="1"size="sm" {...props}>Tag 1</Tag>
                     <Tag id="2"size="sm" {...props}>Tag 2</Tag>
                     <Tag id="3"size="sm" {...props} style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
@@ -54,12 +48,6 @@ export const Href = {
     render: props => {
         return (
             <Stack>
-                <Inline>
-                    <Tag size="xs" id="1" {...props}>Tag 1</Tag>
-                    <Tag size="xs" href="https://www.google.com" id="2" {...props}>Tag 2</Tag>
-                    <Tag size="xs" href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }} {...props}>Tag 3 with long text</Tag>
-                </Inline>
-
                 <Inline>
                     <Tag size="sm" id="1" {...props}>Tag 1</Tag>
                     <Tag size="sm" href="https://www.google.com" id="2" {...props}>Tag 2</Tag>
@@ -89,28 +77,6 @@ export const Icons = {
     render: props => {
         return (
             <Stack>
-                <Inline>
-                    <Tag id="1" size="xs" textValue="Developer" {...props}>
-                        <SparklesIcon />
-                        <Text>Developer</Text>
-                    </Tag>
-                    <Tag id="2" size="xs" textValue="Designer" {...props}>
-                        <Text>Designer</Text>
-                        <IconList>
-                            <SparklesIcon />
-                            <SparklesIcon />
-                            <SparklesIcon />
-                        </IconList>
-                    </Tag>
-                    <Tag id="3" size="xs" textValue="Designer" style={{ maxWidth: "8rem" }} {...props}>
-                        <Text>Executive Officer</Text>
-                        <IconList>
-                            <SparklesIcon />
-                            <SparklesIcon />
-                            <SparklesIcon />
-                        </IconList>
-                    </Tag>
-                </Inline>
                 <Inline>
                     <Tag id="1" size="sm" textValue="Developer" {...props}>
                         <SparklesIcon />
@@ -208,20 +174,6 @@ export const AvatarStory = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1" textValue="Frodo Baggin" size="xs" {...props}>
-                        <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
-                        <Text>Frodo Baggin</Text>
-                    </Tag>
-                    <Tag id="2" textValue="Karen Smith" size="xs" {...props}>
-                        <Avatar name="Karen Smith" />
-                        <Text>Karen Smith</Text>
-                    </Tag>
-                    <Tag id="3" textValue="John Smith" style={{ maxWidth: "6rem" }} size="xs" {...props}>
-                        <Text>John Smith</Text>
-                        <Avatar name="John Smith" />
-                    </Tag>
-                </Inline>
-                <Inline>
                     <Tag id="1" textValue="Frodo Baggin" size="sm" {...props}>
                         <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
                         <Text>Frodo Baggin</Text>
@@ -272,20 +224,6 @@ export const Count = {
     render: props => {
         return (
             <Stack>
-                <Inline>
-                    <Tag id="1" textValue="Developer" size="xs" {...props}>
-                        <Badge>12</Badge>
-                        <Text>Developer</Text>
-                    </Tag>
-                    <Tag id="2" textValue="Designer" isDisabled size="xs" {...props}>
-                        <Text>Designer</Text>
-                        <Badge variant="subdued">99+</Badge>
-                    </Tag>
-                    <Tag id="3" textValue="Designer" style={{ maxWidth: "6rem" }} size="xs" {...props}>
-                        <Text>Executive Officer</Text>
-                        <Badge>100</Badge>
-                    </Tag>
-                </Inline>
                 <Inline>
                     <Tag id="1" textValue="Developer" size="sm" {...props}>
                         <Badge>12</Badge>
@@ -338,10 +276,6 @@ export const Invalid = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="xs" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="xs" {...props}>Designer</Tag>
-                </Inline>
-                <Inline>
                     <Tag id="1" textValue="Developer" size="sm" {...props}>Developer</Tag>
                     <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
                 </Inline>
@@ -365,26 +299,6 @@ export const Everything = {
     render: props => {
         return (
             <Stack>
-                <Inline>
-                    <Tag id="1" textValue="Frodo Baggins" size="xs" {...props}>
-                        <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
-                        <Badge>12</Badge>
-                        <SparklesIcon />
-                        <Text>Frodo Baggins</Text>
-                    </Tag>
-                    <Tag id="2" textValue="Karen Smith" size="xs" {...props}>
-                        <Avatar name="Karen Smith" />
-                        <Text>Karen Smith</Text>
-                        <SparklesIcon />
-                        <Badge variant="subdued">99+</Badge>
-                    </Tag>
-                    <Tag id="3" textValue="John Smith" style={{ maxWidth: "10rem" }} size="xs" {...props}>
-                        <Avatar name="John Smith" />
-                        <Text>John Smith</Text>
-                        <SparklesIcon />
-                        <Badge>100</Badge>
-                    </Tag>
-                </Inline>
                 <Inline>
                     <Tag id="1" textValue="Frodo Baggins" size="sm" {...props}>
                         <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
