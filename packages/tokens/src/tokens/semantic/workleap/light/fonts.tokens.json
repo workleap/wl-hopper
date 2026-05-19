@@ -652,6 +652,24 @@
                 "$value": "{line-height.1-125}"
             }
         },
+        "md" : {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.primary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.280}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.580}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-14}"
+            }
+        },
         "sm" : {
             "font-family": {
                 "$type": "fontFamily",
@@ -668,6 +686,98 @@
             "line-height": {
                 "$type": "lineHeight",
                 "$value": "{line-height.1-33}"
+            }
+        },
+        "xs" : {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.primary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.140}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.580}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-4285}"
+            }
+        }
+    },
+    "label": {
+        "xl": {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.secondary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.160}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.410}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-50}"
+            }
+        },
+        "lg": {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.secondary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.140}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.410}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-4285}"
+            }
+        },
+        "md": {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.secondary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.120}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.410}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-33}"
+            }
+        },
+        "sm": {
+            "font-family": {
+                "$type": "fontFamily",
+                "$value": "{font.family.secondary}"
+            },
+            "font-size": {
+                "$type": "fontSize",
+                "$value": "{font.size.100}"
+            },
+            "font-weight": {
+                "$type": "fontWeight",
+                "$value": "{font.weight.410}"
+            },
+            "line-height": {
+                "$type": "lineHeight",
+                "$value": "{line-height.1-40}"
             }
         }
     }
