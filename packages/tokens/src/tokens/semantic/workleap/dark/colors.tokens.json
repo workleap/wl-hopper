@@ -100,6 +100,10 @@
             "$type": "color",
             "$value": "{amanita.600}"
         },
+        "surface-weak-selected": {
+            "$type": "color",
+            "$value": "{amanita.600}"
+        },
         "text": {
             "$type": "color",
             "$value": "{amanita.900}"

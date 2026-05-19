@@ -346,7 +346,10 @@
         "danger": {
             "box-shadow": {
                 "$type": "shadow",
-                "$value": "none"
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
             },
             "text-color": {
                 "$type": "color",
@@ -381,12 +384,18 @@
                 "$value": "{danger.icon-selected}"
             },
             "background": {
-                "$type": "color",
-                "$value": "{danger.surface-strong}"
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{rose.300}", "position": 0 },
+                    { "color": "{rose.600}", "position": 1 }
+                ]
             },
             "background-loading": {
-                "$type": "color",
-                "$value": "{danger.surface-strong}"
+                "$type": "gradient",
+                "$value": [
+                    { "color": "{rose.300}", "position": 0 },
+                    { "color": "{rose.600}", "position": 1 }
+                ]
             },
             "color-loading": {
                 "$type": "color",
@@ -398,19 +407,34 @@
             },
             "box-shadow-loading": {
                 "$type": "shadow",
-                "$value": "none"
+                "$value": [
+                    { "offsetX": "0", "offsetY": "2px", "blur": "1px", "spread": "0", "color": "rgba(255, 255, 255, 0.25)", "inset": true },
+                    { "offsetX": "0", "offsetY": "-2px", "blur": "4px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true }
+                ]
             },
             "background-hover": {
-                "$type": "color",
-                "$value": "{danger.surface-strong-hover}"
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{danger.surface-strong-hover}", "position": 0 },
+                    { "color": "{danger.surface-strong-hover}", "position": 1 }
+                ]
             },
             "background-pressed": {
-                "$type": "color",
-                "$value": "{danger.surface-press}"
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{danger.surface-press}", "position": 0 },
+                    { "color": "{danger.surface-press}", "position": 1 }
+                ]
             },
             "background-selected": {
-                "$type": "color",
-                "$value": "{danger.surface-selected}"
+                "$type": "gradient",
+                "$description": "Single-stop gradient to allow smooth CSS transition from the multi-stop gradient default background.",
+                "$value": [
+                    { "color": "{danger.surface-selected}", "position": 0 },
+                    { "color": "{danger.surface-selected}", "position": 1 }
+                ]
             },
             "background-disabled": {
                 "$type": "color",
