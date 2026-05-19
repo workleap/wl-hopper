@@ -8,21 +8,6 @@
     --hop-Tag-font-weight: var(--hop-comp-tag-text-font-weight);
     --hop-Tag-text-transform: var(--hop-comp-tag-text-transform);
 
-    /* Extra Small */
-    --hop-Tag-xs-block-size: 1rem;
-    --hop-Tag-xs-padding-inline: var(--hop-space-inset-xs);
-    --hop-Tag-xs-column-gap: var(--hop-space-inline-xs);
-    --hop-Tag-xs-icon-margin-inline-start: 0;
-    --hop-Tag-xs-element-margin-inline-end-sm: calc(-1 * var(--hop-space-inline-xs));
-    --hop-Tag-xs-element-margin-inline-end-zero: calc(-1 * var(--hop-Tag-xs-padding-inline));
-    --hop-Tag-xs-badge-margin-inline-end: var(--hop-Tag-xs-element-margin-inline-end-zero);
-    --hop-Tag-xs-avatar-margin-inline-start: calc(var(--hop-Tag-xs-element-margin-inline-end-sm) - (var(--hop-space-inline-xs) / 2));
-    --hop-Tag-xs-clear-btn-margin-inline: calc(-1 * var(--hop-Tag-xs-column-gap)) var(--hop-Tag-xs-element-margin-inline-end-zero);
-    --hop-Tag-xs-spinner-margin-inline-end: var(--hop-Tag-xs-element-margin-inline-end-sm);
-    --hop-Tag-xs-font-size: var(--hop-comp-tag-text-font-size-xs);
-    --hop-Tag-xs-line-height: var(--hop-comp-tag-text-font-lineheight-xs);
-    --hop-Tag-xs-letter-spacing: var(--hop-comp-tag-text-font-letterspacing-xs);
-
     /* Small */
     --hop-Tag-sm-block-size: 1.25rem;
     --hop-Tag-sm-padding-inline: var(--hop-space-inset-sm);
@@ -330,26 +315,6 @@
     border-radius: var(--border-radius);
     outline: none;
     outline-offset: 0.125rem;
-}
-
-.hop-Tag--xs {
-    --block-size: var(--hop-Tag-xs-block-size);
-    --padding-inline: var(--hop-Tag-xs-padding-inline);
-    --column-gap: var(--hop-Tag-xs-column-gap);
-    --clear-btn-margin-inline: var(--hop-Tag-xs-clear-btn-margin-inline);
-    --avatar-margin-inline-start: var(--hop-Tag-xs-avatar-margin-inline-start);
-    --spinner-margin-inline-end: var(--hop-Tag-xs-spinner-margin-inline-end);
-    --font-size: var(--hop-Tag-xs-font-size);
-    --line-height: var(--hop-Tag-xs-line-height);
-    --letter-spacing: var(--hop-Tag-xs-letter-spacing);
-}
-
-.hop-Tag--xs:not(:has(.hop-Tag__remove-btn, .hop-Tag__Spinner)) {
-    --badge-margin-inline-end: var(--hop-Tag-xs-badge-margin-inline-end);
-}
-
-.hop-Tag--xs:not(:has(.hop-Tag__avatar)) {
-    --icon-margin-inline-start: var(--hop-Tag-xs-icon-margin-inline-start);
 }
 
 .hop-Tag--sm {
