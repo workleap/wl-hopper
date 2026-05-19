@@ -1,4 +1,4 @@
-# ADR: Tag, Badge, and Chip components in Hopper
+# Tag, Badge, and Chip components in Hopper
 
 ## Status
 
