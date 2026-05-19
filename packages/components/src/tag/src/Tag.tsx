@@ -39,25 +39,22 @@ import styles from "./Tag.module.css";
 
 export const GlobalTagCssSelector = "hop-Tag";
 
-export type TagSize = "xs" | "sm" | "md" | "lg";
+export type TagSize = "sm" | "md" | "lg";
 export type TagVariant = "neutral" | "subdued" | "progress" | "positive" | "caution" | "negative" | "option1" | "option2" | "option3" | "option4" | "option5" | "option6";
 
 const TagToTextSizeAdapter: SizeAdapter<TagSize, TextSize> = {
-    xs: "xs",
     sm: "xs",
     md: "xs",
     lg: "sm"
 };
 
 const TagToAvatarSizeAdapter: SizeAdapter<TagSize, AvatarProps["size"]> = {
-    xs: "xs",
     sm: "xs",
     md: "xs",
     lg: "sm"
 };
 
 const TagToButtonSizeAdapter: SizeAdapter<TagSize, ClearButtonProps["size"]> = {
-    xs: "md",
     sm: "md",
     md: "md",
     lg: "lg"
