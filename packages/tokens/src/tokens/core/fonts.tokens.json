@@ -130,11 +130,11 @@
         }
     },
     "letter-spacing": {
-        "-10": {
+        "neg-10": {
             "$type": "letterSpacing",
             "$value": "-1px"
         },
-        "-5": {
+        "neg-5": {
             "$type": "letterSpacing",
             "$value": "-0.5px"
         },
