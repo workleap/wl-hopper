@@ -714,51 +714,51 @@
     "rose": {
         "25": {
             "$type": "color",
-            "$value": "#fdecef"
+            "$value": "#feeaec"
         },
         "50": {
             "$type": "color",
-            "$value": "#fbd6df"
+            "$value": "#fdd3d8"
         },
         "75": {
             "$type": "color",
-            "$value": "#f9c1cf"
+            "$value": "#fcbcc5"
         },
         "100": {
             "$type": "color",
-            "$value": "#f7a3ba"
+            "$value": "#fa9ba9"
         },
         "200": {
             "$type": "color",
-            "$value": "#f47c9e"
+            "$value": "#f76d83"
         },
         "300": {
             "$type": "color",
-            "$value": "#fc5992"
+            "$value": "#f5425d"
         },
         "400": {
             "$type": "color",
-            "$value": "#995068"
+            "$value": "#de2840"
         },
         "500": {
             "$type": "color",
-            "$value": "#80435a"
+            "$value": "#ba1f34"
         },
         "600": {
             "$type": "color",
-            "$value": "#6a394c"
+            "$value": "#951b2a"
         },
         "700": {
             "$type": "color",
-            "$value": "#542f3e"
+            "$value": "#711822"
         },
         "800": {
             "$type": "color",
-            "$value": "#3d2630"
+            "$value": "#50161c"
         },
         "900": {
             "$type": "color",
-            "$value": "#2b1e23"
+            "$value": "#341417"
         }
     },
     "amber": {
