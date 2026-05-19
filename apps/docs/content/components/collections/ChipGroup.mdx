@@ -1,0 +1,150 @@
+---
+title: ChipGroup
+description: The ChipGroup is an interactive collection of chips used for filtering and multi-selection scenarios.
+category: "collections"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/chip/src/ChipGroup.tsx
+---
+
+A ChipGroup renders a list of interactive [Chip](#chip)s for filtering or multi-selection. Chips are always interactive — selecting, removing, and keyboard navigation are built in. A `Chip` cannot be rendered outside of a `ChipGroup`.
+
+<Example src="chip/docs/chip-group/preview" />
+
+## Anatomy
+
+### Structure
+
+```tsx
+<ChipGroup>
+    <Chip> /* (Required) An item in the ChipGroup */
+        <Avatar /> /* (Optional) An avatar in the Chip */
+        <Icon /> /* (Optional) An icon in the Chip */
+        <IconList /> /* (Optional) A list of icons in the Chip */
+        <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
+        <Badge /> /* (Optional) A badge in the Chip */
+    </Chip>
+</ChipGroup>
+```
+
+### Composed Components
+
+A `Chip` within a `ChipGroup` uses the following components:
+
+<ComposedComponents components={["Avatar", "Badge", "Icon", "IconList", "Text"]}/>
+
+## Usage
+
+### Label
+
+A ChipGroup can use the `label` prop to provide more context to the user.
+
+<Example src="chip/docs/chip-group/label" />
+
+### Description
+
+A ChipGroup can use a `description` prop to provide more information to the user.
+
+<Example src="chip/docs/chip-group/description" />
+
+### Disabled
+
+Chips can be disabled using the `disabledKeys` prop.
+
+<Example src="chip/docs/chip-group/disabled" />
+
+### Disabled Item
+
+An individual chip can be disabled using the `isDisabled` prop.
+
+<Example src="chip/docs/chip-group/item/disabled" />
+
+### Invalid
+
+Setting `isInvalid` and supplying an `errorMessage` displays a validation error. This hides the helper message.
+
+<Example src="chip/docs/chip-group/invalid" />
+
+### Invalid Item
+
+An individual chip can be marked invalid using the `isInvalid` prop.
+
+<Example src="chip/docs/chip-group/item/invalid" />
+
+### Removable
+
+Chips can be removed using the `onRemove` callback. With a keyboard, the user can press <kbd>Backspace</kbd> to remove the focused chip.
+
+<Example src="chip/docs/chip-group/removable" />
+
+### Selectable
+
+A ChipGroup defaults to `selectionMode="multiple"` (the most common use case for filtering). Use `defaultSelectedKeys` for uncontrolled selection and `selectedKeys` for controlled selection. The keys should match each `Chip`'s `id` prop.
+
+<Example src="chip/docs/chip-group/selectable" />
+
+### Single Selection
+
+A ChipGroup can be set to `selectionMode="single"` to allow only one chip to be selected at a time.
+
+<Example src="chip/docs/chip-group/single-selection" />
+
+### Sizes
+
+A ChipGroup can vary in size.
+
+<Example src="chip/docs/chip-group/sizes" />
+
+### Icons
+
+A chip can contain an icon or an icon list.
+
+<Example src="chip/docs/chip-group/item/icons" />
+
+### Avatar
+
+A chip can contain an avatar.
+
+<Example src="chip/docs/chip-group/item/avatar" />
+
+### Count
+
+A chip can include a count using the `Badge` component.
+
+<Example src="chip/docs/chip-group/item/count" />
+
+### Loading
+
+A chip can have a loading state using the `isLoading` prop.
+
+<Example src="chip/docs/chip-group/item/loading" />
+
+### ContextualHelp
+
+A [ContextualHelp](/components/ContextualHelp) element may be placed next to the label to provide additional information about a ChipGroup.
+
+<Example src="chip/docs/chip-group/ContextualHelp" />
+
+### Empty State
+
+Use the `renderEmptyState` prop to customize the empty state when there are no chips.
+
+<Example src="chip/docs/chip-group/empty" />
+
+## Best Practices
+
+Chips should:
+
+- Be used for filtering or multi-selection — for non-interactive labels, use [Tag](/components/Tag) instead.
+- Be presented close to the content they filter.
+- Use short labels for easy scanning.
+- Use a size that matches the surrounding context.
+
+## Props
+
+### ChipGroup
+
+<PropTable component="ChipGroup" />
+
+### Chip
+
+<PropTable component="Chip" />

@@ -8,6 +8,7 @@ export * from "./calendar/index.ts";
 export * from "./callout/index.ts";
 export * from "./card/index.ts";
 export * from "./checkbox/index.ts";
+export * from "./chip/index.ts";
 export * from "./combobox/index.ts";
 export * from "./contextual-help/index.ts";
 export * from "./date-picker/index.ts";
