@@ -458,6 +458,7 @@
     --border-color: var(--hop-Tag-neutral-border-color-focus);
     --background-color: var(--hop-Tag-neutral-background-color-focus);
     --text-color: var(--hop-Tag-neutral-text-color-focus);
+    --icon-color: var(--hop-Tag-icon-color-hover);
 }
 
 .hop-Tag--neutral:not(.hop-Tag--standalone)[data-hovered] {
