@@ -92,13 +92,16 @@ Keep Tag and Badge as-is, and introduce Chip as a new component for filtering / 
 ## References
 
 - Figma — Hopper Components catalog (Chip): https://www.figma.com/design/zSpuR1wOAT99H6YfD29IRl/%F0%9F%90%B8---Hopper-Components?node-id=21-328&p=f&t=gGRPvXei9gdz4gKm-0
-- Confluence ADR: https://workleap.atlassian.net/wiki/spaces/~7120207f9fd9b65e9c4095bf0ed01d7a04e830/pages/6856638571/ADR+Tag+Badge+and+Chip+components+in+Hopper
-- Slack DM (May 6, 2026): https://workleap.slack.com/archives/D07DW32M51P/p1778093762047059
-- Slack DM (May 7, 2026 — Alex's 2nd-best, which became the basis of the final decision): https://workleap.slack.com/archives/D07DW32M51P/p1778183944707679
-- Slack #sgpltd-1185_rebrand_hopper_theming (Feb 11, 2026 — initial raise): https://workleap.slack.com/archives/C0A8BP5GTK5/p1770848093027369
-- Slack #sgpltd-1185_rebrand_hopper_theming (Feb 12, 2026 — Alex's context): https://workleap.slack.com/archives/C0A8BP5GTK5/p1770907101691779
 - React Aria TagGroup: https://react-aria.adobe.com/TagGroup
 - React Spectrum Badge: https://react-spectrum.adobe.com/Badge
 - React Spectrum TagGroup: https://react-spectrum.adobe.com/TagGroup
 - Hopper Badge: https://hopper.workleap.design/components/Badge
 - Hopper Tag: https://hopper.workleap.design/components/Tag
+
+## Internal references
+
+- Confluence ADR: https://workleap.atlassian.net/wiki/spaces/~7120207f9fd9b65e9c4095bf0ed01d7a04e830/pages/6856638571/ADR+Tag+Badge+and+Chip+components+in+Hopper
+- Slack DM (May 6, 2026): https://workleap.slack.com/archives/D07DW32M51P/p1778093762047059
+- Slack DM (May 7, 2026 — Alex's 2nd-best, which became the basis of the final decision): https://workleap.slack.com/archives/D07DW32M51P/p1778183944707679
+- Slack #sgpltd-1185_rebrand_hopper_theming (Feb 11, 2026 — initial raise): https://workleap.slack.com/archives/C0A8BP5GTK5/p1770848093027369
+- Slack #sgpltd-1185_rebrand_hopper_theming (Feb 12, 2026 — Alex's context): https://workleap.slack.com/archives/C0A8BP5GTK5/p1770907101691779
