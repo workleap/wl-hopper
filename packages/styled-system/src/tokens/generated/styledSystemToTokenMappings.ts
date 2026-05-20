@@ -1139,10 +1139,10 @@ export const FontFamily = {
     "accent-md": "accent-md-font-family",
     "accent-sm": "accent-sm-font-family",
     "accent-xs": "accent-xs-font-family",
-    "label-xl": "label-xl-font-family",
-    "label-lg": "label-lg-font-family",
-    "label-md": "label-md-font-family",
-    "label-sm": "label-sm-font-family"
+    "caption-xl": "caption-xl-font-family",
+    "caption-lg": "caption-lg-font-family",
+    "caption-md": "caption-md-font-family",
+    "caption-sm": "caption-sm-font-family"
 } as const;
 
 export const FontWeight = {
@@ -1188,10 +1188,10 @@ export const FontWeight = {
     "accent-md": "accent-md-font-weight",
     "accent-sm": "accent-sm-font-weight",
     "accent-xs": "accent-xs-font-weight",
-    "label-xl": "label-xl-font-weight",
-    "label-lg": "label-lg-font-weight",
-    "label-md": "label-md-font-weight",
-    "label-sm": "label-sm-font-weight"
+    "caption-xl": "caption-xl-font-weight",
+    "caption-lg": "caption-lg-font-weight",
+    "caption-md": "caption-md-font-weight",
+    "caption-sm": "caption-sm-font-weight"
 } as const;
 
 export const FontSize = {
@@ -1243,10 +1243,10 @@ export const FontSize = {
     "accent-md": "accent-md-font-size",
     "accent-sm": "accent-sm-font-size",
     "accent-xs": "accent-xs-font-size",
-    "label-xl": "label-xl-font-size",
-    "label-lg": "label-lg-font-size",
-    "label-md": "label-md-font-size",
-    "label-sm": "label-sm-font-size"
+    "caption-xl": "caption-xl-font-size",
+    "caption-lg": "caption-lg-font-size",
+    "caption-md": "caption-md-font-size",
+    "caption-sm": "caption-sm-font-size"
 } as const;
 
 export const LineHeight = {
@@ -1294,10 +1294,10 @@ export const LineHeight = {
     "accent-md": "accent-md-line-height",
     "accent-sm": "accent-sm-line-height",
     "accent-xs": "accent-xs-line-height",
-    "label-xl": "label-xl-line-height",
-    "label-lg": "label-lg-line-height",
-    "label-md": "label-md-line-height",
-    "label-sm": "label-sm-line-height"
+    "caption-xl": "caption-xl-line-height",
+    "caption-lg": "caption-lg-line-height",
+    "caption-md": "caption-md-line-height",
+    "caption-sm": "caption-sm-line-height"
 } as const;
 
 export const FontOffset = {

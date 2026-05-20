@@ -140,39 +140,39 @@
     "letter-spacing": {
         "dense-10": {
             "$type": "letterSpacing",
-            "$value": "-1px"
+            "$value": "-1"
         },
         "dense-5": {
             "$type": "letterSpacing",
-            "$value": "-0.5px"
+            "$value": "-0.5"
         },
-        "default": {
+        "0": {
             "$type": "letterSpacing",
             "$value": "0"
         },
         "wide-5": {
             "$type": "letterSpacing",
-            "$value": "0.5px"
+            "$value": "0.5"
         },
         "wide-10": {
             "$type": "letterSpacing",
-            "$value": "1px"
+            "$value": "1"
+        },
+        "wide-15": {
+            "$type": "letterSpacing",
+            "$value": "1.5"
         },
         "wide-20": {
             "$type": "letterSpacing",
-            "$value": "1.5px"
+            "$value": "2"
+        },
+        "wide-25": {
+            "$type": "letterSpacing",
+            "$value": "2.5"
         },
         "wide-30": {
             "$type": "letterSpacing",
-            "$value": "2px"
-        },
-        "wide-40": {
-            "$type": "letterSpacing",
-            "$value": "2.5px"
-        },
-        "wide-50": {
-            "$type": "letterSpacing",
-            "$value": "3px"
+            "$value": "3"
         }
     }
 }

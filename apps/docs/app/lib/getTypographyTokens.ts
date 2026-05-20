@@ -17,7 +17,7 @@ export interface TokenData {
 }
 
 /**
- * given an itemType (overline/body/heading/accent) and optionally a size, return all property tokens that matches the itemType and size
+ * given an itemType (overline/body/heading/accent/caption) and optionally a size, return all property tokens that matches the itemType and size
  */
 function getAllProperties(tokenData: TokenData, itemType: string, sizeKey?: Size): FontProperties {
     return FontProperties.map(propertyKey => {
@@ -47,7 +47,7 @@ function getAllProperties(tokenData: TokenData, itemType: string, sizeKey?: Size
 }
 
 /**
- * Given an itemType (overline/body/heading/accent), group all property tokens by size
+ * Given an itemType (overline/body/heading/accent/caption), group all property tokens by size
  */
 export function groupItemsByPropertiesAndSizes(tokenData: TokenData, itemType: string): FontPropertiesBySizes {
     return Sizes.reduce<FontPropertiesBySizes>((acc, sizeKey) => {
@@ -61,7 +61,7 @@ export function groupItemsByPropertiesAndSizes(tokenData: TokenData, itemType: s
 }
 
 /**
- * Given an itemType (overline/body/heading/accent), group all property tokens for item types that have no size
+ * Given an itemType (overline/body/heading/accent/caption), group all property tokens for item types that have no size
  */
 export function groupItemsByProperties(tokenData: TokenData, itemType: string) {
     const allProperties = getAllProperties(tokenData, itemType);

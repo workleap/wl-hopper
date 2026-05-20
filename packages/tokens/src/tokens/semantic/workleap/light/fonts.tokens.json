@@ -707,7 +707,7 @@
             }
         }
     },
-    "label": {
+    "caption": {
         "xl": {
             "font-family": {
                 "$type": "fontFamily",
@@ -777,7 +777,7 @@
             },
             "line-height": {
                 "$type": "lineHeight",
-                "$value": "{line-height.1-40}"
+                "$value": "{line-height.1-33}"
             }
         }
     }
