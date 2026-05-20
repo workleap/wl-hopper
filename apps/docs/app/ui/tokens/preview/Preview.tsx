@@ -54,6 +54,13 @@ const Preview = ({ category, name, value }: PreviewProps) => {
                 content: <><span className="hd-preview--line-height__text hd-preview--line-height__text-top">{sampleText}</span><span className="hd-preview--line-height__text hd-preview--line-height__text-bottom">{sampleText}</span></>
             };
             break;
+        case "letterSpacing":
+            preview = {
+                style: { letterSpacing: value },
+                className: "hd-preview--font",
+                content: sampleText
+            };
+            break;
         case "mediaQuery":
         case "zIndex":
             preview = {
