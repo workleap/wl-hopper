@@ -25,6 +25,7 @@ import type {
     GridTemplateColumnsValue,
     GridTemplateRowsValue,
     HeightValue,
+    LetterSpacingValue,
     LineHeightValue,
     OutlineValue,
     RowGapValue,
@@ -48,6 +49,7 @@ import type {
     UNSAFE_GridTemplateColumnsValue,
     UNSAFE_GridTemplateRowsValue,
     UNSAFE_HeightValue,
+    UNSAFE_LetterSpacingValue,
     UNSAFE_LineHeightValue,
     UNSAFE_OutlineValue,
     UNSAFE_RowGapValue,
@@ -602,10 +604,10 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     left?: ResponsiveProp<Property.Left>;
 
     /**
-   * Sets the `letter-spacing` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/letter-spacing}
-   */
-    letterSpacing?: ResponsiveProp<Property.LetterSpacing>;
+     * Sets the `letter-spacing` property.
+     * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_letterSpacing`** property
+     */
+    letterSpacing?: ResponsiveProp<LetterSpacingValue>;
 
     /**
      * Sets the `line-height` property.
@@ -1380,6 +1382,15 @@ export interface UnsafeStyledSystemProps {
      * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
      */
     UNSAFE_height?: ResponsiveProp<UNSAFE_HeightValue>;
+
+    /**
+     * Sets the `letter-spacing` property.
+     *
+     * If you want to use a **token value** from the **SCALE**, use the **`letterSpacing`** property instead.
+     *
+     * This property is marked as **UNSAFE** because you're opting out of the intended values of the design system.
+     */
+    UNSAFE_letterSpacing?: ResponsiveProp<UNSAFE_LetterSpacingValue>;
 
     /**
      * Sets the `line-height` property.

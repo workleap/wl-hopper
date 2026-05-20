@@ -19,7 +19,7 @@ export const TokenCategories = [
     "semantic-fontSize", "semantic-fontWeight", "semantic-lineHeight", "semantic-topOffset", "semantic-bottomOffset",
     "semantic-borderRadius", "semantic-paddingSize", "semantic-marginSize",
     "core-color", "core-shadow", "core-fontFamily", "core-fontSize",
-    "core-fontWeight", "core-lineHeight", "core-borderRadius", "core-size", "core-duration", "core-timingFunction"
+    "core-fontWeight", "core-lineHeight", "core-letterSpacing", "core-borderRadius", "core-size", "core-duration", "core-timingFunction"
 ] as const;
 
 export type TokenCategory = typeof TokenCategories[number];
@@ -75,6 +75,11 @@ export const TokenScales = {
         link: "/tokens/semantic/typography",
         tokenCategories: ["semantic-lineHeight", "core-lineHeight"]
     },
+    "typography-letterSpacing-scale": {
+        title: "Letter Spacing",
+        link: "/tokens/core/letter-spacing",
+        tokenCategories: ["core-letterSpacing"]
+    },
     "none": {
         title: "none",
         link: "",
@@ -123,7 +128,7 @@ export const stylePropDefinitions: StylePropDefinition[] = [
     { propName: "fontSize", cssProperty: "font-size", tokenScale: "typography-fontSize-scale", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "fontWeight", cssProperty: "font-weight", tokenScale: "typography-fontWeight-scale", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "lineHeight", cssProperty: "line-height", tokenScale: "typography-lineHeight-scale", supportedFeatures: "breakpoints", group: "Typography" },
-    { propName: "letterSpacing", cssProperty: "letter-spacing", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },
+    { propName: "letterSpacing", cssProperty: "letter-spacing", tokenScale: "typography-letterSpacing-scale", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "textAlign", cssProperty: "text-align", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "textTransform", cssProperty: "text-transform", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },
     { propName: "textDecoration", cssProperty: "text-decoration", tokenScale: "none", supportedFeatures: "breakpoints", group: "Typography" },

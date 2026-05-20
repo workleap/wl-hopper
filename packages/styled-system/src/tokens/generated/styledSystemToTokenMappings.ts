@@ -1300,6 +1300,18 @@ export const LineHeight = {
     "caption-sm": "caption-sm-line-height"
 } as const;
 
+export const LetterSpacing = {
+    "core_0": "letter-spacing-0",
+    "core_dense-10": "letter-spacing-dense-10",
+    "core_dense-5": "letter-spacing-dense-5",
+    "core_wide-5": "letter-spacing-wide-5",
+    "core_wide-10": "letter-spacing-wide-10",
+    "core_wide-15": "letter-spacing-wide-15",
+    "core_wide-20": "letter-spacing-wide-20",
+    "core_wide-25": "letter-spacing-wide-25",
+    "core_wide-30": "letter-spacing-wide-30"
+} as const;
+
 export const FontOffset = {
     "heading-3xl-top-offset": "heading-3xl-top-offset",
     "heading-3xl-bottom-offset": "heading-3xl-bottom-offset",
@@ -1397,5 +1409,5 @@ export const Motions = {
     "easing-expressive": "easing-expressive"
 } as const;
 
-export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof GradientColors[keyof typeof GradientColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
+export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof GradientColors[keyof typeof GradientColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof LetterSpacing[keyof typeof LetterSpacing] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
 export type HopperCssVar = `var(${HopperTokenKey})`;
