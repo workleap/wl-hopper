@@ -16,6 +16,54 @@
             "$type": "color",
             "$value": "{neutral.icon-disabled}"
         },
+        "text-font": {
+            "$type": "fontFamily",
+            "$value": "{caption.md.font-family}"
+        },
+        "text-font-weight": {
+            "$type": "fontWeight",
+            "$value": "{font.weight.505}"
+        },
+        "text-transform": {
+            "$type": "",
+            "$value": "none"
+        },
+        "text-font-size-md": {
+            "$type": "fontSize",
+            "$value": "{body.md.font-size}"
+        },
+        "text-font-lineheight-md": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-50}"
+        },
+        "text-font-letterspacing-md": {
+            "$type": "",
+            "$value": "normal"
+        },
+        "text-font-size-sm": {
+            "$type": "fontSize",
+            "$value": "{body.sm.font-size}"
+        },
+        "text-font-lineheight-sm": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-4285}"
+        },
+        "text-font-letterspacing-sm": {
+            "$type": "",
+            "$value": "normal"
+        },
+        "text-font-size-xs": {
+            "$type": "fontSize",
+            "$value": "{body.xs.font-size}"
+        },
+        "text-font-lineheight-xs": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-33}"
+        },
+        "text-font-letterspacing-xs": {
+            "$type": "",
+            "$value": "normal"
+        },
         "primary": {
             "box-shadow": {
                 "$type": "shadow",

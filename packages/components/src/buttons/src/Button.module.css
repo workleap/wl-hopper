@@ -14,6 +14,14 @@
     --hop-Button-sm-padding: 0 var(--hop-space-inset-md);
     --hop-Button-md-padding: 0 var(--hop-space-inset-md);
 
+    /* Typography */
+    --hop-Button-text-font: var(--hop-comp-button-text-font);
+    --hop-Button-text-font-weight: var(--hop-comp-button-text-font-weight);
+    --hop-Button-text-transform: var(--hop-comp-button-text-transform);
+    --hop-Button-text-font-size: var(--hop-comp-button-text-font-size-md);
+    --hop-Button-text-line-height: var(--hop-comp-button-text-font-lineheight-md);
+    --hop-Button-text-letter-spacing: var(--hop-comp-button-text-font-letterspacing-md);
+
     /* Ghost */
     --hop-Button-ghost-xs-padding: 0 var(--hop-space-inset-xs);
     --hop-Button-ghost-sm-padding: 0 var(--hop-space-inset-xs);
@@ -99,6 +107,9 @@
 .hop-Button--xs {
     --block-size: var(--hop-Button-xs-height);
     --padding: var(--hop-Button-xs-padding);
+    --hop-Button-text-font-size: var(--hop-comp-button-text-font-size-xs);
+    --hop-Button-text-line-height: var(--hop-comp-button-text-font-lineheight-xs);
+    --hop-Button-text-letter-spacing: var(--hop-comp-button-text-font-letterspacing-xs);
 }
 
 .hop-Button--xs[class*="--ghost"] {
@@ -108,6 +119,9 @@
 .hop-Button--sm {
     --block-size: var(--hop-Button-sm-height);
     --padding: var(--hop-Button-sm-padding);
+    --hop-Button-text-font-size: var(--hop-comp-button-text-font-size-sm);
+    --hop-Button-text-line-height: var(--hop-comp-button-text-font-lineheight-sm);
+    --hop-Button-text-letter-spacing: var(--hop-comp-button-text-font-letterspacing-sm);
 }
 
 .hop-Button--sm[class*="--ghost"] {
@@ -396,8 +410,13 @@
     flex: 0 1 auto;
     order: 2;
 
-    font-weight: var(--hop-font-weight-505);
+    font-family: var(--hop-Button-text-font);
+    font-size: var(--hop-Button-text-font-size);
+    font-weight: var(--hop-Button-text-font-weight);
+    line-height: var(--hop-Button-text-line-height);
+    letter-spacing: var(--hop-Button-text-letter-spacing);
     text-decoration: none;
+    text-transform: var(--hop-Button-text-transform);
     text-wrap: nowrap;
 }
 
