@@ -112,18 +112,6 @@
             "$type": "textCase",
             "$value": "uppercase"
         },
-        "text-font-size-xs": {
-            "$type": "fontSize",
-            "$value": "{caption.sm.font-size}"
-        },
-        "text-font-lineheight-xs": {
-            "$type": "lineHeight",
-            "$value": "{line-height.1-40}"
-        },
-        "text-font-letterspacing-xs": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-10}"
-        },
         "text-font-size-sm": {
             "$type": "fontSize",
             "$value": "{caption.md.font-size}"
