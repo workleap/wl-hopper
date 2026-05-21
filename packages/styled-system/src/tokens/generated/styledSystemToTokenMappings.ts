@@ -1136,7 +1136,13 @@ export const FontFamily = {
     "body-xs-bold": "body-xs-bold-font-family",
     "body-xs-underline": "body-xs-underline-font-family",
     "accent-lg": "accent-lg-font-family",
-    "accent-sm": "accent-sm-font-family"
+    "accent-md": "accent-md-font-family",
+    "accent-sm": "accent-sm-font-family",
+    "accent-xs": "accent-xs-font-family",
+    "caption-xl": "caption-xl-font-family",
+    "caption-lg": "caption-lg-font-family",
+    "caption-md": "caption-md-font-family",
+    "caption-sm": "caption-sm-font-family"
 } as const;
 
 export const FontWeight = {
@@ -1179,10 +1185,17 @@ export const FontWeight = {
     "body-xs-bold": "body-xs-bold-font-weight",
     "body-xs-underline": "body-xs-underline-font-weight",
     "accent-lg": "accent-lg-font-weight",
-    "accent-sm": "accent-sm-font-weight"
+    "accent-md": "accent-md-font-weight",
+    "accent-sm": "accent-sm-font-weight",
+    "accent-xs": "accent-xs-font-weight",
+    "caption-xl": "caption-xl-font-weight",
+    "caption-lg": "caption-lg-font-weight",
+    "caption-md": "caption-md-font-weight",
+    "caption-sm": "caption-sm-font-weight"
 } as const;
 
 export const FontSize = {
+    "core_100": "font-size-100",
     "core_120": "font-size-120",
     "core_140": "font-size-140",
     "core_160": "font-size-160",
@@ -1225,15 +1238,23 @@ export const FontSize = {
     "body-xs-bold": "body-xs-bold-font-size",
     "body-xs-underline": "body-xs-underline-font-size",
     "accent-lg": "accent-lg-font-size",
-    "accent-sm": "accent-sm-font-size"
+    "accent-md": "accent-md-font-size",
+    "accent-sm": "accent-sm-font-size",
+    "accent-xs": "accent-xs-font-size",
+    "caption-xl": "caption-xl-font-size",
+    "caption-lg": "caption-lg-font-size",
+    "caption-md": "caption-md-font-size",
+    "caption-sm": "caption-sm-font-size"
 } as const;
 
 export const LineHeight = {
     "core_1-125": "line-height-1-125",
     "core_1-14": "line-height-1-14",
+    "core_1-1666": "line-height-1-1666",
     "core_1-20": "line-height-1-20",
     "core_1-25": "line-height-1-25",
     "core_1-33": "line-height-1-33",
+    "core_1-40": "line-height-1-40",
     "core_1-4285": "line-height-1-4285",
     "core_1-50": "line-height-1-50",
     "heading-3xl": "heading-3xl-line-height",
@@ -1268,7 +1289,25 @@ export const LineHeight = {
     "body-xs-bold": "body-xs-bold-line-height",
     "body-xs-underline": "body-xs-underline-line-height",
     "accent-lg": "accent-lg-line-height",
-    "accent-sm": "accent-sm-line-height"
+    "accent-md": "accent-md-line-height",
+    "accent-sm": "accent-sm-line-height",
+    "accent-xs": "accent-xs-line-height",
+    "caption-xl": "caption-xl-line-height",
+    "caption-lg": "caption-lg-line-height",
+    "caption-md": "caption-md-line-height",
+    "caption-sm": "caption-sm-line-height"
+} as const;
+
+export const LetterSpacing = {
+    "core_0": "letter-spacing-0",
+    "core_dense-10": "letter-spacing-dense-10",
+    "core_dense-5": "letter-spacing-dense-5",
+    "core_wide-5": "letter-spacing-wide-5",
+    "core_wide-10": "letter-spacing-wide-10",
+    "core_wide-15": "letter-spacing-wide-15",
+    "core_wide-20": "letter-spacing-wide-20",
+    "core_wide-25": "letter-spacing-wide-25",
+    "core_wide-30": "letter-spacing-wide-30"
 } as const;
 
 export const FontOffset = {
@@ -1368,5 +1407,5 @@ export const Motions = {
     "easing-expressive": "easing-expressive"
 } as const;
 
-export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof GradientColors[keyof typeof GradientColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
+export type HopperTokenKey = `--hop-${typeof HopperColors[keyof typeof HopperColors] | typeof BackgroundColors[keyof typeof BackgroundColors] | typeof TextColors[keyof typeof TextColors] | typeof IconColors[keyof typeof IconColors] | typeof BorderColors[keyof typeof BorderColors] | typeof DataVizColors[keyof typeof DataVizColors] | typeof GradientColors[keyof typeof GradientColors] | typeof Elevation[keyof typeof Elevation] | typeof FontFamily[keyof typeof FontFamily] | typeof FontWeight[keyof typeof FontWeight] | typeof FontOffset[keyof typeof FontOffset] | typeof FontSize[keyof typeof FontSize] | typeof LineHeight[keyof typeof LineHeight] | typeof LetterSpacing[keyof typeof LetterSpacing] | typeof Shape[keyof typeof Shape] | typeof CoreSpace[keyof typeof CoreSpace] | typeof Motions[keyof typeof Motions] | typeof SemanticSimplePaddingSpace[keyof typeof SemanticSimplePaddingSpace] | typeof SemanticComplexPaddingSpace[keyof typeof SemanticComplexPaddingSpace] | typeof SemanticSimpleMarginSpace[keyof typeof SemanticSimpleMarginSpace] | typeof SemanticComplexMarginSpace[keyof typeof SemanticComplexMarginSpace]}`;
 export type HopperCssVar = `var(${HopperTokenKey})`;

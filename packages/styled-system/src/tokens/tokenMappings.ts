@@ -19,6 +19,7 @@ import {
     GradientColors,
     HopperColors,
     IconColors,
+    LetterSpacing,
     LineHeight,
     SemanticComplexMarginSpace,
     SemanticComplexPaddingSpace,
@@ -99,6 +100,7 @@ export const BoxShadowMapping = createMapping(Elevation);
 export const FontSizeMapping = createMapping(FontSize);
 export const FontWeightMapping = createMapping(FontWeight);
 export const LineHeightMapping = createMapping(LineHeight);
+export const LetterSpacingMapping = createMapping(LetterSpacing);
 export const FontFamilyMapping = createMapping(FontFamily);
 
 export const BorderRadiusMapping = createMapping(Shape);
@@ -238,6 +240,9 @@ export type UNSAFE_HeightValue = keyof typeof SizingMapping | Property.Height;
 
 export type LineHeightValue = keyof typeof LineHeightMapping | Globals | "normal" | 0;
 export type UNSAFE_LineHeightValue = keyof typeof LineHeightMapping | Property.LineHeight;
+
+export type LetterSpacingValue = keyof typeof LetterSpacingMapping | Globals | "normal";
+export type UNSAFE_LetterSpacingValue = keyof typeof LetterSpacingMapping | Property.LetterSpacing;
 
 export type SimpleMarginValue = keyof typeof SimpleMarginMapping | Globals | "auto" | 0;
 export type UNSAFE_SimpleMarginValue = keyof typeof SimpleMarginMapping | Property.Margin;

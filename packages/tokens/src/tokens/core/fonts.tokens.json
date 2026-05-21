@@ -15,6 +15,10 @@
             }
         },
         "size": {
+            "100": {
+                "$type": "fontSize",
+                "$value": "10"
+            },
             "120": {
                 "$type": "fontSize",
                 "$value": "12"
@@ -96,6 +100,10 @@
             "$type": "lineHeight",
             "$value": "1.1428571"
         },
+        "1-1666": {
+            "$type": "lineHeight",
+            "$value": "1.1666666"
+        },
         "1-20": {
             "$type": "lineHeight",
             "$value": "1.2"
@@ -108,6 +116,10 @@
             "$type": "lineHeight",
             "$value": "1.3333333"
         },
+        "1-40": {
+            "$type": "lineHeight",
+            "$value": "1.4"
+        },
         "1-4285": {
             "$type": "lineHeight",
             "$value": "1.4285714"
@@ -115,6 +127,44 @@
         "1-50": {
             "$type": "lineHeight",
             "$value": "1.5"
+        }
+    },
+    "letter-spacing": {
+        "dense-10": {
+            "$type": "letterSpacing",
+            "$value": "-1"
+        },
+        "dense-5": {
+            "$type": "letterSpacing",
+            "$value": "-0.5"
+        },
+        "0": {
+            "$type": "letterSpacing",
+            "$value": "0"
+        },
+        "wide-5": {
+            "$type": "letterSpacing",
+            "$value": "0.5"
+        },
+        "wide-10": {
+            "$type": "letterSpacing",
+            "$value": "1"
+        },
+        "wide-15": {
+            "$type": "letterSpacing",
+            "$value": "1.5"
+        },
+        "wide-20": {
+            "$type": "letterSpacing",
+            "$value": "2"
+        },
+        "wide-25": {
+            "$type": "letterSpacing",
+            "$value": "2.5"
+        },
+        "wide-30": {
+            "$type": "letterSpacing",
+            "$value": "3"
         }
     }
 }

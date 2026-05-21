@@ -18,6 +18,7 @@ const MappingType = {
     FontOffset: "FontOffset",
     FontSize: "FontSize",
     LineHeight: "LineHeight",
+    LetterSpacing: "LetterSpacing",
     Shape: "Shape",
     CoreSpace: "CoreSpace",
     Motions: "Motions",
@@ -240,6 +241,19 @@ function mapFonts(coreTokens: TransformedToken[], semanticTokens: TransformedTok
             }),
             ...semanticFontTokens.filter(x => x.includes("line-height")).map(token => {
                 return createMapping(token, "line-height");
+            })
+        ]
+    );
+
+    // letter-spacing
+    fontsMappings += formatTokenMapping(
+        MappingType.LetterSpacing,
+        [
+            ...coreFontTokens.filter(x => x.includes("letter-spacing")).map(token => {
+                return createMapping(token, "letter-spacing", "core");
+            }),
+            ...semanticFontTokens.filter(x => x.includes("letter-spacing")).map(token => {
+                return createMapping(token, "letter-spacing");
             })
         ]
     );

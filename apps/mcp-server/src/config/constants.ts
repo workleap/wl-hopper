@@ -20,7 +20,7 @@ export const TokenCategories = [
 
     //core
     "core-border-radius", "core-color", "core-dimensions",
-    "core-font-family", "core-font-size", "core-font-weight", "core-line-height",
+    "core-font-family", "core-font-size", "core-font-weight", "core-letter-spacing", "core-line-height",
     "core-motion", "core-shadow",
 
     //all
@@ -42,6 +42,7 @@ export const TokenCategoryDescriptions: { [key in TokenCategory]: string } = {
     "core-font-family": "Typography font stacks for primary, secondary, and monospace",
     "core-font-size": "Font size scale from 0.75rem to 3rem",
     "core-font-weight": "Font weight values from 400 to 690",
+    "core-letter-spacing": "Letter spacing values for tracking adjustments in typography",
     "core-line-height": "Line height ratios for consistent vertical rhythm",
     "core-motion": "Animation durations and easing functions for transitions",
     "core-shadow": "Box shadow values for elevation effects",

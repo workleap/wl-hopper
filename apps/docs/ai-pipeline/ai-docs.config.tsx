@@ -244,6 +244,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/font-family.md",
                     "/tokens/core/font-size.md",
                     "/tokens/core/font-weight.md",
+                    "/tokens/core/letter-spacing.md",
                     "/tokens/core/line-height.md",
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"
@@ -280,6 +281,7 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/tokens/core/font-family.md",
                     "/tokens/core/font-size.md",
                     "/tokens/core/font-weight.md",
+                    "/tokens/core/letter-spacing.md",
                     "/tokens/core/line-height.md",
                     "/tokens/core/motion.md",
                     "/tokens/core/shadow.md"

@@ -16,11 +16,13 @@ export const DESIGN_TOKEN_PREFIXES_AND_SUFFIXES = [
     "-font-size",
     "-font-weight",
     "-line-height",
+    "-letter-spacing",
     // for core values
     "font-family-",
     "font-size-",
     "font-weight-",
-    "line-height-"
+    "line-height-",
+    "letter-spacing-"
 ] as const;
 
 export function formatStyledSystemName(name: string, tokenType: "core" | "semantic" | null) {
