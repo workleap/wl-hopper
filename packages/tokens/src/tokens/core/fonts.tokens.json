@@ -55,17 +55,9 @@
                 "$type": "fontSize",
                 "$value": "36"
             },
-            "420": {
-                "$type": "fontSize",
-                "$value": "42"
-            },
             "480": {
                 "$type": "fontSize",
                 "$value": "48"
-            },
-            "640": {
-                "$type": "fontSize",
-                "$value": "64"
             }
         },
         "weight": {
