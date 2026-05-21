@@ -1,7 +1,12 @@
 .hop-Tag  {
     /* Default */
     --hop-Tag-border-size: 0.0625rem;
-    --hop-Tag-border-radius: var(--hop-shape-pill);
+    --hop-Tag-border-radius: var(--hop-comp-tag-border-radius);
+
+    /* Typography */
+    --hop-Tag-font-family: var(--hop-comp-tag-text-font);
+    --hop-Tag-font-weight: var(--hop-comp-tag-text-font-weight);
+    --hop-Tag-text-transform: var(--hop-comp-tag-text-transform);
 
     /* Small */
     --hop-Tag-sm-block-size: 1.25rem;
@@ -14,6 +19,9 @@
     --hop-Tag-sm-avatar-margin-inline-start: calc(var(--hop-Tag-sm-element-margin-inline-end-sm) - (var(--hop-space-inline-xs) / 2));
     --hop-Tag-sm-clear-btn-margin-inline: calc(-1 * var(--hop-Tag-sm-column-gap)) var(--hop-Tag-sm-element-margin-inline-end-zero);
     --hop-Tag-sm-spinner-margin-inline-end: var(--hop-Tag-sm-element-margin-inline-end-sm);
+    --hop-Tag-sm-font-size: var(--hop-comp-tag-text-font-size-sm);
+    --hop-Tag-sm-line-height: var(--hop-comp-tag-text-font-lineheight-sm);
+    --hop-Tag-sm-letter-spacing: var(--hop-comp-tag-text-font-letterspacing-sm);
 
     /* Medium */
     --hop-Tag-md-block-size: 1.5rem;
@@ -26,6 +34,9 @@
     --hop-Tag-md-avatar-margin-inline-start: var(--hop-Tag-md-element-margin-inline-end-sm);
     --hop-Tag-md-clear-btn-margin-inline: calc(-1 * var(--hop-Tag-md-column-gap)) var(--hop-Tag-md-element-margin-inline-end-zero);
     --hop-Tag-md-spinner-margin-inline-end: var(--hop-Tag-md-element-margin-inline-end-sm);
+    --hop-Tag-md-font-size: var(--hop-comp-tag-text-font-size-md);
+    --hop-Tag-md-line-height: var(--hop-comp-tag-text-font-lineheight-md);
+    --hop-Tag-md-letter-spacing: var(--hop-comp-tag-text-font-letterspacing-md);
 
     /* Large */
     --hop-Tag-lg-block-size: 2rem;
@@ -37,11 +48,14 @@
     --hop-Tag-lg-avatar-margin-inline-start: var(--hop-Tag-lg-element-margin-inline-end-sm);
     --hop-Tag-lg-clear-btn-margin-inline: 0 var(--hop-Tag-lg-element-margin-inline-end-sm);
     --hop-Tag-lg-spinner-margin-inline-end: var(--hop-Tag-lg-element-margin-inline-end-sm);
+    --hop-Tag-lg-font-size: var(--hop-comp-tag-text-font-size-lg);
+    --hop-Tag-lg-line-height: var(--hop-comp-tag-text-font-lineheight-lg);
+    --hop-Tag-lg-letter-spacing: var(--hop-comp-tag-text-font-letterspacing-lg);
 
     /* Neutral */
-    --hop-Tag-neutral-border-color: var(--hop-neutral-border);
-    --hop-Tag-neutral-background-color: var(--hop-neutral-surface);
-    --hop-Tag-neutral-text-color: var(--hop-neutral-text);
+    --hop-Tag-neutral-border-color: var(--hop-comp-tag-border-color);
+    --hop-Tag-neutral-background-color: var(--hop-comp-tag-background-color);
+    --hop-Tag-neutral-text-color: var(--hop-comp-tag-text-color);
 
     /* Subdued */
     --hop-Tag-subdued-border-color: var(--hop-neutral-border);
@@ -99,10 +113,10 @@
     --hop-Tag-option6-text-color: var(--hop-status-option6-text);
 
     /* Focus */
-    --hop-Tag-focus-ring-color: var(--hop-primary-border-focus);
-    --hop-Tag-neutral-background-color-focus: var(--hop-neutral-surface-hover);
-    --hop-Tag-neutral-border-color-focus: var(--hop-neutral-border-hover);
-    --hop-Tag-neutral-text-color-focus: var(--hop-neutral-text-hover);
+    --hop-Tag-focus-ring-color: var(--hop-comp-tag-border-color-focus);
+    --hop-Tag-neutral-background-color-focus: var(--hop-comp-tag-background-color-hover);
+    --hop-Tag-neutral-border-color-focus: var(--hop-comp-tag-border-color-hover);
+    --hop-Tag-neutral-text-color-focus: var(--hop-comp-tag-text-color-hover);
     --hop-Tag-subdued-background-color-focus: var(--hop-neutral-surface-weak-hover);
     --hop-Tag-subdued-border-color-focus: var(--hop-neutral-border-hover);
     --hop-Tag-subdued-text-color-focus: var(--hop-neutral-text-hover);
@@ -138,9 +152,9 @@
     --hop-Tag-option6-text-color-focus: var(--hop-status-option6-text-hover);
 
     /* Hover */
-    --hop-Tag-neutral-background-color-hover: var(--hop-neutral-surface-hover);
-    --hop-Tag-neutral-border-color-hover: var(--hop-neutral-border-hover);
-    --hop-Tag-neutral-text-color-hover: var(--hop-neutral-text-hover);
+    --hop-Tag-neutral-background-color-hover: var(--hop-comp-tag-background-color-hover);
+    --hop-Tag-neutral-border-color-hover: var(--hop-comp-tag-border-color-hover);
+    --hop-Tag-neutral-text-color-hover: var(--hop-comp-tag-text-color-hover);
     --hop-Tag-subdued-background-color-hover: var(--hop-neutral-surface-weak-hover);
     --hop-Tag-subdued-border-color-hover: var(--hop-neutral-border-hover);
     --hop-Tag-subdued-text-color-hover: var(--hop-neutral-text-hover);
@@ -176,14 +190,14 @@
     --hop-Tag-option6-text-color-hover: var(--hop-status-option6-text-hover);
 
     /* Selected */
-    --hop-Tag-background-color-selected: var(--hop-neutral-surface-selected);
-    --hop-Tag-border-color-selected: var(--hop-neutral-border-selected);
-    --hop-Tag-text-color-selected: var(--hop-neutral-text-selected);
+    --hop-Tag-background-color-selected: var(--hop-comp-tag-background-color-selected);
+    --hop-Tag-border-color-selected: var(--hop-comp-tag-border-color-selected);
+    --hop-Tag-text-color-selected: var(--hop-comp-tag-text-color-selected);
 
     /* Press */
-    --hop-Tag-neutral-background-color-press: var(--hop-neutral-surface-press);
-    --hop-Tag-neutral-border-color-press: var(--hop-neutral-border-press);
-    --hop-Tag-neutral-text-color-press: var(--hop-neutral-text-press);
+    --hop-Tag-neutral-background-color-press: var(--hop-comp-tag-background-color-press);
+    --hop-Tag-neutral-border-color-press: var(--hop-comp-tag-border-color-press);
+    --hop-Tag-neutral-text-color-press: var(--hop-comp-tag-text-color-press);
     --hop-Tag-subdued-background-color-press: var(--hop-neutral-surface-weak-press);
     --hop-Tag-subdued-border-color-press: var(--hop-neutral-border-press);
     --hop-Tag-subdued-text-color-press: var(--hop-neutral-text-press);
@@ -219,12 +233,21 @@
     --hop-Tag-option6-text-color-press: var(--hop-status-option6-text-press);
 
     /* Invalid */
-    --hop-Tag-border-color-invalid: var(--hop-danger-border-strong);
+    --hop-Tag-border-color-invalid: var(--hop-comp-tag-border-color-error);
+    --hop-Tag-text-color-invalid: var(--hop-comp-tag-text-color-error);
+    --hop-Tag-icon-color-invalid: var(--hop-comp-tag-icon-color-error);
+
+    /* Icon */
+    --hop-Tag-icon-color: var(--hop-comp-tag-icon-color);
+    --hop-Tag-icon-color-hover: var(--hop-comp-tag-icon-color-hover);
+    --hop-Tag-icon-color-press: var(--hop-comp-tag-icon-color-press);
+    --hop-Tag-icon-color-selected: var(--hop-comp-tag-icon-color-selected);
+    --hop-Tag-icon-color-disabled: var(--hop-comp-tag-icon-color-disabled);
 
     /* Disabled */
-    --hop-Tag-neutral-background-color-disabled: var(--hop-neutral-surface-disabled);
-    --hop-Tag-neutral-border-color-disabled: var(--hop-neutral-border-weak);
-    --hop-Tag-neutral-text-color-disabled: var(--hop-neutral-text-disabled);
+    --hop-Tag-neutral-background-color-disabled: var(--hop-comp-tag-background-color-disabled);
+    --hop-Tag-neutral-border-color-disabled: var(--hop-comp-tag-border-color-disabled);
+    --hop-Tag-neutral-text-color-disabled: var(--hop-comp-tag-text-color-disabled);
     --hop-Tag-subdued-background-color-disabled: var(--hop-neutral-surface-disabled);
     --hop-Tag-subdued-border-color-disabled: var(--hop-neutral-border-weak);
     --hop-Tag-subdued-text-color-disabled: var(--hop-neutral-text-disabled);
@@ -264,6 +287,10 @@
     --border-size: var(--hop-Tag-border-size);
     --badge-secondary-margin-inline-start: calc(-1 * var(--column-gap));
     --focus-ring-color: var(--hop-Tag-focus-ring-color);
+    --font-family: var(--hop-Tag-font-family);
+    --font-weight: var(--hop-Tag-font-weight);
+    --text-transform: var(--hop-Tag-text-transform);
+    --icon-color: var(--text-color);
 
     display: inline-flex;
     column-gap: var(--column-gap);
@@ -277,7 +304,10 @@
     padding-inline: var(--padding-inline);
 
     color: var(--text-color);
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
     text-decoration: none;
+    text-transform: var(--text-transform);
     white-space: nowrap;
 
     background-color: var(--background-color);
@@ -294,6 +324,9 @@
     --clear-btn-margin-inline: var(--hop-Tag-sm-clear-btn-margin-inline);
     --avatar-margin-inline-start: var(--hop-Tag-sm-avatar-margin-inline-start);
     --spinner-margin-inline-end: var(--hop-Tag-sm-spinner-margin-inline-end);
+    --font-size: var(--hop-Tag-sm-font-size);
+    --line-height: var(--hop-Tag-sm-line-height);
+    --letter-spacing: var(--hop-Tag-sm-letter-spacing);
 }
 
 .hop-Tag--sm:not(:has(.hop-Tag__remove-btn, .hop-Tag__Spinner)) {
@@ -311,6 +344,9 @@
     --clear-btn-margin-inline: var(--hop-Tag-md-clear-btn-margin-inline);
     --avatar-margin-inline-start: var(--hop-Tag-md-avatar-margin-inline-start);
     --spinner-margin-inline-end: var(--hop-Tag-md-spinner-margin-inline-end);
+    --font-size: var(--hop-Tag-md-font-size);
+    --line-height: var(--hop-Tag-md-line-height);
+    --letter-spacing: var(--hop-Tag-md-letter-spacing);
 }
 
 .hop-Tag--md:not(:has(.hop-Tag__remove-btn, .hop-Tag__Spinner)) {
@@ -328,6 +364,9 @@
     --clear-btn-margin-inline: var(--hop-Tag-lg-clear-btn-margin-inline);
     --avatar-margin-inline-start: var(--hop-Tag-lg-avatar-margin-inline-start);
     --spinner-margin-inline-end: var(--hop-Tag-lg-spinner-margin-inline-end);
+    --font-size: var(--hop-Tag-lg-font-size);
+    --line-height: var(--hop-Tag-lg-line-height);
+    --letter-spacing: var(--hop-Tag-lg-letter-spacing);
 }
 
 .hop-Tag--lg:not(:has(.hop-Tag__remove-btn, .hop-Tag__Spinner)) {
@@ -342,6 +381,7 @@
     --border-color: var(--hop-Tag-neutral-border-color);
     --background-color: var(--hop-Tag-neutral-background-color);
     --text-color: var(--hop-Tag-neutral-text-color);
+    --icon-color: var(--hop-Tag-icon-color);
 }
 
 .hop-Tag--subdued {
@@ -418,24 +458,28 @@
     --border-color: var(--hop-Tag-neutral-border-color-focus);
     --background-color: var(--hop-Tag-neutral-background-color-focus);
     --text-color: var(--hop-Tag-neutral-text-color-focus);
+    --icon-color: var(--hop-Tag-icon-color-hover);
 }
 
 .hop-Tag--neutral:not(.hop-Tag--standalone)[data-hovered] {
     --border-color: var(--hop-Tag-neutral-border-color-hover);
     --background-color: var(--hop-Tag-neutral-background-color-hover);
     --text-color: var(--hop-Tag-neutral-text-color-hover);
+    --icon-color: var(--hop-Tag-icon-color-hover);
 }
 
 .hop-Tag--neutral[data-pressed] {
     --border-color: var(--hop-Tag-neutral-border-color-press);
     --background-color: var(--hop-Tag-neutral-background-color-press);
     --text-color: var(--hop-Tag-neutral-text-color-press);
+    --icon-color: var(--hop-Tag-icon-color-press);
 }
 
 .hop-Tag--neutral[data-disabled] {
     --border-color: var(--hop-Tag-neutral-border-color-disabled);
     --background-color: var(--hop-Tag-neutral-background-color-disabled);
     --text-color: var(--hop-Tag-neutral-text-color-disabled);
+    --icon-color: var(--hop-Tag-icon-color-disabled);
 }
 
 .hop-Tag--subdued[data-focus-visible] {
@@ -710,10 +754,12 @@
     cursor: pointer;
 }
 
-.hop-Tag[data-selected] {
+.hop-Tag[data-selected],
+.hop-Tag[data-selected][data-hovered] {
     --background-color: var(--hop-Tag-background-color-selected);
     --border-color: var(--hop-Tag-border-color-selected);
     --text-color: var(--hop-Tag-text-color-selected);
+    --icon-color: var(--hop-Tag-icon-color-selected);
 }
 
 .hop-Tag[data-pressed] {
@@ -722,6 +768,8 @@
 
 .hop-Tag[data-invalid] {
     --border-color: var(--hop-Tag-border-color-invalid);
+    --text-color: var(--hop-Tag-text-color-invalid);
+    --icon-color: var(--hop-Tag-icon-color-invalid);
 }
 
 .hop-Tag[data-disabled] {
@@ -742,15 +790,23 @@
     margin-inline-start: var(--icon-margin-inline-start, 0);
 }
 
-.hop-Tag__text {
+.hop-Tag .hop-Tag__text {
     overflow: hidden;
     flex: 1 1 auto;
     order: 3;
 
     min-inline-size: 0;
 
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    letter-spacing: var(--letter-spacing);
     text-align: center;
     text-overflow: ellipsis;
+}
+
+.hop-Tag .hop-Tag__icon,
+.hop-Tag .hop-Tag__icon-list {
+    color: var(--icon-color);
 }
 
 .hop-Tag__badge {

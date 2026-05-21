@@ -112,6 +112,10 @@
             "$type": "lineHeight",
             "$value": "1.25"
         },
+        "1-2857": {
+            "$type": "lineHeight",
+            "$value": "1.2857142"
+        },
         "1-33": {
             "$type": "lineHeight",
             "$value": "1.3333333"
