@@ -1253,6 +1253,7 @@ export const LineHeight = {
     "core_1-1666": "line-height-1-1666",
     "core_1-20": "line-height-1-20",
     "core_1-25": "line-height-1-25",
+    "core_1-2857": "line-height-1-2857",
     "core_1-33": "line-height-1-33",
     "core_1-40": "line-height-1-40",
     "core_1-4285": "line-height-1-4285",
