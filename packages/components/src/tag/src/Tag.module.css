@@ -754,7 +754,8 @@
     cursor: pointer;
 }
 
-.hop-Tag[data-selected] {
+.hop-Tag[data-selected],
+.hop-Tag[data-selected][data-hovered] {
     --background-color: var(--hop-Tag-background-color-selected);
     --border-color: var(--hop-Tag-border-color-selected);
     --text-color: var(--hop-Tag-text-color-selected);
