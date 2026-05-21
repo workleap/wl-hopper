@@ -42,7 +42,7 @@
         },
         "border-color-disabled": {
             "$type": "color",
-            "$value": "transparent"
+            "$value": "{neutral.border-weak}"
         },
         "border-color-error": {
             "$type": "color",
@@ -102,7 +102,7 @@
         },
         "text-font": {
             "$type": "fontFamily",
-            "$value": "{label.md.font-family}"
+            "$value": "{caption.md.font-family}"
         },
         "text-font-weight": {
             "$type": "fontWeight",
@@ -112,9 +112,21 @@
             "$type": "textCase",
             "$value": "uppercase"
         },
+        "text-font-size-xs": {
+            "$type": "fontSize",
+            "$value": "{caption.sm.font-size}"
+        },
+        "text-font-lineheight-xs": {
+            "$type": "lineHeight",
+            "$value": "{line-height.1-40}"
+        },
+        "text-font-letterspacing-xs": {
+            "$type": "letterSpacing",
+            "$value": "{letter-spacing.wide-10}"
+        },
         "text-font-size-sm": {
             "$type": "fontSize",
-            "$value": "{label.md.font-size}"
+            "$value": "{caption.md.font-size}"
         },
         "text-font-lineheight-sm": {
             "$type": "lineHeight",
@@ -126,7 +138,7 @@
         },
         "text-font-size-md": {
             "$type": "fontSize",
-            "$value": "{label.md.font-size}"
+            "$value": "{caption.md.font-size}"
         },
         "text-font-lineheight-md": {
             "$type": "lineHeight",
@@ -138,11 +150,11 @@
         },
         "text-font-size-lg": {
             "$type": "fontSize",
-            "$value": "{label.lg.font-size}"
+            "$value": "{caption.lg.font-size}"
         },
         "text-font-lineheight-lg": {
             "$type": "lineHeight",
-            "$value": "{line-height.1-40}"
+            "$value": "{line-height.1-2857}"
         },
         "text-font-letterspacing-lg": {
             "$type": "letterSpacing",

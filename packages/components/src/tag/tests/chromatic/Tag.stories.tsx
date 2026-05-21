@@ -295,6 +295,30 @@ export const Invalid = {
     }
 } satisfies Story;
 
+export const Disabled = {
+    render: props => {
+        return (
+            <Stack>
+                <Inline>
+                    <Tag id="1" textValue="Developer" size="sm" {...props}>Developer</Tag>
+                    <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
+                </Inline>
+                <Inline>
+                    <Tag id="1" textValue="Developer" size="md" {...props}>Developer</Tag>
+                    <Tag id="2" textValue="Designer" size="md" {...props}>Designer</Tag>
+                </Inline>
+                <Inline>
+                    <Tag id="1" textValue="Developer" size="lg" {...props}>Developer</Tag>
+                    <Tag id="2" textValue="Designer" size="lg" {...props}>Designer</Tag>
+                </Inline>
+            </Stack>
+        );
+    },
+    args: {
+        isDisabled: true
+    }
+} satisfies Story;
+
 export const Everything = {
     render: props => {
         return (
