@@ -30,15 +30,15 @@
         },
         "text-font-size-md": {
             "$type": "fontSize",
-            "$value": "{caption.xl.font-size}"
+            "$value": "{caption.lg.font-size}"
         },
         "text-font-lineheight-md": {
             "$type": "lineHeight",
-            "$value": "{line-height.1-50}"
+            "$value": "{line-height.1-4285}"
         },
         "text-font-letterspacing-md": {
             "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-25}"
+            "$value": "{letter-spacing.wide-30}"
         },
         "text-font-size-sm": {
             "$type": "fontSize",
