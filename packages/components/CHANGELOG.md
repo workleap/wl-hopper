@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.0.1
+
+### Patch Changes
+
+- 98b8452: Fix the Button medium font-size, line-height, and letter-spacing for ShareGate
+
 ## 3.0.0
 
 ### Major Changes
