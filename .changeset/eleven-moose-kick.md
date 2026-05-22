@@ -4,4 +4,4 @@
 "@hopper-ui/styled-system": patch
 ---
 
-Fix the Button medium font-size for ShareGate
+Fix the Button medium font-size, line-height, and letter-spacing for ShareGate
