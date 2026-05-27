@@ -1344,7 +1344,6 @@ export const Shape = {
     "pill": "shape-pill",
     "rounded-lg": "shape-rounded-lg",
     "rounded-md": "shape-rounded-md",
-    "rounded-xm": "shape-rounded-xm",
     "rounded-sm": "shape-rounded-sm"
 } as const;
 
