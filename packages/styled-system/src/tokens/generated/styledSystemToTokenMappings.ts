@@ -1339,10 +1339,12 @@ export const Shape = {
     "core_3": "border-radius-3",
     "core_4": "border-radius-4",
     "core_9999": "border-radius-9999",
+    "core_2-5": "border-radius-2-5",
     "circle": "shape-circle",
     "pill": "shape-pill",
     "rounded-lg": "shape-rounded-lg",
     "rounded-md": "shape-rounded-md",
+    "rounded-xm": "shape-rounded-xm",
     "rounded-sm": "shape-rounded-sm"
 } as const;
 

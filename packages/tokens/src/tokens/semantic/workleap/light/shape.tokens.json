@@ -16,6 +16,10 @@
             "$type": "borderRadius",
             "$value": "{border-radius.2}"
         },
+        "rounded-xm": {
+            "$type": "borderRadius",
+            "$value": "{border-radius.2_5}"
+        },
         "rounded-sm": {
             "$type": "borderRadius",
             "$value": "{border-radius.1}"
