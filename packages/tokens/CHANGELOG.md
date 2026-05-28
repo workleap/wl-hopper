@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.3.2
+
+### Patch Changes
+
+- f13005e: Added a new core border-radius token `--hop-border-radius-2-5` (12px).
+
 ## 5.3.1
 
 ### Patch Changes
