@@ -12,6 +12,10 @@
             "$type": "borderRadius",
             "$value": 8
         },
+        "2_5": {
+            "$type": "borderRadius",
+            "$value": 12
+        },
         "3": {
             "$type": "borderRadius",
             "$value": 16
