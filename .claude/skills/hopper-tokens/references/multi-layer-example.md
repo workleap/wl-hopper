@@ -17,7 +17,7 @@ This kind of request cascades through all three layers. Drawing the dependency t
 1. Read each file you'll touch end-to-end first. Understand the current shape before changing it.
 2. Edit core first (so the values exist), then semantic (so the aliases resolve), then component (so it picks up the semantic).
 3. Mirror to the dark theme **at the same time** as light when editing semantic — easy to forget the dark file otherwise.
-4. After each layer's edits, you can run `pnpm build:pkg` to catch broken references early — but a final build at the end is what matters.
+4. Run `pnpm build:pkg` **once at the end**, after all layers are edited. Don't rebuild after each layer — it slows you down without catching anything you wouldn't catch in the final build. The exception is if a reference looks suspicious mid-edit and you want a quick sanity check.
 5. Validation: `pnpm lint && pnpm tsc --noEmit && pnpm test`.
 6. **One changeset** for the whole cascade, with a bullet list summarising each layer's change. Example:
    ```

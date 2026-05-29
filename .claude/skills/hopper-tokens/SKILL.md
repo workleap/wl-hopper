@@ -1,6 +1,6 @@
 ---
 name: hopper-tokens
-description: Add or update design tokens (core, semantic, or component) in the Workleap Hopper design system (wl-hopper repo). Use whenever the user wants to introduce, modify, rename a value of, or change a reference of a design token — colors, spacing, shape/border-radius, typography/fonts, elevation, motions, or any per-component token like Button, Tag, Badge, etc. Trigger whenever the user mentions tokens, design tokens, semantic tokens, component tokens, or asks to add/change a CSS variable like `--hop-*`, or to tweak a value in any `*.tokens.json` file. Also trigger when the user says things like "make the danger color stronger", "add a new spacing value", "the ShareGate Button font is wrong", "introduce a rounded-xm token" — these are all token operations even when the user doesn't say the word "token".
+description: Add, update, delete, or deprecate design tokens (core, semantic, or component) in the Workleap Hopper design system (wl-hopper repo). Use whenever the user wants to introduce, modify, rename, change a reference of, remove, or phase out a design token — colors, spacing, shape/border-radius, typography/fonts, elevation, motions, or any per-component token like Button, Tag, Badge, etc. Trigger whenever the user mentions tokens, design tokens, semantic tokens, component tokens, asks to add/change a CSS variable like `--hop-*`, asks to tweak a value in any `*.tokens.json` file, or shares a Figma variables / token-table screenshot. Also trigger when the user says things like "make the danger color stronger", "add a new spacing value", "the ShareGate Button font is wrong", "introduce a rounded-xm token", "deprecate this color", "delete the old palette tokens", or "here's the token table from Figma" — these are all token operations even when the user doesn't say the word "token".
 ---
 
 # Hopper Design Tokens — Add / Update Workflow
@@ -169,17 +169,17 @@ When you report back, lead with the design outcome ("Added a new `rounded-1-5` b
 
 ### What to say at the end
 
-Close with a one-line nudge about what's next, so the designer knows their options:
+Close with two short bits so the designer knows their options and what to verify.
+
+**Next git step** — make it clear they don't have to figure out git themselves, but don't push or open a PR uninvited:
 
 > "Everything is staged locally. If you'd like to ship this, just say so and I'll commit and open a PR. Otherwise the change is ready for you to preview/test."
 
-Don't push or open a PR uninvited — but make it clear they don't have to figure out the git steps themselves.
+**Visual review** — point them at the design review surfaces (in plain language, no setup instructions):
 
-Also include this review flow in plain design language:
-
-- Ask the designer to check the change in Storybook when implementation is done.
-- If a PR is created, ask them to review Chromatic and confirm nothing is wrongly affected in either Workleap or ShareGate themes.
-- Ask them to approve once Storybook and Chromatic look good.
+- Storybook is the place to eyeball the change once implementation runs locally.
+- If a PR gets created, Chromatic will show the visual diff — ask them to confirm nothing looks wrong in either Workleap or ShareGate (light and dark).
+- They approve once both Storybook and Chromatic look good.
 
 ## Deleting or deprecating tokens
 

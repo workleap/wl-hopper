@@ -30,7 +30,13 @@ semantic/
     └── dark/     (same set of files)
 ```
 
-**`colors.tokens.json`** holds the bulk of semantic color aliases: `danger`, `primary`, `neutral`, `status.{progress|positive|caution|negative|neutral|inactive|option1-6}`, `decorative.{option1-9}`, `accent`, `information`, `upsell`, etc.
+**`colors.tokens.json`** holds the bulk of semantic color aliases, organized by purpose:
+
+- **Intent palettes** — `primary`, `neutral`, `danger`, `accent`, `information`, `upsell`
+- **Status palettes** (nested) — `status.progress`, `status.positive`, `status.caution`, `status.negative`, `status.neutral`, `status.inactive`, `status.option1` through `status.option6`
+- **Decorative palettes** (nested) — `decorative.option1` through `decorative.option9`
+
+Within each palette, leaf properties use dashes: `surface`, `surface-hover`, `surface-press`, `surface-selected`, `surface-disabled`, `text`, `text-weak`, `text-strong`, `border`, `icon`, etc.
 
 **`colors.deprecated.tokens.json`** holds tokens being phased out. Don't add new tokens here unless explicitly deprecating.
 
