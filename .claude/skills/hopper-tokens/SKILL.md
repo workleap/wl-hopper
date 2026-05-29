@@ -5,7 +5,7 @@ description: Add or update design tokens (core, semantic, or component) in the W
 
 # Hopper Design Tokens — Add / Update Workflow
 
-You are editing tokens in the [wl-hopper](https://github.com/workleap/wl-hopper) monorepo. Tokens live in three layers; each layer references the one below. The exact files you touch and the order of operations matter — getting them wrong silently produces a broken build, an empty changeset, or asymmetric brand styling.
+You are helping someone change design tokens in the [wl-hopper](https://github.com/workleap/wl-hopper) monorepo. Tokens live in three layers (core → semantic → component), each referencing the one below. Your job is to translate a design intent into the right edits across the right files, run the build and validation, and add a changeset — autonomously, so the user doesn't have to think about the mechanics.
 
 ## Who you're working with
 
@@ -19,6 +19,18 @@ The person invoking this skill is **usually a designer**, not an engineer. They 
 - **Keep dev jargon out of replies** unless the designer brings it in. Talk about "the danger color", "the button background", "rounded corners" — not "the `comp-button.danger.background` token reference".
 
 Engineers using this skill benefit from the same behavior — explicit scoping and automatic validation are good for both audiences. This persona note is about tone and autonomy, not technical depth: the workflow rules below still apply in full.
+
+## How to start a token conversation
+
+Before any file edit, use this opening pattern:
+
+1. **Restate what you understood** in design language so they can correct any misreading.
+   *"Got it — you'd like a new 6px border-radius, sitting between the existing 4px and 8px values."*
+2. **State your plan in one sentence**: which layer, which brand/theme scope, and any non-obvious decision you're about to make.
+   *"I'll add this as a core token (brand-agnostic), named `1_5` to fit the existing numeric scale."*
+3. **Ask at most one clarifying question** if scope or intent is genuinely ambiguous. If it's clear, just proceed.
+
+Then execute autonomously. The designer wants the change done with a single check-in if needed, not a multi-step Q&A.
 
 ## The three token layers
 
@@ -119,6 +131,16 @@ The output CSS variable will be undefined. Use this for component variants that 
 - **Insertion order**: place new entries near their numeric/semantic neighbors so the file stays readable (e.g., `2_5` goes between `2` and `3`, not at the end)
 - **Component file namespace**: top-level key is `comp-<component-name>` (e.g., `comp-button`, `comp-tag`, `comp-segmented-control`)
 
+### Naming new tokens
+
+Match the existing scale. **Always look at neighbors before inventing a name:**
+
+- **Numeric scales** (border-radius, spacing): insert into the existing scheme. Neighbors `1`, `2`, `3` → use `1_5` for a value between 1 and 2 (underscore for fractional). Neighbors `100`, `200`, `300` → use `150`. Don't invent a parallel naming scheme.
+- **Named t-shirt scales** (sizes, weights): use the existing pattern (`xs / sm / md / lg / xl`, or `25 / 50 / 75 / 100`, or whatever the file uses). Don't mix.
+- **Semantic and component tokens**: name describes purpose, not value. Prefer `danger-surface-weak-selected` to `red-light-1`. State suffixes typically read `-hover`, `-press`, `-selected`, `-disabled` and are appended in that order.
+
+If the designer suggests a name that doesn't fit the established pattern, surface the convention and propose the conventional alternative — don't silently rename their suggestion.
+
 ## The workflow — do these in order, autonomously
 
 The designer should mostly experience this as "I asked for a change → it's done and validated". You drive the mechanics; only surface a question when something requires their judgment.
@@ -135,6 +157,14 @@ The designer should mostly experience this as "I asked for a change → it's don
 
 When you report back, lead with the design outcome ("Added a new `rounded-1-5` border radius at 6px, available in both brands") and only mention validation/build details if something failed or is worth flagging.
 
+### What to say at the end
+
+Close with a one-line nudge about what's next, so the designer knows their options:
+
+> "Everything is staged locally. If you'd like to ship this, just say so and I'll commit and open a PR. Otherwise the change is ready for you to preview/test."
+
+Don't push or open a PR uninvited — but make it clear they don't have to figure out the git steps themselves.
+
 ## Changesets
 
 Every token change needs a changeset. Create `.changeset/<some-name>.md` (pick any unused kebab-case slug — e.g., `bright-pandas-jump.md`). Format:
@@ -149,7 +179,7 @@ Every token change needs a changeset. Create `.changeset/<some-name>.md` (pick a
 <one-line or bullet summary of the change>
 ```
 
-**All three packages get a `patch` bump together** — tokens always cascade. Use `minor` only if the user explicitly says this is a breaking semantic change. Use `major` only on direct user instruction.
+**All three packages get a `patch` bump together** — tokens always cascade. Default to `patch` for both additions and updates; for the add/update operations this skill covers, `patch` is almost always the right call. Use `minor` or `major` only when the designer explicitly asks for it.
 
 The body should describe **what changed**, not how. Style examples from real PRs:
 - "Added a new core border-radius token `--hop-border-radius-2-5` (12px)."
