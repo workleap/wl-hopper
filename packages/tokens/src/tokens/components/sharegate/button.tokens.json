@@ -62,7 +62,7 @@
         },
         "text-font-letterspacing-xs": {
             "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-15}"
+            "$value": "{letter-spacing.wide-20}"
         },
         "primary": {
             "box-shadow": {
