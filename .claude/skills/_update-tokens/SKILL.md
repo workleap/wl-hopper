@@ -1,5 +1,5 @@
 ---
-name: hopper-tokens
+name: update-tokens
 description: Add, update, delete, or deprecate design tokens (core, semantic, or component) in the Workleap Hopper design system (wl-hopper repo). Use whenever the user wants to introduce, modify, rename, change a reference of, remove, or phase out a design token — colors, spacing, shape/border-radius, typography/fonts, elevation, motions, or any per-component token like Button, Tag, Badge, etc. Trigger whenever the user mentions tokens, design tokens, semantic tokens, component tokens, asks to add/change a CSS variable like `--hop-*`, asks to tweak a value in any `*.tokens.json` file, or shares a Figma variables / token-table screenshot. Also trigger when the user says things like "make the danger color stronger", "add a new spacing value", "the ShareGate Button font is wrong", "introduce a rounded-xm token", "deprecate this color", "delete the old palette tokens", or "here's the token table from Figma" — these are all token operations even when the user doesn't say the word "token".
 ---
 
@@ -92,7 +92,15 @@ Every leaf has `$type` and `$value`:
 }
 ```
 
-**Common `$type` values**: `color`, `borderRadius`, `dimension`, `fontFamily`, `fontWeight`, `fontSize`, `lineHeight`, `letterSpacing`, `duration`, `cubicBezier`, `boxShadow`, `number`, `string`. Match the type used by siblings in the same file — never invent a new one.
+**`$type` values actually used in this repo** — match what neighbors use, never invent a new one:
+
+- **Color & gradient**: `color`, `gradient`
+- **Shape & spacing**: `borderRadius`, `border`, `marginSize`, `paddingSize`, `size`, `topOffset`, `bottomOffset`
+- **Typography**: `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, `letterSpacing`, `textCase`, `textTransform`
+- **Motion**: `duration`, `timingFunction`
+- **Visual effects**: `shadow`, `backdropFilter`
+
+Don't use `boxShadow`, `cubicBezier`, `dimension`, `number`, or `string` — none of these appear in this repo and using them will produce incorrect output.
 
 **References use curly braces and dot notation** to navigate the nested JSON:
 ```json
@@ -204,6 +212,13 @@ Every token change needs a changeset. Create `.changeset/<some-name>.md` (pick a
 ```
 
 **All three packages get a `patch` bump together** — tokens always cascade. Default to `patch` for both additions and updates; for the add/update operations this skill covers, `patch` is almost always the right call. Use `minor` or `major` only when the designer explicitly asks for it.
+
+**Why all three?** The packages depend on each other in a chain:
+- `@hopper-ui/tokens` owns the source-of-truth token JSON definitions.
+- `@hopper-ui/styled-system` is built **from** tokens — it generates the `--hop-*` CSS variables and the styled-system prop mappings (`packages/styled-system/src/tokens/generated/`).
+- `@hopper-ui/components` consumes styled-system and references CSS variables in component styles.
+
+A change to a token in the first package propagates through both downstream packages, so all three need a synchronized version bump for consumers to pick up the change cleanly.
 
 The body should describe **what changed**, not how. Style examples from real PRs:
 - "Added a new core border-radius token `--hop-border-radius-2-5` (12px)."
