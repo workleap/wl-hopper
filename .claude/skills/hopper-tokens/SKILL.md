@@ -32,6 +32,16 @@ Before any file edit, use this opening pattern:
 
 Then execute autonomously. The designer wants the change done with a single check-in if needed, not a multi-step Q&A.
 
+## When the designer provides a screenshot of a token table
+
+Designers may share a screenshot of a token table exported from Figma variables. Names or values in that table can differ slightly from the repository token names.
+
+- Treat the screenshot as intent input and map it to the closest real token(s) in the repo.
+- Use surrounding context (category, brand, theme, component usage, and neighboring values) to resolve naming differences.
+- If confidence is low or multiple mappings are plausible, pause and ask one clarifying question before editing.
+
+Do not guess when ambiguous. A quick clarification is better than shipping the wrong token mapping.
+
 ## The three token layers
 
 | Layer | Path | Purpose | References |
@@ -151,7 +161,7 @@ The designer should mostly experience this as "I asked for a change → it's don
 4. **For references**: open the file the reference points into and confirm the path exists. A typo here causes a silent broken CSS variable later.
 5. **Make the edits.** Match indentation, $type, and where in the file the new entry belongs (numeric order, alphabetical, or grouped with siblings).
 6. **Run the build** — `pnpm build:pkg`. This regenerates `packages/styled-system/src/tokens/generated/styledSystemToTokenMappings.ts` and other generated files. **Never hand-edit anything under `generated/`**; the build owns it. Build failing = a token name or reference is wrong; fix and rebuild.
-7. **Run validation**: `pnpm lint`, `pnpm tsc --noEmit`, `pnpm test` (in parallel when possible). If anything genuinely related to your edit fails, fix it. If a pre-existing unrelated failure appears (e.g., lint warnings in `.claude/settings.local.json`), note it briefly and move on — don't pretend the change broke something it didn't.
+7. **Run validation**: `pnpm lint`, `pnpm tsc --noEmit`, `pnpm test` (in parallel when possible). Treat `pnpm test` as a key safety check: it often catches when a token update was forgotten in another theme or when token file structure is incorrect. If anything genuinely related to your edit fails, fix it. If a pre-existing unrelated failure appears (e.g., lint warnings in `.claude/settings.local.json`), note it briefly and move on — don't pretend the change broke something it didn't.
 8. **Add a changeset** (see next section). Do this yourself; the designer doesn't need to think about it.
 9. **Stage the changes** (`git add`) — token JSONs, the changeset, regenerated files. **Don't commit** unless the designer explicitly asks. Just summarize what's staged at the end so they can review and decide.
 
@@ -164,6 +174,20 @@ Close with a one-line nudge about what's next, so the designer knows their optio
 > "Everything is staged locally. If you'd like to ship this, just say so and I'll commit and open a PR. Otherwise the change is ready for you to preview/test."
 
 Don't push or open a PR uninvited — but make it clear they don't have to figure out the git steps themselves.
+
+Also include this review flow in plain design language:
+
+- Ask the designer to check the change in Storybook when implementation is done.
+- If a PR is created, ask them to review Chromatic and confirm nothing is wrongly affected in either Workleap or ShareGate themes.
+- Ask them to approve once Storybook and Chromatic look good.
+
+## Deleting or deprecating tokens
+
+If the designer asks to remove a token, first check references across semantic and component token files before deleting anything. List all consumers and confirm with the designer before proceeding.
+
+Deletion is a breaking change. Use a `major` bump unless the token is confirmed unused.
+
+If deprecation is preferred, keep the token and add a clear deprecation note instead of removing it immediately.
 
 ## Changesets
 
