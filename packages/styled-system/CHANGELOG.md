@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.3
+
+### Patch Changes
+
+- c6fb2dc: Reduce ShareGate Button letter spacing to 1px for all sizes (md, sm, xs).
+
 ## 4.0.2
 
 ### Patch Changes
