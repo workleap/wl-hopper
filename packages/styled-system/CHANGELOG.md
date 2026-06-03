@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.4
+
+### Patch Changes
+
+- c1f7436: Mirror Workleap Button typography tokens in ShareGate: font-weight, text-transform, font-size, line-height, and letter-spacing for all sizes (md, sm, xs).
+
 ## 4.0.3
 
 ### Patch Changes
