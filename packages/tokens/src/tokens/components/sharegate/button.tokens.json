@@ -38,7 +38,7 @@
         },
         "text-font-letterspacing-md": {
             "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-30}"
+            "$value": "{letter-spacing.wide-15}"
         },
         "text-font-size-sm": {
             "$type": "fontSize",
@@ -50,7 +50,7 @@
         },
         "text-font-letterspacing-sm": {
             "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-20}"
+            "$value": "{letter-spacing.wide-15}"
         },
         "text-font-size-xs": {
             "$type": "fontSize",
@@ -62,7 +62,7 @@
         },
         "text-font-letterspacing-xs": {
             "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-15}"
+            "$value": "{letter-spacing.wide-10}"
         },
         "primary": {
             "box-shadow": {
