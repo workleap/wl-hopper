@@ -20,13 +20,13 @@
             "$type": "shadow",
             "$value": [
                 { "offsetX": "0.5px", "offsetY": "1.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.10)", "inset": true },
-                { "offsetX": "-2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.50)", "inset": true }
+                { "offsetX": "-1px", "offsetY": "1px", "blur": "2px", "spread": "0", "color": "rgba(255, 255, 255, 0.50)", "inset": true }
             ]
         },
         "thumb-box-shadow": {
             "$type": "shadow",
             "$value": [
-                { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
+                { "offsetX": "1px", "offsetY": "1px", "blur": "4px", "spread": "0", "color": "rgba(255, 255, 255, 0.10)", "inset": false },
                 { "offsetX": "2.5px", "offsetY": "2.5px", "blur": "5px", "spread": "0", "color": "rgba(0, 0, 0, 0.05)", "inset": false }
             ]
         },
