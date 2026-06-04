@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.5
+
+### Patch Changes
+
+- 63fe56c: Update ShareGate SegmentedControl box-shadow layer #3 (offsetX: -1px, offsetY: 1px, blur: 2px) and item-box-shadow-selected layer #1 (offsetX: 1px, offsetY: 1px, blur: 4px).
+
 ## 4.0.4
 
 ### Patch Changes
