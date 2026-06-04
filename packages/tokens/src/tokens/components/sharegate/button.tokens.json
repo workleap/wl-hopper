@@ -18,7 +18,7 @@
         },
         "text-font": {
             "$type": "fontFamily",
-            "$value": "{caption.md.font-family}"
+            "$value": "{body.md.font-family}"
         },
         "text-font-weight": {
             "$type": "fontWeight",
