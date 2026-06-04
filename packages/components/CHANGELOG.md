@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.0.6
+
+### Patch Changes
+
+- eb1512c: Update ShareGate Button font family from ABC Favorit Mono to Inter by referencing `{body.md.font-family}` instead of `{caption.md.font-family}`.
+
 ## 3.0.5
 
 ### Patch Changes
