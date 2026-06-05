@@ -234,7 +234,7 @@
             },
             "border-color-loading": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{neutral.border-weak}"
             },
             "box-shadow-loading": {
                 "$type": "shadow",
@@ -273,11 +273,11 @@
             },
             "border-color": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{neutral.border-weak}"
             },
             "border-color-selected": {
                 "$type": "color",
-                "$value": "{neutral.border-weakest}"
+                "$value": "{neutral.border-weak}"
             },
             "border-color-disabled": {
                 "$type": "color",
