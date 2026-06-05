@@ -1,5 +1,23 @@
 # @hopper-ui/tokens
 
+## 5.3.6
+
+### Patch Changes
+
+- eb1512c: Update ShareGate Button font family from ABC Favorit Mono to Inter by referencing `{body.md.font-family}` instead of `{caption.md.font-family}`.
+
+## 5.3.5
+
+### Patch Changes
+
+- 63fe56c: Update ShareGate SegmentedControl box-shadow layer #3 (offsetX: -1px, offsetY: 1px, blur: 2px) and item-box-shadow-selected layer #1 (offsetX: 1px, offsetY: 1px, blur: 4px).
+
+## 5.3.4
+
+### Patch Changes
+
+- c1f7436: Mirror Workleap Button typography tokens in ShareGate: font-weight, text-transform, font-size, line-height, and letter-spacing for all sizes (md, sm, xs).
+
 ## 5.3.3
 
 ### Patch Changes

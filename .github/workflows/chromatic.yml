@@ -63,6 +63,7 @@ jobs:
                     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
                     traceChanged: true
                     onlyChanged: true # TurboSnap
+                    externals: "packages/tokens/src/tokens/**" # Token JSON files are outside webpack's module graph; when they change the generated CSS changes, affecting all stories
                     exitOnceUploaded: true # The PRs will be marked as success/failure based on the Chromatic build status
                     skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') }}
 
