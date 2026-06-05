@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.0.7
+
+### Patch Changes
+
+- 33ce5d9: Update ShareGate secondary Button border-color, border-color-selected, and border-color-loading from `{neutral.border-weakest}` to `{neutral.border-weak}`.
+
 ## 3.0.6
 
 ### Patch Changes
