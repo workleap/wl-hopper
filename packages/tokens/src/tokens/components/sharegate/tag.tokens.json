@@ -110,7 +110,7 @@
         },
         "text-transform": {
             "$type": "textCase",
-            "$value": "uppercase"
+            "$value": "none"
         },
         "text-font-size-sm": {
             "$type": "fontSize",
@@ -121,8 +121,8 @@
             "$value": "{line-height.1-33}"
         },
         "text-font-letterspacing-sm": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-20}"
+            "$type": "",
+            "$value": "normal"
         },
         "text-font-size-md": {
             "$type": "fontSize",
@@ -133,8 +133,8 @@
             "$value": "{line-height.1-33}"
         },
         "text-font-letterspacing-md": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-20}"
+            "$type": "",
+            "$value": "normal"
         },
         "text-font-size-lg": {
             "$type": "fontSize",
@@ -145,8 +145,8 @@
             "$value": "{line-height.1-2857}"
         },
         "text-font-letterspacing-lg": {
-            "$type": "letterSpacing",
-            "$value": "{letter-spacing.wide-30}"
+            "$type": "",
+            "$value": "normal"
         }
     }
 }
