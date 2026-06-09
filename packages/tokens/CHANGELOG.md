@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.3.8
+
+### Patch Changes
+
+- 1ec8329: Update the ShareGate Tag to use sentence case instead of uppercase, and remove the letter-spacing (tracking) across all sizes.
+
 ## 5.3.7
 
 ### Patch Changes

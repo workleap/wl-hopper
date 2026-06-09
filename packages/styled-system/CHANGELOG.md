@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.8
+
+### Patch Changes
+
+- 1ec8329: Update the ShareGate Tag to use sentence case instead of uppercase, and remove the letter-spacing (tracking) across all sizes.
+
 ## 4.0.7
 
 ### Patch Changes
