@@ -43,19 +43,19 @@
 
 Real bound variables pulled from the Accordion node confirm colors, spacing and shape already use the **code-aligned `--hop-*` names with matching values**:
 
-| Figma bound variable | Figma value | Code token | Code reference | Status |
+| Figma bound variable | Figma value | Code token | Code resolved value | Status |
 |---|---|---|---|---|
-| `--hop-neutral-text` | `#313335` | `neutral.text` | semantic/workleap/light | ✅ name match |
-| `--hop-neutral-icon` | `#3c3c3c` | `neutral.icon` | `{rock.800}` | ✅ name match |
-| `--hop-neutral-surface` | `#ffffff` | `neutral.surface` | `{samoyed}` | ✅ name match |
-| `--hop-neutral-border-weak` | `#e1e3e7` | `neutral.border-weak` | `{rock.75}` | ✅ name match |
+| `--hop-neutral-text` | `#313335` | `neutral.text` → `{rock.800}` | `#313335` | ✅ **exact match** |
+| `--hop-neutral-border-weak` | `#e1e3e7` | `neutral.border-weak` → `{rock.75}` | `#e1e3e7` | ✅ **exact match** |
+| `--hop-neutral-surface` | `#ffffff` | `neutral.surface` → `{samoyed}` | `#ffffff` | ✅ **exact match** |
+| `--hop-neutral-icon` | `#3c3c3c` | `neutral.icon` → `{rock.800}` | `#313335` | 🔴 **VALUE DRIFT** (#3c3c3c ≠ #313335) |
 | `--hop-space-inline-md` | `16` | `space.inline.md` | 16px | ✅ match |
 | `--hop-space-inline-sm` | `8` | `space.inline.sm` | 8px | ✅ match |
 | `--hop-space-inset-md` | `16` | `space.inset.md` | 16px | ✅ match |
 | `--hop-space-stack-md` | `16` | `space.stack.md` | 16px | ✅ match |
 | `--hop-shape-rounded-md` | `8` | `shape.rounded-md` | 8px | ✅ match |
 
-**Implication:** the foundations are in much better shape than feared — color/space/shape variables were migrated to the code convention. The drift is concentrated in (a) leftover duplicate collections, and (b) typography/elevation.
+**Implication:** the foundations are in better shape than feared — color/space/shape variables use the code convention and **3 of 4 sampled colors matched to the exact hex**. But the very first sampled component already exposed a real **value drift** (`neutral-icon`: Figma #3c3c3c vs code #313335). With **no automated sync**, this is almost certainly not the only one — it is the strongest argument for the drift-check script (P0.1). The remaining structural drift is concentrated in (a) leftover duplicate collections, and (b) typography/elevation.
 
 ### 2.2 Token drift (action required)
 
