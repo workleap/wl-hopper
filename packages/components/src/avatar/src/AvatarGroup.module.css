@@ -111,13 +111,8 @@
 }
 
 .hop-AvatarGroup__description {
-    --hop-AvatarGroup__description-font-size: var(--hop-body-xs-font-size);
-    --hop-AvatarGroup__description-line-height: var(--hop-body-xs-line-height);
-    --hop-AvatarGroup__description-font-family: var(--hop-body-xs-font-family);
-    --hop-AvatarGroup__description-color: var(--hop-neutral-text-weak);
-
-    font-size: var(--hop-AvatarGroup__description-font-size);
-    line-height: var(--hop-AvatarGroup__description-line-height);
-    font-family: var(--hop-AvatarGroup__description-font-family);
-    color: var(--hop-AvatarGroup__description-color);
+    font-size: var(--hop-body-xs-font-size);
+    line-height: var(--hop-body-xs-line-height);
+    font-family: var(--hop-body-xs-font-family);
+    opacity: 0.7;
 }
