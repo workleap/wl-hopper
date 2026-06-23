@@ -19,6 +19,10 @@
         "color": {
             "$type": "color",
             "$value": "{neutral.text-strong}"
+        },
+        "description-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
         }
     }
 }

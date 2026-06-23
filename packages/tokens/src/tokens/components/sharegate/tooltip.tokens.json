@@ -22,6 +22,10 @@
         "color": {
             "$type": "color",
             "$value": "{neutral.text-always-light}"
+        },
+        "description-color": {
+            "$type": "color",
+            "$value": "{neutral.text-always-light}"
         }
     }
 }
