@@ -464,6 +464,7 @@ export const TextColors = {
     "neutral-weakest": "neutral-text-weakest",
     "neutral-inverse": "neutral-text-inverse",
     "neutral-always-light": "neutral-text-always-light",
+    "neutral-always-light-weak": "neutral-text-always-light-weak",
     "neutral-always-dark": "neutral-text-always-dark",
     "primary-active": "primary-text-active",
     "primary": "primary-text",
