@@ -25,7 +25,7 @@
         },
         "description-color": {
             "$type": "color",
-            "$value": "{neutral.text-always-light}"
+            "$value": "{neutral.text-always-light-weak}"
         }
     }
 }

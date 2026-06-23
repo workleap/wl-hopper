@@ -784,6 +784,10 @@
             "$type": "color",
             "$value": "{samoyed}"
         },
+        "text-always-light-weak": {
+            "$type": "color",
+            "$value": "{rock.300}"
+        },
         "text-always-dark": {
             "$type": "color",
             "$value": "{rock.900}"
