@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 3.1.0
+
+### Minor Changes
+
+- 128beb2: feat(Avatar): add description prop to Avatar for secondary tooltip text; fix per-avatar tooltip hover regression in AvatarGroup
+  - Add `--hop-comp-avatar-description-color` token to both brands for secondary text in the AvatarGroup tooltip
+
 ## 3.0.8
 
 ### Patch Changes
