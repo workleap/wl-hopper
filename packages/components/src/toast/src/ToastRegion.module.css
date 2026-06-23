@@ -1,0 +1,42 @@
+.hop-ToastRegion {
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--hop-space-stack-sm);
+    position: absolute;
+    inset-block-start: 0;
+    padding: var(--hop-space-inset-md);
+    pointer-events: none;
+}
+
+@media screen and (max-width: 40rem)  {
+    .hop-ToastRegion {
+        padding: 0;
+        gap: 0;
+    }
+}
+
+.hop-ToastRegion::view-transition-new(*):only-child {
+  animation: enter 0.2s;
+}
+
+.hop-ToastRegion::view-transition-old(*):only-child {
+  animation: leave 0.2s forwards;
+}
+
+@keyframes enter {
+  from {
+    scale: 0.7;
+    opacity: 0;
+  }
+}
+
+@keyframes leave {
+  to {
+    scale: 0.7;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
