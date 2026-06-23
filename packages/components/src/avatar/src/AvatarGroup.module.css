@@ -111,5 +111,5 @@
     font-size: var(--hop-body-xs-font-size);
     line-height: var(--hop-body-xs-line-height);
     font-family: var(--hop-body-xs-font-family);
-    color: var(--hop-comp-tooltip-description-color);
+    color: var(--hop-comp-avatar-description-color);
 }

@@ -5,4 +5,4 @@
 ---
 
 feat(Avatar): add description prop to Avatar for secondary tooltip text; fix per-avatar tooltip hover regression in AvatarGroup
-- Add `--hop-comp-tooltip-description-color` token to both brands for secondary text in tooltips
+- Add `--hop-comp-avatar-description-color` token to both brands for secondary text in the AvatarGroup tooltip
