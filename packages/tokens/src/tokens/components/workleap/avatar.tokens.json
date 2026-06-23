@@ -1,0 +1,8 @@
+{
+    "comp-avatar": {
+        "description-color": {
+            "$type": "color",
+            "$value": "{neutral.text-weak}"
+        }
+    }
+}

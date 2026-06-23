@@ -109,21 +109,31 @@ function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>)
         return name;
     };
 
+    const getAvatarDescription = ({ props: possibleAvatarProps }: AvatarGroupElement) => {
+        if (isAvatarProps(possibleAvatarProps)) {
+            return possibleAvatarProps.description;
+        }
+
+        return undefined;
+    };
+
     const shownAvatarsMarkup = shownAvatars.map((avatar, index) => {
         const name = getAvatarName(avatar);
-
+        const description = getAvatarDescription(avatar);
         const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
         return (
-            <TooltipTrigger key={uniqueKey}>
-                <SlotProvider values={[
-                    [AvatarContext, { size, className: styles["hop-AvatarGroup__avatar"] }]
-                ]}
-                >
+            <SlotProvider key={uniqueKey} values={[[AvatarContext, { size, className: styles["hop-AvatarGroup__avatar"] }]]}>
+                <TooltipTrigger>
                     {cloneElement(avatar, { ...avatar.props })}
-                </SlotProvider>
-                <Tooltip>{name}</Tooltip>
-            </TooltipTrigger>
+                    <Tooltip>
+                        <div className={styles["hop-AvatarGroup__tooltipContent"]}>
+                            <Text>{name}</Text>
+                            {description && <Text className={styles["hop-AvatarGroup__description"]}>{description}</Text>}
+                        </div>
+                    </Tooltip>
+                </TooltipTrigger>
+            </SlotProvider>
         );
     });
 
@@ -146,12 +156,15 @@ function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>)
                                 const name = getAvatarName(avatar);
                                 const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
+                                const description = getAvatarDescription(avatar);
+
                                 return (
                                     <div role="button" className={styles["hop-AvatarGroup__hiddenAvatar"]} key={uniqueKey}>
                                         {avatar}
-                                        <Text>
-                                            {name}
-                                        </Text>
+                                        <div className={styles["hop-AvatarGroup__hiddenAvatarText"]}>
+                                            <Text>{name}</Text>
+                                            {description && <Text className={styles["hop-AvatarGroup__description"]}>{description}</Text>}
+                                        </div>
                                     </div>
                                 );
                             })}

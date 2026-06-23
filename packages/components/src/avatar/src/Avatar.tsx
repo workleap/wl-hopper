@@ -48,6 +48,10 @@ export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omi
      */
     name: string;
     /**
+     * Secondary text shown under the name inside an AvatarGroup tooltip, e.g. a job title.
+     */
+    description?: string;
+    /**
      * The size of the avatar.
      * @default "md"
      */

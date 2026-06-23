@@ -70,8 +70,6 @@
     --hop-AvatarGroup__hiddenAvatar-font-size: var(--hop-body-xs-font-size);
     --hop-AvatarGroup__hiddenAvatar-font-weight: var(--hop-body-xs-semibold-font-weight);
     --hop-AvatarGroup__hiddenAvatar-line-height: var(--hop-body-xs-line-height);
-    --hop-AvatarGroup__hiddenAvatar-color: var(--hop-neutral-text-strong);
-
 
     display: var(--hop-AvatarGroup__hiddenAvatar-display);
     gap: var(--hop-AvatarGroup__hiddenAvatar-gap);
@@ -81,7 +79,6 @@
     font-size: var(--hop-AvatarGroup__hiddenAvatar-font-size);
     font-weight: var(--hop-AvatarGroup__hiddenAvatar-font-weight);
     line-height: var(--hop-AvatarGroup__hiddenAvatar-line-height);
-    color: var(--hop-AvatarGroup__hiddenAvatar-color);
 }
 
 .hop-AvatarGroup__hiddenAvatar:not(:last-child) {
@@ -98,4 +95,21 @@
 
 .hop-AvatarGroup--center {
     justify-content: center;
+}
+
+.hop-AvatarGroup__tooltipContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.hop-AvatarGroup__hiddenAvatarText {
+    display: flex;
+    flex-direction: column;
+}
+
+.hop-AvatarGroup__description {
+    font-size: var(--hop-body-xs-font-size);
+    line-height: var(--hop-body-xs-line-height);
+    font-family: var(--hop-body-xs-font-family);
+    color: var(--hop-comp-avatar-description-color);
 }
