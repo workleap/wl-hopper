@@ -26,11 +26,11 @@ Path patterns: packages/components/src/**/*.module.css
 
 Title: Never use component tokens outside their own component
 
-Description: Component tokens (`--hop-comp-<ComponentName>-*`) must only be used inside the CSS module of the component they belong to. Never reference a component token from a different component's CSS module — this makes token usage untraceable and breaks encapsulation.
+Description: Component tokens (`--hop-comp-<component-name>-*`) must only be used inside the CSS module of the component they belong to. Never reference a component token from a different component's CSS module — this makes token usage untraceable and breaks encapsulation.
 
 If another component needs a similar visual treatment, define a new token in that component's own token file (e.g., `avatar.tokens.json`) rather than borrowing from another component's tokens.
 
-Bad: using `var(--hop-comp-tooltip-description-color)` inside `AvatarGroup.module.css`
+Bad: using `var(--hop-comp-tooltip-color)` inside `AvatarGroup.module.css`
 Good: define `--hop-comp-avatar-description-color` in `avatar.tokens.json` and use it in `AvatarGroup.module.css`
 
 Path patterns: packages/components/src/**/*.module.css
