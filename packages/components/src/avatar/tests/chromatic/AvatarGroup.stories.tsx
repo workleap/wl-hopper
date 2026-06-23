@@ -130,3 +130,17 @@ export const Alignments = {
     )
 } satisfies Story;
 
+export const WithDescriptions = {
+    args: {
+        ...meta.args,
+        maxNumberOfAvatar: 3,
+        children: [
+            <Avatar name="Croakster" description="Senior Engineer" />,
+            <Avatar name="Lily Puddle" description="Product Designer" />,
+            <Avatar name="Hopperton" description="Engineering Manager" />,
+            <Avatar name="Ribbitus Maximus" description="Staff Engineer" />,
+            <Avatar name="Toadie McLeap" description="Principal Engineer" />
+        ]
+    }
+} satisfies Story;
+
