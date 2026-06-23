@@ -135,11 +135,11 @@ export const WithDescriptions = {
         ...meta.args,
         maxNumberOfAvatar: 3,
         children: [
-            <Avatar name="Croakster" description="Senior Engineer" />,
-            <Avatar name="Lily Puddle" description="Product Designer" />,
-            <Avatar name="Hopperton" description="Engineering Manager" />,
-            <Avatar name="Ribbitus Maximus" description="Staff Engineer" />,
-            <Avatar name="Toadie McLeap" description="Principal Engineer" />
+            <Avatar key="croakster" name="Croakster" description="Senior Engineer" />,
+            <Avatar key="lily-puddle" name="Lily Puddle" description="Product Designer" />,
+            <Avatar key="hopperton" name="Hopperton" description="Engineering Manager" />,
+            <Avatar key="ribbitus-maximus" name="Ribbitus Maximus" description="Staff Engineer" />,
+            <Avatar key="toadie-mcleap" name="Toadie McLeap" description="Principal Engineer" />
         ]
     }
 } satisfies Story;
