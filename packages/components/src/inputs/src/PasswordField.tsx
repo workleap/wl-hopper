@@ -134,7 +134,8 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
         <SlotProvider values={[
             [TextContext, { size, className: styles["hop-PasswordField__prefix"] }],
             [IconContext, { size, className: styles["hop-PasswordField__prefix"] }]
-        ]}>
+        ]}
+        >
             {ensureTextWrapper(prefix)}
         </SlotProvider>
     ) : null;
