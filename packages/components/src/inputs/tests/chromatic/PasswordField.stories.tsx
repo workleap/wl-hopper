@@ -86,7 +86,7 @@ export const PrefixIcon: Story = {
     }
 };
 
-export const TextIcon: Story = {
+export const TextPrefix: Story = {
     ...WithLabel,
     args: {
         ...WithLabel.args,
