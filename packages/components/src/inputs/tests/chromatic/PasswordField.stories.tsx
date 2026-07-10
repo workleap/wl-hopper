@@ -1,3 +1,4 @@
+import { MailIcon } from "@hopper-ui/icons";
 import { Div } from "@hopper-ui/styled-system";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { within } from "storybook/test";
@@ -72,6 +73,24 @@ export const Value: Story = {
     ...WithLabel,
     args: {
         ...WithLabel.args,
+        defaultValue: "Hop we go!"
+    }
+};
+
+export const PrefixIcon: Story = {
+    ...WithLabel,
+    args: {
+        ...WithLabel.args,
+        prefix: <MailIcon />,
+        defaultValue: "Hop we go!"
+    }
+};
+
+export const TextIcon: Story = {
+    ...WithLabel,
+    args: {
+        ...WithLabel.args,
+        prefix: "$",
         defaultValue: "Hop we go!"
     }
 };

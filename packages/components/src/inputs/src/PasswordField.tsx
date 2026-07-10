@@ -1,4 +1,4 @@
-import { EyeHiddenIcon, EyeVisibleIcon } from "@hopper-ui/icons";
+import { EyeHiddenIcon, EyeVisibleIcon, IconContext } from "@hopper-ui/icons";
 import {
     useResponsiveValue,
     useStyledSystem,
@@ -7,7 +7,7 @@ import {
 } from "@hopper-ui/styled-system";
 import { mergeRefs } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, useState, type ForwardedRef, type MutableRefObject } from "react";
+import { forwardRef, useState, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
 import { useObjectRef } from "react-aria";
 import {
     composeRenderProps,
@@ -21,8 +21,8 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { FieldLabel } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, type FieldProps, type FieldSize } from "../../utils/index.ts";
+import { FieldLabel, TextContext } from "../../typography/index.ts";
+import { ClearContainerSlots, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type FieldSize } from "../../utils/index.ts";
 
 import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
@@ -33,6 +33,11 @@ import styles from "./PasswordField.module.css";
 export const GlobalPasswordFieldCssSelector = "hop-PasswordField";
 
 export interface PasswordFieldProps extends Omit<StyledComponentProps<Omit<RACTextFieldProps, "type" | "size">>, "children">, FieldProps {
+    /**
+     * An icon or text to display at the start of the input.
+     */
+    prefix?: ReactNode;
+
     /**
      * The placeholder text when the PasswordField is empty.
      */
@@ -97,6 +102,7 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
         inputGroupProps,
         inputProps,
         embeddedButtonProps,
+        prefix,
         label,
         description,
         errorMessage,
@@ -124,6 +130,15 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
         };
     });
 
+    const prefixMarkup = prefix ? (
+        <SlotProvider values={[
+            [TextContext, { size, className: styles["hop-PasswordField__prefix"] }],
+            [IconContext, { size, className: styles["hop-PasswordField__prefix"] }]
+        ]}>
+            {ensureTextWrapper(prefix)}
+        </SlotProvider>
+    ) : null;
+
     const { className: inputGroupClassName, ...otherInputGroupProps } = inputGroupProps ?? {};
     const inputGroupClassNames = clsx(styles["hop-PasswordField__InputGroup"], inputGroupClassName);
 
@@ -136,6 +151,7 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
                 className={inputGroupClassNames}
                 {...otherInputGroupProps}
             >
+                {prefixMarkup}
                 <Input ref={inputRef} placeholder={placeholder} type={showPassword ? "text" : "password"} size={size} {...inputProps} />
                 <EmbeddedButton
                     isDisabled={isDisabled}
@@ -156,7 +172,9 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
     const childrenMarkup = (
         <>
             <FieldLabel
-                className={styles["hop-PasswordField__Label"]}
+                wrapperProps={{
+                    className: styles["hop-PasswordField__Label"]
+                }}
                 contextualHelp={contextualHelp}
                 isRequired={isRequired}
                 necessityIndicator={necessityIndicator}
