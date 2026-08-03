@@ -47,6 +47,10 @@ const nextConfig = {
             // `beforeFiles` runs before the static file check, which is what makes the skill
             // routes work at all: the `.md` rule below matches every markdown path, including
             // the ones under /.well-known, and would otherwise send them to the /txt handler.
+            //
+            // This only takes effect in `next dev`. @netlify/plugin-nextjs does not honour it,
+            // so production relies on the equivalent `[[redirects]]` rules in netlify.toml.
+            // Both have to stay: this one keeps `npx skills add http://localhost:3000` working.
             beforeFiles: [
                 {
                     source: "/.well-known/skills/:path*",

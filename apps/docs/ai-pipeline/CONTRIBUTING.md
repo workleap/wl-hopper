@@ -461,10 +461,14 @@ components — a bullet per file would triple the size of `SKILL.md`.
 - **`references/tokens/maps/**` and `references/styled-system/unsafe-props-data.json` must keep
   their AI docs paths.** The bundled validator reaches them through the generated `files` index, so
   renaming them breaks it silently.
-- **`/.well-known/skills/**` is served by a `beforeFiles` rewrite** in `next.config.js` onto
-  `public/agent-skills`. It has to be `beforeFiles`: the `/:path*.:ext(txt|md)` rule in `afterFiles`
-  matches every markdown path, and before this rewrite existed every `/.well-known/*.md` request
-  returned a 400.
+- **`/.well-known/skills/**` is aliased onto `public/agent-skills` in two places, and both are
+  needed.** `netlify.toml` `[[redirects]]` (with `force = true`) handles production on the CDN;
+  the `beforeFiles` rewrite in `next.config.js` handles `next dev`, which is what makes
+  `npx skills add http://localhost:3000` work. `@netlify/plugin-nextjs` does not honour
+  `beforeFiles` for these paths — without the Netlify rules, `/.well-known/skills/**/*.md` is
+  claimed by the `/:path*.:ext(txt|md)` rule in `afterFiles` and the `/txt` handler answers 400.
+  CORS headers are likewise declared in both files, since Next's `headers()` does not apply to a
+  CDN-resolved rewrite.
 
 ### Testing a change
 
