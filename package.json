@@ -25,6 +25,7 @@
         "test-storybook": "test-storybook",
         "build:doc": "turbo run build --filter=./apps/docs",
         "build:ai-docs": "turbo run build:ai-docs --filter=docs",
+        "build:skills": "turbo run build:skills --filter=docs",
         "build:mcp": "turbo run build --filter=@hopper-ui/mcp-server",
         "build:tokens": "turbo run build --filter=./packages/tokens",
         "build:pkg": "turbo run build --filter=./packages/*",

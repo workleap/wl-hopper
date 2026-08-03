@@ -7,9 +7,8 @@ import {
     isUnsafePropsJsonBuild,
     isUnsafePropsMarkdownBuild
 } from "@/ai-pipeline/util.ts";
-import { readFile, rm } from "fs/promises";
-import { glob } from "glob";
-import { isAbsolute, join } from "path";
+import { rm } from "fs/promises";
+import { join } from "path";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
 import { generateIconsJson } from "./ai-utils/generateIconsData.ts";
 import {
@@ -20,63 +19,7 @@ import {
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.ts";
 import { generateTokensMaps } from "./ai-utils/generateTokensMaps.ts";
 import { generateUnsafePropsJson, generateUnsafePropsMarkdown } from "./ai-utils/generateUnsafePropsList.ts";
-import { mergeContents } from "./ai-utils/mergeContents.ts";
-import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.ts";
-
-async function mergeFiles(
-    files: string[],
-    {
-        fileName,
-        path,
-        headingFile,
-        updateLevels
-    }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }
-) {
-    // Expand all patterns and collect matching files
-    const allFiles: string[] = [];
-
-    for (const pattern of files) {
-        // `glob` treats backslashes as escape characters rather than path separators, so patterns
-        // built with `join` have to be normalised to posix separators to work on Windows.
-        const globPattern = (isAbsolute(pattern) ? pattern : join(path, pattern)).replaceAll("\\", "/");
-        const matches = await glob(globPattern, {
-            nodir: true, // Only match files, not directories
-            absolute: false, // Return relative paths
-            cwd: path // Set working directory to outputDir
-        });
-
-        if (matches.length === 0) {
-            throw new Error(`No files matched for pattern: ${pattern}`);
-        }
-
-        for (const match of matches.sort()) {
-            if (!allFiles.includes(match)) {
-                allFiles.push(match);
-            }
-        }
-    }
-
-    const contents: string[] = [];
-
-    // Keep the original order of files as passed
-    for (const file of allFiles) {
-        const filePath = join(path, file);
-        try {
-            const fileContent = await readFile(filePath, "utf8");
-            const updateLevel =
-                headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
-
-            contents.push(updateLevel);
-        } catch (error) {
-            throw new Error(`Error: Could not read file ${filePath}: ${error}`, { cause: error });
-        }
-    }
-
-    const outputPath = join(path, fileName);
-    await mergeContents(contents, outputPath, headingFile);
-
-    console.log(`✅ Merged successfully: ${outputPath}`);
-}
+import { mergeFiles } from "./ai-utils/mergeFiles.ts";
 
 function fixRelativeLink(link: string, extension: "txt" | "md"): string {
     try {

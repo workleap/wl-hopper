@@ -23,5 +23,11 @@ export async function mergeContents(contents: string[], outputPath: string, head
         writeStream.write(content + "\n");
     }
 
-    writeStream.end();
+    // Wait for the file to be fully flushed, otherwise a later merge that reads this
+    // file back can pick up a truncated version.
+    await new Promise<void>((resolve, reject) => {
+        writeStream.on("finish", resolve);
+        writeStream.on("error", reject);
+        writeStream.end();
+    });
 }

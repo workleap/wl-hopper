@@ -1,11 +1,14 @@
 [build]
+  # docs#build depends on docs#build:skills, which depends on docs#build:ai-docs.
   command = "pnpm exec turbo run build --filter=./apps/mcp-server --filter=./apps/docs"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
 [functions]
   directory = "apps/mcp-server/dist/hosts/netlify"
-  included_files = ["apps/docs/public/**"]
+  # Only the AI docs are read at runtime. Keep this narrow so public/agent-skills, which is
+  # served from the CDN, does not get bundled into every function.
+  included_files = ["apps/docs/public/ai-docs/**"]
 
 [functions.mcp-server]
   node_bundler = "esbuild"
