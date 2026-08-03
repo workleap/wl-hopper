@@ -1,6 +1,6 @@
 # Contributing to AI Documentation Configuration
 
-This guide explains how to configure the AI documentation system by adding new routes in the `config.ts` file.
+This guide explains how to configure the AI documentation system by adding new routes in the `ai-docs.config.tsx` file.
 
 ## Overview
 
@@ -11,7 +11,7 @@ The AI documentation system uses a bidirectional mapping configuration that serv
 
 ## Configuration Structure
 
-The main configuration is in `config.ts` and follows this structure:
+The main configuration is in `ai-docs.config.tsx` and follows this structure:
 
 ```typescript
 export const aiDocsConfig: AiDocsConfig = {
@@ -398,3 +398,86 @@ The transformation ensures that:
 2. System reverse-lookups the configuration
 3. Finds matching route with `serve.at` or route key (through the [txt](/apps/docs/app/txt/) router)
 4. Serves the corresponding generated content
+
+## Skills
+
+On top of the AI docs, this pipeline publishes an [agent Skill](https://www.npmjs.com/package/skills)
+at `https://hopper.workleap.design/.well-known/skills`, installed with
+`npx skills add https://hopper.workleap.design`.
+
+Skill generation is a **second stage that composes `dist/ai-docs`** — it never renders MDX again.
+It therefore has to run after `build:ai-docs`:
+
+```bash
+pnpm --filter=docs build:ai-docs     # slow; only when content changed
+pnpm --filter=docs build:skills      # ~1s; re-run freely
+```
+
+Output lands in `dist/skills` and is copied to `public/agent-skills` (gitignored, like
+`public/ai-docs`).
+
+### Files
+
+| File | Role |
+| --- | --- |
+| `skills.config.ts` | What the skill contains. The only file most changes touch. |
+| `skillsTypes.ts` | Entry types and their guards. |
+| `templates/skills/hopper/**` | Hand-authored markdown: `SKILL.header.md`, workflows, and the guides that have no generated equivalent. |
+| `skill-scripts/**` | Sources for the scripts bundled into the skill. |
+| `../scripts/buildSkills.ts` | Orchestrator. |
+| `../scripts/ai-utils/{copySkillFiles,generateSkillIndex,generateSkillManifest,bundleSkillScripts}.ts` | The stages it runs. |
+| `../scripts/checkSkillsConfig.ts` | Runs as `pnpm --filter=docs test`; see below. |
+
+### Entry types
+
+`skills.config.ts` `files` accepts three shapes, distinguished by which key is present:
+
+```ts
+// copy — `from` is a glob under dist/ai-docs. A `to` ending in "/" keeps the source path
+// relative to the glob's literal prefix, so nested matches do not collapse together.
+{ from: "/components/usage/*.md", exclude: ["/components/usage/component-list.md"], to: "references/components/" }
+
+// copyTemplate — a hand-authored file, copied verbatim
+{ copyTemplate: "/ai-pipeline/templates/skills/hopper/workflows/build-app.md", to: "references/workflows/build-app.md" }
+
+// merge — a hand-authored template followed by generated content
+{ template: "/ai-pipeline/templates/skills/hopper/guides/validation-rules.md",
+  merge: ["/styled-system/escape-hatches.md"], to: "references/guides/validation-rules.md" }
+```
+
+`SKILL.md` is `templates/skills/hopper/SKILL.header.md` plus a generated "Documentation structure"
+index built from what actually landed on disk. Section descriptions come from each file's first
+paragraph, or from `description` in the config. Use `style: "names"` for long tails such as
+components — a bullet per file would triple the size of `SKILL.md`.
+
+### Constraints to respect
+
+- **Exactly one skill.** The `skills` CLI demands an explicit `@selector` when a host advertises
+  more than one, which would break the bare `npx skills add https://hopper.workleap.design`.
+- **A 4 MB budget** (`maxTotalBytes`). The build fails above it. Trim an entry rather than raising
+  the ceiling. The heavy things deliberately left out are `components/api/full` (7 MB),
+  `llms-full.md`, every `*/index.md` merge artifact, the per-category token maps (the `all.json`
+  roll-up covers them), and `changelogs.md`.
+- **`references/tokens/maps/**` and `references/styled-system/unsafe-props-data.json` must keep
+  their AI docs paths.** The bundled validator reaches them through the generated `files` index, so
+  renaming them breaks it silently.
+- **`/.well-known/skills/**` is served by a `beforeFiles` rewrite** in `next.config.js` onto
+  `public/agent-skills`. It has to be `beforeFiles`: the `/:path*.:ext(txt|md)` rule in `afterFiles`
+  matches every markdown path, and before this rewrite existed every `/.well-known/*.md` request
+  returned a 400.
+
+### Testing a change
+
+`pnpm --filter=docs test` runs `checkSkillsConfig.ts`, which asserts every `from` pattern still
+corresponds to a route in `ai-docs.config.tsx`, that templates and script entry points exist, and
+that each index section has content. It needs no build output and runs in PR CI.
+
+Then, from a scratch directory outside the repo:
+
+```bash
+pnpm doc:start
+cd $(mktemp -d) && npx skills add http://localhost:3000
+```
+
+Install from a scratch directory — running it inside `wl-hopper` would write into `.claude/skills`,
+which is where this repo's own authoring skills live.

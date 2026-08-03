@@ -1,0 +1,210 @@
+import type { SkillsConfig } from "./skillsTypes.ts";
+
+const templates = "/ai-pipeline/templates/skills/hopper";
+
+/**
+ * Defines the agent Skills published at https://hopper.workleap.design/.well-known/skills.
+ *
+ * Everything here composes the output of the AI docs pipeline (see ai-docs.config.tsx);
+ * nothing is rendered from MDX a second time. Read ./CONTRIBUTING.md before adding entries.
+ *
+ * Only ONE skill may be declared: the `skills` CLI requires an explicit `@selector` when a
+ * host advertises more than one, which would break `npx skills add https://hopper.workleap.design`.
+ */
+export const skillsConfig: SkillsConfig = {
+    sourceRootPath: "dist/ai-docs",
+    buildRootPath: "dist",
+    filesFolder: "skills",
+    maxTotalBytes: 4_000_000,
+    skills: {
+        hopper: {
+            frontmatter: {
+                name: "hopper",
+                description: [
+                    "Build, review, and migrate UI with Workleap's Hopper design system (@hopper-ui/components,",
+                    "@hopper-ui/icons, @hopper-ui/styled-system, @hopper-ui/tokens). Use whenever writing or",
+                    "reviewing React/JSX that imports from @hopper-ui/*, renders HopperProvider, uses Hopper style",
+                    "props or UNSAFE_* escape hatches, references hop- design tokens or --hop-* CSS variables, or",
+                    "targets the Workleap or ShareGate theme in light or dark mode. Also use when picking Hopper",
+                    "components (Button, TextField, Select, Modal, Tag, Callout, Tabs, ...) or Hopper icons,",
+                    "converting a Figma frame into Workleap design system code, choosing between semantic and core",
+                    "tokens, or migrating a codebase from Orbiter (@sharegate/orbiter-ui) to Hopper. Trigger on",
+                    "\"Hopper\", \"hopper-ui\", \"Workleap design system\", \"ShareGate design system\", \"hop- token\",",
+                    "\"HopperProvider\", \"Orbiter migration\"."
+                ].join(" "),
+                license: "Apache-2.0",
+                metadata: {
+                    author: "Workleap",
+                    website: "https://hopper.workleap.design",
+                    source: "https://github.com/workleap/wl-hopper"
+                }
+            },
+
+            template: `${templates}/SKILL.header.md`,
+
+            files: [
+                // components — one usage doc per component, plus the catalog
+                {
+                    from: "/components/usage/component-list.md",
+                    to: "references/components/index.md",
+                    description: "Catalog of every Hopper component, grouped by category."
+                },
+                {
+                    from: "/components/usage/*.md",
+                    // component-list is the catalog above; orbiter-to-hopper is a migration
+                    // mapping table that the pipeline flattens in here but is not a component.
+                    exclude: ["/components/usage/component-list.md", "/components/usage/orbiter-to-hopper.md"],
+                    to: "references/components/"
+                },
+                {
+                    from: "/components/usage/orbiter-to-hopper.md",
+                    to: "references/guides/orbiter-to-hopper-mapping.md",
+                    description: "Every Orbiter component and its Hopper equivalent."
+                },
+
+                // component APIs — brief props only; the full variant is 7MB and stays online.
+                // _summary.json is generation metadata, not an API.
+                { from: "/components/api/brief/*.json", exclude: ["/components/api/brief/_summary.json"], to: "references/api/" },
+
+                // guides
+                { from: "/getting-started/*.md", exclude: ["/getting-started/index.md"], to: "references/guides/getting-started/" },
+                { from: "/components/concepts/*.md", exclude: ["/components/concepts/index.md"], to: "references/guides/concepts/" },
+                { from: "/styled-system/concepts/*.md", to: "references/guides/styled-system/" },
+                { from: "/styled-system/overview/introduction.md", to: "references/guides/styled-system/introduction.md" },
+                { from: "/components/utilities/useDebounce.md", to: "references/guides/utilities/useDebounce.md" },
+                { from: "/ai/figma-conventions.md", to: "references/guides/figma-conventions.md" },
+
+                // hand-authored guides and workflows
+                {
+                    copyTemplate: `${templates}/guides/orbiter-migration.md`,
+                    to: "references/guides/orbiter-migration.md",
+                    description: "Migrating a codebase from Orbiter to Hopper with the @workleap/migrations CLI."
+                },
+                {
+                    copyTemplate: `${templates}/workflows/build-app.md`,
+                    to: "references/workflows/build-app.md",
+                    description: "End-to-end workflow for building a screen or feature with Hopper."
+                },
+                {
+                    copyTemplate: `${templates}/workflows/figma-to-code.md`,
+                    to: "references/workflows/figma-to-code.md",
+                    description: "Turning a Figma frame into Hopper JSX, with the mapping and QA checklists."
+                },
+
+                // validation rules — hand-authored prose plus the generated UNSAFE_ whitelist
+                {
+                    template: `${templates}/guides/validation-rules.md`,
+                    merge: ["/styled-system/escape-hatches.md"],
+                    to: "references/guides/validation-rules.md",
+                    description: "Every rule the validator enforces, plus the complete UNSAFE_* whitelist."
+                },
+
+                // tokens — markdown guidance mirrors the ai-docs layout
+                { from: "/tokens/overview/introduction.md", to: "references/tokens/introduction.md" },
+                { from: "/tokens/core/*.md", exclude: ["/tokens/core/index.md"], to: "references/tokens/core/" },
+                { from: "/tokens/semantic/*.md", exclude: ["/tokens/semantic/index.md"], to: "references/tokens/semantic/" },
+                {
+                    copyTemplate: `${templates}/tokens/README.md`,
+                    to: "references/tokens/README.md",
+                    description: "How to turn a Hopper token name or a raw CSS value into a component prop value."
+                },
+
+                // token maps — only the `all` roll-up per theme/scheme. It is the union of the
+                // per-category files, and it is the file the bundled validator reads.
+                {
+                    from: "/tokens/maps/*/*/all.json",
+                    to: "references/tokens/maps/",
+                    expectedCount: 4,
+                    description: "Token name to component prop value map, with CSS values."
+                },
+
+                // the UNSAFE_ allow-list, kept at its ai-docs path so the bundled validator finds it
+                { from: "/styled-system/unsafe-props-data.json", to: "references/styled-system/unsafe-props-data.json" },
+
+                // icons
+                { from: "/icons/data.json", to: "references/icons/data.json", description: "Every Hopper icon: name, description and keywords." },
+                { from: "/icons/brief/index.md", to: "references/icons/index.md" },
+                { from: "/icons/brief/advanced/designing-an-icon.md", to: "references/icons/designing-an-icon.md" },
+                {
+                    copyTemplate: `${templates}/icons/README.md`,
+                    to: "references/icons/README.md",
+                    description: "How to search data.json for the right icon instead of guessing a name."
+                }
+            ],
+
+            scripts: [
+                {
+                    entry: "/ai-pipeline/skill-scripts/validateHopperCode.ts",
+                    to: "scripts/validate-hopper-code.mjs",
+                    description: "Lints Hopper JSX: tokens, prop values, UNSAFE_ usage, structure and layout.",
+                    aliases: [
+                        // The validator reads its data files through the generated AI docs index and an
+                        // env module. Both are replaced so the bundle reads from the skill's own copies.
+                        { filter: "^@docs/ai$", path: "/dist/ai-docs/index.ts" },
+                        { filter: "(^|/)env$", path: "/ai-pipeline/skill-scripts/validatorEnv.ts" },
+                        // Swap the TypeScript-ESLint parser for a resolver that prefers the consuming
+                        // project's parser and falls back to a bundled acorn. Bundling the real one
+                        // would drag in typescript (~8MB), several times the whole skill budget.
+                        { filter: "^@typescript-eslint/parser$", path: "/ai-pipeline/skill-scripts/validatorParser.ts" },
+                        // acorn-jsx `require`s acorn while validatorParser.ts imports it, which
+                        // would bundle both the CJS and ESM builds. Pin everything to the CJS one.
+                        { filter: "^acorn$", path: "acorn" }
+                    ]
+                }
+            ],
+
+            index: {
+                title: "Documentation structure",
+                intro: "Everything below is on disk next to this file. Read the specific file you need — do not guess a component's API.",
+                sections: [
+                    {
+                        title: "Workflows",
+                        path: "references/workflows",
+                        style: "list",
+                        intro: "Start here when the task is bigger than a single component."
+                    },
+                    {
+                        title: "Components",
+                        path: "references/components",
+                        style: "names",
+                        pattern: "references/components/<ComponentName>.md",
+                        exclude: ["index.md"],
+                        intro: "One file per component: anatomy, examples, dos and don'ts. Read it before using the component. `references/components/index.md` is the catalog with one-line descriptions."
+                    },
+                    {
+                        title: "Component APIs",
+                        path: "references/api",
+                        style: "names",
+                        pattern: "references/api/<ComponentName>.json",
+                        intro: "Props, types and defaults as JSON. Read only when you need an exact type or default — the component file above already lists the common props."
+                    },
+                    {
+                        title: "Guides",
+                        path: "references/guides",
+                        style: "list",
+                        recursive: true,
+                        tokenHintOverBytes: 20_000
+                    },
+                    {
+                        title: "Design tokens",
+                        path: "references/tokens",
+                        style: "list",
+                        recursive: true,
+                        tokenHintOverBytes: 20_000
+                    },
+                    {
+                        title: "Icons",
+                        path: "references/icons",
+                        style: "list",
+                        tokenHintOverBytes: 20_000
+                    },
+                    {
+                        title: "Scripts",
+                        path: "scripts",
+                        style: "list"
+                    }
+                ]
+            }
+        }
+    }
+};

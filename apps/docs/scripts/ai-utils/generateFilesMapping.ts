@@ -1,6 +1,7 @@
 import { aiDocsConfig } from "@/ai-pipeline/ai-docs.config";
-import { readdir, stat, writeFile } from "fs/promises";
+import { stat, writeFile } from "fs/promises";
 import { join, relative } from "path";
+import { collectFiles } from "./collectFiles.ts";
 
 interface FileInfo {
     path: string;
@@ -69,26 +70,6 @@ function setDeep(obj: Record<string, FileMapping | FileInfo>, filePathFromRoot: 
             cursor = cursor[key] as Record<string, FileMapping | FileInfo>;
         }
     }
-}
-
-async function collectFiles(rootDir: string): Promise<string[]> {
-    const results: string[] = [];
-
-    async function walk(dir: string) {
-        const entries = await readdir(dir, { withFileTypes: true });
-        for (const entry of entries) {
-            const full = join(dir, entry.name);
-            if (entry.isDirectory()) {
-                await walk(full);
-            } else if (entry.isFile()) {
-                results.push(full);
-            }
-        }
-    }
-
-    await walk(rootDir);
-
-    return results;
 }
 
 /**

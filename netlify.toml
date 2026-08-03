@@ -1,11 +1,14 @@
 [build]
-  command = "pnpm doc:generate && pnpm build:doc && pnpm build:ai-docs && pnpm build:mcp"
+  # build:skills composes dist/ai-docs, so it must run after build:ai-docs.
+  command = "pnpm doc:generate && pnpm build:doc && pnpm build:ai-docs && pnpm build:skills && pnpm build:mcp"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
 [functions]
   directory = "apps/mcp-server/dist/hosts/netlify"
-  included_files = ["apps/docs/public/**"]
+  # Only the AI docs are read at runtime. Keep this narrow so public/agent-skills, which is
+  # served from the CDN, does not get bundled into every function.
+  included_files = ["apps/docs/public/ai-docs/**"]
 
 [functions.mcp-server]
   node_bundler = "esbuild"
