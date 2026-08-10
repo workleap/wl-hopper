@@ -27,10 +27,9 @@ export const skillsConfig: SkillsConfig = {
                     "props or UNSAFE_* escape hatches, references hop- design tokens or --hop-* CSS variables, or",
                     "targets the Workleap or ShareGate theme in light or dark mode. Also use when picking Hopper",
                     "components (Button, TextField, Select, Modal, Tag, Callout, Tabs, ...) or Hopper icons,",
-                    "converting a Figma frame into Workleap design system code, choosing between semantic and core",
-                    "tokens, or migrating a codebase from Orbiter (@sharegate/orbiter-ui) to Hopper. Trigger on",
-                    "\"Hopper\", \"hopper-ui\", \"Workleap design system\", \"ShareGate design system\", \"hop- token\",",
-                    "\"HopperProvider\", \"Orbiter migration\"."
+                    "converting a Figma frame into Workleap design system code, or choosing between semantic and",
+                    "core tokens. Trigger on \"Hopper\", \"hopper-ui\", \"Workleap design system\",",
+                    "\"ShareGate design system\", \"hop- token\", \"HopperProvider\"."
                 ].join(" "),
                 license: "Apache-2.0",
                 metadata: {
@@ -51,15 +50,11 @@ export const skillsConfig: SkillsConfig = {
                 },
                 {
                     from: "/components/usage/*.md",
-                    // component-list is the catalog above; orbiter-to-hopper is a migration
-                    // mapping table that the pipeline flattens in here but is not a component.
+                    // component-list is the catalog above. orbiter-to-hopper is an Orbiter migration
+                    // mapping table the pipeline flattens in here; it is not a component, and Orbiter
+                    // is deprecated with its migration deadline passed, so the skill omits it.
                     exclude: ["/components/usage/component-list.md", "/components/usage/orbiter-to-hopper.md"],
                     to: "references/components/"
-                },
-                {
-                    from: "/components/usage/orbiter-to-hopper.md",
-                    to: "references/guides/orbiter-to-hopper-mapping.md",
-                    description: "Every Orbiter component and its Hopper equivalent."
                 },
 
                 // component APIs — brief props only; the full variant is 7MB and stays online.
@@ -75,11 +70,6 @@ export const skillsConfig: SkillsConfig = {
                 { from: "/ai/figma-conventions.md", to: "references/guides/figma-conventions.md" },
 
                 // hand-authored guides and workflows
-                {
-                    copyTemplate: `${templates}/guides/orbiter-migration.md`,
-                    to: "references/guides/orbiter-migration.md",
-                    description: "Migrating a codebase from Orbiter to Hopper with the @workleap/migrations CLI."
-                },
                 {
                     copyTemplate: `${templates}/workflows/build-app.md`,
                     to: "references/workflows/build-app.md",
