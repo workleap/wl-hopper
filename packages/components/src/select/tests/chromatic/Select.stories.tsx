@@ -2,7 +2,7 @@ import { Select, SelectItem, type SelectProps, SelectSection, useAsyncList } fro
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryFn, StoryObj } from "@storybook/react-webpack5";
+import type { Decorator, Meta, StoryObj } from "@storybook/react-webpack5";
 import { userEvent, within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";
@@ -28,24 +28,24 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const marginBottomDecoratorSM = [
-    (Story: StoryFn) => (
+const marginBottomDecoratorSM: Decorator[] = [
+    Story => (
         <Div UNSAFE_marginBottom="12rem">
             <Story />
         </Div>
     )
 ];
 
-const marginBottomDecoratorMD = [
-    (Story: StoryFn) => (
+const marginBottomDecoratorMD: Decorator[] = [
+    Story => (
         <Div UNSAFE_marginBottom="20rem">
             <Story />
         </Div>
     )
 ];
 
-const marginBottomDecoratorLG = [
-    (Story: StoryFn) => (
+const marginBottomDecoratorLG: Decorator[] = [
+    Story => (
         <Div UNSAFE_marginBottom="24rem">
             <Story />
         </Div>

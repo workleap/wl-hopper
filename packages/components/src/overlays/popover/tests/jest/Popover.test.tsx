@@ -7,7 +7,7 @@ import { PopoverTrigger } from "../../src/PopoverTrigger.tsx";
 
 interface SetupProps extends PopoverProps {
     "data-foo"?: string;
-    ref?: RefObject<HTMLDivElement>;
+    ref?: RefObject<HTMLDivElement | null>;
 }
 
 const setUp = (props: SetupProps) => {
