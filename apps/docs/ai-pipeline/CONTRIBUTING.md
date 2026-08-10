@@ -450,17 +450,44 @@ index built from what actually landed on disk. Section descriptions come from ea
 paragraph, or from `description` in the config. Use `style: "names"` for long tails such as
 components — a bullet per file would triple the size of `SKILL.md`.
 
+### Scripts share code with the MCP server
+
+The skill's three scripts are **not** reimplementations. Each bundles a service straight out of
+`apps/mcp-server` with esbuild, so a logic change there reaches both surfaces at the next build:
+
+| Script | MCP tool | Bundled from |
+| --- | --- | --- |
+| `scripts/validate-hopper-code.mjs` | `validate_hopper_code` | `src/services/validatorService` |
+| `scripts/search-tokens.mjs` | `get_design_tokens` | `src/services/tokensService` |
+| `scripts/search-icons.mjs` | `get_icons` | `src/services/iconsService` |
+
+The entry points in `skill-scripts/` are thin CLI wrappers — argument parsing and output
+formatting only. Keep them that way; anything resembling business logic belongs in the service, so
+both surfaces get it.
+
+Two things are swapped at bundle time, via `aliases` in `skills.config.ts`:
+
+- `@docs/ai` and the `env` module (`dataAliases`) → the services read the skill's own `references/`
+  instead of a deployed docs folder. This is why the skill mirrors the AI docs layout there.
+- `@typescript-eslint/parser` → `validatorParser.ts`, only for the validator. Bundling the real
+  parser would pull in `typescript`, several times the whole skill budget.
+
+To verify parity after touching a service, run the script and the matching MCP tool on the same
+input and diff them.
+
 ### Constraints to respect
 
 - **Exactly one skill.** The `skills` CLI demands an explicit `@selector` when a host advertises
   more than one, which would break the bare `npx skills add https://hopper.workleap.design`.
-- **A 4 MB budget** (`maxTotalBytes`). The build fails above it. Trim an entry rather than raising
+- **A 5.5 MB budget** (`maxTotalBytes`). The build fails above it. Trim an entry rather than raising
   the ceiling. The heavy things deliberately left out are `components/api/full` (7 MB),
-  `llms-full.md`, every `*/index.md` merge artifact, the per-category token maps (the `all.json`
-  roll-up covers them), and `changelogs.md`.
-- **`references/tokens/maps/**` and `references/styled-system/unsafe-props-data.json` must keep
-  their AI docs paths.** The bundled validator reaches them through the generated `files` index, so
-  renaming them breaks it silently.
+  `llms-full.md`, every `*/index.md` merge artifact, and `changelogs.md`.
+- **`references/tokens/maps/**`, `references/icons/data.json` and
+  `references/styled-system/unsafe-props-data.json` must keep their AI docs paths.** The bundled
+  scripts reach them through the generated `files` index, so renaming them breaks the scripts
+  silently. The whole `tokens/maps` tree ships for the same reason: `getTokenMapFiles` resolves a
+  file per category, so dropping the per-category files would make every narrower `--category`
+  throw.
 - **`/.well-known/skills/**` is aliased onto `public/agent-skills` in two places, and both are
   needed.** `netlify.toml` `[[redirects]]` (with `force = true`) handles production on the CDN;
   the `beforeFiles` rewrite in `next.config.js` handles `next dev`, which is what makes

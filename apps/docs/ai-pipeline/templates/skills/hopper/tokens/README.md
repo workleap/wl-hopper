@@ -12,33 +12,35 @@ different strings for the same thing:
 | `hop-space-stack-md` | `--hop-space-stack-md` | `stack-md` |
 | `hop-shape-rounded-md` | `--hop-shape-rounded-md` | `rounded-md` |
 
-The prop value is the token name with the category affixes removed:
-`hop-`, `-border`, `-surface`, `-text`, `-icon`, `elevation-`, `shape-`, `space-`, `border-`,
-`radius-`, `dataviz-`, `shadow-`, `-font-family`, `-font-size`, `-font-weight`, `-line-height`,
-`-letter-spacing`, `font-family-`, `font-size-`, `font-weight-`, `line-height-`, `letter-spacing-`.
-
-Do not do that transformation in your head. Look it up.
+Do not do that conversion in your head. Look it up.
 
 ## Looking a value up
 
-`references/tokens/maps/<theme>/<scheme>/all.json` maps every token to its prop value and its CSS
-value, for `workleap` and `sharegate` in `light` and `dark`. Each entry looks like:
+```bash
+# have a token name, need the prop value
+node scripts/search-tokens.mjs --name hop-neutral-text
 
-```json
-{ "hop-neutral-text": { "propValue": "neutral", "cssValue": "#3C3C3C" } }
+# have a raw CSS value from a design, need the token that already covers it
+node scripts/search-tokens.mjs --css 16px --css "#3C3C3C" --with-css-values
+
+# which tokens are legal on this prop?
+node scripts/search-tokens.mjs --prop backgroundColor --category semantic-color
+
+# other themes and colour schemes
+node scripts/search-tokens.mjs --theme sharegate --scheme dark --name hop-primary-surface
 ```
 
-Each category also lists the `supportedProps` that accept it, which is how you tell whether a token
-is legal on the prop you are about to use it on.
+This is the same lookup the Hopper MCP's `get_design_tokens` tool runs — the script bundles that
+service, so the results are identical. It also prints the Golden Rule: the exact list of affixes to
+strip from a token name to get its prop value.
 
-- **Have a token name, need a prop value?** Search the file for the token name and read `propValue`.
-- **Have a raw CSS value from a design, need a token?** Search for the value — `16px`, `2rem`, `400`,
-  `#3C3C3C` — and take the token whose `cssValue` matches. If one matches, use it. Never hardcode a
-  value that has a token.
-- **Need to know which props accept a category?** Read that category's `supportedProps`.
+`--name` takes **token names**, `--css` takes **CSS values**; they are not interchangeable, and
+passing one where the other belongs is the most common way to get an empty result. Both are
+repeatable. `--category` defaults to `all`; run with `--help` for the full list. Without a filter
+the output is the entire category, which is large — pass at least one filter unless you mean it.
 
-`workleap` / `light` is the default. Only reach for `sharegate` or `dark` when the task is
-specifically about that theme or colour scheme.
+The underlying data is `references/tokens/maps/{theme}/{scheme}/*.json`, one file per category plus
+`all.json`, if you need to read it directly.
 
 ## Semantic over core
 

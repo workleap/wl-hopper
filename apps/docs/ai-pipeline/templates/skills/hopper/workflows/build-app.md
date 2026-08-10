@@ -10,10 +10,11 @@ spacing, deliberate layout, real visual hierarchy.
 
 Read these, not just when you hit an error:
 
-- `references/tokens/README.md` — how token names become prop values.
+- `references/tokens/README.md` — how token names become prop values, and how to look one up with
+  `scripts/search-tokens.mjs`.
 - `references/guides/styled-system/styling.md` — style props.
 - `references/guides/concepts/layout.md` — `Flex`, `Grid`, `Stack`, `Inline`.
-- `references/icons/README.md` — how to find an icon.
+- `references/icons/README.md` — how to find an icon with `scripts/search-icons.mjs`.
 
 Then, for every component you intend to use, read `references/components/<Name>.md`. Never assume a
 standard CSS or HTML prop works; each component has its own API.
