@@ -3,7 +3,6 @@ import { withContentlayer } from "next-contentlayer2";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
-    swcMinify: true, // This will be enabled by default and removed in Next.js 15
     typescript: {
         ignoreBuildErrors: true // we typecheck separately
     },

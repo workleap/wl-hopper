@@ -5,9 +5,10 @@ export const runtime = "nodejs"; // ensures filesystem access works in Next.js
 
 export async function GET(
     req: Request,
-    { params }: { params: { path?: string[] }; query: { ext?: string } }
+    { params }: { params: Promise<{ path?: string[] }> }
 ) {
-    const parts = params.path ?? []; // e.g. ["llms"] for /txt/llms?ext=txt
+    const { path } = await params;
+    const parts = path ?? []; // e.g. ["llms"] for /txt/llms?ext=txt
     if (parts.length === 0) {
         return new Response("Not found", { status: 404 });
     }

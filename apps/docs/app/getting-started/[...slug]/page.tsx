@@ -8,9 +8,9 @@ import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string[];
-    };
+    }>;
 }
 
 function findPageFromSlug(slug: string[]) {
@@ -19,13 +19,14 @@ function findPageFromSlug(slug: string[]) {
     return allGettingStarteds.find(page => page.section === section && page.slug === type);
 }
 
-export default function GettingStartedPage({ params }: PageProps) {
-    const page = findPageFromSlug(params.slug);
+export default async function GettingStartedPage({ params }: PageProps) {
+    const { slug } = await params;
+    const page = findPageFromSlug(slug);
 
     if (!page) {
         notFound();
     }
-    const aiDoc = getAiDocAbsolutePath(["getting-started", ...params.slug]);
+    const aiDoc = getAiDocAbsolutePath(["getting-started", ...slug]);
     const sectionLinks = getSectionLinks(page);
     const { title, body: { code }, _id: id } = page;
 
@@ -43,8 +44,9 @@ export function generateStaticParams() {
     return getGettingStartedSlugs();
 }
 
-export function generateMetadata({ params }: PageProps) {
-    const page = findPageFromSlug(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    const page = findPageFromSlug(slug);
 
     if (page) {
         const metadata: Record<string, string> = {
