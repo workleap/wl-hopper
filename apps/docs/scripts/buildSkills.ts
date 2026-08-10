@@ -132,7 +132,7 @@ async function main() {
     const manifest = await generateSkillManifest({ skillsRoot, skills: built, maxTotalBytes: skillsConfig.maxTotalBytes });
 
     for (const skill of manifest.skills) {
-        console.log(`   ${skill.name}: ${skill.files.length} files, description ${skill.description.length}/1024 chars`);
+        console.log(`   ${skill.name}: ${skill.url}, description ${skill.description.length}/1024 chars`);
     }
 
     console.log(`   budget: ${formatBytes(skillsConfig.maxTotalBytes)}`);

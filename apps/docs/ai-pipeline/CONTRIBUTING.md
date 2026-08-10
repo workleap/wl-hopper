@@ -475,6 +475,25 @@ Two things are swapped at bundle time, via `aliases` in `skills.config.ts`:
 To verify parity after touching a service, run the script and the matching MCP tool on the same
 input and diff them.
 
+### The skill ships as one archive
+
+`buildSkills.ts` writes both the loose files under `dist/skills/hopper/**` *and* a single
+`dist/skills/hopper.tar.gz`, and `index.json` advertises only the archive, using the 0.2.0
+discovery schema with a sha256 digest.
+
+That is deliberate. The `skills` CLI's per-file path (`fetchLegacySkillByEntry`) fires one `fetch`
+per advertised file with **no concurrency limit** and swallows every failure — `catch {}` returns
+`null` and the file is silently skipped, with no error and no retry. At this skill's size that
+reliably loses files: measured 263-317 of 326 across runs, with `scripts/` missing every time
+because it sorts last and holds the largest files. Nothing in the output tells you.
+
+With the archive the client does one request and verifies a digest, so an install is either
+complete or a visible failure. It is also ~10x less to transfer (0.52 MB compressed vs 4.8 MB).
+
+The loose files stay published because they are handy to `curl` and cost nothing extra. If you
+change what the skill contains, the archive and digest regenerate automatically — never hand-edit
+`index.json`.
+
 ### Constraints to respect
 
 - **Exactly one skill.** The `skills` CLI demands an explicit `@selector` when a host advertises

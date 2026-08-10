@@ -210,6 +210,10 @@ export const skillsConfig: SkillsConfig = {
                         path: "references/tokens",
                         style: "list",
                         recursive: true,
+                        // The 100 map files are data for scripts/search-tokens.mjs, not reading
+                        // material — listing them individually would double SKILL.md.
+                        excludePrefixes: ["references/tokens/maps/"],
+                        intro: "Look values up with `node scripts/search-tokens.mjs` rather than reading `references/tokens/maps/{theme}/{scheme}/*.json` by hand; start from the README below.",
                         tokenHintOverBytes: 20_000
                     },
                     {

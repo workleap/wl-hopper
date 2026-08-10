@@ -90,6 +90,8 @@ export interface SkillIndexSection {
     pattern?: string;
     /** File names (not paths) to omit from the listing. */
     exclude?: string[];
+    /** Skill-root-relative path prefixes to omit, for data directories nobody reads file by file. */
+    excludePrefixes?: string[];
     /** Annotate files larger than this with an estimated LLM token count. */
     tokenHintOverBytes?: number;
     recursive?: boolean;
