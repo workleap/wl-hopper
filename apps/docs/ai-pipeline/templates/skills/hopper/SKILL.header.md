@@ -48,8 +48,7 @@ looks wrong.
    against `references/guides/validation-rules.md` by hand.
 
 For bigger jobs, start from a workflow: `references/workflows/build-app.md` for a screen or feature,
-`references/workflows/figma-to-code.md` for a Figma frame,
-`references/guides/orbiter-migration.md` for an Orbiter codebase.
+`references/workflows/figma-to-code.md` for a Figma frame.
 
 ## Relationship to the Hopper MCP server
 
