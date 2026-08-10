@@ -68,6 +68,10 @@ function inSection(file: SkillFile, section: SkillIndexSection) {
         return false;
     }
 
+    if (section.excludePrefixes?.some(excluded => file.path.startsWith(excluded))) {
+        return false;
+    }
+
     return !section.exclude?.includes(basename(file.path));
 }
 

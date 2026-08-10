@@ -2,14 +2,23 @@ import type { SkillFrontmatter } from "@/ai-pipeline/skillsTypes.ts";
 import { access, stat, writeFile } from "fs/promises";
 import { join, relative } from "path";
 import { collectFiles } from "./collectFiles.ts";
+import { createSkillArchive } from "./createSkillArchive.ts";
 
 const MAX_DESCRIPTION_LENGTH = 1024;
 const NAME_PATTERN = /^[a-z0-9][a-z0-9-]*$/;
 
+/**
+ * The archive form of the discovery index. The CLI fetches one artifact and verifies its digest,
+ * instead of racing one request per file — see createSkillArchive.ts for why that matters.
+ */
+const DISCOVERY_SCHEMA = "https://schemas.agentskills.io/discovery/0.2.0/schema.json";
+
 export interface ManifestSkill {
     name: string;
     description: string;
-    files: string[];
+    type: "archive";
+    url: string;
+    digest: string;
 }
 
 export interface GenerateSkillManifestOptions {
@@ -25,7 +34,7 @@ export interface GenerateSkillManifestOptions {
  * path, so a stale or wrong list is a broken install rather than a degraded one.
  */
 export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes }: GenerateSkillManifestOptions) {
-    const manifest: { skills: ManifestSkill[] } = { skills: [] };
+    const manifest: { $schema: string; skills: ManifestSkill[] } = { $schema: DISCOVERY_SCHEMA, skills: [] };
 
     for (const { frontmatter, skillRoot } of skills) {
         if (!NAME_PATTERN.test(frontmatter.name)) {
@@ -42,13 +51,9 @@ export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes 
             throw new Error(`Skill "${frontmatter.name}" description is ${description.length} characters, over the ${MAX_DESCRIPTION_LENGTH} limit.`);
         }
 
-        const absolute = await collectFiles(skillRoot);
-        const files = absolute
-            .map(file => relative(skillRoot, file).replaceAll("\\", "/"))
-            // SKILL.md must be first: it is the entry point clients read to name the skill.
-            .sort((a, b) => (a === "SKILL.md" ? -1 : b === "SKILL.md" ? 1 : a.localeCompare(b)));
+        const files = (await collectFiles(skillRoot)).map(file => relative(skillRoot, file).replaceAll("\\", "/"));
 
-        if (files[0] !== "SKILL.md") {
+        if (!files.includes("SKILL.md")) {
             throw new Error(`Skill "${frontmatter.name}" has no SKILL.md.`);
         }
 
@@ -56,11 +61,29 @@ export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes 
             await access(join(skillRoot, file));
         }
 
-        manifest.skills.push({ name: frontmatter.name, description, files });
+        const archive = await createSkillArchive(skillRoot, skillsRoot, frontmatter.name);
+
+        console.log(`✅ Packed skill archive: ${archive.fileName} (${files.length} files, ${formatBytes(archive.bytes)} compressed)`);
+
+        manifest.skills.push({
+            name: frontmatter.name,
+            description,
+            type: "archive",
+            // Resolved by the client against the index.json URL.
+            url: `./${archive.fileName}`,
+            digest: archive.digest
+        });
     }
 
-    const total = (await collectFiles(skillsRoot)).length;
-    const bytes = await totalBytes(skillsRoot);
+    // Measure the skills themselves. The archives sit alongside them and are a packed copy of the
+    // same bytes, so counting them would charge the payload twice.
+    let total = 0;
+    let bytes = 0;
+
+    for (const { skillRoot } of skills) {
+        total += (await collectFiles(skillRoot)).length;
+        bytes += await totalBytes(skillRoot);
+    }
 
     if (bytes > maxTotalBytes) {
         throw new Error(
