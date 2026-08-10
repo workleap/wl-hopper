@@ -8,7 +8,7 @@ export async function GET(
     { params }: { params: Promise<{ path?: string[] }> }
 ) {
     const { path } = await params;
-    const parts = path ?? []; // e.g. ["llms"] for /txt/llms?ext=txt
+    const parts = path ?? []; // e.g. ["llms"] for a request to /llms.txt or /llms.md
     if (parts.length === 0) {
         return new Response("Not found", { status: 404 });
     }
