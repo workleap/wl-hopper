@@ -1,6 +1,18 @@
 import type { SkillsConfig } from "./skillsTypes.ts";
 
 const templates = "/ai-pipeline/templates/skills/hopper";
+const skillScripts = "/ai-pipeline/skill-scripts";
+
+/**
+ * Every bundled service reads its data through the generated AI docs index and an env module.
+ * Both are redirected so the bundle reads the skill's own `references/` copies instead of a
+ * deployed docs folder — which is why the skill mirrors the ai-docs layout under `references/`
+ * for `tokens/maps`, `icons` and `styled-system`.
+ */
+const dataAliases = [
+    { filter: "^@docs/ai$", path: "/dist/ai-docs/index.ts" },
+    { filter: "(^|/)env$", path: `${skillScripts}/validatorEnv.ts` }
+];
 
 /**
  * Defines the agent Skills published at https://hopper.workleap.design/.well-known/skills.
@@ -15,7 +27,9 @@ export const skillsConfig: SkillsConfig = {
     sourceRootPath: "dist/ai-docs",
     buildRootPath: "dist",
     filesFolder: "skills",
-    maxTotalBytes: 4_000_000,
+    // Raised from 4MB when the skill took on the full token map tree, which the bundled
+    // tokensService needs to answer per-category lookups the way the MCP does.
+    maxTotalBytes: 5_500_000,
     skills: {
         hopper: {
             frontmatter: {
@@ -99,12 +113,12 @@ export const skillsConfig: SkillsConfig = {
                     description: "How to turn a Hopper token name or a raw CSS value into a component prop value."
                 },
 
-                // token maps — only the `all` roll-up per theme/scheme. It is the union of the
-                // per-category files, and it is the file the bundled validator reads.
+                // Token maps, mirroring the ai-docs layout exactly. The whole tree ships because
+                // the bundled tokensService resolves a file per category through getTokenMapFiles;
+                // shipping only the `all` roll-up would make every narrower --category throw.
                 {
-                    from: "/tokens/maps/*/*/all.json",
+                    from: "/tokens/maps/**/*.json",
                     to: "references/tokens/maps/",
-                    expectedCount: 4,
                     description: "Token name to component prop value map, with CSS values."
                 },
 
@@ -122,24 +136,40 @@ export const skillsConfig: SkillsConfig = {
                 }
             ],
 
+            // Every script bundles a service straight out of apps/mcp-server, so the skill and the
+            // MCP tool it mirrors run the same code and a logic change reaches both at build time.
+            // Nothing here is a reimplementation; only the data paths and the JSX parser are
+            // swapped, via the aliases below.
             scripts: [
                 {
-                    entry: "/ai-pipeline/skill-scripts/validateHopperCode.ts",
+                    // Mirrors the MCP's validate_hopper_code tool.
+                    entry: `${skillScripts}/validateHopperCode.ts`,
                     to: "scripts/validate-hopper-code.mjs",
                     description: "Lints Hopper JSX: tokens, prop values, UNSAFE_ usage, structure and layout.",
                     aliases: [
-                        // The validator reads its data files through the generated AI docs index and an
-                        // env module. Both are replaced so the bundle reads from the skill's own copies.
-                        { filter: "^@docs/ai$", path: "/dist/ai-docs/index.ts" },
-                        { filter: "(^|/)env$", path: "/ai-pipeline/skill-scripts/validatorEnv.ts" },
+                        ...dataAliases,
                         // Swap the TypeScript-ESLint parser for a resolver that prefers the consuming
                         // project's parser and falls back to a bundled acorn. Bundling the real one
                         // would drag in typescript (~8MB), several times the whole skill budget.
-                        { filter: "^@typescript-eslint/parser$", path: "/ai-pipeline/skill-scripts/validatorParser.ts" },
+                        { filter: "^@typescript-eslint/parser$", path: `${skillScripts}/validatorParser.ts` },
                         // acorn-jsx `require`s acorn while validatorParser.ts imports it, which
                         // would bundle both the CJS and ESM builds. Pin everything to the CJS one.
                         { filter: "^acorn$", path: "acorn" }
                     ]
+                },
+                {
+                    // Mirrors the MCP's get_design_tokens tool.
+                    entry: `${skillScripts}/searchTokens.ts`,
+                    to: "scripts/search-tokens.mjs",
+                    description: "Look a Hopper token name or a raw CSS value up and get the component prop value.",
+                    aliases: dataAliases
+                },
+                {
+                    // Mirrors the MCP's get_icons tool, Fuse.js fuzzy search included.
+                    entry: `${skillScripts}/searchIcons.ts`,
+                    to: "scripts/search-icons.mjs",
+                    description: "Fuzzy-search every Hopper icon by name, description or keyword.",
+                    aliases: dataAliases
                 }
             ],
 

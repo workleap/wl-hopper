@@ -14,11 +14,11 @@ looks wrong.
    and friends are rejected. Use the Hopper component, or `Div`/`Span` when you genuinely need a
    plain element. For anything else, use the `htmlElement` helper.
 2. **No `className` and no `style`.** Both props are prohibited. Style with Hopper's style props.
-3. **No emojis as icons.** Use `@hopper-ui/icons`. Search `references/icons/data.json` for a name —
-   never invent one.
+3. **No emojis as icons.** Use `@hopper-ui/icons`, and find the name with
+   `node scripts/search-icons.mjs <query>` — never invent one.
 4. **Token names are not prop values.** `hop-neutral-text` is the token; the prop value is
-   `neutral`. Look the mapping up in `references/tokens/maps/<theme>/<scheme>/all.json` — see
-   `references/tokens/README.md` for how.
+   `neutral`. Look it up with `node scripts/search-tokens.mjs --name hop-neutral-text` — see
+   `references/tokens/README.md` for the other lookups.
 5. **Prefer semantic tokens over core tokens.** `gap="core_80"` is wrong when a semantic spacing
    value exists. Core tokens are raw values with no dark-mode or theming behaviour.
 6. **`UNSAFE_` is a last resort.** Only for props on the whitelist in
@@ -36,7 +36,13 @@ looks wrong.
 2. Pick components from `references/components/index.md`.
 3. Read `references/components/<Name>.md` for each one. Read `references/api/<Name>.json` only when
    you need an exact prop type or default.
-4. Resolve every value through `references/tokens/` before writing it.
+4. Resolve every value and icon name with the scripts before writing them:
+
+   ```bash
+   node scripts/search-tokens.mjs --name hop-neutral-text   # or --css 16px
+   node scripts/search-icons.mjs --limit 5 delete
+   ```
+
 5. Validate what you wrote:
 
    ```bash
@@ -53,9 +59,12 @@ For bigger jobs, start from a workflow: `references/workflows/build-app.md` for 
 ## Relationship to the Hopper MCP server
 
 Hopper also publishes an MCP server at `https://hopper.workleap.design/mcp`. If it is configured,
-prefer it — it is always current, has fuzzy icon search, and serves the full component API. This
-skill is the offline, zero-configuration path and is a snapshot taken when you installed it; run
+prefer it — it is always current and serves the full component API. This skill is the offline,
+zero-configuration path and is a snapshot taken when you installed it; run
 `npx skills add https://hopper.workleap.design` again to refresh it.
+
+The three scripts above bundle the very same services the MCP tools call, so validation, token
+lookup and icon search give identical answers either way.
 
 Things this skill deliberately does not carry: the full props JSON (available at
 `https://hopper.workleap.design/ai-docs/components/api/full/<Name>.json`) and the package

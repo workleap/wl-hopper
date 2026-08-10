@@ -31,15 +31,31 @@ a preserved product asset, following `references/guides/figma-conventions.md`.
 
 ### 2.2 Token map
 
-Extract every unique token name from the `#get_design_context` response, then look each one up in
-`references/tokens/maps/<theme>/<scheme>/all.json` and record the `propValue`. See
-`references/tokens/README.md` for the lookup recipe.
+Extract every unique token name from the `#get_design_context` response and record its `propValue`:
+
+```bash
+node scripts/search-tokens.mjs --name hop-neutral-text --name hop-space-stack-md
+```
 
 ### 2.3 CSS value map
 
-Extract every unique raw CSS value (`16px`, `24px`, `2rem`, `400`, `#3C3C3C`, …) and search the same
-map files by `cssValue` to find the token that already covers it — for example `16px` → `core_160`.
-A raw value that maps to a token must use the token.
+Extract every unique raw CSS value (`16px`, `24px`, `2rem`, `400`, `#3C3C3C`, …) and find the token
+that already covers it — for example `16px` → `core_160`:
+
+```bash
+node scripts/search-tokens.mjs --css 16px --css 24px --css "#3C3C3C" --with-css-values
+```
+
+A raw value that maps to a token must use the token. Add `--theme sharegate` or `--scheme dark` when
+the frame targets those.
+
+### 2.4 Icons
+
+Resolve every icon by search, never by guessing a name:
+
+```bash
+node scripts/search-icons.mjs --limit 5 "close" "chevron down"
+```
 
 ## 3. Implement
 
