@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import docgenTs, { type ComponentDoc, type PropItem } from "react-docgen-typescript";
+import ts from "typescript";
 
 interface ComponentData {
     name: string;
@@ -65,13 +66,44 @@ const parserConfig = {
     }
 } satisfies docgenTs.ParserOptions;
 
-const tsConfigParser = docgenTs.withCustomConfig(
-    "./tsconfig.json",
-    parserConfig
-);
+// Components are declared as `const _Button = ...; export { _Button as Button };`. The parser
+// needs to see the underscore-prefixed binding (`componentNameResolver` above strips the `_`),
+// so the export statement is rewritten before it reaches TypeScript.
+//
+// The rewrite cannot simply be applied to every file of a shared program: components import each
+// other through barrels (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) which re-export
+// the *aliased* name, so stripping the alias everywhere would break cross-component type
+// resolution. `HOPPER_DOCGEN_ALIAS_MODE` selects how that is handled:
+//
+//   virtual-temp (default) - the rewritten file is exposed under an extra in-memory `.temp.tsx`
+//                            path and the real file is left untouched, reproducing exactly what
+//                            the previous on-disk temp files produced.
+//   additive               - rewrite in place to `export { _X as X, _X }`, keeping the alias.
+//   none                   - no rewrite; rely on `componentNameResolver` alone.
+type AliasMode = "virtual-temp" | "additive" | "none";
 
-const tsConfigFullPropsParser = docgenTs.withCustomConfig(
-    "./tsconfig.json",
+const ALIAS_MODE = (process.env.HOPPER_DOCGEN_ALIAS_MODE ?? "virtual-temp") as AliasMode;
+
+const EXPORT_ALIAS_RE = /export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g;
+
+function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
+    const { config, error } = ts.readConfigFile(tsconfigPath, ts.sys.readFile);
+
+    if (error) {
+        throw new Error(ts.flattenDiagnosticMessageText(error.messageText, "\n"));
+    }
+
+    const { options } = ts.parseJsonConfigFileContent(config, ts.sys, path.dirname(tsconfigPath), {}, tsconfigPath);
+
+    return { ...options, noEmit: true, skipLibCheck: true, skipDefaultLibCheck: true };
+}
+
+const compilerOptions = loadCompilerOptions(path.resolve("./tsconfig.json"));
+
+const tsConfigParser = docgenTs.withCompilerOptions(compilerOptions, parserConfig);
+
+const tsConfigFullPropsParser = docgenTs.withCompilerOptions(
+    compilerOptions,
     {
         ...parserConfig,
         propFilter: prop => {
@@ -297,20 +329,67 @@ function toDirectoryPath(partialPath: string) {
 function preprocessFileContent(filePath: string) {
     const content = fs.readFileSync(filePath, "utf8");
 
-    return content.replace(/export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g, "export { $1 }");
-}
-
-function createTempFile(content: string, originalFilePath: string) {
-    const tempFilePath = path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
-    fs.writeFileSync(tempFilePath, content, "utf8");
-
-    return tempFilePath;
-}
-
-function deleteFile(filePath: string) {
-    if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
+    if (ALIAS_MODE === "additive") {
+        return content.replace(EXPORT_ALIAS_RE, "export { _$1 as $2, _$1 }");
     }
+
+    return content.replace(EXPORT_ALIAS_RE, "export { $1 }");
+}
+
+// Mirrors the path the previous on-disk temp files used, `.temp` included, because
+// `getFormattedData` strips it back out of the reported file path.
+function toVirtualTempPath(originalFilePath: string) {
+    return path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
+}
+
+// Resolves the path each component is parsed under, and the in-memory content served for it.
+function createParseTargets(filePaths: string[]) {
+    const parsePathByFilePath = new Map<string, string>();
+    const contentByParsePath = new Map<string, string>();
+
+    for (const filePath of filePaths) {
+        const parsePath = ALIAS_MODE === "virtual-temp" ? toVirtualTempPath(filePath) : filePath;
+
+        parsePathByFilePath.set(filePath, parsePath);
+
+        if (ALIAS_MODE !== "none") {
+            contentByParsePath.set(parsePath, preprocessFileContent(filePath));
+        }
+    }
+
+    return { parsePathByFilePath, contentByParsePath };
+}
+
+// Serves the rewritten sources from memory so nothing is ever written to another package's
+// source tree. In `virtual-temp` mode the rewritten file is served under an additional path,
+// leaving the real file — and therefore every barrel that re-exports it — untouched.
+function createProgramHost(options: ts.CompilerOptions, contentByParsePath: Map<string, string>): ts.CompilerHost {
+    const host = ts.createCompilerHost(options, true);
+
+    if (contentByParsePath.size === 0) {
+        return host;
+    }
+
+    const originalGetSourceFile = host.getSourceFile.bind(host);
+    const originalFileExists = host.fileExists.bind(host);
+    const originalReadFile = host.readFile.bind(host);
+
+    host.getSourceFile = (fileName, languageVersion, onError, shouldCreateNewSourceFile) => {
+        const content = contentByParsePath.get(path.resolve(fileName));
+
+        if (content !== undefined) {
+            // scriptKind is omitted on purpose: TypeScript infers TS vs TSX from the extension.
+            return ts.createSourceFile(fileName, content, languageVersion, true);
+        }
+
+        return originalGetSourceFile(fileName, languageVersion, onError, shouldCreateNewSourceFile);
+    };
+
+    host.fileExists = fileName => contentByParsePath.has(path.resolve(fileName)) || originalFileExists(fileName);
+
+    host.readFile = fileName => contentByParsePath.get(path.resolve(fileName)) ?? originalReadFile(fileName);
+
+    return host;
 }
 
 async function generateComponentData() {
@@ -341,24 +420,32 @@ async function generateComponentData() {
         return;
     }
 
-    for (const component of components) {
-        if (component) {
-            const fileContent = preprocessFileContent(component.filePath);
-            const tempFilePath = createTempFile(fileContent, component.filePath);
+    const definedComponents = components.filter(Boolean) as ComponentData[];
+    const filePaths = definedComponents.map(component => path.resolve(component.filePath));
+    const { parsePathByFilePath, contentByParsePath } = createParseTargets(filePaths);
+    const rootFileNames = filePaths.map(filePath => parsePathByFilePath.get(filePath)!);
 
-            try {
-                const data = tsConfigParser.parse(tempFilePath);
-                const fullData = tsConfigFullPropsParser.parse(tempFilePath);
-                const { name } = component;
+    // A single program serves both parsers. They differ only by `propFilter`, a predicate applied
+    // after type resolution, and building one program instead of two per component is what makes
+    // this script fast: each program re-binds the whole React + react-aria .d.ts closure.
+    console.log(`Building TypeScript program for ${rootFileNames.length} components (alias mode: ${ALIAS_MODE})...`);
+    const host = createProgramHost(compilerOptions, contentByParsePath);
+    const program = ts.createProgram(rootFileNames, compilerOptions, host);
+    const programProvider = () => program;
 
-                writeFile(name, getFormattedData(data));
-                writeFile(`${name}-full`, getFormattedData(fullData));
-                console.log(`${name} API is created!`);
-            } catch (error) {
-                console.error(`Error generating documentation for ${component.name}:`, error);
-            } finally {
-                deleteFile(tempFilePath);
-            }
+    for (const component of definedComponents) {
+        const parsePath = parsePathByFilePath.get(path.resolve(component.filePath))!;
+
+        try {
+            const data = tsConfigParser.parseWithProgramProvider([parsePath], programProvider);
+            const fullData = tsConfigFullPropsParser.parseWithProgramProvider([parsePath], programProvider);
+            const { name } = component;
+
+            writeFile(name, getFormattedData(data));
+            writeFile(`${name}-full`, getFormattedData(fullData));
+            console.log(`${name} API is created!`);
+        } catch (error) {
+            console.error(`Error generating documentation for ${component.name}:`, error);
         }
     }
 

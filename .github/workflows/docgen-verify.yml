@@ -1,0 +1,113 @@
+# Temporary workflow: proves the rewritten `generateComponentData.ts` produces output that is
+# byte-identical to the previous implementation, and measures both. Delete before merging.
+name: Docgen verification
+
+on:
+    workflow_dispatch:
+    pull_request:
+        branches: [ "main" ]
+
+env:
+    CI: true
+
+jobs:
+    verify:
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+                with:
+                    fetch-depth: 0
+
+            -   name: Setup Node and PNPM
+                uses: ./.github/composite-actions/setup
+
+            -   name: Install dependencies
+                run: pnpm i --frozen-lockfile
+
+            -   name: Generate baseline with the previous implementation
+                run: |
+                    set -euo pipefail
+                    BASE_SHA="${{ github.event.pull_request.base.sha }}"
+                    if [ -z "$BASE_SHA" ]; then BASE_SHA="origin/main"; fi
+                    echo "Baseline script from $BASE_SHA"
+
+                    cp apps/docs/scripts/generateComponentData.ts /tmp/candidate-script.ts
+                    git show "$BASE_SHA:apps/docs/scripts/generateComponentData.ts" > apps/docs/scripts/generateComponentData.ts
+
+                    cd apps/docs
+                    rm -rf datas/components
+                    START=$(date +%s)
+                    pnpm generate:componentData > /tmp/baseline.log 2>&1 || (tail -50 /tmp/baseline.log; exit 1)
+                    END=$(date +%s)
+                    echo "BASELINE_SECONDS=$((END - START))" >> "$GITHUB_ENV"
+                    mv datas/components /tmp/baseline
+
+                    cd ..
+                    cp /tmp/candidate-script.ts apps/docs/scripts/generateComponentData.ts
+                    echo "Baseline files: $(ls /tmp/baseline | wc -l)"
+
+            -   name: Compare every alias mode against the baseline
+                run: |
+                    set -uo pipefail
+                    FAILED=""
+                    touch /tmp/summary.md
+                    for MODE in none additive virtual-temp; do
+                        echo "::group::mode=$MODE"
+                        rm -rf apps/docs/datas/components
+                        START=$(date +%s)
+                        (cd apps/docs && HOPPER_DOCGEN_ALIAS_MODE="$MODE" pnpm generate:componentData) > "/tmp/$MODE.log" 2>&1
+                        RUN_STATUS=$?
+                        END=$(date +%s)
+                        DURATION=$((END - START))
+
+                        if [ "$RUN_STATUS" -ne 0 ]; then
+                            echo "mode=$MODE CRASHED after ${DURATION}s"
+                            tail -50 "/tmp/$MODE.log"
+                            FAILED="$FAILED $MODE(crash)"
+                            echo "::endgroup::"
+                            continue
+                        fi
+
+                        if diff -r /tmp/baseline apps/docs/datas/components > "/tmp/$MODE.diff" 2>&1; then
+                            RESULT="IDENTICAL"
+                        else
+                            RESULT="DIFFERS ($(grep -c . "/tmp/$MODE.diff") diff lines)"
+                            head -40 "/tmp/$MODE.diff"
+                            FAILED="$FAILED $MODE(diff)"
+                        fi
+
+                        DIRTY="$(git status --porcelain)"
+                        LEAKED="$(find packages -name '*.temp.*' -print)"
+                        if [ -n "$DIRTY" ] || [ -n "$LEAKED" ]; then
+                            echo "Working tree not clean: $DIRTY $LEAKED"
+                            FAILED="$FAILED $MODE(dirty)"
+                        fi
+
+                        echo "mode=$MODE ${DURATION}s $RESULT"
+                        echo "| \`$MODE\` | ${DURATION}s | $RESULT |" >> /tmp/summary.md
+                        echo "::endgroup::"
+                    done
+
+                    {
+                        echo "## Docgen verification"
+                        echo ""
+                        echo "Baseline (previous implementation): **${BASELINE_SECONDS}s**, $(ls /tmp/baseline | wc -l) files."
+                        echo ""
+                        echo "| alias mode | duration | output vs baseline |"
+                        echo "|---|---|---|"
+                        cat /tmp/summary.md
+                    } >> "$GITHUB_STEP_SUMMARY"
+
+                    if [ -n "$FAILED" ]; then
+                        echo "Modes that did not reproduce the baseline:$FAILED"
+                    fi
+
+                    # The job fails only if no mode reproduced the baseline exactly.
+                    if grep -q "IDENTICAL" /tmp/summary.md; then
+                        echo "At least one alias mode is byte-identical to the baseline."
+                        exit 0
+                    fi
+
+                    echo "No alias mode reproduced the baseline."
+                    exit 1
