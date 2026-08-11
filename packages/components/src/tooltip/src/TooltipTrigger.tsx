@@ -179,7 +179,7 @@ function useForwardFocusablePropsToRef({ disabled = false, triggerRef }: UseForw
         const element = triggerRef.current;
         element.addEventListener("pointerenter", onPointerEnter);
         element.addEventListener("pointerleave", onPointerLeave);
-        element.addEventListener("pointerdown ", onPointerDown);
+        element.addEventListener("pointerdown", onPointerDown);
         element.addEventListener("focusin", onFocus);
         element.addEventListener("focusout", onBlur);
         element.addEventListener("keydown", onKeyDown);
@@ -188,7 +188,7 @@ function useForwardFocusablePropsToRef({ disabled = false, triggerRef }: UseForw
         return () => {
             element.removeEventListener("pointerenter", onPointerEnter);
             element.removeEventListener("pointerleave", onPointerLeave);
-            element.removeEventListener("pointerdown ", onPointerDown);
+            element.removeEventListener("pointerdown", onPointerDown);
             element.removeEventListener("focusin", onFocus);
             element.removeEventListener("focusout", onBlur);
             element.removeEventListener("keydown", onKeyDown);
