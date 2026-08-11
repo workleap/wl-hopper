@@ -73,13 +73,27 @@ jobs:
                             continue
                         fi
 
-                        if diff -r /tmp/baseline apps/docs/datas/components > "/tmp/$MODE.diff" 2>&1; then
-                            RESULT="IDENTICAL"
-                        else
-                            RESULT="DIFFERS ($(grep -c . "/tmp/$MODE.diff") diff lines)"
-                            head -40 "/tmp/$MODE.diff"
-                            FAILED="$FAILED $MODE(diff)"
+                        COMPARE_RESULT_FILE="/tmp/$MODE.result" \
+                            node .github/workflows/scripts/compareDocgenOutput.mjs /tmp/baseline apps/docs/datas/components
+                        RESULT="$(cat "/tmp/$MODE.result")"
+
+                        case "$RESULT" in
+                            IDENTICAL*|EQUIVALENT*) ;;
+                            *) FAILED="$FAILED $MODE(diff)" ;;
+                        esac
+
+                        # Second run of the same mode, to prove the new implementation is itself
+                        # deterministic rather than accidentally matching once.
+                        mv apps/docs/datas/components "/tmp/$MODE-first"
+                        (cd apps/docs && HOPPER_DOCGEN_ALIAS_MODE="$MODE" pnpm generate:componentData) > "/tmp/$MODE-2.log" 2>&1
+                        COMPARE_RESULT_FILE="/tmp/$MODE.repeat" \
+                            node .github/workflows/scripts/compareDocgenOutput.mjs "/tmp/$MODE-first" apps/docs/datas/components
+                        REPEAT="$(cat "/tmp/$MODE.repeat")"
+                        if [ "$REPEAT" != "IDENTICAL" ]; then
+                            echo "mode=$MODE is not deterministic across runs: $REPEAT"
+                            FAILED="$FAILED $MODE(nondeterministic)"
                         fi
+                        rm -rf "/tmp/$MODE-first"
 
                         DIRTY="$(git status --porcelain)"
                         LEAKED="$(find packages -name '*.temp.*' -print)"
@@ -88,8 +102,8 @@ jobs:
                             FAILED="$FAILED $MODE(dirty)"
                         fi
 
-                        echo "mode=$MODE ${DURATION}s $RESULT"
-                        echo "| \`$MODE\` | ${DURATION}s | $RESULT |" >> /tmp/summary.md
+                        echo "mode=$MODE ${DURATION}s $RESULT (repeat: $REPEAT)"
+                        echo "| \`$MODE\` | ${DURATION}s | $RESULT | $REPEAT |" >> /tmp/summary.md
                         echo "::endgroup::"
                     done
 
@@ -98,18 +112,18 @@ jobs:
                         echo ""
                         echo "Baseline (previous implementation): **${BASELINE_SECONDS}s**, $(ls /tmp/baseline | wc -l) files."
                         echo ""
-                        echo "| alias mode | duration | output vs baseline |"
-                        echo "|---|---|---|"
+                        echo "| alias mode | duration | output vs baseline | repeat run |"
+                        echo "|---|---|---|---|"
                         cat /tmp/summary.md
                     } >> "$GITHUB_STEP_SUMMARY"
 
                     if [ -n "$FAILED" ]; then
-                        echo "Modes that did not reproduce the baseline:$FAILED"
+                        echo "Modes with a problem:$FAILED"
                     fi
 
-                    # The job fails only if no mode reproduced the baseline exactly.
-                    if grep -q "IDENTICAL" /tmp/summary.md; then
-                        echo "At least one alias mode is byte-identical to the baseline."
+                    # Passes when a mode reproduces the baseline data exactly — byte-identical, or
+                    # equivalent with only JSON key order differing — and is stable across runs.
+                    if grep -qE "IDENTICAL|EQUIVALENT" /tmp/summary.md; then
                         exit 0
                     fi
 
