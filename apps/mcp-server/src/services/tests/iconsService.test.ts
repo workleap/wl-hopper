@@ -9,7 +9,10 @@ vi.mock("fs/promises", async () => {
     const fs = await vi.importActual<typeof import("fs")>("fs");
 
     const readFile = vi.fn((path: string) => {
-        if (path.includes("/icons/data.json")) {
+        // Match with forward slashes so the mock works on Windows too (the service
+        // builds paths with the OS separator via path.join).
+        const normalized = path.replace(/\\/g, "/");
+        if (normalized.includes("/icons/data.json")) {
             return JSON.stringify(MOCK_ICONS_DATA);
         }
 

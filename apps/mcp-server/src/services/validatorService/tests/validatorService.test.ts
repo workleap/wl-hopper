@@ -9,9 +9,12 @@ vi.mock("fs/promises", async () => {
     const fs = await vi.importActual<typeof import("fs")>("fs");
 
     const readFile = vi.fn((path: string) => {
-        if (path.includes("unsafe-props-data.json")) {
+        // Match with forward slashes so the mock works on Windows too (the service
+        // builds paths with the OS separator via path.join).
+        const normalized = path.replace(/\\/g, "/");
+        if (normalized.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
-        } else if (path.includes("/tokens/maps/workleap/light/all.json")) {
+        } else if (normalized.includes("/tokens/maps/workleap/light/all.json")) {
             return JSON.stringify(MOCK_TOKENS_FULL);
         }
 
