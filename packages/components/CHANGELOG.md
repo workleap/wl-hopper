@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.1.1
+
+### Patch Changes
+
+- e248708: feat(PasswordField): add `prefix` prop to display an icon or short text at the start of the input, matching TextField.
+
 ## 3.1.0
 
 ### Minor Changes
