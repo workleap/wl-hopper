@@ -9,9 +9,9 @@ import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string[];
-    };
+    }>;
 }
 
 function findPageFromSlug(slug: string[]) {
@@ -20,7 +20,8 @@ function findPageFromSlug(slug: string[]) {
     return allTokens.find(page => page.section === section && page.slug === type);
 }
 
-export default function TokenPage({ params: { slug } }: PageProps) {
+export default async function TokenPage({ params }: PageProps) {
+    const { slug } = await params;
     const designToken = findPageFromSlug(slug);
 
     if (!designToken) {
@@ -46,8 +47,9 @@ export function generateStaticParams() {
 }
 
 // The sections are Overview, Semantic and Core. we want all title in "Core" to be "Core " + "Color"(the token type) + " Tokens"
-export function generateMetadata({ params }: PageProps) {
-    const page = findPageFromSlug(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    const page = findPageFromSlug(slug);
 
     if (!page) {
         return {

@@ -1,4 +1,4 @@
-name: CI React 19
+name: CI React 18
 
 # Pnpm setup based on https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
 
@@ -12,7 +12,7 @@ env:
     CI: true
 
 concurrency:
-    group: ci-react19-${{ github.ref }}
+    group: ci-react18-${{ github.ref }}
     cancel-in-progress: true
 
 jobs:
@@ -28,8 +28,8 @@ jobs:
                 with:
                   install_dependencies: false
 
-            -   name: Install React 19
-                run: pnpm install-react19
+            -   name: Install React 18
+                run: pnpm install-react18
 
             -   name: Install dependencies
                 run: pnpm i
@@ -38,13 +38,16 @@ jobs:
                 id: cache-turborepo-restore
                 uses: actions/cache/restore@v4
                 with:
-                    key: ${{ runner.os }}-turborepo-${{ github.sha }}-ci-react19
+                    key: ${{ runner.os }}-turborepo-${{ github.sha }}-ci-react18
                     restore-keys: |
                         ${{ runner.os }}-turborepo-
                     path: .turbo
 
             -   name: Build packages
                 run: pnpm build:pkg
+
+            -   name: Typecheck packages
+                run: pnpm turbo run typecheck --filter=./packages/*
 
             -   name: Test packages
                 run: pnpm test

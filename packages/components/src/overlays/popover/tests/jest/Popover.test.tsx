@@ -1,13 +1,12 @@
 import { Text, Button } from "@hopper-ui/components";
 import { render, screen, fireEvent } from "@hopper-ui/test-utils";
-import { createRef, type RefObject } from "react";
+import { createRef } from "react";
 
 import { Popover, type PopoverProps } from "../../src/Popover.tsx";
 import { PopoverTrigger } from "../../src/PopoverTrigger.tsx";
 
 interface SetupProps extends PopoverProps {
     "data-foo"?: string;
-    ref?: RefObject<HTMLDivElement>;
 }
 
 const setUp = (props: SetupProps) => {
@@ -62,7 +61,12 @@ describe("Popover", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        setUp({ children: popoverChildren, ref });
+        render(
+            <PopoverTrigger>
+                <Button>trigger</Button>
+                <Popover ref={ref} data-testid="hopper-popover">{popoverChildren}</Popover>
+            </PopoverTrigger>
+        );
 
         fireEvent.click(screen.getByText("trigger"));
         expect(ref.current).not.toBeNull();

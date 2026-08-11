@@ -13,18 +13,18 @@
     "dependencies": {
         "@hopper-ui/components": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
-        "react": "^18.3.1",
+        "react": "^19.2.8",
         "react-aria": "^3.44.0",
         "react-aria-components": "^1.13.0",
-        "react-dom": "^18.3.1",
+        "react-dom": "^19.2.8",
         "react-router-dom": "^7.9.3"
     },
     "devDependencies": {
         "@eslint/js": "9.38.0",
         "@swc/core": "1.13.5",
         "@swc/helpers": "0.5.17",
-        "@types/react": "18.3.13",
-        "@types/react-dom": "18.3.1",
+        "@types/react": "19.2.18",
+        "@types/react-dom": "19.2.4",
         "@typescript-eslint/parser": "8.46.0",
         "@workleap/browserslist-config": "2.1.0",
         "@workleap/eslint-configs": "0.0.7",
