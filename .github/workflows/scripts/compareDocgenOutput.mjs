@@ -55,9 +55,9 @@ for (const file of baselineFiles) {
     const baselineJson = canonical(baselinePath);
     const candidateJson = canonical(candidatePath);
 
+    // A malformed file is reported on its own; it cannot also be meaningfully compared.
     if (baselineJson === null || candidateJson === null) {
         malformed.push(`${file}${candidateJson === null ? " (candidate)" : " (baseline)"}`);
-        semanticallyDifferent.push(file);
     } else if (baselineJson !== candidateJson) {
         semanticallyDifferent.push(file);
     }
@@ -70,27 +70,51 @@ console.log(`byte-different: ${byteDifferent.length}`);
 console.log(`semantically-different: ${semanticallyDifferent.length}`);
 console.log(`malformed: ${malformed.length}${malformed.length ? ` -> ${malformed.slice(0, 10).join(", ")}` : ""}`);
 
-if (semanticallyDifferent.length && !malformed.length) {
-    console.log(`semantically-different files: ${semanticallyDifferent.slice(0, 20).join(", ")}`);
-
-    // Show the first real divergence so the failure is actionable.
-    const file = semanticallyDifferent[0];
+// Classifies what actually changed, so a failure says which props moved rather than just
+// "these files differ".
+for (const file of semanticallyDifferent.slice(0, 25)) {
     const baseline = JSON.parse(fs.readFileSync(path.join(baselineDir, file), "utf8"));
     const candidate = JSON.parse(fs.readFileSync(path.join(candidateDir, file), "utf8"));
 
-    for (let index = 0; index < Math.max(baseline.length, candidate.length); index++) {
-        const baselineProps = Object.keys(baseline[index]?.props ?? {}).sort();
-        const candidateProps = Object.keys(candidate[index]?.props ?? {}).sort();
-        const droppedProps = baselineProps.filter(prop => !candidateProps.includes(prop));
-        const addedProps = candidateProps.filter(prop => !baselineProps.includes(prop));
+    if (baseline.length !== candidate.length) {
+        console.log(`  ${file}: component count ${baseline.length} -> ${candidate.length}`);
+        console.log(`    baseline: ${baseline.map(entry => entry.displayName).join(", ")}`);
+        console.log(`    candidate: ${candidate.map(entry => entry.displayName).join(", ")}`);
+        continue;
+    }
 
-        if (droppedProps.length || addedProps.length) {
-            console.log(`  ${file}[${index}] dropped: ${droppedProps.join(", ")} | added: ${addedProps.join(", ")}`);
+    for (let index = 0; index < baseline.length; index++) {
+        const baselineProps = Object.keys(baseline[index].props ?? {}).sort();
+        const candidateProps = Object.keys(candidate[index].props ?? {}).sort();
+        const dropped = baselineProps.filter(prop => !candidateProps.includes(prop));
+        const added = candidateProps.filter(prop => !baselineProps.includes(prop));
+        const changed = baselineProps
+            .filter(prop => candidateProps.includes(prop))
+            .filter(prop => JSON.stringify(sortDeep(baseline[index].props[prop])) !== JSON.stringify(sortDeep(candidate[index].props[prop])));
+
+        const name = `${file}[${baseline[index].displayName}]`;
+
+        if (dropped.length) {
+            console.log(`  ${name} dropped: ${dropped.slice(0, 12).join(", ")}${dropped.length > 12 ? ` (+${dropped.length - 12})` : ""}`);
+        }
+        if (added.length) {
+            console.log(`  ${name} added: ${added.slice(0, 12).join(", ")}${added.length > 12 ? ` (+${added.length - 12})` : ""}`);
+        }
+        if (changed.length) {
+            const prop = changed[0];
+            console.log(`  ${name} changed: ${changed.slice(0, 12).join(", ")}${changed.length > 12 ? ` (+${changed.length - 12})` : ""}`);
+            console.log(`    baseline ${prop}: ${JSON.stringify(baseline[index].props[prop]).slice(0, 220)}`);
+            console.log(`    candidate ${prop}: ${JSON.stringify(candidate[index].props[prop]).slice(0, 220)}`);
         }
     }
 }
 
-const status = missing.length === 0 && extra.length === 0 && semanticallyDifferent.length === 0
+// Malformed baseline files are tolerated: the previous implementation writes asynchronously and
+// races with itself on components that share an output file name, so its own output is sometimes
+// unparseable. A malformed *candidate* file is always a failure.
+const malformedCandidates = malformed.filter(entry => entry.endsWith("(candidate)"));
+
+const status = missing.length === 0 && extra.length === 0 && semanticallyDifferent.length === 0 && malformedCandidates.length === 0
     ? (byteDifferent.length === 0 ? "IDENTICAL" : `EQUIVALENT (${byteDifferent.length} files differ in key order only)`)
     : "DIFFERENT";
 

@@ -56,6 +56,7 @@ jobs:
                     set -uo pipefail
                     FAILED=""
                     touch /tmp/summary.md
+                    rm -f /tmp/passing-modes.txt
                     for MODE in none additive virtual-temp; do
                         echo "::group::mode=$MODE"
                         rm -rf apps/docs/datas/components
@@ -102,6 +103,14 @@ jobs:
 
                         echo "mode=$MODE ${DURATION}s $RESULT (repeat: $REPEAT)"
                         echo "| \`$MODE\` | ${DURATION}s | $RESULT | $REPEAT |" >> /tmp/summary.md
+
+                        case "$RESULT" in
+                            IDENTICAL*|EQUIVALENT*)
+                                if [ "$REPEAT" = "IDENTICAL" ]; then
+                                    echo "$MODE" >> /tmp/passing-modes.txt
+                                fi
+                                ;;
+                        esac
                         echo "::endgroup::"
                     done
 
@@ -119,9 +128,10 @@ jobs:
                         echo "Modes with a problem:$FAILED"
                     fi
 
-                    # Passes when a mode reproduces the baseline data exactly — byte-identical, or
-                    # equivalent with only JSON key order differing — and is stable across runs.
-                    if grep -qE "IDENTICAL|EQUIVALENT" /tmp/summary.md; then
+                    # Passes when a mode reproduces the baseline data — byte-identical, or equivalent
+                    # with only JSON key order differing — AND is stable across a repeat run.
+                    if [ -s /tmp/passing-modes.txt ]; then
+                        echo "Modes reproducing the baseline: $(tr '\n' ' ' < /tmp/passing-modes.txt)"
                         exit 0
                     fi
 
