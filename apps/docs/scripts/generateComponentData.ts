@@ -29,6 +29,11 @@ export interface Options {
     exclude?: string[];
 }
 
+interface ParseTarget {
+    component: ComponentData;
+    parsePath: string;
+}
+
 const PACKAGES = path.join(process.cwd(), "..", "..", "packages", "components", "src");
 const ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "Icon.tsx");
 const RICH_ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "RichIcon.tsx");
@@ -343,21 +348,22 @@ function toVirtualTempPath(originalFilePath: string) {
 }
 
 // Resolves the path each component is parsed under, and the in-memory content served for it.
-function createParseTargets(filePaths: string[]) {
-    const parsePathByFilePath = new Map<string, string>();
+function createParseTargets(components: ComponentData[]) {
+    const targets: ParseTarget[] = [];
     const contentByParsePath = new Map<string, string>();
 
-    for (const filePath of filePaths) {
+    for (const component of components) {
+        const filePath = path.resolve(component.filePath);
         const parsePath = ALIAS_MODE === "virtual-temp" ? toVirtualTempPath(filePath) : filePath;
 
-        parsePathByFilePath.set(filePath, parsePath);
+        targets.push({ component, parsePath });
 
         if (ALIAS_MODE !== "none") {
             contentByParsePath.set(parsePath, preprocessFileContent(filePath));
         }
     }
 
-    return { parsePathByFilePath, contentByParsePath };
+    return { targets, contentByParsePath };
 }
 
 // Serves the rewritten sources from memory so nothing is ever written to another package's
@@ -421,9 +427,8 @@ async function generateComponentData() {
     }
 
     const definedComponents = components.filter(Boolean) as ComponentData[];
-    const filePaths = definedComponents.map(component => path.resolve(component.filePath));
-    const { parsePathByFilePath, contentByParsePath } = createParseTargets(filePaths);
-    const rootFileNames = filePaths.map(filePath => parsePathByFilePath.get(filePath)!);
+    const { targets, contentByParsePath } = createParseTargets(definedComponents);
+    const rootFileNames = targets.map(target => target.parsePath);
 
     // A single program serves both parsers. They differ only by `propFilter`, a predicate applied
     // after type resolution, and building one program instead of two per component is what makes
@@ -433,9 +438,7 @@ async function generateComponentData() {
     const program = ts.createProgram(rootFileNames, compilerOptions, host);
     const programProvider = () => program;
 
-    for (const component of definedComponents) {
-        const parsePath = parsePathByFilePath.get(path.resolve(component.filePath))!;
-
+    for (const { component, parsePath } of targets) {
         try {
             const data = tsConfigParser.parseWithProgramProvider([parsePath], programProvider);
             const fullData = tsConfigFullPropsParser.parseWithProgramProvider([parsePath], programProvider);
