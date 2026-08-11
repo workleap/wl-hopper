@@ -20,16 +20,14 @@ const storybookConfig: StorybookConfig = {
     ],
     addons: [
         getAbsolutePath("@storybook/addon-a11y"),
-        getAbsolutePath("@storybook/addon-links"),
         getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
         getAbsolutePath("@chromatic-com/storybook"),
         getAbsolutePath("@storybook/addon-docs")
     ],
-    framework: getAbsolutePath("@storybook/react-webpack5"),
-    core: {
-        builder: {
-            name: getAbsolutePath("@storybook/builder-webpack5"),
-            options: {
+    framework: {
+        name: getAbsolutePath("@storybook/react-webpack5"),
+        options: {
+            builder: {
                 lazyCompilation: isLazyCompilation
             }
         }
