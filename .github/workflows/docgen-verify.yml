@@ -28,7 +28,17 @@ jobs:
             -   name: Install dependencies
                 run: pnpm i --frozen-lockfile
 
+            -   name: Restore the baseline output
+                id: baseline-cache
+                uses: actions/cache@v4
+                with:
+                    # The baseline only depends on the base commit's sources, so it can be reused
+                    # across pushes to this branch instead of costing 3+ minutes every run.
+                    key: docgen-baseline-${{ github.event.pull_request.base.sha || github.sha }}
+                    path: /tmp/baseline
+
             -   name: Generate baseline with the previous implementation
+                if: steps.baseline-cache.outputs.cache-hit != 'true'
                 run: |
                     set -euo pipefail
                     BASE_SHA="${{ github.event.pull_request.base.sha }}"
@@ -57,7 +67,9 @@ jobs:
                     FAILED=""
                     touch /tmp/summary.md
                     rm -f /tmp/passing-modes.txt
-                    for MODE in none additive virtual-temp; do
+                    # `none` and `additive` both lose a component outright (Box disappears), so only
+                    # the virtual path mode is still a candidate.
+                    for MODE in virtual-temp; do
                         echo "::group::mode=$MODE"
                         rm -rf apps/docs/datas/components
                         START=$(date +%s)
@@ -117,7 +129,7 @@ jobs:
                     {
                         echo "## Docgen verification"
                         echo ""
-                        echo "Baseline (previous implementation): **${BASELINE_SECONDS}s**, $(ls /tmp/baseline | wc -l) files."
+                        echo "Baseline (previous implementation): **${BASELINE_SECONDS:-cached}s**, $(ls /tmp/baseline | wc -l) files."
                         echo ""
                         echo "| alias mode | duration | output vs baseline | repeat run |"
                         echo "|---|---|---|---|"

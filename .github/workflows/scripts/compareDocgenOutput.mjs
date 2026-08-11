@@ -19,6 +19,27 @@ function sortDeep(value) {
     return value;
 }
 
+// Walks two values in parallel and yields [path, baselineValue, candidateValue] for each leaf that
+// differs, so a report points at the exact field rather than dumping the whole prop.
+function* diffPaths(before, after, propertyPath = "", depth = 0) {
+    if (depth > 6 || JSON.stringify(sortDeep(before)) === JSON.stringify(sortDeep(after))) {
+        return;
+    }
+
+    const bothObjects = before && after && typeof before === "object" && typeof after === "object"
+        && !Array.isArray(before) === !Array.isArray(after);
+
+    if (!bothObjects) {
+        yield [propertyPath, JSON.stringify(before)?.slice(0, 400), JSON.stringify(after)?.slice(0, 400)];
+
+        return;
+    }
+
+    for (const key of new Set([...Object.keys(before), ...Object.keys(after)])) {
+        yield* diffPaths(before[key], after[key], `${propertyPath}.${key}`, depth + 1);
+    }
+}
+
 // Returns null when the file is not valid JSON, which is itself a finding worth reporting.
 function canonical(filePath) {
     try {
@@ -101,10 +122,15 @@ for (const file of semanticallyDifferent.slice(0, 25)) {
             console.log(`  ${name} added: ${added.slice(0, 12).join(", ")}${added.length > 12 ? ` (+${added.length - 12})` : ""}`);
         }
         if (changed.length) {
-            const prop = changed[0];
             console.log(`  ${name} changed: ${changed.slice(0, 12).join(", ")}${changed.length > 12 ? ` (+${changed.length - 12})` : ""}`);
-            console.log(`    baseline ${prop}: ${JSON.stringify(baseline[index].props[prop]).slice(0, 220)}`);
-            console.log(`    candidate ${prop}: ${JSON.stringify(candidate[index].props[prop]).slice(0, 220)}`);
+
+            for (const prop of changed.slice(0, 3)) {
+                for (const [propertyPath, before, after] of diffPaths(baseline[index].props[prop], candidate[index].props[prop])) {
+                    console.log(`    ${prop}${propertyPath}`);
+                    console.log(`      baseline : ${before}`);
+                    console.log(`      candidate: ${after}`);
+                }
+            }
         }
     }
 }
