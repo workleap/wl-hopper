@@ -1,49 +1,50 @@
-import {
-    MOCK_TOKENS_BRIEF,
-    MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
-    MOCK_TOKENS_FULL,
-    MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL
-} from "../../tests/mocks/tokensData";
+import { MOCK_TOKENS_BRIEF } from "../../tests/mocks/tokensData";
 import { clearTokenDataCache, getDesignTokens } from "../tokensService";
 
-// Mock file map with paths for all theme/colorScheme combinations
-// The tests primarily use workleap/light (default), but we also support other combinations
-const MOCK_FILE_MAP = {
-    // workleap/light (default)
-    "/tokens/maps/workleap/light/all.json": MOCK_TOKENS_FULL,
-    "/tokens/maps/workleap/light/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    "/tokens/maps/workleap/light/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/workleap/light/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/workleap/light/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    "/tokens/maps/workleap/light/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
-    // workleap/dark
-    "/tokens/maps/workleap/dark/all.json": MOCK_TOKENS_FULL,
-    "/tokens/maps/workleap/dark/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    "/tokens/maps/workleap/dark/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/workleap/dark/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/workleap/dark/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    "/tokens/maps/workleap/dark/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
-    // sharegate/light
-    "/tokens/maps/sharegate/light/all.json": MOCK_TOKENS_FULL,
-    "/tokens/maps/sharegate/light/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    "/tokens/maps/sharegate/light/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/sharegate/light/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/sharegate/light/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    "/tokens/maps/sharegate/light/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
-    // sharegate/dark
-    "/tokens/maps/sharegate/dark/all.json": MOCK_TOKENS_FULL,
-    "/tokens/maps/sharegate/dark/semantic-shadow.json": MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
-    "/tokens/maps/sharegate/dark/semantic-color.json": MOCK_TOKENS_SEMANTIC_COLOR_FULL,
-    "/tokens/maps/sharegate/dark/semantic-paddingSize.json": MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
-    "/tokens/maps/sharegate/dark/semantic-marginSize.json": MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
-    "/tokens/maps/sharegate/dark/core-fontWeight.json": MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
-} as const;
+// Mock file map with paths for all theme/colorScheme combinations.
+// The tests primarily use workleap/light (default), but we also support other combinations.
+// Built inside vi.hoisted so it's available to the hoisted vi.mock factories below,
+// which run before this module's own imports.
+const mockFileMapPromise = vi.hoisted(async () => {
+    const t = await import("../../tests/mocks/tokensData");
 
-jest.mock("fs/promises", () => ({
-    readFile: jest.fn((path: string) => {
+    return {
+        // workleap/light (default)
+        "/tokens/maps/workleap/light/all.json": t.MOCK_TOKENS_FULL,
+        "/tokens/maps/workleap/light/semantic-shadow.json": t.MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+        "/tokens/maps/workleap/light/semantic-color.json": t.MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+        "/tokens/maps/workleap/light/semantic-paddingSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+        "/tokens/maps/workleap/light/semantic-marginSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+        "/tokens/maps/workleap/light/core-fontWeight.json": t.MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+        // workleap/dark
+        "/tokens/maps/workleap/dark/all.json": t.MOCK_TOKENS_FULL,
+        "/tokens/maps/workleap/dark/semantic-shadow.json": t.MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+        "/tokens/maps/workleap/dark/semantic-color.json": t.MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+        "/tokens/maps/workleap/dark/semantic-paddingSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+        "/tokens/maps/workleap/dark/semantic-marginSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+        "/tokens/maps/workleap/dark/core-fontWeight.json": t.MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+        // sharegate/light
+        "/tokens/maps/sharegate/light/all.json": t.MOCK_TOKENS_FULL,
+        "/tokens/maps/sharegate/light/semantic-shadow.json": t.MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+        "/tokens/maps/sharegate/light/semantic-color.json": t.MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+        "/tokens/maps/sharegate/light/semantic-paddingSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+        "/tokens/maps/sharegate/light/semantic-marginSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+        "/tokens/maps/sharegate/light/core-fontWeight.json": t.MOCK_TOKENS_CORE_FONT_WEIGHT_FULL,
+        // sharegate/dark
+        "/tokens/maps/sharegate/dark/all.json": t.MOCK_TOKENS_FULL,
+        "/tokens/maps/sharegate/dark/semantic-shadow.json": t.MOCK_TOKENS_SEMANTIC_SHADOW_FULL,
+        "/tokens/maps/sharegate/dark/semantic-color.json": t.MOCK_TOKENS_SEMANTIC_COLOR_FULL,
+        "/tokens/maps/sharegate/dark/semantic-paddingSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_PADDING_FULL,
+        "/tokens/maps/sharegate/dark/semantic-marginSize.json": t.MOCK_TOKENS_SEMANTIC_SIZE_MARGIN_FULL,
+        "/tokens/maps/sharegate/dark/core-fontWeight.json": t.MOCK_TOKENS_CORE_FONT_WEIGHT_FULL
+    } as const;
+});
+
+vi.mock("fs/promises", async () => {
+    const MOCK_FILE_MAP = await mockFileMapPromise;
+    const fs = await vi.importActual<typeof import("fs")>("fs");
+
+    const readFile = vi.fn((path: string) => {
         for (const [mockPath, mockData] of Object.entries(MOCK_FILE_MAP)) {
             if (path.includes(mockPath)) {
                 return JSON.stringify(mockData);
@@ -51,18 +52,24 @@ jest.mock("fs/promises", () => ({
         }
 
         // Fallback to actual file system for unmocked files
-        const fs = jest.requireActual("fs");
-
         return fs.readFileSync(path, "utf-8");
-    })
-}));
+    });
 
-jest.mock("fs", () => ({
-    existsSync: jest.fn((path: string) => {
+    // Vitest (ESM) needs the default export mirrored, unlike Jest's CJS mock.
+    return { readFile, default: { readFile } };
+});
+
+vi.mock("fs", async () => {
+    const MOCK_FILE_MAP = await mockFileMapPromise;
+
+    const existsSync = vi.fn((path: string) => {
         // Check if the path matches any of our mocked files
         return Object.keys(MOCK_FILE_MAP).some(mockPath => path.includes(mockPath));
-    })
-}));
+    });
+
+    // Vitest (ESM) needs the default export mirrored, unlike Jest's CJS mock.
+    return { existsSync, default: { existsSync } };
+});
 
 describe("getDesignTokens", () => {
     describe("Basic functionality", () => {
@@ -291,7 +298,7 @@ describe("getDesignTokens", () => {
         it("should throw error when file does not exist", async () => {
             // Mock existsSync to return false
             const fs = await import("fs");
-            jest.spyOn(fs, "existsSync").mockReturnValueOnce(false);
+            vi.spyOn(fs, "existsSync").mockReturnValueOnce(false);
 
             await expect(getDesignTokens("all", undefined, undefined, undefined, false))
                 .rejects.toThrow("Tokens map not found");
@@ -300,7 +307,7 @@ describe("getDesignTokens", () => {
         it("should throw error on JSON parse errors", async () => {
             // Mock readFile to return invalid JSON
             const fsPromises = await import("fs/promises");
-            jest.spyOn(fsPromises, "readFile").mockResolvedValueOnce("invalid json {" as never);
+            vi.spyOn(fsPromises, "readFile").mockResolvedValueOnce("invalid json {" as never);
 
             await expect(getDesignTokens("all", ["coastal"], undefined, undefined, false))
                 .rejects.toThrow("Error filtering tokens");

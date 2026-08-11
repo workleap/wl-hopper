@@ -1,23 +1,29 @@
-import { MOCK_ICONS_DATA } from "../../tests/mocks/iconsData";
 import { getIcons } from "../iconsService";
 
-// Mock the fs/promises module to return our mock data
-jest.mock("fs/promises", () => ({
-    readFile: jest.fn((path: string) => {
+// Mock the fs/promises module to return our mock data.
+// The factory is hoisted above imports, so the mock data and the real `fs` are
+// pulled in from within it (dynamic import + vi.importActual) rather than closing
+// over a top-level import.
+vi.mock("fs/promises", async () => {
+    const { MOCK_ICONS_DATA } = await import("../../tests/mocks/iconsData");
+    const fs = await vi.importActual<typeof import("fs")>("fs");
+
+    const readFile = vi.fn((path: string) => {
         if (path.includes("/icons/data.json")) {
             return JSON.stringify(MOCK_ICONS_DATA);
         }
 
-        const fs = jest.requireActual("fs");
-
         return fs.readFileSync(path, "utf-8");
-    })
-}));
+    });
+
+    // Vitest (ESM) needs the default export mirrored, unlike Jest's CJS mock.
+    return { readFile, default: { readFile } };
+});
 
 describe("getIcons", () => {
     beforeEach(() => {
         // Clear module cache to ensure fresh data for each test
-        jest.clearAllMocks();
+        vi.clearAllMocks();
     });
 
     describe("Basic functionality", () => {
