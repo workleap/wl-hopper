@@ -35,20 +35,21 @@ jobs:
                     if [ -z "$BASE_SHA" ]; then BASE_SHA="origin/main"; fi
                     echo "Baseline script from $BASE_SHA"
 
-                    cp apps/docs/scripts/generateComponentData.ts /tmp/candidate-script.ts
-                    git show "$BASE_SHA:apps/docs/scripts/generateComponentData.ts" > apps/docs/scripts/generateComponentData.ts
+                    SCRIPT="$GITHUB_WORKSPACE/apps/docs/scripts/generateComponentData.ts"
 
-                    cd apps/docs
-                    rm -rf datas/components
+                    cp "$SCRIPT" /tmp/candidate-script.ts
+                    git show "$BASE_SHA:apps/docs/scripts/generateComponentData.ts" > "$SCRIPT"
+
+                    rm -rf "$GITHUB_WORKSPACE/apps/docs/datas/components"
                     START=$(date +%s)
-                    pnpm generate:componentData > /tmp/baseline.log 2>&1 || (tail -50 /tmp/baseline.log; exit 1)
+                    (cd "$GITHUB_WORKSPACE/apps/docs" && pnpm generate:componentData) > /tmp/baseline.log 2>&1 \
+                        || (tail -50 /tmp/baseline.log; cp /tmp/candidate-script.ts "$SCRIPT"; exit 1)
                     END=$(date +%s)
                     echo "BASELINE_SECONDS=$((END - START))" >> "$GITHUB_ENV"
-                    mv datas/components /tmp/baseline
+                    mv "$GITHUB_WORKSPACE/apps/docs/datas/components" /tmp/baseline
 
-                    cd ..
-                    cp /tmp/candidate-script.ts apps/docs/scripts/generateComponentData.ts
-                    echo "Baseline files: $(ls /tmp/baseline | wc -l)"
+                    cp /tmp/candidate-script.ts "$SCRIPT"
+                    echo "Baseline took $((END - START))s, $(ls /tmp/baseline | wc -l) files"
 
             -   name: Compare every alias mode against the baseline
                 run: |
