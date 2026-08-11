@@ -5,16 +5,16 @@
     ],
     "tasks": {
         "dev:server:netlify": {
-            "outputs": ["node_modules/.cache/jest"]
+            "outputs": ["node_modules/.cache/vitest/**"]
         },
         "dev:inspect:netlify": {
-            "outputs": ["node_modules/.cache/jest"]
+            "outputs": ["node_modules/.cache/vitest/**"]
         },
         "dev:server:expressJs": {
-            "outputs": ["node_modules/.cache/jest"]
+            "outputs": ["node_modules/.cache/vitest/**"]
         },
         "dev:inspect:expressJs": {
-            "outputs": ["node_modules/.cache/jest"]
+            "outputs": ["node_modules/.cache/vitest/**"]
         }
     }
 }

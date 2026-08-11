@@ -27,7 +27,7 @@
             "outputs": ["node_modules/.cache/tsbuildinfo.json"]
         },
         "test": {
-            "outputs": ["node_modules/.cache/jest"]
+            "outputs": ["node_modules/.cache/vitest/**"]
         },
         "//#syncpack": {}
     }

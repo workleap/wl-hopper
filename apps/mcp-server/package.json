@@ -22,7 +22,7 @@
         "dev:expressJs": "turbo run build dev:server:expressJs dev:inspect:expressJs --continue",
         "dev:netlify": "turbo run build dev:server:netlify dev:inspect:netlify --continue",
         "dev": "pnpm dev:netlify",
-        "test": "jest"
+        "test": "vitest run"
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.20.0",
@@ -35,24 +35,16 @@
     },
     "devDependencies": {
         "@eslint/js": "9.38.0",
-        "@swc/core": "1.13.5",
-        "@swc/helpers": "0.5.17",
-        "@swc/jest": "0.2.39",
         "@testing-library/jest-dom": "6.9.1",
         "@types/express": "5.0.3",
-        "@types/jest": "29.5.14",
         "@types/node": "24.5.1",
         "@typescript-eslint/types": "8.46.2",
         "@workleap/eslint-configs": "0.0.7",
-        "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
         "eslint": "9.38.0",
-        "jest": "29.7.0",
         "jest-fail-on-console": "3.3.1",
-        "jest-fetch-mock": "3.0.3",
         "nodemon": "3.1.10",
         "shx": "0.4.0",
-        "ts-jest": "29.4.5",
         "tsx": "4.20.6",
         "typescript": "5.5.4",
         "typescript-eslint": "8.46.2",

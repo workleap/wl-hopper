@@ -1,21 +1,26 @@
 import { validateHopperCode } from "..";
-import { MOCK_TOKENS_FULL } from "../../../tests/mocks/tokensData";
-import { MOCK_UNSAFE_PROPS } from "../../../tests/mocks/unsafePropsData";
 
-// Mock the fs/promises module to return our mock data
-jest.mock("fs/promises", () => ({
-    readFile: jest.fn((path: string) => {
+// Mock the fs/promises module to return our mock data.
+// The factory is hoisted above imports, so the mock data and the real `fs` are
+// pulled in from within it (dynamic import + vi.importActual).
+vi.mock("fs/promises", async () => {
+    const { MOCK_TOKENS_FULL } = await import("../../../tests/mocks/tokensData");
+    const { MOCK_UNSAFE_PROPS } = await import("../../../tests/mocks/unsafePropsData");
+    const fs = await vi.importActual<typeof import("fs")>("fs");
+
+    const readFile = vi.fn((path: string) => {
         if (path.includes("unsafe-props-data.json")) {
             return JSON.stringify(MOCK_UNSAFE_PROPS);
         } else if (path.includes("/tokens/maps/workleap/light/all.json")) {
             return JSON.stringify(MOCK_TOKENS_FULL);
         }
 
-        const fs = jest.requireActual("fs");
-
         return fs.readFileSync(path, "utf-8");
-    })
-}));
+    });
+
+    // Vitest (ESM) needs the default export mirrored, unlike Jest's CJS mock.
+    return { readFile, default: { readFile } };
+});
 
 describe("validateHopperCode", () => {
     describe("Basic functionality", () => {

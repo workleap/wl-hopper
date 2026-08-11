@@ -1,12 +1,9 @@
-import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/jest-globals";
+/// <reference types="@testing-library/jest-dom" />
+import "@testing-library/jest-dom/vitest";
 import failOnConsole from "jest-fail-on-console";
-import { enableFetchMocks } from "jest-fetch-mock";
 
-// This is used for tests with react-router-dom.
-// There was an error thrown "ReferenceError: Request is not defined"
-enableFetchMocks();
+// Node 18+ provides global fetch/Request, so jest-fetch-mock (previously used only
+// to define `Request`) is no longer needed.
 
 // This will fail the test if there is a console.error or console.warn
 failOnConsole();
-
