@@ -1,5 +1,4 @@
 import type { PluginOption } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 import { defineConfig } from "vitest/config";
 
 export interface HopperVitestOptions {
@@ -31,7 +30,9 @@ export function defineHopperVitestConfig({
     plugins = []
 }: HopperVitestOptions = {}) {
     return defineConfig({
-        plugins: [tsconfigPaths(), ...plugins],
+        plugins,
+        // Vite 8 resolves tsconfig `paths` natively (replaces vite-tsconfig-paths).
+        resolve: { tsconfigPaths: true },
         cacheDir: "./node_modules/.cache/vitest",
         test: {
             globals: true,
