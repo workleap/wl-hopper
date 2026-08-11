@@ -71,7 +71,13 @@ const storybookConfig: StorybookConfig = {
                                 modules: {
                                     ...((typeof previousOptions?.modules === "string" ? { mode: previousOptions?.modules } : previousOptions?.modules)),
                                     auto: true,
-                                    localIdentName: "[local]___[hash:base64:5]"
+                                    localIdentName: "[local]___[hash:base64:5]",
+                                    // css-loader 7 (pulled in by Storybook 10) defaults `namedExport`/`esModule` to true,
+                                    // which drops the default export and camelCases keys. The styled-system relies on a
+                                    // default import with kebab-case keys (e.g. `styles["hop-bg-active"]`), so restore the
+                                    // css-loader 6 behavior to keep `import styles from "*.module.css"` working at runtime.
+                                    namedExport: false,
+                                    exportLocalsConvention: "as-is"
                                 }
                             };
                         }
