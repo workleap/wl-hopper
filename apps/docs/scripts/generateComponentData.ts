@@ -129,12 +129,11 @@ function writeFile(filename: string, data: ComponentDocWithGroups[]) {
         fs.mkdirSync(COMPONENT_DATA, { recursive: true });
     }
 
-    fs.writeFile(`${COMPONENT_DATA}/${filename}.json`, JSON.stringify(data), function (err) {
-        if (err) {
-            console.error(err);
-            throw err;
-        }
-    });
+    // Synchronous on purpose: several components share a file name (`NoResults` exists under both
+    // `image/assets` and `illustrated-message/assets`), so they write to the same output file. With
+    // the asynchronous, unawaited write these overlap now that the loop is fast, splicing one JSON
+    // document into the other.
+    fs.writeFileSync(`${COMPONENT_DATA}/${filename}.json`, JSON.stringify(data));
 }
 
 function getComponentName(filePath: string) {

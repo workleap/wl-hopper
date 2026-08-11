@@ -19,8 +19,13 @@ function sortDeep(value) {
     return value;
 }
 
+// Returns null when the file is not valid JSON, which is itself a finding worth reporting.
 function canonical(filePath) {
-    return JSON.stringify(sortDeep(JSON.parse(fs.readFileSync(filePath, "utf8"))));
+    try {
+        return JSON.stringify(sortDeep(JSON.parse(fs.readFileSync(filePath, "utf8"))));
+    } catch {
+        return null;
+    }
 }
 
 const baselineFiles = fs.readdirSync(baselineDir).sort();
@@ -31,6 +36,7 @@ const extra = candidateFiles.filter(file => !baselineFiles.includes(file));
 
 const byteDifferent = [];
 const semanticallyDifferent = [];
+const malformed = [];
 
 for (const file of baselineFiles) {
     if (missing.includes(file)) {
@@ -46,7 +52,13 @@ for (const file of baselineFiles) {
 
     byteDifferent.push(file);
 
-    if (canonical(baselinePath) !== canonical(candidatePath)) {
+    const baselineJson = canonical(baselinePath);
+    const candidateJson = canonical(candidatePath);
+
+    if (baselineJson === null || candidateJson === null) {
+        malformed.push(`${file}${candidateJson === null ? " (candidate)" : " (baseline)"}`);
+        semanticallyDifferent.push(file);
+    } else if (baselineJson !== candidateJson) {
         semanticallyDifferent.push(file);
     }
 }
@@ -56,8 +68,9 @@ console.log(`missing: ${missing.length}${missing.length ? ` -> ${missing.slice(0
 console.log(`extra: ${extra.length}${extra.length ? ` -> ${extra.slice(0, 10).join(", ")}` : ""}`);
 console.log(`byte-different: ${byteDifferent.length}`);
 console.log(`semantically-different: ${semanticallyDifferent.length}`);
+console.log(`malformed: ${malformed.length}${malformed.length ? ` -> ${malformed.slice(0, 10).join(", ")}` : ""}`);
 
-if (semanticallyDifferent.length) {
+if (semanticallyDifferent.length && !malformed.length) {
     console.log(`semantically-different files: ${semanticallyDifferent.slice(0, 20).join(", ")}`);
 
     // Show the first real divergence so the failure is actionable.
@@ -81,5 +94,5 @@ const status = missing.length === 0 && extra.length === 0 && semanticallyDiffere
     ? (byteDifferent.length === 0 ? "IDENTICAL" : `EQUIVALENT (${byteDifferent.length} files differ in key order only)`)
     : "DIFFERENT";
 
+// Printed on the last line so the caller can read the verdict off stdout.
 console.log(`RESULT: ${status}`);
-fs.writeFileSync(process.env.COMPARE_RESULT_FILE ?? "/tmp/compare-result.txt", status);

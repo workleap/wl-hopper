@@ -73,9 +73,9 @@ jobs:
                             continue
                         fi
 
-                        COMPARE_RESULT_FILE="/tmp/$MODE.result" \
-                            node .github/workflows/scripts/compareDocgenOutput.mjs /tmp/baseline apps/docs/datas/components
-                        RESULT="$(cat "/tmp/$MODE.result")"
+                        COMPARE_OUTPUT="$(node .github/workflows/scripts/compareDocgenOutput.mjs /tmp/baseline apps/docs/datas/components)"
+                        echo "$COMPARE_OUTPUT"
+                        RESULT="$(echo "$COMPARE_OUTPUT" | sed -n 's/^RESULT: //p')"
 
                         case "$RESULT" in
                             IDENTICAL*|EQUIVALENT*) ;;
@@ -86,9 +86,7 @@ jobs:
                         # deterministic rather than accidentally matching once.
                         mv apps/docs/datas/components "/tmp/$MODE-first"
                         (cd apps/docs && HOPPER_DOCGEN_ALIAS_MODE="$MODE" pnpm generate:componentData) > "/tmp/$MODE-2.log" 2>&1
-                        COMPARE_RESULT_FILE="/tmp/$MODE.repeat" \
-                            node .github/workflows/scripts/compareDocgenOutput.mjs "/tmp/$MODE-first" apps/docs/datas/components
-                        REPEAT="$(cat "/tmp/$MODE.repeat")"
+                        REPEAT="$(node .github/workflows/scripts/compareDocgenOutput.mjs "/tmp/$MODE-first" apps/docs/datas/components | sed -n 's/^RESULT: //p')"
                         if [ "$REPEAT" != "IDENTICAL" ]; then
                             echo "mode=$MODE is not deterministic across runs: $REPEAT"
                             FAILED="$FAILED $MODE(nondeterministic)"
