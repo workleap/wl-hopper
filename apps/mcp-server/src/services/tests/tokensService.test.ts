@@ -45,8 +45,11 @@ vi.mock("fs/promises", async () => {
     const fs = await vi.importActual<typeof import("fs")>("fs");
 
     const readFile = vi.fn((path: string) => {
+        // Match with forward slashes so the mock works on Windows too (the service
+        // builds paths with the OS separator via path.join).
+        const normalized = path.replace(/\\/g, "/");
         for (const [mockPath, mockData] of Object.entries(MOCK_FILE_MAP)) {
-            if (path.includes(mockPath)) {
+            if (normalized.includes(mockPath)) {
                 return JSON.stringify(mockData);
             }
         }
@@ -63,8 +66,11 @@ vi.mock("fs", async () => {
     const MOCK_FILE_MAP = await mockFileMapPromise;
 
     const existsSync = vi.fn((path: string) => {
-        // Check if the path matches any of our mocked files
-        return Object.keys(MOCK_FILE_MAP).some(mockPath => path.includes(mockPath));
+        // Check if the path matches any of our mocked files (forward-slash
+        // normalized so this works on Windows too).
+        const normalized = path.replace(/\\/g, "/");
+
+        return Object.keys(MOCK_FILE_MAP).some(mockPath => normalized.includes(mockPath));
     });
 
     // Vitest (ESM) needs the default export mirrored, unlike Jest's CJS mock.
