@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.3.10
+
+### Patch Changes
+
+- e9c34d5: Update ShareGate secondary Button border-color, border-color-selected, and border-color-loading to use primary brand border tokens.
+
 ## 5.3.9
 
 ### Patch Changes

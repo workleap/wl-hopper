@@ -1,8 +1,8 @@
+import nextPlugin from "@next/eslint-plugin-next";
 import { defineWebApplicationConfig } from "@workleap/eslint-configs";
 import * as mdx from "eslint-plugin-mdx";
 import { defineConfig, globalIgnores } from "eslint/config";
 
-// TODO: once i migrate to next 16, i need to re-add the next plugin in this config
 export default defineConfig([
     globalIgnores([
         "datas/*",
@@ -18,6 +18,16 @@ export default defineConfig([
         ...mdx.flat
     },
     defineWebApplicationConfig(import.meta.dirname),
+    {
+        name: "next/core-web-vitals",
+        plugins: {
+            "@next/next": nextPlugin
+        },
+        rules: {
+            ...nextPlugin.configs.recommended.rules,
+            ...nextPlugin.configs["core-web-vitals"].rules
+        }
+    },
     {
         files: [
             "**/*.{js,jsx,ts,tsx,cjs,mjs}"

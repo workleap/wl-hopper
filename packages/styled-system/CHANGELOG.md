@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.10
+
+### Patch Changes
+
+- e9c34d5: Update ShareGate secondary Button border-color, border-color-selected, and border-color-loading to use primary brand border tokens.
+
 ## 4.0.9
 
 ### Patch Changes

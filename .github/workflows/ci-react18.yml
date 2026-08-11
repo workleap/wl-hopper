@@ -1,0 +1,61 @@
+name: CI React 18
+
+# Pnpm setup based on https://github.com/pnpm/action-setup#use-cache-to-reduce-installation-time
+
+on:
+    push:
+        branches: [ "main" ]
+    pull_request:
+        branches: [ "main" ]
+
+env:
+    CI: true
+
+concurrency:
+    group: ci-react18-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Setup Node and PNPM
+                uses: ./.github/composite-actions/setup
+                with:
+                  install_dependencies: false
+
+            -   name: Install React 18
+                run: pnpm install-react18
+
+            -   name: Install dependencies
+                run: pnpm i
+
+            -   name: Restore Turborepo cache
+                id: cache-turborepo-restore
+                uses: actions/cache/restore@v4
+                with:
+                    key: ${{ runner.os }}-turborepo-${{ github.sha }}-ci-react18
+                    restore-keys: |
+                        ${{ runner.os }}-turborepo-
+                    path: .turbo
+
+            -   name: Build packages
+                run: pnpm build:pkg
+
+            -   name: Typecheck packages
+                run: pnpm turbo run typecheck --filter=./packages/*
+
+            -   name: Test packages
+                run: pnpm test
+
+            -   name: Save Turborepo cache
+                id: cache-turborepo-save
+                if: always() && steps.cache-turborepo-restore.outputs.cache-hit != 'true'
+                uses: actions/cache/save@v4
+                with:
+                    key: ${{ steps.cache-turborepo-restore.outputs.cache-primary-key }}
+                    path: .turbo

@@ -8,9 +8,9 @@ import { BasePageLayout } from "@/app/ui/layout/basePageLayout/BasePageLayout";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string[];
-    };
+    }>;
 }
 
 function findComponentFromSlug(params: { slug: string[] }) {
@@ -26,16 +26,17 @@ function findComponentFromSlug(params: { slug: string[] }) {
 }
 
 export default async function ComponentPage({ params }: PageProps) {
-    const [type] = params.slug;
+    const resolvedParams = await params;
+    const [type] = resolvedParams.slug;
 
-    const component = findComponentFromSlug(params);
+    const component = findComponentFromSlug(resolvedParams);
 
     if (!component) {
         notFound();
     }
     const componentDetails = await getComponentDetails(component._raw.sourceFilePath);
     const { content, frontmatter: { title, status, description, links, alpha } } = componentDetails;
-    const aiDoc = getAiDocAbsolutePath(["components", ...params.slug]);
+    const aiDoc = getAiDocAbsolutePath(["components", ...resolvedParams.slug]);
 
     const componentLinks = links && [
         {
@@ -75,8 +76,8 @@ export default async function ComponentPage({ params }: PageProps) {
     );
 }
 
-export function generateMetadata({ params }: PageProps) {
-    const component = findComponentFromSlug(params);
+export async function generateMetadata({ params }: PageProps) {
+    const component = findComponentFromSlug(await params);
 
     if (component) {
         const metadata: Record<string, string> = {

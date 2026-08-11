@@ -9,9 +9,9 @@ import Mdx from "@/components/mdx/Mdx.tsx";
 import { notFound } from "next/navigation";
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string[];
-    };
+    }>;
 }
 
 function findPageFromSlug(slug: string[]) {
@@ -20,7 +20,8 @@ function findPageFromSlug(slug: string[]) {
     return allIcons.find(page => page.section === section && page.slug === type);
 }
 
-export default function IconPage({ params: { slug } }: PageProps) {
+export default async function IconPage({ params }: PageProps) {
+    const { slug } = await params;
     const icons = findPageFromSlug(slug);
 
     if (!icons) {
@@ -45,8 +46,9 @@ export function generateStaticParams() {
     return getIconsSlugs();
 }
 
-export function generateMetadata({ params }: PageProps) {
-    const page = findPageFromSlug(params.slug);
+export async function generateMetadata({ params }: PageProps) {
+    const { slug } = await params;
+    const page = findPageFromSlug(slug);
 
     if (page) {
         const metadata: Record<string, string> = {
