@@ -1,12 +1,12 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
 export const handleTypes = (data: TransformedToken[]): string[] | undefined => {
     if (!data) {
         return;
     }
 
-    const types = data.map((token: TransformedToken) => token.type);
-    const filtredTypes = types.filter((type: string) => type !== undefined);
+    const types = data.map((token: TransformedToken) => token.$type);
+    const filteredTypes = types.filter((type): type is string => type !== undefined);
 
-    return [...new Set(filtredTypes)];
+    return [...new Set(filteredTypes)];
 };

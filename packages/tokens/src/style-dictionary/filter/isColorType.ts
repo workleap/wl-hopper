@@ -1,3 +1,3 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
-export const isColorType = (token: TransformedToken): boolean => token.type === "color";
+export const isColorType = (token: TransformedToken): boolean => token.$type === "color";

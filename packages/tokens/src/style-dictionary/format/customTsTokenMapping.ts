@@ -1,4 +1,4 @@
-import type { Dictionary, TransformedToken } from "style-dictionary";
+import type { Dictionary, TransformedToken } from "style-dictionary/types";
 
 import { HOPPER_PREFIX } from "../constant.ts";
 import { isColorType } from "../filter/isColorType.ts";
@@ -90,8 +90,8 @@ function createMapping(name: string, tokenPartToRemove?: string, prefixToAdd?: s
 }
 
 function mapGradients(coreTokens: TransformedToken[], semanticTokens: TransformedToken[]) {
-    const coreGradientTokens = coreTokens.filter(t => t.type === "gradient").map(x => x.name);
-    const semanticGradientTokens = semanticTokens.filter(t => t.type === "gradient").map(x => x.name);
+    const coreGradientTokens = coreTokens.filter(t => t.$type === "gradient").map(x => x.name);
+    const semanticGradientTokens = semanticTokens.filter(t => t.$type === "gradient").map(x => x.name);
 
     return formatTokenMapping(MappingType.GradientColors, [
         ...coreGradientTokens.map(name => createMapping(name, undefined, "core")),
@@ -286,8 +286,8 @@ function mapSpace(coreTokens: TransformedToken[], semanticTokens: TransformedTok
 
     // Padding values (checks stack and inline in the name)
     const paddingTokens = semanticSpaceTokens.filter(x => x.name.includes("inset"));
-    const simplePaddingValuesNames = paddingTokens.filter(x => !x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
-    const complexPaddingValuesNames = paddingTokens.filter(x => x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
+    const simplePaddingValuesNames = paddingTokens.filter(x => !x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
+    const complexPaddingValuesNames = paddingTokens.filter(x => x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
 
     spaceMapping += formatTokenMapping(MappingType.SemanticSimplePaddingSpace, simplePaddingValuesNames.map(name => {
         return createMapping(name, "space");
@@ -299,8 +299,8 @@ function mapSpace(coreTokens: TransformedToken[], semanticTokens: TransformedTok
 
     // Margin values (checks stack and inline in the name)
     const marginTokens = semanticSpaceTokens.filter(x => x.name.includes("stack") || x.name.includes("inline"));
-    const simpleMarginValuesNames = marginTokens.filter(x => !x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
-    const complexMarginValuesNames = marginTokens.filter(x => x.value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
+    const simpleMarginValuesNames = marginTokens.filter(x => !x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
+    const complexMarginValuesNames = marginTokens.filter(x => x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
 
     spaceMapping += formatTokenMapping(MappingType.SemanticSimpleMarginSpace, simpleMarginValuesNames.map(name => {
         return createMapping(name, "space");

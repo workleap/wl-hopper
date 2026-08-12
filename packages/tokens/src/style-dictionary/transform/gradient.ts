@@ -1,10 +1,10 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
 export function isGradientToken(token: TransformedToken): boolean {
-    return token.type === "gradient"
-        && typeof token.value === "string";
+    return token.$type === "gradient"
+        && typeof token.$value === "string";
 }
 
 export function gradientCssLinear(token: TransformedToken): string {
-    return `linear-gradient(${token.value})`;
+    return `linear-gradient(${token.$value})`;
 }

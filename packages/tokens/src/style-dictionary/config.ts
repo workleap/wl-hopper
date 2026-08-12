@@ -1,4 +1,4 @@
-import type { Config, File } from "style-dictionary";
+import type { Config, File } from "style-dictionary/types";
 
 import { BUILD_PATH, DOCS_BUILD_PATH, HOPPER_PREFIX, STORYBOOK_BUILD_PATH, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
 
@@ -6,7 +6,7 @@ export const fontsConfig: Config = {
     "source": ["src/tokens/asset/*.tokens.json"],
     "platforms": {
         "css-font-face": {
-            "transforms": ["name/cti/kebab", "attribute/font"],
+            "transforms": ["name/kebab", "attribute/font"],
             "buildPath": `${BUILD_PATH}`,
             "files": [
                 {

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import StyleDictionary from "style-dictionary";
 import "style-dictionary-utils"; // auto-registers gradient/css transform
+import { fileHeader } from "style-dictionary/utils";
 
 import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokenMappingConfig, getStyledSystemTokensConfig } from "./config.ts";
 import { AUTO_GENERATED_COMMENT, HOPPER_PREFIX, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
@@ -11,79 +12,80 @@ import { isDarkTokens } from "./filter/isDarkTokens.ts";
 import { customTsTokenMapping } from "./format/customTsTokenMapping.ts";
 import { cssDarkMode, customDoc, customJson, fontFace } from "./format/index.ts";
 import { getAvailableThemes } from "./helpers/getThemes.ts";
-import { w3cTokenJsonParser } from "./parser/w3cTokenParser.ts";
 import { attributeFont, gradientCssLinear, isGradientToken, isSizeType, pxToRem } from "./transform/index.ts";
-
-const { fileHeader } = StyleDictionary.formatHelpers;
 
 // Filters
 StyleDictionary.registerFilter({
     name: "mode/dark",
-    matcher: isDarkTokens
+    filter: isDarkTokens
 });
 
 StyleDictionary.registerFilter({
     name: "colors",
-    matcher: isColorType
+    filter: isColorType
 });
 
 StyleDictionary.registerFilter({
     name: "non-empty-value",
-    matcher: hasNonEmptyValue
+    filter: hasNonEmptyValue
 });
 
 // Transform
 StyleDictionary.registerTransform({
     name: "pxToRem",
     type: "value",
-    matcher: isSizeType,
-    transformer: pxToRem
+    filter: isSizeType,
+    transform: pxToRem
 });
 
 StyleDictionary.registerTransform({
     name: "attribute/font",
     type: "attribute",
-    transformer: attributeFont
+    transform: attributeFont
 });
 
 StyleDictionary.registerTransform({
     name: "gradient/css-linear",
     type: "value",
     transitive: true,
-    matcher: isGradientToken,
-    transformer: gradientCssLinear
+    filter: isGradientToken,
+    transform: gradientCssLinear
 });
 
 StyleDictionary.registerTransformGroup({
     name: "custom/css",
-    transforms: StyleDictionary.transformGroup["css"].concat(["pxToRem", "color/css", "gradient/css", "gradient/css-linear", "shadow/css"])
+    // Exclude the built-in "color/css" transform: in Style Dictionary v3 it matched via CTI
+    // category (never "color" in this repo), so colors passed through untouched. v5's "color/css"
+    // matches via DTCG `$type: color` and would re-serialize values like `transparent` or
+    // `rgb(R G B / A)`. Dropping it preserves the exact v3 output.
+    transforms: StyleDictionary.hooks.transformGroups["css"].filter(transform => transform !== "color/css").concat(["pxToRem", "gradient/css", "gradient/css-linear", "shadow/css"])
 });
 
 // Format
 StyleDictionary.registerFormat({
     name: "font-face",
-    formatter: fontFace
+    format: fontFace
 });
 
 StyleDictionary.registerFormat({
     name: "css/dark-mode",
-    formatter: cssDarkMode
+    format: cssDarkMode
 });
 
 StyleDictionary.registerFormat({
     name: "custom/doc",
-    formatter: customDoc
+    format: customDoc
 });
 
 StyleDictionary.registerFormat({
     name: "custom/json",
-    formatter: customJson
+    format: customJson
 });
 
 StyleDictionary.registerFormat({
     name: "custom/ts-token-mapping",
-    formatter: ({ dictionary, file }) => {
-        return fileHeader({ file }) + customTsTokenMapping({ dictionary });
+    format: async ({ dictionary, file }) => {
+        return await fileHeader({ file }) + customTsTokenMapping({ dictionary });
     }
 });
 
@@ -97,14 +99,11 @@ StyleDictionary.registerFileHeader({
     }
 });
 
-// Parser
-StyleDictionary.registerParser(w3cTokenJsonParser);
-
 // Build
 console.log("\nBuild started...");
 
 console.log("\n|- 🔤 Building fonts...");
-StyleDictionary.extend(fontsConfig).buildAllPlatforms();
+await new StyleDictionary(fontsConfig).buildAllPlatforms();
 
 console.log("\n|- 🔤 Detecting Themes...");
 const themes = getAvailableThemes();
@@ -117,23 +116,23 @@ for (const theme of themes) {
     console.log(`\n|- 🎨 Building theme: ${theme}...`);
 
     console.log(`\n|- 🌞️ Default tokens for \`${theme}\`...`);
-    StyleDictionary.extend(getStyleDictionaryConfig("light", theme)).buildAllPlatforms();
+    await new StyleDictionary(getStyleDictionaryConfig("light", theme)).buildAllPlatforms();
 
     console.log(`\n|- 🌙 Building dark mode for \`${theme}\`...`);
-    StyleDictionary.extend(getStyleDictionaryConfig("dark", theme)).buildAllPlatforms();
+    await new StyleDictionary(getStyleDictionaryConfig("dark", theme)).buildAllPlatforms();
 
     console.log(`\n|- 💅 Building Styled System tokens for \`${theme}\`... `);
-    StyleDictionary.extend(getStyledSystemTokensConfig("light", theme)).buildAllPlatforms();
+    await new StyleDictionary(getStyledSystemTokensConfig("light", theme)).buildAllPlatforms();
 
     console.log(`\n|- 💅 Building Styled System dark tokens for \`${theme}\`...`);
-    StyleDictionary.extend(getStyledSystemTokensConfig("dark", theme)).buildAllPlatforms();
+    await new StyleDictionary(getStyledSystemTokensConfig("dark", theme)).buildAllPlatforms();
 
     console.log(`\n|- 💅 Building Styled System theme for \`${theme}\`...`);
     buildStyleSystemTheme(theme);
 }
 
 console.log("\n|- 💅 Building Styled System token mappings...");
-StyleDictionary.extend(getStyledSystemTokenMappingConfig(themes.find(theme => theme === "workleap") || themes[0])).buildAllPlatforms();
+await new StyleDictionary(getStyledSystemTokenMappingConfig(themes.find(theme => theme === "workleap") || themes[0])).buildAllPlatforms();
 
 console.log("\n🚀 Build completed!\n");
 

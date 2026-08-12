@@ -1,11 +1,11 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
 export function isSizeType(token: TransformedToken): boolean {
     const typeOfSize = ["size", "fontSize", "borderRadius", "letterSpacing"];
 
-    if (token) {
+    if (token?.$type !== undefined) {
         return (
-            typeOfSize.includes(token.type)
+            typeOfSize.includes(token.$type)
         );
     }
 
@@ -13,9 +13,9 @@ export function isSizeType(token: TransformedToken): boolean {
 }
 
 export function pxToRem(token: TransformedToken): string {
-    if (parseFloat(token.original.value) === 0) {
-        return token.original.value;
+    if (parseFloat(token.original.$value) === 0) {
+        return token.original.$value;
     }
 
-    return `${parseFloat(token.value) / 16}rem`;
+    return `${parseFloat(token.$value) / 16}rem`;
 }
