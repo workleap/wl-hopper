@@ -571,9 +571,6 @@ importers:
       tsup:
         specifier: 8.5.0
         version: 8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.26)(tsx@4.20.6)(typescript@5.5.4)(yaml@2.8.1)
-      tsx:
-        specifier: 4.20.6
-        version: 4.20.6
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -656,9 +653,6 @@ importers:
       svgo:
         specifier: 4.0.0
         version: 4.0.0
-      tsx:
-        specifier: 4.20.6
-        version: 4.20.6
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -683,9 +677,6 @@ importers:
       style-dictionary-utils:
         specifier: 6.0.1
         version: 6.0.1(style-dictionary@5.5.0)
-      tsx:
-        specifier: 4.20.6
-        version: 4.20.6
       typescript:
         specifier: 5.5.4
         version: 5.5.4

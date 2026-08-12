@@ -34,7 +34,7 @@
     },
     "scripts": {
         "build": "tsup --config ./tsup.build.ts",
-        "generate-icons": "tsx scripts/build.ts",
+        "generate-icons": "node scripts/build.ts",
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run"
@@ -63,7 +63,6 @@
         "svgo": "4.0.0",
         "ts-node": "10.9.2",
         "tsup": "8.5.0",
-        "tsx": "4.20.6",
         "typescript": "5.5.4"
     },
     "peerDependencies": {

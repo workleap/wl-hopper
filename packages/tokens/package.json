@@ -29,7 +29,7 @@
     },
     "scripts": {
         "clean:dist": "pnpm dlx rimraf dist",
-        "build": "tsx src/style-dictionary/build.ts",
+        "build": "node src/style-dictionary/build.ts",
         "typecheck": "tsc",
         "test": "vitest run"
     },
@@ -39,7 +39,6 @@
         "@workleap/typescript-configs": "3.0.4",
         "style-dictionary": "5.5.0",
         "style-dictionary-utils": "6.0.1",
-        "tsx": "4.20.6",
         "typescript": "5.5.4"
     }
 }

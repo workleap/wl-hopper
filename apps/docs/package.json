@@ -17,9 +17,9 @@
         "copy:ai-docs-to-public": "shx rm -rf public/ai-docs && mkdir -p public/ai-docs && shx cp -r dist/ai-docs public",
         "build:ai-docs": "tsx --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts && pnpm copy:ai-docs-to-public",
         "generate": "pnpm run \"/^generate:.*/\"",
-        "generate:componentData": "tsx scripts/generateComponentData.ts",
-        "generate:previewRef": "tsx scripts/generatePreviewRef.ts",
-        "copy:images": "tsx scripts/copyImages.ts"
+        "generate:componentData": "node scripts/generateComponentData.ts",
+        "generate:previewRef": "node scripts/generatePreviewRef.ts",
+        "copy:images": "node scripts/copyImages.ts"
     },
     "dependencies": {
         "@tanstack/react-table": "^8.20.5",
