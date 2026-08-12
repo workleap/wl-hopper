@@ -1,6 +1,6 @@
-import type { Dictionary, TransformedToken } from "style-dictionary/types";
+import type { Dictionary, LocalOptions, TransformedToken } from "style-dictionary/types";
 
-export function fontFace({ dictionary, options = {} }: { dictionary: Dictionary; options?: { fontPathPrefix?: string } }) {
+export function fontFace({ dictionary, options = {} }: { dictionary: Dictionary; options?: LocalOptions }) {
     const fontPathPrefix = options.fontPathPrefix || "";
     const tokens = dictionary.allTokens;
 
