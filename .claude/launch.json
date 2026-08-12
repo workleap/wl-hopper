@@ -1,0 +1,17 @@
+{
+    "version": "0.0.1",
+    "configurations": [
+        {
+            "name": "storybook",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["storybook"],
+            "port": 6006
+        },
+        {
+            "name": "docs",
+            "runtimeExecutable": "pnpm",
+            "runtimeArgs": ["--filter", "docs", "dev"],
+            "port": 3000
+        }
+    ]
+}
