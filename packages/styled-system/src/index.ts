@@ -28,4 +28,3 @@ export * from "./styledSystemProps.ts";
 export * from "./StyledSystemProvider.tsx";
 export * from "./styledSystemRootCssClass.ts";
 export * from "./useStyledSystem.ts";
-

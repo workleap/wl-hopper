@@ -1,25 +1,25 @@
 {
     "name": "@hopper-ui/styled-system",
-    "author": "Workleap",
     "version": "4.0.10",
     "description": "The styled-system package.",
     "license": "Apache-2.0",
+    "author": "Workleap",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git",
         "directory": "packages/styled-system"
     },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
+    "style": "dist/index.css",
+    "files": [
+        "/dist",
+        "CHANGELOG.md"
+    ],
     "type": "module",
     "sideEffects": [
         "*.css"
     ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "style": "dist/index.css",
     "exports": {
         ".": {
             "import": "./dist/index.js",
@@ -29,20 +29,16 @@
         "./index.css": "./dist/index.css",
         "./theme/*.css": "./dist/theme/generated/*.css"
     },
-    "files": [
-        "/dist",
-        "CHANGELOG.md"
-    ],
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "scripts": {
         "dev": "tsup --config ./tsup.dev.ts",
         "build": "tsup --config ./tsup.build.ts && copyfiles -u 1 src/theme/generated/*.css dist && copyfiles -u 1 src/theme/generated/**/*.css dist",
         "stylelint": "stylelint \"**/*.css\" --allow-empty-input --config ../../.stylelintrc.js --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run"
-    },
-    "peerDependencies": {
-        "react": "^18 || ^19",
-        "react-dom": "^18 || ^19"
     },
     "dependencies": {
         "@react-aria/ssr": "^3.9.10",
@@ -65,5 +61,9 @@
         "react-dom": "19.2.8",
         "tsup": "8.5.0",
         "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "react": "^18 || ^19",
+        "react-dom": "^18 || ^19"
     }
 }

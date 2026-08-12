@@ -1,9 +1,9 @@
 import clsx from "clsx";
-import { forwardRef, useCallback, useEffect, useState, type ForwardedRef, type ReactNode } from "react";
+import { type ForwardedRef, type ReactNode, forwardRef, useCallback, useEffect, useState } from "react";
 
 import {
-    ColorSchemeContext,
     type ColorScheme,
+    ColorSchemeContext,
     type ColorSchemeContextType,
     type ColorSchemeOrSystem
 } from "./color-scheme/ColorSchemeContext.ts";
@@ -12,8 +12,8 @@ import { BodyStyleProvider } from "./global-styles/BodyStyleProvider.tsx";
 import { Div, type DivProps } from "./html-wrappers/html.ts";
 import {
     BreakpointProvider,
-    DefaultUnsupportedMatchMediaBreakpoint,
-    type BreakpointProviderProps
+    type BreakpointProviderProps,
+    DefaultUnsupportedMatchMediaBreakpoint
 } from "./responsive/BreakpointProvider.tsx";
 import { getRootCSSClasses } from "./styledSystemRootCssClass.ts";
 import { ThemeContext } from "./theme/ThemeContext.ts";
@@ -70,9 +70,12 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
         setInternalTheme(theme);
     }, [theme]);
 
-    const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(newColorScheme => {
-        setRemoteColorScheme(newColorScheme);
-    }, [setRemoteColorScheme]);
+    const setColorScheme: ColorSchemeContextType["setColorScheme"] = useCallback(
+        newColorScheme => {
+            setRemoteColorScheme(newColorScheme);
+        },
+        [setRemoteColorScheme]
+    );
 
     const classNames = clsx(
         className,
@@ -87,10 +90,11 @@ const StyledSystemProvider = (props: StyledSystemProviderProps, ref: ForwardedRe
                 setColorScheme
             }}
         >
-            <ThemeContext.Provider value={{
-                theme: internalTheme,
-                setTheme: setInternalTheme
-            }}
+            <ThemeContext.Provider
+                value={{
+                    theme: internalTheme,
+                    setTheme: setInternalTheme
+                }}
             >
                 <BreakpointProvider unsupportedMatchMediaBreakpoint={unsupportedMatchMediaBreakpoint}>
                     <Div ref={ref} className={classNames} {...rest}>

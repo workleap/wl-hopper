@@ -9,5 +9,6 @@ export default defineDevConfig({
         createCssModuleEsbuildPlugin({
             generateScopedName: "[name]__[local]___[hash:base64:5]",
             hashPrefix: packageJson.version
-        })]
+        })
+    ]
 });

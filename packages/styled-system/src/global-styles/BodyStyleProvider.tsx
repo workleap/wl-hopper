@@ -1,6 +1,6 @@
-import { useRef, useState, type RefObject } from "react";
+import { type RefObject, useRef, useState } from "react";
 
-import { useColorSchemeContext, type ColorScheme } from "../color-scheme/ColorSchemeContext.ts";
+import { type ColorScheme, useColorSchemeContext } from "../color-scheme/ColorSchemeContext.ts";
 import { useThemeContext } from "../theme/ThemeContext.ts";
 import { StyledSystemRootCssClass, type Theme } from "../tokens/generated/styledSystemConstants.ts";
 import type { HopperTokenKey } from "../tokens/generated/styledSystemToTokenMappings.ts";
@@ -19,14 +19,14 @@ interface CosmeticStyles {
 }
 
 const BodyTokens = {
-    "workleap": {
+    workleap: {
         color: "--hop-neutral-text",
         backgroundColor: "--hop-neutral-surface",
         lineHeight: "--hop-body-md-line-height",
         fontFamily: "--hop-body-md-font-family",
         fontSize: "--hop-body-md-font-size"
     },
-    "sharegate": {
+    sharegate: {
         color: "--hop-neutral-text",
         backgroundColor: "--hop-neutral-surface-weakest",
         lineHeight: "--hop-body-md-line-height",
@@ -36,9 +36,9 @@ const BodyTokens = {
 } as const satisfies Record<Theme, Record<string, HopperTokenKey>>;
 
 /* The BodyStyleProvider injects fonts and body styles on the body.
-* Since tokens are injected on a dom element inside the body, tokens can not be used in the body styles.
-* This component makes sure that the body styles are injected without referring to tokens.
-*/
+ * Since tokens are injected on a dom element inside the body, tokens can not be used in the body styles.
+ * This component makes sure that the body styles are injected without referring to tokens.
+ */
 export function BodyStyleProvider() {
     const ref = useRef<HTMLDivElement>(null);
     const { colorScheme } = useColorSchemeContext();
@@ -65,9 +65,7 @@ export function BodyStyleProvider() {
         isNil(cosmeticStyles) ? "" : generateBodyCssContent(cosmeticStyles)
     );
 
-    return (
-        <div ref={ref}></div>
-    );
+    return <div ref={ref}></div>;
 }
 
 function generateBodyCssContent({ color, backgroundColor, fontFamily, lineHeight, fontSize }: CosmeticStyles) {
