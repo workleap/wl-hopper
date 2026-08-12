@@ -42,21 +42,32 @@ function splitUnion(type) {
     return members.map(member => member.trim()).filter(Boolean);
 }
 
-// TypeScript renders union members in type-interning order, which depends on how the program was
-// built. Sorting the members compares the union's membership rather than its spelling, so a member
-// being added or removed is still caught.
+// Well-known symbol members are named `__@iterator@<symbolId>`, where the number is the compiler's
+// internal symbol counter. It carries no meaning and is not even stable within a single run of the
+// previous implementation, which emits `__@iterator@170740` and `__@iterator@170176` for the same
+// member in different files.
+const VOLATILE_SYMBOL_ID = /^__@(.+)@\d+$/;
+
+// Normalizes the two things that depend on how the TypeScript program was built rather than on the
+// source: union member order and internal symbol ids.
 function normalizeUnions(value) {
+    if (typeof value === "string") {
+        return value.replace(VOLATILE_SYMBOL_ID, "__@$1@");
+    }
+
     if (Array.isArray(value)) {
         return value.map(normalizeUnions);
     }
 
     if (value && typeof value === "object") {
         return Object.fromEntries(Object.entries(value).map(([key, entry]) => {
+            const normalizedKey = key.replace(VOLATILE_SYMBOL_ID, "__@$1@");
+
             if (key === "type" && entry && typeof entry === "object" && typeof entry.name === "string") {
-                return [key, { ...normalizeUnions(entry), name: splitUnion(entry.name).sort().join(" | ") }];
+                return [normalizedKey, { ...normalizeUnions(entry), name: splitUnion(entry.name).sort().join(" | ") }];
             }
 
-            return [key, normalizeUnions(entry)];
+            return [normalizedKey, normalizeUnions(entry)];
         }));
     }
 
