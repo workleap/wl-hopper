@@ -1,29 +1,25 @@
 {
     "name": "@hopper-ui/icons",
-    "author": "Workleap",
     "version": "3.0.1",
     "description": "The icons package.",
     "license": "Apache-2.0",
+    "author": "Workleap",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git",
         "directory": "packages/icons"
     },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
-    "type": "module",
-    "sideEffects": [
-        "*.css"
-    ],
+    "style": "dist/index.css",
     "files": [
         "/dist",
         "CHANGELOG.md"
     ],
+    "type": "module",
+    "sideEffects": [
+        "*.css"
+    ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
-    "style": "dist/index.css",
     "exports": {
         ".": {
             "import": "./dist/index.js",
@@ -32,18 +28,16 @@
         },
         "./index.css": "./dist/index.css"
     },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "scripts": {
         "build": "tsup --config ./tsup.build.ts",
         "generate-icons": "tsx scripts/build.ts",
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run"
-    },
-    "peerDependencies": {
-        "@hopper-ui/styled-system": "*",
-        "react": "^18 || ^19",
-        "react-aria-components": "^1.13.0",
-        "react-dom": "^18 || ^19"
     },
     "dependencies": {
         "@react-aria/utils": "^3.31.0",
@@ -71,5 +65,11 @@
         "tsup": "8.5.0",
         "tsx": "4.20.6",
         "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "@hopper-ui/styled-system": "*",
+        "react": "^18 || ^19",
+        "react-aria-components": "^1.13.0",
+        "react-dom": "^18 || ^19"
     }
 }

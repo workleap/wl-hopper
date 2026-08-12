@@ -7,7 +7,10 @@ export interface MultiSourceIconSource {
 }
 
 const fromKebabToPascalCase = (str: string) => {
-    return str.split("-").map(s => s.charAt(0).toUpperCase() + s.slice(1)).join("");
+    return str
+        .split("-")
+        .map(s => s.charAt(0).toUpperCase() + s.slice(1))
+        .join("");
 };
 
 export const fetchSvgs = (SVGsDir: string) => {
@@ -18,9 +21,11 @@ export const fetchSvgs = (SVGsDir: string) => {
 
     const files = fs.readdirSync(SVGsDir, { recursive: true, withFileTypes: true });
 
-    const svgFilePaths = files.filter(file => file.isFile() && path.extname(file.name) === ".svg").map(file => {
-        return path.resolve(file.parentPath, file.name);
-    });
+    const svgFilePaths = files
+        .filter(file => file.isFile() && path.extname(file.name) === ".svg")
+        .map(file => {
+            return path.resolve(file.parentPath, file.name);
+        });
 
     const dict: Record<string, MultiSourceIconSource> = {};
 

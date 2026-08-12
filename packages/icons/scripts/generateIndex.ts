@@ -8,19 +8,28 @@ const GENERATED_HEADER = `/*
 */\n
 /* eslint-disable */`;
 
-export const generateIndex = (componentDirectory: string, iconsByNames: MultiSourceIconSource[], isRichIcons: boolean) => {
+export const generateIndex = (
+    componentDirectory: string,
+    iconsByNames: MultiSourceIconSource[],
+    isRichIcons: boolean
+) => {
     const iconSuffix = isRichIcons ? RichIconSuffix : IconSuffix;
     const iconListName = isRichIcons ? "richIconNames" : "iconNames";
     const iconList = iconsByNames.map(icon => icon.name + iconSuffix);
     const indexFile = `${componentDirectory}/index.ts`;
     const indexContent = `${GENERATED_HEADER}\n
-${Object.values(iconsByNames).map(icon => `export * from "./${icon.name}${iconSuffix}.tsx";`).join("\n")}
+${Object.values(iconsByNames)
+    .map(icon => `export * from "./${icon.name}${iconSuffix}.tsx";`)
+    .join("\n")}
 export * from "./icon-list.ts";`;
 
     fs.writeFileSync(indexFile, indexContent);
 
     const iconListFile = `${componentDirectory}/icon-list.ts`;
-    fs.writeFileSync(iconListFile, `${GENERATED_HEADER}\n
+    fs.writeFileSync(
+        iconListFile,
+        `${GENERATED_HEADER}\n
 
-\nexport const ${iconListName} = ${JSON.stringify(iconList)} as const;`);
+\nexport const ${iconListName} = ${JSON.stringify(iconList)} as const;`
+    );
 };

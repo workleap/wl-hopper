@@ -2,10 +2,7 @@ import { transform } from "@svgr/core";
 import fs from "fs";
 import path from "path";
 
-import {
-    IconSuffix,
-    RichIconSuffix
-} from "./constants.ts";
+import { IconSuffix, RichIconSuffix } from "./constants.ts";
 import type { MultiSourceIconSource } from "./fetchSvgs.ts";
 import svgoConfig from "./svgo-config.ts";
 
@@ -25,7 +22,7 @@ export function generateComponents(componentDirectory: string, icons: MultiSourc
             " */",
             "/* eslint-disable */",
             `import { ${createMethodName} } from "${createMethodImportPath}";`,
-            "import { forwardRef, type Ref, type SVGProps } from \"react\";"
+            'import { forwardRef, type Ref, type SVGProps } from "react";'
         ].join("\n");
         componentCode += "\n\n";
 
@@ -34,22 +31,26 @@ export function generateComponents(componentDirectory: string, icons: MultiSourc
         let sizes: number[] = [];
         for (const [size, data] of Object.entries(icon.sizes)) {
             sizes = [...sizes, parseInt(size)].sort();
-            componentCode += transform.sync(data, {
-                typescript: true,
-                ref: true,
-                jsxRuntime: "automatic",
-                svgoConfig: svgoConfig,
-                plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
-                template: ({ componentName, jsx, props }, { tpl }) => {
-                    return tpl`
+            componentCode += transform.sync(
+                data,
+                {
+                    typescript: true,
+                    ref: true,
+                    jsxRuntime: "automatic",
+                    svgoConfig,
+                    plugins: ["@svgr/plugin-svgo", "@svgr/plugin-jsx"],
+                    template: ({ componentName, jsx, props }, { tpl }) => {
+                        return tpl`
                         const ${componentName} = forwardRef((${props}) => (
                             ${jsx}
                         ));
                     `;
+                    }
+                },
+                {
+                    componentName: `${baseIconName}${size}`
                 }
-            }, {
-                componentName: `${baseIconName}${size}`
-            });
+            );
             componentCode += "\n";
         }
         componentCode += `\nexport const ${baseIconName} = ${createMethodName}(${baseIconName}${sizes[0]}, ${baseIconName}${sizes[1]}, ${baseIconName}${sizes[2]}, "${baseIconName}");`;

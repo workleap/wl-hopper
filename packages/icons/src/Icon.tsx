@@ -1,7 +1,13 @@
-import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    slot as slotFn,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ElementType, type RefAttributes, type SVGProps } from "react";
-import { useContextProps, type SlotProps } from "react-aria-components";
+import { type CSSProperties, type ElementType, type RefAttributes, type SVGProps, forwardRef } from "react";
+import { type SlotProps, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../components/src/utils/src/cssModule.ts";
 
@@ -15,9 +21,9 @@ export type IconSize = "sm" | "md" | "lg";
 
 export interface IconProps extends SlotProps, Omit<StyledComponentProps<"svg">, "slot"> {
     /**
-    * The size of the icon.
-    * @default "md"
-    */
+     * The size of the icon.
+     * @default "md"
+     */
     size?: ResponsiveProp<IconSize>;
     /**
      * The source of the icon with a size of 16px.
@@ -59,15 +65,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
 
     const As = sizeMappings[size];
 
-    const classNames = clsx(
-        className,
-        GlobalIconCssSelector,
-        cssModule(
-            styles,
-            "hop-Icon"
-        ),
-        stylingProps.className
-    );
+    const classNames = clsx(className, GlobalIconCssSelector, cssModule(styles, "hop-Icon"), stylingProps.className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
@@ -83,7 +81,7 @@ const Icon = forwardRef<SVGSVGElement, IconProps>((props, ref) => {
             focusable="false"
             role="img"
             aria-label={ariaLabel}
-            aria-hidden={(ariaLabel ? (ariaHidden || undefined) : true)}
+            aria-hidden={ariaLabel ? ariaHidden || undefined : true}
             className={classNames}
         />
     );

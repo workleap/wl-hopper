@@ -17,7 +17,15 @@ const List = ({ ...iconProps }: ListProps) => {
     });
 
     return (
-        <UL display="flex" flexWrap="wrap" alignItems="center" gap="inline-md" margin="core_0" padding="core_0" style={{ listStyle: "none" }}>
+        <UL
+            display="flex"
+            flexWrap="wrap"
+            alignItems="center"
+            gap="inline-md"
+            margin="core_0"
+            padding="core_0"
+            style={{ listStyle: "none" }}
+        >
             {listItems}
         </UL>
     );
@@ -53,4 +61,3 @@ export const Styles: Story = {
         fill: "danger-press"
     }
 };
-

@@ -28,6 +28,7 @@ export default defineConfig({
         "jsx-a11y/prefer-tag-over-role": "off",
         "eslint/no-underscore-dangle": "off", // wl-hopper uses the _ComponentName internal forwardRef pattern
         "unicorn/no-array-sort": "off", //Temporarily disabled .sort() on freshly-created arrays is idiomatic and safe here.
+        "import/namespace": "off", // redundant with TypeScript; only false-positives on intentional dynamic icon lookups (IconLibrary[name])
 
 
 
@@ -122,7 +123,7 @@ export default defineConfig({
         },
         {
             // RAC patterns + we want to keep warn-level console logging in these libraries/app.
-            files: ["packages/components/**", "packages/styled-system/**", "apps/docs/**"],
+            files: ["packages/components/**", "packages/styled-system/**", "packages/icons/**", "apps/docs/**"],
             rules: {
                 "eslint/no-param-reassign": "off",
                 "eslint/no-console": ["warn", { allow: ["warn", "error"] }],

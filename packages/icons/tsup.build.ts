@@ -10,5 +10,6 @@ export default defineBuildConfig({
         createCssModuleEsbuildPlugin({
             generateScopedName: "[name]__[local]___[hash:base64:5]",
             hashPrefix: packageJson.version
-        })]
+        })
+    ]
 });
