@@ -1,13 +1,13 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
 export const formatTokens = (tokens: TransformedToken[], group: string): [string, { [t: string]: string }[]] => {
     const formatted = tokens.map((token: TransformedToken) => {
         const result: Record<string, string> = {};
-        result[token.name] = token.value;
+        result[token.name] = token.$value;
 
         return {
             name: token.name,
-            value: token.value
+            value: token.$value
         };
     });
 

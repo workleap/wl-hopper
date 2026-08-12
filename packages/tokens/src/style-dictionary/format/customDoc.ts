@@ -1,12 +1,12 @@
-import type { Dictionary } from "style-dictionary";
+import type { Dictionary } from "style-dictionary/types";
 
 export const customDoc = function ({ dictionary }: { dictionary: Dictionary }) {
     const docFormat = dictionary.allTokens.map(token => {
-        const { name, value } = token;
+        const { name, $value } = token;
 
         return ({
             name,
-            value
+            value: $value
         });
     });
 

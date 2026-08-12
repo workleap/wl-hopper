@@ -1,4 +1,4 @@
-import type { TransformedToken } from "style-dictionary";
+import type { TransformedToken } from "style-dictionary/types";
 
 export interface AttributeFont {
     category: string;
@@ -6,6 +6,7 @@ export interface AttributeFont {
     family: string;
     weight: string;
     style: string;
+    [key: string]: string;
 }
 
 export function attributeFont(token: TransformedToken): AttributeFont {

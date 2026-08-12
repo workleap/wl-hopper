@@ -1,4 +1,4 @@
-import type { Dictionary } from "style-dictionary";
+import type { Dictionary } from "style-dictionary/types";
 
 import { handleTypes, formatTokensByType } from "../helpers/index.ts";
 

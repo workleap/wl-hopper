@@ -1,13 +1,14 @@
-import type { Dictionary } from "style-dictionary";
+import type { Dictionary } from "style-dictionary/types";
+import { getReferences, usesReferences } from "style-dictionary/utils";
 
 import { isDarkTokens } from "../filter/isDarkTokens.ts";
 
 export const cssDarkMode = function ({ dictionary }: { dictionary: Dictionary }) {
     const darkTokens = dictionary.allTokens.filter(isDarkTokens).map(token => {
-        let value = token.original.value;
+        let value = token.original.$value;
 
-        if (dictionary.usesReference(value)) {
-            const refs = dictionary.getReferences(value);
+        if (usesReferences(value)) {
+            const refs = getReferences(value, dictionary.tokens);
             refs.forEach(ref => {
                 value = value.replaceAll(`{${ref.path.join(".")}}`, `var(--${ref.name})`);
             });
