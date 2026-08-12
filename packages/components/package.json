@@ -35,7 +35,6 @@
     "scripts": {
         "dev": "tsup --config ./tsup.dev.ts",
         "build": "cross-env NODE_OPTIONS=--max-old-space-size=16384 tsup --config ./tsup.build.ts",
-        "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run",
@@ -60,28 +59,22 @@
         "clsx": "^2.1.1"
     },
     "devDependencies": {
-        "@eslint/js": "9.38.0",
         "@hopper-ui/icons": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
         "@testing-library/dom": "10.4.1",
         "@testing-library/jest-dom": "6.9.1",
         "@testing-library/react": "16.3.0",
         "@testing-library/user-event": "14.6.1",
-        "@types/eslint": "9.6.1",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
-        "@workleap/eslint-configs": "0.0.7",
         "@workleap/tsup-configs": "3.1.0",
         "@workleap/typescript-configs": "3.0.4",
-        "eslint": "9.38.0",
-        "eslint-plugin-import": "2.32.0",
         "jest-fail-on-console": "3.3.1",
         "react": "19.2.8",
         "react-aria": "3.44.0",
         "react-aria-components": "1.13.0",
         "react-dom": "19.2.8",
         "tsup": "8.5.0",
-        "typescript": "5.5.4",
-        "typescript-eslint": "8.46.2"
+        "typescript": "5.5.4"
     }
 }

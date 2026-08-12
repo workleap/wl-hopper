@@ -9,7 +9,6 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.build.json",
-        "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "prebuild": "shx rm -rf ./src/.docs && shx cp -r ../docs/dist/ai-docs ./src/.docs",
         "postbuild": "shx rm -rf dist/hosts/netlify/docs && shx cp -r ./src/.docs dist/hosts/netlify/docs",
         "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
@@ -34,20 +33,16 @@
         "zod": "^3.25.76"
     },
     "devDependencies": {
-        "@eslint/js": "9.38.0",
         "@testing-library/jest-dom": "6.9.1",
         "@types/express": "5.0.3",
         "@types/node": "24.5.1",
         "@typescript-eslint/types": "8.46.2",
-        "@workleap/eslint-configs": "0.0.7",
         "@workleap/typescript-configs": "3.0.4",
-        "eslint": "9.38.0",
         "jest-fail-on-console": "3.3.1",
         "nodemon": "3.1.10",
         "shx": "0.4.0",
         "tsx": "4.20.6",
         "typescript": "5.5.4",
-        "typescript-eslint": "8.46.2",
         "unist-util-visit": "5.0.0"
     }
 }
