@@ -71,24 +71,16 @@ const parserConfig = {
     }
 } satisfies docgenTs.ParserOptions;
 
-// Components are declared as `const _Button = ...; export { _Button as Button };`. The parser
-// needs to see the underscore-prefixed binding (`componentNameResolver` above strips the `_`),
+// Components are declared as `const _Button = ...; export { _Button as Button };`. The parser needs
+// to see the underscore-prefixed binding — `componentNameResolver` above strips the `_` back off —
 // so the export statement is rewritten before it reaches TypeScript.
 //
-// The rewrite cannot simply be applied to every file of a shared program: components import each
-// other through barrels (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) which re-export
-// the *aliased* name, so stripping the alias everywhere would break cross-component type
-// resolution. `HOPPER_DOCGEN_ALIAS_MODE` selects how that is handled:
-//
-//   virtual-temp (default) - the rewritten file is exposed under an extra in-memory `.temp.tsx`
-//                            path and the real file is left untouched, reproducing exactly what
-//                            the previous on-disk temp files produced.
-//   additive               - rewrite in place to `export { _X as X, _X }`, keeping the alias.
-//   none                   - no rewrite; rely on `componentNameResolver` alone.
-type AliasMode = "virtual-temp" | "additive" | "none";
-
-const ALIAS_MODE = (process.env.HOPPER_DOCGEN_ALIAS_MODE ?? "virtual-temp") as AliasMode;
-
+// The rewrite deliberately does not touch the real file. Components import each other through
+// barrels (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) that re-export the *aliased*
+// name, so rewriting every file of a shared program would remove the binding those barrels resolve
+// against and silently degrade imported prop types to `any`. Instead the rewritten source is served
+// under an additional in-memory path, which is what the previous implementation achieved by writing
+// `<Name>.temp.tsx` next to the source — without writing anything to disk.
 const EXPORT_ALIAS_RE = /export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g;
 
 function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
@@ -333,10 +325,6 @@ function toDirectoryPath(partialPath: string) {
 function preprocessFileContent(filePath: string) {
     const content = fs.readFileSync(filePath, "utf8");
 
-    if (ALIAS_MODE === "additive") {
-        return content.replace(EXPORT_ALIAS_RE, "export { _$1 as $2, _$1 }");
-    }
-
     return content.replace(EXPORT_ALIAS_RE, "export { $1 }");
 }
 
@@ -346,35 +334,26 @@ function toVirtualTempPath(originalFilePath: string) {
     return path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
 }
 
-// Resolves the path each component is parsed under, and the in-memory content served for it.
+// Resolves the virtual path each component is parsed under, and the content served for it.
 function createParseTargets(components: ComponentData[]) {
     const targets: ParseTarget[] = [];
     const contentByParsePath = new Map<string, string>();
 
     for (const component of components) {
         const filePath = path.resolve(component.filePath);
-        const parsePath = ALIAS_MODE === "virtual-temp" ? toVirtualTempPath(filePath) : filePath;
+        const parsePath = toVirtualTempPath(filePath);
 
         targets.push({ component, parsePath });
-
-        if (ALIAS_MODE !== "none") {
-            contentByParsePath.set(parsePath, preprocessFileContent(filePath));
-        }
+        contentByParsePath.set(parsePath, preprocessFileContent(filePath));
     }
 
     return { targets, contentByParsePath };
 }
 
-// Serves the rewritten sources from memory so nothing is ever written to another package's
-// source tree. In `virtual-temp` mode the rewritten file is served under an additional path,
-// leaving the real file — and therefore every barrel that re-exports it — untouched.
+// Serves the rewritten sources from memory, so nothing is ever written to another package's source
+// tree. Only the additional virtual paths are served; the real files are read from disk untouched.
 function createProgramHost(options: ts.CompilerOptions, contentByParsePath: Map<string, string>): ts.CompilerHost {
     const host = ts.createCompilerHost(options, true);
-
-    if (contentByParsePath.size === 0) {
-        return host;
-    }
-
     const originalGetSourceFile = host.getSourceFile.bind(host);
     const originalFileExists = host.fileExists.bind(host);
     const originalReadFile = host.readFile.bind(host);
@@ -432,7 +411,7 @@ async function generateComponentData() {
     // A single program serves both parsers. They differ only by `propFilter`, a predicate applied
     // after type resolution, and building one program instead of two per component is what makes
     // this script fast: each program re-binds the whole React + react-aria .d.ts closure.
-    console.log(`Building TypeScript program for ${rootFileNames.length} components (alias mode: ${ALIAS_MODE})...`);
+    console.log(`Building TypeScript program for ${rootFileNames.length} components...`);
     const host = createProgramHost(compilerOptions, contentByParsePath);
     const program = ts.createProgram(rootFileNames, compilerOptions, host);
     const programProvider = () => program;
