@@ -6,7 +6,7 @@ export const handleTypes = (data: TransformedToken[]): string[] | undefined => {
     }
 
     const types = data.map((token: TransformedToken) => token.$type);
-    const filtredTypes = types.filter((type): type is string => type !== undefined);
+    const filteredTypes = types.filter((type): type is string => type !== undefined);
 
-    return [...new Set(filtredTypes)];
+    return [...new Set(filteredTypes)];
 };
