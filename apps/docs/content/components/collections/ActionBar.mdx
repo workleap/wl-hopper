@@ -1,0 +1,77 @@
+---
+title: ActionBar
+description: An action bar shows contextual actions for the items a user has currently selected in a collection.
+category: "collections"
+links:
+    source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/action-bar/src/ActionBar.tsx
+---
+
+An action bar holds the bulk actions for whatever a user has selected in a list, table, or card view. It appears as soon as something is selected, and goes away when the selection is cleared.
+
+<Example src="action-bar/docs/preview" />
+
+## Anatomy
+
+### Structure
+
+```tsx
+<ActionBar>
+    <CloseButton /> /* Clears the selection */
+    <Text /> /* The selection count */
+    <ButtonGroup /> /* One or more action buttons */
+</ActionBar>
+```
+
+### Composed Components
+
+An `ActionBar` uses the following components:
+
+<ComposedComponents components={["ButtonGroup", "CloseButton"]}/>
+
+## Usage
+
+### Actions
+
+Any Button variant can be used as an action. Follow `ButtonGroup`'s conventions: one primary action, with secondary or danger actions next to it.
+
+<Example src="action-bar/docs/actions" />
+
+### Clearing the selection
+
+The `onClearSelection` handler is called when the close button is pressed, or when the <kbd>Escape</kbd> key is pressed while the ActionBar has focus.
+
+<Example src="action-bar/docs/clearSelection" />
+
+### Selecting all items
+
+When every item is selected, pass `"all"` to `selectedItemCount` instead of a number.
+
+<Example src="action-bar/docs/allSelected" />
+
+ActionBar won't infer this from `selectedItemCount === totalItemCount`, because the two mean different things. `"all"` covers every item in the collection, including any that haven't loaded yet. A count matching the total only covers what's loaded right now. In a paginated or virtualized collection those two drift apart, so it's your call which one the user is actually looking at.
+
+### Showing a total
+
+Pass `totalItemCount` to show how many items are selected out of the total available.
+
+<Example src="action-bar/docs/totalItemCount" />
+
+### Naming the selected items
+
+The default text says "item", which works for most collections. When yours holds something more specific, pass `selectionText` to replace the whole sentence. It takes a node, or a function that receives `selectedItemCount` and `totalItemCount`.
+
+<Example src="action-bar/docs/selectionText" />
+
+It's the whole sentence and not just the noun because the surrounding words have to agree with it. French needs "3 personnes sélectionnées" but "3 fichiers sélectionnés": swapping only the noun would leave the participle wrong. Format the string in your own translation files, where the plural rules and agreement for each locale already live.
+
+## Best Practices
+
+ActionBars should:
+
+- Only appear while at least one item is selected — pass `0` to `selectedItemCount` to hide it.
+- Keep actions short and specific to the current selection (e.g. "Archive", "Delete").
+- Use `variant="danger"` sparingly, and only for destructive, irreversible actions.
+
+## Props
+
+<PropTable component="ActionBar" />

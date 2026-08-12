@@ -29,6 +29,19 @@ describe("useLocalizedString", () => {
         expect(result.current.format("Input.charactersLeft", { charLeft: 3 })).toBe("3 characters left.");
     });
 
+    it("should agree the participle with the count in fr-CA", () => {
+        const { result } = renderHook(() => useLocalizedString(), undefined, { locale: "fr-CA" });
+
+        expect(result.current.format("ActionBar.selected", { count: 1 })).toBe("1 élément sélectionné");
+        expect(result.current.format("ActionBar.selected", { count: 3 })).toBe("3 éléments sélectionnés");
+        expect(result.current.format("ActionBar.selectedOfTotal", { count: 1, total: 230 })).toBe(
+            "1 élément sélectionné sur 230"
+        );
+        expect(result.current.format("ActionBar.selectedOfTotal", { count: 12, total: 230 })).toBe(
+            "12 éléments sélectionnés sur 230"
+        );
+    });
+
     it("should format and translate string when variables and fr-CA are passed", () => {
         const { result } = renderHook(() => useLocalizedString(), undefined, { locale: "fr-CA" });
 
