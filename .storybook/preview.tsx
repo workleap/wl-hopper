@@ -56,7 +56,9 @@ const preview: Preview = {
             toolbar: {
                 title: "Locale",
                 icon: "globe",
-                items: localesGlobalTypes,
+                // Spread into a mutable array: `localesGlobalTypes` is `as const` (needed to derive `LocaleKeys`),
+                // but Storybook 10's toolbar `items` type expects a mutable array.
+                items: [...localesGlobalTypes],
                 dynamicTitle: true
             }
         },
