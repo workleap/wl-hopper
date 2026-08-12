@@ -4,9 +4,7 @@ export function isSizeType(token: TransformedToken): boolean {
     const typeOfSize = ["size", "fontSize", "borderRadius", "letterSpacing"];
 
     if (token?.$type !== undefined) {
-        return (
-            typeOfSize.includes(token.$type)
-        );
+        return typeOfSize.includes(token.$type);
     }
 
     return false;

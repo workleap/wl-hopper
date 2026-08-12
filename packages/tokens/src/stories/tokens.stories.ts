@@ -23,13 +23,14 @@ function filterByTokenType(allStyles: Style[], tokenType: TokenType) {
 
     switch (tokenType) {
         case "core":
-            return styles.filter(style =>
-                !style.name.includes("core") &&
-                !style.name.includes("surface") &&
-                !style.name.includes("border") &&
-                !style.name.includes("text") &&
-                !style.name.includes("icon") &&
-                !style.name.includes("dataviz")
+            return styles.filter(
+                style =>
+                    !style.name.includes("core") &&
+                    !style.name.includes("surface") &&
+                    !style.name.includes("border") &&
+                    !style.name.includes("text") &&
+                    !style.name.includes("icon") &&
+                    !style.name.includes("dataviz")
             );
         case "background":
             return styles.filter(style => style.name.includes("surface"));
@@ -199,4 +200,3 @@ export const SharegateDataVizDark = {
         tokenType: "dataViz"
     }
 };
-

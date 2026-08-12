@@ -4,8 +4,19 @@ import StyleDictionary from "style-dictionary";
 import "style-dictionary-utils"; // auto-registers gradient/css transform
 import { fileHeader } from "style-dictionary/utils";
 
-import { fontsConfig, getStyleDictionaryConfig, getStyledSystemTokenMappingConfig, getStyledSystemTokensConfig } from "./config.ts";
-import { AUTO_GENERATED_COMMENT, HOPPER_PREFIX, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
+import {
+    fontsConfig,
+    getStyleDictionaryConfig,
+    getStyledSystemTokenMappingConfig,
+    getStyledSystemTokensConfig
+} from "./config.ts";
+import {
+    AUTO_GENERATED_COMMENT,
+    HOPPER_PREFIX,
+    STYLED_SYSTEM_BUILD_PATH,
+    STYLED_SYSTEM_THEME_BUILD_PATH,
+    StyledSystemRootCssClass
+} from "./constant.ts";
 import { hasNonEmptyValue } from "./filter/hasNonEmptyValue.ts";
 import { isColorType } from "./filter/isColorType.ts";
 import { isDarkTokens } from "./filter/isDarkTokens.ts";
@@ -58,7 +69,9 @@ StyleDictionary.registerTransformGroup({
     // category (never "color" in this repo), so colors passed through untouched. v5's "color/css"
     // matches via DTCG `$type: color` and would re-serialize values like `transparent` or
     // `rgb(R G B / A)`. Dropping it preserves the exact v3 output.
-    transforms: StyleDictionary.hooks.transformGroups["css"].filter(transform => transform !== "color/css").concat(["pxToRem", "gradient/css", "gradient/css-linear", "shadow/css"])
+    transforms: StyleDictionary.hooks.transformGroups["css"]
+        .filter(transform => transform !== "color/css")
+        .concat(["pxToRem", "gradient/css", "gradient/css-linear", "shadow/css"])
 });
 
 // Format
@@ -85,7 +98,7 @@ StyleDictionary.registerFormat({
 StyleDictionary.registerFormat({
     name: "custom/ts-token-mapping",
     format: async ({ dictionary, file }) => {
-        return await fileHeader({ file }) + customTsTokenMapping({ dictionary });
+        return (await fileHeader({ file })) + customTsTokenMapping({ dictionary });
     }
 });
 
@@ -93,9 +106,7 @@ StyleDictionary.registerFormat({
 StyleDictionary.registerFileHeader({
     name: "typescript-file-header",
     fileHeader: () => {
-        return [
-            AUTO_GENERATED_COMMENT
-        ];
+        return [AUTO_GENERATED_COMMENT];
     }
 });
 
@@ -132,7 +143,9 @@ for (const theme of themes) {
 }
 
 console.log("\n|- 💅 Building Styled System token mappings...");
-await new StyleDictionary(getStyledSystemTokenMappingConfig(themes.find(theme => theme === "workleap") || themes[0])).buildAllPlatforms();
+await new StyleDictionary(
+    getStyledSystemTokenMappingConfig(themes.find(theme => theme === "workleap") || themes[0])
+).buildAllPlatforms();
 
 console.log("\n🚀 Build completed!\n");
 

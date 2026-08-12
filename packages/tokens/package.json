@@ -1,31 +1,32 @@
 {
     "name": "@hopper-ui/tokens",
-    "author": "Workleap",
     "version": "5.3.10",
     "description": "The tokens package.",
+    "keywords": [
+        "design tokens",
+        "hopper design system",
+        "workleap"
+    ],
     "license": "Apache-2.0",
+    "author": "Workleap",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git",
         "directory": "packages/tokens"
     },
-    "keywords": [
-        "design tokens",
-        "workleap",
-        "hopper design system"
-    ],
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
-    "type": "module",
-    "exports": {
-        "./*": "./dist/*"
-    },
     "files": [
         "dist",
         "CHANGELOG.md"
     ],
+    "type": "module",
+    "sideEffects": false,
+    "exports": {
+        "./*": "./dist/*"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "scripts": {
         "clean:dist": "pnpm dlx rimraf dist",
         "build": "tsx src/style-dictionary/build.ts",
@@ -40,6 +41,5 @@
         "style-dictionary-utils": "6.0.1",
         "tsx": "4.20.6",
         "typescript": "5.5.4"
-    },
-    "sideEffects": false
+    }
 }

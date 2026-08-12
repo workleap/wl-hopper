@@ -1,6 +1,6 @@
 import type { Dictionary } from "style-dictionary/types";
 
-import { handleTypes, formatTokensByType } from "../helpers/index.ts";
+import { formatTokensByType, handleTypes } from "../helpers/index.ts";
 
 export const customJson = function ({ dictionary }: { dictionary: Dictionary }) {
     const types = handleTypes(dictionary.allTokens);
@@ -20,8 +20,8 @@ export const customJson = function ({ dictionary }: { dictionary: Dictionary }) 
         const semantic = formatTokensByType(types, semanticTokens);
 
         tokens = {
-            "core": Object.fromEntries(core),
-            "semantic": Object.fromEntries(semantic)
+            core: Object.fromEntries(core),
+            semantic: Object.fromEntries(semantic)
         };
     }
 

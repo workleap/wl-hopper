@@ -634,7 +634,7 @@
         }
     },
     "accent": {
-        "lg" : {
+        "lg": {
             "font-family": {
                 "$type": "fontFamily",
                 "$value": "{font.family.tertiary}"
@@ -652,7 +652,7 @@
                 "$value": "{line-height.1-1666}"
             }
         },
-        "md" : {
+        "md": {
             "font-family": {
                 "$type": "fontFamily",
                 "$value": "{font.family.tertiary}"
@@ -670,7 +670,7 @@
                 "$value": "{line-height.1-14}"
             }
         },
-        "sm" : {
+        "sm": {
             "font-family": {
                 "$type": "fontFamily",
                 "$value": "{font.family.tertiary}"
@@ -688,7 +688,7 @@
                 "$value": "{line-height.1-33}"
             }
         },
-        "xs" : {
+        "xs": {
             "font-family": {
                 "$type": "fontFamily",
                 "$value": "{font.family.tertiary}"

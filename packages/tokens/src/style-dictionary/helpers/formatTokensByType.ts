@@ -1,13 +1,15 @@
 import type { TransformedToken } from "style-dictionary/types";
 
-import { formatTokens } from "./index.js";
+import { formatTokens } from "./formatTokens.ts";
 
 export function formatTokensByType(types: string[], tokens: TransformedToken[]) {
-    return types.map(type => {
-        const data = tokens.filter(token => {
-            return token.$type === type;
-        });
+    return types
+        .map(type => {
+            const data = tokens.filter(token => {
+                return token.$type === type;
+            });
 
-        return formatTokens(data, type);
-    }).filter(([, typeTokens]) => typeTokens.length > 0);
+            return formatTokens(data, type);
+        })
+        .filter(([, typeTokens]) => typeTokens.length > 0);
 }

@@ -50,7 +50,9 @@ export const customTsTokenMapping = function ({ dictionary }: { dictionary: Dict
         mappings += mapSpace(coreTokens, semanticTokens);
         mappings += mapMotions(coreTokens);
 
-        mappings += `export type HopperTokenKey = \`${cssPrefix}-\${${Object.values(MappingType).map(x => `typeof ${x}[keyof typeof ${x}]`).join(" | ")}}\`;\n`;
+        mappings += `export type HopperTokenKey = \`${cssPrefix}-\${${Object.values(MappingType)
+            .map(x => `typeof ${x}[keyof typeof ${x}]`)
+            .join(" | ")}}\`;\n`;
         mappings += `export type HopperCssVar = \`var(\${HopperTokenKey})\`;\n`;
     }
 
@@ -63,9 +65,11 @@ interface TokenMapping {
 }
 
 function formatTokenMapping(variableName: string, mappings: TokenMapping[]) {
-    const formattedTokens = mappings.map(mapping => {
-        return `    "${mapping.name}": "${mapping.originalName}"`;
-    }).join(",\n");
+    const formattedTokens = mappings
+        .map(mapping => {
+            return `    "${mapping.name}": "${mapping.originalName}"`;
+        })
+        .join(",\n");
 
     return `export const ${variableName} = {\n${formattedTokens}\n} as const;\n\n`;
 }
@@ -142,46 +146,59 @@ function mapColors(coreTokens: TransformedToken[], semanticTokens: TransformedTo
     let colorMappings = "";
 
     // core
-    colorMappings += formatTokenMapping(MappingType.HopperColors, coreColorTokensNames.map(name => {
-        return createMapping(name, undefined, "core");
-    }));
+    colorMappings += formatTokenMapping(
+        MappingType.HopperColors,
+        coreColorTokensNames.map(name => {
+            return createMapping(name, undefined, "core");
+        })
+    );
 
     // background
     colorMappings += formatTokenMapping(
         MappingType.BackgroundColors,
-        semanticColorTokensNames.filter(x => x.includes("surface") && !x.includes("dataviz")).map(token => {
-            return createMapping(token, "surface");
-        })
+        semanticColorTokensNames
+            .filter(x => x.includes("surface") && !x.includes("dataviz"))
+            .map(token => {
+                return createMapping(token, "surface");
+            })
     );
 
     // text
     colorMappings += formatTokenMapping(
         MappingType.TextColors,
-        semanticColorTokensNames.filter(x => x.includes("text") && !x.includes("dataviz")).map(token => {
-            return createMapping(token, "text");
-        })
+        semanticColorTokensNames
+            .filter(x => x.includes("text") && !x.includes("dataviz"))
+            .map(token => {
+                return createMapping(token, "text");
+            })
     );
 
     // icon
     colorMappings += formatTokenMapping(
         MappingType.IconColors,
-        semanticColorTokensNames.filter(x => x.includes("icon") && !x.includes("dataviz")).map(token => {
-            return createMapping(token, "icon");
-        })
+        semanticColorTokensNames
+            .filter(x => x.includes("icon") && !x.includes("dataviz"))
+            .map(token => {
+                return createMapping(token, "icon");
+            })
     );
     // border
     colorMappings += formatTokenMapping(
         MappingType.BorderColors,
-        semanticColorTokensNames.filter(x => x.includes("border") && !x.includes("dataviz")).map(token => {
-            return createMapping(token, "border");
-        })
+        semanticColorTokensNames
+            .filter(x => x.includes("border") && !x.includes("dataviz"))
+            .map(token => {
+                return createMapping(token, "border");
+            })
     );
     // dataviz
     colorMappings += formatTokenMapping(
         MappingType.DataVizColors,
-        semanticColorTokensNames.filter(x => x.includes("dataviz")).map(token => {
-            return createMapping(token, "dataviz", "dataviz");
-        })
+        semanticColorTokensNames
+            .filter(x => x.includes("dataviz"))
+            .map(token => {
+                return createMapping(token, "dataviz", "dataviz");
+            })
     );
 
     return colorMappings;
@@ -194,82 +211,88 @@ function mapFonts(coreTokens: TransformedToken[], semanticTokens: TransformedTok
     let fontsMappings = "";
 
     // font-family
-    fontsMappings += formatTokenMapping(
-        MappingType.FontFamily,
-        [
-            ...coreFontTokens.filter(x => x.includes("font-family")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.FontFamily, [
+        ...coreFontTokens
+            .filter(x => x.includes("font-family"))
+            .map(token => {
                 return createMapping(token, "font-family", "core");
             }),
-            ...semanticFontTokens.filter(x => x.includes("font-family")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("font-family"))
+            .map(token => {
                 return createMapping(token, "font-family");
             })
-        ]
-    );
+    ]);
 
     // font-weight
-    fontsMappings += formatTokenMapping(
-        MappingType.FontWeight,
-        [
-            ...coreFontTokens.filter(x => x.includes("font-weight")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.FontWeight, [
+        ...coreFontTokens
+            .filter(x => x.includes("font-weight"))
+            .map(token => {
                 return createMapping(token, "font-weight", "core");
             }),
-            ...semanticFontTokens.filter(x => x.includes("font-weight")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("font-weight"))
+            .map(token => {
                 return createMapping(token, "font-weight");
             })
-        ]
-    );
+    ]);
 
     // font-size
-    fontsMappings += formatTokenMapping(
-        MappingType.FontSize,
-        [
-            ...coreFontTokens.filter(x => x.includes("font-size")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.FontSize, [
+        ...coreFontTokens
+            .filter(x => x.includes("font-size"))
+            .map(token => {
                 return createMapping(token, "font-size", "core");
             }),
-            ...semanticFontTokens.filter(x => x.includes("font-size")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("font-size"))
+            .map(token => {
                 return createMapping(token, "font-size");
             })
-        ]
-    );
+    ]);
 
     // line-height
-    fontsMappings += formatTokenMapping(
-        MappingType.LineHeight,
-        [
-            ...coreFontTokens.filter(x => x.includes("line-height")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.LineHeight, [
+        ...coreFontTokens
+            .filter(x => x.includes("line-height"))
+            .map(token => {
                 return createMapping(token, "line-height", "core");
             }),
-            ...semanticFontTokens.filter(x => x.includes("line-height")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("line-height"))
+            .map(token => {
                 return createMapping(token, "line-height");
             })
-        ]
-    );
+    ]);
 
     // letter-spacing
-    fontsMappings += formatTokenMapping(
-        MappingType.LetterSpacing,
-        [
-            ...coreFontTokens.filter(x => x.includes("letter-spacing")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.LetterSpacing, [
+        ...coreFontTokens
+            .filter(x => x.includes("letter-spacing"))
+            .map(token => {
                 return createMapping(token, "letter-spacing", "core");
             }),
-            ...semanticFontTokens.filter(x => x.includes("letter-spacing")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("letter-spacing"))
+            .map(token => {
                 return createMapping(token, "letter-spacing");
             })
-        ]
-    );
+    ]);
 
     // offset
-    fontsMappings += formatTokenMapping(
-        MappingType.FontOffset,
-        [
-            ...coreFontTokens.filter(x => x.includes("-offset")).map(token => {
+    fontsMappings += formatTokenMapping(MappingType.FontOffset, [
+        ...coreFontTokens
+            .filter(x => x.includes("-offset"))
+            .map(token => {
                 return createMapping(token);
             }),
-            ...semanticFontTokens.filter(x => x.includes("-offset")).map(token => {
+        ...semanticFontTokens
+            .filter(x => x.includes("-offset"))
+            .map(token => {
                 return createMapping(token);
             })
-        ]
-    );
+    ]);
 
     return fontsMappings;
 }
@@ -280,35 +303,52 @@ function mapSpace(coreTokens: TransformedToken[], semanticTokens: TransformedTok
 
     let spaceMapping = "";
 
-    spaceMapping += formatTokenMapping(MappingType.CoreSpace, coreSpaceTokens.map(x => x.name).map(name => {
-        return createMapping(name, "space", "core");
-    }));
+    spaceMapping += formatTokenMapping(
+        MappingType.CoreSpace,
+        coreSpaceTokens
+            .map(x => x.name)
+            .map(name => {
+                return createMapping(name, "space", "core");
+            })
+    );
 
     // Padding values (checks stack and inline in the name)
     const paddingTokens = semanticSpaceTokens.filter(x => x.name.includes("inset"));
     const simplePaddingValuesNames = paddingTokens.filter(x => !x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
     const complexPaddingValuesNames = paddingTokens.filter(x => x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in padding, not paddingLeft and the others
 
-    spaceMapping += formatTokenMapping(MappingType.SemanticSimplePaddingSpace, simplePaddingValuesNames.map(name => {
-        return createMapping(name, "space");
-    }));
+    spaceMapping += formatTokenMapping(
+        MappingType.SemanticSimplePaddingSpace,
+        simplePaddingValuesNames.map(name => {
+            return createMapping(name, "space");
+        })
+    );
 
-    spaceMapping += formatTokenMapping(MappingType.SemanticComplexPaddingSpace, complexPaddingValuesNames.map(name => {
-        return createMapping(name, "space");
-    }));
+    spaceMapping += formatTokenMapping(
+        MappingType.SemanticComplexPaddingSpace,
+        complexPaddingValuesNames.map(name => {
+            return createMapping(name, "space");
+        })
+    );
 
     // Margin values (checks stack and inline in the name)
     const marginTokens = semanticSpaceTokens.filter(x => x.name.includes("stack") || x.name.includes("inline"));
     const simpleMarginValuesNames = marginTokens.filter(x => !x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
     const complexMarginValuesNames = marginTokens.filter(x => x.$value.includes(" ")).map(x => x.name); // if there is more than 1 values, such as "0.25rem 0.5rem", it can only be used in margin, not marginLeft and the others
 
-    spaceMapping += formatTokenMapping(MappingType.SemanticSimpleMarginSpace, simpleMarginValuesNames.map(name => {
-        return createMapping(name, "space");
-    }));
+    spaceMapping += formatTokenMapping(
+        MappingType.SemanticSimpleMarginSpace,
+        simpleMarginValuesNames.map(name => {
+            return createMapping(name, "space");
+        })
+    );
 
-    spaceMapping += formatTokenMapping(MappingType.SemanticComplexMarginSpace, complexMarginValuesNames.map(name => {
-        return createMapping(name, "space");
-    }));
+    spaceMapping += formatTokenMapping(
+        MappingType.SemanticComplexMarginSpace,
+        complexMarginValuesNames.map(name => {
+            return createMapping(name, "space");
+        })
+    );
 
     return spaceMapping;
 }
@@ -318,9 +358,14 @@ function mapMotions(coreTokens: TransformedToken[]) {
 
     let motionMapping = "";
 
-    motionMapping += formatTokenMapping(MappingType.Motions, coreMotionTokens.map(x => x.name).map(name => {
-        return createMapping(name);
-    }));
+    motionMapping += formatTokenMapping(
+        MappingType.Motions,
+        coreMotionTokens
+            .map(x => x.name)
+            .map(name => {
+                return createMapping(name);
+            })
+    );
 
     return motionMapping;
 }

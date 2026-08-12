@@ -10,11 +10,11 @@ export interface AttributeFont {
 }
 
 export function attributeFont(token: TransformedToken): AttributeFont {
-    return ({
+    return {
         category: token.path[0],
         type: token.path[1],
         family: token.path[2],
         style: token.path[3],
         weight: token.path[4]
-    });
+    };
 }

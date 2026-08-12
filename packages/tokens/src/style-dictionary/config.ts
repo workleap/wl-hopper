@@ -1,21 +1,29 @@
 import type { Config, File } from "style-dictionary/types";
 
-import { BUILD_PATH, DOCS_BUILD_PATH, HOPPER_PREFIX, STORYBOOK_BUILD_PATH, STYLED_SYSTEM_BUILD_PATH, STYLED_SYSTEM_THEME_BUILD_PATH, StyledSystemRootCssClass } from "./constant.ts";
+import {
+    BUILD_PATH,
+    DOCS_BUILD_PATH,
+    HOPPER_PREFIX,
+    STORYBOOK_BUILD_PATH,
+    STYLED_SYSTEM_BUILD_PATH,
+    STYLED_SYSTEM_THEME_BUILD_PATH,
+    StyledSystemRootCssClass
+} from "./constant.ts";
 
 export const fontsConfig: Config = {
-    "source": ["src/tokens/asset/*.tokens.json"],
-    "platforms": {
+    source: ["src/tokens/asset/*.tokens.json"],
+    platforms: {
         "css-font-face": {
-            "transforms": ["name/kebab", "attribute/font"],
-            "buildPath": `${BUILD_PATH}`,
-            "files": [
+            transforms: ["name/kebab", "attribute/font"],
+            buildPath: `${BUILD_PATH}`,
+            files: [
                 {
-                    "destination": "fonts.css",
-                    "format": "font-face",
-                    "filter": {
-                        "attributes": {
-                            "category": "asset",
-                            "type": "font"
+                    destination: "fonts.css",
+                    format: "font-face",
+                    filter: {
+                        attributes: {
+                            category: "asset",
+                            type: "font"
                         }
                     }
                 }
@@ -33,28 +41,29 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: strin
     const components = `src/tokens/components/${theme}/*.tokens.json`;
 
     return {
-        "source": isLightMode ? [core, semanticLight, components] : [semanticDark],
-        "include": isLightMode ? [] : [core],
-        "platforms": {
-            "css": {
-                "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
-                "buildPath": STYLED_SYSTEM_THEME_BUILD_PATH,
-                "prefix": HOPPER_PREFIX,
-                "options": {
-                    "fileHeader": "typescript-file-header"
+        source: isLightMode ? [core, semanticLight, components] : [semanticDark],
+        include: isLightMode ? [] : [core],
+        platforms: {
+            css: {
+                transformGroup: "custom/css", // We want the same values and name as the ones shown in css
+                buildPath: STYLED_SYSTEM_THEME_BUILD_PATH,
+                prefix: HOPPER_PREFIX,
+                options: {
+                    fileHeader: "typescript-file-header"
                 },
-                "files": [
+                files: [
                     {
-                        "destination": `${theme}/${mode}.css`,
-                        "format": "css/variables",
-                        "filter": "non-empty-value",
-                        "options": {
-                            "outputReferences": true,
-                            "selector": isLightMode ? `.${StyledSystemRootCssClass}-${theme}` : `.${StyledSystemRootCssClass}-${theme}-${mode}`
+                        destination: `${theme}/${mode}.css`,
+                        format: "css/variables",
+                        filter: "non-empty-value",
+                        options: {
+                            outputReferences: true,
+                            selector: isLightMode
+                                ? `.${StyledSystemRootCssClass}-${theme}`
+                                : `.${StyledSystemRootCssClass}-${theme}-${mode}`
                         }
                     }
                 ]
-
             }
         }
     };
@@ -62,51 +71,47 @@ export function getStyledSystemTokensConfig(mode: "light" | "dark", theme: strin
 
 export function getStyledSystemTokenMappingConfig(theme: string): Config {
     return {
-        "source": [
-            "src/tokens/core/*.tokens.json",
-            `src/tokens/semantic/${theme}/light/*.tokens.json`
-        ],
-        "platforms": {
-            "typescript": {
-                "transformGroup": "custom/css", // We want the same values and name as the ones shown in css
-                "buildPath": STYLED_SYSTEM_BUILD_PATH,
-                "prefix": HOPPER_PREFIX,
-                "options": {
-                    "fileHeader": "typescript-file-header"
+        source: ["src/tokens/core/*.tokens.json", `src/tokens/semantic/${theme}/light/*.tokens.json`],
+        platforms: {
+            typescript: {
+                transformGroup: "custom/css", // We want the same values and name as the ones shown in css
+                buildPath: STYLED_SYSTEM_BUILD_PATH,
+                prefix: HOPPER_PREFIX,
+                options: {
+                    fileHeader: "typescript-file-header"
                 },
-                "files": [
+                files: [
                     {
-                        "destination": "styledSystemToTokenMappings.ts",
-                        "format": "custom/ts-token-mapping",
-                        "options": {
-                            "outputReferences": true
+                        destination: "styledSystemToTokenMappings.ts",
+                        format: "custom/ts-token-mapping",
+                        options: {
+                            outputReferences: true
                         }
                     }
                 ]
-
             }
         }
     };
-};
+}
 
 export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string): Config {
     const isLightMode = mode === "light";
 
     const lightConfig: File = {
-        "destination": `${theme}/tokens.css`,
-        "format": "css/variables",
-        "filter": "non-empty-value",
-        "options": {
-            "outputReferences": true
+        destination: `${theme}/tokens.css`,
+        format: "css/variables",
+        filter: "non-empty-value",
+        options: {
+            outputReferences: true
         }
     };
 
     const darkConfig: File = {
-        "destination": `${theme}/dark/tokens.css`,
-        "format": "css/dark-mode",
-        "filter": "non-empty-value",
-        "options": {
-            "outputReferences": true
+        destination: `${theme}/dark/tokens.css`,
+        format: "css/dark-mode",
+        filter: "non-empty-value",
+        options: {
+            outputReferences: true
         }
     };
 
@@ -116,28 +121,32 @@ export function getStyleDictionaryConfig(mode: "light" | "dark", theme: string):
     const components = `src/tokens/components/${theme}/*.tokens.json`;
 
     return {
-        "source": isLightMode ? [core, semanticLight, components] : [semanticDark],
-        "include": isLightMode ? [] : [core],
-        "platforms": {
-            "css": {
-                "transformGroup": "custom/css",
-                "buildPath": BUILD_PATH,
-                "prefix": HOPPER_PREFIX,
-                "files": [
+        source: isLightMode ? [core, semanticLight, components] : [semanticDark],
+        include: isLightMode ? [] : [core],
+        platforms: {
+            css: {
+                transformGroup: "custom/css",
+                buildPath: BUILD_PATH,
+                prefix: HOPPER_PREFIX,
+                files: [
                     isLightMode ? lightConfig : darkConfig,
                     {
-                        "destination": isLightMode ? `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens.json` : `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
-                        "format": "custom/doc",
-                        "filter": "colors",
-                        "options": {
-                            "outputReferences": true
+                        destination: isLightMode
+                            ? `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens.json`
+                            : `${STORYBOOK_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
+                        format: "custom/doc",
+                        filter: "colors",
+                        options: {
+                            outputReferences: true
                         }
                     },
                     {
-                        "destination": isLightMode ? `${DOCS_BUILD_PATH}/datas/${theme}/tokens.json` : `${DOCS_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
-                        "format": "custom/json",
-                        "options": {
-                            "outputReferences": true
+                        destination: isLightMode
+                            ? `${DOCS_BUILD_PATH}/datas/${theme}/tokens.json`
+                            : `${DOCS_BUILD_PATH}/datas/${theme}/tokens-dark.json`,
+                        format: "custom/json",
+                        options: {
+                            outputReferences: true
                         }
                     }
                 ]
