@@ -2,6 +2,7 @@
 import fs from "fs";
 import path from "path";
 import docgenTs, { type ComponentDoc, type PropItem } from "react-docgen-typescript";
+import ts from "typescript";
 
 interface ComponentData {
     name: string;
@@ -26,6 +27,11 @@ export interface ComponentDocWithGroups extends ComponentDoc {
 
 export interface Options {
     exclude?: string[];
+}
+
+interface ParseTarget {
+    component: ComponentData;
+    parsePath: string;
 }
 
 const PACKAGES = path.join(process.cwd(), "..", "..", "packages", "components", "src");
@@ -65,13 +71,42 @@ const parserConfig = {
     }
 } satisfies docgenTs.ParserOptions;
 
-const tsConfigParser = docgenTs.withCustomConfig(
-    "./tsconfig.json",
-    parserConfig
-);
+// Components are declared as `const _Button = ...; export { _Button as Button };`, and the parser is
+// given a rewritten copy where that becomes `export { Button }`. The replacement is carried over
+// unchanged from the previous implementation: the generated output depends on it, so this is
+// deliberately not "cleaned up" here.
+//
+// The rewrite must not touch the real file. Components import each other through barrels
+// (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) that re-export the *aliased* name, so
+// rewriting every file of a shared program would remove the binding those barrels resolve against
+// and silently degrade imported prop types to `any`. Instead the rewritten source is served under an
+// additional in-memory path — what the previous implementation achieved by writing `<Name>.temp.tsx`
+// next to the source, minus the disk write.
+const EXPORT_ALIAS_RE = /export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g;
 
-const tsConfigFullPropsParser = docgenTs.withCustomConfig(
-    "./tsconfig.json",
+function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
+    const { config, error } = ts.readConfigFile(tsconfigPath, ts.sys.readFile);
+
+    if (error) {
+        throw new Error(ts.flattenDiagnosticMessageText(error.messageText, "\n"));
+    }
+
+    const { options, errors } = ts.parseJsonConfigFileContent(config, ts.sys, path.dirname(tsconfigPath), {}, tsconfigPath);
+
+    // Fail loudly rather than parsing every component against half-resolved compiler options.
+    if (errors.length) {
+        throw new Error(errors.map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")).join("\n"));
+    }
+
+    return { ...options, noEmit: true, skipLibCheck: true, skipDefaultLibCheck: true };
+}
+
+const compilerOptions = loadCompilerOptions(path.resolve("./tsconfig.json"));
+
+const tsConfigParser = docgenTs.withCompilerOptions(compilerOptions, parserConfig);
+
+const tsConfigFullPropsParser = docgenTs.withCompilerOptions(
+    compilerOptions,
     {
         ...parserConfig,
         propFilter: prop => {
@@ -92,12 +127,11 @@ function writeFile(filename: string, data: ComponentDocWithGroups[]) {
         fs.mkdirSync(COMPONENT_DATA, { recursive: true });
     }
 
-    fs.writeFile(`${COMPONENT_DATA}/${filename}.json`, JSON.stringify(data), function (err) {
-        if (err) {
-            console.error(err);
-            throw err;
-        }
-    });
+    // Synchronous on purpose: several components share a file name (`NoResults` exists under both
+    // `image/assets` and `illustrated-message/assets`), so they write to the same output file. With
+    // the asynchronous, unawaited write these overlap now that the loop is fast, splicing one JSON
+    // document into the other.
+    fs.writeFileSync(`${COMPONENT_DATA}/${filename}.json`, JSON.stringify(data));
 }
 
 function getComponentName(filePath: string) {
@@ -297,20 +331,60 @@ function toDirectoryPath(partialPath: string) {
 function preprocessFileContent(filePath: string) {
     const content = fs.readFileSync(filePath, "utf8");
 
-    return content.replace(/export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g, "export { $1 }");
+    return content.replace(EXPORT_ALIAS_RE, "export { $1 }");
 }
 
-function createTempFile(content: string, originalFilePath: string) {
-    const tempFilePath = path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
-    fs.writeFileSync(tempFilePath, content, "utf8");
-
-    return tempFilePath;
+// Mirrors the path the previous on-disk temp files used, `.temp` included, because
+// `getFormattedData` strips it back out of the reported file path.
+//
+// Only a `.tsx` suffix is stripped, so a `.ts` component such as `grid-helpers.ts` is parsed as
+// `grid-helpers.ts.temp.tsx` and ends up reporting `grid-helpers.ts.tsx` as its file path. That is
+// wrong, and it is what the previous implementation already produced; correcting it would change
+// the generated data, so it belongs in its own change rather than in a performance one.
+function toVirtualTempPath(originalFilePath: string) {
+    return path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
 }
 
-function deleteFile(filePath: string) {
-    if (fs.existsSync(filePath)) {
-        fs.unlinkSync(filePath);
+// Resolves the virtual path each component is parsed under, and the content served for it.
+function createParseTargets(components: ComponentData[]) {
+    const targets: ParseTarget[] = [];
+    const contentByParsePath = new Map<string, string>();
+
+    for (const component of components) {
+        const filePath = path.resolve(component.filePath);
+        const parsePath = toVirtualTempPath(filePath);
+
+        targets.push({ component, parsePath });
+        contentByParsePath.set(parsePath, preprocessFileContent(filePath));
     }
+
+    return { targets, contentByParsePath };
+}
+
+// Serves the rewritten sources from memory, so nothing is ever written to another package's source
+// tree. Only the additional virtual paths are served; the real files are read from disk untouched.
+function createProgramHost(options: ts.CompilerOptions, contentByParsePath: Map<string, string>): ts.CompilerHost {
+    const host = ts.createCompilerHost(options, true);
+    const originalGetSourceFile = host.getSourceFile.bind(host);
+    const originalFileExists = host.fileExists.bind(host);
+    const originalReadFile = host.readFile.bind(host);
+
+    host.getSourceFile = (fileName, languageVersion, onError, shouldCreateNewSourceFile) => {
+        const content = contentByParsePath.get(path.resolve(fileName));
+
+        if (content !== undefined) {
+            // scriptKind is omitted on purpose: TypeScript infers TS vs TSX from the extension.
+            return ts.createSourceFile(fileName, content, languageVersion, true);
+        }
+
+        return originalGetSourceFile(fileName, languageVersion, onError, shouldCreateNewSourceFile);
+    };
+
+    host.fileExists = fileName => contentByParsePath.has(path.resolve(fileName)) || originalFileExists(fileName);
+
+    host.readFile = fileName => contentByParsePath.get(path.resolve(fileName)) ?? originalReadFile(fileName);
+
+    return host;
 }
 
 async function generateComponentData() {
@@ -341,24 +415,29 @@ async function generateComponentData() {
         return;
     }
 
-    for (const component of components) {
-        if (component) {
-            const fileContent = preprocessFileContent(component.filePath);
-            const tempFilePath = createTempFile(fileContent, component.filePath);
+    const definedComponents = components.filter(Boolean) as ComponentData[];
+    const { targets, contentByParsePath } = createParseTargets(definedComponents);
+    const rootFileNames = targets.map(target => target.parsePath);
 
-            try {
-                const data = tsConfigParser.parse(tempFilePath);
-                const fullData = tsConfigFullPropsParser.parse(tempFilePath);
-                const { name } = component;
+    // A single program serves both parsers. They differ only by `propFilter`, a predicate applied
+    // after type resolution, and building one program instead of two per component is what makes
+    // this script fast: each program re-binds the whole React + react-aria .d.ts closure.
+    console.log(`Building TypeScript program for ${rootFileNames.length} components...`);
+    const host = createProgramHost(compilerOptions, contentByParsePath);
+    const program = ts.createProgram(rootFileNames, compilerOptions, host);
+    const programProvider = () => program;
 
-                writeFile(name, getFormattedData(data));
-                writeFile(`${name}-full`, getFormattedData(fullData));
-                console.log(`${name} API is created!`);
-            } catch (error) {
-                console.error(`Error generating documentation for ${component.name}:`, error);
-            } finally {
-                deleteFile(tempFilePath);
-            }
+    for (const { component, parsePath } of targets) {
+        try {
+            const data = tsConfigParser.parseWithProgramProvider([parsePath], programProvider);
+            const fullData = tsConfigFullPropsParser.parseWithProgramProvider([parsePath], programProvider);
+            const { name } = component;
+
+            writeFile(name, getFormattedData(data));
+            writeFile(`${name}-full`, getFormattedData(fullData));
+            console.log(`${name} API is created!`);
+        } catch (error) {
+            console.error(`Error generating documentation for ${component.name}:`, error);
         }
     }
 

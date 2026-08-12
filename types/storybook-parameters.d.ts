@@ -1,7 +1,14 @@
 
 import type { HopperStorybookAddonOptions } from "@hopper-ui/storybook-addon";
 import type { A11yParameters } from "@storybook/addon-a11y";
-import type { ViewportMap } from "@storybook/addon-viewport";
+
+// `@storybook/addon-viewport` was folded into Storybook core in v10 and is no longer published.
+// The viewport parameter has no exported typings, so we inline the map shape (matching the former `ViewportMap`).
+type ViewportMap = Record<string, {
+    name: string;
+    styles: { height: string; width: string } | null;
+    type?: "desktop" | "mobile" | "tablet" | "other";
+}>;
 
 // Module Augmentation of the Parameters object
 declare module "@storybook/react-webpack5" {
