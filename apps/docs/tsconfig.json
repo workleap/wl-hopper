@@ -6,7 +6,6 @@
         "jsx": "preserve",
         "module": "preserve",
         "moduleResolution": "Bundler",
-        "baseUrl": ".",
         "plugins": [
             {
                 "name": "next"

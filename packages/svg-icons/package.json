@@ -40,13 +40,13 @@
     },
     "devDependencies": {
         "@types/node": "24.5.1",
-        "@workleap/typescript-configs": "3.0.4",
+        "@workleap/typescript-configs": "5.0.0",
         "copyfiles": "2.4.1",
         "hast-util-select": "6.0.4",
         "rehype-parse": "9.0.1",
         "svgo": "4.0.0",
         "tsx": "4.20.6",
-        "typescript": "5.5.4",
+        "typescript": "7.0.2",
         "unified": "11.0.5"
     }
 }

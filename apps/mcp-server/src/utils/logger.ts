@@ -1,6 +1,6 @@
 import type { RequestInfo } from "@modelcontextprotocol/sdk/types.js";
 
-import packageInfo from "../../package.json" assert { type: "json" };
+import packageInfo from "../../package.json" with { type: "json" };
 
 function errorToObject(error: object | null) {
     if (error instanceof Error) {

@@ -1,6 +1,6 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-import packageInfo from "../package.json" assert { type: "json" };
+import packageInfo from "../package.json" with { type: "json" };
 import { prompts } from "./prompts";
 import { resources } from "./resources";
 import { tools } from "./tools";
