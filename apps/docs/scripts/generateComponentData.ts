@@ -71,16 +71,17 @@ const parserConfig = {
     }
 } satisfies docgenTs.ParserOptions;
 
-// Components are declared as `const _Button = ...; export { _Button as Button };`. The parser needs
-// to see the underscore-prefixed binding — `componentNameResolver` above strips the `_` back off —
-// so the export statement is rewritten before it reaches TypeScript.
+// Components are declared as `const _Button = ...; export { _Button as Button };`, and the parser is
+// given a rewritten copy where that becomes `export { Button }`. The replacement is carried over
+// unchanged from the previous implementation: the generated output depends on it, so this is
+// deliberately not "cleaned up" here.
 //
-// The rewrite deliberately does not touch the real file. Components import each other through
-// barrels (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) that re-export the *aliased*
-// name, so rewriting every file of a shared program would remove the binding those barrels resolve
-// against and silently degrade imported prop types to `any`. Instead the rewritten source is served
-// under an additional in-memory path, which is what the previous implementation achieved by writing
-// `<Name>.temp.tsx` next to the source — without writing anything to disk.
+// The rewrite must not touch the real file. Components import each other through barrels
+// (`typography/index.ts` -> `text/index.ts` -> `Text.tsx`) that re-export the *aliased* name, so
+// rewriting every file of a shared program would remove the binding those barrels resolve against
+// and silently degrade imported prop types to `any`. Instead the rewritten source is served under an
+// additional in-memory path — what the previous implementation achieved by writing `<Name>.temp.tsx`
+// next to the source, minus the disk write.
 const EXPORT_ALIAS_RE = /export\s*{\s*_(\w+)\s*as\s*(\w+)\s*}/g;
 
 function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
@@ -90,7 +91,12 @@ function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
         throw new Error(ts.flattenDiagnosticMessageText(error.messageText, "\n"));
     }
 
-    const { options } = ts.parseJsonConfigFileContent(config, ts.sys, path.dirname(tsconfigPath), {}, tsconfigPath);
+    const { options, errors } = ts.parseJsonConfigFileContent(config, ts.sys, path.dirname(tsconfigPath), {}, tsconfigPath);
+
+    // Fail loudly rather than parsing every component against half-resolved compiler options.
+    if (errors.length) {
+        throw new Error(errors.map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")).join("\n"));
+    }
 
     return { ...options, noEmit: true, skipLibCheck: true, skipDefaultLibCheck: true };
 }
@@ -330,6 +336,11 @@ function preprocessFileContent(filePath: string) {
 
 // Mirrors the path the previous on-disk temp files used, `.temp` included, because
 // `getFormattedData` strips it back out of the reported file path.
+//
+// Only a `.tsx` suffix is stripped, so a `.ts` component such as `grid-helpers.ts` is parsed as
+// `grid-helpers.ts.temp.tsx` and ends up reporting `grid-helpers.ts.tsx` as its file path. That is
+// wrong, and it is what the previous implementation already produced; correcting it would change
+// the generated data, so it belongs in its own change rather than in a performance one.
 function toVirtualTempPath(originalFilePath: string) {
     return path.join(path.dirname(originalFilePath), path.basename(originalFilePath, ".tsx") + ".temp.tsx");
 }
