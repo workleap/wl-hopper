@@ -7,6 +7,62 @@ import path from "path";
 
 const [baselineDir, candidateDir] = process.argv.slice(2);
 
+// Splits a rendered type on its top-level `|`, ignoring separators nested inside generics, tuples,
+// object literals, parentheses or string literals.
+function splitUnion(type) {
+    const members = [];
+    let depth = 0;
+    let quote = null;
+    let start = 0;
+
+    for (let index = 0; index < type.length; index++) {
+        const character = type[index];
+
+        if (quote) {
+            if (character === quote && type[index - 1] !== "\\") {
+                quote = null;
+            }
+            continue;
+        }
+
+        if (character === "\"" || character === "'" || character === "`") {
+            quote = character;
+        } else if ("<([{".includes(character)) {
+            depth++;
+        } else if (">)]}".includes(character)) {
+            depth--;
+        } else if (character === "|" && depth === 0) {
+            members.push(type.slice(start, index));
+            start = index + 1;
+        }
+    }
+
+    members.push(type.slice(start));
+
+    return members.map(member => member.trim()).filter(Boolean);
+}
+
+// TypeScript renders union members in type-interning order, which depends on how the program was
+// built. Sorting the members compares the union's membership rather than its spelling, so a member
+// being added or removed is still caught.
+function normalizeUnions(value) {
+    if (Array.isArray(value)) {
+        return value.map(normalizeUnions);
+    }
+
+    if (value && typeof value === "object") {
+        return Object.fromEntries(Object.entries(value).map(([key, entry]) => {
+            if (key === "type" && entry && typeof entry === "object" && typeof entry.name === "string") {
+                return [key, { ...normalizeUnions(entry), name: splitUnion(entry.name).sort().join(" | ") }];
+            }
+
+            return [key, normalizeUnions(entry)];
+        }));
+    }
+
+    return value;
+}
+
 function sortDeep(value) {
     if (Array.isArray(value)) {
         return value.map(sortDeep);
@@ -22,7 +78,7 @@ function sortDeep(value) {
 // Walks two values in parallel and yields [path, baselineValue, candidateValue] for each leaf that
 // differs, so a report points at the exact field rather than dumping the whole prop.
 function* diffPaths(before, after, propertyPath = "", depth = 0) {
-    if (depth > 6 || JSON.stringify(sortDeep(before)) === JSON.stringify(sortDeep(after))) {
+    if (depth > 6 || JSON.stringify(sortDeep(normalizeUnions(before))) === JSON.stringify(sortDeep(normalizeUnions(after)))) {
         return;
     }
 
@@ -43,7 +99,7 @@ function* diffPaths(before, after, propertyPath = "", depth = 0) {
 // Returns null when the file is not valid JSON, which is itself a finding worth reporting.
 function canonical(filePath) {
     try {
-        return JSON.stringify(sortDeep(JSON.parse(fs.readFileSync(filePath, "utf8"))));
+        return JSON.stringify(sortDeep(normalizeUnions(JSON.parse(fs.readFileSync(filePath, "utf8")))));
     } catch {
         return null;
     }
@@ -111,7 +167,7 @@ for (const file of semanticallyDifferent.slice(0, 25)) {
         const added = candidateProps.filter(prop => !baselineProps.includes(prop));
         const changed = baselineProps
             .filter(prop => candidateProps.includes(prop))
-            .filter(prop => JSON.stringify(sortDeep(baseline[index].props[prop])) !== JSON.stringify(sortDeep(candidate[index].props[prop])));
+            .filter(prop => JSON.stringify(sortDeep(normalizeUnions(baseline[index].props[prop]))) !== JSON.stringify(sortDeep(normalizeUnions(candidate[index].props[prop]))));
 
         const name = `${file}[${baseline[index].displayName}]`;
 
@@ -141,7 +197,7 @@ for (const file of semanticallyDifferent.slice(0, 25)) {
 const malformedCandidates = malformed.filter(entry => entry.endsWith("(candidate)"));
 
 const status = missing.length === 0 && extra.length === 0 && semanticallyDifferent.length === 0 && malformedCandidates.length === 0
-    ? (byteDifferent.length === 0 ? "IDENTICAL" : `EQUIVALENT (${byteDifferent.length} files differ in key order only)`)
+    ? (byteDifferent.length === 0 ? "IDENTICAL" : `EQUIVALENT (${byteDifferent.length} files differ in key or union member order only)`)
     : "DIFFERENT";
 
 // Printed on the last line so the caller can read the verdict off stdout.
