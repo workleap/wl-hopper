@@ -39,10 +39,9 @@ All link components accept a `routerOptions` prop, which is an object that is pa
 
 ```tsx
 <Link href="/login" routerOptions={{ replace: true }}>
-    {/* ...*/}
+  {/* ...*/}
 </Link>
 ```
-
 When using TypeScript, you can configure the RouterConfig type globally so that all link components have auto complete and type safety using a type provided by your router.
 
 ```tsx
@@ -50,7 +49,7 @@ import type { RouterOptions } from "your-router";
 
 declare module "react-aria-components" {
     interface RouterConfig {
-        routerOptions: RouterOptions;
+        routerOptions: RouterOptions
     }
 }
 ```
@@ -88,12 +87,11 @@ function App() {
     );
 }
 ```
-
 You can now trigger a full reload like so:
 
 ```tsx
 <Link href="/api/export" routerOptions={{ fullRefresh: true }}>
-    Download CSV
+  Download CSV
 </Link>
 ```
 
@@ -129,5 +127,5 @@ function App() {
 
 <BrowserRouter>
     <App />
-</BrowserRouter>;
+</BrowserRouter>
 ```

@@ -15,28 +15,16 @@ A design token can store any of the following elements:
 
 Hopper aims to provide a three-tier token system, with each tier serving a specific purpose.
 
-<Figure
-    src="https://cdn.platform.workleap.com/hopper/webdoc/token-details.png"
-    width="654"
-    height="45"
-    alt="Token tiers diagram"
-    caption="A three tier token system allows a separation of concerns regarding design decisions."
-/>
+<Figure src="https://cdn.platform.workleap.com/hopper/webdoc/token-details.png" width="654" height="45" alt="Token tiers diagram" caption="A three tier token system allows a separation of concerns regarding design decisions." />
 
 ### Core tokens
 
 These tokens represent fundamental values like hexadecimal color codes, border widths, or font sizes. They serve as the building blocks of the design system.
 
-<TokenTable
-    tokenType="core"
-    category="color"
-    data={[
-        {
-            name: "hop-sapphire-200",
-            value: "#95b1ff"
-        }
-    ]}
-/>
+<TokenTable tokenType="core" category="color" data={[{
+    "name": "hop-sapphire-200",
+    "value": "#95b1ff"
+}]} />
 
 ### Semantic tokens
 
@@ -44,29 +32,17 @@ Semantic tokens convey design intent and are context-aware. They should be used 
 
 #### Light
 
-<TokenTable
-    tokenType="semantic"
-    category="color"
-    data={[
-        {
-            name: "hop-primary-surface-disabled",
-            value: "#95b1ff"
-        }
-    ]}
-/>
+<TokenTable tokenType="semantic" category="color" data={[{
+    "name": "hop-primary-surface-disabled",
+    "value": "#95b1ff"
+}]} />
 
 #### Dark
 
-<TokenTable
-    tokenType="semantic"
-    category="color"
-    data={[
-        {
-            name: "hop-primary-surface-disabled",
-            value: "#2040c7"
-        }
-    ]}
-/>
+<TokenTable tokenType="semantic" category="color" data={[{
+    "name": "hop-primary-surface-disabled",
+    "value": "#2040c7"
+}]} />
 
 ### Component tokens
 
@@ -74,29 +50,17 @@ These tokens cover the essential details of component implementation and are pro
 
 #### Light
 
-<TokenTable
-    tokenType="components"
-    category="color"
-    data={[
-        {
-            name: "hop-comp-button-primary-disabled",
-            value: "#95b1ff"
-        }
-    ]}
-/>
+<TokenTable tokenType="components" category="color" data={[{
+    "name": "hop-comp-button-primary-disabled",
+    "value": "#95b1ff"
+}]} />
 
 #### Dark
 
-<TokenTable
-    tokenType="components"
-    category="color"
-    data={[
-        {
-            name: "hop-comp-button-primary-disabled",
-            value: "#2040c7"
-        }
-    ]}
-/>
+<TokenTable tokenType="components" category="color" data={[{
+    "name": "hop-comp-button-primary-disabled",
+    "value": "#2040c7"
+}]} />
 
 ## When to use
 
@@ -118,15 +82,14 @@ When developing features for Workleap, you may need to create new components or 
     items={[
         {
             do: {
-                explanation:
-                    "Reference the value from the 'Component Prop Value' column in the tokens table when setting component properties.",
-                example: <code>{'<Div backgroundColor="neutral" />'}</code>
+                explanation: "Reference the value from the 'Component Prop Value' column in the tokens table when setting component properties.",
+                example: <code>{"<Div backgroundColor=\"neutral\" />"}</code>
             },
             dont: {
                 explanation: "Use the 'Token Name (CSS Variable Name)' directly in the component prop value.",
-                example: <code>{'<Div backgroundColor="neutral-surface" />'}</code>
+                example: <code>{"<Div backgroundColor=\"neutral-surface\" />"}</code>
             }
-        }
+        },
     ]}
 />
 

@@ -37,7 +37,6 @@ All style props support responsive values. You can pass an object with breakpoin
 **CRITICAL: NOT ALL PROPS SUPPORT THE `UNSAFE_` PREFIX.** Only a specific set of props (listed in the [escape-hatches guide](/styled-system/escape-hatches)) have `UNSAFE_` versions available.
 
 For these whitelisted props, you can bypass the token system by prefixing the prop name with `UNSAFE_`:
-
 ```tsx
   <Div
       position="absolute"           // ✅ position is NOT in the whitelist, use position directly
@@ -51,16 +50,13 @@ For these whitelisted props, you can bypass the token system by prefixing the pr
 ```
 
 Critical Rules:
-
 1. Check the [escape-hatches guide](/styled-system/escape-hatches) FIRST - it contains the complete whitelist.
 2. If a prop is in the whitelist → use UNSAFE_propName for custom values
 3. If a prop is not in the whitelist:
-
-- Use propName directly (no `UNSAFE_` prefix)
-- NEVER use tokens for it (`top="core_640"` or `left="core_0"` are invalid)
-
+  - Use propName directly (no `UNSAFE_` prefix)
+  - NEVER use tokens for it (`top="core_640"` or `left="core_0"` are invalid)
 5. Props with "Tokens Category" of "none" (like `overflow`, `flex`, `position`) are used directly
-    </AI>
+</AI>
 
 While we encourage teams to utilize Hopper styles as it is, we do realize that sometimes product specific customizations may be needed. In these cases, we encourage you or your designers to talk to us. We may be able to suggest an alternative implementation strategy, or perhaps your design can help inform future Hopper additions.
 
@@ -79,17 +75,13 @@ When a CSS pseudo-class is not supported by Hopper style props, we recommend usi
 
 Since the following user action pseudo-classes are often used, some style props support them. These behaves like their pseudo CSS counterparts.
 
-<SimpleTable
-    headers={["Suffix", "Pseudo state"]}
-    data={[
-        { suffix: "active", pseudoState: ":active" },
-        { suffix: "hover", pseudoState: ":hover" },
-        { suffix: "focus", pseudoState: ":focus" }
-    ]}
-/>
+<SimpleTable headers={["Suffix", "Pseudo state"]} data={[
+    { suffix: "active", pseudoState: ":active" },
+    { suffix: "hover", pseudoState: ":hover" },
+    { suffix: "focus", pseudoState: ":focus" },
+]} />
 <br />
-Not all style props support user action pseudo-classes. Find out which props support user action pseudo-classes in the
-["Properties List"](#properties-list) section.
+Not all style props support user action pseudo-classes. Find out which props support user action pseudo-classes in the ["Properties List"](#properties-list) section.
 
 ## Properties List
 
@@ -98,7 +90,9 @@ The following tables provide a list of all available style props by category.
 ### Space
 
 ```tsx
-<Div padding="inset-md">Hopper</Div>
+<Div padding="inset-md">
+    Hopper
+</Div>
 ```
 
 <PropsReferenceTable group="Space" />
@@ -124,7 +118,9 @@ The following tables provide a list of all available style props by category.
 ### Layout
 
 ```tsx
-<Div UNSAFE_width="30rem">Hopper</Div>
+<Div UNSAFE_width="30rem">
+    Hopper
+</Div>
 ```
 
 <PropsReferenceTable group="Layout" />
@@ -154,7 +150,11 @@ The following tables provide a list of all available style props by category.
 ### Background
 
 ```tsx
-<Div backgroundImage="url('/images/dog.png')" backgroundPosition="center" backgroundRepeat="no-repeat" />
+<Div
+  backgroundImage="url('/images/dog.png')"
+  backgroundPosition="center"
+  backgroundRepeat="no-repeat"
+/>
 ```
 
 <PropsReferenceTable group="Background" />
@@ -162,7 +162,10 @@ The following tables provide a list of all available style props by category.
 ### Border
 
 ```tsx
-<Div border="primary" borderRadius="rounded-md">
+<Div
+    border="primary"
+    borderRadius="rounded-md"
+>
     Tree frog
 </Div>
 ```
@@ -174,7 +177,10 @@ Border props (border, borderBottom, borderTop, borderRight, borderLeft) uses an 
 ### Position
 
 ```tsx
-<Div top="12px" position="absolute" />
+<Div
+    top="12px"
+    position="absolute"
+/>
 ```
 
 <PropsReferenceTable group="Position" />
@@ -182,7 +188,9 @@ Border props (border, borderBottom, borderTop, borderRight, borderLeft) uses an 
 ### Shadow
 
 ```tsx
-<Div boxShadow="lifted" />
+<Div
+    boxShadow="lifted"
+/>
 ```
 
 <PropsReferenceTable group="Shadow" />
@@ -190,3 +198,4 @@ Border props (border, borderBottom, borderTop, borderRight, borderLeft) uses an 
 ### Miscellaneous
 
 <PropsReferenceTable group="Miscellaneous" />
+

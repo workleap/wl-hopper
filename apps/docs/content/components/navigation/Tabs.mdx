@@ -18,12 +18,8 @@ Tabs can be used on full page layouts or in components such as modals, listbox, 
 
 ```tsx
 <Tabs>
-    <TabList>
-        {" "}
-        /* (Required) A list of tabs */
-        <Tab>
-            {" "}
-            /* (Required) A tab in the TabList */
+    <TabList> /* (Required) A list of tabs */
+        <Tab> /* (Required) A tab in the TabList */
             <Icon /> /* (Optional) An icon in the tab */
             <Badge /> /* (Optional) A badge in the tab */
             <Text /> /* (Optional) Text in the tab, required if using another element */
@@ -38,7 +34,7 @@ Tabs can be used on full page layouts or in components such as modals, listbox, 
 
 A `Tab` uses the following components:
 
-<ComposedComponents components={["Icon", "Badge", "Text", "Tag"]} />
+<ComposedComponents components={["Icon", "Badge", "Text", "Tag"] }/>
 
 ## Usage
 
@@ -77,9 +73,7 @@ Tabs items can be rendered dynamically.
 By default, tabs are activated automatically. This means when you use the arrow keys to change tabs, the tab is activated and focused.
 
 <Callout variant="information">
-    The content of a tab should ideally be preloaded. However, if switching to a tab panel causes a network request and
-    possibly a page refresh, there might be some notable latency and this might affect the experience for keyboard and
-    screen reader users.
+The content of a tab should ideally be preloaded. However, if switching to a tab panel causes a network request and possibly a page refresh, there might be some notable latency and this might affect the experience for keyboard and screen reader users.
 </Callout>
 
 In this scenario, you should use a manually activated tab, which moves focus without activating the tabs. With the focus on a specific tab, users can activate a tab by pressing Space or Enter.

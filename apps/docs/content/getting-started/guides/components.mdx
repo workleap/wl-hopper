@@ -5,20 +5,13 @@ order: 3
 ---
 
 Hopper components are built with well-considered defaults that meet common product needs.
-However, we understand that product teams often move quickly, iterating at a pace that can move faster than design system updates.
-As this article on [pace layering](https://bigmedium.com/ideas/design-system-pace-layers-slow-fast.html) explains, it's natural for design systems to evolve more slowly than the products they support.
-Rather than being a bottleneck, this approach keeps our design system stable and reliable.
-To support fast-paced product development, Hopper provides a range of options for customization,
-from simple styling adjustments to creating entirely new components.
+ However, we understand that product teams often move quickly, iterating at a pace that can move faster than design system updates.
+ As this article on [pace layering](https://bigmedium.com/ideas/design-system-pace-layers-slow-fast.html) explains, it's natural for design systems to evolve more slowly than the products they support.
+ Rather than being a bottleneck, this approach keeps our design system stable and reliable.
+ To support fast-paced product development, Hopper provides a range of options for customization,
+ from simple styling adjustments to creating entirely new components.
 
-<Figure
-    src="/product-cycle.png"
-    width="679"
-    height="567"
-    alt="Diagram illustrating the four pace layers of the digital product process"
-    caption="In the pace layers of digital products, product zips along at the outer layer while design systems and other supporting infrastructure move more slowly at the inner layer."
-    priority
-/>
+<Figure src="/product-cycle.png" width="679" height="567" alt="Diagram illustrating the four pace layers of the digital product process" caption="In the pace layers of digital products, product zips along at the outer layer while design systems and other supporting infrastructure move more slowly at the inner layer." priority />
 
 ## Customization Tiers
 
@@ -30,22 +23,10 @@ There are multiple customization methods available, and to highlight why some ar
     aria-label="Customization Tiers"
     headers={["Customization Tier", "Description"]}
     data={[
-        {
-            "Customization Tier": "🥇 Gold Tier",
-            Description: "Maximize reuse of the Design System, applying only minimal overwrites to fit your needs."
-        },
-        {
-            "Customization Tier": "🥈 Silver Tier",
-            Description: "Reuse most of the component's behaviors, but make some modifications to fit your needs."
-        },
-        {
-            "Customization Tier": "🥉 Bronze Tier",
-            Description: "Reassemble the component's behavior using smaller utility methods."
-        },
-        {
-            "Customization Tier": "🛠️ Do it yourself",
-            Description: "Build the behavior from scratch and use low-level styling tools as needed."
-        }
+        { "Customization Tier": "🥇 Gold Tier", "Description": "Maximize reuse of the Design System, applying only minimal overwrites to fit your needs." },
+        { "Customization Tier": "🥈 Silver Tier", "Description": "Reuse most of the component's behaviors, but make some modifications to fit your needs." },
+        { "Customization Tier": "🥉 Bronze Tier", "Description": "Reassemble the component's behavior using smaller utility methods." },
+        { "Customization Tier": "🛠️ Do it yourself", "Description": "Build the behavior from scratch and use low-level styling tools as needed." }
     ]}
 />
 
@@ -79,9 +60,7 @@ For straightforward customization needs, you can make adjustments directly by pa
 Adjust properties such as `backgroundColor`, `width`, or `padding` directly on the component.
 
 ```tsx
-<Button backgroundColor="primary" UNSAFE_width="148px" paddingTop="stack-xs">
-    Click me
-</Button>
+<Button backgroundColor="primary" UNSAFE_width="148px" paddingTop="stack-xs">Click me</Button>
 ```
 
 #### CSS Classes
@@ -91,7 +70,6 @@ Append custom CSS classes to modify styles.
 ```tsx
 <Button className="custom-class">Click me</Button>
 ```
-
 </Expand>
 
 <Expand title="Example: Creating an AI Card">
@@ -122,7 +100,6 @@ Use refs to access and interact with elements within a component.
 ```
 
 #### Event Callbacks
-
 Add event handlers for more control, ensuring events continue propagating as expected.
 
 ```tsx
@@ -130,14 +107,13 @@ Add event handlers for more control, ensuring events continue propagating as exp
 ```
 
 #### Controlled Properties
-
 You can control the component&apos;s behavior by passing a controlled property.
 
 ```tsx
 <PopoverTrigger {...rest} open={isHovered}>
 ```
-
 </Expand>
+
 
 <Expand title="Example: Creating a popover that opens on hover.">
 ```tsx
@@ -154,8 +130,7 @@ function MyCustomButtonPopoverTrigger({ children, ...rest }: PopoverTriggerProps
 ```
 </Expand>
 
-<br />
-<hr />
+<br /><hr />
 
 ### 🥈 Copying Component
 
@@ -164,16 +139,12 @@ When you need extensive customizations that go beyond simple styling or behavior
 Take a look to [Hopper's components source code](https://github.com/workleap/wl-hopper/tree/main/packages/components)
 
 <Callout variant="information">
-    **Encountering Design System Limitations?**
-    <br />
-    <br /> If you need to copy a component due to a design system constraints, let us know! Frequent requests may lead
-    to updates, allowing you to replace your custom component with an official version in the future.
-    <br />
-    <br /> Share your needs in **#ds-hopper!**
+**Encountering Design System Limitations?**
+<br/><br/> If you need to copy a component due to a design system constraints, let us know! Frequent requests may lead to updates, allowing you to replace your custom component with an official version in the future.
+<br/><br/> Share your needs in **#ds-hopper!**
 </Callout>
 
-<br />
-<hr />
+<br /><hr />
 
 ### 🥈 Custom Components Using Base Components
 
@@ -182,15 +153,10 @@ If the existing Design System component feels too complex for your needs, take a
 💡[Need Help Getting Started?](#need-help-getting-started)
 
 <Callout variant="warning">
-    Using this approach may require you to restyle the entire component, which is fine. At this stage, you're
-    essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to
-    ensure that any future branding updates are automatically applied to your component without needing manual
-    adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to
-    expose style props!
+Using this approach may require you to restyle the entire component, which is fine. At this stage, you're essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to ensure that any future branding updates are automatically applied to your component without needing manual adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to expose style props!
 </Callout>
 
-<br />
-<hr />
+<br /><hr />
 
 ### 🥉 Custom Components Using Hooks
 
@@ -199,15 +165,10 @@ If there is no base components to use, or if the base component is again too str
 💡[Need Help Getting Started?](#need-help-getting-started)
 
 <Callout variant="warning">
-    Using this approach may require you to restyle the entire component, which is fine. At this stage, you're
-    essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to
-    ensure that any future branding updates are automatically applied to your component without needing manual
-    adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to
-    expose style props!
+Using this approach may require you to restyle the entire component, which is fine. At this stage, you're essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to ensure that any future branding updates are automatically applied to your component without needing manual adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to expose style props!
 </Callout>
 
-<br />
-<hr />
+<br /><hr />
 
 ### 🛠️ Building Components From Scratch
 
@@ -224,15 +185,10 @@ Even if you're not using Design System components, we're here to help! The Desig
 💡[Need Help Getting Started?](#need-help-getting-started)
 
 <Callout variant="warning">
-    Using this approach may require you to restyle the entire component, which is fine. At this stage, you're
-    essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to
-    ensure that any future branding updates are automatically applied to your component without needing manual
-    adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to
-    expose style props!
+Using this approach may require you to restyle the entire component, which is fine. At this stage, you're essentially creating something new! Just be sure to use [Hopper tokens](../../tokens/overview/introduction) to ensure that any future branding updates are automatically applied to your component without needing manual adjustments. If you want to allow customization on your component, you can also use the `useStyledSystem` hook to expose style props!
 </Callout>
 
-<br />
-<hr />
+<br /><hr />
 
 ### 🛠️ Building Components From Scratch
 

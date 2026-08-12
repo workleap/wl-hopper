@@ -11,49 +11,41 @@ links:
 ## Usage
 
 ### Disabled
-
 A text area in a disabled state shows that an input field exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
 <Example src="inputs/docs/text-area/disabled" />
 
 ### ReadOnly
-
 The `isReadOnly` prop makes the text area's text content immutable. Unlike `isDisabled`, the text area remains focusable and the contents can still be copied. See [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly) for more information.
 
 <Example src="inputs/docs/text-area/readOnly" />
 
 ### Error
-
 A text area can be displayed in an error state to indicate that the user input is invalid.
 
 <Example src="inputs/docs/text-area/error" />
 
 ### Sizes
-
 A text area can vary in size. The height is determined by the number of rows. Each size has a unique font size, resulting in varying heights across different sizes.
 
 <Example src="inputs/docs/text-area/sizes" />
 
 ### Labeling
-
 If a visible label isn't specified, an `aria-label` must be provided to the text area for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
 <Example src="inputs/docs/text-area/labeling" />
 
 ### Description
-
 A text area can have a description using the [HelperMessage](HelperMessage) component to provide additional context to the user.
 
 <Example src="inputs/docs/text-area/description" />
 
 ### Character Count
-
 A character count can be displayed below the input. The character count is based on the `maxLength` prop. If the `maxLength` prop is not set, the character count will not be displayed.
 
 <Example src="inputs/docs/text-area/characterCount" />
 
 ### Max Length Exceeded
-
 To exceed the max length, set the `allowExceedingMaxLength` prop to `true` – default is `false`. When the character count is displayed, it turns red if the max length is exceeded.
 
 Note: If allowExceedingMaxLength is set, a character count is required to be set as well.
@@ -61,27 +53,23 @@ Note: If allowExceedingMaxLength is set, a character count is required to be set
 <Example src="inputs/docs/text-area/maxLengthExceeded" />
 
 ### Rows
-
 The `rows` prop can be used to set the height of the text area and should be used in favor of the `height` prop. One row is equivalent to the height of one line of text.
 
 <Example src="inputs/docs/text-area/rows" />
 
 ### Min Rows
-
 The `minRows` prop can be used to set the minimum height of the text area and should be used in favor of the `minHeight` prop.
 Defaults to 3.
 
 <Example src="inputs/docs/text-area/minRows" />
 
 ### Max Rows
-
 The `maxRows` prop can be used to set the maximum height of the text area and should be used in favor of the `maxHeight` prop.
 It differs from the `rows` prop in that it will not set the initial height of the text area.
 
 <Example src="inputs/docs/text-area/maxRows" />
 
 ### Vertical Resize
-
 The `resizeMode` prop can be used to set the resize behavior of the text area.
 The default behavior is `none`, which prevents the user from resizing the text area.
 The `vertical` behavior allows the user to resize the text area vertically.

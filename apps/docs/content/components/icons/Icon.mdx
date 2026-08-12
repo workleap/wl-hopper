@@ -34,19 +34,25 @@ import CustomIcon24 from "./path/to/custom-icon-24.svg";
 import CustomIcon32 from "./path/to/custom-icon-32.svg";
 import { createIcon } from "@hopper-ui/icons";
 
-const CustomIcon = createIcon(CustomIcon16, CustomIcon24, CustomIcon32, "CustomIcon");
+const CustomIcon = createIcon(CustomIcon16, CustomIcon24, CustomIcon32, "CustomIcon")
 ```
 
 ### Using the Icon component
 
 ```tsx {8-12}
-import CustomIcon16 from "./path/to/custom-icon-16.svg";
-import CustomIcon24 from "./path/to/custom-icon-24.svg";
-import CustomIcon32 from "./path/to/custom-icon-32.svg";
+import CustomIcon16 from "./path/to/custom-icon-16.svg"
+import CustomIcon24 from "./path/to/custom-icon-24.svg"
+import CustomIcon32 from "./path/to/custom-icon-32.svg"
 import { Icon, type CreatedIconProps } from "@hopper-ui/icons";
 
 function CustomIcon(props: CreatedIconProps) {
-    return <Icon src16={CustomIcon16} src24={CustomIcon24} src32={CustomIcon32} {...props} />;
+  return (
+    <Icon
+        src16={CustomIcon16}
+        src24={CustomIcon24}
+        src32={CustomIcon32}
+        {...props} />
+  )
 }
 ```
 

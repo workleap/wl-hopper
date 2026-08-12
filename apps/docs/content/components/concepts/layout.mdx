@@ -33,7 +33,6 @@ The `gap`, `rowGap` and `columnGap` can be defined with [Hopper space tokens](/t
 to ensure consistency across applications, and allow the layout to adapt to different devices automatically.
 
 ### Example
-
 A simple vertical stack, with a gap between each item defined using a [Hopper space token](/tokens/semantic/space).
 
 <Example src="layout/docs/flex" isOpen />
@@ -42,10 +41,10 @@ A simple vertical stack, with a gap between each item defined using a [Hopper sp
 
 You can learn more about `Flex` and see more examples on the [Flex](./Flex) page. There are many great resources on the web for learning flexbox as well.
 
-- [The MDN guide to flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) — full walkthrough
-  of flexbox layout.
-- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) — great reference for all of the
-  properties supported by flexbox.
+* [The MDN guide to flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout) — full walkthrough
+of flexbox layout.
+* [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) — great reference for all of the
+properties supported by flexbox.
 
 ## Grid
 
@@ -81,12 +80,12 @@ content area, and footer. Notice how there are no nested layout elements — the
 
 You can learn more about `Grid` and see more examples on the [Grid](./Grid) page. There are many great resources on the web for learning CSS grid as well.
 
-- [The MDN guide to CSS grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) — full walkthrough of
-  grid layout.
-- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid) — great reference for all of the
-  properties supported by grid.
-- [The Difference Between Explicit and Implicit Grids](https://css-tricks.com/difference-explicit-implicit-grids/) — an
-  article that discusses the various ways of defining grids.
+* [The MDN guide to CSS grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) — full walkthrough of
+grid layout.
+* [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid) — great reference for all of the
+properties supported by grid.
+* [The Difference Between Explicit and Implicit Grids](https://css-tricks.com/difference-explicit-implicit-grids/) — an
+article that discusses the various ways of defining grids.
 
 ## Choosing Inline, Stack, or Flex
 
@@ -113,11 +112,10 @@ You have items in a single horizontal row and shared cross axis alignment: Typic
 It is fine to tweak one thing such as `gap`, `alignX` (was `justifyContent` in raw flex), or `wrap`. If you also need a different cross axis alignment (`alignY`) and another structural change, prefer `Flex`.
 
 Example:
-
 ```tsx
 <Inline gap="inline-sm" alignX="space-between">
-    <Title />
-    <Actions />
+  <Title />
+  <Actions />
 </Inline>
 ```
 
@@ -127,12 +125,11 @@ You are arranging elements vertically with consistent spacing: Forms, card conte
 It is fine to tweak one thing such as `gap` or `alignY` (alias for `alignItems`). If you also need direction to flip at a breakpoint or multiple alignment rules, prefer `Flex`.
 
 Example:
-
 ```tsx
 <Stack gap="stack-md">
-    <Field />
-    <Field />
-    <HelpText />
+  <Field />
+  <Field />
+  <HelpText />
 </Stack>
 ```
 
@@ -149,20 +146,19 @@ You are doing more than a light tweak or you need per child control. Any two or 
 - Baseline alignment for text heavy rows.
 
 Example:
-
 ```tsx
 <Flex alignItems="flex-start" justifyContent="space-between" gap="inline-lg">
-    <Avatar size="lg" name="Alexandre" />
-    <Stack gap="stack-sm" flex={1}>
-        <H3>Alexandre Asselin</H3>
-        <Text variant="body-sm" color="text-secondary">
-            Staff Software Engineer
-        </Text>
-    </Stack>
-    <Inline gap="inline-sm">
-        <Button variant="secondary">Message</Button>
-        <Button variant="primary">Connect</Button>
-    </Inline>
+  <Avatar size="lg" name="Alexandre" />
+  <Stack gap="stack-sm" flex={1}>
+    <H3>Alexandre Asselin</H3>
+    <Text variant="body-sm" color="text-secondary">
+      Staff Software Engineer
+    </Text>
+  </Stack>
+  <Inline gap="inline-sm">
+    <Button variant="secondary">Message</Button>
+    <Button variant="primary">Connect</Button>
+  </Inline>
 </Flex>
 ```
 

@@ -23,6 +23,8 @@ export default defineConfig({
         ".changeset-templates/**",
         "skills-lock.json",
         "netlify.toml",
+        // MDX is JSX-in-markdown; markdown reflow breaks component nesting — never format it
+        "**/*.mdx",
         // Generated files that must not be reformatted
         "**/CHANGELOG.md",
         "packages/tokens/**/datas/**",

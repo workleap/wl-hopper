@@ -19,9 +19,7 @@ Radio button can be used to change from one setting to another in a Listbox, pag
 
 ```tsx
 <RadioGroup>
-    <Radio>
-        {" "}
-        /* (Required) A radio button for the RadioGroup */
+    <Radio> /* (Required) A radio button for the RadioGroup */
         <IconList /> /* (Optional) A list of icons in the radio */
         <Icon /> /* (Optional) An icon in the radio */
         <Text /> /* (Optional) Text in the radio, required if using an Icon or an IconList */
@@ -33,7 +31,7 @@ Radio button can be used to change from one setting to another in a Listbox, pag
 
 A `RadioGroup` uses the following components:
 
-<ComposedComponents components={["Icon", "IconList", "Text"]} />
+<ComposedComponents components={["Icon", "IconList", "Text"]}/>
 
 ## Usage
 
@@ -127,11 +125,11 @@ Radio buttons should:
 
 - Always be used with an associated label component.
 - Be part of a list of radio buttons that:
-    - Include at least two or more choices.
-    - Are used to have users select only one option.
-    - Include mutually exclusive options–this means that each option must be independant from every other option in the list.
-    - List options in a logical order.
-    - Have a default option selected whenever possible.
+  - Include at least two or more choices.
+  - Are used to have users select only one option.
+  - Include mutually exclusive options–this means that each option must be independant from every other option in the list.
+  - List options in a logical order.
+  - Have a default option selected whenever possible.
 
 ### Alignment
 

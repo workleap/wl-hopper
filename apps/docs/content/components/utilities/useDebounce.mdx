@@ -19,13 +19,11 @@ const [state, setStateDebounced, setStateImmediate] = useDebounce(initialState, 
 ```
 
 **Parameters:**
-
 - `initialState` : The initial state value or a function that returns the initial state
 - `wait` : The debounce delay in milliseconds (default: `100`)
 - `leading` : When true, executes immediately on the first call, then debounces subsequent calls (default: `false`)
 
 **Returns:**
-
 - `state` : The current state value
 - `setStateDebounced` : A debounced version of setState that waits for the specified delay
 - `setStateImmediate` : The regular, immediate setState function
@@ -39,7 +37,6 @@ const debouncedCallback = useDebounceCallback(callback, wait?, leading?)
 ```
 
 **Parameters:**
-
 - `callback` : The callback function to debounce. Wrap unstable callbacks in useCallback()
 - `wait` : The debounce delay in milliseconds (default: `100`)
 - `leading` : When true, executes immediately on the first call (default: `false`)
@@ -81,11 +78,10 @@ Show immediate UI feedback but debounce expensive validation:
 ## Best Practices
 
 - **Timing guidelines**: Choose appropriate timing values based on use case:
-
-    ```tsx
-    useDebounce(initialState, 100); // 100ms - good for UI feedback
-    useDebounce(initialState, 400); // 400ms - good for search/API calls
-    useDebounce(initialState, 1000); // 1000ms - good for heavy operations
-    ```
+  ```tsx
+  useDebounce(initialState, 100)   // 100ms - good for UI feedback
+  useDebounce(initialState, 400)   // 400ms - good for search/API calls
+  useDebounce(initialState, 1000)  // 1000ms - good for heavy operations
+  ```
 
 - **Stable callbacks**: When using `useDebounceCallback`, wrap unstable callbacks (those that depend on props or state) in `useCallback()` to prevent debouncing from breaking between renders.

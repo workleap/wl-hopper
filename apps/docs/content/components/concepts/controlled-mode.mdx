@@ -3,7 +3,6 @@ title: Controlled Mode
 description: Learn how to use controlled and uncontrolled modes to customize Hopper components.
 order: 5
 ---
-
 When working with Hopper components, you can customize a component's behavior using **controlled** or **uncontrolled** properties, depending on your needs. This flexibility is the foundation for **building custom components** on top of Hopper, enabling you to implement interactive features or modify the default behavior of components while preserving their visual style and structure.
 
 **Tip**: To dive deeper into the concept of controlled and uncontrolled components in React, read [React's guide here](https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components).
@@ -19,7 +18,6 @@ For example, to create a [TagGroup](./TagGroup) where some tags are initially se
 <CodeOnlyExample src="hopper-provider/docs/controlled-mode/uncontrolled" />
 
 In this example:
-
 - `defaultSelectedKeys`: Specifies the initially selected items.
 - The component handles the selection state internally.
 
@@ -34,13 +32,15 @@ For example, to fully manage the selected tags:
 <CodeOnlyExample src="hopper-provider/docs/controlled-mode/controlled" />
 
 In this example:
-
 - `selectedKeys`: Represents the current selection, controlled externally.
 - `onSelectionChange`: Callback invoked when the selection changes, allowing you to update the external state.
 
 ## Choosing Between Controlled and Uncontrolled Modes
-
 - Use uncontrolled mode (defaultX) for simpler use cases where internal state management by the component suffices.
 - Use controlled mode (X and onXChanged) when external logic or advanced control is required.
 
 By leveraging these modes, you can tailor Hopper components to meet your application's functional requirements while maintaining consistency and reusability.
+
+
+
+

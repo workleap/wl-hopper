@@ -14,18 +14,14 @@ links:
 
 ```tsx
 <ComboBox>
-    <ComboBoxItem>
-        {" "}
-        /* (Required) The items of the combo box */
+    <ComboBoxItem> /* (Required) The items of the combo box */
         <Avatar /> /* (Optional) An avatar for the item */
         <Text /> /* (Optional) The text content of the item, required if using another element */
         <Text slot="description" /> /* (Optional) A description for the item */
         <Badge /> /* (Optional) A badge for the item */
         <Icon /> /* (Optional) An icon for the item */
     </ComboBoxItem>
-    <ComboBoxSection>
-        {" "}
-        /* (Optional) A section of combo box items */
+    <ComboBoxSection> /* (Optional) A section of combo box items */
         <Header /> /* (Optional) A header for the section */
         <ComboBoxItem /> /* (Required) An item in the ComboBoxSection */
     </ComboBoxSection>
@@ -36,7 +32,7 @@ links:
 
 A `ComboBox` uses the following components:
 
-<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]} />
+<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]}/>
 
 ## Usage
 
@@ -53,50 +49,42 @@ A combo box with a disabled item.
 <Example src="combobox/docs/combobox-option/disabled" />
 
 ### Error
-
 A combo box can be displayed in an error state to indicate that the selection is invalid.
 
 <Example src="combobox/docs/error" />
 
 ### Sizes
-
 A combo box has multiple sizes to choose from.
 The combo box option also changes size based on the size of the combo box.
 
 <Example src="combobox/docs/sizes" />
 
 ### Labeling
-
 If a visible label isn't specified, an `aria-label` must be provided to the combo box for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
 <Example src="combobox/docs/labeling" />
 
 ### Icon Prefix
-
 An icon can be displayed at the start of the select trigger.
 
 <Example src="combobox/docs/iconPrefix" />
 
 ### Text Prefix
-
 A short text can be displayed at the start of the select trigger.
 
 <Example src="combobox/docs/textPrefix" />
 
 ### Fluid
-
 A combo box can take the width of its container.
 
 <Example src="combobox/docs/fluid" />
 
 ### Controlled
-
 A combo box can have a controlled selected value. In this example, it shows how it is possible to deselect an option.
 
 <Example src="combobox/docs/controlled" />
 
 ### Custom Filtering
-
 A combo box can overridde the default [useFilter](https://react-spectrum.adobe.com/react-aria/useFilter.html) function from RAC. This can be overridden using the `defaultFilter` prop, or by using the `items` prop to control the filtered list. When `items` is provided rather than `defaultItems`, combo box does no filtering of its own.
 
 <Example src="combobox/docs/customFiltering" />
@@ -114,7 +102,6 @@ A combo box can allow the user to enter a custom value that does not match the l
 <Example src="combobox/docs/allowCustomValue" />
 
 ### Form
-
 A combo box can be part of a form. To submit the value of a combo box, make sure you specify the `name` property.
 
 <Example src="combobox/docs/form" />

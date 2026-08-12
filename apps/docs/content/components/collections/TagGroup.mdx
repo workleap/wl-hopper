@@ -1,7 +1,7 @@
 ---
 title: TagGroup
 description: The TagGroup is a dynamic UI component that encapsulates a collection of tags.
-    Each tag represents a label, category, keyword, or filter, and can be used for various groupings
+             Each tag represents a label, category, keyword, or filter, and can be used for various groupings
 category: "collections"
 links:
     source: https://github.com/workleap/wl-hopper/blob/main/packages/components/src/tag/src/TagGroup.tsx
@@ -18,9 +18,7 @@ Use short labels for easy scanning. Use two words only if necessary to describe 
 
 ```tsx
 <TagGroup>
-    <Tag>
-        {" "}
-        /* (Required) An item in the TagGroup */
+    <Tag> /* (Required) An item in the TagGroup */
         <Avatar /> /* (Optional) An avatar in the Tag */
         <Icon /> /* (Optional) An icon in the Tag */
         <IconList /> /* (Optional) A list of icons in the Tag */
@@ -34,7 +32,7 @@ Use short labels for easy scanning. Use two words only if necessary to describe 
 
 A `Tag` within a `TagGroup` uses the following components:
 
-<ComposedComponents components={["Avatar", "Badge", "Icon", "IconList", "Text"]} />
+<ComposedComponents components={["Avatar", "Badge", "Icon", "IconList", "Text"]}/>
 
 ## Usage
 
