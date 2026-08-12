@@ -4,7 +4,8 @@ import { defineConfig, globalIgnores } from "eslint/config";
 export default defineConfig([
     globalIgnores([
         "packages/**",
-        "apps/**"
+        "apps/**",
+        "skills-lock.json"
     ]),
     defineMonorepoWorkspaceConfig(import.meta.dirname)
 ]);
