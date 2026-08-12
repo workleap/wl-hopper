@@ -1,4 +1,4 @@
-import { components } from "@/components/mdx/components.ai";
+import type { components } from "@/components/mdx/components.ai";
 import type { ComponentType } from "react";
 
 interface MdxOptions {
@@ -62,7 +62,14 @@ export interface IconsJsonBuild {
     type: "icons-json";
 }
 
-export type BuildConfig = MdFromMdxBuild | TemplateBasedBuild | PropsJsonBuild | TokensJsonBuild | UnsafePropsJsonBuild | UnsafePropsMarkdownBuild | IconsJsonBuild;
+export type BuildConfig =
+    | MdFromMdxBuild
+    | TemplateBasedBuild
+    | PropsJsonBuild
+    | TokensJsonBuild
+    | UnsafePropsJsonBuild
+    | UnsafePropsMarkdownBuild
+    | IconsJsonBuild;
 
 interface ServeConfig {
     at?: string;

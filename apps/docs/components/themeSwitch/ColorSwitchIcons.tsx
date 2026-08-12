@@ -7,7 +7,7 @@ export interface IconTypes {
 }
 
 const icons = {
-    "sun": (
+    sun: (
         <path
             stroke="currentColor"
             strokeLinecap="round"
@@ -16,7 +16,7 @@ const icons = {
             d="M8 11.333a3.333 3.333 0 1 0 0-6.666 3.333 3.333 0 0 0 0 6.666ZM8 .667V2M8 14v1.333M2.813 2.813l.947.947M12.24 12.24l.947.947M.667 8H2M14 8h1.333M2.813 13.187l.947-.947M12.24 3.76l.947-.947"
         />
     ),
-    "moon": (
+    moon: (
         <path
             stroke="currentColor"
             strokeLinecap="round"
@@ -28,14 +28,7 @@ const icons = {
 };
 
 const Icon = ({ iconProps, icon = "sun" }: IconTypes) => (
-    <svg
-        {...iconProps}
-        xmlns="http://www.w3.org/2000/svg"
-        width={16}
-        height={16}
-        fill="none"
-        className="hd-icon"
-    >
+    <svg {...iconProps} xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="none" className="hd-icon">
         {icons[icon]}
     </svg>
 );

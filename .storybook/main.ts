@@ -15,9 +15,7 @@ const require = createRequire(import.meta.url);
 const isLazyCompilation = !(process.env.STORYBOOK_NO_LAZY === "true");
 
 const storybookConfig: StorybookConfig = {
-    stories: [
-        "../packages/**/*.stories.@(ts|tsx)"
-    ],
+    stories: ["../packages/**/*.stories.@(ts|tsx)"],
     addons: [
         getAbsolutePath("@storybook/addon-a11y"),
         getAbsolutePath("@storybook/addon-webpack5-compiler-swc"),
@@ -49,11 +47,12 @@ const storybookConfig: StorybookConfig = {
 
         config.plugins = [
             ...(config.plugins ?? []),
-            configType !== "PRODUCTION" && new ReactRefreshWebpackPlugin({
-                overlay: {
-                    sockIntegration: "whm"
-                }
-            })
+            configType !== "PRODUCTION" &&
+                new ReactRefreshWebpackPlugin({
+                    overlay: {
+                        sockIntegration: "whm"
+                    }
+                })
         ].filter(Boolean);
 
         // Modify the css-loader options to simplify the class names
@@ -65,11 +64,13 @@ const storybookConfig: StorybookConfig = {
                     if (typeof loader === "object" && loader?.loader?.includes("css-loader")) {
                         const cssLoader = loader;
                         if (cssLoader && typeof cssLoader === "object") {
-                            const previousOptions = typeof cssLoader.options === "string" ? { } : cssLoader.options;
+                            const previousOptions = typeof cssLoader.options === "string" ? {} : cssLoader.options;
                             cssLoader.options = {
                                 ...previousOptions,
                                 modules: {
-                                    ...((typeof previousOptions?.modules === "string" ? { mode: previousOptions?.modules } : previousOptions?.modules)),
+                                    ...(typeof previousOptions?.modules === "string"
+                                        ? { mode: previousOptions?.modules }
+                                        : previousOptions?.modules),
                                     auto: true,
                                     localIdentName: "[local]___[hash:base64:5]",
                                     // css-loader 7 (pulled in by Storybook 10) defaults `namedExport`/`esModule` to true,

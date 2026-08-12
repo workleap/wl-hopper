@@ -14,6 +14,7 @@ Title: Use the token system
 Description: Always use CSS variables from the token system instead of hardcoded values. The token system is defined in `packages/tokens/src/tokens/` and can be referenced in `packages/styled-system/src/tokens/tokenMappings.ts` and `packages/styled-system/src/tokens/tokens.ts`.
 
 Tokens follow the pattern `var(--hop-[category]-[property])` such as:
+
 - `var(--hop-neutral-text)`
 - `var(--hop-space-stack-md)`
 - `var(--hop-shape-rounded-md)`
@@ -66,8 +67,7 @@ Path patterns: packages/components/src/**/*.tsx
 
 ## Skills
 
-| Skill | When to use |
-|-------|-------------|
-| `update-tokens` | Add, update, delete, or deprecate design tokens |
+| Skill                 | When to use                                              |
+| --------------------- | -------------------------------------------------------- |
+| `update-tokens`       | Add, update, delete, or deprecate design tokens          |
 | `learn-from-feedback` | Capture a developer correction into a skill or CLAUDE.md |
-

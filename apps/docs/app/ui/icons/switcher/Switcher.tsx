@@ -4,7 +4,7 @@ import IconTable from "@/app/ui/icons/iconTable/IconTable.tsx";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { HopperProvider, SearchField } from "@hopper-ui/components";
 import { SparklesIcon, SparklesRichIcon, iconNames, richIconNames } from "@hopper-ui/icons";
-import { memo, useContext, useState, type ReactNode } from "react";
+import { type ReactNode, memo, useContext, useState } from "react";
 import { Radio, RadioGroup, type RadioProps } from "react-aria-components";
 import "./switcher.css";
 
@@ -32,14 +32,23 @@ const Switcher = memo(({ type, headLine, iconType = "icon" }: SwitcherProps) => 
         <>
             <div>{headLine}</div>
             <div className="hd-switcher__wrapper">
-                <RadioGroup className="hd-switcher-picker" defaultValue={selectedSize} onChange={value => setSelectedSize(value as AvailableSizes)}>
+                <RadioGroup
+                    className="hd-switcher-picker"
+                    defaultValue={selectedSize}
+                    onChange={value => setSelectedSize(value as AvailableSizes)}
+                >
                     {iconType === "icon" && <SwitcherChoice value="sm" preview={<SparklesIcon size="sm" />} />}
                     <SwitcherChoice value="md" preview={<Icon size="md" />} />
                     <SwitcherChoice value="lg" preview={<Icon size="lg" />} />
                     {iconType === "richIcon" && <SwitcherChoice value="xl" preview={<SparklesRichIcon size="xl" />} />}
                 </RadioGroup>
                 <HopperProvider theme={theme} colorScheme={colorScheme}>
-                    <SearchField aria-label="Filter icons" placeholder="Search" value={filter} onChange={onTextFieldChange} />
+                    <SearchField
+                        aria-label="Filter icons"
+                        placeholder="Search"
+                        value={filter}
+                        onChange={onTextFieldChange}
+                    />
                 </HopperProvider>
                 <IconTable type={type} size={selectedSize} filter={filter} items={iconList} />
             </div>
@@ -83,9 +92,7 @@ function SwitcherChoice({ preview, value, ...rest }: SwitcherChoiceProps) {
                     <span className="hd-switcher-choice-infos__title">{title}</span>
                     <span className="hd-switcher-choice-infos__size">{size}</span>
                 </div>
-                <div className="hd-switcher-choice-preview">
-                    {preview}
-                </div>
+                <div className="hd-switcher-choice-preview">{preview}</div>
             </div>
         </Radio>
     );

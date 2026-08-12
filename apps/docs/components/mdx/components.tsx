@@ -58,7 +58,7 @@ export const components = {
     CardLink,
     CardLinkList,
     code: InlineCode,
-    Callout: Callout,
+    Callout,
     DosAndDonts,
     Expand,
     Figure,
@@ -68,26 +68,26 @@ export const components = {
     McpServersVerification,
     pre: Pre,
     Tag,
-    MotionPreview: MotionPreview,
-    BreakpointTable: BreakpointTable,
-    Footnote: Footnote,
-    TokenTable: TokenTable,
-    PropsReferenceTable: PropsReferenceTable,
-    TypographyTable: TypographyTable,
-    TypographyVariantTable: TypographyVariantTable,
-    IconTable: IconTable,
-    IconSpecTable: IconSpecTable,
-    Overview: Overview,
-    SimpleTable: SimpleTable,
-    Tabs: Tabs,
-    ComposedComponents: ComposedComponents,
-    TableSection: TableSection,
-    Link: Link,
-    Switcher: Switcher,
+    MotionPreview,
+    BreakpointTable,
+    Footnote,
+    TokenTable,
+    PropsReferenceTable,
+    TypographyTable,
+    TypographyVariantTable,
+    IconTable,
+    IconSpecTable,
+    Overview,
+    SimpleTable,
+    Tabs,
+    ComposedComponents,
+    TableSection,
+    Link,
+    Switcher,
     PackageInstallation: (props: PackageInstallationProps) => {
         return <PackageInstallation {...props} />;
     },
-    PromptSnippet: PromptSnippet,
+    PromptSnippet,
     Example: (props: ComponentExampleProps) => {
         const { src, type = "both" } = props;
 
@@ -103,14 +103,7 @@ export const components = {
     CodeOnlyExample: (props: ComponentExampleProps) => {
         const { src } = props;
 
-        return (
-            <ComponentExample
-                {...props}
-                type="code"
-                isOpen
-                code={<ComponentCodeWrapper src={src} />}
-            />
-        );
+        return <ComponentExample {...props} type="code" isOpen code={<ComponentCodeWrapper src={src} />} />;
     },
     MigrateGuide: (props: MigrateGuideProps) => {
         return <MigrateGuide {...props} />;

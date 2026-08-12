@@ -1,8 +1,8 @@
 "use client";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { useContext, useState, type CSSProperties } from "react";
-import { Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue, type Key } from "react-aria-components";
+import { type CSSProperties, useContext, useState } from "react";
+import { Button, type Key, Label, ListBox, ListBoxItem, Popover, Select, SelectValue } from "react-aria-components";
 import { getTokens } from "../../tokens/allDataTokens";
 import "./MotionPreview.css";
 
@@ -33,7 +33,13 @@ function MotionPreview() {
     return (
         <>
             <div className="hd-motion-preview">
-                <Select className="hd-motion-preview__select" placeholder="Easing" aria-label="Easing" defaultSelectedKey={easing} onSelectionChange={handleSelectEasing}>
+                <Select
+                    className="hd-motion-preview__select"
+                    placeholder="Easing"
+                    aria-label="Easing"
+                    defaultSelectedKey={easing}
+                    onSelectionChange={handleSelectEasing}
+                >
                     <Label>Easing</Label>
                     <Button className="hd-motion-preview__select-button">
                         <SelectValue />
@@ -43,14 +49,23 @@ function MotionPreview() {
                         <ListBox>
                             {easings.map(x => (
                                 <ListBoxItem key={x.name} id={x.name}>
-                                    {x.name.replace("hop-easing-", "").replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
+                                    {x.name
+                                        .replace("hop-easing-", "")
+                                        .replace(/-/g, " ")
+                                        .replace(/\b\w/g, l => l.toUpperCase())}
                                 </ListBoxItem>
                             ))}
                         </ListBox>
                     </Popover>
                 </Select>
 
-                <Select className="hd-motion-preview__select" placeholder="Duration" aria-label="Duration" defaultSelectedKey={duration} onSelectionChange={handleSelectDuration}>
+                <Select
+                    className="hd-motion-preview__select"
+                    placeholder="Duration"
+                    aria-label="Duration"
+                    defaultSelectedKey={duration}
+                    onSelectionChange={handleSelectDuration}
+                >
                     <Label>Duration</Label>
                     <Button className="hd-motion-preview__select-button">
                         <SelectValue />
@@ -58,23 +73,29 @@ function MotionPreview() {
                     </Button>
                     <Popover className="hd-motion-preview__popover">
                         <ListBox>
-
                             {durations.map(x => (
                                 <ListBoxItem key={x.name} id={x.name}>
-                                    {`${x.name.replace("hop-easing-", "").replace(/-/g, " ").replace(/\b\w/g, l => l.toUpperCase())} (${x.value})`}
+                                    {`${x.name
+                                        .replace("hop-easing-", "")
+                                        .replace(/-/g, " ")
+                                        .replace(/\b\w/g, l => l.toUpperCase())} (${x.value})`}
                                 </ListBoxItem>
                             ))}
                         </ListBox>
                     </Popover>
                 </Select>
 
-                <Button className="hd-motion-preview__button" onPress={handleClick}>Play this motion</Button>
+                <Button className="hd-motion-preview__button" onPress={handleClick}>
+                    Play this motion
+                </Button>
             </div>
             <div
-                style={{
-                    "--hd-duration": durations.find(x => x.name === duration)?.value,
-                    "--hd-easing": easings.find(x => x.name === easing)?.value
-                } as CSSProperties}
+                style={
+                    {
+                        "--hd-duration": durations.find(x => x.name === duration)?.value,
+                        "--hd-easing": easings.find(x => x.name === easing)?.value
+                    } as CSSProperties
+                }
                 className={`hd-object ${isAnimated ? "hd-object-animated" : ""}`}
             />
         </>

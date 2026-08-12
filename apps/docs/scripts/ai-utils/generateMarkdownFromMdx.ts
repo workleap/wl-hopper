@@ -7,9 +7,13 @@ import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import { unified } from "unified";
 import { visit } from "unist-util-visit";
-import { convertMdxToMd, type FrontMatterConvertOptions } from "./convertMdxToMd.ts";
+import { type FrontMatterConvertOptions, convertMdxToMd } from "./convertMdxToMd.ts";
 
-async function convertMdxFileToMd(filePath: string, options?: FrontMatterConvertOptions, customComponents: Record<string, ComponentType> = {}): Promise<string> {
+async function convertMdxFileToMd(
+    filePath: string,
+    options?: FrontMatterConvertOptions,
+    customComponents: Record<string, ComponentType> = {}
+): Promise<string> {
     const mdxSource = await fs.readFile(filePath, "utf-8");
 
     const mdContent = convertMdxToMd(mdxSource, options, customComponents);
@@ -97,7 +101,11 @@ interface ProcessedFile {
 }
 
 // Build a processed file object for an MDX source file (handles path logic + directory creation)
-async function processMarkdownContent(filePath: string, mdContent: string, options: GenerateMarkdownOptions): Promise<ProcessedFile> {
+async function processMarkdownContent(
+    filePath: string,
+    mdContent: string,
+    options: GenerateMarkdownOptions
+): Promise<ProcessedFile> {
     let targetPath = options.outputPath;
     const relativePath = path.relative(options.filesPath, filePath);
     const fileDir = path.dirname(relativePath);
@@ -145,7 +153,11 @@ export async function generateMarkdownFromMdx(options: GenerateMarkdownOptions):
         const customComponents = options.renderer?.customComponents ?? {};
 
         for (const filePath of mdxFiles) {
-            const mdContent = await convertMdxFileToMd(filePath, { includeLinks: options.markdown?.includeFrontMatterLinks ?? false }, customComponents);
+            const mdContent = await convertMdxFileToMd(
+                filePath,
+                { includeLinks: options.markdown?.includeFrontMatterLinks ?? false },
+                customComponents
+            );
             if (mdContent) {
                 processedFiles.push(await processMarkdownContent(filePath, mdContent, options));
             }
@@ -200,9 +212,7 @@ function replaceLinks(mdContent: string, replaceLinkFn?: (link: string) => strin
         return mdContent;
     }
 
-    const processor = unified()
-        .use(remarkParse)
-        .use(remarkStringify);
+    const processor = unified().use(remarkParse).use(remarkStringify);
 
     const tree = processor.parse(mdContent);
 
@@ -220,9 +230,7 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
         return mdContent;
     }
 
-    const processor = unified()
-        .use(remarkParse)
-        .use(remarkStringify);
+    const processor = unified().use(remarkParse).use(remarkStringify);
 
     const tree = processor.parse(mdContent);
     const nodesToRemove: { node: Node; index: number; parent: Parent }[] = [];
@@ -275,7 +283,7 @@ function excludeSections(mdContent: string, excludedSections?: string[]): string
                 const nextNode = parent.children[nextIndex];
 
                 // If we hit another heading of same or higher level, stop
-                if (nextNode.type === "heading" && (nextNode).depth <= currentLevel) {
+                if (nextNode.type === "heading" && nextNode.depth <= currentLevel) {
                     break;
                 }
 

@@ -4,18 +4,10 @@
         "**/dist*": true,
         "**/.next*": true,
         "**/.cache*": true,
-        "**/.contentlayer*": true,
+        "**/.contentlayer*": true
     },
 
-    "eslint.probe": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json",
-        "jsonc",
-        "mdx"
-    ],
+    "eslint.probe": ["javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc", "mdx"],
 
     // Formatters settings
     "editor.codeActionsOnSave": {

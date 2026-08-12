@@ -1,8 +1,8 @@
 {
     "name": "basic",
-    "description": "Sample app",
-    "private": true,
     "version": "0.0.0",
+    "private": true,
+    "description": "Sample app",
     "type": "module",
     "scripts": {
         "dev": "webpack serve --config webpack.dev.js",

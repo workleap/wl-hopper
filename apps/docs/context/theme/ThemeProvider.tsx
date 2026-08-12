@@ -1,7 +1,8 @@
 "use client";
 
-import { ColorScheme, HopperProvider, Theme } from "@hopper-ui/components";
-import { createContext, useEffect, useState, type ReactNode } from "react";
+import type { ColorScheme, Theme } from "@hopper-ui/components";
+import { HopperProvider } from "@hopper-ui/components";
+import { type ReactNode, createContext, useEffect, useState } from "react";
 import { getInitialColorScheme, getInitialTheme } from "./getInitialColorScheme.ts";
 
 interface ThemeContextType {
@@ -24,13 +25,9 @@ export const ThemeContext = createContext<ThemeContextType>({
 });
 
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-    const [colorScheme, setColorScheme] = useState<ColorScheme | undefined>(
-        undefined
-    );
+    const [colorScheme, setColorScheme] = useState<ColorScheme | undefined>(undefined);
 
-    const [theme, setTheme] = useState<Theme | undefined>(
-        undefined
-    );
+    const [theme, setTheme] = useState<Theme | undefined>(undefined);
 
     useEffect(() => {
         if (colorScheme) {
@@ -52,12 +49,13 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     }, [setColorScheme, setTheme]);
 
     return (
-        <ThemeContext.Provider value={{
-            theme: theme ?? "workleap",
-            setTheme,
-            colorScheme: colorScheme ?? "light",
-            setColorScheme
-        }}
+        <ThemeContext.Provider
+            value={{
+                theme: theme ?? "workleap",
+                setTheme,
+                colorScheme: colorScheme ?? "light",
+                setColorScheme
+            }}
         >
             <HopperProvider theme={theme ?? "workleap"} colorScheme={colorScheme ?? "light"}>
                 {children}

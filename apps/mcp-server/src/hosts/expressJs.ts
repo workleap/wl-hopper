@@ -23,10 +23,10 @@ app.post("/mcp", async (req: express.Request, res: express.Response) => {
     let transport: StreamableHTTPServerTransport;
 
     if (sessionId && transports[sessionId]) {
-    // Reuse existing transport
+        // Reuse existing transport
         transport = transports[sessionId];
     } else if (!sessionId && isInitializeRequest(req.body)) {
-    // New initialization request
+        // New initialization request
         transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: () => randomUUID(),
             onsessioninitialized: sId => {
@@ -51,7 +51,7 @@ app.post("/mcp", async (req: express.Request, res: express.Response) => {
         // Connect to the MCP server
         await server.connect(transport);
     } else {
-    // Invalid request
+        // Invalid request
         res.status(400).json({
             jsonrpc: "2.0",
             error: {

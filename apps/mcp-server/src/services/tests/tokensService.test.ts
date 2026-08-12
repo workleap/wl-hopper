@@ -306,8 +306,9 @@ describe("getDesignTokens", () => {
             const fs = await import("fs");
             vi.spyOn(fs, "existsSync").mockReturnValueOnce(false);
 
-            await expect(getDesignTokens("all", undefined, undefined, undefined, false))
-                .rejects.toThrow("Tokens map not found");
+            await expect(getDesignTokens("all", undefined, undefined, undefined, false)).rejects.toThrow(
+                "Tokens map not found"
+            );
         });
 
         it("should throw error on JSON parse errors", async () => {
@@ -315,8 +316,9 @@ describe("getDesignTokens", () => {
             const fsPromises = await import("fs/promises");
             vi.spyOn(fsPromises, "readFile").mockResolvedValueOnce("invalid json {" as never);
 
-            await expect(getDesignTokens("all", ["coastal"], undefined, undefined, false))
-                .rejects.toThrow("Error filtering tokens");
+            await expect(getDesignTokens("all", ["coastal"], undefined, undefined, false)).rejects.toThrow(
+                "Error filtering tokens"
+            );
         });
     });
 
@@ -538,7 +540,15 @@ describe("getDesignTokens", () => {
         });
 
         it("should filter by CSS values with colorScheme parameter", async () => {
-            const result = await getDesignTokens("semantic-color", undefined, ["#ba2d2d"], undefined, false, "workleap", "dark");
+            const result = await getDesignTokens(
+                "semantic-color",
+                undefined,
+                ["#ba2d2d"],
+                undefined,
+                false,
+                "workleap",
+                "dark"
+            );
 
             expect(result).toHaveLength(1);
             const content = JSON.parse(result[0].text);
@@ -546,4 +556,3 @@ describe("getDesignTokens", () => {
         });
     });
 });
-

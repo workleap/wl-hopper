@@ -327,13 +327,14 @@ By default, the system applies these transformations to relative links:
 
 ```markdown
 <!-- Original links -->
-[Full URL](https://example.com/page)           → No change
-[Hash link](#introduction)                     → No change
-[Relative link](../components/button)          → ../components/button.txt
-[With hash](../guide#installation)            → ../guide.txt#installation
-[With query](./api?version=2)                 → ./api.txt?version=2
-[Complex relative](../../tokens/core)         → ../../tokens/core.txt
-[Trailing slash](./components/)               → ./components.txt
+
+[Full URL](https://example.com/page) → No change
+[Hash link](#introduction) → No change
+[Relative link](../components/button) → ../components/button.txt
+[With hash](../guide#installation) → ../guide.txt#installation
+[With query](./api?version=2) → ./api.txt?version=2
+[Complex relative](../../tokens/core) → ../../tokens/core.txt
+[Trailing slash](./components/) → ./components.txt
 ```
 
 **Important**: The link transformation now uses improved URL parsing that correctly handles complex relative paths starting with `../` without incorrectly resolving them, ensuring that the original path structure is preserved.

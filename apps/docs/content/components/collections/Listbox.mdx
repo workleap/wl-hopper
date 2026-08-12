@@ -33,7 +33,9 @@ Typically, this context is determined by the user's current selection prior to i
 ```tsx
 <ListBox>
     <Divider /> /* (Optional) A divider in the ListBox */
-    <ListBoxItem> /* (Optional) An item in the ListBox */
+    <ListBoxItem>
+        {" "}
+        /* (Optional) An item in the ListBox */
         <Avatar /> /* (Optional) An avatar in the ListBoxItem */
         <Text /> /* (Optional) Text is optional, but becomes required if any other elements are present */
         <Text slot="description" /> /* (Optional) A description in the ListBoxItem */
@@ -41,7 +43,9 @@ Typically, this context is determined by the user's current selection prior to i
         <IconList /> /* (Optional) A list of icons in the ListBoxItem */
         <Badge /> /* (Optional) A badge in the ListBoxItem */
     </ListBoxItem>
-    <ListBoxSection> /* (Optional) A section in the ListBox */
+    <ListBoxSection>
+        {" "}
+        /* (Optional) A section in the ListBox */
         <Header /> /* (Optional) A header in the ListBoxSection */
         <ListBoxItem /> /* (Optional) An item in the ListBoxSection */
     </ListBoxSection>
@@ -52,7 +56,7 @@ Typically, this context is determined by the user's current selection prior to i
 
 A `ListBox` uses the following components:
 
-<ComposedComponents components={["Header", "Divider", "Avatar", "Text", "Icon", "Badge"]}/>
+<ComposedComponents components={["Header", "Divider", "Avatar", "Text", "Icon", "Badge"]} />
 
 ## Usage
 

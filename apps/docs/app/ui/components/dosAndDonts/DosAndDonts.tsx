@@ -4,9 +4,9 @@ import clsx from "clsx";
 import "./dosAndDonts.css";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
-import { Div, Grid, HopperProvider, Tag, Text, type TagProps } from "@hopper-ui/components";
+import { Div, Grid, HopperProvider, Tag, type TagProps, Text } from "@hopper-ui/components";
 import { CheckmarkIcon, DismissIcon } from "@hopper-ui/icons";
-import { Fragment, useContext, type ReactNode } from "react";
+import { Fragment, type ReactNode, useContext } from "react";
 import Card from "../card/Card";
 
 type Variant = "do" | "dont";
@@ -18,12 +18,12 @@ interface DosAndDontsCardProps {
 }
 
 const VariantToCard: Record<Variant, DosAndDontsCardProps> = {
-    "do": {
+    do: {
         icon: <CheckmarkIcon />,
         variant: "positive",
         textValue: "Do"
     },
-    "dont": {
+    dont: {
         icon: <DismissIcon />,
         variant: "negative",
         textValue: "Don't"
@@ -37,10 +37,12 @@ interface DosAndDontsItem {
 }
 
 export interface DosAndDontsProps {
-    items: [{
-        do?: DosAndDontsItem;
-        dont?: DosAndDontsItem;
-    }];
+    items: [
+        {
+            do?: DosAndDontsItem;
+            dont?: DosAndDontsItem;
+        }
+    ];
 }
 
 function DosAndDonts({ items }: DosAndDontsProps) {

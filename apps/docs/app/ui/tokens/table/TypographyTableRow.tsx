@@ -7,14 +7,7 @@ import Link from "next/link";
 import "./tokenTable.css";
 
 export function typographyTableRow(type: string, properties: FontProperties, size?: Size) {
-    const {
-        fontFamily,
-        fontSize,
-        fontWeight,
-        lineHeight,
-        topOffset,
-        bottomOffset
-    } = properties;
+    const { fontFamily, fontSize, fontWeight, lineHeight, topOffset, bottomOffset } = properties;
 
     let previewAdditionalStyles = {};
 
@@ -43,10 +36,10 @@ export function typographyTableRow(type: string, properties: FontProperties, siz
     };
 
     if (size) {
-        return ({
+        return {
             name: size,
             ...valueAndPreview
-        });
+        };
     } else {
         return valueAndPreview;
     }
@@ -97,17 +90,14 @@ function PropertiesCell({ properties }: PropertiesCellProps) {
                         key="topOffset"
                         className="hd-typo-offset-cell"
                         tokenName={properties.topOffset.tokenName}
-                        displayName={(
+                        displayName={
                             <>
                                 Top Offset
-                                <Link
-                                    href="#offset-tokens"
-                                    className="hd-table__link"
-                                >
+                                <Link href="#offset-tokens" className="hd-table__link">
                                     <sup>1</sup>
                                 </Link>
                             </>
-                        )}
+                        }
                         value={properties.topOffset.value}
                     />
                 )}
@@ -116,17 +106,14 @@ function PropertiesCell({ properties }: PropertiesCellProps) {
                         key="bottomOffset"
                         className={properties.topOffset ? undefined : "hd-typo-offset-cell"}
                         tokenName={properties.bottomOffset.tokenName}
-                        displayName={(
+                        displayName={
                             <>
                                 Bottom Offset
-                                <Link
-                                    href="#offset-tokens"
-                                    className="hd-table__link"
-                                >
+                                <Link href="#offset-tokens" className="hd-table__link">
                                     <sup>1</sup>
                                 </Link>
                             </>
-                        )}
+                        }
                         value={properties.bottomOffset.value}
                     />
                 )}
@@ -143,16 +130,12 @@ interface PropertyRowProps extends Omit<ComponentProps<"tr">, "children"> {
 
 function PropertyRow({ tokenName, displayName, value, ...rest }: PropertyRowProps) {
     return (
-        <tr {...rest} >
-            <td className="hd-properties-table__cell">
-                {displayName}
-            </td>
+        <tr {...rest}>
+            <td className="hd-properties-table__cell">{displayName}</td>
             <td className="hd-properties-table__cell">
                 <Code value={tokenName}>{tokenName}</Code>
             </td>
-            <td className="hd-properties-table__token-value-cell">
-                {value}
-            </td>
+            <td className="hd-properties-table__token-value-cell">{value}</td>
         </tr>
     );
 }

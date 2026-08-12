@@ -36,25 +36,19 @@ import CustomRichIcon32 from "./path/to/custom-rich-icon-32.svg";
 import CustomRichIcon40 from "./path/to/custom-rich-icon-40.svg";
 import { createRichIcon } from "@hopper-ui/icons";
 
-const CustomRichIcon = createRichIcon(CustomRichIcon24, CustomRichIcon32, CustomRichIcon40, "CustomIcon")
+const CustomRichIcon = createRichIcon(CustomRichIcon24, CustomRichIcon32, CustomRichIcon40, "CustomIcon");
 ```
 
 ### Using the RichIcon component
 
 ```tsx {8-12}
-import CustomRichIcon24 from "./path/to/custom-icon-24.svg"
-import CustomRichIcon32 from "./path/to/custom-icon-32.svg"
-import CustomRichIcon40 from "./path/to/custom-icon-40.svg"
+import CustomRichIcon24 from "./path/to/custom-icon-24.svg";
+import CustomRichIcon32 from "./path/to/custom-icon-32.svg";
+import CustomRichIcon40 from "./path/to/custom-icon-40.svg";
 import { Icon, type CreatedRichIconProps } from "@hopper-ui/icons";
 
 function CustomRichIcon(props: CreatedRichIconProps) {
-  return (
-    <RichIcon
-        src24={CustomIcon24}
-        src32={CustomRichIcon24}
-        src40={CustomRichIcon32}
-        {...props} />
-  )
+    return <RichIcon src24={CustomIcon24} src32={CustomRichIcon24} src40={CustomRichIcon32} {...props} />;
 }
 ```
 

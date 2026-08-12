@@ -1,5 +1,5 @@
 import { EXACT_CSS_MATCH_CONFIG } from "../../services/validatorService/cssValueMatcher";
-import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../tokenFilters";
+import { type TokenFileRootNode, convertToBriefFormat, filterTokens } from "../tokenFilters";
 
 describe("filterTokens", () => {
     const mockTokenData: TokenFileRootNode = {
@@ -185,7 +185,10 @@ describe("filterTokens", () => {
 
     describe("combined filters", () => {
         it("should apply supportedProps filter before tokenNames filter", () => {
-            const result = filterTokens(mockTokenData, { tokenNames: ["primary"], supportedProps: ["backgroundColor"] });
+            const result = filterTokens(mockTokenData, {
+                tokenNames: ["primary"],
+                supportedProps: ["backgroundColor"]
+            });
 
             // Should have core.color category with only primary tokens
             expect(result.core?.color).toBeDefined();
@@ -196,7 +199,10 @@ describe("filterTokens", () => {
         });
 
         it("should apply supportedProps filter before cssValues filter", () => {
-            const result = filterTokens(mockTokenData, { cssValues: ["1rem"], supportedProps: ["fontSize", "padding"] });
+            const result = filterTokens(mockTokenData, {
+                cssValues: ["1rem"],
+                supportedProps: ["fontSize", "padding"]
+            });
 
             // Should have fontSize and spacing categories, tokens with values close to 1rem
             expect(result.core?.fontSize).toBeDefined();
@@ -210,7 +216,11 @@ describe("filterTokens", () => {
         });
 
         it("should apply all three filters in correct order", () => {
-            const result = filterTokens(mockTokenData, { tokenNames: ["danger"], cssValues: ["#d32f2f"], supportedProps: ["color"] });
+            const result = filterTokens(mockTokenData, {
+                tokenNames: ["danger"],
+                cssValues: ["#d32f2f"],
+                supportedProps: ["color"]
+            });
 
             // Should only have semantic.color category with danger-text token
             expect(result.semantic?.color).toBeDefined();
@@ -249,7 +259,11 @@ describe("filterTokens", () => {
         });
 
         it("should handle multiple filters returning no results", () => {
-            const result = filterTokens(mockTokenData, { tokenNames: ["nonexistent"], cssValues: ["#000000"], supportedProps: ["unknownProp"] });
+            const result = filterTokens(mockTokenData, {
+                tokenNames: ["nonexistent"],
+                cssValues: ["#000000"],
+                supportedProps: ["unknownProp"]
+            });
             expect(result).toEqual({});
         });
     });

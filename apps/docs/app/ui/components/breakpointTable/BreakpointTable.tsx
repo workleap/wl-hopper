@@ -15,10 +15,7 @@ export default function BreakpointTable() {
         <SimpleTable
             aria-label="Breakpoints"
             headers={["Name", "Media query"]}
-            data={[
-                { name: "base", value: "min-width: 0px" },
-                ...breakpoints
-            ]}
+            data={[{ name: "base", value: "min-width: 0px" }, ...breakpoints]}
         />
     );
 }

@@ -4,16 +4,16 @@ import Table from "@/components/table/Table";
 import clsx from "clsx";
 
 import {
-    groupItemsByProperties,
-    groupItemsByPropertiesAndSizes,
     type Size,
-    type TokenData
+    type TokenData,
+    groupItemsByProperties,
+    groupItemsByPropertiesAndSizes
 } from "@/app/lib/getTypographyTokens";
 import { typographyTableRow } from "./TypographyTableRow";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { useContext } from "react";
-import { getTokens, type TokenValue } from "../allDataTokens";
+import { type TokenValue, getTokens } from "../allDataTokens";
 import "./tokenTable.css";
 
 // maps the raw token list of a list filtered by property
@@ -47,11 +47,7 @@ const TypographyTable = ({ type, tokenType }: TypographyTableProps) => {
     return (
         <div className="hd-table__wrapper">
             <Table
-                head={[
-                    !hasNoSizes && "Size",
-                    "Values",
-                    "Preview"
-                ].filter(Boolean) as string[]}
+                head={[!hasNoSizes && "Size", "Values", "Preview"].filter(Boolean) as string[]}
                 data={listItems}
                 className={clsx("hd-typo-table", { "hd-typo-table--has-no-sizes": hasNoSizes })}
                 ariaLabel="Typography tokens"
@@ -64,11 +60,7 @@ function generateSizeRows(tokenData: TokenData, type: string) {
     const filteredData = groupItemsByPropertiesAndSizes(tokenData, type);
 
     return Object.keys(filteredData).map(size => {
-        return typographyTableRow(
-            type,
-            filteredData[size as keyof typeof filteredData]!,
-            size as Size
-        );
+        return typographyTableRow(type, filteredData[size as keyof typeof filteredData]!, size as Size);
     });
 }
 

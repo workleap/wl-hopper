@@ -14,8 +14,12 @@ links:
 
 ```tsx
 <Accordion>
-    <Disclosure> /* (Required) A disclosure for the Accordion */
-        <DisclosureHeader> /* (Required) A header for the Disclosure */
+    <Disclosure>
+        {" "}
+        /* (Required) A disclosure for the Accordion */
+        <DisclosureHeader>
+            {" "}
+            /* (Required) A header for the Disclosure */
             <Text /> /* (Optional) A text description for the DisclosureHeader */
             <Icon /> /* (Optional) An icon for the DisclosureHeader */
         </DisclosureHeader>
@@ -28,7 +32,7 @@ links:
 
 An `Accordion` uses the following components.
 
-<ComposedComponents components={["Disclosure", "Text", "Icon"]}/>
+<ComposedComponents components={["Disclosure", "Text", "Icon"]} />
 
 ## Usage
 
@@ -52,7 +56,7 @@ An accordion has multiple variants.
 
 ### Expanded
 
-By default, only one disclosure will be expanded at a time.  Use `allowsMultipleExpanded` prop to expand multiple disclosures.
+By default, only one disclosure will be expanded at a time. Use `allowsMultipleExpanded` prop to expand multiple disclosures.
 
 <Example src="accordion/docs/multiple-selection" />
 

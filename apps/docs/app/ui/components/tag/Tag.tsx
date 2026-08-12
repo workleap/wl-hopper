@@ -7,11 +7,7 @@ interface TagProps {
 }
 
 const Tag = ({ children }: TagProps) => {
-    return (
-        <span className="hd-tag">
-            {children}
-        </span>
-    );
+    return <span className="hd-tag">{children}</span>;
 };
 
 export default Tag;

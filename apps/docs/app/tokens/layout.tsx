@@ -8,9 +8,5 @@ export default function TokenLayout({ children }: { children: ReactNode }) {
         order: ["overview", "semantic", "core"]
     });
 
-    return (
-        <SidebarLayout links={allTokenLinks}>
-            {children}
-        </SidebarLayout>
-    );
+    return <SidebarLayout links={allTokenLinks}>{children}</SidebarLayout>;
 }

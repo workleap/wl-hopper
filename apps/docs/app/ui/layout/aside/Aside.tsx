@@ -92,10 +92,14 @@ const Aside = ({ title, links }: PropsWithoutRef<AsideProps>) => {
                             <span
                                 className={clsx("hd-aside__marker", activeIndex === -1 && "hd-aside__marker--hide")}
                                 style={{ top: activeIndex * titleHeight + "px" }}
-                            >
-                            </span>
+                            ></span>
                         )}
-                        <ul className={clsx("hd-aside__list", isOpen ? "hd-aside__item--active" : "hd-aside__list--closed")}>
+                        <ul
+                            className={clsx(
+                                "hd-aside__list",
+                                isOpen ? "hd-aside__item--active" : "hd-aside__list--closed"
+                            )}
+                        >
                             {listItems}
                         </ul>
                     </div>

@@ -3,7 +3,14 @@
 import { Icon, RightAngleIcon } from "@/components/icon";
 import clsx from "clsx";
 import type { ReactNode } from "react";
-import { Button, Disclosure, DisclosurePanel, Heading, composeRenderProps, type DisclosureProps } from "react-aria-components";
+import {
+    Button,
+    Disclosure,
+    DisclosurePanel,
+    type DisclosureProps,
+    Heading,
+    composeRenderProps
+} from "react-aria-components";
 
 import "./expand.css";
 

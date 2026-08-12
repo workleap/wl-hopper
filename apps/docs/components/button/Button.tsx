@@ -11,13 +11,7 @@ export interface ButtonProps extends RACButtonProps {
     className?: string;
 }
 
-const Button = ({
-    variant = "primary",
-    size = "md",
-    className,
-    children,
-    ...rest
-}: ButtonProps) => {
+const Button = ({ variant = "primary", size = "md", className, children, ...rest }: ButtonProps) => {
     const classes = clsx(
         "hd-btn",
         {
@@ -28,20 +22,26 @@ const Button = ({
     );
 
     return (
-        <Provider values={[
-            [IconContext, {
-                slots: {
-                    [DEFAULT_SLOT]: {
-                        className: "hd-btn__icon"
-                    },
-                    "end-icon": {
-                        className: "hd-btn__end-icon"
+        <Provider
+            values={[
+                [
+                    IconContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                className: "hd-btn__icon"
+                            },
+                            "end-icon": {
+                                className: "hd-btn__end-icon"
+                            }
+                        }
                     }
-                }
-            }]
-        ]}
+                ]
+            ]}
         >
-            <RACButton className={classes} {...rest}>{children}</RACButton>
+            <RACButton className={classes} {...rest}>
+                {children}
+            </RACButton>
         </Provider>
     );
 };

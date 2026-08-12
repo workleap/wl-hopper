@@ -91,11 +91,19 @@ function loadCompilerOptions(tsconfigPath: string): ts.CompilerOptions {
         throw new Error(ts.flattenDiagnosticMessageText(error.messageText, "\n"));
     }
 
-    const { options, errors } = ts.parseJsonConfigFileContent(config, ts.sys, path.dirname(tsconfigPath), {}, tsconfigPath);
+    const { options, errors } = ts.parseJsonConfigFileContent(
+        config,
+        ts.sys,
+        path.dirname(tsconfigPath),
+        {},
+        tsconfigPath
+    );
 
     // Fail loudly rather than parsing every component against half-resolved compiler options.
     if (errors.length) {
-        throw new Error(errors.map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")).join("\n"));
+        throw new Error(
+            errors.map(diagnostic => ts.flattenDiagnosticMessageText(diagnostic.messageText, "\n")).join("\n")
+        );
     }
 
     return { ...options, noEmit: true, skipLibCheck: true, skipDefaultLibCheck: true };
@@ -105,22 +113,22 @@ const compilerOptions = loadCompilerOptions(path.resolve("./tsconfig.json"));
 
 const tsConfigParser = docgenTs.withCompilerOptions(compilerOptions, parserConfig);
 
-const tsConfigFullPropsParser = docgenTs.withCompilerOptions(
-    compilerOptions,
-    {
-        ...parserConfig,
-        propFilter: prop => {
-            const result = parserConfig.propFilter(prop);
+const tsConfigFullPropsParser = docgenTs.withCompilerOptions(compilerOptions, {
+    ...parserConfig,
+    propFilter: prop => {
+        const result = parserConfig.propFilter(prop);
 
-            // Get back StyledSystemProps and UnsafeStyledSystemProps
-            if (result === false && (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")) {
-                return true;
-            }
-
-            return result;
+        // Get back StyledSystemProps and UnsafeStyledSystemProps
+        if (
+            result === false &&
+            (prop?.parent?.name === "StyledSystemProps" || prop?.parent?.name === "UnsafeStyledSystemProps")
+        ) {
+            return true;
         }
+
+        return result;
     }
-);
+});
 
 function writeFile(filename: string, data: ComponentDocWithGroups[]) {
     if (!fs.existsSync(COMPONENT_DATA)) {
@@ -157,23 +165,54 @@ function getFormattedData(data: ComponentDoc[]): ComponentDocWithGroups[] {
     // Define the groups and their corresponding terms
 
     const groupsConfig: GroupsConfig = {
-        Events: [
-            /^on[A-Z]/
-        ],
+        Events: [/^on[A-Z]/],
         Layout: [
-            "flex", "flexGrow", "flexShrink", "flexBasis", "alignSelf", "justifySelf", "order", "flexOrder",
-            "gridArea", "gridColumn", "gridRow", "gridColumnStart", "gridColumnEnd", "gridRowStart", "gridRowEnd", "slot",
+            "flex",
+            "flexGrow",
+            "flexShrink",
+            "flexBasis",
+            "alignSelf",
+            "justifySelf",
+            "order",
+            "flexOrder",
+            "gridArea",
+            "gridColumn",
+            "gridRow",
+            "gridColumnStart",
+            "gridColumnEnd",
+            "gridRowStart",
+            "gridRowEnd",
+            "slot",
             "overflow"
         ],
         Spacing: [
-            "margin", "marginTop", "marginLeft", "marginRight", "marginBottom", "marginStart", "marginEnd", "marginX", "marginY",
-            "padding", "paddingTop", "paddingLeft", "paddingRight", "paddingBottom", "paddingStart", "paddingEnd", "paddingX", "paddingY"
+            "margin",
+            "marginTop",
+            "marginLeft",
+            "marginRight",
+            "marginBottom",
+            "marginStart",
+            "marginEnd",
+            "marginX",
+            "marginY",
+            "padding",
+            "paddingTop",
+            "paddingLeft",
+            "paddingRight",
+            "paddingBottom",
+            "paddingStart",
+            "paddingEnd",
+            "paddingX",
+            "paddingY"
         ],
-        Sizing: [
-            "width", "minWidth", "maxWidth", "height", "minHeight", "maxHeight", "defaultWidth"
-        ],
+        Sizing: ["width", "minWidth", "maxWidth", "height", "minHeight", "maxHeight", "defaultWidth"],
         Background: [
-            "background", "backgroundColor", "backgroundImage", "backgroundSize", "backgroundPosition", "backgroundRepeat",
+            "background",
+            "backgroundColor",
+            "backgroundImage",
+            "backgroundSize",
+            "backgroundPosition",
+            "backgroundRepeat",
             "opacity"
         ],
         Borders: [
@@ -186,16 +225,47 @@ function getFormattedData(data: ComponentDoc[]): ComponentDocWithGroups[] {
             "borderRight",
             "borderTop",
             "borderBottom",
-            "borderWidth", "borderStartWidth", "borderEndWidth", "borderLeftWidth", "borderRightWidth", "borderTopWidth", "borderBottomWidth", "borderXWidth", "borderYWidth",
-            "borderColor", "borderStartColor", "borderEndColor", "borderLeftColor", "borderRightColor", "borderTopColor", "borderBottomColor", "borderXColor", "borderYColor",
-            "borderRadius", "borderTopStartRadius", "borderTopEndRadius", "borderBottomStartRadius", "borderBottomEndRadius", "borderTopLeftRadius", "borderTopRightRadius", "borderBottomLeftRadius", "borderBottomRightRadius"
+            "borderWidth",
+            "borderStartWidth",
+            "borderEndWidth",
+            "borderLeftWidth",
+            "borderRightWidth",
+            "borderTopWidth",
+            "borderBottomWidth",
+            "borderXWidth",
+            "borderYWidth",
+            "borderColor",
+            "borderStartColor",
+            "borderEndColor",
+            "borderLeftColor",
+            "borderRightColor",
+            "borderTopColor",
+            "borderBottomColor",
+            "borderXColor",
+            "borderYColor",
+            "borderRadius",
+            "borderTopStartRadius",
+            "borderTopEndRadius",
+            "borderBottomStartRadius",
+            "borderBottomEndRadius",
+            "borderTopLeftRadius",
+            "borderTopRightRadius",
+            "borderBottomLeftRadius",
+            "borderBottomRightRadius"
         ],
-        Shadows: [
-            "boxShadow",
-            "textShadow"
-        ],
+        Shadows: ["boxShadow", "textShadow"],
         Positioning: [
-            "position", "top", "bottom", "left", "right", "start", "end", "zIndex", "isHidden", "hidden", "display"
+            "position",
+            "top",
+            "bottom",
+            "left",
+            "right",
+            "start",
+            "end",
+            "zIndex",
+            "isHidden",
+            "hidden",
+            "display"
         ],
         Typography: [
             "font",
@@ -207,14 +277,16 @@ function getFormattedData(data: ComponentDoc[]): ComponentDocWithGroups[] {
             "lineHeight",
             "letterSpacing"
         ],
-        Accessibility: [
-            "role", "id", "tabIndex", "excludeFromTabOrder", "preventFocusOnPress", /^aria-/
-        ]
+        Accessibility: ["role", "id", "tabIndex", "excludeFromTabOrder", "preventFocusOnPress", /^aria-/]
     };
 
     // Define the exceptions that should be added to a specific group
     // The first element is the prop name and the second is the group key
-    const groupsExceptions = [["type", "default"], ["autoFocus", "default"], ["dangerouslySetInnerHTML", "default"]];
+    const groupsExceptions = [
+        ["type", "default"],
+        ["autoFocus", "default"],
+        ["dangerouslySetInnerHTML", "default"]
+    ];
     const excludedComponentsByDisplayName = ["H1", "H2", "H3", "H4", "H5", "H6"];
 
     const filteredData = data.filter(component => {
@@ -298,26 +370,28 @@ function getFormattedData(data: ComponentDoc[]): ComponentDocWithGroups[] {
 async function generateComponentList(source: string, options: Options = {}): Promise<(ComponentData | undefined)[]> {
     const exclude = options.exclude ?? [];
     const subdirs = await fs.promises.readdir(source);
-    const files = await Promise.all(subdirs.map(async subdir => {
-        const res = path.resolve(source, subdir);
+    const files = await Promise.all(
+        subdirs.map(async subdir => {
+            const res = path.resolve(source, subdir);
 
-        // Checks if the path corresponds to a directory
-        if (fs.statSync(res).isDirectory()) {
-            return generateComponentList(res, { exclude });
-        }
+            // Checks if the path corresponds to a directory
+            if (fs.statSync(res).isDirectory()) {
+                return generateComponentList(res, { exclude });
+            }
 
-        // Checks whether the file or directory is in the exclude list
-        if (exclude.some(ex => res.includes(ex))) {
-            return;
-        }
+            // Checks whether the file or directory is in the exclude list
+            if (exclude.some(ex => res.includes(ex))) {
+                return;
+            }
 
-        // Checks whether the file is a .ts or .tsx file
-        if (/\.tsx?$/.test(res)) {
-            const name = getComponentName(res);
+            // Checks whether the file is a .ts or .tsx file
+            if (/\.tsx?$/.test(res)) {
+                const name = getComponentName(res);
 
-            return { name, filePath: res };
-        }
-    }));
+                return { name, filePath: res };
+            }
+        })
+    );
 
     return files.flat().filter(Boolean) as ComponentData[];
 }
@@ -444,4 +518,6 @@ async function generateComponentData() {
     return;
 }
 
-generateComponentData().then(() => console.log("🎉 Success")).catch(err => console.error(err));
+generateComponentData()
+    .then(() => console.log("🎉 Success"))
+    .catch(err => console.error(err));

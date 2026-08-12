@@ -14,9 +14,7 @@ export const BasePageLayout = ({ children, sectionsLinks, showSections = true }:
             {showSections && <SubHeader links={sectionsLinks} />}
             <div className="hd-container">
                 {showSections && <Aside title="On this page" links={sectionsLinks} />}
-                <main>
-                    {children}
-                </main>
+                <main>{children}</main>
             </div>
         </>
     );

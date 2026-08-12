@@ -8,7 +8,11 @@ import type { VFile } from "vfile";
 import { matter } from "vfile-matter";
 import { mdxToMarkdown } from "../../components/mdx/mdxToMarkdown.ai.tsx";
 
-export async function convertMdxToMd(mdxSource: string, options?: FrontMatterConvertOptions, customComponents: Record<string, ComponentType> = {}): Promise<string> {
+export async function convertMdxToMd(
+    mdxSource: string,
+    options?: FrontMatterConvertOptions,
+    customComponents: Record<string, ComponentType> = {}
+): Promise<string> {
     const markdown = await remark()
         .use(remarkFrontmatter, ["yaml"])
         .use(yamlMatterReader)
@@ -57,7 +61,10 @@ function frontMatterToMarkdown(options: FrontMatterConvertOptions) {
 }
 
 // Convert front matter to markdown nodes
-function convertFrontMatterToMarkdown(frontMatter: DocumentFrontMatter, options: FrontMatterConvertOptions): (Heading | Paragraph | List)[] {
+function convertFrontMatterToMarkdown(
+    frontMatter: DocumentFrontMatter,
+    options: FrontMatterConvertOptions
+): (Heading | Paragraph | List)[] {
     // Title as H1
     const titleNode: Heading = {
         type: "heading",

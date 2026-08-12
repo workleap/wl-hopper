@@ -30,12 +30,21 @@ export default async function StyledSystemPage({ params }: PageProps) {
 
     const aiDoc = getAiDocAbsolutePath(["styled-system", ...slug]);
     const sectionLinks = getSectionLinks(page);
-    const { title, body: { code }, _id: id } = page;
+    const {
+        title,
+        body: { code },
+        _id: id
+    } = page;
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
-                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Styled System" sectionPath="styled-system" />
+                <PageHeader
+                    title={title}
+                    aiDocAbsolutePath={aiDoc}
+                    sectionTitle="Styled System"
+                    sectionPath="styled-system"
+                />
                 <AICallout />
                 <Mdx code={code} />
             </article>

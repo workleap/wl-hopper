@@ -34,30 +34,31 @@ function getIconNumericSize(iconSize: "sm" | "md" | "lg" | "xl") {
 
 function IconTable({ size, type, items, filter }: IconTableProps) {
     const { colorScheme, theme } = useContext(ThemeContext);
-    const listItems = items.filter(name => {
-        const formattedName = name.replace("RichIcon", "").replace("Icon", "");
+    const listItems = items
+        .filter(name => {
+            const formattedName = name.replace("RichIcon", "").replace("Icon", "");
 
-        return !filter || formattedName.toLowerCase().includes(filter.trim().toLowerCase());
-    }).map(name => {
-        const formattedName = name.replace("RichIcon", "").replace("Icon", "");
-        const copyString = type === "react"
-            ? `${name}`
-            : `${toKebabCase(formattedName).toLowerCase()}-${getIconNumericSize(size)}.svg`;
+            return !filter || formattedName.toLowerCase().includes(filter.trim().toLowerCase());
+        })
+        .map(name => {
+            const formattedName = name.replace("RichIcon", "").replace("Icon", "");
+            const copyString =
+                type === "react"
+                    ? `${name}`
+                    : `${toKebabCase(formattedName).toLowerCase()}-${getIconNumericSize(size)}.svg`;
 
-        const Component = IconLibrary[name];
+            const Component = IconLibrary[name];
 
-        return (
-            <IconItem copyString={copyString} name={formattedName} key={name} >
-                <Component size={size} />
-            </IconItem>
-        );
-    });
+            return (
+                <IconItem copyString={copyString} name={formattedName} key={name}>
+                    <Component size={size} />
+                </IconItem>
+            );
+        });
 
     return (
         <HopperProvider theme={theme} colorScheme={colorScheme}>
-            <div className="hd-icon-table">
-                {listItems}
-            </div>
+            <div className="hd-icon-table">{listItems}</div>
         </HopperProvider>
     );
 }

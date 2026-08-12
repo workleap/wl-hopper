@@ -7,7 +7,13 @@ const AICallout = () => {
     return (
         <div className="hd-ai">
             <span className="hd-ai__tag">AI Tip</span>
-            <span> Want to skip the docs? Use the <Link underline href="/getting-started/ai-for-agents/mcp-server">MCP Server</Link></span>
+            <span>
+                {" "}
+                Want to skip the docs? Use the{" "}
+                <Link underline href="/getting-started/ai-for-agents/mcp-server">
+                    MCP Server
+                </Link>
+            </span>
         </div>
     );
 };

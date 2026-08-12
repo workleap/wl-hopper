@@ -1,15 +1,27 @@
 import type { TokenValue } from "../ui/tokens/allDataTokens";
 
 export const Sizes = ["3xl", "2xl", "xl", "lg", "md", "sm", "xs"] as const;
-export const FontProperties = ["fontSize", "fontWeight", "lineHeight", "fontFamily", "topOffset", "bottomOffset"] as const;
+export const FontProperties = [
+    "fontSize",
+    "fontWeight",
+    "lineHeight",
+    "fontFamily",
+    "topOffset",
+    "bottomOffset"
+] as const;
 
-export type Size = typeof Sizes[number];
-export type FontProperty = typeof FontProperties[number];
+export type Size = (typeof Sizes)[number];
+export type FontProperty = (typeof FontProperties)[number];
 
-export type FontProperties = Partial<Record<FontProperty, {
-    tokenName: string;
-    value: string;
-}>>;
+export type FontProperties = Partial<
+    Record<
+        FontProperty,
+        {
+            tokenName: string;
+            value: string;
+        }
+    >
+>;
 export type FontPropertiesBySizes = Partial<Record<Size, FontProperties>>;
 
 export interface TokenData {
@@ -33,10 +45,15 @@ function getAllProperties(tokenData: TokenData, itemType: string, sizeKey?: Size
 
             return includesName && includesSizeKey;
         });
-        const test = [propertyKey, matchingItem ? {
-            tokenName: matchingItem.name,
-            value: matchingItem.value
-        } : undefined] as const;
+        const test = [
+            propertyKey,
+            matchingItem
+                ? {
+                      tokenName: matchingItem.name,
+                      value: matchingItem.value
+                  }
+                : undefined
+        ] as const;
 
         return test;
     }).reduce((acc, [key, value]) => {

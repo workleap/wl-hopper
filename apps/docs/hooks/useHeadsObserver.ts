@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ELEMENTS = "[data-section-title], [data-subsection-title]";
 

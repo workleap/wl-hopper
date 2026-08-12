@@ -6,7 +6,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 
 import Title from "@/app/ui/components/title/Title.tsx";
 import Collapsible from "@/components/collapsible/Collapsible.tsx";
-import { highlightCode, HighlightCode } from "@/components/highlightCode";
+import { HighlightCode, highlightCode } from "@/components/highlightCode";
 
 import { PropTableCodeExample } from "./PropTableCodeExample.tsx";
 import type { Item } from "./PropTableRender.tsx";
@@ -86,22 +86,24 @@ const formatDescription = async (description: string) => {
 };
 
 const formatGroup = async (groups: Groups[]) => {
-    return Promise.all(groups.map(async group => {
-        const [key] = Object.keys(group);
+    return Promise.all(
+        groups.map(async group => {
+            const [key] = Object.keys(group);
 
-        const items = await Promise.all(group[key].map(item => formatDescription(item.description)));
+            const items = await Promise.all(group[key].map(item => formatDescription(item.description)));
 
-        return {
-            [key]: items.map((description, index) => ({
-                ...group[key][index],
-                name: <span>{group[key][index].name}</span>,
-                type: <HighlightCode code={group[key][index].type} variant="tiny" />,
-                defaultValue: group[key][index].defaultValue.replace(/"/g, ""),
-                description,
-                required: group[key][index].required
-            }))
-        };
-    }));
+            return {
+                [key]: items.map((description, index) => ({
+                    ...group[key][index],
+                    name: <span>{group[key][index].name}</span>,
+                    type: <HighlightCode code={group[key][index].type} variant="tiny" />,
+                    defaultValue: group[key][index].defaultValue.replace(/"/g, ""),
+                    description,
+                    required: group[key][index].required
+                }))
+            };
+        })
+    );
 };
 
 export default async function PropTable({ component }: PropTableProps) {
@@ -120,24 +122,20 @@ export default async function PropTable({ component }: PropTableProps) {
 
                 return (
                     <Fragment key={key}>
-                        {key === "default" ?
-                            <PropTableRender items={group[key]} /> : (
-                                <Collapsible
-                                    className="hd-props-table__section"
-                                    key={key}
-                                    title={(
-                                        <Title level={4}>
-                                            {capitalize(key)}
-                                        </Title>
-                                    )}
-                                >
-                                    <PropTableRender items={group[key]} />
-                                </Collapsible>
-                            )}
+                        {key === "default" ? (
+                            <PropTableRender items={group[key]} />
+                        ) : (
+                            <Collapsible
+                                className="hd-props-table__section"
+                                key={key}
+                                title={<Title level={4}>{capitalize(key)}</Title>}
+                            >
+                                <PropTableRender items={group[key]} />
+                            </Collapsible>
+                        )}
                     </Fragment>
                 );
             })}
         </>
     );
 }
-

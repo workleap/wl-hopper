@@ -42,8 +42,12 @@ export const withHopperProvider = makeDecorator({
         if (isChromatic()) {
             // In chromatic, we always use the options if they are provided. Otherwise, if modes are provided, we use the current global.
             // Finally, if no modes are provided, we use all color schemes and themes.
-            colorSchemes = options.colorSchemes ? options.colorSchemes : (hasModes ? [context.globals[ColorSchemeGlobalKey]] : ColorSchemes);
-            themes = options.themes ? options.themes : (hasModes ? [context.globals[ThemeGlobalKey]] : Themes);
+            colorSchemes = options.colorSchemes
+                ? options.colorSchemes
+                : hasModes
+                  ? [context.globals[ColorSchemeGlobalKey]]
+                  : ColorSchemes;
+            themes = options.themes ? options.themes : hasModes ? [context.globals[ThemeGlobalKey]] : Themes;
         } else {
             colorSchemes = [context.globals[ColorSchemeGlobalKey]];
             themes = [context.globals[ThemeGlobalKey]];

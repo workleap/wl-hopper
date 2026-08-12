@@ -1,7 +1,7 @@
 "use client";
 
 import LinkButton from "@/components/button/LinkButton.tsx";
-import { ExternalLinkIcon, GithubIcon, Icon, NpmIcon, WaiAriaIcon, type IconProps } from "@/components/icon";
+import { ExternalLinkIcon, GithubIcon, Icon, type IconProps, NpmIcon, WaiAriaIcon } from "@/components/icon";
 import clsx from "clsx";
 
 import "./linkList.css";
@@ -44,14 +44,12 @@ export default function LinkList({ links, className }: LinkListProps) {
                         href={link.src}
                         target="_blank"
                         key={`link-list-${key.toString()}`}
-                    >{link.label}
-                        <Icon
-                            src={icon as IconProps["src"]}
-                        />
+                    >
+                        {link.label}
+                        <Icon src={icon as IconProps["src"]} />
                     </LinkButton>
                 );
-            }
-            )}
+            })}
         </div>
     );
 }

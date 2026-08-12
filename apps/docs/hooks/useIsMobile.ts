@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export function useIsMobile(maxWidth: string) {
     const [isMobile, setIsMobile] = useState(false);

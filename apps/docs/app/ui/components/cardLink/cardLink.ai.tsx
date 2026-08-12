@@ -1,4 +1,3 @@
-
 export interface CardLinkProps {
     href: string;
     title: string;
@@ -8,10 +7,7 @@ export interface CardLinkProps {
 const CardLink = ({ title, description, href }: CardLinkProps) => {
     return (
         <li>
-            <a href={href}>
-                {title}
-            </a>:
-            <span>{description}</span>
+            <a href={href}>{title}</a>:<span>{description}</span>
         </li>
     );
 };

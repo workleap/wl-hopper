@@ -12,7 +12,14 @@ interface TypographyValues {
 }
 
 const FontWeightPreview = ({ values, style }: FontWeightPreviewProps) => {
-    return <div className="hd-preview hd-preview--font hd-preview--typography" style={{ fontWeight: values?.fontWeight, ...style }}>Aa</div>;
+    return (
+        <div
+            className="hd-preview hd-preview--font hd-preview--typography"
+            style={{ fontWeight: values?.fontWeight, ...style }}
+        >
+            Aa
+        </div>
+    );
 };
 
 export default FontWeightPreview;

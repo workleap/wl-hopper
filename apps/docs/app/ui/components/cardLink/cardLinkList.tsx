@@ -8,9 +8,13 @@ export interface CardLinkListProps extends ComponentProps<"div"> {
 }
 
 const CardLinkList = ({ children, size = "md", className, ...rest }: CardLinkListProps) => {
-    const cardLinkListClass = clsx("hd-cardlink-list", {
-        [`hd-cardlink-list--${size}`]: size
-    }, className);
+    const cardLinkListClass = clsx(
+        "hd-cardlink-list",
+        {
+            [`hd-cardlink-list--${size}`]: size
+        },
+        className
+    );
 
     return (
         <div className={cardLinkListClass} {...rest}>

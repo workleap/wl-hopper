@@ -15,7 +15,9 @@ export default function SimpleTable({ "aria-label": ariaLabel, headers, data, la
             <thead>
                 <tr>
                     {headers.map((header, index) => {
-                        const classNames = clsx("hd-table__column", { "hd-table__column--right": index === headers.length - 1 && lastColumnAlignment === "right" });
+                        const classNames = clsx("hd-table__column", {
+                            "hd-table__column--right": index === headers.length - 1 && lastColumnAlignment === "right"
+                        });
 
                         return (
                             // eslint-disable-next-line react/no-array-index-key
@@ -31,17 +33,18 @@ export default function SimpleTable({ "aria-label": ariaLabel, headers, data, la
                     return (
                         // eslint-disable-next-line react/no-array-index-key
                         <tr key={rowIndex} className="hd-table__row">
-                            {
-                                Object.entries(row).map(([key, value], index) => {
-                                    const classNames = clsx("hd-table__cell", { "hd-table__cell--right": index === headers.length - 1 && lastColumnAlignment === "right" });
+                            {Object.entries(row).map(([key, value], index) => {
+                                const classNames = clsx("hd-table__cell", {
+                                    "hd-table__cell--right":
+                                        index === headers.length - 1 && lastColumnAlignment === "right"
+                                });
 
-                                    return (
-                                        <td key={key} className={classNames}>
-                                            {value}
-                                        </td>
-                                    );
-                                })
-                            }
+                                return (
+                                    <td key={key} className={classNames}>
+                                        {value}
+                                    </td>
+                                );
+                            })}
                         </tr>
                     );
                 })}

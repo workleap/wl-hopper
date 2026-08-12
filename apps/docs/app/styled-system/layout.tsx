@@ -8,9 +8,5 @@ export default function StyledSystemLayout({ children }: { children: ReactNode }
         order: ["overview"]
     });
 
-    return (
-        <SidebarLayout links={allLinks}>
-            {children}
-        </SidebarLayout>
-    );
+    return <SidebarLayout links={allLinks}>{children}</SidebarLayout>;
 }

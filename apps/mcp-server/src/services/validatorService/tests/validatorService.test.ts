@@ -194,9 +194,7 @@ describe("validateHopperCode", () => {
     describe("Modal component validation", () => {
         describe("Valid Modal configurations", () => {
             it("should pass for Modal with all allowed children", async () => {
-                const result = await validateHopperCode(
-                    "<Modal><Heading/><Content/><ButtonGroup/></Modal>"
-                );
+                const result = await validateHopperCode("<Modal><Heading/><Content/><ButtonGroup/></Modal>");
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
             });
@@ -212,7 +210,9 @@ describe("validateHopperCode", () => {
                 const result = await validateHopperCode("<Modal></Modal>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(1);
-                expect(result.errors[0].message).toContain("missing recommended children: Heading, Content, ButtonGroup");
+                expect(result.errors[0].message).toContain(
+                    "missing recommended children: Heading, Content, ButtonGroup"
+                );
             });
         });
 
@@ -226,9 +226,7 @@ describe("validateHopperCode", () => {
             });
 
             it("should fail for Modal with multiple invalid children", async () => {
-                const result = await validateHopperCode(
-                    "<Modal><InvalidChild1/><InvalidChild2/><Heading/></Modal>"
-                );
+                const result = await validateHopperCode("<Modal><InvalidChild1/><InvalidChild2/><Heading/></Modal>");
                 expect(result.isValid).toBe(false);
                 expect(result.errors).toHaveLength(2);
                 expect(result.errors[0].message).toContain("Found invalid children: InvalidChild1, InvalidChild2");
@@ -264,14 +262,18 @@ describe("validateHopperCode", () => {
             });
 
             it("should pass for Div with display prop other than flex or grid", async () => {
-                const result = await validateHopperCode("<Div display=\"block\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
+                const result = await validateHopperCode(
+                    '<Div display="block"><Text>Content 1</Text><Text>Content 2</Text></Div>'
+                );
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
             });
 
             it("should pass for Div with display inline-block", async () => {
-                const result = await validateHopperCode("<Div display=\"inline-block\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode(
+                    '<Div display="inline-block"><Text>Item 1</Text><Text>Item 2</Text></Div>'
+                );
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(0);
@@ -280,20 +282,24 @@ describe("validateHopperCode", () => {
 
         describe("Div with display=flex", () => {
             it("should warn for Div with display=flex", async () => {
-                const result = await validateHopperCode("<Div display=\"flex\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode(
+                    '<Div display="flex"><Text>Item 1</Text><Text>Item 2</Text></Div>'
+                );
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
-                expect(result.warnings[0].message).toContain("display=\"flex\"");
+                expect(result.warnings[0].message).toContain('display="flex"');
                 expect(result.warnings[0].message).toContain("Stack");
                 expect(result.warnings[0].message).toContain("Inline");
                 expect(result.warnings[0].message).toContain("Flex");
             });
 
             it("should include line and column information in warning", async () => {
-                const result = await validateHopperCode("<Div display=\"flex\"><Text>Content 1</Text><Text>Content 2</Text></Div>");
+                const result = await validateHopperCode(
+                    '<Div display="flex"><Text>Content 1</Text><Text>Content 2</Text></Div>'
+                );
                 expect(result.warnings.length).toBeGreaterThanOrEqual(1);
-                const flexWarning = result.warnings.find(w => w.message.includes("display=\"flex\""));
+                const flexWarning = result.warnings.find(w => w.message.includes('display="flex"'));
                 expect(flexWarning).toBeDefined();
                 expect(flexWarning?.line).toBe(1);
                 expect(flexWarning?.column).toBe(0);
@@ -302,11 +308,13 @@ describe("validateHopperCode", () => {
 
         describe("Div with display=grid", () => {
             it("should warn for Div with display=grid", async () => {
-                const result = await validateHopperCode("<Div display=\"grid\"><Text>Item 1</Text><Text>Item 2</Text></Div>");
+                const result = await validateHopperCode(
+                    '<Div display="grid"><Text>Item 1</Text><Text>Item 2</Text></Div>'
+                );
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(1);
-                expect(result.warnings[0].message).toContain("display=\"grid\"");
+                expect(result.warnings[0].message).toContain('display="grid"');
                 expect(result.warnings[0].message).toContain("Grid");
             });
         });
@@ -323,7 +331,7 @@ describe("validateHopperCode", () => {
                 const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
-                const flexWarnings = result.warnings.filter(w => w.message.includes("display=\"flex\""));
+                const flexWarnings = result.warnings.filter(w => w.message.includes('display="flex"'));
                 expect(flexWarnings).toHaveLength(2);
                 expect(flexWarnings[0].message).toContain("(instance 1 of 3)");
                 expect(flexWarnings[1].message).toContain("(instance 3 of 3)");
@@ -341,8 +349,8 @@ describe("validateHopperCode", () => {
                 expect(result.isValid).toBe(true);
                 expect(result.errors).toHaveLength(0);
                 expect(result.warnings).toHaveLength(2);
-                const flexWarning = result.warnings.find(w => w.message.includes("display=\"flex\""));
-                const gridWarning = result.warnings.find(w => w.message.includes("display=\"grid\""));
+                const flexWarning = result.warnings.find(w => w.message.includes('display="flex"'));
+                const gridWarning = result.warnings.find(w => w.message.includes('display="grid"'));
                 expect(flexWarning).toBeDefined();
                 expect(gridWarning).toBeDefined();
                 expect(flexWarning?.message).toContain("(instance 1 of 3)");
@@ -643,7 +651,9 @@ describe("validateHopperCode", () => {
         });
 
         it("should allow other valid props", async () => {
-            const result = await validateHopperCode("<Button variant='primary' size='large' onClick={handleClick}>Click</Button>");
+            const result = await validateHopperCode(
+                "<Button variant='primary' size='large' onClick={handleClick}>Click</Button>"
+            );
             expect(result.isValid).toBe(true);
             expect(result.errors).toHaveLength(0);
         });
@@ -974,7 +984,7 @@ describe("validateHopperCode", () => {
                 expect(result.errors).toHaveLength(1);
                 expect(result.errors[0].message).toContain("UNSAFE_width");
                 expect(result.errors[0].message).toContain("100%");
-                expect(result.errors[0].message).toContain("width=\"100%\"");
+                expect(result.errors[0].message).toContain('width="100%"');
                 expect(result.errors[0].message).toContain("should not use the UNSAFE_ prefix");
             });
 
@@ -1393,7 +1403,9 @@ describe("validateHopperCode", () => {
             // Check for the UNSAFE_height error (invalid UNSAFE_ prop)
             const heightError = result.errors.find(e => e.message.includes("UNSAFE_height"));
             expect(heightError).toBeDefined();
-            expect(heightError?.message).toContain("You have to use the safe prop 'height' directly when tokens are available");
+            expect(heightError?.message).toContain(
+                "You have to use the safe prop 'height' directly when tokens are available"
+            );
         });
 
         it("should not error when prop value is not a token but looks similar", async () => {
@@ -1653,21 +1665,22 @@ describe("validateHopperCode", () => {
     describe("Complex prop value validation", () => {
         describe("Conditional expressions", () => {
             it("should validate all branches of ternary expressions", async () => {
-                const code = "<Div padding={isCompact ? \"invalid_token_1\" : \"invalid_token_2\"}>Content</Div>";
+                const code = '<Div padding={isCompact ? "invalid_token_1" : "invalid_token_2"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Both values are invalid tokens - no specific validation error since they're not recognized tokens
                 expect(result.isValid).toBe(true);
             });
 
             it("should validate nested ternary expressions", async () => {
-                const code = "<Div color={isSmall ? \"core_coastal-25\" : (isMedium ? \"danger-active\" : \"primary\")}>Content</Div>";
+                const code =
+                    '<Div color={isSmall ? "core_coastal-25" : (isMedium ? "danger-active" : "primary")}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // All values are valid tokens - no errors expected
                 expect(result.isValid).toBe(true);
             });
 
             it("should validate all percentage values in conditional UNSAFE props", async () => {
-                const code = "<Div UNSAFE_width={isMobile ? \"50%\" : \"100%\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isMobile ? "50%" : "100%"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 expect(result.isValid).toBe(false);
                 // Both percentage values should trigger errors
@@ -1675,21 +1688,21 @@ describe("validateHopperCode", () => {
             });
 
             it("should not error if part of values are correct in conditional UNSAFE props", async () => {
-                const code = "<Div UNSAFE_width={isMobile ? \"123px\" : \"100%\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isMobile ? "123px" : "100%"}>Content</Div>';
                 const result = await validateHopperCode(code);
 
                 expect(result.isValid).toBe(true);
             });
 
             it("should not error if all values are correct in conditional UNSAFE props", async () => {
-                const code = "<Div UNSAFE_width={isMobile ? \"123px\" : \"97px\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isMobile ? "123px" : "97px"}>Content</Div>';
                 const result = await validateHopperCode(code);
 
                 expect(result.isValid).toBe(true);
             });
 
             it("should error only if all values are wrong in conditional UNSAFE props", async () => {
-                const code = "<Div UNSAFE_width={isMobile ? \"32px\" : \"100%\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isMobile ? "32px" : "100%"}>Content</Div>';
                 const result = await validateHopperCode(code);
 
                 expect(result.isValid).toBe(false);
@@ -1699,7 +1712,7 @@ describe("validateHopperCode", () => {
             });
 
             it("should error combined values in conditional UNSAFE props", async () => {
-                const code = "<Div UNSAFE_width={isMobile ? \"16px\" : \"100%\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isMobile ? "16px" : "100%"}>Content</Div>';
                 const result = await validateHopperCode(code);
 
                 expect(result.isValid).toBe(false);
@@ -1710,7 +1723,7 @@ describe("validateHopperCode", () => {
 
         describe("Responsive object expressions", () => {
             it("should validate all values in responsive objects", async () => {
-                const code = "<Div padding={{ base: \"inset-xs\", md: \"inset-xs\", lg: \"inset-xs\" }}>Content</Div>";
+                const code = '<Div padding={{ base: "inset-xs", md: "inset-xs", lg: "inset-xs" }}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // All values are valid tokens
                 expect(result.isValid).toBe(true);
@@ -1741,21 +1754,21 @@ describe("validateHopperCode", () => {
 
         describe("Logical expressions", () => {
             it("should validate OR expressions with fallback values", async () => {
-                const code = "<Div padding={userPadding || \"inset-xs\"}>Content</Div>";
+                const code = '<Div padding={userPadding || "inset-xs"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Valid token
                 expect(result.isValid).toBe(true);
             });
 
             it("should NOT validate AND expressions (conditional rendering)", async () => {
-                const code = "<Div padding={isActive && \"inset-xs\"}>Content</Div>";
+                const code = '<Div padding={isActive && "inset-xs"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Should pass because AND expressions are not direct prop values
                 expect(result.isValid).toBe(true);
             });
 
             it("should validate chained OR expressions", async () => {
-                const code = "<Div padding={userPadding || defaultPadding || \"inset-xs\"}>Content</Div>";
+                const code = '<Div padding={userPadding || defaultPadding || "inset-xs"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Valid token for padding prop
                 expect(result.isValid).toBe(true);
@@ -1764,7 +1777,7 @@ describe("validateHopperCode", () => {
 
         describe("Non-direct values (should NOT be validated)", () => {
             it("should not validate string fragments in concatenation", async () => {
-                const code = "<Div UNSAFE_width={value + \"px\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={value + "px"}>Content</Div>';
                 const result = await validateHopperCode(code);
 
                 expect(result.isValid).toBe(true);
@@ -1788,7 +1801,7 @@ describe("validateHopperCode", () => {
             });
 
             it("should not validate binary expression operands", async () => {
-                const code = "<Div UNSAFE_margin={\"prefix-\" + suffix}>Content</Div>";
+                const code = '<Div UNSAFE_margin={"prefix-" + suffix}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Should pass because binary expression operands are not direct values
                 expect(result.errors.filter(e => e.message.includes("prefix-")).length).toBe(0);
@@ -1797,7 +1810,7 @@ describe("validateHopperCode", () => {
 
         describe("UNSAFE prop validation with complex values", () => {
             it("should validate UNSAFE props with conditional values", async () => {
-                const code = "<Div UNSAFE_width={isCompact ? \"16px\" : \"24px\"}>Content</Div>";
+                const code = '<Div UNSAFE_width={isCompact ? "16px" : "24px"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // UNSAFE_width is allowed in the mock data, but values may trigger suggestions
                 expect(result.errors.length).toBe(2);
@@ -1838,17 +1851,21 @@ describe("validateHopperCode", () => {
 
         describe("Div display validation with complex values", () => {
             it("should warn for flex/grid in conditional expressions", async () => {
-                const code = "<Div display={isGrid ? \"grid\" : \"flex\"}>Content</Div>";
+                const code = '<Div display={isGrid ? "grid" : "flex"}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Should have warnings for both flex and grid
-                expect(result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length).toBeGreaterThanOrEqual(2);
+                expect(
+                    result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length
+                ).toBeGreaterThanOrEqual(2);
             });
 
             it("should warn for flex/grid in responsive objects", async () => {
-                const code = "<Div display={{ base: \"block\", md: \"flex\", lg: \"grid\" }}>Content</Div>";
+                const code = '<Div display={{ base: "block", md: "flex", lg: "grid" }}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // Should have warnings for both flex and grid
-                expect(result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length).toBeGreaterThanOrEqual(2);
+                expect(
+                    result.warnings.filter(w => w.message.includes("Flex") || w.message.includes("Grid")).length
+                ).toBeGreaterThanOrEqual(2);
             });
         });
 
@@ -1867,7 +1884,8 @@ describe("validateHopperCode", () => {
             });
 
             it("should deduplicate errors for repeated values", async () => {
-                const code = "<Div color={isA ? \"hop-primary-surface\" : (isB ? \"hop-primary-surface\" : \"primary\")}>Content</Div>";
+                const code =
+                    '<Div color={isA ? "hop-primary-surface" : (isB ? "hop-primary-surface" : "primary")}>Content</Div>';
                 const result = await validateHopperCode(code);
                 // The extractAllConstantStrings function deduplicates, so we should only see one error for "hop-primary-surface"
                 const formatErrors = result.errors.filter(e => e.message.includes("hop-primary-surface"));
@@ -2034,4 +2052,3 @@ describe("validateHopperCode", () => {
         });
     });
 });
-

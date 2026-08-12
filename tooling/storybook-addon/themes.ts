@@ -3,6 +3,6 @@ export const themesGlobalTypes = [
     { value: "sharegate", title: "Sharegate" } as const
 ];
 
-export type ThemeKeys = typeof themesGlobalTypes[number]["value"]; // "workleap" | "sharegate"
+export type ThemeKeys = (typeof themesGlobalTypes)[number]["value"]; // "workleap" | "sharegate"
 export const ThemeGlobalKey = "theme";
 export const ThemeDefaultValue = "workleap" satisfies ThemeKeys;

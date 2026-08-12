@@ -33,20 +33,20 @@ Component tokens allow you to customize the appearance of components per theme. 
 
    ```json
    {
-       "comp-button": {
-           "background-color": {
-               "$type": "color",
-               "$value": "{semantic.background.secondary.default}"
-           },
-           "text-color": {
-               "$type": "color",
-               "$value": "{semantic.text.default}"
-           },
-           "border-radius": {
-               "$type": "dimension",
-               "$value": "{core.shape.rounded.md}"
-           }
+     "comp-button": {
+       "background-color": {
+         "$type": "color",
+         "$value": "{semantic.background.secondary.default}"
+       },
+       "text-color": {
+         "$type": "color",
+         "$value": "{semantic.text.default}"
+       },
+       "border-radius": {
+         "$type": "dimension",
+         "$value": "{core.shape.rounded.md}"
        }
+     }
    }
    ```
 

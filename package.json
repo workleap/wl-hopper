@@ -1,17 +1,21 @@
 {
     "name": "wl-hopper",
-    "description": "A React component library that provides accessible, customizable, and production-ready UI components.",
     "version": "0.0.0",
+    "private": true,
+    "description": "A React component library that provides accessible, customizable, and production-ready UI components.",
+    "homepage": "https://github.com/workleap/wl-hopper#readme",
+    "bugs": {
+        "url": "https://github.com/workleap/wl-hopper/issues"
+    },
+    "license": "Apache-2.0",
     "author": {
         "name": "Workleap"
     },
-    "private": true,
-    "license": "Apache-2.0",
-    "type": "module",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git"
     },
+    "type": "module",
     "scripts": {
         "doc:start": "pnpm --filter=docs dev",
         "doc:generate": "pnpm --filter=docs generate",
@@ -96,9 +100,5 @@
         "vite": "8.2.1",
         "vitest": "4.1.10"
     },
-    "bugs": {
-        "url": "https://github.com/workleap/wl-hopper/issues"
-    },
-    "homepage": "https://github.com/workleap/wl-hopper#readme",
     "packageManager": "pnpm@10.29.2"
 }

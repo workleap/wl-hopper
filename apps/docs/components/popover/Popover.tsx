@@ -2,16 +2,16 @@
 
 import { isFunction, isNil } from "@hopper-ui/components";
 import clsx from "clsx";
-import { createContext, forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, createContext, forwardRef } from "react";
 
 import {
+    type ContextValue,
     Dialog,
     DialogTrigger,
-    Popover as RACPopover,
-    useContextProps,
-    type ContextValue,
     type DialogTriggerProps,
-    type PopoverProps as RACPopoverProps
+    Popover as RACPopover,
+    type PopoverProps as RACPopoverProps,
+    useContextProps
 } from "react-aria-components";
 
 import "./popover.css";
@@ -29,21 +29,14 @@ export interface PopoverCSSProperties extends CSSProperties {
 
 export interface PopoverTriggerProps extends DialogTriggerProps {}
 
-export const PopoverTrigger = (props: PopoverTriggerProps) =>
-    <DialogTrigger {...props}>{props.children}</DialogTrigger>;
+export const PopoverTrigger = (props: PopoverTriggerProps) => (
+    <DialogTrigger {...props}>{props.children}</DialogTrigger>
+);
 
 function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, PopoverContext);
 
-    const {
-        children,
-        className,
-        offset = 4,
-        boundaryOffset,
-        style,
-        containerPadding = 16,
-        ...otherProps
-    } = props;
+    const { children, className, offset = 4, boundaryOffset, style, containerPadding = 16, ...otherProps } = props;
 
     const mergedStyles: PopoverCSSProperties = {
         ...style,
@@ -62,7 +55,7 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
         >
             {state => (
                 <Dialog className={clsx("hd-popover__dialog")}>
-                    {(isFunction(children) && !isNil(children)) ? children(state) : children}
+                    {isFunction(children) && !isNil(children) ? children(state) : children}
                 </Dialog>
             )}
         </RACPopover>

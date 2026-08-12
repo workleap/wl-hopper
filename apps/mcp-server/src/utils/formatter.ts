@@ -13,8 +13,7 @@ export function content(text: string): TextContent {
 }
 
 export function errorContent(error: unknown, customErrorMessage?: string): { isError: true; content: TextContent[] } {
-    const errorMessage = customErrorMessage ||
-        (error instanceof Error ? error.message : "Unknown error");
+    const errorMessage = customErrorMessage || (error instanceof Error ? error.message : "Unknown error");
 
     return {
         ...toolContent(content(errorMessage)),
@@ -29,14 +28,17 @@ export function toolContent(...rawContent: (TextContent | TextContent[] | undefi
 }
 
 export function getPaginatedContent(result: PaginatedResult): TextContent | TextContent[] {
-    const paginationInfo = result.totalPages && result.currentPage
-        ? `Page ${result.currentPage} of ${result.totalPages}`
-        : "";
+    const paginationInfo =
+        result.totalPages && result.currentPage ? `Page ${result.currentPage} of ${result.totalPages}` : "";
 
-    return [content(result.content),
-        ...(result.hasMore ? [
-            content(`${paginationInfo}. You MUST call this tool again with the cursor "${result.nextCursor}" to fetch remaining content if what you are looking for is not in the current page.`)
-        ] : [])
+    return [
+        content(result.content),
+        ...(result.hasMore
+            ? [
+                  content(
+                      `${paginationInfo}. You MUST call this tool again with the cursor "${result.nextCursor}" to fetch remaining content if what you are looking for is not in the current page.`
+                  )
+              ]
+            : [])
     ];
 }
-

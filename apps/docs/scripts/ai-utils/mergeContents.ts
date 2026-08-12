@@ -14,7 +14,7 @@ export async function mergeContents(contents: string[], outputPath: string, head
             }
             writeStream.write(headingContent + "\n");
         } catch (error) {
-            throw new Error(`Error reading heading file ${headingFilePath}: ${error}`);
+            throw new Error(`Error reading heading file ${headingFilePath}: ${error}`, { cause: error });
         }
     }
 

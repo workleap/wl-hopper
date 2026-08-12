@@ -30,11 +30,13 @@ const Overlay = ({ isOpen }: OverlayProps) => {
         return null;
     }
 
-    const overlayClassName = clsx("hd-overlay", isAnimating && "hd-overlay--is-animating", `hd-overlay--${animationDirection}`);
-
-    return (
-        <div className={overlayClassName}></div>
+    const overlayClassName = clsx(
+        "hd-overlay",
+        isAnimating && "hd-overlay--is-animating",
+        `hd-overlay--${animationDirection}`
     );
+
+    return <div className={overlayClassName}></div>;
 };
 
 export default Overlay;

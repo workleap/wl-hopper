@@ -8,14 +8,10 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "paths": {
-            "@docs/ai": [
-                "./src/.docs/index.ts",
-            ]
-        },
+            "@docs/ai": ["./src/.docs/index.ts"]
+        }
     },
-    "include": [
-        "src/**/*"
-    ],
+    "include": ["src/**/*"],
     "exclude": [
         "dist",
         "node_modules",
@@ -26,5 +22,5 @@
         "**/*.test.ts",
         "**/*.spec.ts",
         "swc.jest.ts"
-    ],
+    ]
 }

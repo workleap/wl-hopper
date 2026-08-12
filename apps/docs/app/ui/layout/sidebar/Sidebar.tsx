@@ -62,39 +62,35 @@ const Sidebar = ({ links }: SidebarProps) => {
         }
     };
 
-    const linkItems = links
-        .map(link => {
-            return (
-                <ul className="hd-sidebar__list" key={link.id}>
-                    <li className="hd-sidebar__item hd-sidebar-section">
-                        <span className="hd-sidebar__title">{link.title}</span>
-                        <ul className="hd-sidebar__nested-list">
-                            {link.linkItems
-                                .filter(item => item.status === "ready" || item.status === undefined).map(item => {
-                                    const linkPath = `/${item.path}`;
-                                    const isActive = pathName === linkPath;
+    const linkItems = links.map(link => {
+        return (
+            <ul className="hd-sidebar__list" key={link.id}>
+                <li className="hd-sidebar__item hd-sidebar-section">
+                    <span className="hd-sidebar__title">{link.title}</span>
+                    <ul className="hd-sidebar__nested-list">
+                        {link.linkItems
+                            .filter(item => item.status === "ready" || item.status === undefined)
+                            .map(item => {
+                                const linkPath = `/${item.path}`;
+                                const isActive = pathName === linkPath;
 
-                                    return (
-                                        <li
-                                            className={clsx("hd-sidebar__item", isActive && "hd-sidebar__item--active")}
-                                            key={item.id}
-                                        >
-                                            <Link
-                                                href={linkPath}
-                                                className="hd-sidebar__link"
-                                                onClick={handleLinkClick}
-                                            >
-                                                {item.title}
-                                                {item.isNew && <span className="hd-sidebar__new">New</span>}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                        </ul>
-                    </li>
-                </ul>
-            );
-        });
+                                return (
+                                    <li
+                                        className={clsx("hd-sidebar__item", isActive && "hd-sidebar__item--active")}
+                                        key={item.id}
+                                    >
+                                        <Link href={linkPath} className="hd-sidebar__link" onClick={handleLinkClick}>
+                                            {item.title}
+                                            {item.isNew && <span className="hd-sidebar__new">New</span>}
+                                        </Link>
+                                    </li>
+                                );
+                            })}
+                    </ul>
+                </li>
+            </ul>
+        );
+    });
 
     return (
         <>
@@ -105,9 +101,7 @@ const Sidebar = ({ links }: SidebarProps) => {
                 ref={sidebarRef}
             >
                 <div className="hd-sidebar__wrapper">
-                    <div className="hd-sidebar__container">
-                        {linkItems}
-                    </div>
+                    <div className="hd-sidebar__container">{linkItems}</div>
                 </div>
             </nav>
         </>

@@ -6,11 +6,7 @@ import "./iconButton.css";
 const IconButtonClass = "hd-icon-button";
 
 const IconButton = (props: RACButtonProps) => {
-    const {
-        children,
-        className,
-        ...rest
-    } = props;
+    const { children, className, ...rest } = props;
 
     return (
         <RACButton className={clsx(IconButtonClass, className)} {...rest}>

@@ -5,11 +5,7 @@ export interface CardLinkListProps {
 }
 
 const CardLinkList = ({ children }: CardLinkListProps) => {
-    return (
-        <ul>
-            {children}
-        </ul>
-    );
+    return <ul>{children}</ul>;
 };
 
 export default CardLinkList;

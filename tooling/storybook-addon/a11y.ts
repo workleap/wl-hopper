@@ -24,7 +24,7 @@ export function a11yParameters(params: A11yAddonParameters["a11y"]): A11yAddonPa
         a11yOptions.a11y.config = {
             ...a11yOptions.a11y.config,
             rules: [
-                ...a11yOptions.a11y.config?.rules ?? [],
+                ...(a11yOptions.a11y.config?.rules ?? []),
                 {
                     id: "color-contrast",
                     enabled: false

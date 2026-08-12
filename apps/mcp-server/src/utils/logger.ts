@@ -17,7 +17,8 @@ function errorToObject(error: object | null) {
 export function trackEvent(event: (string & {}) | "error", data: object | null = {}, requestInfo?: RequestInfo) {
     const convertedData = errorToObject(data);
     let sessionId = requestInfo?.headers["mcp-session-id"] ? requestInfo.headers["mcp-session-id"] : "";
-    const { sessionId: dataSessionId, ...modifiedData } = (convertedData != null && ("sessionId" in convertedData)) ? convertedData : { sessionId: null, ...convertedData };
+    const { sessionId: dataSessionId, ...modifiedData } =
+        convertedData != null && "sessionId" in convertedData ? convertedData : { sessionId: null, ...convertedData };
 
     if (!sessionId && dataSessionId && typeof dataSessionId === "string") {
         sessionId = dataSessionId;
@@ -40,4 +41,3 @@ export function trackEvent(event: (string & {}) | "error", data: object | null =
 export function trackError(error: unknown, requestInfo?: RequestInfo) {
     return trackEvent("error", typeof error === "object" ? error : { error }, requestInfo);
 }
-

@@ -40,7 +40,6 @@ Locked-in details:
 - The change is **additive**. Existing Hopper Tag consumers do not need to migrate.
 - The name is **Chip**.
 
-
 | Component      | Purpose                                   | Built on                                   | Status     |
 | -------------- | ----------------------------------------- | ------------------------------------------ | ---------- |
 | Tag / TagGroup | Labeling — categories, keywords, metadata | RAC `TagGroup`                             | Kept as-is |

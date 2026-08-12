@@ -13,12 +13,11 @@ export const metadata = {
         template: "%s | Hopper Design System",
         default: "Hopper Design System"
     },
-    description: "Explore Workleap's Design System, where icons, tokens, and components are handpicked for ultimate simplicity and accessibility"
+    description:
+        "Explore Workleap's Design System, where icons, tokens, and components are handpicked for ultimate simplicity and accessibility"
 };
 
-export default function RootLayout({ children }: {
-    children: ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
     const setInitialTheme = `
     function getUserPreference() {
       if(window.localStorage.getItem("hdColorScheme")) {

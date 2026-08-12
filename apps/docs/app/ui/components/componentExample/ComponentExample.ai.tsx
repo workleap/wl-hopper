@@ -1,4 +1,3 @@
-
 import { Mdx } from "@/components/mdx/Mdx.ai";
 import fs from "fs/promises";
 import path from "path";
@@ -25,8 +24,7 @@ const ComponentExample = async ({ src }: { src: string }) => {
 
     return (
         <Mdx>
-            ```tsx
-            ${fileContent}
+            ```tsx ${fileContent}
             ```
         </Mdx>
     );

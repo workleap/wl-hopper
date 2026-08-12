@@ -11,9 +11,5 @@ export default function GettingStartedLayout({ children }: { children: ReactNode
         }
     });
 
-    return (
-        <SidebarLayout links={allGettingStartedLinks}>
-            {children}
-        </SidebarLayout>
-    );
+    return <SidebarLayout links={allGettingStartedLinks}>{children}</SidebarLayout>;
 }

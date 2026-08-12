@@ -13,7 +13,7 @@ export interface TableProps {
     head: string[];
     data: dataType[];
     lastColumnAlignment?: "left" | "right";
-    "ariaLabel"?: string;
+    ariaLabel?: string;
     className?: string;
 }
 
@@ -28,7 +28,9 @@ const Table = ({ data, head, lastColumnAlignment = "left", ariaLabel = "standard
                     // eslint-disable-next-line react/no-array-index-key
                     key={`table-head-${index}`}
                     isRowHeader={index === 0}
-                    className={clsx("hd-table__column", { "hd-table__column--right": index === lastColumnIndex && textAlignRight })}
+                    className={clsx("hd-table__column", {
+                        "hd-table__column--right": index === lastColumnIndex && textAlignRight
+                    })}
                 >
                     {item}
                 </Column>
@@ -45,7 +47,9 @@ const Table = ({ data, head, lastColumnAlignment = "left", ariaLabel = "standard
                         return (
                             <Cell
                                 key={key}
-                                className={clsx("hd-table__cell", { "hd-table__cell--right": i === lastColumnIndex && textAlignRight })}
+                                className={clsx("hd-table__cell", {
+                                    "hd-table__cell--right": i === lastColumnIndex && textAlignRight
+                                })}
                             >
                                 {item[key]}
                             </Cell>
@@ -58,12 +62,8 @@ const Table = ({ data, head, lastColumnAlignment = "left", ariaLabel = "standard
 
     return (
         <ReactTable className={clsx("hd-table", className)} aria-label={ariaLabel}>
-            <TableHeader>
-                {headItems}
-            </TableHeader>
-            <TableBody>
-                {dataItems}
-            </TableBody>
+            <TableHeader>{headItems}</TableHeader>
+            <TableBody>{dataItems}</TableBody>
         </ReactTable>
     );
 };

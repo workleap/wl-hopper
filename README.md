@@ -12,7 +12,7 @@ View the [user's documentation](https://hopper.workleap.design/).
 
 ## 🤝 Contributing
 
-For major changes, please open a [discussion](https://github.com/workleap/wl-hopper/discussions/new/choose) first to discuss what you would like to change. 
+For major changes, please open a [discussion](https://github.com/workleap/wl-hopper/discussions/new/choose) first to discuss what you would like to change.
 
 If you'd like to contribute, please read the [CONTRIBUTING](./CONTRIBUTING.md) documentation before submitting a pull request.
 

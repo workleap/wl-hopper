@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, Suspense } from "react";
+import { Suspense, useMemo } from "react";
 
 import ComponentSkeleton from "./ComponentSkeleton.tsx";
 import { Previews } from "@/examples/Preview.ts";

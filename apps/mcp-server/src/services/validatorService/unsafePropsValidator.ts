@@ -1,9 +1,9 @@
 import type { TSESTree } from "@typescript-eslint/types";
-import { filterTokens, type TokenCategoryNode } from "../../utils/tokenFilters";
+import { type TokenCategoryNode, filterTokens } from "../../utils/tokenFilters";
 import { PERCENTAGE_SAFE_PROPS, PROHIBITED_PROPS } from "./constants";
 import { EXACT_CSS_MATCH_CONFIG } from "./cssValueMatcher";
 import { getAllTokensData, getUnsafeProps } from "./data";
-import { extractAllConstantStrings, type PropInfo } from "./jsxHelpers";
+import { type PropInfo, extractAllConstantStrings } from "./jsxHelpers";
 import { validateNoCoreColorToken } from "./tokenValidator";
 import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
@@ -102,7 +102,7 @@ async function validateTokenUsageWithUnsafeProp(
     result: ValidationResult,
     isToken: (value: string) => Promise<boolean>
 ): Promise<boolean> {
-    if (!await isToken(propValue)) {
+    if (!(await isToken(propValue))) {
         return true;
     }
 
@@ -207,21 +207,24 @@ export async function validateUnsafePropsUsage(
 
     const values = extractAllConstantStrings(propValue);
     let invalidValuesCount = 0;
-    const propValuesValidation: ValidationResult =
-        {
-            isValid: true,
-            errors: [],
-            warnings: []
-        };
+    const propValuesValidation: ValidationResult = {
+        isValid: true,
+        errors: [],
+        warnings: []
+    };
 
     for (const value of values) {
         if (!validatePercentageUsageWithUnsafeProp(propName, value, loc, propValuesValidation)) {
             invalidValuesCount++;
-        } else if (!await validateTokenUsageWithUnsafeProp(propName, value, loc, propValuesValidation, isToken)) {
+        } else if (!(await validateTokenUsageWithUnsafeProp(propName, value, loc, propValuesValidation, isToken))) {
             invalidValuesCount++;
-        } else if (!await validateUseOfCustomValueWithUnsafeProp(propName, value, loc, propValuesValidation, isToken)) {
+        } else if (
+            !(await validateUseOfCustomValueWithUnsafeProp(propName, value, loc, propValuesValidation, isToken))
+        ) {
             invalidValuesCount++;
-        } else if (!validateNoCoreColorToken(value, propName.replace("UNSAFE_", ""), loc, propValuesValidation, propName)) {
+        } else if (
+            !validateNoCoreColorToken(value, propName.replace("UNSAFE_", ""), loc, propValuesValidation, propName)
+        ) {
             invalidValuesCount++;
         }
     }

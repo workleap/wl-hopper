@@ -1,5 +1,5 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName.ts";
-import { getSupportedPropsByTokenCategory, type TokenCategory } from "@/app/lib/styleProps.ts";
+import { type TokenCategory, getSupportedPropsByTokenCategory } from "@/app/lib/styleProps.ts";
 import fs from "fs/promises";
 import path from "path";
 
@@ -77,10 +77,7 @@ function isTokenArray(node: unknown[]): node is TokenItem[] {
     return node.some(item => isTokenItem(item));
 }
 
-function processTokenArray(
-    node: TokenItem[],
-    tokenType: TokenType
-): ProcessedTokens {
+function processTokenArray(node: TokenItem[], tokenType: TokenType): ProcessedTokens {
     const result: ProcessedTokens = {};
 
     for (const item of node) {
@@ -95,10 +92,7 @@ function processTokenArray(
     return result;
 }
 
-function processNode(
-    node: unknown,
-    currentPath: string[] = []
-): unknown {
+function processNode(node: unknown, currentPath: string[] = []): unknown {
     if (Array.isArray(node)) {
         if (isTokenArray(node)) {
             const tokenType = findTokenTypeInPath(currentPath);
@@ -130,7 +124,12 @@ function processNode(
             if (Array.isArray(processedValue) && processedValue.length === 0) {
                 continue;
             }
-            if (processedValue && typeof processedValue === "object" && !Array.isArray(processedValue) && Object.keys(processedValue).length === 0) {
+            if (
+                processedValue &&
+                typeof processedValue === "object" &&
+                !Array.isArray(processedValue) &&
+                Object.keys(processedValue).length === 0
+            ) {
                 continue;
             }
             result[key] = processedValue;
@@ -248,7 +247,10 @@ export async function generateTokensMaps({
             const allSubsections = subsections.get(sectionKey) || [];
             for (const subsectionKey of allSubsections) {
                 const subsectionData = extractSubsection(sourceData, sectionKey, subsectionKey);
-                const transformedSubsectionData = processNode(subsectionData, [sectionKey, subsectionKey]) as SubsectionWithMetadata;
+                const transformedSubsectionData = processNode(subsectionData, [
+                    sectionKey,
+                    subsectionKey
+                ]) as SubsectionWithMetadata;
 
                 filesToGenerate.push({
                     fileName: `${sectionKey}-${subsectionKey}.json`,

@@ -23,8 +23,9 @@ export default function Home() {
             <main className="hd-home">
                 <div className="hd-home__heading">
                     <h1 className="hd-home__header">Leap into creativity</h1>
-                    <p className="hd-home__tagline">Explore Workleap&apos;s Design System, where icons, tokens, and components are
-                        handpicked for ultimate simplicity and accessibility.
+                    <p className="hd-home__tagline">
+                        Explore Workleap&apos;s Design System, where icons, tokens, and components are handpicked for
+                        ultimate simplicity and accessibility.
                     </p>
                 </div>
                 <div className="hd-home__ctas">
@@ -33,7 +34,9 @@ export default function Home() {
                 </div>
                 <div className="hd-home__features">
                     <div className="hd-home__feature-item">
-                        <h2 className="hd-home__feature-title"><AccessibleIcon className="hd-home-feature-title__icon" />Accessible
+                        <h2 className="hd-home__feature-title">
+                            <AccessibleIcon className="hd-home-feature-title__icon" />
+                            Accessible
                         </h2>
                         <p className="hd-home__feature-copy">
                             Built with accessibility in mind Hopper is based on React Aria Components
@@ -44,9 +47,7 @@ export default function Home() {
                             <InternationalIcon className="hd-home-feature-title__icon" />
                             International
                         </h2>
-                        <p className="hd-home__feature-copy">
-                            Experience is pushed further with internationalization.
-                        </p>
+                        <p className="hd-home__feature-copy">Experience is pushed further with internationalization.</p>
                     </div>
                     <div className="hd-home__feature-item">
                         <h2 className="hd-home__feature-title">
@@ -58,8 +59,9 @@ export default function Home() {
                         </p>
                     </div>
                     <div className="hd-home__feature-item">
-                        <h2 className="hd-home__feature-title"><DarkModeIcon className="hd-home-feature-title__icon" />Dark
-                            mode
+                        <h2 className="hd-home__feature-title">
+                            <DarkModeIcon className="hd-home-feature-title__icon" />
+                            Dark mode
                         </h2>
                         <p className="hd-home__feature-copy">
                             Switching from light to dark mode couldn&apos;t be easier.
@@ -80,40 +82,16 @@ export default function Home() {
                                     </h3>
                                     <div className="hd-home-sample__colors">
                                         <div className="hd-home-sample__colors-row">
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-rock-200"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-rock-300"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-rock-400"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-rock-500"
-                                            >
-                                            </span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-rock-200"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-rock-300"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-rock-400"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-rock-500"></span>
                                         </div>
                                         <div className="hd-home-sample__colors-row">
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-sapphire-200"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-sapphire-300"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-sapphire-400"
-                                            >
-                                            </span>
-                                            <span
-                                                className="hd-home-sample__color hd-home-sample__color-sapphire-500"
-                                            >
-                                            </span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-sapphire-200"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-sapphire-300"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-sapphire-400"></span>
+                                            <span className="hd-home-sample__color hd-home-sample__color-sapphire-500"></span>
                                         </div>
                                     </div>
                                 </Link>
@@ -157,14 +135,10 @@ export default function Home() {
                                     <div className="hd-home-sample__text-styles">
                                         <div className="hd-home-sample__text-styles-col">
                                             <span className="hd-home-sample__text">
-                                                A
-                                                <span className="hd-home-sample__text-lowercase" >a
-                                                </span>
+                                                A<span className="hd-home-sample__text-lowercase">a</span>
                                             </span>
                                         </div>
-                                        <div
-                                            className="hd-home-sample__text-styles-col hd-home-sample__text-styles-controls"
-                                        >
+                                        <div className="hd-home-sample__text-styles-col hd-home-sample__text-styles-controls">
                                             <div className="hd-home-sample__control-knob-title">
                                                 <span className="hd-home-sample__control-title">Regular</span>
                                                 <SelectArrowIcon />

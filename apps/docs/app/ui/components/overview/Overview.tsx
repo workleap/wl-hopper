@@ -20,35 +20,28 @@ const Overview = () => {
 
         return (
             <div className="hd-component-overview-category" key={category}>
-                <Title
-                    level={2}
-                    interactive
-                    className="hd-component-overview-category__title"
-                >{category}
+                <Title level={2} interactive className="hd-component-overview-category__title">
+                    {category}
                 </Title>
                 <HopperProvider theme={theme} colorScheme={colorScheme}>
                     <div className="hd-component-overview">
-                        {allComponents.filter(component =>
-                            component.category &&
-                            component.category === category &&
-                            (component.status === "ready" ||
-                                component.status === undefined)
-                        ).map(component => {
-                            return (
-                                <OverviewTile title={component.title} key={component._id} />
-                            );
-                        })}
+                        {allComponents
+                            .filter(
+                                component =>
+                                    component.category &&
+                                    component.category === category &&
+                                    (component.status === "ready" || component.status === undefined)
+                            )
+                            .map(component => {
+                                return <OverviewTile title={component.title} key={component._id} />;
+                            })}
                     </div>
                 </HopperProvider>
             </div>
         );
     });
 
-    return (
-        <div className="hd-component-overview-wrapper">
-            {overviewSection}
-        </div>
-    );
+    return <div className="hd-component-overview-wrapper">{overviewSection}</div>;
 };
 
 export default Overview;

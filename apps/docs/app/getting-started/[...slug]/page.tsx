@@ -28,12 +28,21 @@ export default async function GettingStartedPage({ params }: PageProps) {
     }
     const aiDoc = getAiDocAbsolutePath(["getting-started", ...slug]);
     const sectionLinks = getSectionLinks(page);
-    const { title, body: { code }, _id: id } = page;
+    const {
+        title,
+        body: { code },
+        _id: id
+    } = page;
 
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={id}>
-                <PageHeader title={title} aiDocAbsolutePath={aiDoc} sectionTitle="Getting Started" sectionPath="getting-started" />
+                <PageHeader
+                    title={title}
+                    aiDocAbsolutePath={aiDoc}
+                    sectionTitle="Getting Started"
+                    sectionPath="getting-started"
+                />
                 <Mdx code={code} />
             </article>
         </BasePageLayout>

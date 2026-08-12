@@ -1,4 +1,3 @@
-
 interface SimpleTableProps {
     "aria-label"?: string;
     headers: string[];
@@ -13,9 +12,7 @@ export default function SimpleTable({ "aria-label": ariaLabel, headers, data }: 
                     {headers.map((header, index) => {
                         return (
                             // eslint-disable-next-line react/no-array-index-key
-                            <th key={index}>
-                                {header}
-                            </th>
+                            <th key={index}>{header}</th>
                         );
                     })}
                 </tr>
@@ -25,15 +22,9 @@ export default function SimpleTable({ "aria-label": ariaLabel, headers, data }: 
                     return (
                         // eslint-disable-next-line react/no-array-index-key
                         <tr key={rowIndex} className="hd-table__row">
-                            {
-                                Object.entries(row).map(([key, value]) => {
-                                    return (
-                                        <td key={key} >
-                                            {value}
-                                        </td>
-                                    );
-                                })
-                            }
+                            {Object.entries(row).map(([key, value]) => {
+                                return <td key={key}>{value}</td>;
+                            })}
                         </tr>
                     );
                 })}

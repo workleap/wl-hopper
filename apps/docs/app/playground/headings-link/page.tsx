@@ -13,7 +13,10 @@ export default function HeadingsLinkPage() {
 
     const sectionLinks = getSectionLinks(page);
 
-    const { _id, body: { code } } = page;
+    const {
+        _id,
+        body: { code }
+    } = page;
 
     return (
         <div className="hd-wrapper hd-flex">

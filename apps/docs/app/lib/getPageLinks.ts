@@ -30,8 +30,7 @@ export interface Section {
 }
 
 function capitalizeWords(str: string) {
-    return str.replace(/-/g, " ")
-        .replace(/\b\w/g, char => char.toUpperCase());
+    return str.replace(/-/g, " ").replace(/\b\w/g, char => char.toUpperCase());
 }
 
 function sortBy<T>(a: T, b: T, accessor: (item: T) => number | undefined) {
@@ -92,8 +91,9 @@ function getPageLinks<T extends Data>(items: T[], opt?: GetPageLinksOptions<T>) 
     }, {});
 
     // Create a section array sorted by the order of the sections
-    const sortedSections = Object.values(sections)
-        .sort((a, b) => sortBy(a, b, section => order.length > 0 ? order.indexOf(section.id) : 0));
+    const sortedSections = Object.values(sections).sort((a, b) =>
+        sortBy(a, b, section => (order.length > 0 ? order.indexOf(section.id) : 0))
+    );
 
     // Sort the link items within each section
     sortedSections.forEach(section => {

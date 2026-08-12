@@ -14,6 +14,15 @@ export default defineConfig({
         "**/storybook-static/**",
         "**/.turbo/**",
         "pnpm-lock.yaml",
+        // Tooling / agent / CI metadata — managed elsewhere, never reformat
+        ".claude/**",
+        ".agents/**",
+        ".cursor/**",
+        ".github/**",
+        ".changeset/**",
+        ".changeset-templates/**",
+        "skills-lock.json",
+        "netlify.toml",
         // Generated files that must not be reformatted
         "**/CHANGELOG.md",
         "packages/tokens/**/datas/**",

@@ -2,7 +2,12 @@
 
 import { parse } from "@typescript-eslint/parser";
 import type { TSESTree } from "@typescript-eslint/types";
-import { validateLayoutComponents, validateNoEmojis, validateProhibitedProps, validateTagNames } from "./basicValidators";
+import {
+    validateLayoutComponents,
+    validateNoEmojis,
+    validateProhibitedProps,
+    validateTagNames
+} from "./basicValidators";
 import { validateComponentSpecificRules } from "./componentValidators";
 import { findJSXElements, getAllProps } from "./jsxHelpers";
 import { isToken, validateDesignSystemTokensUsage } from "./tokenValidator";

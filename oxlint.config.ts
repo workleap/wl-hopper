@@ -4,7 +4,7 @@ import { defineConfig } from "oxlint";
 const reactDefaultImport = {
     name: "react",
     importNames: ["default"],
-    message: "import React from \"react\" is no longer necessary and should be avoided. "
+    message: 'import React from "react" is no longer necessary and should be avoided. '
 };
 
 const barrelImports = {
@@ -39,6 +39,7 @@ export default defineConfig({
         "unicorn/consistent-function-scoping": "off", // too noisy; flags handlers/helpers defined inside components
         "eslint/require-await": "off", // async is often required by frameworks/interfaces (e.g. Next rewrites) without an await
         "oxc/no-async-endpoint-handlers": "off", // the MCP server intentionally uses async Express handlers
+        "import/no-named-as-default": "off", // low-value; false-positives when a valid default also has a same-named named export
 
         // Extra rules
         "typescript/consistent-type-imports": "warn",
@@ -72,32 +73,40 @@ export default defineConfig({
         "eslint/object-shorthand": "warn",
 
         // Base no-restricted-imports (applies everywhere unless overridden below).
-        "eslint/no-restricted-imports": ["error", {
-            patterns: [barrelImports],
-            paths: [reactDefaultImport]
-        }]
+        "eslint/no-restricted-imports": [
+            "error",
+            {
+                patterns: [barrelImports],
+                paths: [reactDefaultImport]
+            }
+        ]
     },
     overrides: [
         {
             // Component source files must not deep-import sibling `src` files or the public barrel.
             files: ["packages/components/src/**/src/*"],
             rules: {
-                "eslint/no-restricted-imports": ["error", {
-                    patterns: [
-                        {
-                            group: ["../**/src/*"],
-                            message: "Please import from the nearest index.ts file instead. ../../typography/Text/src/Text.tsx -> ../../typography/Text/index.ts"
-                        },
-                        barrelImports
-                    ],
-                    paths: [
-                        reactDefaultImport,
-                        {
-                            name: "@hopper-ui/components",
-                            message: "import { anything } from \"@hopper-ui/components\" inside /src needs to be avoided. It should only be used in docs and tests."
-                        }
-                    ]
-                }]
+                "eslint/no-restricted-imports": [
+                    "error",
+                    {
+                        patterns: [
+                            {
+                                group: ["../**/src/*"],
+                                message:
+                                    "Please import from the nearest index.ts file instead. ../../typography/Text/src/Text.tsx -> ../../typography/Text/index.ts"
+                            },
+                            barrelImports
+                        ],
+                        paths: [
+                            reactDefaultImport,
+                            {
+                                name: "@hopper-ui/components",
+                                message:
+                                    'import { anything } from "@hopper-ui/components" inside /src needs to be avoided. It should only be used in docs and tests.'
+                            }
+                        ]
+                    }
+                ]
             }
         },
         {
@@ -105,13 +114,14 @@ export default defineConfig({
             // code (this deliberately excludes apps/docs, the real Next.js app). Relax rules
             // that only make sense for library source, and allow importing the public barrel
             // (the whole point of a test/example).
-            files: ["packages/**/tests/**", "packages/**/docs/**", "packages/**/*.stories.tsx", "packages/**/*.stories.ts"],
+            files: ["**/tests/**", "packages/**/docs/**", "**/*.stories.tsx", "**/*.stories.ts"],
             rules: {
                 "react/jsx-key": "off",
                 "react-hooks/rules-of-hooks": "off",
                 "react/jsx-no-useless-fragment": "off", // intentional fragment fixtures in tests/demos
                 "unicorn/no-new-array": "off", // demos/tests generate placeholder arrays
                 "import/no-duplicates": "off",
+                "typescript/consistent-type-imports": "off", // vi.importActual<typeof import("...")> is idiomatic in tests
                 "eslint/no-restricted-imports": ["error", { paths: [reactDefaultImport] }]
             }
         },
@@ -127,7 +137,8 @@ export default defineConfig({
         {
             files: ["**/scripts/**"],
             rules: {
-                "eslint/no-console": "off"
+                "eslint/no-console": "off",
+                "eslint/no-new": "off" // e.g. `new URL(x)` to validate a string in build scripts
             }
         },
         {
@@ -165,6 +176,11 @@ export default defineConfig({
         "**/dist/**",
         "**/storybook-static/**",
         "**/.turbo/**",
+        // Tooling / agent / CI metadata — managed elsewhere
+        ".claude/**",
+        ".agents/**",
+        ".cursor/**",
+        ".github/**",
         // Generated design-token data & outputs
         "packages/tokens/**/datas/**",
         "packages/styled-system/src/theme/generated/**",

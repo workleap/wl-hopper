@@ -34,7 +34,12 @@ export default async function TokenPage({ params }: PageProps) {
     return (
         <BasePageLayout sectionsLinks={sectionLinks}>
             <article className="hd-content" key={designToken._id}>
-                <PageHeader title={designToken.title} aiDocAbsolutePath={aiDoc} sectionTitle="Tokens" sectionPath="tokens" />
+                <PageHeader
+                    title={designToken.title}
+                    aiDocAbsolutePath={aiDoc}
+                    sectionTitle="Tokens"
+                    sectionPath="tokens"
+                />
                 <AICallout />
                 <Mdx code={designToken.body.code} />
             </article>

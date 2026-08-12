@@ -13,11 +13,13 @@
 ## Developing a new component
 
 - [ ] Every component should have a GlobalCssSelector that is unique to the component. This allows the targetting of the component in the global CSS file.
+
 ```
 export const GlobalIconCssSelector = "hop-Icon";
 ```
 
 - [ ] Every component should make sure to merge their props and ref with the context props and ref.
+
 ```
 // with a default slot:
 [props, ref] = useContextProps({ ...props, slot: props.slot || DefaultIconListSlot }, ref, IconListContext);
@@ -25,18 +27,22 @@ export const GlobalIconCssSelector = "hop-Icon";
 // without a default slot
 [props, ref] = useContextProps(props, ref, IconListContext);
 ```
+
 - [ ] Every component should then remove the styling props from the props object and then add the other ones to the ownProps obj.
+
 ```
 const { stylingProps, ...ownProps } = useStyledSystem(props);
 ```
 
 - [ ] You can now deconstruct the ownProps object to get the props you need.
+
 ```
 const { children, style, className, slot, ...otherProps } = ownProps;
 ```
 
 - [ ] make sure to merge the classnames and styles from the props with the classnames and styles from the style system.
-Make sure that the style from the props have higher priority than the style from the style system.
+      Make sure that the style from the props have higher priority than the style from the style system.
+
 ```
     const classNames = clsx(
         className,
@@ -57,6 +63,7 @@ Make sure that the style from the props have higher priority than the style from
 ## CSS Conventions
 
 ### CSS Selector naming conventions
+
 **Namespace (hop-):** Acts as a unique prefix to avoid conflicts with other libraries or stylesheets and to make it clear that this class belongs to the Hopper design system.
 **Component Name (Button):** Directly reflects the React component name, making it straightforward to associate styles with their respective components.
 **BEM-like Structure:** Adopting BEM’s methodology for elements and modifiers but with your specific prefixing and naming strategy.
@@ -68,6 +75,7 @@ Make sure that the style from the props have higher priority than the style from
 ```
 
 ### CSS Variables
+
 **Namespace (hop-):** Acts as a unique prefix to avoid conflicts with other libraries or stylesheets and to make it clear that this class belongs to the Hopper design system.
 **Component Name (Button):** Directly reflects the React component name, making it straightforward to associate styles with their respective components.
 **Property Name (color):** Reflects the property being defined, making it clear what the variable is for.
@@ -87,7 +95,6 @@ The test runner is only available locally, and it is not available in the CI/CD 
 
 **Note:** We need to run `storybook-nolazy` because the axe test runner is not compatible with the lazy loading of the stories.
 
-
 ## Localization and Internationalization
 
 Translation files for English (en-US.json) and Canadian French (fr-CA.json) are available in the packages/i18n/src/intl folder. These files follow the [ICU Message Format standard](https://formatjs.io/docs/core-concepts/icu-syntax).
@@ -97,8 +104,8 @@ To implement formatting in your components, use the useLocalizedString hook to a
 ```js
 const stringFormatter = useLocalizedString();
 
-stringFormatter.format("key") // Use for simple string translations
-stringFormatter.format("key", { value }) // Use when additional formatting is needed
+stringFormatter.format("key"); // Use for simple string translations
+stringFormatter.format("key", { value }); // Use when additional formatting is needed
 ```
 
 This setup allows for seamless integration of localized content and formatting within your components.
@@ -106,7 +113,6 @@ This setup allows for seamless integration of localized content and formatting w
 We store all the string in a single file for now, which is not great for tree-shaking, but at the moment we expect
 only a few strings to be used in the library. If we see that the bundle size is too big, we can split the strings
 into a file per component.
-
 
 ## Exporting a component
 
@@ -120,6 +126,7 @@ Issue: When exporting multiple items in a single export statement for a componen
 ### Problem example
 
 Here’s an example of an incorrect approach:
+
 ```tsx
 // File: ComboBox.tsx
 
@@ -131,6 +138,7 @@ export { _ComboBox as ComboBox, ListBoxItem as ComboBoxItem };
 ### Recommended approach
 
 To ensure proper parsing and accurate documentation, separate your exports:
+
 ```tsx
 // File: ComboBox.tsx
 

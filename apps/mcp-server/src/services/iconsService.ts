@@ -5,7 +5,7 @@ import { join } from "path";
 import { env } from "../env";
 
 export const IconTypes = ["standard", "rich", "all"] as const;
-export type IconType = typeof IconTypes[number];
+export type IconType = (typeof IconTypes)[number];
 
 interface Icon {
     name: string;

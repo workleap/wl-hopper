@@ -13,11 +13,12 @@ export const ComponentsCard = () => {
     return (
         <Link href="/components/component-list" className="hd-home-sample__item hd-home-sample__item-components">
             <div className="hd-home-sample__title-wrap">
-                <h3 className="hd-home-sample__title">Components <span className="hd-home-sample__title-tag">Preview</span> <ArrowIcon className="hd-home-sample__title-icon" /></h3>
+                <h3 className="hd-home-sample__title">
+                    Components <span className="hd-home-sample__title-tag">Preview</span>{" "}
+                    <ArrowIcon className="hd-home-sample__title-icon" />
+                </h3>
             </div>
-            <p className="hd-home-sample__tagline">An accessible suite of components powered by
-                react-aria.
-            </p>
+            <p className="hd-home-sample__tagline">An accessible suite of components powered by react-aria.</p>
             <div className="hd-home-sample-components">
                 <div className="hd-home-sample-components__item-wrapper">
                     <div className="hd-home-sample-components__item">
@@ -44,8 +45,8 @@ export const ComponentsCard = () => {
                         <HopperProvider theme={theme} colorScheme={colorScheme}>
                             <div className="hd-home-sample-components__buttons">
                                 <HopperButton excludeFromTabOrder>Confirm</HopperButton>
-                                <HopperButton excludeFromTabOrder variant="secondary">I need
-                                    help
+                                <HopperButton excludeFromTabOrder variant="secondary">
+                                    I need help
                                 </HopperButton>
                             </div>
                         </HopperProvider>

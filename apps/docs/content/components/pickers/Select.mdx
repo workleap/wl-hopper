@@ -17,14 +17,18 @@ Use the select component inside a form where users are selecting from a list of 
 
 ```tsx
 <Select>
-    <SelectItem> /* (Required) The items of the select */
+    <SelectItem>
+        {" "}
+        /* (Required) The items of the select */
         <Avatar /> /* (Optional) An avatar for the item */
         <Text /> /* (Optional) The text content of the item, required if using another element */
         <Text slot="description" /> /* (Optional) A description for the item */
         <Badge /> /* (Optional) A badge for the item */
         <Icon /> /* (Optional) An icon for the item */
     </SelectItem>
-    <SelectSection> /* (Optional) A section of select items */
+    <SelectSection>
+        {" "}
+        /* (Optional) A section of select items */
         <Header /> /* (Optional) A header for the section */
         <SelectItem /> /* (Required) An item in the SelectSection */
     </SelectSection>
@@ -35,11 +39,12 @@ Use the select component inside a form where users are selecting from a list of 
 
 A `Select` uses the following components:
 
-<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]}/>
+<ComposedComponents components={["Avatar", "Badge", "Icon", "Text", "Header"]} />
 
 ## Usage
 
 ### Disabled
+
 A select in a disabled state shows that it exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
 <Example src="select/docs/disabled" />
@@ -51,47 +56,56 @@ A select with a disabled item.
 <Example src="select/docs/select-dropdown/disabled" />
 
 ### Error
+
 A select can be displayed in an error state to indicate that the selection is invalid.
 
 <Example src="select/docs/error" />
 
 ### Sizes
+
 A select has multiple sizes to choose from.
 The select menu also changes size based on the size of the select.
 
 <Example src="select/docs/sizes" />
 
 ### Labeling
+
 If a visible label isn't specified, an `aria-label` must be provided to the select for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
 <Example src="select/docs/labeling" />
 
 ### Icon Prefix
+
 An icon can be displayed at the start of the select trigger.
 
 <Example src="select/docs/iconPrefix" />
 
 ### Text Prefix
+
 A short text can be displayed at the start of the select trigger.
 
 <Example src="select/docs/textPrefix" />
 
 ### Fluid
+
 A select can take the width of its container.
 
 <Example src="select/docs/fluid" />
 
 ### Custom Value
+
 A select's trigger value can be customized using the `renderValue` function to allow other elements such as an avatar or icon inside the trigger value.
 
 <Example src="select/docs/customValue" />
 
 ### Controlled
+
 A select can have a controlled selected value. In this example, it shows how it is possible to deselect an option.
 
 <Example src="select/docs/controlled" />
 
 ### Form
+
 A select can be part of a form. To submit the value of a select, make sure you specify the `name` property.
 
 <Example src="select/docs/form" />

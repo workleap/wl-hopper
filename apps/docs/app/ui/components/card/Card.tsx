@@ -10,11 +10,15 @@ export interface CardProps extends ComponentProps<"div"> {
 }
 
 const Card = ({ children, className, size = "md", align = "center", ghost, ...rest }: CardProps) => {
-    const cardClass = clsx("hd-card", {
-        [`hd-card--${size}`]: size !== "md",
-        [`hd-card--${align}`]: align !== "center",
-        "hd-card--ghost": ghost
-    }, className);
+    const cardClass = clsx(
+        "hd-card",
+        {
+            [`hd-card--${size}`]: size !== "md",
+            [`hd-card--${align}`]: align !== "center",
+            "hd-card--ghost": ghost
+        },
+        className
+    );
 
     return (
         <div className={cardClass} {...rest}>

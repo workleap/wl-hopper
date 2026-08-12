@@ -11,31 +11,37 @@ links:
 ## Usage
 
 ### Disabled
+
 A search field in a disabled state shows that an input field exists, but is not available in that circumstance. This can be used to maintain layout continuity and communicate that a field may become available later.
 
 <Example src="inputs/docs/search-field/disabled" />
 
 ### ReadOnly
+
 The `isReadOnly` prop makes the SearchField's text content immutable. Unlike `isDisabled`, the search field remains focusable and the contents can still be copied. See [the MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/readonly) for more information.
 
 <Example src="inputs/docs/search-field/readOnly" />
 
 ### Error
+
 A search field can be displayed in an error state to indicate that the user input is invalid.
 
 <Example src="inputs/docs/search-field/error" />
 
 ### Hide Clear Button
+
 A search field can hide its clear button.
 
 <Example src="inputs/docs/search-field/hideClearButton" />
 
 ### Sizes
+
 Search fields have multiple sizes to choose from.
 
 <Example src="inputs/docs/search-field/sizes" />
 
 ### Labeling
+
 If a visible label isn't specified, an `aria-label` must be provided to the search field for accessibility. If the field is labeled by a separate element, an `aria-labelledby` prop must be provided using the ID of the labeling element instead.
 
 <Example src="inputs/docs/search-field/labeling" />
@@ -47,6 +53,7 @@ A [ContextualHelp](/components/ContextualHelp) element may be placed next to the
 <Example src="inputs/docs/search-field/ContextualHelp" />
 
 ### Description
+
 A search field with a helper message.
 
 <Example src="inputs/docs/search-field/description" />

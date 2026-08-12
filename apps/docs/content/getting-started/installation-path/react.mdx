@@ -7,6 +7,7 @@ order: 1
 Hopper is a Design System that provides a collection of [React components](../../components/component-list), [tokens](../../tokens/overview/introduction), and [icons](../../icons/overview/introduction) to help you build applications.
 
 **Requirements:**
+
 - [React 18](https://reactjs.org/) or higher.
 
 ## Installation
@@ -15,7 +16,10 @@ Hopper is a Design System that provides a collection of [React components](../..
 
 Run the following command to install Hopper packages and their peer dependencies.
 
-<PackageInstallation library="components @hopper-ui/icons @hopper-ui/styled-system react-aria react-aria-components" mod="prod" />
+<PackageInstallation
+    library="components @hopper-ui/icons @hopper-ui/styled-system react-aria react-aria-components"
+    mod="prod"
+/>
 
 ### Setup provider
 
@@ -23,9 +27,9 @@ Wrap your application with the [HopperProvider](/components/HopperProvider) comp
 
 ```tsx {2,6,8}
 import { HopperProvider } from "@hopper-ui/components";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
-const root = createRoot(document.getElementById('root'));
+const root = createRoot(document.getElementById("root"));
 root.render(
     <HopperProvider theme="workleap" withBodyStyle>
         <App />
@@ -45,6 +49,7 @@ Add Hopper styles to your project by importing the following CSS file. Place thi
 
 Add your product's theme to your project by importing the following CSS file. Place this in your global CSS file or main stylesheet.
 You can add as many themes as you want, in case your application switch between different themes.
+
 ```css
 @import url("@hopper-ui/styled-system/theme/workleap.css");
 /** or */
@@ -54,6 +59,7 @@ You can add as many themes as you want, in case your application switch between 
 Make sure to set the theme on your `HopperProvider` to match the imported theme.
 
 ### Enjoy!
+
 Leverage Hopper's components and styled system to build user interfaces efficiently and with ease.
 
 ```tsx
@@ -66,19 +72,56 @@ const Demo = () => {
             <Button>Click me</Button>
         </Stack>
     );
-}
+};
 ```
 
 ## Take it Further
+
 Explore advanced features of Hopper to unlock its full potential:
 
 <CardLinkList size="sm">
-    <CardLink href="/icons/overview/introduction" size="sm" title="Icons" description="Use a rich library of icons in your applications." />
-    <CardLink href="/components/client-side-routing" size="sm" title="Client Side Routing" description="Ensure seamless navigation with Hopper components." type="secondary" />
-    <CardLink href="/components/color-schemes" size="sm" title="Color Schemes" description="Implement and customize dark mode for your application seamlessly." />
-    <CardLink href="/components/theming" size="sm" title="Theming" description="Customize the appearance of Hopper components to match your brand." />
-    <CardLink href="/components/internationalization" size="sm" title="Internationalization" description="Build applications for multiple languages and locales." />
-    <CardLink href="/styled-system/concepts/responsive-styles" size="sm" title="Responsive Styles" description="Design interfaces that adapt to different screen sizes." />
+    <CardLink
+        href="/icons/overview/introduction"
+        size="sm"
+        title="Icons"
+        description="Use a rich library of icons in your applications."
+    />
+    <CardLink
+        href="/components/client-side-routing"
+        size="sm"
+        title="Client Side Routing"
+        description="Ensure seamless navigation with Hopper components."
+        type="secondary"
+    />
+    <CardLink
+        href="/components/color-schemes"
+        size="sm"
+        title="Color Schemes"
+        description="Implement and customize dark mode for your application seamlessly."
+    />
+    <CardLink
+        href="/components/theming"
+        size="sm"
+        title="Theming"
+        description="Customize the appearance of Hopper components to match your brand."
+    />
+    <CardLink
+        href="/components/internationalization"
+        size="sm"
+        title="Internationalization"
+        description="Build applications for multiple languages and locales."
+    />
+    <CardLink
+        href="/styled-system/concepts/responsive-styles"
+        size="sm"
+        title="Responsive Styles"
+        description="Design interfaces that adapt to different screen sizes."
+    />
     <CardLink href="/components/slots" size="sm" title="Slots" description="Extend and compose components flexibly." />
-    <CardLink href="/styled-system/concepts/styling" size="sm" title="Styling" description="Style components with Hopper's styled system and override defaults." />
+    <CardLink
+        href="/styled-system/concepts/styling"
+        size="sm"
+        title="Styling"
+        description="Style components with Hopper's styled system and override defaults."
+    />
 </CardLinkList>

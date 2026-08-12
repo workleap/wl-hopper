@@ -14,14 +14,14 @@ export const formatData = async (prop: PropItem) => {
     const code = await formatCode(formatType, "tsx");
     const formatedDescription = description.replace(/<form>/g, "");
 
-    return ({
+    return {
         id: generateUniqueKey(),
         name,
         type: code,
         defaultValue: defaultValue ? defaultValue.value : "",
         description: formatedDescription,
         required
-    });
+    };
 };
 
 async function formatPropTable(data: ComponentDocWithGroups[]) {
@@ -40,8 +40,9 @@ async function formatPropTable(data: ComponentDocWithGroups[]) {
                     existingGroup[group] = [
                         ...existingGroup[group],
                         ...groupItems.filter(
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                            newItem => !existingGroup[group].some((existingItem: any) => existingItem.name === newItem.name)
+                            newItem =>
+                                // eslint-disable-next-line typescript/no-explicit-any
+                                !existingGroup[group].some((existingItem: any) => existingItem.name === newItem.name)
                         )
                     ];
                 } else {
@@ -63,5 +64,5 @@ export async function getComponentProps(component: string) {
     const groups = await formatPropTable(data);
     const description = item ? item.description : "";
 
-    return ({ description, groups });
+    return { description, groups };
 }

@@ -22,7 +22,9 @@ Users can open or close a with different interactive element such as a button or
 
 ```tsx
 <Disclosure>
-    <DisclosureHeader> /* (Required) A header for the Disclosure */
+    <DisclosureHeader>
+        {" "}
+        /* (Required) A header for the Disclosure */
         <Text /> /* (Optional) A text description for the DisclosureHeader */
         <Icon /> /* (Optional) An icon for the DisclosureHeader */
     </DisclosureHeader>
@@ -34,7 +36,7 @@ Users can open or close a with different interactive element such as a button or
 
 A `Disclosure` uses the following components:
 
-<ComposedComponents components={["Text", "Icon"]}/>
+<ComposedComponents components={["Text", "Icon"]} />
 
 ## Usage
 
@@ -99,12 +101,15 @@ The disclosure component should:
 ## Props
 
 ### Disclosure
+
 <PropTable component="Disclosure" />
 
 ### Disclosure Header
+
 <PropTable component="DisclosureHeader" />
 
 ### Disclosure Panel
+
 <PropTable component="DisclosurePanel" />
 
 ## Migration Notes

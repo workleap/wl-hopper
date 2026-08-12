@@ -1,13 +1,19 @@
 import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type {
-    CallToolResult
-} from "@modelcontextprotocol/sdk/types.js";
+import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
-import { ColorSchemes, DefaultColorScheme, DefaultTheme, type GuideSection, GuideSections, Themes, TokenCategories } from "./config/constants";
+import {
+    ColorSchemes,
+    DefaultColorScheme,
+    DefaultTheme,
+    type GuideSection,
+    GuideSections,
+    Themes,
+    TokenCategories
+} from "./config/constants";
 import { paginationParamsInfo, toolsInfo } from "./config/toolsMetadata";
 import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/componentsService";
 import { getDesignTokenGuide, getGuide } from "./services/guidesService";
-import { getIcons, IconTypes } from "./services/iconsService";
+import { IconTypes, getIcons } from "./services/iconsService";
 import { getDesignTokens } from "./services/tokensService";
 import { validateHopperCode } from "./services/validatorService";
 import { content, errorContent, toolContent } from "./utils/formatter";
@@ -15,198 +21,284 @@ import { trackError, trackEvent } from "./utils/logger";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/tokenNameFormatter";
 
 const paginationParams = {
-    page_size: z
-        .number()
-        .min(15000)
-        .optional()
-        .describe(paginationParamsInfo.page_size),
-    cursor: z
-        .string()
-        .optional()
-        .describe(paginationParamsInfo.cursor)
+    page_size: z.number().min(15000).optional().describe(paginationParamsInfo.page_size),
+    cursor: z.string().optional().describe(paginationParamsInfo.cursor)
 };
 
 export function tools(server: McpServer) {
-    server.registerTool(toolsInfo.get_component_doc.name, {
-        title: toolsInfo.get_component_doc.title,
-        description: toolsInfo.get_component_doc.description,
-        inputSchema: {
-            component_name: z.string(),
-            doc_type: z.enum(["usage", "props", "props-full"]).describe(toolsInfo.get_component_doc.parameters.doc_type)
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ component_name, doc_type }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_component_doc.name, { componentName: component_name, docType: doc_type }, e?.requestInfo);
-
-        try {
-            let docContent;
-
-            if (doc_type === "usage") {
-                docContent = await getComponentUsage(component_name);
-            } else if (doc_type === "props") {
-                docContent = await getComponentBriefApi(component_name);
-            } else { // props-full
-                docContent = await getComponentFullApi(component_name);
+    server.registerTool(
+        toolsInfo.get_component_doc.name,
+        {
+            title: toolsInfo.get_component_doc.title,
+            description: toolsInfo.get_component_doc.description,
+            inputSchema: {
+                component_name: z.string(),
+                doc_type: z
+                    .enum(["usage", "props", "props-full"])
+                    .describe(toolsInfo.get_component_doc.parameters.doc_type)
+            },
+            annotations: {
+                readOnlyHint: true
             }
-
-            return toolContent(
-                docContent,
-                content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
+        },
+        async ({ component_name, doc_type }, e): Promise<CallToolResult> => {
+            trackEvent(
+                toolsInfo.get_component_doc.name,
+                { componentName: component_name, docType: doc_type },
+                e?.requestInfo
             );
-        } catch (error) {
-            trackError(error, e?.requestInfo);
 
-            return errorContent(error);
-        }
-    });
+            try {
+                let docContent;
 
-    server.registerTool(toolsInfo.get_design_tokens.name, {
-        title: toolsInfo.get_design_tokens.title,
-        description: toolsInfo.get_design_tokens.description,
-        inputSchema: {
-            category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens.parameters.category),
-            theme: z.enum(Themes).optional().default(DefaultTheme).describe(toolsInfo.get_design_tokens.parameters.theme),
-            color_scheme: z.enum(ColorSchemes).optional().default(DefaultColorScheme).describe(toolsInfo.get_design_tokens.parameters.color_scheme),
-            search_token_names: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
-            search_css_values: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
-            search_supported_props: z.array(z.string()).optional().describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
-            include_css_values: z.boolean().optional().default(false).describe(toolsInfo.get_design_tokens.parameters.include_css_values.description)
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ category, theme, color_scheme, include_css_values, search_token_names, search_css_values, search_supported_props }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_design_tokens.name, { category, theme, color_scheme, include_css_values, search_token_names, search_css_values, search_supported_props }, e?.requestInfo);
-
-        try {
-            const result = await getDesignTokens(category, search_token_names, search_css_values, search_supported_props, include_css_values, theme, color_scheme);
-
-            return result.length > 0 ?
-                toolContent(
-                    ...result,
-                    include_css_values ? content("**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**") : undefined,
-                    content("**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " + DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", "))
-                ) :
-                toolContent(
-                    content("No design tokens found matching the provided criteria.")
-                );
-        } catch (error) {
-            trackError(error, e?.requestInfo);
-
-            return errorContent(error);
-        }
-    });
-
-    server.registerTool(toolsInfo.get_guide.name, {
-        title: toolsInfo.get_guide.title,
-        description: toolsInfo.get_guide.description,
-        inputSchema: {
-            guide: z.enum(GuideSections),
-            category: z.enum(TokenCategories).optional().describe(toolsInfo.get_guide.parameters.category),
-            ...paginationParams
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ guide, category, page_size, cursor }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_guide.name, { guide, category, page_size, cursor }, e?.requestInfo);
-
-        try {
-            if (guide === "tokens") {
-                if (!category) {
-                    return errorContent(new Error("Category is required when guide is 'tokens'."));
+                if (doc_type === "usage") {
+                    docContent = await getComponentUsage(component_name);
+                } else if (doc_type === "props") {
+                    docContent = await getComponentBriefApi(component_name);
+                } else {
+                    // props-full
+                    docContent = await getComponentFullApi(component_name);
                 }
 
-                return toolContent(await getDesignTokenGuide(category, page_size, cursor));
-            } else {
-                return toolContent(await getGuide(guide, page_size, cursor));
+                return toolContent(
+                    docContent,
+                    content(`**ALWAYS CALL "#${toolsInfo.validate_hopper_code.name}" TOOL AFTER USING A COMPONENT.**`)
+                );
+            } catch (error) {
+                trackError(error, e?.requestInfo);
+
+                return errorContent(error);
             }
-        } catch (error) {
-            trackError(error, e?.requestInfo);
-
-            return errorContent(error);
         }
-    });
+    );
 
-    server.registerTool(toolsInfo.get_icons.name, {
-        title: toolsInfo.get_icons.title,
-        description: toolsInfo.get_icons.description,
-        inputSchema: {
-            queries: z.array(z.string()).optional().describe(toolsInfo.get_icons.parameters.queries),
-            type: z.enum(IconTypes).optional().default("all").describe(toolsInfo.get_icons.parameters.type),
-            limit: z.number().optional().describe(toolsInfo.get_icons.parameters.limit)
+    server.registerTool(
+        toolsInfo.get_design_tokens.name,
+        {
+            title: toolsInfo.get_design_tokens.title,
+            description: toolsInfo.get_design_tokens.description,
+            inputSchema: {
+                category: z.enum(TokenCategories).describe(toolsInfo.get_design_tokens.parameters.category),
+                theme: z
+                    .enum(Themes)
+                    .optional()
+                    .default(DefaultTheme)
+                    .describe(toolsInfo.get_design_tokens.parameters.theme),
+                color_scheme: z
+                    .enum(ColorSchemes)
+                    .optional()
+                    .default(DefaultColorScheme)
+                    .describe(toolsInfo.get_design_tokens.parameters.color_scheme),
+                search_token_names: z
+                    .array(z.string())
+                    .optional()
+                    .describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
+                search_css_values: z
+                    .array(z.string())
+                    .optional()
+                    .describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
+                search_supported_props: z
+                    .array(z.string())
+                    .optional()
+                    .describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
+                include_css_values: z
+                    .boolean()
+                    .optional()
+                    .default(false)
+                    .describe(toolsInfo.get_design_tokens.parameters.include_css_values.description)
+            },
+            annotations: {
+                readOnlyHint: true
+            }
         },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ queries, type, limit }, e): Promise<CallToolResult> => {
-        trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
+        async (
+            {
+                category,
+                theme,
+                color_scheme,
+                include_css_values,
+                search_token_names,
+                search_css_values,
+                search_supported_props
+            },
+            e
+        ): Promise<CallToolResult> => {
+            trackEvent(
+                toolsInfo.get_design_tokens.name,
+                {
+                    category,
+                    theme,
+                    color_scheme,
+                    include_css_values,
+                    search_token_names,
+                    search_css_values,
+                    search_supported_props
+                },
+                e?.requestInfo
+            );
 
-        try {
-            const results = await getIcons(queries, type, limit);
+            try {
+                const result = await getDesignTokens(
+                    category,
+                    search_token_names,
+                    search_css_values,
+                    search_supported_props,
+                    include_css_values,
+                    theme,
+                    color_scheme
+                );
 
-            if (Object.keys(results).length === 0) {
-                return toolContent(content("No queries provided."));
+                return result.length > 0
+                    ? toolContent(
+                          ...result,
+                          include_css_values
+                              ? content(
+                                    "**ALWAYS use 'propValue' in your code, NEVER 'cssValue'. Design tokens ensure consistency.**"
+                                )
+                              : undefined,
+                          content(
+                              "**Golden Rule**: Remove these substrings from 'token name' to get the correct 'prop value' instantly: " +
+                                  DESIGN_TOKEN_PREFIXES_AND_SUFFIXES.join(", ")
+                          )
+                      )
+                    : toolContent(content("No design tokens found matching the provided criteria."));
+            } catch (error) {
+                trackError(error, e?.requestInfo);
+
+                return errorContent(error);
             }
+        }
+    );
+
+    server.registerTool(
+        toolsInfo.get_guide.name,
+        {
+            title: toolsInfo.get_guide.title,
+            description: toolsInfo.get_guide.description,
+            inputSchema: {
+                guide: z.enum(GuideSections),
+                category: z.enum(TokenCategories).optional().describe(toolsInfo.get_guide.parameters.category),
+                ...paginationParams
+            },
+            annotations: {
+                readOnlyHint: true
+            }
+        },
+        async ({ guide, category, page_size, cursor }, e): Promise<CallToolResult> => {
+            trackEvent(toolsInfo.get_guide.name, { guide, category, page_size, cursor }, e?.requestInfo);
+
+            try {
+                if (guide === "tokens") {
+                    if (!category) {
+                        return errorContent(new Error("Category is required when guide is 'tokens'."));
+                    }
+
+                    return toolContent(await getDesignTokenGuide(category, page_size, cursor));
+                } else {
+                    return toolContent(await getGuide(guide, page_size, cursor));
+                }
+            } catch (error) {
+                trackError(error, e?.requestInfo);
+
+                return errorContent(error);
+            }
+        }
+    );
+
+    server.registerTool(
+        toolsInfo.get_icons.name,
+        {
+            title: toolsInfo.get_icons.title,
+            description: toolsInfo.get_icons.description,
+            inputSchema: {
+                queries: z.array(z.string()).optional().describe(toolsInfo.get_icons.parameters.queries),
+                type: z.enum(IconTypes).optional().default("all").describe(toolsInfo.get_icons.parameters.type),
+                limit: z.number().optional().describe(toolsInfo.get_icons.parameters.limit)
+            },
+            annotations: {
+                readOnlyHint: true
+            }
+        },
+        async ({ queries, type, limit }, e): Promise<CallToolResult> => {
+            trackEvent(toolsInfo.get_icons.name, { queries, type, limit }, e?.requestInfo);
+
+            try {
+                const results = await getIcons(queries, type, limit);
+
+                if (Object.keys(results).length === 0) {
+                    return toolContent(content("No queries provided."));
+                }
+
+                return toolContent(content(JSON.stringify(results, null, 2)));
+            } catch (error) {
+                trackError(error, e?.requestInfo);
+
+                return errorContent(error);
+            }
+        }
+    );
+
+    server.registerTool(
+        toolsInfo.validate_hopper_code.name,
+        {
+            title: toolsInfo.validate_hopper_code.title,
+            description: toolsInfo.validate_hopper_code.description,
+            inputSchema: {
+                code: z.string()
+            },
+            annotations: {
+                readOnlyHint: true
+            }
+        },
+        async ({ code }, e): Promise<CallToolResult> => {
+            try {
+                const validationResult = await validateHopperCode(code);
+                trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
+
+                if (validationResult.isValid && validationResult.warnings.length === 0) {
+                    return toolContent(content("Component structure validation passed!"));
+                }
+
+                const message = validationResult.isValid
+                    ? "Component structure validation passed with warnings!"
+                    : "Component structure validation failed!";
+
+                return toolContent(
+                    content(message),
+                    validationResult.errors.length > 0
+                        ? content(JSON.stringify({ errors: validationResult.errors }, null, 2))
+                        : undefined,
+                    validationResult.warnings.length > 0
+                        ? content(JSON.stringify({ warnings: validationResult.warnings }, null, 2))
+                        : undefined
+                );
+            } catch (error) {
+                trackError(error, e?.requestInfo);
+
+                return errorContent(error);
+            }
+        }
+    );
+
+    server.registerTool(
+        toolsInfo.migrate_from_orbiter_to_hopper.name,
+        {
+            title: toolsInfo.migrate_from_orbiter_to_hopper.title,
+            description: toolsInfo.migrate_from_orbiter_to_hopper.description,
+            inputSchema: { file_or_folder_path: z.string() },
+            annotations: {
+                readOnlyHint: true
+            }
+        },
+        ({ file_or_folder_path }, e): CallToolResult => {
+            trackEvent(
+                toolsInfo.migrate_from_orbiter_to_hopper.name,
+                { filePath: file_or_folder_path },
+                e?.requestInfo
+            );
 
             return toolContent(
-                content(JSON.stringify(results, null, 2))
-            );
-        } catch (error) {
-            trackError(error, e?.requestInfo);
-
-            return errorContent(error);
-        }
-    });
-
-    server.registerTool(toolsInfo.validate_hopper_code.name, {
-        title: toolsInfo.validate_hopper_code.title,
-        description: toolsInfo.validate_hopper_code.description,
-        inputSchema: {
-            code: z.string()
-        },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, async ({ code }, e): Promise<CallToolResult> => {
-        try {
-            const validationResult = await validateHopperCode(code);
-            trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
-
-            if (validationResult.isValid && validationResult.warnings.length === 0) {
-                return toolContent(content("Component structure validation passed!"));
-            }
-
-            const message = validationResult.isValid
-                ? "Component structure validation passed with warnings!"
-                : "Component structure validation failed!";
-
-            return toolContent(
-                content(message),
-                validationResult.errors.length > 0 ? content(JSON.stringify({ errors: validationResult.errors }, null, 2)) : undefined,
-                validationResult.warnings.length > 0 ? content(JSON.stringify({ warnings: validationResult.warnings }, null, 2)) : undefined
-            );
-        } catch (error) {
-            trackError(error, e?.requestInfo);
-
-            return errorContent(error);
-        }
-    });
-
-    server.registerTool(toolsInfo.migrate_from_orbiter_to_hopper.name, {
-        title: toolsInfo.migrate_from_orbiter_to_hopper.title,
-        description: toolsInfo.migrate_from_orbiter_to_hopper.description,
-        inputSchema: { file_or_folder_path: z.string() },
-        annotations: {
-            readOnlyHint: true
-        }
-    }, ({ file_or_folder_path }, e): CallToolResult => {
-        trackEvent(toolsInfo.migrate_from_orbiter_to_hopper.name, { filePath: file_or_folder_path }, e?.requestInfo);
-
-        return toolContent(
-            content(`
+                content(`
                 1. Read the '#get_guide(${"tooling-cli" satisfies GuideSection})' guide to understand how to use the related tooling CLI.
                 1. Generate an appropriate command to run the tool for "${file_or_folder_path}" in terminal to perform the migration.
                 2. Review the files for errors:
@@ -217,6 +309,7 @@ export function tools(server: McpServer) {
                 3. If some components are not migrated, you can use the #${toolsInfo.get_component_doc.name} tool to get the component usage information and follow the migration notes.
                 4. Make sure the migrated code adheres to Hopper's design system standards.
                 `)
-        );
-    });
+            );
+        }
+    );
 }

@@ -3,7 +3,15 @@
 import { access, constants } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { aiDocsConfig } from "./ai-docs.config.tsx";
-import type { BuildConfig, IconsJsonBuild, MdFromMdxBuild, PropsJsonBuild, TokensJsonBuild, UnsafePropsJsonBuild, UnsafePropsMarkdownBuild } from "./types.ts";
+import type {
+    BuildConfig,
+    IconsJsonBuild,
+    MdFromMdxBuild,
+    PropsJsonBuild,
+    TokensJsonBuild,
+    UnsafePropsJsonBuild,
+    UnsafePropsMarkdownBuild
+} from "./types.ts";
 
 function normalizePath(path: string): string {
     return path.startsWith("/") ? path : `/${path}`;
@@ -49,12 +57,7 @@ export function findMatchedAiFiles(relativePath: string): string[] {
             const routePath = getRoutePath(route);
             const filesInRoot = routeConfig.serve?.filesInRoot;
 
-            result.add(
-                join(aiDocsConfig.filesFolder,
-                     routePath,
-                     filesInRoot ? "" : relativePath,
-                     fileName)
-            );
+            result.add(join(aiDocsConfig.filesFolder, routePath, filesInRoot ? "" : relativePath, fileName));
         }
     }
 
@@ -96,44 +99,25 @@ function getRoutePath(fileKey: string): string {
 }
 
 export function isMdFromMdxBuild(build: BuildConfig): build is MdFromMdxBuild {
-    return (
-        "source" in build &&
-        !("template" in build) &&
-        !("type" in build)
-    );
+    return "source" in build && !("template" in build) && !("type" in build);
 }
 
 export function isPropsJsonBuild(build: BuildConfig): build is PropsJsonBuild {
-    return (
-        "type" in build &&
-        build.type === "props-json"
-    );
+    return "type" in build && build.type === "props-json";
 }
 
 export function isTokensJsonBuild(build: BuildConfig): build is TokensJsonBuild {
-    return (
-        "type" in build &&
-        build.type === "tokens-json"
-    );
+    return "type" in build && build.type === "tokens-json";
 }
 
 export function isUnsafePropsJsonBuild(build: BuildConfig): build is UnsafePropsJsonBuild {
-    return (
-        "type" in build &&
-        build.type === "unsafe-props-json"
-    );
+    return "type" in build && build.type === "unsafe-props-json";
 }
 
 export function isIconsJsonBuild(build: BuildConfig): build is IconsJsonBuild {
-    return (
-        "type" in build &&
-        build.type === "icons-json"
-    );
+    return "type" in build && build.type === "icons-json";
 }
 
 export function isUnsafePropsMarkdownBuild(build: BuildConfig): build is UnsafePropsMarkdownBuild {
-    return (
-        "type" in build &&
-        build.type === "unsafe-props-markdown"
-    );
+    return "type" in build && build.type === "unsafe-props-markdown";
 }

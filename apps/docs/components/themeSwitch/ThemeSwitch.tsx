@@ -20,7 +20,11 @@ const ThemeSwitch = ({ onThemeChange, theme, className, text }: ColorSchemeSwitc
             </Button>
             <Menu selectionMode="single" selectedKeys={[theme]}>
                 {DocumentationThemes.map(t => (
-                    <MenuItem key={t} id={t} onAction={() => onThemeChange?.(t)}>{`Change to ${t.charAt(0).toUpperCase() + t.slice(1)} Theme`}</MenuItem>
+                    <MenuItem
+                        key={t}
+                        id={t}
+                        onAction={() => onThemeChange?.(t)}
+                    >{`Change to ${t.charAt(0).toUpperCase() + t.slice(1)} Theme`}</MenuItem>
                 ))}
             </Menu>
         </MenuTrigger>
@@ -30,7 +34,15 @@ const ThemeSwitch = ({ onThemeChange, theme, className, text }: ColorSchemeSwitc
 export default ThemeSwitch;
 
 const ColorPaletteIcon = forwardRef<SVGSVGElement>((props, ref) => (
-    <svg ref={ref} xmlns="http://www.w3.org/2000/svg" style={{ fill: "var(--hd-color-neutral-icon)" }} width="16px" height="16px" viewBox="0 0 24 24" {...props}>
+    <svg
+        ref={ref}
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ fill: "var(--hd-color-neutral-icon)" }}
+        width="16px"
+        height="16px"
+        viewBox="0 0 24 24"
+        {...props}
+    >
         <g data-name="Layer 2">
             <g data-name="color-palette">
                 <rect width="24" height="24" opacity="0" />

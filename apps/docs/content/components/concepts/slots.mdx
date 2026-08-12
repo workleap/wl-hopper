@@ -12,8 +12,8 @@ The Hopper component API is designed around composition. Components are reused b
 
 ```tsx
 <Stepper>
-  <Button slot="increment">⬆</Button>
-  <Button slot="decrement">⬇</Button>
+    <Button slot="increment">⬆</Button>
+    <Button slot="decrement">⬇</Button>
 </Stepper>
 ```
 
@@ -33,8 +33,8 @@ Any `TextField` component you place inside a `FieldGroup` will automatically rec
 
 ```tsx
 <FieldGroup isDisabled={isSubmitting}>
-  <TextField label="Name" />
-  <TextField label="Email" />
+    <TextField label="Name" />
+    <TextField label="Email" />
 </FieldGroup>
 ```
 
@@ -44,15 +44,14 @@ Some patterns include multiple instances of the same component. These use the `s
 
 This example shows a `Stepper` component with slots for its increment and decrement buttons.
 
-
 <CodeOnlyExample src="hopper-provider/docs/slots/slots" isOpen />
 
 And it can be used like this:
 
 ```tsx
 <Stepper>
-  <Button slot="increment">⬆</Button>
-  <Button slot="decrement">⬇</Button>
+    <Button slot="increment">⬆</Button>
+    <Button slot="decrement">⬇</Button>
 </Stepper>
 ```
 
@@ -93,15 +92,13 @@ The `useContextProps` hook merges the local props and ref with the ones provided
 import { type LabelProps, LabelContext, useContextProps } from "@hopper-ui/components";
 import { forwardRef } from "react";
 
-export const MyCustomLabel = forwardRef(
-    (props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) => {
+export const MyCustomLabel = forwardRef((props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) => {
     // Merge the local props and ref with the ones provided via context.
-        [props, ref] = useContextProps(props, ref, LabelContext);
+    [props, ref] = useContextProps(props, ref, LabelContext);
 
-        // ... your existing Label component
-        return <label {...props} ref={ref} />;
-    }
-);
+    // ... your existing Label component
+    return <label {...props} ref={ref} />;
+});
 ```
 
 Since it consumes from LabelContext, MyCustomLabel can be used within any Hopper component instead of the built-in Label.
@@ -132,4 +129,3 @@ let incrementButtonContext = useSlottedContext(ButtonContext, "increment");
 Most Hopper components are built on top of React Aria Components. React Aria Components compose other standalone components in their children to build larger patterns. However, some components are made up of more tightly coupled children. For example, Calendar includes children such as CalendarGrid and CalendarCell that cannot be used standalone, and must appear within a Calendar or RangeCalendar. These components access the state from their parent via context.
 
 You can access the state from a parent component via the same contexts in order to build your own custom children. This example shows a CalendarValue component that displays the currently selected date from a calendar as a formatted string.
-

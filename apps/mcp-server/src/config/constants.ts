@@ -1,34 +1,59 @@
 export const GuideSections = [
-    "installation", "styles", "tokens", "color-schemes", "components-list", "icons", "layout",
-    "controlled-mode", "forms", "slots", "utility-hooks",
-    "escape-hatches", "figma-conventions", "tooling-cli", "internationalization",
+    "installation",
+    "styles",
+    "tokens",
+    "color-schemes",
+    "components-list",
+    "icons",
+    "layout",
+    "controlled-mode",
+    "forms",
+    "slots",
+    "utility-hooks",
+    "escape-hatches",
+    "figma-conventions",
+    "tooling-cli",
+    "internationalization",
     "changelog"
 ] as const;
 
 export const Themes = ["workleap", "sharegate"] as const;
-export type Theme = typeof Themes[number];
+export type Theme = (typeof Themes)[number];
 
 export const ColorSchemes = ["light", "dark"] as const;
-export type ColorScheme = typeof ColorSchemes[number];
+export type ColorScheme = (typeof ColorSchemes)[number];
 
 export const DefaultTheme: Theme = "workleap";
 export const DefaultColorScheme: ColorScheme = "light";
 
 export const TokenCategories = [
     //semantic
-    "semantic-color", "semantic-elevation", "semantic-shape", "semantic-space", "semantic-typography",
+    "semantic-color",
+    "semantic-elevation",
+    "semantic-shape",
+    "semantic-space",
+    "semantic-typography",
 
     //core
-    "core-border-radius", "core-color", "core-dimensions",
-    "core-font-family", "core-font-size", "core-font-weight", "core-letter-spacing", "core-line-height",
-    "core-motion", "core-shadow",
+    "core-border-radius",
+    "core-color",
+    "core-dimensions",
+    "core-font-family",
+    "core-font-size",
+    "core-font-weight",
+    "core-letter-spacing",
+    "core-line-height",
+    "core-motion",
+    "core-shadow",
 
     //all
-    "all", "all-core", "all-semantic"
+    "all",
+    "all-core",
+    "all-semantic"
 ] as const;
 
-export type GuideSection = typeof GuideSections[number];
-export type TokenCategory = typeof TokenCategories[number];
+export type GuideSection = (typeof GuideSections)[number];
+export type TokenCategory = (typeof TokenCategories)[number];
 
 export const TokenCategoryDescriptions: { [key in TokenCategory]: string } = {
     "semantic-color": "Semantic colors for text, surfaces, borders, and icons with interactive states",
@@ -56,7 +81,8 @@ export const GuideDescriptions: { [key in GuideSection]: string } = {
     "components-list": "Get a list of all components in the Hopper Design System.",
     styles: "How to use style components by using style props and related design tokens.",
     layout: "Building application layouts using Flex or Grid",
-    "escape-hatches": "Best practices regarding the use of UNSAFE_* props in Hopper components. It also lists all available UNSAFE_* props.",
+    "escape-hatches":
+        "Best practices regarding the use of UNSAFE_* props in Hopper components. It also lists all available UNSAFE_* props.",
     "color-schemes": "Applying light mode, dark mode, or adapt to operating system's dark mode",
     icons: "Using and designing standard, rich, and SVG icons in Hopper for React and other frameworks",
     "controlled-mode": "Using controlled and uncontrolled modes to customize components",
@@ -65,8 +91,8 @@ export const GuideDescriptions: { [key in GuideSection]: string } = {
     internationalization: "Adapting components to respect languages and cultures",
     "figma-conventions": "Figma → Hopper Translation Guide",
     tokens: "Get design system tokens, their component props value, and their raw values by category. You must provide the category parameter.",
-    "tooling-cli": "Analyze component usage across Hopper and Orbiter codebases, and automate migrations (Orbiter→Hopper, OV→Hopper) using 'pnpx \"@workleap/migrations\"@latest'. Generate usage reports, migration plans, and automated code transformations.",
+    "tooling-cli":
+        "Analyze component usage across Hopper and Orbiter codebases, and automate migrations (Orbiter→Hopper, OV→Hopper) using 'pnpx \"@workleap/migrations\"@latest'. Generate usage reports, migration plans, and automated code transformations.",
     "utility-hooks": "Commonly used React hooks and utility functions for building components.",
     changelog: "Changelog for all Hopper packages"
 } as const;
-

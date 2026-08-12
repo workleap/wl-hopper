@@ -7,17 +7,19 @@ const figma_get_code = "'#get_design_context'";
 const figma_get_screenshot = "'#get_screenshot'";
 
 export function prompts(server: McpServer) {
-    server.registerPrompt("build_hopper_app", {
-        description:
-            "Use this prompt to build Hopper apps.",
-        argsSchema: { query: z.string() }
-    }, ({ query }) => ({
-        messages: [{
-            role: "user",
-            content: {
-                type: "text",
-                text:
-                `
+    server.registerPrompt(
+        "build_hopper_app",
+        {
+            description: "Use this prompt to build Hopper apps.",
+            argsSchema: { query: z.string() }
+        },
+        ({ query }) => ({
+            messages: [
+                {
+                    role: "user",
+                    content: {
+                        type: "text",
+                        text: `
                     Your role:
                     Assume you are an expert UI/UX designer and an experienced frontend developer who is picky on design details. Follow modern industry standards for spacing, layout, and visual hierarchy.
 
@@ -43,22 +45,26 @@ export function prompts(server: McpServer) {
                     Task:
                     ${query}
                 `
-            }
-        }]
-    })
+                    }
+                }
+            ]
+        })
     );
 
-    server.registerPrompt("generate_code_from_figma_design", {
-        description:
-            "Use this prompt to properly generate code from figma design. This prompt relies on Figma MCP.",
-        argsSchema: { figma_design_url: z.string() }
-    }, ({ figma_design_url }) => ({
-        messages: [{
-            role: "user",
-            content: {
-                type: "text",
-                text:
-`
+    server.registerPrompt(
+        "generate_code_from_figma_design",
+        {
+            description:
+                "Use this prompt to properly generate code from figma design. This prompt relies on Figma MCP.",
+            argsSchema: { figma_design_url: z.string() }
+        },
+        ({ figma_design_url }) => ({
+            messages: [
+                {
+                    role: "user",
+                    content: {
+                        type: "text",
+                        text: `
 # Objective
 Generate a JSX implementation of the selected Figma frame using Hopper Design System components, ensuring visual and structural fidelity.
 
@@ -147,8 +153,9 @@ Figma design: '${figma_design_url}'
 # Deliverable
 A pixel-perfect, structurally sound Hopper Design System implementation matching the selected Figma frame.
 `
-            }
-        }]
-    })
+                    }
+                }
+            ]
+        })
     );
 }

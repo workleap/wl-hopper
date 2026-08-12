@@ -11,9 +11,5 @@ export default function IconLayout({ children }: { children: ReactNode }) {
         }
     });
 
-    return (
-        <SidebarLayout links={allIconLinks}>
-            {children}
-        </SidebarLayout>
-    );
+    return <SidebarLayout links={allIconLinks}>{children}</SidebarLayout>;
 }

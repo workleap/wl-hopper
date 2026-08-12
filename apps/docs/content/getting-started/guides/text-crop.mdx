@@ -4,16 +4,26 @@ description: A technique to crop the whitespace above and below text to make it 
 order: 2
 ---
 
-Every web font includes whitespace above and below the text, while useful in some instances, it can be a problem when vertically centering text or aligning text with other elements. This problem arises when a font has uneven whitespace. This is especially true when using a typeface with a large x-height, like *ABC Favorit*.
+Every web font includes whitespace above and below the text, while useful in some instances, it can be a problem when vertically centering text or aligning text with other elements. This problem arises when a font has uneven whitespace. This is especially true when using a typeface with a large x-height, like _ABC Favorit_.
 
 <Card>
-    <Image src="https://wlprodcdnst3e6bc61cec24.blob.core.windows.net/hopper/webdoc/text-crop-desired-outcome.png" width="1290" height="284" alt="Text Crop desired outcome" />
+    <Image
+        src="https://wlprodcdnst3e6bc61cec24.blob.core.windows.net/hopper/webdoc/text-crop-desired-outcome.png"
+        width="1290"
+        height="284"
+        alt="Text Crop desired outcome"
+    />
 </Card>
 
 One way to compensate for this is to use a negative margin on the top and bottom of the text. This will crop the whitespace and make the text appear more centered, while preserving the line-height of the text.
 
 <Card>
-    <Image src="https://wlprodcdnst3e6bc61cec24.blob.core.windows.net/hopper/webdoc/text-crop-css.png" width="1290" height="290" alt="Text Crop desired outcome" />
+    <Image
+        src="https://wlprodcdnst3e6bc61cec24.blob.core.windows.net/hopper/webdoc/text-crop-css.png"
+        width="1290"
+        height="290"
+        alt="Text Crop desired outcome"
+    />
 </Card>
 
 ## Implementation
@@ -32,12 +42,12 @@ If you need to implement this technique, you can use the following CSS. Keep in 
 
 ```css title="component.css"
 .off-centered-text {
-    font-family: 'ABC Favorit Mono', sans-serif;
+    font-family: "ABC Favorit Mono", sans-serif;
 }
 
 .off-centenred-text::before,
 .off-centered-text::after {
-    content: '';
+    content: "";
     display: block;
     width: 0;
     height: 0;
@@ -58,7 +68,11 @@ Feel free to inspect the above examples to see how the solution is applied in di
 
 <div className="hd-sample hd-sample-text-offset">
     <div className="hd-sample__wrapper">
-        <div className="myBadge"><span className="hd-sample-off-centered-text fixed">New</span></div>
-        <div className="myHeadline"><span className="hd-sample-off-centered-text fixed">Bring out the best in your team</span></div>
+        <div className="myBadge">
+            <span className="hd-sample-off-centered-text fixed">New</span>
+        </div>
+        <div className="myHeadline">
+            <span className="hd-sample-off-centered-text fixed">Bring out the best in your team</span>
+        </div>
     </div>
 </div>

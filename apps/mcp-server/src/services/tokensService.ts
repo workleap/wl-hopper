@@ -6,7 +6,7 @@ import { DefaultColorScheme, DefaultTheme } from "../config/constants";
 import { getTokenMapFiles } from "../config/fileMappings";
 import { env } from "../env";
 import { content } from "../utils/formatter";
-import { convertToBriefFormat, filterTokens, type TokenFileRootNode } from "../utils/tokenFilters";
+import { type TokenFileRootNode, convertToBriefFormat, filterTokens } from "../utils/tokenFilters";
 
 const tokenDataCache: Map<string, TokenFileRootNode> = new Map();
 
@@ -54,26 +54,32 @@ export async function getDesignTokens(
 ) {
     const mapFiles = getTokenMapFiles(theme, colorScheme)[category];
 
-    const result = await Promise.all(mapFiles.map(async map => {
-        try {
-            const tokensData = await loadTokenData(map.path, category, theme, colorScheme);
-            const filteredTokensData = filterTokens(tokensData, {
-                tokenNames: filter_by_token_names,
-                cssValues: filter_by_css_values,
-                supportedProps: filter_by_supported_props
-            });
+    const result = await Promise.all(
+        mapFiles.map(async map => {
+            try {
+                const tokensData = await loadTokenData(map.path, category, theme, colorScheme);
+                const filteredTokensData = filterTokens(tokensData, {
+                    tokenNames: filter_by_token_names,
+                    cssValues: filter_by_css_values,
+                    supportedProps: filter_by_supported_props
+                });
 
-            const partialResult = include_css_values ? filteredTokensData : convertToBriefFormat(filteredTokensData);
+                const partialResult = include_css_values
+                    ? filteredTokensData
+                    : convertToBriefFormat(filteredTokensData);
 
-            return isEmptyObject(partialResult) ? undefined : content(JSON.stringify(partialResult, null, 2));
-        } catch (error) {
-            if (error instanceof Error && error.message.includes("Tokens map not found")) {
-                throw error;
+                return isEmptyObject(partialResult) ? undefined : content(JSON.stringify(partialResult, null, 2));
+            } catch (error) {
+                if (error instanceof Error && error.message.includes("Tokens map not found")) {
+                    throw error;
+                }
+
+                throw new Error(`Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`, {
+                    cause: error
+                });
             }
-
-            throw new Error(`Error filtering tokens: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
-        }
-    }));
+        })
+    );
 
     return result.filter(item => item !== undefined);
 }

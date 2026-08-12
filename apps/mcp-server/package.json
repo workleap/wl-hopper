@@ -2,9 +2,9 @@
     "name": "@hopper-ui/mcp-server",
     "version": "1.0.0",
     "private": true,
-    "author": "Workleap",
     "description": "MCP server for Hopper UI development",
     "license": "Apache-2.0",
+    "author": "Workleap",
     "type": "module",
     "main": "dist/index.js",
     "scripts": {

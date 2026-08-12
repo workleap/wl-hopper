@@ -11,24 +11,28 @@ async function getUnsafeProps() {
         throw new Error(`Unable to fetch UNSAFE_* props. No props data found for component: ${sampleComponent}`);
     }
 
-    const unsafeProps = data
-        .groups
+    const unsafeProps = data.groups
         .flatMap(o => o.props as PropItem[])
         .filter(prop => prop?.parent?.name === "UnsafeStyledSystemProps");
 
     if (!unsafeProps) {
-        throw new Error(`Unable to fetch UNSAFE_* props. No UnsafeStyledSystemProps group found for component: ${sampleComponent}`);
+        throw new Error(
+            `Unable to fetch UNSAFE_* props. No UnsafeStyledSystemProps group found for component: ${sampleComponent}`
+        );
     }
 
     return unsafeProps;
 }
 
-export async function generateUnsafePropsJson({
-    outputPath
-}: {
-    outputPath: string;
-}) {
-    await fs.writeFile(outputPath, JSON.stringify((await getUnsafeProps()).map(p => p.name), null, 2));
+export async function generateUnsafePropsJson({ outputPath }: { outputPath: string }) {
+    await fs.writeFile(
+        outputPath,
+        JSON.stringify(
+            (await getUnsafeProps()).map(p => p.name),
+            null,
+            2
+        )
+    );
 
     console.log(`✅ Successfully generated UNSAFE_* props list: ${outputPath}`);
 }

@@ -1,18 +1,37 @@
 import { aiDocsConfig } from "@/ai-pipeline/ai-docs.config.tsx";
-import { isIconsJsonBuild, isMdFromMdxBuild, isPropsJsonBuild, isTokensJsonBuild, isUnsafePropsJsonBuild, isUnsafePropsMarkdownBuild } from "@/ai-pipeline/util.ts";
+import {
+    isIconsJsonBuild,
+    isMdFromMdxBuild,
+    isPropsJsonBuild,
+    isTokensJsonBuild,
+    isUnsafePropsJsonBuild,
+    isUnsafePropsMarkdownBuild
+} from "@/ai-pipeline/util.ts";
 import { readFile, rm } from "fs/promises";
 import { glob } from "glob";
 import { isAbsolute, join } from "path";
 import { generateAiDocsMapping } from "./ai-utils/generateFilesMapping.ts";
 import { generateIconsJson } from "./ai-utils/generateIconsData.ts";
-import { copyMarkdownFiles, generateMarkdownFromMdx, type GenerateMarkdownOptions } from "./ai-utils/generateMarkdownFromMdx.ts";
+import {
+    type GenerateMarkdownOptions,
+    copyMarkdownFiles,
+    generateMarkdownFromMdx
+} from "./ai-utils/generateMarkdownFromMdx.ts";
 import { generatePropsJsonFromMdx } from "./ai-utils/generatePropsJsonFromMdx.ts";
 import { generateTokensMaps } from "./ai-utils/generateTokensMaps.ts";
 import { generateUnsafePropsJson, generateUnsafePropsMarkdown } from "./ai-utils/generateUnsafePropsList.ts";
 import { mergeContents } from "./ai-utils/mergeContents.ts";
 import { updateMarkdownHeadingLevels } from "./ai-utils/updateMarkdownHeadingLevels.ts";
 
-async function mergeFiles(files: string[], { fileName, path, headingFile, updateLevels }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }) {
+async function mergeFiles(
+    files: string[],
+    {
+        fileName,
+        path,
+        headingFile,
+        updateLevels
+    }: { fileName: string; path: string; headingFile?: string; updateLevels: boolean }
+) {
     // Expand all patterns and collect matching files
     const allFiles: string[] = [];
 
@@ -42,11 +61,12 @@ async function mergeFiles(files: string[], { fileName, path, headingFile, update
         const filePath = join(path, file);
         try {
             const fileContent = await readFile(filePath, "utf8");
-            const updateLevel = headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
+            const updateLevel =
+                headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
 
             contents.push(updateLevel);
         } catch (error) {
-            throw new Error(`Error: Could not read file ${filePath}: ${error}`);
+            throw new Error(`Error: Could not read file ${filePath}: ${error}`, { cause: error });
         }
     }
 
@@ -80,15 +100,9 @@ function fixRelativeLink(link: string, extension: "txt" | "md"): string {
     const hasExtension = /\.[^/]+$/.test(path);
     const endsWithSlash = path.endsWith("/");
 
-    const fixedPath = !hasExtension || endsWithSlash
-        ? `${path.replace(/\/$/, "")}.${extension}`
-        : path;
+    const fixedPath = !hasExtension || endsWithSlash ? `${path.replace(/\/$/, "")}.${extension}` : path;
 
-    return (
-        fixedPath +
-        (query ? `?${query}` : "") +
-        (hash ? `#${hash}` : "")
-    );
+    return fixedPath + (query ? `?${query}` : "") + (hash ? `#${hash}` : "");
 }
 
 async function main() {

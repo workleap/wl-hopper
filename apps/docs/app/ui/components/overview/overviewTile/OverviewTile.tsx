@@ -21,18 +21,13 @@ const OverviewTile = ({ title }: OverviewTileProps) => {
         <>
             {filteredComponents.map(component => (
                 <Card align="start" ghost className="hd-component-overview-item" key={component._id}>
-                    <Link
-                        className="hd-component-overview-item__link"
-                        href={`/components/${component.slug}`}
-                    >
+                    <Link className="hd-component-overview-item__link" href={`/components/${component.slug}`}>
                         <div className="hd-component-overview-item__img">
                             <Icon src={ComponentIcon} />
                         </div>
                         <div className="hd-component-overview-item__caption">
-                            <Title
-                                level={3}
-                                className="hd-component-overview-item__title"
-                            >{component.title}
+                            <Title level={3} className="hd-component-overview-item__title">
+                                {component.title}
                             </Title>
                             <p className="hd-component-overview-item__description">{component.description}</p>
                         </div>

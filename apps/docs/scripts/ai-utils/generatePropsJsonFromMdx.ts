@@ -81,15 +81,16 @@ function mapProps(rawProps: RawPropData[]): PropItem[] {
         name: prop.name,
         type: typeof prop.type === "string" ? prop.type : prop.type?.name || "unknown",
         required: prop.required || false,
-        defaultValue: typeof prop.defaultValue === "string"
-            ? prop.defaultValue
-            : prop.defaultValue?.value || undefined,
+        defaultValue: typeof prop.defaultValue === "string" ? prop.defaultValue : prop.defaultValue?.value || undefined,
         description: prop.description || undefined
     }));
 }
 
 // Helper function to get filtered component props data
-async function getFilteredComponentProps(componentName: string, options: GeneratePropsJsonOptions["options"]): Promise<ComponentPropsData | null> {
+async function getFilteredComponentProps(
+    componentName: string,
+    options: GeneratePropsJsonOptions["options"]
+): Promise<ComponentPropsData | null> {
     try {
         const data = await getComponentProps(componentName, options.includeFullProps);
 
@@ -99,10 +100,12 @@ async function getFilteredComponentProps(componentName: string, options: Generat
             return null;
         }
 
-        const groups = data.groups.map(group => ({
-            name: group.name,
-            props: mapProps(group.props as RawPropData[])
-        })).filter(group => group.props.length > 0);
+        const groups = data.groups
+            .map(group => ({
+                name: group.name,
+                props: mapProps(group.props as RawPropData[])
+            }))
+            .filter(group => group.props.length > 0);
 
         return {
             componentName,
@@ -116,7 +119,11 @@ async function getFilteredComponentProps(componentName: string, options: Generat
 }
 
 // Main function to generate JSON files from MDX
-export async function generatePropsJsonFromMdx({ outputPath, filesPath, options }: GeneratePropsJsonOptions): Promise<void> {
+export async function generatePropsJsonFromMdx({
+    outputPath,
+    filesPath,
+    options
+}: GeneratePropsJsonOptions): Promise<void> {
     try {
         console.log("🚀 Starting Props JSON generation from MDX files...");
 
@@ -185,7 +192,9 @@ export async function generatePropsJsonFromMdx({ outputPath, filesPath, options 
 
         console.log(`✅ Successfully generated JSON for ${successfulComponents.length} components`);
         if (failedComponents.length > 0) {
-            console.log(`❌ Failed to generate JSON for ${failedComponents.length} components: ${failedComponents.join(", ")}`);
+            console.log(
+                `❌ Failed to generate JSON for ${failedComponents.length} components: ${failedComponents.join(", ")}`
+            );
         }
         console.log(`📦 Output directory: ${outputPath}`);
     } catch (error) {

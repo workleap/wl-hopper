@@ -1,4 +1,3 @@
-
 import { capitalize } from "@/app/lib/capitalize";
 import { allComponents, categories } from "./util";
 
@@ -14,11 +13,11 @@ const Overview = () => {
             <div key={category}>
                 <h2>{capitalize(category)}</h2>
                 <ComponentListRender
-                    items={components.filter(component =>
-                        component.category &&
-                        component.category === category &&
-                        (component.status === "ready" ||
-                            component.status === undefined)
+                    items={components.filter(
+                        component =>
+                            component.category &&
+                            component.category === category &&
+                            (component.status === "ready" || component.status === undefined)
                     )}
                 />
             </div>
@@ -45,7 +44,9 @@ function ComponentListRender({ items }: { items: Item[] }) {
             <tbody>
                 {items.map(item => (
                     <tr key={item.title}>
-                        <td><code>{item.title}</code></td>
+                        <td>
+                            <code>{item.title}</code>
+                        </td>
                         <td>{item.description}</td>
                     </tr>
                 ))}
