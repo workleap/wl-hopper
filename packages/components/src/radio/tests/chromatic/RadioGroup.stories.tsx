@@ -51,18 +51,24 @@ export const Vertical = {
             </Inline>
             <h1>Icons</h1>
             <RadioGroup {...props} description="Select one to continue">
-                <Radio value="developer"><SparklesIcon /><Text>Developer</Text></Radio>
+                <Radio value="developer">
+                    <SparklesIcon />
+                    <Text>Developer</Text>
+                </Radio>
                 <Radio value="designer">
                     <Text>Designer</Text>
                     <IconList>
-                        <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
                     </IconList>
                 </Radio>
                 <RadioField description="Team Manager">
                     <Radio value="manager">
                         <Text>Manager</Text>
                         <IconList>
-                            <SparklesIcon /><SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
                         </IconList>
                     </Radio>
                 </RadioField>
@@ -75,12 +81,24 @@ export const Vertical = {
             </RadioGroup>
             <h1>Invalid</h1>
             <Inline alignY="start">
-                <RadioGroup {...props} size="sm" isInvalid errorMessage="This field is required" defaultValue="developer">
+                <RadioGroup
+                    {...props}
+                    size="sm"
+                    isInvalid
+                    errorMessage="This field is required"
+                    defaultValue="developer"
+                >
                     <Radio value="developer">Developer</Radio>
                     <Radio value="designer">Designer</Radio>
                     <Radio value="manager">Manager</Radio>
                 </RadioGroup>
-                <RadioGroup {...props} size="md" isInvalid errorMessage="This field is required" defaultValue="developer">
+                <RadioGroup
+                    {...props}
+                    size="md"
+                    isInvalid
+                    errorMessage="This field is required"
+                    defaultValue="developer"
+                >
                     <Radio value="developer">Developer</Radio>
                     <Radio value="designer">Designer</Radio>
                     <Radio value="manager">Manager</Radio>

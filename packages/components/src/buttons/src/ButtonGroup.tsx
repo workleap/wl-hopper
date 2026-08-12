@@ -1,11 +1,17 @@
-import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    slot as slotFn,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import type { Orientation } from "react-aria";
 import { useContextProps } from "react-aria-components";
 
-import { ClearProviders, SlotProvider, cssModule, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type Align, type BaseComponentDOMProps, ClearProviders, SlotProvider, cssModule } from "../../utils/index.ts";
 import type { ButtonSize } from "../utils/index.ts";
 
 import { ButtonContext } from "./ButtonContext.ts";
@@ -16,9 +22,9 @@ import styles from "./ButtonGroup.module.css";
 
 export interface ButtonGroupProps extends StyledComponentProps<BaseComponentDOMProps> {
     /**
-   * The axis the ButtonGroup should align with.
-   * @default 'horizontal'
-   */
+     * The axis the ButtonGroup should align with.
+     * @default 'horizontal'
+     */
     orientation?: ResponsiveProp<Orientation>;
 
     /** Whether the Buttons in the ButtonGroup are all disabled. */
@@ -40,9 +46,9 @@ export interface ButtonGroupProps extends StyledComponentProps<BaseComponentDOMP
     wrap?: ResponsiveProp<boolean>;
 
     /**
-   * The alignment of the buttons within the ButtonGroup.
-   * @default 'start'
-   */
+     * The alignment of the buttons within the ButtonGroup.
+     * @default 'start'
+     */
     align?: ResponsiveProp<Align>;
 }
 
@@ -81,15 +87,7 @@ function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>)
     const classNames = clsx(
         className,
         GlobalButtonGroupCssSelector,
-        cssModule(
-            styles,
-            "hop-ButtonGroup",
-            size,
-            align,
-            isFluid && "fluid",
-            wrap && "wrap",
-            orientation
-        ),
+        cssModule(styles, "hop-ButtonGroup", size, align, isFluid && "fluid", wrap && "wrap", orientation),
         stylingProps.className
     );
 
@@ -107,18 +105,25 @@ function ButtonGroup(props: ButtonGroupProps, ref: ForwardedRef<HTMLDivElement>)
                 style={style}
                 slot={props.slot || undefined}
             >
-                <SlotProvider values={[
-                    [ButtonContext, {
-                        size,
-                        isDisabled,
-                        isFluid
-                    }],
-                    [LinkButtonContext, {
-                        size,
-                        isDisabled,
-                        isFluid
-                    }]
-                ]}
+                <SlotProvider
+                    values={[
+                        [
+                            ButtonContext,
+                            {
+                                size,
+                                isDisabled,
+                                isFluid
+                            }
+                        ],
+                        [
+                            LinkButtonContext,
+                            {
+                                size,
+                                isDisabled,
+                                isFluid
+                            }
+                        ]
+                    ]}
                 >
                     {children}
                 </SlotProvider>

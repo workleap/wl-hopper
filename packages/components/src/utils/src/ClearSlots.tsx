@@ -23,10 +23,7 @@ export interface ClearProvidersProps {
  * - You're trying to make a component that is a container for other components, and you don't want anything set above to affect your content.
  * - You're trying to specify a different slot provider inside
  */
-export function ClearProviders({
-    values,
-    children
-}: ClearProvidersProps) {
+export function ClearProviders({ values, children }: ClearProvidersProps) {
     // Similar implementation to SlotProvider
     if (!values || values.length === 0) {
         return children;
@@ -43,14 +40,5 @@ export function ClearProviders({
  *  Most of the time, you won't need to use this component. It's mostly useful for when you're trying to make a component that is a container for other components, and you don't want anything set above to affect your content.
  */
 export function ClearContainerSlots({ children }: PropsWithChildren) {
-    return (
-        <ClearProviders
-            values={[
-                RACTextContext,
-                TextContext
-            ]}
-        >
-            {children}
-        </ClearProviders>
-    );
+    return <ClearProviders values={[RACTextContext, TextContext]}>{children}</ClearProviders>;
 }

@@ -33,12 +33,12 @@ export function useButtonProps<T extends UseButtonProps>(props: T): T {
     });
 
     /**
-    * Determine final size with this priority:
-    *
-    * 1. Use the size from props if provided
-    * 2. Otherwise use size from form context if available
-    * 3. Fall back to "md" as the default size
-    */
+     * Determine final size with this priority:
+     *
+     * 1. Use the size from props if provided
+     * 2. Otherwise use size from form context if available
+     * 3. Fall back to "md" as the default size
+     */
     const size = useResponsiveValue(buttonSize ?? props.size) ?? "md";
 
     return {

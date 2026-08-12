@@ -1,13 +1,22 @@
-import { getRootCSSClasses, useColorSchemeContext, useResponsiveValue, useStyledSystem, useThemeContext, type ResponsiveProp, type StyledComponentProps, type StyledSystemProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    type StyledSystemProps,
+    getRootCSSClasses,
+    useColorSchemeContext,
+    useResponsiveValue,
+    useStyledSystem,
+    useThemeContext
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type ForwardedRef } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import type { Placement } from "react-aria";
 import {
-    composeRenderProps,
     Dialog,
     Popover as RACPopover,
-    useContextProps,
-    type PopoverProps as RACPopoverProps
+    type PopoverProps as RACPopoverProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext, LinkButtonContext } from "../../../buttons/index.ts";
@@ -15,7 +24,14 @@ import { ContentContext, FooterContext } from "../../../layout/index.ts";
 import { LinkContext } from "../../../link/index.ts";
 import { ListBoxContext } from "../../../list-box/index.ts";
 import { HeadingContext } from "../../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, isFunction, isNil, SlotProvider, type BaseComponentDOMProps } from "../../../utils/index.ts";
+import {
+    type BaseComponentDOMProps,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    isFunction,
+    isNil
+} from "../../../utils/index.ts";
 
 import { PopoverContext } from "./PopoverContext.ts";
 
@@ -80,18 +96,14 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
     const popoverClassNames = composeClassnameRenderProps(
         className,
         GlobalPopoverCssSelector,
-        cssModule(
-            styles,
-            "hop-Popover",
-            isNonDialog && "non-dialog"
-        ),
+        cssModule(styles, "hop-Popover", isNonDialog && "non-dialog"),
         getRootCSSClasses(colorScheme, theme),
         stylingProps.className
     );
 
-    const containerClassNames = isNonDialog ?
-        clsx(containerClassName, styles["hop-Popover__dropdown"], containerStylingProps.className) :
-        clsx(containerClassName, styles["hop-Popover__dialog"], containerStylingProps.className);
+    const containerClassNames = isNonDialog
+        ? clsx(containerClassName, styles["hop-Popover__dropdown"], containerStylingProps.className)
+        : clsx(containerClassName, styles["hop-Popover__dialog"], containerStylingProps.className);
 
     const style = composeRenderProps(styleProp, prev => {
         return {
@@ -119,7 +131,7 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
             {...otherProps}
         >
             {state => {
-                const content = (isFunction(children) && !isNil(children)) ? children(state) : children;
+                const content = isFunction(children) && !isNil(children) ? children(state) : children;
 
                 if (isNonDialog) {
                     return (
@@ -130,19 +142,29 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
                                 style={containerStyle}
                                 slot={slot || undefined}
                             >
-                                <SlotProvider values={[
-                                    [ListBoxContext, {
-                                        className: styles["hop-Popover__list-box"]
-                                    }],
-                                    [FooterContext, {
-                                        className: styles["hop-Popover__footer"]
-                                    }],
-                                    [LinkContext, {
-                                        size: "sm",
-                                        variant: "primary",
-                                        isQuiet: true
-                                    }]
-                                ]}
+                                <SlotProvider
+                                    values={[
+                                        [
+                                            ListBoxContext,
+                                            {
+                                                className: styles["hop-Popover__list-box"]
+                                            }
+                                        ],
+                                        [
+                                            FooterContext,
+                                            {
+                                                className: styles["hop-Popover__footer"]
+                                            }
+                                        ],
+                                        [
+                                            LinkContext,
+                                            {
+                                                size: "sm",
+                                                variant: "primary",
+                                                isQuiet: true
+                                            }
+                                        ]
+                                    ]}
                                 >
                                     {content}
                                 </SlotProvider>
@@ -153,37 +175,59 @@ function Popover(props: PopoverProps, ref: ForwardedRef<HTMLElement>) {
 
                 return (
                     <Dialog {...containerOtherProps} className={containerClassNames} style={containerStyle}>
-                        <SlotProvider values={[
-                            [HeadingContext, {
-                                slot: "title",
-                                className: styles["hop-Popover__title"],
-                                size: "unset"
-                            }],
-                            [ButtonContext, {
-                                size: "sm",
-                                className: styles["hop-Popover__action"]
-                            }],
-                            [LinkButtonContext, {
-                                size: "sm",
-                                className: styles["hop-Popover__action"]
-                            }],
-                            [ButtonGroupContext, {
-                                size: "sm",
-                                align: "end",
-                                className: styles["hop-Popover__actions"]
-                            }],
-                            [ContentContext, {
-                                className: styles["hop-Popover__content"]
-                            }],
-                            [FooterContext, {
-                                className: styles["hop-Popover__footer"]
-                            }],
-                            [LinkContext, {
-                                size: "sm",
-                                variant: "primary",
-                                isQuiet: true
-                            }]
-                        ]}
+                        <SlotProvider
+                            values={[
+                                [
+                                    HeadingContext,
+                                    {
+                                        slot: "title",
+                                        className: styles["hop-Popover__title"],
+                                        size: "unset"
+                                    }
+                                ],
+                                [
+                                    ButtonContext,
+                                    {
+                                        size: "sm",
+                                        className: styles["hop-Popover__action"]
+                                    }
+                                ],
+                                [
+                                    LinkButtonContext,
+                                    {
+                                        size: "sm",
+                                        className: styles["hop-Popover__action"]
+                                    }
+                                ],
+                                [
+                                    ButtonGroupContext,
+                                    {
+                                        size: "sm",
+                                        align: "end",
+                                        className: styles["hop-Popover__actions"]
+                                    }
+                                ],
+                                [
+                                    ContentContext,
+                                    {
+                                        className: styles["hop-Popover__content"]
+                                    }
+                                ],
+                                [
+                                    FooterContext,
+                                    {
+                                        className: styles["hop-Popover__footer"]
+                                    }
+                                ],
+                                [
+                                    LinkContext,
+                                    {
+                                        size: "sm",
+                                        variant: "primary",
+                                        isQuiet: true
+                                    }
+                                ]
+                            ]}
                         >
                             {content}
                         </SlotProvider>

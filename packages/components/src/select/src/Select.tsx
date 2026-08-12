@@ -1,8 +1,8 @@
 import { type ForwardedRef, type NamedExoticComponent } from "react";
 
-import { ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxSectionProps } from "../../list-box/index.ts";
+import { ListBoxItem, type ListBoxItemProps, ListBoxSection, type ListBoxSectionProps } from "../../list-box/index.ts";
 
-import { SelectInternal, type InternalSelectProps } from "./SelectInternal.tsx";
+import { type InternalSelectProps, SelectInternal } from "./SelectInternal.tsx";
 
 /**
  * Select components enable users to choose a single option from a collapsible list, optimizing space efficiency.

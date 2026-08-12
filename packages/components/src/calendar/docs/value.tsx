@@ -1,4 +1,4 @@
-import { Calendar, Inline, type DateValue } from "@hopper-ui/components";
+import { Calendar, type DateValue, Inline } from "@hopper-ui/components";
 import { parseDate } from "@internationalized/date";
 import { useState } from "react";
 
@@ -7,15 +7,8 @@ export default function Example() {
 
     return (
         <Inline>
-            <Calendar
-                aria-label="Date (uncontrolled)"
-                defaultValue={parseDate("2020-02-03")}
-            />
-            <Calendar
-                aria-label="Date (controlled)"
-                value={value}
-                onChange={setValue}
-            />
+            <Calendar aria-label="Date (uncontrolled)" defaultValue={parseDate("2020-02-03")} />
+            <Calendar aria-label="Date (controlled)" value={value} onChange={setValue} />
         </Inline>
     );
 }

@@ -4,9 +4,9 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useCallback, useRef } from "react";
 import {
     type Key,
-    type TabsProps as RACTabsProps,
     Provider,
     Tabs as RACTabs,
+    type TabsProps as RACTabsProps,
     useContextProps
 } from "react-aria-components";
 
@@ -16,7 +16,10 @@ import { InternalTabsContext, TabsContext } from "./TabsContext.ts";
 
 export const GlobalTabsCssSelector = "hop-Tabs";
 
-export interface TabsProps extends Omit<RACTabsProps, "id" | "children" | "style" | "className" | "orientation">, StyledComponentProps<BaseComponentDOMProps> {
+export interface TabsProps
+    extends
+        Omit<RACTabsProps, "id" | "children" | "style" | "className" | "orientation">,
+        StyledComponentProps<BaseComponentDOMProps> {
     /**
      * The variant of the tabs.
      * @default "standalone"
@@ -50,27 +53,31 @@ function Tabs(props: TabsProps, ref: ForwardedRef<HTMLDivElement>) {
         ...otherProps
     } = ownProps;
 
-    const [value, setValue] = useControlledState(props.selectedKey, props.defaultSelectedKey ?? null!, props.onSelectionChange);
+    const [value, setValue] = useControlledState(
+        props.selectedKey,
+        props.defaultSelectedKey ?? null!,
+        props.onSelectionChange
+    );
 
     const tablistRef = useRef<HTMLDivElement | null>(null);
     const prevRef = useRef<DOMRect | null>(null);
 
-    const onChange = useCallback((val: Key) => {
-        if (tablistRef.current) {
-            prevRef.current = tablistRef.current.querySelector("[role=tab][data-selected=true]")?.getBoundingClientRect() ?? null;
-        }
-        setValue(val);
-    }, [setValue]);
+    const onChange = useCallback(
+        (val: Key) => {
+            if (tablistRef.current) {
+                prevRef.current =
+                    tablistRef.current.querySelector("[role=tab][data-selected=true]")?.getBoundingClientRect() ?? null;
+            }
+            setValue(val);
+        },
+        [setValue]
+    );
 
     if (!props["aria-label"] && !props["aria-labelledby"]) {
         console.warn("An aria-label or aria-labelledby prop is required on Tabs for accessibility.");
     }
 
-    const classNames = clsx(
-        GlobalTabsCssSelector,
-        stylingProps.className,
-        className
-    );
+    const classNames = clsx(GlobalTabsCssSelector, stylingProps.className, className);
 
     const mergedStyles: CSSProperties = {
         ...style,
@@ -90,19 +97,22 @@ function Tabs(props: TabsProps, ref: ForwardedRef<HTMLDivElement>) {
         >
             <Provider
                 values={[
-                    [InternalTabsContext, {
-                        variant,
-                        size,
-                        selectedKey: value,
-                        isFluid,
-                        isDisabled,
-                        disabledKeys,
-                        "aria-label": props["aria-label"],
-                        "aria-labelledby": props["aria-labelledby"],
-                        tablistRef,
-                        prevRef,
-                        onSelectionChange: onChange
-                    }]
+                    [
+                        InternalTabsContext,
+                        {
+                            variant,
+                            size,
+                            selectedKey: value,
+                            isFluid,
+                            isDisabled,
+                            disabledKeys,
+                            "aria-label": props["aria-label"],
+                            "aria-labelledby": props["aria-labelledby"],
+                            tablistRef,
+                            prevRef,
+                            onSelectionChange: onChange
+                        }
+                    ]
                 ]}
             >
                 {children}

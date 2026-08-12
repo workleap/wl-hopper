@@ -1,7 +1,5 @@
 import { Switch } from "@hopper-ui/components";
 
 export default function Example() {
-    return (
-        <Switch>Save</Switch>
-    );
+    return <Switch>Save</Switch>;
 }

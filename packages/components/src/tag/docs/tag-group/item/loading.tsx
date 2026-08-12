@@ -1,4 +1,4 @@
-import { Tag, TagGroup, type Selection } from "@hopper-ui/components";
+import { type Selection, Tag, TagGroup } from "@hopper-ui/components";
 
 export default function Example() {
     return (
@@ -8,7 +8,9 @@ export default function Example() {
                 alert(`Remove: ${[...ids]}`);
             }}
         >
-            <Tag id="manager" isLoading>Manager</Tag>
+            <Tag id="manager" isLoading>
+                Manager
+            </Tag>
             <Tag id="developer">Developer</Tag>
             <Tag id="designer">Designer</Tag>
         </TagGroup>

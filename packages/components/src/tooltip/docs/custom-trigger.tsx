@@ -6,12 +6,7 @@ const CustomTrigger = forwardRef<HTMLButtonElement>((props, ref) => {
     const { isOpen } = useContext(TooltipTriggerContext);
 
     return (
-        <Button
-            {...props}
-            aria-label="Frog"
-            ref={ref}
-            variant={isOpen ? "primary" : "secondary"}
-        >
+        <Button {...props} aria-label="Frog" ref={ref} variant={isOpen ? "primary" : "secondary"}>
             <SparklesIcon />
         </Button>
     );

@@ -7,18 +7,14 @@ import { TextFieldContext } from "../../src/TextFieldContext.ts";
 
 describe("TextField", () => {
     it("should render with default class", () => {
-        render(
-            <TextField data-testid="field" label="Label" />
-        );
+        render(<TextField data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-TextField");
     });
 
     it("should support custom class", () => {
-        render(
-            <TextField className="test" data-testid="field" label="Label" />
-        );
+        render(<TextField className="test" data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-TextField");
@@ -26,18 +22,14 @@ describe("TextField", () => {
     });
 
     it("should support custom style", () => {
-        render(
-            <TextField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />
-        );
+        render(<TextField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(
-            <TextField data-testid="field" data-foo="bar" label="Label" />
-        );
+        render(<TextField data-testid="field" data-foo="bar" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -58,9 +50,7 @@ describe("TextField", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(
-            <TextField ref={ref} data-testid="field" label="Label" />
-        );
+        render(<TextField ref={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -68,9 +58,7 @@ describe("TextField", () => {
 
     it("should support input refs", () => {
         const ref = createRef<HTMLInputElement>();
-        render(
-            <TextField inputRef={ref} data-testid="field" label="Label" />
-        );
+        render(<TextField inputRef={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).toBe(screen.getByRole("textbox"));
         expect(ref.current instanceof HTMLInputElement).toBeTruthy();
@@ -91,9 +79,7 @@ describe("TextField", () => {
     });
 
     it("should only show clear button when the field contains text", () => {
-        render(
-            <TextField isClearable label="Label" />
-        );
+        render(<TextField isClearable label="Label" />);
 
         const clearButton = screen.queryByRole("button");
         expect(clearButton).toBe(null);
@@ -117,9 +103,7 @@ describe("TextField", () => {
         const maxLength = 20;
         const expectedResult = maxLength - defaultValue.length;
 
-        render(
-            <TextField defaultValue={defaultValue} showCharacterCount maxLength={maxLength} label="Label" />
-        );
+        render(<TextField defaultValue={defaultValue} showCharacterCount maxLength={maxLength} label="Label" />);
 
         const characterCount = screen.queryByText(expectedResult.toString());
         expect(characterCount).toBeInTheDocument();
@@ -141,9 +125,7 @@ describe("TextField", () => {
         const maxLength = 20;
         const expectedResult = maxLength - defaultValue.length;
 
-        render(
-            <TextField defaultValue={defaultValue} showCharacterCount maxLength={maxLength} label="Label" />
-        );
+        render(<TextField defaultValue={defaultValue} showCharacterCount maxLength={maxLength} label="Label" />);
 
         const characterCount = screen.queryByText(expectedResult.toString());
         expect(characterCount).toBeInTheDocument();

@@ -1,4 +1,4 @@
-import { createContext, type Context } from "react";
+import { type Context, createContext } from "react";
 import type { ContextValue } from "react-aria-components";
 
 import type { ButtonProps } from "./Button.tsx";
@@ -11,7 +11,7 @@ export interface ButtonContextValue extends Partial<ButtonProps> {
     clearContexts?: Context<any>[];
     /**
      * Whether the button is hidden or not.
-    */
+     */
     isHidden?: boolean;
 }
 

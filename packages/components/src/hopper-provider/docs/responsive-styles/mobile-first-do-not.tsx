@@ -1,4 +1,3 @@
-
 import { Div, Text } from "@hopper-ui/components";
 
 export default function Example() {

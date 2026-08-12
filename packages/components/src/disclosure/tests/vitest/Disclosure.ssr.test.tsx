@@ -11,12 +11,8 @@ describe("Disclosure", () => {
         const renderOnServer = () =>
             renderToString(
                 <Disclosure>
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             );
 

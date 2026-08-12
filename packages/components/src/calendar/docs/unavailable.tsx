@@ -1,4 +1,4 @@
-import { Calendar, useLocale, type DateValue } from "@hopper-ui/components";
+import { Calendar, type DateValue, useLocale } from "@hopper-ui/components";
 import { getLocalTimeZone, isWeekend, today } from "@internationalized/date";
 
 export default function Example() {
@@ -15,6 +15,10 @@ export default function Example() {
         disabledRanges.some(interval => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0);
 
     return (
-        <Calendar aria-label="Appointment date" minValue={today(getLocalTimeZone())} isDateUnavailable={getIsDateUnavailable} />
+        <Calendar
+            aria-label="Appointment date"
+            minValue={today(getLocalTimeZone())}
+            isDateUnavailable={getIsDateUnavailable}
+        />
     );
 }

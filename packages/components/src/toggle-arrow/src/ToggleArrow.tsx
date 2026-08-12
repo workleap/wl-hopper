@@ -1,10 +1,10 @@
 import { AngleDownIcon } from "@hopper-ui/icons";
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type ForwardedRef } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { ToggleArrowContext } from "./ToggleArrowContext.ts";
 
@@ -22,19 +22,11 @@ export interface ToggleArrowProps extends Omit<StyledComponentProps<BaseComponen
 function ToggleArrow(props: ToggleArrowProps, ref: ForwardedRef<SVGSVGElement>) {
     [props, ref] = useContextProps(props, ref, ToggleArrowContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        isExpanded,
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, isExpanded, style: styleProp, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalToggleArrowCssSelector,
-        cssModule(
-            styles,
-            "hop-ToggleArrow"
-        ),
+        cssModule(styles, "hop-ToggleArrow"),
         stylingProps.className,
         className
     );

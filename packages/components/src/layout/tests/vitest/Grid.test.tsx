@@ -7,11 +7,7 @@ const TestId = "TestId";
 
 const SimpleGrid = forwardRef<HTMLDivElement, Omit<GridProps, "children">>((props, ref) => {
     return (
-        <Grid
-            data-testid={TestId}
-            {...props}
-            ref={ref}
-        >
+        <Grid data-testid={TestId} {...props} ref={ref}>
             <div>Alpha</div>
             <div>Bravo</div>
             <div>Charlie</div>

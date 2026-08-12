@@ -1,4 +1,4 @@
-import { Tag, TagGroup, type Selection } from "@hopper-ui/components";
+import { type Selection, Tag, TagGroup } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {
@@ -8,7 +8,7 @@ export default function Example() {
         if (newSelectedKeys === "all") {
             setSelectedKeys(["designer", "developer", "manager"]);
         } else {
-            setSelectedKeys([...Array.from(newSelectedKeys).map(x => x.toString())]);
+            setSelectedKeys(Array.from(newSelectedKeys).map(x => x.toString()));
         }
     };
 

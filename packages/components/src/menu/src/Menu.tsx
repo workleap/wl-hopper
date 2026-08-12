@@ -1,17 +1,13 @@
-import { useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type ResponsiveProp, type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, type CSSProperties, type ForwardedRef, type NamedExoticComponent } from "react";
+import { type CSSProperties, type ForwardedRef, type NamedExoticComponent, forwardRef, useContext } from "react";
 import type { Placement } from "react-aria";
-import {
-    Menu as RACMenu,
-    useContextProps,
-    type MenuProps as RACMenuProps
-} from "react-aria-components";
+import { Menu as RACMenu, type MenuProps as RACMenuProps, useContextProps } from "react-aria-components";
 
 import { DividerContext } from "../../divider/index.ts";
 import { HeaderContext } from "../../header/index.ts";
 import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { InternalMenuContext, MenuContext } from "./MenuContext.ts";
 import type { MenuItemSize } from "./MenuItem.tsx";
@@ -48,23 +44,12 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
         initialPlacement = "end top";
     }
 
-    const {
-        className,
-        style,
-        children,
-        popoverProps,
-        slot,
-        size,
-        ...otherProps
-    } = ownProps;
+    const { className, style, children, popoverProps, slot, size, ...otherProps } = ownProps;
 
     const classNames = clsx(
         className,
         GlobalMenuCssSelector,
-        cssModule(
-            styles,
-            GlobalMenuCssSelector
-        ),
+        cssModule(styles, GlobalMenuCssSelector),
         stylingProps.className
     );
 
@@ -77,27 +62,31 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
         <InternalMenuContext.Provider value={{ isSubmenu: true }}>
             <SlotProvider
                 values={[
-                    [HeaderContext, {
-                        className: styles["hop-Menu__header"]
-                    }],
-                    [DividerContext, {
-                        className: styles["hop-Menu__divider"]
-                    }],
-                    [MenuItemContext, {
-                        size,
+                    [
+                        HeaderContext,
+                        {
+                            className: styles["hop-Menu__header"]
+                        }
+                    ],
+                    [
+                        DividerContext,
+                        {
+                            className: styles["hop-Menu__divider"]
+                        }
+                    ],
+                    [
+                        MenuItemContext,
+                        {
+                            size,
 
-                        // The MenuTrigger doesn't expose shouldCloseOnSelect. They will implement it in the future, but for now we need to use it and forward it to the items directly.
-                        // https://github.com/adobe/react-spectrum/issues/8208
-                        shouldCloseOnSelect
-                    }]
+                            // The MenuTrigger doesn't expose shouldCloseOnSelect. They will implement it in the future, but for now we need to use it and forward it to the items directly.
+                            // https://github.com/adobe/react-spectrum/issues/8208
+                            shouldCloseOnSelect
+                        }
+                    ]
                 ]}
             >
-                <RACMenu
-                    slot={slot}
-                    className={classNames}
-                    style={mergedStyles}
-                    {...otherProps}
-                >
+                <RACMenu slot={slot} className={classNames} style={mergedStyles} {...otherProps}>
                     {children}
                 </RACMenu>
             </SlotProvider>
@@ -133,8 +122,9 @@ function Menu<T extends object>(props: MenuProps<T>, ref: ForwardedRef<HTMLDivEl
  *
  * [View Documentation](https://hopper.workleap.design/components/Menu)
  */
-const _Menu = forwardRef(Menu) as <T extends object>(props: MenuProps<T> & { ref?: ForwardedRef<HTMLDivElement> }) => ReturnType<typeof Menu>;
+const _Menu = forwardRef(Menu) as <T extends object>(
+    props: MenuProps<T> & { ref?: ForwardedRef<HTMLDivElement> }
+) => ReturnType<typeof Menu>;
 (_Menu as NamedExoticComponent).displayName = "Menu";
 
 export { _Menu as Menu };
-

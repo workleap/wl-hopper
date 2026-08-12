@@ -1,11 +1,22 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { Children, cloneElement, forwardRef, type CSSProperties, type ForwardedRef, type ReactElement } from "react";
+import { type CSSProperties, Children, type ForwardedRef, type ReactElement, cloneElement, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { Tooltip, TooltipTrigger } from "../../tooltip/index.ts";
 import { Text } from "../../typography/index.ts";
-import { cssModule, SlotProvider, type AccessibleSlotProps, type Align, type BaseComponentDOMProps } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    type Align,
+    type BaseComponentDOMProps,
+    SlotProvider,
+    cssModule
+} from "../../utils/index.ts";
 
 import type { AnonymousAvatarProps } from "./AnonymousAvatar.tsx";
 import type { AvatarProps, AvatarSize } from "./Avatar.tsx";
@@ -79,13 +90,7 @@ function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>)
 
     const classNames = clsx(
         GlobalAvatarGroupCssSelector,
-        cssModule(
-            styles,
-            GlobalAvatarGroupCssSelector,
-            size,
-            wrap && "wrap",
-            align
-        ),
+        cssModule(styles, GlobalAvatarGroupCssSelector, size, wrap && "wrap", align),
         stylingProps.className,
         className
     );
@@ -123,13 +128,18 @@ function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>)
         const uniqueKey = avatar.key ?? `${name}-${index}-${size}`;
 
         return (
-            <SlotProvider key={uniqueKey} values={[[AvatarContext, { size, className: styles["hop-AvatarGroup__avatar"] }]]}>
+            <SlotProvider
+                key={uniqueKey}
+                values={[[AvatarContext, { size, className: styles["hop-AvatarGroup__avatar"] }]]}
+            >
                 <TooltipTrigger>
                     {cloneElement(avatar, { ...avatar.props })}
                     <Tooltip>
                         <div className={styles["hop-AvatarGroup__tooltipContent"]}>
                             <Text>{name}</Text>
-                            {description && <Text className={styles["hop-AvatarGroup__description"]}>{description}</Text>}
+                            {description && (
+                                <Text className={styles["hop-AvatarGroup__description"]}>{description}</Text>
+                            )}
                         </div>
                     </Tooltip>
                 </TooltipTrigger>
@@ -159,11 +169,19 @@ function AvatarGroup(props: AvatarGroupProps, ref: ForwardedRef<HTMLDivElement>)
                                 const description = getAvatarDescription(avatar);
 
                                 return (
-                                    <div role="button" className={styles["hop-AvatarGroup__hiddenAvatar"]} key={uniqueKey}>
+                                    <div
+                                        role="button"
+                                        className={styles["hop-AvatarGroup__hiddenAvatar"]}
+                                        key={uniqueKey}
+                                    >
                                         {avatar}
                                         <div className={styles["hop-AvatarGroup__hiddenAvatarText"]}>
                                             <Text>{name}</Text>
-                                            {description && <Text className={styles["hop-AvatarGroup__description"]}>{description}</Text>}
+                                            {description && (
+                                                <Text className={styles["hop-AvatarGroup__description"]}>
+                                                    {description}
+                                                </Text>
+                                            )}
                                         </div>
                                     </div>
                                 );

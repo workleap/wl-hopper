@@ -6,9 +6,7 @@ export default function Example() {
             <Button variant="secondary">Open</Button>
             <Alert primaryButtonDisabled primaryButtonLabel="Leap ahead!" secondaryButtonLabel="Leap back">
                 <Heading>Ribbit Reminder!</Heading>
-                <Content>
-                    Your changes have been saved—no need to leap again. Hop along, hero!
-                </Content>
+                <Content>Your changes have been saved—no need to leap again. Hop along, hero!</Content>
             </Alert>
         </AlertTrigger>
     );

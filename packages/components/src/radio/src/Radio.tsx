@@ -41,24 +41,14 @@ export interface RadioProps extends StyledComponentProps<RACRadioProps> {
 function Radio(props: RadioProps, ref: ForwardedRef<HTMLLabelElement>) {
     [props, ref] = useContextProps(props, ref, RadioContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children: childrenProp,
-        size: sizeProp = "md",
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, children: childrenProp, size: sizeProp = "md", style: styleProp, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalRadioCssSelector,
-        cssModule(
-            styles,
-            "hop-Radio",
-            size
-        ),
+        cssModule(styles, "hop-Radio", size),
         stylingProps.className
     );
 
@@ -74,12 +64,7 @@ function Radio(props: RadioProps, ref: ForwardedRef<HTMLLabelElement>) {
     });
 
     return (
-        <RACRadio
-            ref={ref}
-            className={classNames}
-            style={style}
-            {...otherProps}
-        >
+        <RACRadio ref={ref} className={classNames} style={style} {...otherProps}>
             {radioProps => {
                 const radioIconClassName = styles["hop-Radio__bullet"];
 
@@ -91,18 +76,27 @@ function Radio(props: RadioProps, ref: ForwardedRef<HTMLLabelElement>) {
                         <ClearContainerSlots>
                             <SlotProvider
                                 values={[
-                                    [TextContext, {
-                                        className: styles["hop-Radio__text"],
-                                        size: size
-                                    }],
-                                    [IconListContext, {
-                                        className: styles["hop-Radio__icon-list"],
-                                        size: size
-                                    }],
-                                    [IconContext, {
-                                        className: styles["hop-Radio__icon"],
-                                        size: size
-                                    }]
+                                    [
+                                        TextContext,
+                                        {
+                                            className: styles["hop-Radio__text"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconListContext,
+                                        {
+                                            className: styles["hop-Radio__icon-list"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconContext,
+                                        {
+                                            className: styles["hop-Radio__icon"],
+                                            size
+                                        }
+                                    ]
                                 ]}
                             >
                                 {children(radioProps)}

@@ -1,11 +1,4 @@
-import {
-    CloseButton,
-    Content,
-    CustomModal,
-    Div,
-    Heading,
-    Text
-} from "@hopper-ui/components";
+import { CloseButton, Content, CustomModal, Div, Heading, Text } from "@hopper-ui/components";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
@@ -43,9 +36,14 @@ export const Default = {
     render: args => (
         <CustomModal {...args}>
             <CloseButton position="absolute" top="24px" right="24px" />
-            <Heading slot="title" paddingBottom="inset-lg">Fascinating Frog Facts!</Heading>
+            <Heading slot="title" paddingBottom="inset-lg">
+                Fascinating Frog Facts!
+            </Heading>
             <Content>
-                <Text>Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
+                <Text>
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                </Text>
             </Content>
         </CustomModal>
     )

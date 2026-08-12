@@ -94,7 +94,15 @@ export const Sections = {
 
 export const Footer = {
     render: args => (
-        <MultiSelect {...args} footer={<Button variant="ghost-secondary" isFluid><AddIcon /><Text>Add</Text></Button>}>
+        <MultiSelect
+            {...args}
+            footer={
+                <Button variant="ghost-secondary" isFluid>
+                    <AddIcon />
+                    <Text>Add</Text>
+                </Button>
+            }
+        >
             <MultiSelectSection>
                 <Header>Cats</Header>
                 <MultiSelectItem id="1">Zoomy</MultiSelectItem>
@@ -531,30 +539,18 @@ const StateTemplate = (args: Partial<MultiSelectProps<object>>) => (
                 <MultiSelectItem id="cat">Cat</MultiSelectItem>
                 <MultiSelectItem id="frog">Frog</MultiSelectItem>
             </MultiSelect>
-            <MultiSelect
-                {...args}
-                size="md"
-                label="Medium"
-            >
+            <MultiSelect {...args} size="md" label="Medium">
                 <MultiSelectItem id="dog">Dog</MultiSelectItem>
                 <MultiSelectItem id="cat">Cat</MultiSelectItem>
                 <MultiSelectItem id="frog">Frog</MultiSelectItem>
             </MultiSelect>
         </Inline>
-        <MultiSelect
-            {...args}
-            isDisabled
-            label="Disabled"
-        >
+        <MultiSelect {...args} isDisabled label="Disabled">
             <MultiSelectItem id="dog">Dog</MultiSelectItem>
             <MultiSelectItem id="cat">Cat</MultiSelectItem>
             <MultiSelectItem id="frog">Frog</MultiSelectItem>
         </MultiSelect>
-        <MultiSelect
-            {...args}
-            isInvalid
-            label="Invalid"
-        >
+        <MultiSelect {...args} isInvalid label="Invalid">
             <MultiSelectItem id="dog">Dog</MultiSelectItem>
             <MultiSelectItem id="cat">Cat</MultiSelectItem>
             <MultiSelectItem id="frog">Frog</MultiSelectItem>
@@ -640,32 +636,17 @@ export const Zoom = {
 export const Styling = {
     render: args => (
         <Inline>
-            <MultiSelect
-                {...args}
-                triggerProps={
-                    { border: "warning" }
-                }
-            >
+            <MultiSelect {...args} triggerProps={{ border: "warning" }}>
                 <MultiSelectItem id="1">Zoomy</MultiSelectItem>
                 <MultiSelectItem id="2">Voodoo</MultiSelectItem>
                 <MultiSelectItem id="3">Dusty</MultiSelectItem>
             </MultiSelect>
-            <MultiSelect
-                {...args}
-                triggerProps={
-                    { className: "border-red" }
-                }
-            >
+            <MultiSelect {...args} triggerProps={{ className: "border-red" }}>
                 <MultiSelectItem id="1">Zoomy</MultiSelectItem>
                 <MultiSelectItem id="2">Voodoo</MultiSelectItem>
                 <MultiSelectItem id="3">Dusty</MultiSelectItem>
             </MultiSelect>
-            <MultiSelect
-                {...args}
-                triggerProps={
-                    { style: { border: "1px solid red" } }
-                }
-            >
+            <MultiSelect {...args} triggerProps={{ style: { border: "1px solid red" } }}>
                 <MultiSelectItem id="1">Zoomy</MultiSelectItem>
                 <MultiSelectItem id="2">Voodoo</MultiSelectItem>
                 <MultiSelectItem id="3">Dusty</MultiSelectItem>
@@ -729,13 +710,12 @@ const ANIMALS = [
 export const SearchableMultiSelect = {
     render: args => {
         return (
-            <MultiSelect
-                {...args}
-                items={ANIMALS}
-                isFilterable
-                searchFieldProps={{ placeholder: "Search animals…" }}
-            >
-                {item => <MultiSelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</MultiSelectItem>}
+            <MultiSelect {...args} items={ANIMALS} isFilterable searchFieldProps={{ placeholder: "Search animals…" }}>
+                {item => (
+                    <MultiSelectItem id={(item as (typeof ANIMALS)[0]).id}>
+                        {(item as (typeof ANIMALS)[0]).name}
+                    </MultiSelectItem>
+                )}
             </MultiSelect>
         );
     },

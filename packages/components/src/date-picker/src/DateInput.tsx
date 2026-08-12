@@ -1,10 +1,15 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import {
     DateInput as AriaDateInput,
-    DateSegment,
-    type DateInputProps as AriaDateInputProps
+    type DateInputProps as AriaDateInputProps,
+    DateSegment
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -13,8 +18,7 @@ import styles from "./DateInput.module.css";
 
 export const GlobalDateInputCssSelector = "hop-DateInput";
 
-export interface DateInputProps extends
-    StyledComponentProps<Omit<AriaDateInputProps, "children">> {
+export interface DateInputProps extends StyledComponentProps<Omit<AriaDateInputProps, "children">> {
     /**
      * The size of the input.
      * @default "md"
@@ -29,24 +33,13 @@ export interface DateInputProps extends
 
 const DateInput = (props: DateInputProps, ref: ForwardedRef<HTMLDivElement>) => {
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        size: sizeProp,
-        style,
-        className,
-        isDisabled,
-        ...otherProps
-    } = ownProps;
+    const { size: sizeProp, style, className, isDisabled, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = clsx(
         GlobalDateInputCssSelector,
-        cssModule(
-            styles,
-            GlobalDateInputCssSelector,
-            size,
-            isDisabled && "disabled"
-        ),
+        cssModule(styles, GlobalDateInputCssSelector, size, isDisabled && "disabled"),
         stylingProps.className,
         className
     );
@@ -58,15 +51,7 @@ const DateInput = (props: DateInputProps, ref: ForwardedRef<HTMLDivElement>) => 
 
     return (
         <AriaDateInput {...otherProps} ref={ref} className={classNames} style={mergedStyles}>
-            {segment => (
-                <DateSegment
-                    className={cssModule(
-                        styles,
-                        "hop-DateSegment"
-                    )}
-                    segment={segment}
-                />
-            )}
+            {segment => <DateSegment className={cssModule(styles, "hop-DateSegment")} segment={segment} />}
         </AriaDateInput>
     );
 };

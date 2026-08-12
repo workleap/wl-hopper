@@ -37,9 +37,7 @@ export const Default: Story = {
 };
 
 export const WithContextualHelp: Story = {
-    render: args => (
-        <PasswordField {...args} />
-    ),
+    render: args => <PasswordField {...args} />,
     decorators: [
         Story => (
             // Important for chromatic
@@ -49,7 +47,7 @@ export const WithContextualHelp: Story = {
         )
     ],
     args: {
-        "label": "Label",
+        label: "Label",
         contextualHelp: <ContextualHelp isOpen>Contextual help for the PasswordField</ContextualHelp>
     }
 };

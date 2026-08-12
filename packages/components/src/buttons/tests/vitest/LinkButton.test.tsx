@@ -1,7 +1,7 @@
 import { act, render, screen, waitFor } from "@hopper-ui/test-utils";
 import { userEvent } from "@testing-library/user-event";
-import { createRef, type PropsWithChildren } from "react";
-import { createMemoryRouter, RouterProvider, useNavigate } from "react-router-dom";
+import { type PropsWithChildren, createRef } from "react";
+import { RouterProvider, createMemoryRouter, useNavigate } from "react-router-dom";
 
 import { HopperProvider } from "../../../hopper-provider/index.ts";
 import { LinkButton } from "../../src/LinkButton.tsx";
@@ -34,7 +34,11 @@ describe("LinkButton", () => {
     });
 
     it("should support custom style", () => {
-        render(<LinkButton marginTop="stack-sm" style={{ marginBottom: "13px" }}>Cutoff</LinkButton>);
+        render(
+            <LinkButton marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Cutoff
+            </LinkButton>
+        );
 
         const element = screen.getByRole("link");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -61,7 +65,11 @@ describe("LinkButton", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLAnchorElement>();
-        render(<LinkButton href="https://www.google.com" ref={ref}>Cutoff</LinkButton>);
+        render(
+            <LinkButton href="https://www.google.com" ref={ref}>
+                Cutoff
+            </LinkButton>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLAnchorElement).toBeTruthy();
@@ -87,7 +95,11 @@ describe("LinkButton", () => {
         const handler = vi.fn();
         const user = userEvent.setup();
 
-        render(<HopperProvider colorScheme="light" navigate={handler}><LinkButton href="/123">Go</LinkButton></HopperProvider>);
+        render(
+            <HopperProvider colorScheme="light" navigate={handler}>
+                <LinkButton href="/123">Go</LinkButton>
+            </HopperProvider>
+        );
 
         const element = screen.getByRole("link");
 
@@ -97,23 +109,27 @@ describe("LinkButton", () => {
     });
 
     it("should call the navigate function when the href prop is provided and the provider has been set with react-router-dom's navigate function", async () => {
-        const router = createMemoryRouter([{
-            path: "/123",
-            element: <div>test page</div>
-        }, {
-            path: "*",
-            element: (
-                <WithReactRouterProvider >
-                    <LinkButton href="/123">Go</LinkButton>
-                </WithReactRouterProvider>
-            )
-        }], {
-            initialEntries: ["/"]
-        });
-
-        render(
-            <RouterProvider router={router} />
+        const router = createMemoryRouter(
+            [
+                {
+                    path: "/123",
+                    element: <div>test page</div>
+                },
+                {
+                    path: "*",
+                    element: (
+                        <WithReactRouterProvider>
+                            <LinkButton href="/123">Go</LinkButton>
+                        </WithReactRouterProvider>
+                    )
+                }
+            ],
+            {
+                initialEntries: ["/"]
+            }
         );
+
+        render(<RouterProvider router={router} />);
 
         const element = screen.getByRole("link");
         await userEvent.click(element);
@@ -125,7 +141,11 @@ describe("LinkButton", () => {
     it("should be focused on render when the focus api is called", async () => {
         const ref = createRef<HTMLAnchorElement>();
 
-        render(<LinkButton href="https://www.google.com" ref={ref}>Cutoff</LinkButton>);
+        render(
+            <LinkButton href="https://www.google.com" ref={ref}>
+                Cutoff
+            </LinkButton>
+        );
 
         act(() => {
             ref.current?.focus();

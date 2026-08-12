@@ -1,6 +1,7 @@
 import { useStyledSystem } from "@hopper-ui/components";
 import type { StyledComponentProps } from "@hopper-ui/styled-system";
-import { Button as RACButton, ButtonProps as RACButtonProps } from "react-aria-components";
+import type { ButtonProps as RACButtonProps } from "react-aria-components";
+import { Button as RACButton } from "react-aria-components";
 
 interface MyCustomButtonProps extends StyledComponentProps<RACButtonProps> {
     // your custom props here
@@ -21,11 +22,5 @@ function MyCustomButton(props: MyCustomButtonProps) {
 }
 
 export default function Example() {
-    return (
-        <MyCustomButton
-            paddingY="inset-md"
-        >
-            My Styled Button
-        </MyCustomButton>
-    );
+    return <MyCustomButton paddingY="inset-md">My Styled Button</MyCustomButton>;
 }

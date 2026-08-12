@@ -6,12 +6,8 @@ export default function Example() {
             <Tag id="designer" isInvalid>
                 Designer
             </Tag>
-            <Tag id="developer">
-                Developer
-            </Tag>
-            <Tag id="manager">
-                Manager
-            </Tag>
+            <Tag id="developer">Developer</Tag>
+            <Tag id="manager">Manager</Tag>
         </TagGroup>
     );
 }

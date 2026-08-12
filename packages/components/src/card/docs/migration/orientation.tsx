@@ -4,8 +4,22 @@ import planet from "./assets/planet.png";
 
 export default function Example() {
     return (
-        <Card UNSAFE_maxWidth="30rem" width="100%" display="grid" gridTemplateAreas={["image aside"]} gridTemplateColumns={["max-content", "auto"]} alignItems="start" overflow="hidden" >
-            <Flex height="100%" backgroundColor="primary-weak" alignItems="center" justifyContent="center" padding="inset-md">
+        <Card
+            UNSAFE_maxWidth="30rem"
+            width="100%"
+            display="grid"
+            gridTemplateAreas={["image aside"]}
+            gridTemplateColumns={["max-content", "auto"]}
+            alignItems="start"
+            overflow="hidden"
+        >
+            <Flex
+                height="100%"
+                backgroundColor="primary-weak"
+                alignItems="center"
+                justifyContent="center"
+                padding="inset-md"
+            >
                 <Image src={planet.src} alt="Planet" />
             </Flex>
             <Stack padding="inset-lg">

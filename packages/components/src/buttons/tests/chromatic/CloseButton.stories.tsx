@@ -14,9 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: args => {
-        return (
-            <CloseButton {...args} />
-        );
+        return <CloseButton {...args} />;
     }
 } satisfies Story;
 

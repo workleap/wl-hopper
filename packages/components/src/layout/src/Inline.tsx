@@ -1,4 +1,4 @@
-import { forwardRef, type Ref } from "react";
+import { type Ref, forwardRef } from "react";
 
 import { Flex, type FlexProps } from "./Flex.tsx";
 
@@ -20,14 +20,7 @@ export interface InlineProps extends Omit<FlexProps, "direction" | "alignItems" 
 }
 
 function Inline(props: InlineProps, ref: Ref<HTMLDivElement>) {
-    const {
-        alignX,
-        alignY = "center",
-        gap = "inline-md",
-        wrap = true,
-        reverse,
-        ...rest
-    } = props;
+    const { alignX, alignY = "center", gap = "inline-md", wrap = true, reverse, ...rest } = props;
 
     return (
         <Flex

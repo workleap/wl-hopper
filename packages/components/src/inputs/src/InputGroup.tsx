@@ -4,12 +4,12 @@ import {
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
-import { type ForwardedRef, forwardRef, type PointerEvent, useContext } from "react";
+import { type ForwardedRef, type PointerEvent, forwardRef, useContext } from "react";
 import {
-    composeRenderProps,
     FieldErrorContext as RACFieldErrorContext,
     Group as RACGroup,
     type GroupProps as RACGroupProps,
+    composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
@@ -32,25 +32,14 @@ export interface InputGroupProps extends StyledComponentProps<RACGroupProps> {
 function InputGroup(props: InputGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, InputGroupContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        style: styleProp,
-        children,
-        isFluid: isFluidProp,
-        isInvalid,
-        ...otherProps
-    } = ownProps;
+    const { className, style: styleProp, children, isFluid: isFluidProp, isInvalid, ...otherProps } = ownProps;
 
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalInputGroupCssSelector,
-        cssModule(
-            styles,
-            "hop-InputGroup",
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-InputGroup", isFluid && "fluid"),
         stylingProps.className
     );
 

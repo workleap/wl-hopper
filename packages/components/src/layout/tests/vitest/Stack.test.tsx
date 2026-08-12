@@ -7,11 +7,7 @@ const TestId = "TestId";
 
 const Stacked = forwardRef<HTMLDivElement, Omit<StackProps, "children">>((props, ref) => {
     return (
-        <Stack
-            data-testid={TestId}
-            {...props}
-            ref={ref}
-        >
+        <Stack data-testid={TestId} {...props} ref={ref}>
             <div>Alpha</div>
             <div>Bravo</div>
             <div>Charlie</div>

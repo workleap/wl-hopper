@@ -10,7 +10,11 @@ export default function Example() {
             </Flex>
             <Stack padding="inset-lg">
                 <H3 marginBottom="inline-lg">NASA Headquarters</H3>
-                <Text>NASA Headquarters, officially known as Mary W. Jackson NASA Headquarters or NASA HQ and formerly named Two Independence Square, is a low-rise office building in the two-building Independence Square complex at 300 E Street SW in Washington, D.C.</Text>
+                <Text>
+                    NASA Headquarters, officially known as Mary W. Jackson NASA Headquarters or NASA HQ and formerly
+                    named Two Independence Square, is a low-rise office building in the two-building Independence Square
+                    complex at 300 E Street SW in Washington, D.C.
+                </Text>
             </Stack>
         </Card>
     );

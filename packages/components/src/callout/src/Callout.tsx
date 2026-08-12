@@ -1,13 +1,18 @@
 import { CautionRichIcon, InfoRichIcon, RichIconContext, SuccessRichIcon, UpsellRichIcon } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useMemo, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef, useMemo } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { ButtonContext, CloseButton, LinkButtonContext } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider, useSlot, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, SlotProvider, cssModule, useSlot } from "../../utils/index.ts";
 
 import { CalloutContext } from "./CalloutContext.ts";
 
@@ -59,12 +64,7 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
 
     const classNames = clsx(
         GlobalCalloutCssSelector,
-        cssModule(
-            styles,
-            "hop-Callout",
-            variant,
-            fillStyle === "subtleFill" && "subtle-fill"
-        ),
+        cssModule(styles, "hop-Callout", variant, fillStyle === "subtleFill" && "subtle-fill"),
         stylingProps.className,
         className
     );
@@ -80,54 +80,70 @@ const Callout = (props: CalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
         }
 
         switch (variant) {
-            case "warning": return <CautionRichIcon />;
-            case "success": return <SuccessRichIcon />;
-            case "upsell": return <UpsellRichIcon />;
-            default: return <InfoRichIcon />;
+            case "warning":
+                return <CautionRichIcon />;
+            case "success":
+                return <SuccessRichIcon />;
+            case "upsell":
+                return <UpsellRichIcon />;
+            default:
+                return <InfoRichIcon />;
         }
     }, [hideIcon, variant]);
 
     return (
-        <div
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot ?? undefined}
-            {...otherProps}
-        >
+        <div ref={ref} className={classNames} style={mergedStyles} slot={slot ?? undefined} {...otherProps}>
             <SlotProvider
                 values={[
-                    [HeadingContext, {
-                        className: styles["hop-Callout__heading"],
-                        size: "unset"
-                    }],
-                    [ContentContext, {
-                        className: styles["hop-Callout__content"]
-                    }],
-                    [LinkButtonContext, {
-                        className: styles["hop-Callout__button"],
-                        variant: "secondary"
-                    }],
-                    [ButtonContext, {
-                        className: styles["hop-Callout__button"],
-                        variant: "secondary"
-                    }],
-                    [RichIconContext, {
-                        className: styles["hop-Callout__icon"],
-                        variant,
-                        size: "xl"
-                    }]
+                    [
+                        HeadingContext,
+                        {
+                            className: styles["hop-Callout__heading"],
+                            size: "unset"
+                        }
+                    ],
+                    [
+                        ContentContext,
+                        {
+                            className: styles["hop-Callout__content"]
+                        }
+                    ],
+                    [
+                        LinkButtonContext,
+                        {
+                            className: styles["hop-Callout__button"],
+                            variant: "secondary"
+                        }
+                    ],
+                    [
+                        ButtonContext,
+                        {
+                            className: styles["hop-Callout__button"],
+                            variant: "secondary"
+                        }
+                    ],
+                    [
+                        RichIconContext,
+                        {
+                            className: styles["hop-Callout__icon"],
+                            variant,
+                            size: "xl"
+                        }
+                    ]
                 ]}
             >
                 {!hasIcon && icon}
                 <SlotProvider
                     values={[
-                        [RichIconContext, {
-                            className: styles["hop-Callout__icon"],
-                            variant,
-                            size: "xl",
-                            ref: iconRef
-                        }]
+                        [
+                            RichIconContext,
+                            {
+                                className: styles["hop-Callout__icon"],
+                                variant,
+                                size: "xl",
+                                ref: iconRef
+                            }
+                        ]
                     ]}
                 >
                     {children}

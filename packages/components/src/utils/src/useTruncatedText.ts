@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 
-export const useTruncatedText = (): (value: string, limit?: number) => string => {
+export const useTruncatedText = (): ((value: string, limit?: number) => string) => {
     const truncateText = useCallback((inputText: string, limit?: number) => {
         const segmenter = new Intl.Segmenter("en", { granularity: "grapheme" });
         const segments = segmenter.segment(inputText);

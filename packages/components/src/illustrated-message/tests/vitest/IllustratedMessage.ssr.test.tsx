@@ -7,10 +7,7 @@ import { IllustratedMessage } from "../../src/IllustratedMessage.tsx";
 
 describe("IllustratedMessage", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <IllustratedMessage>Text</IllustratedMessage>
-            );
+        const renderOnServer = () => renderToString(<IllustratedMessage>Text</IllustratedMessage>);
 
         expect(renderOnServer).not.toThrow();
     });

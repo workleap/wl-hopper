@@ -107,7 +107,7 @@ describe("Select", () => {
                     isFilterable
                     searchFieldProps={{ "aria-label": "Search animals" }}
                 >
-                    {(item: typeof items[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
+                    {(item: (typeof items)[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
                 </Select>
             );
         };
@@ -161,7 +161,7 @@ describe("Select", () => {
                     isFilterable
                     searchFieldProps={{ "aria-label": "Search animals" }}
                 >
-                    {(item: typeof items[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
+                    {(item: (typeof items)[0]) => <SelectItem id={item.id}>{item.name}</SelectItem>}
                 </MultiSelect>
             );
         };

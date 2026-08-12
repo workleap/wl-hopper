@@ -17,8 +17,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default = {
-} satisfies Story;
+export const Default = {} satisfies Story;
 
 export const Inline = {
     args: {
@@ -120,9 +119,7 @@ export const Overflow = {
         ...WithButtonAndLink.args,
         children: (
             <>
-                <Content>
-                    {new Array(30).fill("Callout content").join(" ")}
-                </Content>
+                <Content>{new Array(30).fill("Callout content").join(" ")}</Content>
                 <Link>Label</Link>
             </>
         )
@@ -133,11 +130,7 @@ export const OverflowWithClose = {
     ...WithClose,
     args: {
         ...WithClose.args,
-        children: (
-            <Content>
-                {new Array(30).fill("Callout content").join(" ")}
-            </Content>
-        )
+        children: <Content>{new Array(30).fill("Callout content").join(" ")}</Content>
     }
 } satisfies Story;
 
@@ -147,9 +140,7 @@ export const OverflowWithCta = {
         ...WithLink.args,
         children: (
             <>
-                <Content>
-                    {new Array(30).fill("Callout content").join(" ")}
-                </Content>
+                <Content>{new Array(30).fill("Callout content").join(" ")}</Content>
                 <Link>Label</Link>
             </>
         )
@@ -162,9 +153,7 @@ export const OverflowWithButtonAndLink = {
         ...WithButtonAndLink.args,
         children: (
             <>
-                <Content>
-                    {new Array(30).fill("Callout content").join(" ")}
-                </Content>
+                <Content>{new Array(30).fill("Callout content").join(" ")}</Content>
                 <Link>Label</Link>
             </>
         )

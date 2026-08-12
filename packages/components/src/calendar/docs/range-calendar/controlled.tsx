@@ -12,16 +12,10 @@ export default function Example() {
 
     return (
         <Stack>
-            <RangeCalendar
-                aria-label="Trip dates"
-                value={range}
-                onChange={setRange}
-            />
+            <RangeCalendar aria-label="Trip dates" value={range} onChange={setRange} />
             <Paragraph>
-                Selected date: {formatter.formatRange(
-                    range.start.toDate(getLocalTimeZone()),
-                    range.end.toDate(getLocalTimeZone())
-                )}
+                Selected date:{" "}
+                {formatter.formatRange(range.start.toDate(getLocalTimeZone()), range.end.toDate(getLocalTimeZone()))}
             </Paragraph>
         </Stack>
     );

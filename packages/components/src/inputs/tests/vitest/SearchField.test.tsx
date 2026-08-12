@@ -7,18 +7,14 @@ import { SearchFieldContext } from "../../src/SearchFieldContext.ts";
 
 describe("SearchField", () => {
     it("should render with default class", () => {
-        render(
-            <SearchField data-testid="field" label="Label" />
-        );
+        render(<SearchField data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-SearchField");
     });
 
     it("should support custom class", () => {
-        render(
-            <SearchField className="test" data-testid="field" label="Label" />
-        );
+        render(<SearchField className="test" data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-SearchField");
@@ -26,18 +22,14 @@ describe("SearchField", () => {
     });
 
     it("should support custom style", () => {
-        render(
-            <SearchField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />
-        );
+        render(<SearchField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(
-            <SearchField data-testid="field" data-foo="bar" label="Label" />
-        );
+        render(<SearchField data-testid="field" data-foo="bar" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -58,9 +50,7 @@ describe("SearchField", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(
-            <SearchField ref={ref} data-testid="field" label="Label" />
-        );
+        render(<SearchField ref={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -68,9 +58,7 @@ describe("SearchField", () => {
 
     it("should support input refs", () => {
         const ref = createRef<HTMLInputElement>();
-        render(
-            <SearchField inputRef={ref} data-testid="field" label="Label" />
-        );
+        render(<SearchField inputRef={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).toBe(screen.getByRole("searchbox"));
         expect(ref.current instanceof HTMLInputElement).toBeTruthy();
@@ -93,9 +81,7 @@ describe("SearchField", () => {
     it("should call onClear when a the clear button is pressed", async () => {
         const user = userEvent.setup();
         const handleClear = vi.fn();
-        render(
-            <SearchField onClear={handleClear} defaultValue="There is some text in the input" label="Label" />
-        );
+        render(<SearchField onClear={handleClear} defaultValue="There is some text in the input" label="Label" />);
 
         const clearButton = screen.getByLabelText("Clear");
         await user.click(clearButton);

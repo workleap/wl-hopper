@@ -9,8 +9,8 @@ export default function Example() {
                 </Illustration>
                 <Heading>Buy a ticket</Heading>
                 <Content>
-                    Tickets are not refundable and not transferable. A confirmation email will be sent
-                    within the next few minutes
+                    Tickets are not refundable and not transferable. A confirmation email will be sent within the next
+                    few minutes
                 </Content>
             </Tile>
         </Div>

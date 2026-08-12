@@ -5,7 +5,7 @@ import { Button } from "../../buttons/index.ts";
 import { Header, HeaderContext, type HeaderProps } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Heading, HeadingContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, cssModule } from "../../utils/index.ts";
 
 import styles from "./CalendarHeader.module.css";
 
@@ -13,17 +13,11 @@ export const GlobalCalendarHeaderCssSelector = "hop-CalendarHeader";
 
 export const CalendarHeader = (props: HeaderProps) => {
     const stringFormatter = useLocalizedString();
-    const {
-        className,
-        ...otherProps
-    } = props;
+    const { className, ...otherProps } = props;
 
     const classNames = clsx(
         GlobalCalendarHeaderCssSelector,
-        cssModule(
-            styles,
-            GlobalCalendarHeaderCssSelector
-        ),
+        cssModule(styles, GlobalCalendarHeaderCssSelector),
         className
     );
 

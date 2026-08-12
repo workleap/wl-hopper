@@ -9,13 +9,17 @@ import { ErrorMessageContext } from "../../src/ErrorMessageContext.ts";
 describe("ErrorMessage", () => {
     it("should render with default class", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage>Test</ErrorMessage>
             </SlotProvider>
@@ -27,13 +31,17 @@ describe("ErrorMessage", () => {
 
     it("should support custom class", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage className="test">Test</ErrorMessage>
             </SlotProvider>
@@ -46,15 +54,21 @@ describe("ErrorMessage", () => {
 
     it("should support custom style", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
-                <ErrorMessage marginTop="stack-sm" style={{ marginBottom: "13px" }} >Test</ErrorMessage>
+                <ErrorMessage marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                    Test
+                </ErrorMessage>
             </SlotProvider>
         );
 
@@ -64,13 +78,17 @@ describe("ErrorMessage", () => {
 
     it("should support DOM props", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage data-foo="bar">Test</ErrorMessage>
             </SlotProvider>
@@ -82,13 +100,17 @@ describe("ErrorMessage", () => {
 
     it("should support slots", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessageContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
                     <ErrorMessage slot="test">Test</ErrorMessage>
@@ -104,13 +126,17 @@ describe("ErrorMessage", () => {
     it("should support refs", () => {
         const ref = createRef<HTMLSpanElement>();
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage ref={ref}>Test</ErrorMessage>
             </SlotProvider>
@@ -122,13 +148,17 @@ describe("ErrorMessage", () => {
 
     it("should support showing an icon by default", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage>Test</ErrorMessage>
             </SlotProvider>
@@ -142,13 +172,17 @@ describe("ErrorMessage", () => {
 
     it("should support hiding the icon", () => {
         render(
-            <SlotProvider values={[
-                [FieldErrorContext, {
-                    isInvalid: true,
-                    validationErrors: [] as never[],
-                    validationDetails: {} as never
-                }]
-            ]}
+            <SlotProvider
+                values={[
+                    [
+                        FieldErrorContext,
+                        {
+                            isInvalid: true,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
+                ]}
             >
                 <ErrorMessage hideIcon>Test</ErrorMessage>
             </SlotProvider>

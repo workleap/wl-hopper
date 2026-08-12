@@ -1,9 +1,9 @@
-import { useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type ResponsiveProp, type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, useEffect, useRef, type CSSProperties, type ForwardedRef } from "react";
-import { Provider, ToggleButtonGroup, ToggleGroupStateContext, useContextProps, type Key } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect, useRef } from "react";
+import { type Key, Provider, ToggleButtonGroup, ToggleGroupStateContext, useContextProps } from "react-aria-components";
 
-import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { InternalSegmentedControlContext, SegmentedControlContext } from "./SegmentedControlContext.ts";
 import type { SegmentedControlItemSize } from "./SegmentedControlItem.tsx";
@@ -15,8 +15,8 @@ export const GlobalSegmentedControlCssSelector = "hop-SegmentedControl";
 
 export interface SegmentedControlProps extends StyledComponentProps<BaseComponentDOMProps> {
     /**
-    *  Whether the segmented control is disabled.
-    */
+     *  Whether the segmented control is disabled.
+     */
     isDisabled?: boolean;
     /**
      * Whether the items should divide the container width equally.
@@ -64,10 +64,7 @@ const SegmentedControl = (props: SegmentedControlProps, ref: ForwardedRef<HTMLDi
 
     const classNames = clsx(
         GlobalSegmentedControlCssSelector,
-        cssModule(
-            styles,
-            "hop-SegmentedControl"
-        ),
+        cssModule(styles, "hop-SegmentedControl"),
         stylingProps.className,
         className
     );
@@ -97,7 +94,7 @@ const SegmentedControl = (props: SegmentedControlProps, ref: ForwardedRef<HTMLDi
         if (key) {
             state?.toggleKey(key);
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

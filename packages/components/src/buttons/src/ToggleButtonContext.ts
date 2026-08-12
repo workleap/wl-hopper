@@ -11,7 +11,7 @@ export interface ToggleButtonContextValue extends Partial<ToggleButtonProps> {
     clearContexts?: Context<any>[];
     /**
      * Whether the button is hidden or not.
-    */
+     */
     isHidden?: boolean;
 }
 

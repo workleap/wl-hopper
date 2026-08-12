@@ -1,4 +1,4 @@
-import { Avatar, Stack, Inline } from "@hopper-ui/components";
+import { Avatar, Inline, Stack } from "@hopper-ui/components";
 
 export default function Example() {
     return (

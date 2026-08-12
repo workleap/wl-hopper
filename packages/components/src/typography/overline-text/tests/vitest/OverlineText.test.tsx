@@ -13,7 +13,11 @@ describe("OverlineText", () => {
     });
 
     it("should support custom class", () => {
-        render(<OverlineText data-testid="overline-text" className="test">Test</OverlineText>);
+        render(
+            <OverlineText data-testid="overline-text" className="test">
+                Test
+            </OverlineText>
+        );
 
         const element = screen.getByTestId("overline-text");
         expect(element).toHaveClass("hop-OverlineText");
@@ -21,14 +25,22 @@ describe("OverlineText", () => {
     });
 
     it("should support custom style", () => {
-        render(<OverlineText data-testid="overline-text" marginTop="stack-sm" style={{ marginBottom: "13px" }} >Test</OverlineText>);
+        render(
+            <OverlineText data-testid="overline-text" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </OverlineText>
+        );
 
         const element = screen.getByTestId("overline-text");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<OverlineText data-testid="overline-text" data-foo="bar">Test</OverlineText>);
+        render(
+            <OverlineText data-testid="overline-text" data-foo="bar">
+                Test
+            </OverlineText>
+        );
 
         const element = screen.getByTestId("overline-text");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -37,7 +49,9 @@ describe("OverlineText", () => {
     it("should support slots", () => {
         render(
             <OverlineTextContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <OverlineText data-testid="overline-text" slot="test">Test</OverlineText>
+                <OverlineText data-testid="overline-text" slot="test">
+                    Test
+                </OverlineText>
             </OverlineTextContext.Provider>
         );
 
@@ -48,7 +62,11 @@ describe("OverlineText", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLSpanElement>();
-        render(<OverlineText data-testid="overline-text" ref={ref}>Test</OverlineText>);
+        render(
+            <OverlineText data-testid="overline-text" ref={ref}>
+                Test
+            </OverlineText>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLSpanElement).toBeTruthy();

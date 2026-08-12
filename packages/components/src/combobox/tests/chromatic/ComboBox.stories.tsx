@@ -1,4 +1,14 @@
-import { Button, ComboBox, ComboBoxItem, type ComboBoxProps, ComboBoxSection, Header, Inline, Stack, Text } from "@hopper-ui/components";
+import {
+    Button,
+    ComboBox,
+    ComboBoxItem,
+    type ComboBoxProps,
+    ComboBoxSection,
+    Header,
+    Inline,
+    Stack,
+    Text
+} from "@hopper-ui/components";
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
@@ -136,7 +146,12 @@ export const Footer = {
     play: playFn,
     decorators: marginBottomDecoratorLG,
     args: {
-        footer: <Button variant="ghost-secondary" isFluid><AddIcon /><Text>Add</Text></Button>
+        footer: (
+            <Button variant="ghost-secondary" isFluid>
+                <AddIcon />
+                <Text>Add</Text>
+            </Button>
+        )
     }
 } satisfies Story;
 
@@ -554,30 +569,18 @@ const StateTemplate = (args: Partial<ComboBoxProps<object>>) => (
                 <ComboBoxItem id="cat">Cat</ComboBoxItem>
                 <ComboBoxItem id="frog">Frog</ComboBoxItem>
             </ComboBox>
-            <ComboBox
-                {...args}
-                size="md"
-                label="Medium"
-            >
+            <ComboBox {...args} size="md" label="Medium">
                 <ComboBoxItem id="dog">Dog</ComboBoxItem>
                 <ComboBoxItem id="cat">Cat</ComboBoxItem>
                 <ComboBoxItem id="frog">Frog</ComboBoxItem>
             </ComboBox>
         </Inline>
-        <ComboBox
-            {...args}
-            isDisabled
-            label="Disabled"
-        >
+        <ComboBox {...args} isDisabled label="Disabled">
             <ComboBoxItem id="dog">Dog</ComboBoxItem>
             <ComboBoxItem id="cat">Cat</ComboBoxItem>
             <ComboBoxItem id="frog">Frog</ComboBoxItem>
         </ComboBox>
-        <ComboBox
-            {...args}
-            isInvalid
-            label="Invalid"
-        >
+        <ComboBox {...args} isInvalid label="Invalid">
             <ComboBoxItem id="dog">Dog</ComboBoxItem>
             <ComboBoxItem id="cat">Cat</ComboBoxItem>
             <ComboBoxItem id="frog">Frog</ComboBoxItem>
@@ -626,7 +629,12 @@ export const TriggerStates = {
             <h1>Focus Visible & Hovered</h1>
             <StateTemplate {...args} data-chromatic-force-focus data-chromatic-force-hover />
             <h1>Focus Visible, Hovered & Active</h1>
-            <StateTemplate {...args} data-chromatic-force-focus data-chromatic-force-hover data-chromatic-force-selected />
+            <StateTemplate
+                {...args}
+                data-chromatic-force-focus
+                data-chromatic-force-hover
+                data-chromatic-force-selected
+            />
         </Stack>
     ),
     args: {
@@ -663,32 +671,17 @@ export const Zoom = {
 export const Styling = {
     render: args => (
         <Inline>
-            <ComboBox
-                {...args}
-                triggerProps={
-                    { border: "warning" }
-                }
-            >
+            <ComboBox {...args} triggerProps={{ border: "warning" }}>
                 <ComboBoxItem id="1">Zoomy</ComboBoxItem>
                 <ComboBoxItem id="2">Voodoo</ComboBoxItem>
                 <ComboBoxItem id="3">Dusty</ComboBoxItem>
             </ComboBox>
-            <ComboBox
-                {...args}
-                triggerProps={
-                    { className: "border-red" }
-                }
-            >
+            <ComboBox {...args} triggerProps={{ className: "border-red" }}>
                 <ComboBoxItem id="1">Zoomy</ComboBoxItem>
                 <ComboBoxItem id="2">Voodoo</ComboBoxItem>
                 <ComboBoxItem id="3">Dusty</ComboBoxItem>
             </ComboBox>
-            <ComboBox
-                {...args}
-                triggerProps={
-                    { style: { border: "1px solid red" } }
-                }
-            >
+            <ComboBox {...args} triggerProps={{ style: { border: "1px solid red" } }}>
                 <ComboBoxItem id="1">Zoomy</ComboBoxItem>
                 <ComboBoxItem id="2">Voodoo</ComboBoxItem>
                 <ComboBoxItem id="3">Dusty</ComboBoxItem>

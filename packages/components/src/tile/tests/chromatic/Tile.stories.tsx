@@ -15,11 +15,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default = {
-    render: props => (
-        <Tile {...props}>
-            Label
-        </Tile>
-    )
+    render: props => <Tile {...props}>Label</Tile>
 } satisfies Story;
 
 export const Selected = {

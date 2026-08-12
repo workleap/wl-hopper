@@ -1,4 +1,4 @@
-import { Tag, TagGroup, type Selection } from "@hopper-ui/components";
+import { type Selection, Tag, TagGroup } from "@hopper-ui/components";
 
 export default function Example() {
     return (

@@ -1,25 +1,25 @@
 import {
-    useResponsiveValue,
-    useStyledSystem,
     type ResponsiveProp,
-    type StyledSystemProps
+    type StyledSystemProps,
+    useResponsiveValue,
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import { useSlotId } from "@react-aria/utils";
-import { forwardRef, type ForwardedRef, type ReactNode } from "react";
+import { type ForwardedRef, type ReactNode, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/index.ts";
 import {
-    ClearContainerSlots,
-    composeClassnameRenderProps,
-    cssModule,
-    SlotProvider,
-    useRenderProps,
     type AccessibleSlotProps,
+    ClearContainerSlots,
     type FieldSize,
     type RenderProps,
-    type SizeAdapter
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    useRenderProps
 } from "../../utils/index.ts";
 
 import { RadioContext } from "./RadioContext.ts";
@@ -60,26 +60,14 @@ export interface RadioFieldProps extends StyledSystemProps, AccessibleSlotProps,
 function RadioField(props: RadioFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, RadioFieldContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        description,
-        isDisabled,
-        size: sizeProp = "md",
-        style,
-        slot,
-        ...otherProps
-    } = ownProps;
+    const { className, description, isDisabled, size: sizeProp = "md", style, slot, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalRadioFieldCssSelector,
-        cssModule(
-            styles,
-            "hop-RadioField",
-            size
-        ),
+        cssModule(styles, "hop-RadioField", size),
         stylingProps.className
     );
 
@@ -105,12 +93,15 @@ function RadioField(props: RadioFieldProps, ref: ForwardedRef<HTMLDivElement>) {
         <ClearContainerSlots>
             <SlotProvider
                 values={[
-                    [RadioContext, {
-                        className: styles["hop-RadioField__radio"],
-                        size: size,
-                        isDisabled: isDisabled,
-                        "aria-describedby": descriptionId
-                    }]
+                    [
+                        RadioContext,
+                        {
+                            className: styles["hop-RadioField__radio"],
+                            size,
+                            isDisabled,
+                            "aria-describedby": descriptionId
+                        }
+                    ]
                 ]}
             >
                 <div

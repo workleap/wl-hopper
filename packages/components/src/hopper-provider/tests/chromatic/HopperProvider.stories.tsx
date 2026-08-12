@@ -7,10 +7,8 @@ import { HopperProvider } from "../../src/HopperProvider.tsx";
 
 const ColoredDiv = () => {
     return (
-        <Div
-            padding="inset-lg"
-            backgroundColor="primary"
-        >Hello
+        <Div padding="inset-lg" backgroundColor="primary">
+            Hello
         </Div>
     );
 };

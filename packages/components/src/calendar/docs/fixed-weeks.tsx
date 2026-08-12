@@ -1,7 +1,5 @@
 import { Calendar } from "@hopper-ui/components";
 
 export default function Example() {
-    return (
-        <Calendar aria-label="Appointment date" isFixedWeeks />
-    );
+    return <Calendar aria-label="Appointment date" isFixedWeeks />;
 }

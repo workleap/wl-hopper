@@ -1,4 +1,4 @@
-import { Text, Div } from "@hopper-ui/components";
+import { Div, Text } from "@hopper-ui/components";
 
 export default function Example() {
     return (

@@ -1,14 +1,19 @@
 import { CalendarIcon } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { mergeRefs } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type MutableRefObject } from "react";
+import { type CSSProperties, type ForwardedRef, type MutableRefObject, forwardRef } from "react";
 import { useObjectRef } from "react-aria";
 import {
     DateRangePicker as AriaDateRangePicker,
-    useContextProps,
     type DateRangePickerProps as AriaDateRangePickerProps,
-    type DateValue
+    type DateValue,
+    useContextProps
 } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
@@ -19,7 +24,7 @@ import { useLocalizedString } from "../../i18n/index.ts";
 import { InputGroup, type InputGroupProps } from "../../inputs/index.ts";
 import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { ClearContainerSlots, cssModule, type FieldProps } from "../../utils/index.ts";
+import { ClearContainerSlots, type FieldProps, cssModule } from "../../utils/index.ts";
 
 import { DateInput } from "./DateInput.tsx";
 import { DateRangePickerContext } from "./DateRangePickerContext.ts";
@@ -28,10 +33,13 @@ import styles from "./DateRangePicker.module.css";
 
 export const GlobalDateRangePickerCssSelector = "hop-DateRangePicker";
 
-export interface DateRangePickerProps extends
-    StyledComponentProps<Omit<AriaDateRangePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<RangeCalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
-    FieldProps {
+export interface DateRangePickerProps
+    extends
+        StyledComponentProps<
+            Omit<AriaDateRangePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">
+        >,
+        Pick<RangeCalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+        FieldProps {
     /**
      * If `true`, the DateRangePicker will take all available width.
      * @default false
@@ -60,9 +68,9 @@ export interface DateRangePickerProps extends
     maxVisibleMonths?: number;
 
     /**
-   * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
-   * @default true
-   */
+     * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
+     * @default true
+     */
     isFixedWeeks?: boolean;
 
     /**
@@ -106,8 +114,12 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
         ...otherProps
     } = ownProps;
 
-    const inputStartRef = useObjectRef(mergeRefs(userProvidedInputStartRef, props.inputStartRef !== undefined ? props.inputStartRef : null));
-    const inputEndRef = useObjectRef(mergeRefs(userProvidedInputEndRef, props.inputEndRef !== undefined ? props.inputEndRef : null));
+    const inputStartRef = useObjectRef(
+        mergeRefs(userProvidedInputStartRef, props.inputStartRef !== undefined ? props.inputStartRef : null)
+    );
+    const inputEndRef = useObjectRef(
+        mergeRefs(userProvidedInputEndRef, props.inputEndRef !== undefined ? props.inputEndRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const { className: inputGroupClassName, ...otherInputGroupProps } = inputGroupProps ?? {};
@@ -115,12 +127,7 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
 
     const classNames = clsx(
         GlobalDateRangePickerCssSelector,
-        cssModule(
-            styles,
-            GlobalDateRangePickerCssSelector,
-            isFluid && "fluid",
-            size
-        ),
+        cssModule(styles, GlobalDateRangePickerCssSelector, isFluid && "fluid", size),
         stylingProps.className,
         className
     );
@@ -131,12 +138,7 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
     };
 
     return (
-        <AriaDateRangePicker
-            {...otherProps}
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-        >
+        <AriaDateRangePicker {...otherProps} ref={ref} className={classNames} style={mergedStyles}>
             {({ isDisabled, isInvalid }) => {
                 const inputMarkup = (
                     <ClearContainerSlots>
@@ -148,7 +150,9 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
                             {...otherInputGroupProps}
                         >
                             <DateInput slot="start" size={size} ref={inputStartRef} />
-                            <div className={styles["hop-DateRangePicker__Separator"]}>{stringFormatter.format("DateRangePicker.toSeparator")}</div>
+                            <div className={styles["hop-DateRangePicker__Separator"]}>
+                                {stringFormatter.format("DateRangePicker.toSeparator")}
+                            </div>
                             <DateInput slot="end" size={size} ref={inputEndRef} />
                             <Button
                                 aria-label={stringFormatter.format("DateRangePicker.openCalendarButtonAriaLabel")}
@@ -173,9 +177,18 @@ const DateRangePicker = (props: DateRangePickerProps, ref: ForwardedRef<HTMLDivE
                             {label}
                         </FieldLabel>
                         {inputMarkup}
-                        {description && <HelperMessage className={styles["hop-DateRangePicker__HelperMessage"]}>{description}</HelperMessage>}
-                        <ErrorMessage className={styles["hop-DateRangePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
-                        <PopoverBase {...popoverProps} className={clsx(styles["hop-DateRangePicker__Popover"], popoverProps?.className)}>
+                        {description && (
+                            <HelperMessage className={styles["hop-DateRangePicker__HelperMessage"]}>
+                                {description}
+                            </HelperMessage>
+                        )}
+                        <ErrorMessage className={styles["hop-DateRangePicker__ErrorMessage"]}>
+                            {errorMessage}
+                        </ErrorMessage>
+                        <PopoverBase
+                            {...popoverProps}
+                            className={clsx(styles["hop-DateRangePicker__Popover"], popoverProps?.className)}
+                        >
                             <RangeCalendar
                                 isFixedWeeks={isFixedWeeks}
                                 visibleMonths={maxVisibleMonths}

@@ -8,7 +8,6 @@ const meta = {
     args: {
         children: "Footer content"
     }
-
 } satisfies Meta<typeof Footer>;
 
 export default meta;

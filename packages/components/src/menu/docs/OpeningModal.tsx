@@ -7,13 +7,16 @@ export default function Example() {
     const handleSelectionChange = useCallback(() => {
         setIsOpen(true);
     }, [setIsOpen]);
-    const handleModalClose = useCallback((open: boolean) => {
-        if (open) {
-            return;
-        }
+    const handleModalClose = useCallback(
+        (open: boolean) => {
+            if (open) {
+                return;
+            }
 
-        setIsOpen(false);
-    }, [setIsOpen]);
+            setIsOpen(false);
+        },
+        [setIsOpen]
+    );
 
     return (
         <>
@@ -29,9 +32,7 @@ export default function Example() {
             </MenuTrigger>
             <Modal onOpenChange={handleModalClose} isOpen={isOpen}>
                 <Heading>Frogs</Heading>
-                <Content>
-                    Hoppity hops
-                </Content>
+                <Content>Hoppity hops</Content>
             </Modal>
         </>
     );

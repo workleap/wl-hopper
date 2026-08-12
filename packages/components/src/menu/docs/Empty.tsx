@@ -7,7 +7,13 @@ export default function Example() {
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
-            <Menu renderEmptyState={() => <Div paddingX="inset-md" paddingY="inset-sm">No results found.</Div>}>
+            <Menu
+                renderEmptyState={() => (
+                    <Div paddingX="inset-md" paddingY="inset-sm">
+                        No results found.
+                    </Div>
+                )}
+            >
                 {[]}
             </Menu>
         </MenuTrigger>

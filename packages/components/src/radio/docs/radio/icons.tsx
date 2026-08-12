@@ -4,11 +4,16 @@ import { SparklesIcon } from "@hopper-ui/icons";
 export default function Example() {
     return (
         <RadioGroup aria-label="roles">
-            <Radio value="developer"><SparklesIcon /><Text>Developer</Text></Radio>
+            <Radio value="developer">
+                <SparklesIcon />
+                <Text>Developer</Text>
+            </Radio>
             <Radio value="designer">
                 <Text>Designer</Text>
                 <IconList>
-                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
                 </IconList>
             </Radio>
         </RadioGroup>

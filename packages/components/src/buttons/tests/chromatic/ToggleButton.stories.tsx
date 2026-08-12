@@ -33,23 +33,39 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
-                        <ToggleButton size="xs" {...args}>Save</ToggleButton>
-                        <ToggleButton size="sm" {...args}>Save</ToggleButton>
+                        <ToggleButton size="xs" {...args}>
+                            Save
+                        </ToggleButton>
+                        <ToggleButton size="sm" {...args}>
+                            Save
+                        </ToggleButton>
                         <ToggleButton {...args}>Save</ToggleButton>
                     </Inline>
                     <Inline alignY="end">
-                        <ToggleButton isLoading size="xs" {...args}>Save</ToggleButton>
-                        <ToggleButton isLoading size="sm" {...args}>Save</ToggleButton>
-                        <ToggleButton isLoading {...args}>Save</ToggleButton>
+                        <ToggleButton isLoading size="xs" {...args}>
+                            Save
+                        </ToggleButton>
+                        <ToggleButton isLoading size="sm" {...args}>
+                            Save
+                        </ToggleButton>
+                        <ToggleButton isLoading {...args}>
+                            Save
+                        </ToggleButton>
                     </Inline>
                     <Div>
-                        <ToggleButton isFluid {...args}>Save</ToggleButton>
+                        <ToggleButton isFluid {...args}>
+                            Save
+                        </ToggleButton>
                     </Div>
                     <Div width="10%">
-                        <ToggleButton isFluid {...args}>Save</ToggleButton>
+                        <ToggleButton isFluid {...args}>
+                            Save
+                        </ToggleButton>
                     </Div>
                     <Div>
-                        <ToggleButton isLoading isFluid {...args}>Save</ToggleButton>
+                        <ToggleButton isLoading isFluid {...args}>
+                            Save
+                        </ToggleButton>
                     </Div>
                 </Stack>
                 <Stack>
@@ -71,19 +87,25 @@ export const Primary: Story = {
                     <Inline alignY="end">
                         <ToggleButton size="xs" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </ToggleButton>
                         <ToggleButton size="sm" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </ToggleButton>
                         <ToggleButton {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </ToggleButton>
@@ -138,19 +160,25 @@ export const Primary: Story = {
                         <ToggleButton size="xs" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </ToggleButton>
                         <ToggleButton size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </ToggleButton>
                         <ToggleButton {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </ToggleButton>
                     </Inline>
@@ -243,12 +271,22 @@ export const GhostDanger: Story = {
 
 const StateTemplate = (args: Partial<ToggleButtonProps>) => (
     <Inline alignY="end">
-        <ToggleButton size="xs" {...args}>Save</ToggleButton>
-        <ToggleButton size="sm" {...args}>Save</ToggleButton>
+        <ToggleButton size="xs" {...args}>
+            Save
+        </ToggleButton>
+        <ToggleButton size="sm" {...args}>
+            Save
+        </ToggleButton>
         <ToggleButton {...args}>Save</ToggleButton>
-        <ToggleButton isLoading size="xs" {...args}>Save</ToggleButton>
-        <ToggleButton isLoading size="sm" {...args}>Save</ToggleButton>
-        <ToggleButton isLoading {...args}>Save</ToggleButton>
+        <ToggleButton isLoading size="xs" {...args}>
+            Save
+        </ToggleButton>
+        <ToggleButton isLoading size="sm" {...args}>
+            Save
+        </ToggleButton>
+        <ToggleButton isLoading {...args}>
+            Save
+        </ToggleButton>
         <ToggleButton {...args}>
             <SparklesIcon />
             <Text>Save</Text>
@@ -260,13 +298,17 @@ const StateTemplate = (args: Partial<ToggleButtonProps>) => (
         <ToggleButton {...args}>
             <Text>Save</Text>
             <IconList>
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </ToggleButton>
         <ToggleButton {...args}>
             <Text>Save</Text>
             <IconList slot="end-icon">
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </ToggleButton>
     </Inline>
@@ -278,7 +320,8 @@ export const PrimaryStates: Story = {
         const toggleButtons = canvas.getAllByRole("button");
 
         toggleButtons.forEach(toggleButton => {
-            if (toggleButton.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (toggleButton.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (toggleButton.getAttribute("data-chromatic-force-focus")) {
                     toggleButton.setAttribute("data-focus-visible", "true");
                     toggleButton.removeAttribute("data-chromatic-force-focus");
@@ -353,4 +396,3 @@ export const GhostDangerStates: Story = {
         variant: "ghost-danger"
     }
 };
-

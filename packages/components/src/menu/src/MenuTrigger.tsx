@@ -1,7 +1,11 @@
 import { PressResponder } from "@react-aria/interactions";
 import { useGlobalListeners } from "@react-aria/utils";
 import { useState } from "react";
-import { type PressEvent, MenuTrigger as RACMenuTrigger, type MenuTriggerProps as RACMenuTriggerProps } from "react-aria-components";
+import {
+    type PressEvent,
+    MenuTrigger as RACMenuTrigger,
+    type MenuTriggerProps as RACMenuTriggerProps
+} from "react-aria-components";
 
 import { InternalMenuTriggerContext } from "./MenuTriggerContext.ts";
 
@@ -22,8 +26,8 @@ export interface MenuTriggerProps extends RACMenuTriggerProps {
      */
     allowFlip?: boolean;
     /**
-   * Whether the menu should close when the menu item is selected.
-   */
+     * Whether the menu should close when the menu item is selected.
+     */
     shouldCloseOnSelect?: boolean;
 }
 
@@ -40,9 +44,14 @@ export function MenuTrigger(props: MenuTriggerProps) {
 
         setPressed(true);
 
-        globalListeners.addGlobalListener(document, "pointerup", () => {
-            setPressed(false);
-        }, { once: true, capture: true });
+        globalListeners.addGlobalListener(
+            document,
+            "pointerup",
+            () => {
+                setPressed(false);
+            },
+            { once: true, capture: true }
+        );
     };
 
     return (

@@ -13,7 +13,11 @@ describe("Illustration", () => {
     });
 
     it("should support custom class", () => {
-        render(<Illustration data-testid="illustration" className="test">Test</Illustration>);
+        render(
+            <Illustration data-testid="illustration" className="test">
+                Test
+            </Illustration>
+        );
 
         const element = screen.getByTestId("illustration");
         expect(element).toHaveClass("hop-Illustration");
@@ -21,14 +25,22 @@ describe("Illustration", () => {
     });
 
     it("should support custom style", () => {
-        render(<Illustration data-testid="illustration" marginTop="stack-sm" style={{ marginBottom: "13px" }}>Test</Illustration>);
+        render(
+            <Illustration data-testid="illustration" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Illustration>
+        );
 
         const element = screen.getByTestId("illustration");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<Illustration data-testid="illustration" data-foo="bar">Test</Illustration>);
+        render(
+            <Illustration data-testid="illustration" data-foo="bar">
+                Test
+            </Illustration>
+        );
 
         const element = screen.getByTestId("illustration");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -37,7 +49,9 @@ describe("Illustration", () => {
     it("should support slots", () => {
         render(
             <IllustrationContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <Illustration data-testid="illustration" slot="test">Test</Illustration>
+                <Illustration data-testid="illustration" slot="test">
+                    Test
+                </Illustration>
             </IllustrationContext.Provider>
         );
 
@@ -48,7 +62,11 @@ describe("Illustration", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<Illustration data-testid="illustration" ref={ref}>Test</Illustration>);
+        render(
+            <Illustration data-testid="illustration" ref={ref}>
+                Test
+            </Illustration>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();

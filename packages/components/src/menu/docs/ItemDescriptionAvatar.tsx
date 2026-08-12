@@ -11,7 +11,9 @@ export default function Example() {
                 <MenuItem>
                     <Avatar name="Red-Eyed Tree Frog" />
                     <Text>Red-Eyed Tree Frog</Text>
-                    <Text slot="description">The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber</Text>
+                    <Text slot="description">
+                        The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber
+                    </Text>
                 </MenuItem>
                 <MenuItem>
                     <Avatar name="Poison Dart Frog" />
@@ -23,9 +25,7 @@ export default function Example() {
                 <MenuItem>
                     <Avatar name="Goliath Frog" />
                     <Text>Goliath Frog</Text>
-                    <Text slot="description">
-                        The Goliath Frog (Conraua goliath) is the largest frog in the world
-                    </Text>
+                    <Text slot="description">The Goliath Frog (Conraua goliath) is the largest frog in the world</Text>
                 </MenuItem>
             </Menu>
         </MenuTrigger>

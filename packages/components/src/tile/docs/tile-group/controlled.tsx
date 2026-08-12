@@ -11,11 +11,7 @@ export default function Example() {
     };
 
     return (
-        <TileGroup
-            aria-label="Animals"
-            selectedKeys={selectedKeys}
-            onSelectionChange={handleSelectionChange}
-        >
+        <TileGroup aria-label="Animals" selectedKeys={selectedKeys} onSelectionChange={handleSelectionChange}>
             <Tile id="frog">Frog</Tile>
             <Tile id="camel">Camel</Tile>
             <Tile id="elephant">Elephant</Tile>

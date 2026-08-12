@@ -1,5 +1,14 @@
-
-import { Button, ButtonGroup, Content, Div, Heading, Illustration, Image, Stack, SvgImage } from "@hopper-ui/components";
+import {
+    Button,
+    ButtonGroup,
+    Content,
+    Div,
+    Heading,
+    Illustration,
+    Image,
+    Stack,
+    SvgImage
+} from "@hopper-ui/components";
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Frog, NoResults } from "../../assets/index.ts";
@@ -91,9 +100,12 @@ export const VeryLongText = {
             <Image src={Frog} alt="Frog" UNSAFE_width="240px" />
             <Heading>No results found</Heading>
             <Content>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit metus neque, non pharetra enim tincidunt dictum.
-                Fusce in ultricies turpis, vitae finibus nunc. Quisque laoreet sit amet eros eget volutpat. Pellentesque non nulla dui. Sed nec felis quam. Vestibulum velit magna, fringilla ut neque cursus, porta rhoncus nulla. Suspendisse auctor sollicitudin tortor, quis viverra tellus egestas sed.
-                Pellentesque ut dignissim nisi. Duis sit amet ex bibendum, pharetra purus eget, varius massa. In pulvinar dui quis dignissim commodo. Nulla facilisi..
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc suscipit metus neque, non pharetra enim
+                tincidunt dictum. Fusce in ultricies turpis, vitae finibus nunc. Quisque laoreet sit amet eros eget
+                volutpat. Pellentesque non nulla dui. Sed nec felis quam. Vestibulum velit magna, fringilla ut neque
+                cursus, porta rhoncus nulla. Suspendisse auctor sollicitudin tortor, quis viverra tellus egestas sed.
+                Pellentesque ut dignissim nisi. Duis sit amet ex bibendum, pharetra purus eget, varius massa. In
+                pulvinar dui quis dignissim commodo. Nulla facilisi..
             </Content>
         </IllustratedMessage>
     )

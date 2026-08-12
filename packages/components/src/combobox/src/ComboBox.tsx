@@ -1,16 +1,30 @@
 import { IconContext } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { mergeRefs, useObjectRef, useResizeObserver } from "@react-aria/utils";
-import { forwardRef, useCallback, useRef, useState, type ForwardedRef, type MutableRefObject, type NamedExoticComponent, type ReactNode } from "react";
 import {
-    composeRenderProps,
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import { mergeRefs, useObjectRef, useResizeObserver } from "@react-aria/utils";
+import {
+    type ForwardedRef,
+    type MutableRefObject,
+    type NamedExoticComponent,
+    type ReactNode,
+    forwardRef,
+    useCallback,
+    useRef,
+    useState
+} from "react";
+import {
     Button as RACButton,
     ButtonContext as RACButtonContext,
     ComboBox as RACComboBox,
+    type ComboBoxProps as RACComboBoxProps,
     TextContext as RACTextContext,
+    composeRenderProps,
     useContextProps,
-    useSlottedContext,
-    type ComboBoxProps as RACComboBoxProps
+    useSlottedContext
 } from "react-aria-components";
 
 import { BadgeContext } from "../../badge/index.ts";
@@ -19,11 +33,29 @@ import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { Input, InputContext, InputGroup, type InputGroupProps } from "../../inputs/index.ts";
 import { Footer } from "../../layout/index.ts";
-import { ListBox, ListBoxItem, ListBoxSection, type ListBoxItemProps, type ListBoxProps, type ListBoxSectionProps, type SelectionIndicator } from "../../list-box/index.ts";
+import {
+    ListBox,
+    ListBoxItem,
+    type ListBoxItemProps,
+    type ListBoxProps,
+    ListBoxSection,
+    type ListBoxSectionProps,
+    type SelectionIndicator
+} from "../../list-box/index.ts";
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
 import { ToggleArrow } from "../../toggle-arrow/index.ts";
 import { FieldLabel, TextContext } from "../../typography/index.ts";
-import { ClearContainerSlots, ClearProviders, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type MenuAlignment, type MenuDirection } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    ClearProviders,
+    type FieldProps,
+    type MenuAlignment,
+    type MenuDirection,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    ensureTextWrapper
+} from "../../utils/index.ts";
 
 import { ComboBoxContext } from "./ComboBoxContext.ts";
 
@@ -31,7 +63,8 @@ import styles from "./ComboBox.module.css";
 
 export const GlobalComboBoxCssSelector = "hop-ComboBox";
 
-export interface ComboBoxProps<T extends object> extends StyledComponentProps<Omit<RACComboBoxProps<T>, "children">>, FieldProps {
+export interface ComboBoxProps<T extends object>
+    extends StyledComponentProps<Omit<RACComboBoxProps<T>, "children">>, FieldProps {
     /**
      * The alignment of the menu.
      * @default "start"
@@ -105,10 +138,7 @@ export interface ComboBoxProps<T extends object> extends StyledComponentProps<Om
 
 function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<HTMLDivElement>) {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, ComboBoxContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -148,7 +178,9 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
     const inputContext = useSlottedContext(InputContext);
     // ALEX: Review the typing casts here.
     // Make sure to merge the input ref with the context ref from the InputContext.
-    const mergedInputRefs = inputContext?.ref ? mergeRefs(inputRef, inputContext.ref) as ForwardedRef<HTMLInputElement> : inputRef as ForwardedRef<HTMLInputElement>;
+    const mergedInputRefs = inputContext?.ref
+        ? (mergeRefs(inputRef, inputContext.ref) as ForwardedRef<HTMLInputElement>)
+        : (inputRef as ForwardedRef<HTMLInputElement>);
     const triggerRef = useRef<HTMLDivElement>(null);
 
     // Make menu width match trigger width.
@@ -161,17 +193,12 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
 
     useResizeObserver({
         ref: triggerRef,
-        onResize: onResize
+        onResize
     });
 
-    const {
-        className: triggerClassName,
-        ...otherTriggerProps
-    } = triggerProps ?? {};
+    const { className: triggerClassName, ...otherTriggerProps } = triggerProps ?? {};
 
-    const {
-        style: popoverStyleProp
-    } = popoverProps ?? {};
+    const { style: popoverStyleProp } = popoverProps ?? {};
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
@@ -181,22 +208,13 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
     const classNames = composeClassnameRenderProps(
         className,
         GlobalComboBoxCssSelector,
-        cssModule(
-            styles,
-            "hop-ComboBox",
-            isFluid && "fluid",
-            size
-        ),
+        cssModule(styles, "hop-ComboBox", isFluid && "fluid", size),
         stylingProps.className
     );
 
     const triggerClassNames = composeClassnameRenderProps(
         triggerClassName,
-        cssModule(
-            styles,
-            "hop-ComboBox__trigger",
-            size
-        )
+        cssModule(styles, "hop-ComboBox__trigger", size)
     );
 
     const style = composeRenderProps(styleProp, prev => {
@@ -214,35 +232,30 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
     });
 
     const footerMarkup = footer ? (
-        <ClearProviders
-            values={[
-                RACTextContext,
-                TextContext,
-                RACButtonContext
-            ]}
-        >
-            <SlotProvider values={[
-                [TextContext, {
-                    size
-                }]
-            ]}
+        <ClearProviders values={[RACTextContext, TextContext, RACButtonContext]}>
+            <SlotProvider
+                values={[
+                    [
+                        TextContext,
+                        {
+                            size
+                        }
+                    ]
+                ]}
             >
-                <Footer>
-                    {ensureTextWrapper(footer)}
-                </Footer>
+                <Footer>{ensureTextWrapper(footer)}</Footer>
             </SlotProvider>
         </ClearProviders>
     ) : null;
 
     const prefixMarkup = prefix ? (
-        <SlotProvider values={[
-            [TextContext, { size, className: styles["hop-ComboBox__prefix"] }],
-            [IconContext, { size, className: styles["hop-ComboBox__prefix"] }]
-        ]}
+        <SlotProvider
+            values={[
+                [TextContext, { size, className: styles["hop-ComboBox__prefix"] }],
+                [IconContext, { size, className: styles["hop-ComboBox__prefix"] }]
+            ]}
         >
-            <ClearContainerSlots>
-                {ensureTextWrapper(prefix)}
-            </ClearContainerSlots>
+            <ClearContainerSlots>{ensureTextWrapper(prefix)}</ClearContainerSlots>
         </SlotProvider>
     ) : null;
 
@@ -279,16 +292,9 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
                             {...otherTriggerProps}
                         >
                             {prefixMarkup}
-                            <Input
-                                ref={mergedInputRefs}
-                                placeholder={placeholder}
-                                size={size}
-                            />
+                            <Input ref={mergedInputRefs} placeholder={placeholder} size={size} />
                             <RACButton className={styles["hop-ComboBox__button"]}>
-                                <ToggleArrow
-                                    className={styles["hop-ComboBox__button-icon"]}
-                                    isExpanded={isOpen}
-                                />
+                                <ToggleArrow className={styles["hop-ComboBox__button-icon"]} isExpanded={isOpen} />
                             </RACButton>
                         </InputGroup>
                         {description && (
@@ -296,9 +302,7 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
                                 {description}
                             </HelperMessage>
                         )}
-                        <ErrorMessage className={styles["hop-ComboBox__error-message"]}>
-                            {errorMessage}
-                        </ErrorMessage>
+                        <ErrorMessage className={styles["hop-ComboBox__error-message"]}>{errorMessage}</ErrorMessage>
                         <Popover
                             isAutoWidth={isAutoMenuWidth}
                             isNonDialog
@@ -308,11 +312,15 @@ function ComboBox<T extends object>(props: ComboBoxProps<T>, ref: ForwardedRef<H
                             triggerRef={triggerRef}
                             {...popoverProps}
                         >
-                            <SlotProvider values={[
-                                [BadgeContext, {
-                                    variant: "secondary"
-                                }]
-                            ]}
+                            <SlotProvider
+                                values={[
+                                    [
+                                        BadgeContext,
+                                        {
+                                            variant: "secondary"
+                                        }
+                                    ]
+                                ]}
                             >
                                 <ListBox
                                     size={size}

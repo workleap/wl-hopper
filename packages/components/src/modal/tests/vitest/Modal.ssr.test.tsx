@@ -7,10 +7,7 @@ import { Modal } from "../../src/Modal.tsx";
 
 describe("Modal", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <Modal>Text</Modal>
-            );
+        const renderOnServer = () => renderToString(<Modal>Text</Modal>);
 
         expect(renderOnServer).not.toThrow();
     });

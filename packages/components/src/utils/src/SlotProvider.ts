@@ -11,4 +11,3 @@ export type SlotProviderProps = ComponentProps<typeof SlotProvider>;
 
 // we know SlotProvider is a FunctionComponent, and we want to overwrite it's name
 (SlotProvider as FunctionComponent).displayName = "SlotProvider";
-

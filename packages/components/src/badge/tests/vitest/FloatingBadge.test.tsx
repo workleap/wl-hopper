@@ -2,7 +2,7 @@ import { Div } from "@hopper-ui/styled-system";
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
-import { FloatingBadgeContext, Badge, FloatingBadge } from "../../index.ts";
+import { Badge, FloatingBadge, FloatingBadgeContext } from "../../index.ts";
 
 describe("Badge", () => {
     it("should render with default class", () => {

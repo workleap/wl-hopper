@@ -6,9 +6,7 @@ export default function Example() {
             <Button>Company Profile</Button>
             <Popover>
                 <Heading>ACME</Heading>
-                <Content>
-                    A tech company focusing on the development of software and hardware solutions.
-                </Content>
+                <Content>A tech company focusing on the development of software and hardware solutions.</Content>
                 <ButtonGroup>
                     <Button variant="secondary">Follow</Button>
                     <Button>Apply</Button>

@@ -1,10 +1,21 @@
-import { getRootCSSClasses, useColorSchemeContext, useStyledSystem, useThemeContext, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type StyledComponentProps,
+    getRootCSSClasses,
+    useColorSchemeContext,
+    useStyledSystem,
+    useThemeContext
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, type CSSProperties, type ForwardedRef } from "react";
-import { Provider, Tooltip as RACTooltip, useContextProps, type TooltipProps as RACTooltipProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
+import {
+    Provider,
+    Tooltip as RACTooltip,
+    type TooltipProps as RACTooltipProps,
+    useContextProps
+} from "react-aria-components";
 
 import { TextContext } from "../../typography/index.ts";
-import { cssModule, ensureTextWrapper, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule, ensureTextWrapper } from "../../utils/index.ts";
 
 import { TooltipContext } from "./TooltipContext.ts";
 import { TooltipTriggerContext } from "./TooltipTriggerContext.ts";
@@ -13,7 +24,22 @@ import styles from "./Tooltip.module.css";
 
 export const GlobalTooltipCssSelector = "hop-Tooltip";
 
-type PropsToOmit = "children" | "className" | "style" | "UNSTABLE_portalContainer" | "isEntering" | "isExiting" | "placement" | "containerPadding" | "offset" | "crossOffset" | "shouldFlip" | "arrowBoundaryOffset" | "isOpen" | "defaultOpen" | "onOpenChange";
+type PropsToOmit =
+    | "children"
+    | "className"
+    | "style"
+    | "UNSTABLE_portalContainer"
+    | "isEntering"
+    | "isExiting"
+    | "placement"
+    | "containerPadding"
+    | "offset"
+    | "crossOffset"
+    | "shouldFlip"
+    | "arrowBoundaryOffset"
+    | "isOpen"
+    | "defaultOpen"
+    | "onOpenChange";
 
 export interface TooltipProps extends StyledComponentProps<Omit<RACTooltipProps, PropsToOmit>>, BaseComponentDOMProps {}
 
@@ -24,21 +50,12 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
     const { theme } = useThemeContext();
     const { containerPadding, crossOffset, offset, placement = "top", shouldFlip } = useContext(TooltipTriggerContext);
 
-    const {
-        className,
-        children,
-        style,
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalTooltipCssSelector,
         getRootCSSClasses(colorScheme, theme),
-        cssModule(
-            styles,
-            "hop-Tooltip",
-            placement
-        ),
+        cssModule(styles, "hop-Tooltip", placement),
         stylingProps.className,
         className
     );
@@ -51,9 +68,12 @@ function Tooltip(props: TooltipProps, ref: ForwardedRef<HTMLDivElement>) {
     return (
         <Provider
             values={[
-                [TextContext, {
-                    size: "xs"
-                }]
+                [
+                    TextContext,
+                    {
+                        size: "xs"
+                    }
+                ]
             ]}
         >
             <RACTooltip

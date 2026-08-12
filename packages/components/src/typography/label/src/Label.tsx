@@ -1,10 +1,7 @@
-import {
-    useStyledSystem,
-    type StyledComponentProps
-} from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Label as RACLabel, useContextProps, type LabelProps as RACLabelProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { Label as RACLabel, type LabelProps as RACLabelProps, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../../utils/index.ts";
 
@@ -14,31 +11,15 @@ import styles from "./Label.module.css";
 
 export const GlobalLabelCssSelector = "hop-Label";
 
-export interface LabelProps extends StyledComponentProps<RACLabelProps> {
-
-}
+export interface LabelProps extends StyledComponentProps<RACLabelProps> {}
 
 function Label(props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) {
     [props, ref] = useContextProps(props, ref, LabelContext);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children,
-        slot,
-        style,
-        ...otherProps
-    } = ownProps;
+    const { className, children, slot, style, ...otherProps } = ownProps;
 
-    const classNames = clsx(
-        className,
-        GlobalLabelCssSelector,
-        cssModule(
-            styles,
-            "hop-Label"
-        ),
-        stylingProps.className
-    );
+    const classNames = clsx(className, GlobalLabelCssSelector, cssModule(styles, "hop-Label"), stylingProps.className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
@@ -46,13 +27,7 @@ function Label(props: LabelProps, ref: ForwardedRef<HTMLLabelElement>) {
     };
 
     return (
-        <RACLabel
-            ref={ref}
-            className={classNames}
-            slot={slot || undefined}
-            style={mergedStyles}
-            {...otherProps}
-        >
+        <RACLabel ref={ref} className={classNames} slot={slot || undefined} style={mergedStyles} {...otherProps}>
             {children}
         </RACLabel>
     );

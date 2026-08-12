@@ -17,11 +17,7 @@ export default function Example() {
                     end: parseDate("2020-02-10")
                 }}
             />
-            <RangeCalendar
-                aria-label="Trip dates (controlled)"
-                value={value}
-                onChange={setValue}
-            />
+            <RangeCalendar aria-label="Trip dates (controlled)" value={value} onChange={setValue} />
         </Inline>
     );
 }

@@ -22,7 +22,11 @@ describe("Button", () => {
     });
 
     it("should support custom style", () => {
-        render(<Button marginTop="stack-sm" style={{ marginBottom: "13px" }} >Cutoff</Button>);
+        render(
+            <Button marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Cutoff
+            </Button>
+        );
 
         const element = screen.getByRole("button");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -56,7 +60,13 @@ describe("Button", () => {
     });
 
     it("should support form props", () => {
-        render(<form id="foo"><Button form="foo" formMethod="post">Test</Button></form>);
+        render(
+            <form id="foo">
+                <Button form="foo" formMethod="post">
+                    Test
+                </Button>
+            </form>
+        );
 
         const button = screen.getByRole("button");
         expect(button).toHaveAttribute("form", "foo");
@@ -76,7 +86,7 @@ describe("Button", () => {
     });
 
     it("should add data-pending and aria-disabled attribute when the button is loading", () => {
-        render(<Button isLoading >Loading Button</Button>);
+        render(<Button isLoading>Loading Button</Button>);
 
         const element = screen.getByRole("button");
         expect(element).toHaveAttribute("data-pending", "true");
@@ -87,7 +97,10 @@ describe("Button", () => {
         const handler = vi.fn();
         const user = userEvent.setup();
 
-        render(<Button isLoading onPress={handler}>Loading Button</Button>
+        render(
+            <Button isLoading onPress={handler}>
+                Loading Button
+            </Button>
         );
 
         const element = screen.getByRole("button");

@@ -41,11 +41,19 @@ export const Unchecked: Story = {
             <Inline alignY="end">
                 <Checkbox {...props} size="sm">
                     <Text>Option 1</Text>
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Checkbox>
                 <Checkbox {...props} size="md">
                     <Text>Option 2</Text>
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Checkbox>
             </Inline>
             <h1>Unlabeled</h1>
@@ -63,10 +71,18 @@ export const Unchecked: Story = {
             </Inline>
             <Inline alignY="end">
                 <Checkbox {...props} size="sm" aria-label="Option 1">
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Checkbox>
                 <Checkbox {...props} size="md" aria-label="Option 2">
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Checkbox>
             </Inline>
             <h1>Validation</h1>
@@ -96,18 +112,22 @@ export const Unchecked: Story = {
                 <Checkbox {...props}>
                     <Text>PA-99-N2 event and possible exoplanet in galaxy</Text>
                     <IconList>
-                        <SparklesIcon /><SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
                     </IconList>
                 </Checkbox>
             </Div>
             <Div maxWidth="1/4">
-                <Checkbox {...props} size="sm">PA-99-N2 event and possible exoplanet in galaxy</Checkbox>
+                <Checkbox {...props} size="sm">
+                    PA-99-N2 event and possible exoplanet in galaxy
+                </Checkbox>
             </Div>
             <Div maxWidth="1/4">
                 <Checkbox {...props} size="sm">
                     <Text>PA-99-N2 event and possible exoplanet in galaxy</Text>
                     <IconList>
-                        <SparklesIcon /><SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
                     </IconList>
                 </Checkbox>
             </Div>
@@ -145,7 +165,8 @@ export const UncheckedStates: Story = {
 
         checkboxLabels.forEach(checkboxLabel => {
             const checkbox = checkboxLabel.querySelector("input[type='checkbox']");
-            if (checkbox && checkbox.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (checkbox && checkbox.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (checkboxLabel.getAttribute("data-chromatic-force-press")) {
                     checkboxLabel.setAttribute("data-pressed", "true");
                     checkboxLabel.removeAttribute("data-chromatic-force-press");

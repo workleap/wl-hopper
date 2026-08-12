@@ -1,7 +1,11 @@
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { type TabPanelProps as RACTabPanelProps, TabPanel as RACTabPanel, useContextProps } from "react-aria-components";
+import {
+    TabPanel as RACTabPanel,
+    type TabPanelProps as RACTabPanelProps,
+    useContextProps
+} from "react-aria-components";
 
 import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
@@ -11,26 +15,20 @@ import styles from "./TabPanel.module.css";
 
 export const GlobalTabPanelCssSelector = "hop-TabPanel";
 
-export interface TabPanelProps extends
-    Omit<RACTabPanelProps, "id" | "children" | "className" | "style">,
-    StyledComponentProps<BaseComponentDOMProps> {}
+export interface TabPanelProps
+    extends
+        Omit<RACTabPanelProps, "id" | "children" | "className" | "style">,
+        StyledComponentProps<BaseComponentDOMProps> {}
 
 function TabPanel(props: TabPanelProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabPanelContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
 
-    const {
-        className,
-        style,
-        ...otherProps
-    } = ownProps;
+    const { className, style, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalTabPanelCssSelector,
-        cssModule(
-            styles,
-            "hop-TabPanel"
-        ),
+        cssModule(styles, "hop-TabPanel"),
         stylingProps.className,
         className
     );
@@ -40,14 +38,7 @@ function TabPanel(props: TabPanelProps, ref: ForwardedRef<HTMLDivElement>) {
         ...stylingProps.style
     };
 
-    return (
-        <RACTabPanel
-            ref={ref}
-            style={mergedStyles}
-            className={classNames}
-            {...otherProps}
-        />
-    );
+    return <RACTabPanel ref={ref} style={mergedStyles} className={classNames} {...otherProps} />;
 }
 
 /**

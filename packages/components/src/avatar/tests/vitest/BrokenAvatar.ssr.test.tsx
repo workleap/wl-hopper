@@ -7,10 +7,7 @@ import { BrokenAvatar } from "../../src/BrokenAvatar.tsx";
 
 describe("BrokenAvatar", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <BrokenAvatar aria-label="John Doe" />
-            );
+        const renderOnServer = () => renderToString(<BrokenAvatar aria-label="John Doe" />);
 
         expect(renderOnServer).not.toThrow();
     });

@@ -1,7 +1,5 @@
 import { RangeCalendar } from "@hopper-ui/components";
 
 export default function Example() {
-    return (
-        <RangeCalendar aria-label="Trip dates" isDisabled />
-    );
+    return <RangeCalendar aria-label="Trip dates" isDisabled />;
 }

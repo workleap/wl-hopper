@@ -1,15 +1,10 @@
-import { Div, useResponsiveValue, type DivProps, type ResponsiveProp } from "@hopper-ui/styled-system";
-import { forwardRef, type Ref } from "react";
+import { Div, type DivProps, type ResponsiveProp, useResponsiveValue } from "@hopper-ui/styled-system";
+import { type Ref, forwardRef } from "react";
 
-export interface FlexProps
-    extends Omit<DivProps,
-        | "display"
-        | "flexDirection"
-        | "flexWrap"
-        | "flexBasis"
-        | "flexGrow"
-        | "flexShrink"
-    > {
+export interface FlexProps extends Omit<
+    DivProps,
+    "display" | "flexDirection" | "flexWrap" | "flexBasis" | "flexGrow" | "flexShrink"
+> {
     /**
      * The flex direction of the container. Can be row, column, row-reverse or column-reverse.
      */

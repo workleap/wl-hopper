@@ -3,11 +3,7 @@ import { Div, Grid } from "@hopper-ui/components";
 export default function Example() {
     return (
         <Grid
-            areas={[
-                "header header",
-                "sidebar content",
-                "footer footer"
-            ]}
+            areas={["header header", "sidebar content", "footer footer"]}
             templateColumns={["1fr", "3fr"]}
             templateRows={["core_640", "auto", "core_640"]}
             UNSAFE_height="480px"

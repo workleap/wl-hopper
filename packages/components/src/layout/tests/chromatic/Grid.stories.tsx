@@ -182,18 +182,38 @@ export const Areas: Story = {
     render: () => (
         <Stack>
             <Grid areas={["a a", "b c", "d e"]} gap="stack-md">
-                <Square gridArea="a" backgroundColor="decorative-option1">a</Square>
-                <Square gridArea="b" backgroundColor="decorative-option2">b</Square>
-                <Square gridArea="c" backgroundColor="decorative-option3">c</Square>
-                <Square gridArea="d" backgroundColor="decorative-option4">d</Square>
-                <Square gridArea="e" backgroundColor="decorative-option5">e</Square>
+                <Square gridArea="a" backgroundColor="decorative-option1">
+                    a
+                </Square>
+                <Square gridArea="b" backgroundColor="decorative-option2">
+                    b
+                </Square>
+                <Square gridArea="c" backgroundColor="decorative-option3">
+                    c
+                </Square>
+                <Square gridArea="d" backgroundColor="decorative-option4">
+                    d
+                </Square>
+                <Square gridArea="e" backgroundColor="decorative-option5">
+                    e
+                </Square>
             </Grid>
             <Grid areas={{ md: ["a", "b", "c", "d", "e"], lg: ["a a", "b c", "d e"] }} gap="stack-md">
-                <Square gridArea="a" backgroundColor="decorative-option1-strong">a</Square>
-                <Square gridArea="b" backgroundColor="decorative-option2-strong">b</Square>
-                <Square gridArea="c" backgroundColor="decorative-option3-strong">c</Square>
-                <Square gridArea="d" backgroundColor="decorative-option4-strong">d</Square>
-                <Square gridArea="e" backgroundColor="decorative-option5-strong">e</Square>
+                <Square gridArea="a" backgroundColor="decorative-option1-strong">
+                    a
+                </Square>
+                <Square gridArea="b" backgroundColor="decorative-option2-strong">
+                    b
+                </Square>
+                <Square gridArea="c" backgroundColor="decorative-option3-strong">
+                    c
+                </Square>
+                <Square gridArea="d" backgroundColor="decorative-option4-strong">
+                    d
+                </Square>
+                <Square gridArea="e" backgroundColor="decorative-option5-strong">
+                    e
+                </Square>
             </Grid>
         </Stack>
     )

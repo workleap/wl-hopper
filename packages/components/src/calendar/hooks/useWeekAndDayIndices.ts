@@ -10,10 +10,7 @@ export type DayOfWeek = "sun" | "mon" | "tue" | "wed" | "thu" | "fri" | "sat";
  * @param firstDayOfWeek - Optional override for the first day of the week ('sun', 'mon', 'tue', etc.).
  * @returns Object with weekIndex and dayIndex.
  */
-export function useWeekAndDayIndices(
-    date: CalendarDate,
-    firstDayOfWeek?: DayOfWeek
-) {
+export function useWeekAndDayIndices(date: CalendarDate, firstDayOfWeek?: DayOfWeek) {
     const { locale } = useLocale();
 
     const { dayIndex, weekIndex } = useMemo(() => {

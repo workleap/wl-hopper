@@ -1,9 +1,9 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { CardContext } from "./CardContext.ts";
 
@@ -27,28 +27,12 @@ export interface CardProps extends StyledComponentProps<BaseComponentDOMProps> {
 const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, CardContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children,
-        style,
-        slot,
-        variant = "main",
-        elevation = "flat",
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, slot, variant = "main", elevation = "flat", ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalCardCssSelector,
-        cssModule(
-            styles,
-            "hop-Card",
-            variant
-        ),
-        cssModule(
-            styles,
-            "hop-Card",
-            elevation
-        ),
+        cssModule(styles, "hop-Card", variant),
+        cssModule(styles, "hop-Card", elevation),
         stylingProps.className,
         className
     );
@@ -59,13 +43,7 @@ const Card = (props: CardProps, ref: ForwardedRef<HTMLDivElement>) => {
     };
 
     return (
-        <div
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot ?? undefined}
-            {...otherProps}
-        >
+        <div ref={ref} className={classNames} style={mergedStyles} slot={slot ?? undefined} {...otherProps}>
             {children}
         </div>
     );

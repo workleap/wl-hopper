@@ -1,15 +1,28 @@
 import { CheckmarkIcon, IconContext, type IconSize } from "@hopper-ui/icons";
-import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import type { forwardRefType } from "@react-types/shared";
 import clsx from "clsx";
-import { type ForwardedRef, forwardRef, type NamedExoticComponent, type ReactNode, type TransitionEventHandler, useContext, useState } from "react";
 import {
-    composeRenderProps,
+    type ForwardedRef,
+    type NamedExoticComponent,
+    type ReactNode,
+    type TransitionEventHandler,
+    forwardRef,
+    useContext,
+    useState
+} from "react";
+import {
     DEFAULT_SLOT,
     type ListBoxItemRenderProps,
     ListStateContext,
     ListBoxItem as RACListBoxItem,
     type ListBoxItemProps as RACListBoxItemProps,
+    composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
@@ -19,7 +32,13 @@ import { DecorativeCheckbox, type DecorativeCheckboxProps } from "../../checkbox
 import { IconListContext } from "../../icon-list/index.ts";
 import { DecorativeRadio, type DecorativeRadioProps } from "../../radio/index.ts";
 import { TextContext, type TextSize } from "../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, ensureTextWrapper, type SizeAdapter, SlotProvider } from "../../utils/index.ts";
+import {
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    ensureTextWrapper
+} from "../../utils/index.ts";
 
 import { ListBoxItemContext } from "./ListBoxItemContext.ts";
 import { ListBoxItemSkeleton } from "./ListBoxItemSkeleton.tsx";
@@ -51,7 +70,8 @@ interface ListBoxItemSharedProps {
      */
     checkboxProps?: DecorativeCheckboxProps;
 }
-export interface ListBoxItemProps<T> extends ListBoxItemSharedProps, StyledComponentProps<Omit<RACListBoxItemProps<T>, "orientation | layout">> {
+export interface ListBoxItemProps<T>
+    extends ListBoxItemSharedProps, StyledComponentProps<Omit<RACListBoxItemProps<T>, "orientation | layout">> {
     /**
      * Whether the item is loading.
      * */
@@ -99,7 +119,8 @@ const ListBoxItemToAvatarSizeAdapter = {
 function ListBoxItemInner(props: ListBoxItemInnerProps) {
     const listStateContext = useContext(ListStateContext);
 
-    const { selectionMode,
+    const {
+        selectionMode,
         isDisabled,
         isFocusVisible,
         isPressed,
@@ -166,58 +187,71 @@ function ListBoxItemInner(props: ListBoxItemInnerProps) {
                     {...otherCheckboxProps}
                 />
             )}
-            {isCheck && (
-                <CheckmarkIcon className={styles["hop-ListBoxItem__checkmark"]} size="sm" />
-            )}
+            {isCheck && <CheckmarkIcon className={styles["hop-ListBoxItem__checkmark"]} size="sm" />}
 
             <SlotProvider
                 values={[
-                    [TextContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                slot: "label",
-                                className: styles["hop-ListBoxItem__label"],
-                                size: ListBoxItemToTextSizeAdapter[size]
-                            },
-                            description: {
-                                className: styles["hop-ListBoxItem__description"],
-                                size: "xs"
+                    [
+                        TextContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    slot: "label",
+                                    className: styles["hop-ListBoxItem__label"],
+                                    size: ListBoxItemToTextSizeAdapter[size]
+                                },
+                                description: {
+                                    className: styles["hop-ListBoxItem__description"],
+                                    size: "xs"
+                                }
                             }
                         }
-                    }],
-                    [IconListContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                className: styles["hop-ListBoxItem__icon-list"],
-                                size: ListBoxItemToIconSizeAdapter[size]
-                            },
-                            "end-icon": {
-                                className: styles["hop-ListBoxItem__end-icon-list"],
-                                size: ListBoxItemToIconSizeAdapter[size]
+                    ],
+                    [
+                        IconListContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    className: styles["hop-ListBoxItem__icon-list"],
+                                    size: ListBoxItemToIconSizeAdapter[size]
+                                },
+                                "end-icon": {
+                                    className: styles["hop-ListBoxItem__end-icon-list"],
+                                    size: ListBoxItemToIconSizeAdapter[size]
+                                }
                             }
                         }
-                    }],
-                    [IconContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                className: styles["hop-ListBoxItem__icon"],
-                                size: ListBoxItemToIconSizeAdapter[size]
-                            },
-                            "end-icon": {
-                                className: styles["hop-ListBoxItem__end-icon"],
-                                size: ListBoxItemToIconSizeAdapter[size]
+                    ],
+                    [
+                        IconContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    className: styles["hop-ListBoxItem__icon"],
+                                    size: ListBoxItemToIconSizeAdapter[size]
+                                },
+                                "end-icon": {
+                                    className: styles["hop-ListBoxItem__end-icon"],
+                                    size: ListBoxItemToIconSizeAdapter[size]
+                                }
                             }
                         }
-                    }],
-                    [BadgeContext, {
-                        className: styles["hop-ListBoxItem__badge"],
-                        isDisabled: isDisabled
-                    }],
-                    [AvatarContext, {
-                        className: styles["hop-ListBoxItem__avatar"],
-                        isDisabled: isDisabled,
-                        size: ListBoxItemToAvatarSizeAdapter[size]
-                    }]
+                    ],
+                    [
+                        BadgeContext,
+                        {
+                            className: styles["hop-ListBoxItem__badge"],
+                            isDisabled
+                        }
+                    ],
+                    [
+                        AvatarContext,
+                        {
+                            className: styles["hop-ListBoxItem__avatar"],
+                            isDisabled,
+                            size: ListBoxItemToAvatarSizeAdapter[size]
+                        }
+                    ]
                 ]}
             >
                 {children}
@@ -248,12 +282,7 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
     const classNames = composeClassnameRenderProps(
         className,
         GlobalListBoxItemCssSelector,
-        cssModule(
-            styles,
-            "hop-ListBoxItem",
-            size,
-            selectionIndicator
-        ),
+        cssModule(styles, "hop-ListBoxItem", size, selectionIndicator),
         stylingProps.className
     );
 
@@ -270,7 +299,9 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
 
     return (
         <RACListBoxItem
-            ref={ref as ForwardedRef<T>} /* Needed until this bug is fixed: https://github.com/adobe/react-spectrum/issues/6799 */
+            ref={
+                ref as ForwardedRef<T>
+            } /* Needed until this bug is fixed: https://github.com/adobe/react-spectrum/issues/6799 */
             className={classNames}
             style={style}
             textValue={textValue}
@@ -285,10 +316,7 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
                 if (isLoading) {
                     return (
                         <div className={styles["hop-ListBoxItem__inner"]}>
-                            <ListBoxItemSkeleton
-                                size={size}
-                                slot="label"
-                            />
+                            <ListBoxItemSkeleton size={size} slot="label" />
                         </div>
                     );
                 }

@@ -48,7 +48,7 @@ describe("AnonymousAvatar", () => {
 
     it("should support slots", () => {
         render(
-            <AvatarContext.Provider value={{ slots: { test: { "aria-label": "test", "name": "test" } } }}>
+            <AvatarContext.Provider value={{ slots: { test: { "aria-label": "test", name: "test" } } }}>
                 <AnonymousAvatar slot="test" />
             </AvatarContext.Provider>
         );
@@ -63,9 +63,7 @@ describe("AnonymousAvatar", () => {
     });
 
     it("should have the provided aria-label if provided", async () => {
-        render(
-            <AnonymousAvatar aria-label="Maye Musk" />
-        );
+        render(<AnonymousAvatar aria-label="Maye Musk" />);
 
         expect(await screen.findByLabelText("Maye Musk")).not.toBeNull();
     });

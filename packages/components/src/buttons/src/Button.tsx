@@ -1,18 +1,18 @@
 import { IconContext, type IconSize } from "@hopper-ui/icons";
 import {
     type ResponsiveProp,
-    slot as slotFn,
     type StyledComponentProps,
+    slot as slotFn,
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type ForwardedRef, forwardRef } from "react";
 import {
-    composeRenderProps,
     DEFAULT_SLOT,
     Button as RACButton,
     type ButtonProps as RACButtonProps,
+    composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
@@ -22,11 +22,11 @@ import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
     ClearProviders,
+    type SizeAdapter,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    type SizeAdapter,
-    SlotProvider,
     useSlot
 } from "../../utils/index.ts";
 import { type ButtonSize, type ButtonVariant, useButtonProps } from "../utils/index.ts";
@@ -127,7 +127,7 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     const { className: spinnerClassName, ...otherSpinnerProps } = spinnerProps ?? {};
     const spinnerClassNames = clsx(styles["hop-Button__Spinner"], spinnerClassName);
 
-    if (!hasText && (!props["aria-label"] && !props["aria-labelledby"])) {
+    if (!hasText && !props["aria-label"] && !props["aria-labelledby"]) {
         console.warn("An aria-label or aria-labelledby prop is required on Button for accessibility.");
     }
 
@@ -137,35 +137,44 @@ function Button(props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
         <ClearProviders values={clearContexts}>
             <SlotProvider
                 values={[
-                    [IconListContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                size: iconSize,
-                                className: styles["hop-Button__icon-list"]
-                            },
-                            "end-icon": {
-                                size: iconSize,
-                                className: styles["hop-Button__end-icon-list"]
+                    [
+                        IconListContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    size: iconSize,
+                                    className: styles["hop-Button__icon-list"]
+                                },
+                                "end-icon": {
+                                    size: iconSize,
+                                    className: styles["hop-Button__end-icon-list"]
+                                }
                             }
                         }
-                    }],
-                    [IconContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                size: iconSize,
-                                className: styles["hop-Button__icon"]
-                            },
-                            "end-icon": {
-                                size: iconSize,
-                                className: styles["hop-Button__end-icon"]
+                    ],
+                    [
+                        IconContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    size: iconSize,
+                                    className: styles["hop-Button__icon"]
+                                },
+                                "end-icon": {
+                                    size: iconSize,
+                                    className: styles["hop-Button__end-icon"]
+                                }
                             }
                         }
-                    }],
-                    [TextContext, {
-                        className: styles["hop-Button__text"],
-                        size: size,
-                        ref: textRef
-                    }]
+                    ],
+                    [
+                        TextContext,
+                        {
+                            className: styles["hop-Button__text"],
+                            size,
+                            ref: textRef
+                        }
+                    ]
                 ]}
             >
                 <RACButton
@@ -207,4 +216,3 @@ const _Button = slotFn("button", forwardRef(Button));
 _Button.displayName = "Button";
 
 export { _Button as Button };
-

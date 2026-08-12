@@ -11,14 +11,22 @@ import { CheckboxGroupContext } from "../../src/CheckboxGroupContext.ts";
 
 describe("Checkbox", () => {
     it("should render with default class", () => {
-        render(<CheckboxGroup aria-label="options"><Checkbox>option 1</Checkbox></CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxGroup>
+        );
 
         const element = screen.getByRole("group");
         expect(element).toHaveClass("hop-CheckboxGroup");
     });
 
     it("should support custom class", () => {
-        render(<CheckboxGroup aria-label="options" className="test"><Checkbox>option 1</Checkbox></CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options" className="test">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxGroup>
+        );
 
         const element = screen.getByRole("group");
         expect(element).toHaveClass("hop-CheckboxGroup");
@@ -37,7 +45,11 @@ describe("Checkbox", () => {
     });
 
     it("should support DOM props", () => {
-        render(<CheckboxGroup aria-label="options" data-foo="bar"><Checkbox>option 1</Checkbox></CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options" data-foo="bar">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxGroup>
+        );
 
         const element = screen.getByRole("group");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -46,7 +58,9 @@ describe("Checkbox", () => {
     it("should support slots", () => {
         render(
             <CheckboxGroupContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <CheckboxGroup slot="test"><Checkbox>option 1</Checkbox></CheckboxGroup>
+                <CheckboxGroup slot="test">
+                    <Checkbox>option 1</Checkbox>
+                </CheckboxGroup>
             </CheckboxGroupContext.Provider>
         );
 
@@ -58,7 +72,11 @@ describe("Checkbox", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<CheckboxGroup aria-label="options" ref={ref}><Checkbox>option 1</Checkbox></CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options" ref={ref}>
+                <Checkbox>option 1</Checkbox>
+            </CheckboxGroup>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -83,7 +101,11 @@ describe("Checkbox", () => {
     });
 
     it("should be disabled and pass it to the checkbox.", () => {
-        render(<CheckboxGroup aria-label="options" isDisabled><Checkbox>option 1</Checkbox></CheckboxGroup>);
+        render(
+            <CheckboxGroup aria-label="options" isDisabled>
+                <Checkbox>option 1</Checkbox>
+            </CheckboxGroup>
+        );
 
         const element = screen.getByRole("group");
         const checkbox = screen.getByRole("checkbox");
@@ -97,7 +119,9 @@ describe("Checkbox", () => {
         const onChange = vi.fn();
         render(
             <CheckboxGroup aria-label="options" onChange={onChange}>
-                <Checkbox value="option 1" aria-label="option 1">option 1</Checkbox>
+                <Checkbox value="option 1" aria-label="option 1">
+                    option 1
+                </Checkbox>
                 <Checkbox value="option 2">option 2</Checkbox>
                 <Checkbox value="option 3">option 3</Checkbox>
             </CheckboxGroup>

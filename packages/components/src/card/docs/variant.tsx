@@ -6,7 +6,10 @@ export default function Example() {
             <H2>Roles</H2>
             <Card gap="stack-md" padding="inset-squish-lg" variant="second-level">
                 <H3>Manager</H3>
-                <Text>A manager leads team operations, aligns goals, and fosters a productive work environment to achieve results.</Text>
+                <Text>
+                    A manager leads team operations, aligns goals, and fosters a productive work environment to achieve
+                    results.
+                </Text>
             </Card>
         </Card>
     );

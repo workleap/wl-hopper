@@ -1,5 +1,5 @@
 import { ButtonContext } from "@hopper-ui/components";
-import { useState, type PropsWithChildren } from "react";
+import { type PropsWithChildren, useState } from "react";
 
 export function Stepper({ children }: PropsWithChildren) {
     const [value, setValue] = useState(0);

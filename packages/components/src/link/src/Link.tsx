@@ -1,23 +1,23 @@
 import { IconContext, type IconSize } from "@hopper-ui/icons";
 import type { ResponsiveProp, StyledComponentProps } from "@hopper-ui/styled-system";
 import { useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import {
-    composeRenderProps,
     DEFAULT_SLOT,
     Link as RACLink,
-    useContextProps,
-    type LinkProps as RACLinkProps
+    type LinkProps as RACLinkProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
+    type SizeAdapter,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
-    ensureTextWrapper,
-    SlotProvider,
-    type SizeAdapter
+    ensureTextWrapper
 } from "../../utils/index.ts";
 
 import { LinkContext } from "./LinkContext.ts";
@@ -90,14 +90,7 @@ function Link(props: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
     const classNames = composeClassnameRenderProps(
         className,
         GlobalLinkCssSelector,
-        cssModule(
-            styles,
-            "hop-Link",
-            isQuiet && "quiet",
-            variant,
-            size,
-            isStandalone && "standalone"
-        ),
+        cssModule(styles, "hop-Link", isQuiet && "quiet", variant, size, isStandalone && "standalone"),
         stylingProps.className
     );
 
@@ -117,38 +110,47 @@ function Link(props: LinkProps, ref: ForwardedRef<HTMLAnchorElement>) {
     return (
         <SlotProvider
             values={[
-                [IconListContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            color: "inherit",
-                            size: iconSize,
-                            className: styles["hop-Link__icon-list"]
-                        },
-                        "start-icon": {
-                            color: "inherit",
-                            size: iconSize,
-                            className: styles["hop-Link__start-icon-list"]
+                [
+                    IconListContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                color: "inherit",
+                                size: iconSize,
+                                className: styles["hop-Link__icon-list"]
+                            },
+                            "start-icon": {
+                                color: "inherit",
+                                size: iconSize,
+                                className: styles["hop-Link__start-icon-list"]
+                            }
                         }
                     }
-                }],
-                [IconContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            color: "inherit",
-                            size: iconSize,
-                            className: styles["hop-Link__icon"]
-                        },
-                        "start-icon": {
-                            color: "inherit",
-                            size: iconSize,
-                            className: styles["hop-Link__start-icon"]
+                ],
+                [
+                    IconContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                color: "inherit",
+                                size: iconSize,
+                                className: styles["hop-Link__icon"]
+                            },
+                            "start-icon": {
+                                color: "inherit",
+                                size: iconSize,
+                                className: styles["hop-Link__start-icon"]
+                            }
                         }
                     }
-                }],
-                [TextContext, {
-                    size: "inherit",
-                    className: styles["hop-Link__text"]
-                }]
+                ],
+                [
+                    TextContext,
+                    {
+                        size: "inherit",
+                        className: styles["hop-Link__text"]
+                    }
+                ]
             ]}
         >
             <RACLink

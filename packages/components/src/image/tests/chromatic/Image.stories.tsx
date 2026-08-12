@@ -21,11 +21,13 @@ type Story = StoryObj<typeof meta>;
 export const Default = {} satisfies Story;
 
 export const Contained = {
-    decorators: [Story => (
-        <Div UNSAFE_width="200px" UNSAFE_height="200px">
-            <Story />
-        </Div>
-    )]
+    decorators: [
+        Story => (
+            <Div UNSAFE_width="200px" UNSAFE_height="200px">
+                <Story />
+            </Div>
+        )
+    ]
 } satisfies Story;
 
 export const Size = {
@@ -125,19 +127,23 @@ export const ObjectPosition = {
 } satisfies Story;
 
 export const ZoomIn = {
-    decorators: [Story => (
-        <Div className="zoom-in">
-            <Story />
-        </Div>
-    )]
+    decorators: [
+        Story => (
+            <Div className="zoom-in">
+                <Story />
+            </Div>
+        )
+    ]
 } satisfies Story;
 
 export const ZoomOut = {
-    decorators: [Story => (
-        <Div className="zoom-in">
-            <Story />
-        </Div>
-    )]
+    decorators: [
+        Story => (
+            <Div className="zoom-in">
+                <Story />
+            </Div>
+        )
+    ]
 } satisfies Story;
 
 export const Styling = {
@@ -149,4 +155,3 @@ export const Styling = {
         </Inline>
     )
 } satisfies Story;
-

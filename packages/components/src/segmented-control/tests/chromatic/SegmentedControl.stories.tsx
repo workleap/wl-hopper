@@ -68,13 +68,21 @@ export const Sizes = {
                 </SegmentedControl>
             </Inline>
             <Inline>
-                <SegmentedControl defaultSelectedKey="unordered" {...props} >
-                    <SegmentedControlItem aria-label="Unordered" id="unordered"><UnorderedListIcon /></SegmentedControlItem>
-                    <SegmentedControlItem aria-label="Ordered" id="ordered"><OrderedListIcon /></SegmentedControlItem>
+                <SegmentedControl defaultSelectedKey="unordered" {...props}>
+                    <SegmentedControlItem aria-label="Unordered" id="unordered">
+                        <UnorderedListIcon />
+                    </SegmentedControlItem>
+                    <SegmentedControlItem aria-label="Ordered" id="ordered">
+                        <OrderedListIcon />
+                    </SegmentedControlItem>
                 </SegmentedControl>
-                <SegmentedControl defaultSelectedKey="unordered" size="md" {...props} >
-                    <SegmentedControlItem aria-label="Unordered" id="unordered"><UnorderedListIcon /></SegmentedControlItem>
-                    <SegmentedControlItem aria-label="Ordered" id="ordered"><OrderedListIcon /></SegmentedControlItem>
+                <SegmentedControl defaultSelectedKey="unordered" size="md" {...props}>
+                    <SegmentedControlItem aria-label="Unordered" id="unordered">
+                        <UnorderedListIcon />
+                    </SegmentedControlItem>
+                    <SegmentedControlItem aria-label="Ordered" id="ordered">
+                        <OrderedListIcon />
+                    </SegmentedControlItem>
                 </SegmentedControl>
             </Inline>
         </Stack>
@@ -122,9 +130,13 @@ export const WithTrailingIcons = {
 
 export const OnlyIcons = {
     render: props => (
-        <SegmentedControl defaultSelectedKey="unordered" {...props} >
-            <SegmentedControlItem aria-label="Unordered" id="unordered"><UnorderedListIcon /></SegmentedControlItem>
-            <SegmentedControlItem aria-label="Ordered" id="ordered"><OrderedListIcon /></SegmentedControlItem>
+        <SegmentedControl defaultSelectedKey="unordered" {...props}>
+            <SegmentedControlItem aria-label="Unordered" id="unordered">
+                <UnorderedListIcon />
+            </SegmentedControlItem>
+            <SegmentedControlItem aria-label="Ordered" id="ordered">
+                <OrderedListIcon />
+            </SegmentedControlItem>
         </SegmentedControl>
     ),
     args: {
@@ -134,7 +146,7 @@ export const OnlyIcons = {
 
 export const Justified = {
     render: props => (
-        <SegmentedControl UNSAFE_width="400px" isJustified defaultSelectedKey="day" {...props} >
+        <SegmentedControl UNSAFE_width="400px" isJustified defaultSelectedKey="day" {...props}>
             <SegmentedControlItem id="day">Day</SegmentedControlItem>
             <SegmentedControlItem id="week">Week</SegmentedControlItem>
             <SegmentedControlItem id="month">Month</SegmentedControlItem>
@@ -165,9 +177,13 @@ export const Disabled = {
                     <Text>Ordered</Text>
                 </SegmentedControlItem>
             </SegmentedControl>
-            <SegmentedControl isDisabled defaultSelectedKey="unordered" {...props} >
-                <SegmentedControlItem aria-label="Unordered" id="unordered"><UnorderedListIcon /></SegmentedControlItem>
-                <SegmentedControlItem aria-label="Ordered" id="ordered"><OrderedListIcon /></SegmentedControlItem>
+            <SegmentedControl isDisabled defaultSelectedKey="unordered" {...props}>
+                <SegmentedControlItem aria-label="Unordered" id="unordered">
+                    <UnorderedListIcon />
+                </SegmentedControlItem>
+                <SegmentedControlItem aria-label="Ordered" id="ordered">
+                    <OrderedListIcon />
+                </SegmentedControlItem>
             </SegmentedControl>
         </Stack>
     ),
@@ -175,4 +191,3 @@ export const Disabled = {
         "aria-label": "Examples of disabled segmented controls"
     }
 } satisfies Story;
-

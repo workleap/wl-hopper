@@ -1,13 +1,35 @@
-import { InfoIcon, QuestionIcon, type IconSize } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type IconSize, InfoIcon, QuestionIcon } from "@hopper-ui/icons";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { forwardRef, useCallback, useEffect, useRef, useState, type CSSProperties, type ForwardedRef, type ReactNode, type RefObject } from "react";
+import {
+    type CSSProperties,
+    type ForwardedRef,
+    type ReactNode,
+    type RefObject,
+    forwardRef,
+    useCallback,
+    useEffect,
+    useRef,
+    useState
+} from "react";
 import type { HoverEvent } from "react-aria";
-import { Button, Provider, ButtonContext as RACButtonContext, useContextProps, type ButtonProps, type PressEvent } from "react-aria-components";
+import {
+    Button,
+    type ButtonProps,
+    type PressEvent,
+    Provider,
+    ButtonContext as RACButtonContext,
+    useContextProps
+} from "react-aria-components";
 
 import { useLocalizedString } from "../../i18n/index.ts";
-import { PopoverBase, PopoverTrigger, type PopoverBaseProps, type PopoverTriggerProps } from "../../overlays/index.ts";
+import { PopoverBase, type PopoverBaseProps, PopoverTrigger, type PopoverTriggerProps } from "../../overlays/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import { ClearContainerSlots, ClearProviders, cssModule, ensureTextWrapper } from "../../utils/index.ts";
 
@@ -17,10 +39,11 @@ import styles from "./ContextualHelp.module.css";
 
 export const GlobalContextualHelpCssSelector = "hop-ContextualHelp";
 
-export interface ContextualHelpProps extends
-    StyledComponentProps<ButtonProps>,
-    Pick<PopoverTriggerProps, "isOpen" | "defaultOpen" | "onOpenChange">,
-    Pick<PopoverBaseProps, "shouldFlip" | "offset" | "crossOffset" | "placement"> {
+export interface ContextualHelpProps
+    extends
+        StyledComponentProps<ButtonProps>,
+        Pick<PopoverTriggerProps, "isOpen" | "defaultOpen" | "onOpenChange">,
+        Pick<PopoverBaseProps, "shouldFlip" | "offset" | "crossOffset" | "placement"> {
     /**
      * The contents of the ContextualHelp.
      */
@@ -73,11 +96,7 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
 
     const classNames = clsx(
         GlobalContextualHelpCssSelector,
-        cssModule(
-            styles,
-            GlobalContextualHelpCssSelector,
-            placement
-        ),
+        cssModule(styles, GlobalContextualHelpCssSelector, placement),
         stylingProps.className,
         className
     );
@@ -102,31 +121,37 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
         }, 50);
     }, [clearCloseTimeout, setOpen]);
 
-    const handleOpenChanged = useCallback((open: boolean) => {
-        if (openTrigger === "hover") {
-            setOpen(open || isOpen);
-        } else {
-            setOpen(open);
-        }
+    const handleOpenChanged = useCallback(
+        (open: boolean) => {
+            if (openTrigger === "hover") {
+                setOpen(open || isOpen);
+            } else {
+                setOpen(open);
+            }
 
-        if (!open) {
-            setOpenTrigger(undefined);
-        }
-    }, [openTrigger, setOpen, isOpen]);
+            if (!open) {
+                setOpenTrigger(undefined);
+            }
+        },
+        [openTrigger, setOpen, isOpen]
+    );
 
-    const handleMouseMove = useCallback((event: MouseEvent) => {
-        if (!isOpen || openTrigger !== "hover") {
-            return;
-        }
+    const handleMouseMove = useCallback(
+        (event: MouseEvent) => {
+            if (!isOpen || openTrigger !== "hover") {
+                return;
+            }
 
-        const { clientX, clientY } = event;
+            const { clientX, clientY } = event;
 
-        if (isPointInSafeArea(clientX, clientY, ref, popoverRef)) {
-            clearCloseTimeout();
-        } else {
-            scheduleClose();
-        }
-    }, [isOpen, openTrigger, ref, clearCloseTimeout, scheduleClose]);
+            if (isPointInSafeArea(clientX, clientY, ref, popoverRef)) {
+                clearCloseTimeout();
+            } else {
+                scheduleClose();
+            }
+        },
+        [isOpen, openTrigger, ref, clearCloseTimeout, scheduleClose]
+    );
 
     const handleTriggerMouseEnter = useCallback(() => {
         clearCloseTimeout();
@@ -160,20 +185,18 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
     };
 
     const Icon = variant === "help" ? QuestionIcon : InfoIcon;
-    const ariaLabel = ariaLabelProp ?? stringFormatter.format(variant === "help"
-        ? "ContextualHelp.helpAriaLabel"
-        : "ContextualHelp.informationAriaLabel");
+    const ariaLabel =
+        ariaLabelProp ??
+        stringFormatter.format(
+            variant === "help" ? "ContextualHelp.helpAriaLabel" : "ContextualHelp.informationAriaLabel"
+        );
 
     return (
         /**
          * TODO: Remove the ClearContainerSlots once RAC deploys the issue of Contexts being passed down to Popovers.
          * https://github.com/adobe/react-spectrum/pull/8321#issue-3098913572
          */
-        <ClearProviders
-            values={[
-                RACButtonContext
-            ]}
-        >
+        <ClearProviders values={[RACButtonContext]}>
             <ClearContainerSlots>
                 <PopoverTrigger isOpen={isOpen} onOpenChange={handleOpenChanged}>
                     <Button
@@ -200,9 +223,12 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
                     >
                         <Provider
                             values={[
-                                [TextContext, {
-                                    size: "xs"
-                                }]
+                                [
+                                    TextContext,
+                                    {
+                                        size: "xs"
+                                    }
+                                ]
                             ]}
                         >
                             {ensureTextWrapper(children)}
@@ -214,7 +240,12 @@ function ContextualHelp(props: ContextualHelpProps, ref: ForwardedRef<HTMLButton
     );
 }
 
-function isPointInSafeArea(x: number, y: number, triggeRef: RefObject<HTMLButtonElement | null>, popoverRef: RefObject<HTMLDivElement | null>) {
+function isPointInSafeArea(
+    x: number,
+    y: number,
+    triggeRef: RefObject<HTMLButtonElement | null>,
+    popoverRef: RefObject<HTMLDivElement | null>
+) {
     if (!triggeRef.current || !popoverRef.current) {
         return false;
     }
@@ -229,12 +260,7 @@ function isPointInSafeArea(x: number, y: number, triggeRef: RefObject<HTMLButton
         left: Math.min(triggerRect.left, popoverRect.left)
     };
 
-    const isSafe = (
-        x >= safeArea.left &&
-        x <= safeArea.right &&
-        y >= safeArea.top &&
-        y <= safeArea.bottom
-    );
+    const isSafe = x >= safeArea.left && x <= safeArea.right && y >= safeArea.top && y <= safeArea.bottom;
 
     return isSafe;
 }

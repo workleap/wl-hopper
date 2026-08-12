@@ -13,7 +13,6 @@ const meta = {
             pauseAnimationAtEnd: true
         }
     }
-
 } satisfies Meta<typeof Spinner>;
 
 export default meta;
@@ -37,7 +36,9 @@ export const InheritColor: Story = {
     render: args => (
         <Inline alignY="end" backgroundColor="primary-strong">
             <Spinner color="primary-strong" aria-label="Crawling in progress…" {...args} />
-            <Spinner color="primary-strong" {...args}>Crawling in progress…</Spinner>
+            <Spinner color="primary-strong" {...args}>
+                Crawling in progress…
+            </Spinner>
         </Inline>
     )
 };
@@ -48,7 +49,9 @@ export const Styling: Story = {
     },
     render: args => (
         <Inline>
-            <Spinner UNSAFE_color="red" {...args}>Crawling in progress…</Spinner>
+            <Spinner UNSAFE_color="red" {...args}>
+                Crawling in progress…
+            </Spinner>
             <Spinner className="border-red" aria-label="Crawling in progress…" {...args} />
             <Spinner style={{ border: "1px solid red" }} aria-label="Crawling in progress…" {...args} />
         </Inline>
@@ -77,7 +80,7 @@ export const Zoom: Story = {
 
 export const Label: Story = {
     render: args => (
-        <Inline alignY="end" >
+        <Inline alignY="end">
             <Spinner size="sm" {...args} />
             <Spinner {...args} />
             <Spinner size="lg" {...args} />

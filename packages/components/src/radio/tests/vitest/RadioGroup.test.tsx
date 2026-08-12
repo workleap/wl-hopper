@@ -11,14 +11,22 @@ import { RadioGroupContext } from "../../src/RadioGroupContext.ts";
 
 describe("Radio", () => {
     it("should render with default class", () => {
-        render(<RadioGroup aria-label="options"><Radio value="option1">option 1</Radio></RadioGroup>);
+        render(
+            <RadioGroup aria-label="options">
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-RadioGroup");
     });
 
     it("should support custom class", () => {
-        render(<RadioGroup aria-label="options" className="test"><Radio value="option1">option 1</Radio></RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" className="test">
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-RadioGroup");
@@ -37,7 +45,11 @@ describe("Radio", () => {
     });
 
     it("should support DOM props", () => {
-        render(<RadioGroup aria-label="options" data-foo="bar"><Radio value="option1">option 1</Radio></RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" data-foo="bar">
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -46,7 +58,9 @@ describe("Radio", () => {
     it("should support slots", () => {
         render(
             <RadioGroupContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <RadioGroup slot="test"><Radio value="option1">option 1</Radio></RadioGroup>
+                <RadioGroup slot="test">
+                    <Radio value="option1">option 1</Radio>
+                </RadioGroup>
             </RadioGroupContext.Provider>
         );
 
@@ -58,7 +72,11 @@ describe("Radio", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<RadioGroup aria-label="options" ref={ref}><Radio value="option1">option 1</Radio></RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" ref={ref}>
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -83,7 +101,11 @@ describe("Radio", () => {
     });
 
     it("should be disabled and pass it to the radio.", () => {
-        render(<RadioGroup aria-label="options" isDisabled><Radio value="option1">option 1</Radio></RadioGroup>);
+        render(
+            <RadioGroup aria-label="options" isDisabled>
+                <Radio value="option1">option 1</Radio>
+            </RadioGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         const radio = screen.getByRole("radio");
@@ -97,7 +119,9 @@ describe("Radio", () => {
         const onChange = vi.fn();
         render(
             <RadioGroup aria-label="options" onChange={onChange}>
-                <Radio value="option 1" aria-label="option 1">option 1</Radio>
+                <Radio value="option 1" aria-label="option 1">
+                    option 1
+                </Radio>
                 <Radio value="option 2">option 2</Radio>
                 <Radio value="option 3">option 3</Radio>
             </RadioGroup>

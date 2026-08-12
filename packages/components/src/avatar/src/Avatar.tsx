@@ -1,11 +1,26 @@
-import { type ResponsiveProp, slot as slotFn, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledSystemProps,
+    slot as slotFn,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { filterDOMProps, mergeProps } from "@react-aria/utils";
-import { type ComponentProps, type ForwardedRef, forwardRef, type HTMLProps, type ReactElement, useMemo } from "react";
+import { type ComponentProps, type ForwardedRef, type HTMLProps, type ReactElement, forwardRef, useMemo } from "react";
 import { useFocusRing } from "react-aria";
-import { composeRenderProps, Pressable, type PressEvent, useContextProps } from "react-aria-components";
+import { type PressEvent, Pressable, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { Text, type TextSize } from "../../typography/index.ts";
-import { type AccessibleSlotProps, ClearContainerSlots, composeClassnameRenderProps, cssModule, generateDecorativeColorByName, type RenderProps, type SizeAdapter, useRenderProps } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    ClearContainerSlots,
+    type RenderProps,
+    type SizeAdapter,
+    composeClassnameRenderProps,
+    cssModule,
+    generateDecorativeColorByName,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import { AvatarContext } from "./AvatarContext.ts";
 import { BrokenAvatar } from "./BrokenAvatar.tsx";
@@ -29,11 +44,12 @@ interface AvatarRenderProps {
     isFocusVisible?: boolean;
 }
 
-export interface AvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<AvatarRenderProps>, "children"> {
+export interface AvatarProps
+    extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<AvatarRenderProps>, "children"> {
     /**
-    * The src of the image to display if the image fails to load. If set to null, the initials will be displayed instead.
-    * @default "BrokenImageRichIcon"
-    */
+     * The src of the image to display if the image fails to load. If set to null, the initials will be displayed instead.
+     * @default "BrokenImageRichIcon"
+     */
     fallbackSrc?: string | null;
     /**
      * Props to add to the img element when src is provided.
@@ -88,10 +104,7 @@ export interface AvatarInitialsProps {
 }
 
 function AvatarInitials(props: AvatarInitialsProps) {
-    const {
-        name,
-        size: sizeValue
-    } = props;
+    const { name, size: sizeValue } = props;
 
     const size = useResponsiveValue(sizeValue) ?? "md";
 
@@ -99,10 +112,11 @@ function AvatarInitials(props: AvatarInitialsProps) {
         const cleanName = name.replace(/\s+/g, " ").trim();
 
         // This approach correctly handles emojis and other complex characters
-        const letters = cleanName.split(" ")
+        const letters = cleanName
+            .split(" ")
             .filter(part => part.length > 0) // Remove empty parts
             .map(part => part.codePointAt(0))
-            .map(codepoint => codepoint === undefined ? undefined : String.fromCodePoint(codepoint))
+            .map(codepoint => (codepoint === undefined ? undefined : String.fromCodePoint(codepoint)))
             .slice(0, size === "xs" ? 1 : 2)
             .map(char => char ?? "")
             .join("");
@@ -111,10 +125,7 @@ function AvatarInitials(props: AvatarInitialsProps) {
     }, [name, size]);
 
     return (
-        <Text
-            size={AvatarToTextSizeAdapter[size]}
-            className={styles["hop-Avatar__initials"]}
-        >
+        <Text size={AvatarToTextSizeAdapter[size]} className={styles["hop-Avatar__initials"]}>
             {initials}
         </Text>
     );
@@ -201,13 +212,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
     let content: ReactElement | null = null;
 
     if (isInitials) {
-        content = (
-            <AvatarInitials
-                {...otherProps}
-                name={name}
-                size={size}
-            />
-        );
+        content = <AvatarInitials {...otherProps} name={name} size={size} />;
     }
 
     if (imageLoaded) {
@@ -231,9 +236,7 @@ function Avatar(props: AvatarProps, ref: ForwardedRef<HTMLDivElement>) {
             slot={slot ?? undefined}
             ref={ref}
         >
-            <ClearContainerSlots>
-                {content}
-            </ClearContainerSlots>
+            <ClearContainerSlots>{content}</ClearContainerSlots>
         </div>
     );
 

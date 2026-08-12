@@ -31,10 +31,7 @@ function CloseButton(props: CloseButtonProps, ref: ForwardedRef<HTMLButtonElemen
 
     const classNames = clsx(
         GlobalCloseButtonCssSelector,
-        cssModule(
-            styles,
-            "hop-CloseButton"
-        ),
+        cssModule(styles, "hop-CloseButton"),
         stylingProps.className,
         className
     );

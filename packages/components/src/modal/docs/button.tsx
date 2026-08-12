@@ -9,11 +9,11 @@ export default function Example() {
                     <>
                         <Heading>Fascinating Frog Facts!</Heading>
                         <Content>
-                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful
+                            legs, some species can jump over 20 times their body length—that’s like a human leaping over
+                            a school bus!
                         </Content>
-                        <Button onPress={close}>
-                            Save
-                        </Button>
+                        <Button onPress={close}>Save</Button>
                     </>
                 )}
             </Modal>

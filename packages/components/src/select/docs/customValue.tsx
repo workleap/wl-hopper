@@ -1,6 +1,6 @@
 import { Avatar, Select, SelectItem, Text, type ValueRenderProps } from "@hopper-ui/components";
 
-import { users, type User } from "./data.ts";
+import { type User, users } from "./data.ts";
 
 const renderValue = ({ defaultChildren, selectedItem }: ValueRenderProps<User>) => {
     if (selectedItem) {
@@ -21,12 +21,7 @@ export default function Example() {
     const [firstUser] = users;
 
     return (
-        <Select
-            renderValue={renderValue}
-            defaultValue={firstUser.id}
-            items={users}
-            label="Users"
-        >
+        <Select renderValue={renderValue} defaultValue={firstUser.id} items={users} label="Users">
             {({ id, name, avatar, role }) => {
                 return (
                     <SelectItem id={id} textValue={name}>

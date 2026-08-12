@@ -1,11 +1,17 @@
-import { useStyledSystem, type StyledSystemProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef } from "react";
+import { type StyledSystemProps, useStyledSystem } from "@hopper-ui/styled-system";
+import { type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps } from "react-aria-components";
 
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Text } from "../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, useRenderProps, type AccessibleSlotProps, type RenderProps } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    type RenderProps,
+    composeClassnameRenderProps,
+    cssModule,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import styles from "./RemainingCharacterCount.module.css";
 
@@ -14,11 +20,8 @@ interface RemainingCharacterCountRenderProps {
     isInvalid: boolean;
 }
 
-export interface RemainingCharacterCountProps extends
-    StyledSystemProps,
-    AccessibleSlotProps,
-    Omit<RenderProps<RemainingCharacterCountRenderProps>, "children">
-{
+export interface RemainingCharacterCountProps
+    extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<RemainingCharacterCountRenderProps>, "children"> {
     count: number;
     isDisabled?: boolean;
     isInvalid?: boolean;

@@ -15,11 +15,7 @@ import {
 } from "react-aria-components";
 
 import { mapOrbiterToHopperVariants } from "../../tag/utils/Tag.utils.ts";
-import {
-    SlotProvider,
-    composeClassnameRenderProps,
-    cssModule
-} from "../../utils/index.ts";
+import { SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { EmbeddedButtonContext } from "./EmbeddedButtonContext.ts";
 
@@ -41,7 +37,19 @@ export interface EmbeddedButtonProps extends StyledComponentProps<RACButtonProps
      * The visual style of the EmbeddedButton.
      * @default "neutral"
      */
-    variant?: "neutral" | "subdued" | "progress" | "positive" | "caution" | "negative" | "option1" | "option2" | "option3" | "option4" | "option5" | "option6";
+    variant?:
+        | "neutral"
+        | "subdued"
+        | "progress"
+        | "positive"
+        | "caution"
+        | "negative"
+        | "option1"
+        | "option2"
+        | "option3"
+        | "option4"
+        | "option5"
+        | "option6";
 }
 
 function EmbeddedButton(props: EmbeddedButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
@@ -65,12 +73,7 @@ function EmbeddedButton(props: EmbeddedButtonProps, ref: ForwardedRef<HTMLButton
     const classNames = composeClassnameRenderProps(
         className,
         GlobalEmbeddedButtonCssSelector,
-        cssModule(
-            styles,
-            "hop-EmbeddedButton",
-            size,
-            mapOrbiterToHopperVariants(variant)
-        ),
+        cssModule(styles, "hop-EmbeddedButton", size, mapOrbiterToHopperVariants(variant)),
         stylingProps.className
     );
 
@@ -84,10 +87,13 @@ function EmbeddedButton(props: EmbeddedButtonProps, ref: ForwardedRef<HTMLButton
     return (
         <SlotProvider
             values={[
-                [IconContext, {
-                    className: styles["hop-EmbeddedButton__icon"],
-                    size: "sm"
-                }]
+                [
+                    IconContext,
+                    {
+                        className: styles["hop-EmbeddedButton__icon"],
+                        size: "sm"
+                    }
+                ]
             ]}
         >
             <RACButton

@@ -1,4 +1,4 @@
-import { Calendar, Paragraph, Stack, type DateValue } from "@hopper-ui/components";
+import { Calendar, type DateValue, Paragraph, Stack } from "@hopper-ui/components";
 import { getLocalTimeZone, parseDate } from "@internationalized/date";
 import { useState } from "react";
 import { useDateFormatter } from "react-aria";
@@ -9,11 +9,7 @@ export default function Example() {
 
     return (
         <Stack>
-            <Calendar
-                aria-label="Date (controlled)"
-                value={date}
-                onChange={setDate}
-            />
+            <Calendar aria-label="Date (controlled)" value={date} onChange={setDate} />
             <Paragraph>Selected date: {formatter.format(date.toDate(getLocalTimeZone()))}</Paragraph>
         </Stack>
     );

@@ -1,7 +1,7 @@
 import { StyledSystemProvider, type StyledSystemProviderProps } from "@hopper-ui/styled-system";
 import type { Href, RouterOptions } from "@react-types/shared";
 import clsx from "clsx";
-import { createContext, forwardRef, useContext, type ForwardedRef } from "react";
+import { type ForwardedRef, createContext, forwardRef, useContext } from "react";
 import { I18nProvider, RouterProvider } from "react-aria-components";
 
 export const GlobalHopperProviderCssSelector = "hop-HopperProvider";
@@ -95,14 +95,15 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
         ...rest
     } = props;
 
-    const classNames = clsx(
-        GlobalHopperProviderCssSelector,
-        className
-    );
+    const classNames = clsx(GlobalHopperProviderCssSelector, className);
 
     let content = children;
     if (navigate) {
-        content = <RouterProvider navigate={navigate} useHref={useHref}>{children}</RouterProvider>;
+        content = (
+            <RouterProvider navigate={navigate} useHref={useHref}>
+                {children}
+            </RouterProvider>
+        );
     }
 
     return (
@@ -114,9 +115,7 @@ const HopperProvider = (props: HopperProviderProps, ref: ForwardedRef<HTMLDivEle
                 className={classNames}
                 {...rest}
             >
-                <I18nProvider locale={locale}>
-                    {content}
-                </I18nProvider>
+                <I18nProvider locale={locale}>{content}</I18nProvider>
             </StyledSystemProvider>
         </HopperContext.Provider>
     );

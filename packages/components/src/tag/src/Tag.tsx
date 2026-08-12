@@ -9,9 +9,22 @@ import {
 import { filterDOMProps, mergeProps, useObjectRef } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
 import clsx from "clsx";
-import { type ElementType, type ForwardedRef, type MutableRefObject, forwardRef, useContext, useEffect, useMemo } from "react";
+import {
+    type ElementType,
+    type ForwardedRef,
+    type MutableRefObject,
+    forwardRef,
+    useContext,
+    useEffect,
+    useMemo
+} from "react";
 import { useFocusRing, useFocusable, useHover, useLink, usePress } from "react-aria";
-import { Tag as RACTag, type TagProps as RACTagProps, composeRenderProps, useContextProps } from "react-aria-components";
+import {
+    Tag as RACTag,
+    type TagProps as RACTagProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
 import { BadgeContext } from "../../badge/index.ts";
@@ -40,7 +53,19 @@ import styles from "./Tag.module.css";
 export const GlobalTagCssSelector = "hop-Tag";
 
 export type TagSize = "sm" | "md" | "lg";
-export type TagVariant = "neutral" | "subdued" | "progress" | "positive" | "caution" | "negative" | "option1" | "option2" | "option3" | "option4" | "option5" | "option6";
+export type TagVariant =
+    | "neutral"
+    | "subdued"
+    | "progress"
+    | "positive"
+    | "caution"
+    | "negative"
+    | "option1"
+    | "option2"
+    | "option3"
+    | "option4"
+    | "option5"
+    | "option6";
 
 const TagToTextSizeAdapter: SizeAdapter<TagSize, TextSize> = {
     sm: "xs",
@@ -123,13 +148,7 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
     const classNames = composeClassnameRenderProps(
         className,
         GlobalTagCssSelector,
-        cssModule(
-            styles,
-            "hop-Tag",
-            size,
-            mapOrbiterToHopperVariants(variant),
-            isStandalone && "standalone"
-        ),
+        cssModule(styles, "hop-Tag", size, mapOrbiterToHopperVariants(variant), isStandalone && "standalone"),
         stylingProps.className
     );
 
@@ -170,39 +189,50 @@ function Tag(props: TagProps, ref: ForwardedRef<HTMLDivElement>) {
                         <ClearContainerSlots>
                             <SlotProvider
                                 values={[
-                                    [TextContext, {
-                                        className: styles["hop-Tag__text"],
-                                        size: TagToTextSizeAdapter[size]
-                                    }],
-                                    [IconListContext, {
-                                        className: styles["hop-Tag__icon-list"],
-                                        size: "sm"
-                                    }],
-                                    [IconContext, {
-                                        className: styles["hop-Tag__icon"],
-                                        size: "sm"
-                                    }],
-                                    [BadgeContext, {
-                                        className: ({ variant: badgeVariant }) => {
-                                            return cssModule(
-                                                styles,
-                                                "hop-Tag__badge",
-                                                badgeVariant
-                                            );
-                                        },
-                                        isDisabled: isDisabled
-                                    }],
-                                    [AvatarContext, {
-                                        className: styles["hop-Tag__avatar"],
-                                        isDisabled: isDisabled,
-                                        size: TagToAvatarSizeAdapter[size]
-                                    }]
+                                    [
+                                        TextContext,
+                                        {
+                                            className: styles["hop-Tag__text"],
+                                            size: TagToTextSizeAdapter[size]
+                                        }
+                                    ],
+                                    [
+                                        IconListContext,
+                                        {
+                                            className: styles["hop-Tag__icon-list"],
+                                            size: "sm"
+                                        }
+                                    ],
+                                    [
+                                        IconContext,
+                                        {
+                                            className: styles["hop-Tag__icon"],
+                                            size: "sm"
+                                        }
+                                    ],
+                                    [
+                                        BadgeContext,
+                                        {
+                                            className: ({ variant: badgeVariant }) => {
+                                                return cssModule(styles, "hop-Tag__badge", badgeVariant);
+                                            },
+                                            isDisabled
+                                        }
+                                    ],
+                                    [
+                                        AvatarContext,
+                                        {
+                                            className: styles["hop-Tag__avatar"],
+                                            isDisabled,
+                                            size: TagToAvatarSizeAdapter[size]
+                                        }
+                                    ]
                                 ]}
                             >
                                 {children(tagProps)}
                             </SlotProvider>
                         </ClearContainerSlots>
-                        {(allowsRemoving && !isLoading) && (
+                        {allowsRemoving && !isLoading && (
                             <ClearButton
                                 slot="remove"
                                 isDisabled={isDisabled}
@@ -299,7 +329,9 @@ const StandaloneTag = forwardRef<FocusableElement, StandaloneTagProps>((props, r
 
     useEffect(() => {
         if (!props.textValue) {
-            console.warn("A `textValue` prop is required for <Tag> elements with non-plain text children for accessibility.");
+            console.warn(
+                "A `textValue` prop is required for <Tag> elements with non-plain text children for accessibility."
+            );
         }
 
         if (props.onRemove) {

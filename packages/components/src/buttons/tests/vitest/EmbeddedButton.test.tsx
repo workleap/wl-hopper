@@ -1,4 +1,4 @@
-import { act, screen, waitFor, render } from "@hopper-ui/test-utils";
+import { act, render, screen, waitFor } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
 import { EmbeddedButton } from "../../src/EmbeddedButton.tsx";
@@ -55,7 +55,11 @@ describe("EmbeddedButton", () => {
     });
 
     it("should support form props", () => {
-        render(<form id="foo"><EmbeddedButton form="foo" formMethod="post" /></form>);
+        render(
+            <form id="foo">
+                <EmbeddedButton form="foo" formMethod="post" />
+            </form>
+        );
 
         const button = screen.getByRole("button");
         expect(button).toHaveAttribute("form", "foo");

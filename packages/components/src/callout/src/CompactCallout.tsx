@@ -1,12 +1,12 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { DEFAULT_SLOT, useContextProps } from "react-aria-components";
 
 import { ButtonContext, CloseButton, LinkButtonContext } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { LinkContext } from "../../link/index.ts";
-import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, SlotProvider, cssModule } from "../../utils/index.ts";
 
 import type { CalloutProps } from "./Callout.tsx";
 import { CompactCalloutContext } from "./CompactCalloutContext.ts";
@@ -15,7 +15,8 @@ import styles from "./CompactCallout.module.css";
 
 export const GlobalCompactCalloutCssSelector = "hop-CompactCallout";
 
-export interface CompactCalloutProps extends StyledComponentProps<BaseComponentDOMProps>, Pick<CalloutProps, "variant" | "fillStyle" | "onClose"> {}
+export interface CompactCalloutProps
+    extends StyledComponentProps<BaseComponentDOMProps>, Pick<CalloutProps, "variant" | "fillStyle" | "onClose"> {}
 
 const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, CompactCalloutContext);
@@ -52,41 +53,47 @@ const CompactCallout = (props: CompactCalloutProps, ref: ForwardedRef<HTMLDivEle
     };
 
     return (
-        <div
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot ?? undefined}
-            {...otherProps}
-        >
+        <div ref={ref} className={classNames} style={mergedStyles} slot={slot ?? undefined} {...otherProps}>
             <SlotProvider
                 values={[
-                    [ContentContext, {
-                        className: styles["hop-CompactCallout__content"]
-                    }],
-                    [ButtonContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                className: styles["hop-CompactCallout__button"],
-                                variant: "secondary",
-                                size: "sm"
-                            },
-                            close: {
-                                className: styles["hop-CompactCallout__dismiss"]
+                    [
+                        ContentContext,
+                        {
+                            className: styles["hop-CompactCallout__content"]
+                        }
+                    ],
+                    [
+                        ButtonContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    className: styles["hop-CompactCallout__button"],
+                                    variant: "secondary",
+                                    size: "sm"
+                                },
+                                close: {
+                                    className: styles["hop-CompactCallout__dismiss"]
+                                }
                             }
                         }
-                    }],
-                    [LinkButtonContext, {
-                        className: styles["hop-CompactCallout__button"],
-                        variant: "secondary",
-                        size: "sm"
-                    }],
+                    ],
+                    [
+                        LinkButtonContext,
+                        {
+                            className: styles["hop-CompactCallout__button"],
+                            variant: "secondary",
+                            size: "sm"
+                        }
+                    ],
 
-                    [LinkContext, {
-                        className: styles["hop-CompactCallout__link"],
-                        variant: "secondary",
-                        size: "sm"
-                    }]
+                    [
+                        LinkContext,
+                        {
+                            className: styles["hop-CompactCallout__link"],
+                            variant: "secondary",
+                            size: "sm"
+                        }
+                    ]
                 ]}
             >
                 {children}

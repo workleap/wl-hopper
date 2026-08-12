@@ -1,7 +1,11 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type NamedExoticComponent } from "react";
-import { ListBoxSection as RACListBoxSection, useContextProps, type SectionProps as RACSectionProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type NamedExoticComponent, forwardRef } from "react";
+import {
+    ListBoxSection as RACListBoxSection,
+    type SectionProps as RACSectionProps,
+    useContextProps
+} from "react-aria-components";
 
 import { ListBoxSectionContext } from "./ListBoxSectionContext.ts";
 
@@ -12,18 +16,9 @@ export interface ListBoxSectionProps<T> extends StyledComponentProps<RACSectionP
 function ListBoxSection<T extends object>(props: ListBoxSectionProps<T>, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, ListBoxSectionContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children,
-        style,
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, ...otherProps } = ownProps;
 
-    const classNames = clsx(
-        GlobalSectionCssSelector,
-        stylingProps.className,
-        className
-    );
+    const classNames = clsx(GlobalSectionCssSelector, stylingProps.className, className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
@@ -31,12 +26,7 @@ function ListBoxSection<T extends object>(props: ListBoxSectionProps<T>, ref: Fo
     };
 
     return (
-        <RACListBoxSection
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            {...otherProps}
-        >
+        <RACListBoxSection ref={ref} className={classNames} style={mergedStyles} {...otherProps}>
             {children}
         </RACListBoxSection>
     );

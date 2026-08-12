@@ -98,12 +98,8 @@ export const DefaultInline: Story = {
 export const Nested: Story = {
     render: args => (
         <Inline gap="stack-xl">
-            <Inline>
-                {args.children}
-            </Inline>
-            <Inline>
-                {args.children}
-            </Inline>
+            <Inline>{args.children}</Inline>
+            <Inline>{args.children}</Inline>
         </Inline>
     )
 };

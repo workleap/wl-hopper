@@ -23,10 +23,7 @@ export default function Example() {
                 control={control}
                 name="name"
                 rules={{ required: "Name is required." }}
-                render={({
-                    field: { name, value, onChange, onBlur, ref },
-                    fieldState: { invalid, error }
-                }) => (
+                render={({ field: { name, value, onChange, onBlur, ref }, fieldState: { invalid, error } }) => (
                     <TextField
                         label="Name"
                         name={name}
@@ -40,7 +37,9 @@ export default function Example() {
                     />
                 )}
             />
-            <Button type="submit" variant="primary">Submit</Button>
+            <Button type="submit" variant="primary">
+                Submit
+            </Button>
         </Form>
     );
 }

@@ -1,4 +1,4 @@
-import { Table, TBody, TD, TFoot, TH, THead, TR } from "@hopper-ui/components";
+import { TBody, TD, TFoot, TH, THead, TR, Table } from "@hopper-ui/components";
 
 export default function Example() {
     return (

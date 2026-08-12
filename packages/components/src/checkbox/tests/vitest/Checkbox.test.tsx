@@ -24,7 +24,11 @@ describe("Checkbox", () => {
     });
 
     it("should support custom style", () => {
-        render(<Checkbox marginTop="stack-sm" style={{ marginBottom: "13px" }} >option 1</Checkbox>);
+        render(
+            <Checkbox marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                option 1
+            </Checkbox>
+        );
 
         const element = screen.getByRole("checkbox").closest("label");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -64,10 +68,7 @@ describe("Checkbox", () => {
         const user = userEvent.setup();
 
         render(
-            <Checkbox
-                isDisabled
-                onChange={handler}
-            >
+            <Checkbox isDisabled onChange={handler}>
                 Disabled button
             </Checkbox>
         );

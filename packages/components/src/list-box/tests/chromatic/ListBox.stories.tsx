@@ -123,45 +123,57 @@ export const Default = {
                 <Inline alignY="flex-start">
                     <ListBox {...args} size="lg">
                         <ListBoxItem id="1" textValue="Earth">
-                            <SparklesIcon /><Text>Earth</Text>
+                            <SparklesIcon />
+                            <Text>Earth</Text>
                         </ListBoxItem>
                         <ListBoxItem id="2" textValue="Mars">
-                            <SparklesIcon /><Text>Mars</Text>
+                            <SparklesIcon />
+                            <Text>Mars</Text>
                         </ListBoxItem>
                         <ListBoxItem id="3" textValue="Saturn">
-                            <SparklesIcon /><Text>Saturn</Text>
+                            <SparklesIcon />
+                            <Text>Saturn</Text>
                         </ListBoxItem>
                     </ListBox>
                     <ListBox {...args} size="md">
-                        <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
+                        <ListBoxItem id="1" textValue="Earth">
+                            <SparklesIcon />
                             <Text>Earth</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
+                        <ListBoxItem id="2" textValue="Mars">
+                            <SparklesIcon />
                             <Text>Mars</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
+                        <ListBoxItem id="3" textValue="Saturn">
+                            <SparklesIcon />
                             <Text>Saturn</Text>
                         </ListBoxItem>
                     </ListBox>
                     <ListBox {...args} size="sm">
-                        <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
+                        <ListBoxItem id="1" textValue="Earth">
+                            <SparklesIcon />
                             <Text>Earth</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
+                        <ListBoxItem id="2" textValue="Mars">
+                            <SparklesIcon />
                             <Text>Mars</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
+                        <ListBoxItem id="3" textValue="Saturn">
+                            <SparklesIcon />
                             <Text>Saturn</Text>
                         </ListBoxItem>
                     </ListBox>
                     <ListBox {...args} size="xs">
-                        <ListBoxItem id="1" textValue="Earth"><SparklesIcon />
+                        <ListBoxItem id="1" textValue="Earth">
+                            <SparklesIcon />
                             <Text>Earth</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="2" textValue="Mars"><SparklesIcon />
+                        <ListBoxItem id="2" textValue="Mars">
+                            <SparklesIcon />
                             <Text>Mars</Text>
                         </ListBoxItem>
-                        <ListBoxItem id="3" textValue="Saturn"><SparklesIcon />
+                        <ListBoxItem id="3" textValue="Saturn">
+                            <SparklesIcon />
                             <Text>Saturn</Text>
                         </ListBoxItem>
                     </ListBox>
@@ -362,7 +374,9 @@ export const Default = {
                 <ListBox {...args}>
                     <ListBoxItem id="1" textValue="Earth">
                         <IconList slot="end-icon">
-                            <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
                         </IconList>
                         <Text>Earth</Text>
                         <Text slot="description">The third planet from the sun.</Text>
@@ -418,7 +432,9 @@ export const Default = {
                             <Avatar name="Charles Johnson" />
                             <SparklesIcon />
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Charles</Text>
                             <Text slot="description">Employee of the month</Text>
@@ -445,7 +461,9 @@ export const Default = {
                             <Avatar name="Charles Johnson" />
                             <SparklesIcon />
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Charles</Text>
                             <Text slot="description">Employee of the month</Text>
@@ -472,7 +490,9 @@ export const Default = {
                             <Avatar name="Charles Johnson" />
                             <SparklesIcon />
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Charles</Text>
                             <Text slot="description">Employee of the month</Text>
@@ -499,7 +519,9 @@ export const Default = {
                             <Avatar name="Charles Johnson" />
                             <SparklesIcon />
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Charles</Text>
                             <Text slot="description">Employee of the month</Text>
@@ -550,12 +572,11 @@ export const Default = {
                     <ListBoxItem id="1" textValue="Earth">
                         <SparklesIcon />
                         <IconList slot="end-icon">
-                            <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
                         </IconList>
-                        <Text>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
-                        </Text>
+                        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Text>
                         <Text slot="description">The third planet from the sun.</Text>
                         <Badge>50</Badge>
                     </ListBoxItem>
@@ -563,8 +584,7 @@ export const Default = {
                         <SparklesIcon />
                         <Text>Mars</Text>
                         <Text slot="description">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         </Text>
                         <Badge variant="subdued">99+</Badge>
                     </ListBoxItem>
@@ -581,12 +601,11 @@ export const Default = {
                     <ListBoxItem id="1" textValue="Earth">
                         <SparklesIcon />
                         <IconList slot="end-icon">
-                            <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
+                            <SparklesIcon />
                         </IconList>
-                        <Text>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
-                        </Text>
+                        <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</Text>
                         <Text slot="description">The third planet from the sun.</Text>
                         <Badge>50</Badge>
                     </ListBoxItem>
@@ -594,8 +613,7 @@ export const Default = {
                         <SparklesIcon />
                         <Text>Mars</Text>
                         <Text slot="description">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                         </Text>
                         <Badge variant="subdued">99+</Badge>
                     </ListBoxItem>
@@ -622,7 +640,9 @@ export const Default = {
                             <ListBoxItem id="1" textValue="Earth">
                                 <SparklesIcon />
                                 <IconList slot="end-icon">
-                                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                    <SparklesIcon />
+                                    <SparklesIcon />
+                                    <SparklesIcon />
                                 </IconList>
                                 <Text>Earth</Text>
                                 <Text slot="description">The third planet from the sun.</Text>
@@ -648,7 +668,9 @@ export const Default = {
                             <ListBoxItem id="1" textValue="Earth">
                                 <SparklesIcon />
                                 <IconList slot="end-icon">
-                                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                    <SparklesIcon />
+                                    <SparklesIcon />
+                                    <SparklesIcon />
                                 </IconList>
                                 <Text>Earth</Text>
                                 <Text slot="description">The third planet from the sun.</Text>
@@ -857,7 +879,8 @@ export const SingleSelectStates = {
         const listboxes = await canvas.findAllByRole("listbox");
         listboxes.forEach(async listbox => {
             const listboxItem = await within(listbox).findByTestId("first-item");
-            if (!listboxItem.hasAttribute("data-disabled") && listboxItem.hasAttribute("data-chromatic-force")) { // don't try and force states on a disabled input
+            if (!listboxItem.hasAttribute("data-disabled") && listboxItem.hasAttribute("data-chromatic-force")) {
+                // don't try and force states on a disabled input
                 if (listboxItem.getAttribute("data-chromatic-force")?.includes("press")) {
                     listboxItem.setAttribute("data-pressed", "true");
                 }

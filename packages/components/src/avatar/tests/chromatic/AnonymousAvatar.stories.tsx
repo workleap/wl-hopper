@@ -34,8 +34,7 @@ export const AccessToDisabledState: Story = {
             {...props}
             isDisabled
             aria-label="deleted"
-            style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
+            style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})}
         />
     )
 };
-

@@ -2,9 +2,13 @@ import { Div, useIsomorphicLayoutEffect } from "@hopper-ui/styled-system";
 import { FocusableContext, FocusableProvider, useFocusable } from "@react-aria/interactions";
 import { mergeRefs } from "@react-aria/utils";
 import type { FocusableElement } from "@react-types/shared";
-import { Children, cloneElement, forwardRef, type ReactElement, type Ref, type RefObject, useContext } from "react";
+import { Children, type ReactElement, type Ref, type RefObject, cloneElement, forwardRef, useContext } from "react";
 import { useObjectRef } from "react-aria";
-import { TooltipTrigger as RACTooltipTrigger, type TooltipProps, type TooltipTriggerComponentProps } from "react-aria-components";
+import {
+    TooltipTrigger as RACTooltipTrigger,
+    type TooltipProps,
+    type TooltipTriggerComponentProps
+} from "react-aria-components";
 
 import { createSyntheticEvent, getChildRef, useSlot } from "../../utils/index.ts";
 
@@ -12,9 +16,10 @@ import { TooltipTriggerContext } from "./TooltipTriggerContext.ts";
 
 export const GlobalTooltipTriggerCssSelector = "hop-TooltipTrigger";
 
-export interface TooltipTriggerProps extends
-    Omit<TooltipTriggerComponentProps, "closeDelay">,
-    Pick<TooltipProps, "shouldFlip" | "containerPadding" | "offset" | "crossOffset"> {
+export interface TooltipTriggerProps
+    extends
+        Omit<TooltipTriggerComponentProps, "closeDelay">,
+        Pick<TooltipProps, "shouldFlip" | "containerPadding" | "offset" | "crossOffset"> {
     /**
      * The placement of the element with respect to its anchor element.
      *
@@ -23,9 +28,9 @@ export interface TooltipTriggerProps extends
     placement?: "start" | "end" | "right" | "left" | "top" | "bottom";
 
     /**
-   * The delay time for the tooltip to show up.
-   * @default 600
-   */
+     * The delay time for the tooltip to show up.
+     * @default 600
+     */
     delay?: number;
 }
 
@@ -61,9 +66,7 @@ export function TooltipTrigger(props: TooltipTriggerProps) {
                     shouldFlip
                 }}
             >
-                <FocusableTrigger {...props}>
-                    {trigger}
-                </FocusableTrigger>
+                <FocusableTrigger {...props}>{trigger}</FocusableTrigger>
                 {tooltip}
             </TooltipTriggerContext.Provider>
         </RACTooltipTrigger>
@@ -93,10 +96,12 @@ function FocusableTrigger(props: TooltipTriggerProps) {
 
     // HACK: a disabled element doesn't fire event, therefore the element is wrapped in a div.
     const trigger = isChildDisabled ? (
-        <DisabledTriggerWrapper ref={context?.ref as Ref<HTMLDivElement> ?? undefined} {...props}>
+        <DisabledTriggerWrapper ref={(context?.ref as Ref<HTMLDivElement>) ?? undefined} {...props}>
             {child}
         </DisabledTriggerWrapper>
-    ) : cloneElement(child, { ref: mergeRefs(getChildRef(child), context?.ref) });
+    ) : (
+        cloneElement(child, { ref: mergeRefs(getChildRef(child), context?.ref) })
+    );
 
     return (
         // ALEX: Review the typing cast here.
@@ -120,11 +125,7 @@ const DisabledTriggerWrapper = forwardRef<HTMLDivElement, TooltipTriggerProps>((
     const { tabIndex, ...focusablePropsWithoutTabIndex } = focusableProps;
 
     return (
-        <Div
-            ref={objectRef}
-            display="inline-block"
-            {...focusablePropsWithoutTabIndex}
-        >
+        <Div ref={objectRef} display="inline-block" {...focusablePropsWithoutTabIndex}>
             {children}
         </Div>
     );

@@ -7,11 +7,14 @@ export default function Example() {
             <ComboBoxItem textValue="Designer">
                 <Text>Designer</Text>
                 <IconList slot="end-icon">
-                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
                 </IconList>
             </ComboBoxItem>
             <ComboBoxItem textValue="Developer">
-                <SparklesIcon slot="end-icon" /><Text>Developer</Text>
+                <SparklesIcon slot="end-icon" />
+                <Text>Developer</Text>
             </ComboBoxItem>
             <ComboBoxItem>Manager</ComboBoxItem>
         </ComboBox>

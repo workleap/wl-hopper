@@ -1,4 +1,4 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import type { CSSProperties } from "react";
 import { MenuSection as RACMenuSection, type MenuSectionProps as RACMenuSectionProps } from "react-aria-components";
@@ -19,10 +19,7 @@ export function MenuSection<T extends object>(props: MenuSectionProps<T>) {
     const classNames = clsx(
         className,
         GlobalMenuSectionCssSelector,
-        cssModule(
-            styles,
-            GlobalMenuSectionCssSelector
-        ),
+        cssModule(styles, GlobalMenuSectionCssSelector),
         stylingProps.className
     );
 
@@ -32,11 +29,7 @@ export function MenuSection<T extends object>(props: MenuSectionProps<T>) {
     };
 
     return (
-        <RACMenuSection
-            {...otherProps}
-            className={classNames}
-            style={mergedStyles}
-        >
+        <RACMenuSection {...otherProps} className={classNames} style={mergedStyles}>
             {children}
         </RACMenuSection>
     );

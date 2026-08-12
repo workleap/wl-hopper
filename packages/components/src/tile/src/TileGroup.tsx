@@ -1,6 +1,17 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef } from "react";
-import { composeRenderProps, Provider, ToggleButtonGroup, useContextProps, type ToggleButtonGroupProps } from "react-aria-components";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import { type ForwardedRef, forwardRef } from "react";
+import {
+    Provider,
+    ToggleButtonGroup,
+    type ToggleButtonGroupProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
@@ -11,8 +22,7 @@ import styles from "./TileGroup.module.css";
 
 export const GlobalTileGroupCssSelector = "hop-TileGroup";
 
-export interface TileGroupProps extends
-    StyledComponentProps<ToggleButtonGroupProps> {
+export interface TileGroupProps extends StyledComponentProps<ToggleButtonGroupProps> {
     /**
      * The number of columns to display the tiles in.
      * @default 3
@@ -54,10 +64,7 @@ const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => 
 
     const classNames = composeClassnameRenderProps(
         GlobalTileGroupCssSelector,
-        cssModule(
-            styles,
-            "hop-TileGroup"
-        ),
+        cssModule(styles, "hop-TileGroup"),
         stylingProps.className,
         className
     );
@@ -65,9 +72,7 @@ const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => 
     const mergedStyles = composeRenderProps(style, prev => {
         return {
             ...stylingProps.style,
-            ...{
-                gridTemplateColumns: `repeat(${columns}, 1fr)`
-            },
+            gridTemplateColumns: `repeat(${columns}, 1fr)`,
             ...prev
         };
     });
@@ -88,11 +93,7 @@ const TileGroup = (props: TileGroupProps, ref: ForwardedRef<HTMLDivElement>) => 
             {...otherProps}
         >
             {renderProps => (
-                <Provider
-                    values={[
-                        [InternalTileContext, { isDisabled: isDisabled, isReadonly: isReadonly }]
-                    ]}
-                >
+                <Provider values={[[InternalTileContext, { isDisabled, isReadonly }]]}>
                     {children(renderProps)}
                 </Provider>
             )}

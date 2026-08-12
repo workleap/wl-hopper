@@ -23,12 +23,7 @@ export default function Example() {
     }, [filter, filterValue]);
 
     return (
-        <ComboBox
-            items={filteredItems}
-            inputValue={filterValue}
-            onInputChange={setFilterValue}
-            label="Roles"
-        >
+        <ComboBox items={filteredItems} inputValue={filterValue} onInputChange={setFilterValue} label="Roles">
             {item => <ComboBoxItem id={item.id}>{item.name}</ComboBoxItem>}
         </ComboBox>
     );

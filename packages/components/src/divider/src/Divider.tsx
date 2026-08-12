@@ -1,7 +1,11 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Separator as RACSeparator, useContextProps, type SeparatorProps as RACSeparatorProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import {
+    Separator as RACSeparator,
+    type SeparatorProps as RACSeparatorProps,
+    useContextProps
+} from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
@@ -16,20 +20,11 @@ export interface DividerProps extends StyledComponentProps<RACSeparatorProps> {}
 function Divider(props: DividerProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, DividerContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        style,
-        orientation,
-        ...otherProps
-    } = ownProps;
+    const { className, style, orientation, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalDividerCssSelector,
-        cssModule(
-            styles,
-            "hop-Divider",
-            orientation
-        ),
+        cssModule(styles, "hop-Divider", orientation),
         stylingProps.className,
         className
     );
@@ -40,13 +35,7 @@ function Divider(props: DividerProps, ref: ForwardedRef<HTMLElement>) {
     };
 
     return (
-        <RACSeparator
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            orientation={orientation}
-            {...otherProps}
-        />
+        <RACSeparator ref={ref} className={classNames} style={mergedStyles} orientation={orientation} {...otherProps} />
     );
 }
 

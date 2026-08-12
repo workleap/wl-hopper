@@ -18,21 +18,13 @@ export default function Example() {
                     <MenuItem>Copy</MenuItem>
                     <MenuItem>Paste</MenuItem>
                 </MenuSection>
-                <MenuSection
-                    selectionMode="multiple"
-                    selectedKeys={style}
-                    onSelectionChange={setStyle}
-                >
+                <MenuSection selectionMode="multiple" selectedKeys={style} onSelectionChange={setStyle}>
                     <Header>Text style</Header>
                     <MenuItem id="bold">Bold</MenuItem>
                     <MenuItem id="italic">Italic</MenuItem>
                     <MenuItem id="underline">Underline</MenuItem>
                 </MenuSection>
-                <MenuSection
-                    selectionMode="single"
-                    selectedKeys={align}
-                    onSelectionChange={setAlign}
-                >
+                <MenuSection selectionMode="single" selectedKeys={align} onSelectionChange={setAlign}>
                     <Header>Text alignment</Header>
                     <MenuItem id="left">Left</MenuItem>
                     <MenuItem id="center">Center</MenuItem>

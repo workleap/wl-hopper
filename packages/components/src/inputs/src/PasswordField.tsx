@@ -1,19 +1,19 @@
 import { EyeHiddenIcon, EyeVisibleIcon, IconContext } from "@hopper-ui/icons";
 import {
-    useResponsiveValue,
-    useStyledSystem,
     type ResponsiveProp,
-    type StyledComponentProps
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import { mergeRefs } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, useState, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
+import { type ForwardedRef, type MutableRefObject, type ReactNode, forwardRef, useState } from "react";
 import { useObjectRef } from "react-aria";
 import {
-    composeRenderProps,
     TextField as RACTextField,
-    useContextProps,
-    type TextFieldProps as RACTextFieldProps
+    type TextFieldProps as RACTextFieldProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { EmbeddedButton, type EmbeddedButtonProps } from "../../buttons/index.ts";
@@ -22,7 +22,15 @@ import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { FieldLabel, TextContext } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type FieldSize } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    type FieldProps,
+    type FieldSize,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    ensureTextWrapper
+} from "../../utils/index.ts";
 
 import { Input, type InputProps } from "./Input.tsx";
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
@@ -32,7 +40,8 @@ import styles from "./PasswordField.module.css";
 
 export const GlobalPasswordFieldCssSelector = "hop-PasswordField";
 
-export interface PasswordFieldProps extends Omit<StyledComponentProps<Omit<RACTextFieldProps, "type" | "size">>, "children">, FieldProps {
+export interface PasswordFieldProps
+    extends Omit<StyledComponentProps<Omit<RACTextFieldProps, "type" | "size">>, "children">, FieldProps {
     /**
      * An icon or text to display at the start of the input.
      */
@@ -78,10 +87,7 @@ export interface PasswordFieldProps extends Omit<StyledComponentProps<Omit<RACTe
 
 function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, PasswordFieldContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -109,17 +115,15 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
         ...otherProps
     } = ownProps;
 
-    const inputRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null));
+    const inputRef = useObjectRef(
+        mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalPasswordFieldCssSelector,
-        cssModule(
-            styles,
-            "hop-PasswordField",
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-PasswordField", isFluid && "fluid"),
         stylingProps.className
     );
 
@@ -131,10 +135,11 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
     });
 
     const prefixMarkup = prefix ? (
-        <SlotProvider values={[
-            [TextContext, { size, className: styles["hop-PasswordField__prefix"] }],
-            [IconContext, { size, className: styles["hop-PasswordField__prefix"] }]
-        ]}
+        <SlotProvider
+            values={[
+                [TextContext, { size, className: styles["hop-PasswordField__prefix"] }],
+                [IconContext, { size, className: styles["hop-PasswordField__prefix"] }]
+            ]}
         >
             {ensureTextWrapper(prefix)}
         </SlotProvider>
@@ -153,7 +158,13 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
                 {...otherInputGroupProps}
             >
                 {prefixMarkup}
-                <Input ref={inputRef} placeholder={placeholder} type={showPassword ? "text" : "password"} size={size} {...inputProps} />
+                <Input
+                    ref={inputRef}
+                    placeholder={placeholder}
+                    type={showPassword ? "text" : "password"}
+                    size={size}
+                    {...inputProps}
+                />
                 <EmbeddedButton
                     isDisabled={isDisabled}
                     aria-label={stringFormatter.format("PasswordField.toggleVisibility")}
@@ -183,7 +194,9 @@ function PasswordField(props: PasswordFieldProps, ref: ForwardedRef<HTMLDivEleme
                 {label}
             </FieldLabel>
             {inputMarkup}
-            {description && <HelperMessage className={styles["hop-PasswordField__HelperMessage"]}>{description}</HelperMessage>}
+            {description && (
+                <HelperMessage className={styles["hop-PasswordField__HelperMessage"]}>{description}</HelperMessage>
+            )}
             <ErrorMessage className={styles["hop-PasswordField__ErrorMessage"]}>{errorMessage}</ErrorMessage>
         </>
     );

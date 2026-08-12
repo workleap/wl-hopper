@@ -21,7 +21,6 @@ const meta = {
             <Avatar name="Toadie McLeap" />,
             <Avatar name="Bubbles McFrog" />
         ]
-
     }
 } satisfies Meta<typeof AvatarGroup>;
 
@@ -33,7 +32,7 @@ export const Default = {} satisfies Story;
 
 export const OverwriteTooltips = {
     render: args => (
-        <AvatarGroup size="xs" {...args} >
+        <AvatarGroup size="xs" {...args}>
             <TooltipTrigger>
                 <Avatar name="Croakster" />
                 <Tooltip>
@@ -143,4 +142,3 @@ export const WithDescriptions = {
         ]
     }
 } satisfies Story;
-

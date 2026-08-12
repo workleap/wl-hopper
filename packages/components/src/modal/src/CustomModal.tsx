@@ -1,7 +1,18 @@
-import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
-import { composeRenderProps, Dialog, type DialogProps, OverlayTriggerStateContext, useContextProps } from "react-aria-components";
+import {
+    Dialog,
+    type DialogProps,
+    OverlayTriggerStateContext,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
@@ -13,9 +24,8 @@ import styles from "./CustomModal.module.css";
 
 export const GlobalCustomModalCssSelector = "hop-CustomModal";
 
-export interface CustomModalProps extends
-    StyledComponentProps<DialogProps>,
-    Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
+export interface CustomModalProps
+    extends StyledComponentProps<DialogProps>, Pick<BaseModalProps, "isOpen" | "defaultOpen"> {
     /**
      * Whether the Modal is dismissable.
      * @default true
@@ -71,11 +81,7 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
 
     const classNames = clsx(
         GlobalCustomModalCssSelector,
-        cssModule(
-            styles,
-            GlobalCustomModalCssSelector,
-            size.toLowerCase()
-        ),
+        cssModule(styles, GlobalCustomModalCssSelector, size.toLowerCase()),
         stylingProps.className,
         className
     );
@@ -100,20 +106,13 @@ const CustomModal = (props: CustomModalProps, ref: ForwardedRef<HTMLDivElement>)
             className={clsx(styles["hop-CustomModal__overlay"], overlayProps?.className)}
             modalProps={{
                 ...overlayProps?.modalProps,
-                className: clsx(overlayProps?.modalProps?.className, cssModule(
-                    styles,
-                    "hop-CustomModal__base-modal",
-                    size.toLowerCase()
-                ))
+                className: clsx(
+                    overlayProps?.modalProps?.className,
+                    cssModule(styles, "hop-CustomModal__base-modal", size.toLowerCase())
+                )
             }}
         >
-            <Dialog
-                {...otherProps}
-                ref={ref}
-                className={classNames}
-                style={mergedStyles}
-                slot={slot}
-            >
+            <Dialog {...otherProps} ref={ref} className={classNames} style={mergedStyles} slot={slot}>
                 {renderProps => (
                     <OverlayTriggerStateContext.Provider value={null}>
                         {children(renderProps)}

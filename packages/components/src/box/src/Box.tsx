@@ -1,21 +1,19 @@
-import { useStyledSystem, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { type StyledSystemProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type ComponentProps, type ElementType, type ForwardedRef, type ReactElement } from "react";
+import { type ComponentProps, type ElementType, type ForwardedRef, type ReactElement, forwardRef } from "react";
 
 export const GlobalBoxCssSelector = "hop-Box";
 
-export type BoxProps<T extends ElementType = "div"> = StyledSystemProps & Omit<ComponentProps<T>, keyof StyledSystemProps> & {
-    /**
+export type BoxProps<T extends ElementType = "div"> = StyledSystemProps &
+    Omit<ComponentProps<T>, keyof StyledSystemProps> & {
+        /**
          * The element type to render as.
          * @default "div"
          */
-    as?: T;
-};
+        as?: T;
+    };
 
-const Box = <T extends ElementType = "div">(
-    props: BoxProps<T>,
-    ref: ForwardedRef<unknown>
-) => {
+const Box = <T extends ElementType = "div">(props: BoxProps<T>, ref: ForwardedRef<unknown>) => {
     const { as: Component = "div" as T, ...restProps } = props;
     const { stylingProps, ...ownProps } = useStyledSystem(restProps);
 
@@ -33,12 +31,7 @@ const Box = <T extends ElementType = "div">(
         // useStyledSystem removes the styled system props, so what is remaining is valid for the elementType.
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        <Component
-            ref={ref}
-            className={classNames}
-            style={mergedStyle}
-            {...otherProps}
-        />
+        <Component ref={ref} className={classNames} style={mergedStyle} {...otherProps} />
     );
 };
 

@@ -7,9 +7,5 @@ export interface FieldGroupProps {
 }
 
 export function FieldGroup({ children, isDisabled }: FieldGroupProps) {
-    return (
-        <TextFieldContext.Provider value={{ isDisabled }}>
-            {children}
-        </TextFieldContext.Provider>
-    );
+    return <TextFieldContext.Provider value={{ isDisabled }}>{children}</TextFieldContext.Provider>;
 }

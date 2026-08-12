@@ -1,8 +1,21 @@
 import { CheckmarkIcon } from "@hopper-ui/icons";
-import { Div, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef } from "react";
+import {
+    Div,
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import { type ForwardedRef, forwardRef } from "react";
 import type { Orientation } from "react-aria";
-import { composeRenderProps, Provider, ToggleButton, useContextProps, type Key, type ToggleButtonProps } from "react-aria-components";
+import {
+    type Key,
+    Provider,
+    ToggleButton,
+    type ToggleButtonProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { IllustrationContext } from "../../illustration/index.ts";
 import { ImageContext } from "../../image/index.ts";
@@ -18,8 +31,7 @@ export const GlobalTileCssSelector = "hop-Tile";
 
 export type TileSize = "sm" | "md";
 
-export interface TileProps extends
-    StyledComponentProps<ToggleButtonProps> {
+export interface TileProps extends StyledComponentProps<ToggleButtonProps> {
     /**
      * The id of the Tile, matching the values used in TileGroup's `selectedKeys` prop.
      */
@@ -54,12 +66,7 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
 
     const classNames = composeClassnameRenderProps(
         GlobalTileCssSelector,
-        cssModule(
-            styles,
-            "hop-Tile",
-            orientation,
-            isReadonly && "readonly"
-        ),
+        cssModule(styles, "hop-Tile", orientation, isReadonly && "readonly"),
         stylingProps.className,
         className
     );
@@ -93,12 +100,18 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
                             values={[
                                 [HeadingContext, { isHidden: true }],
                                 [ContentContext, { isHidden: true }],
-                                [ImageContext, {
-                                    className: styles["hop-Tile__image"]
-                                }],
-                                [IllustrationContext, {
-                                    className: styles["hop-Tile__illustration"]
-                                }]
+                                [
+                                    ImageContext,
+                                    {
+                                        className: styles["hop-Tile__image"]
+                                    }
+                                ],
+                                [
+                                    IllustrationContext,
+                                    {
+                                        className: styles["hop-Tile__illustration"]
+                                    }
+                                ]
                             ]}
                         >
                             {typeof children === "string" ? <Content>{children}</Content> : children}
@@ -106,13 +119,19 @@ const Tile = (props: TileProps, ref: ForwardedRef<HTMLButtonElement>) => {
                         <Div className={styles["hop-Tile__container"]}>
                             <Provider
                                 values={[
-                                    [HeadingContext, {
-                                        className: styles["hop-Tile__heading"],
-                                        size: "unset"
-                                    }],
-                                    [ContentContext, {
-                                        className: styles["hop-Tile__content"]
-                                    }],
+                                    [
+                                        HeadingContext,
+                                        {
+                                            className: styles["hop-Tile__heading"],
+                                            size: "unset"
+                                        }
+                                    ],
+                                    [
+                                        ContentContext,
+                                        {
+                                            className: styles["hop-Tile__content"]
+                                        }
+                                    ],
                                     [ImageContext, { isHidden: true }],
                                     [IllustrationContext, { isHidden: true }]
                                 ]}
@@ -141,4 +160,3 @@ const _Tile = forwardRef<HTMLButtonElement, TileProps>(Tile);
 _Tile.displayName = "Tile";
 
 export { _Tile as Tile };
-

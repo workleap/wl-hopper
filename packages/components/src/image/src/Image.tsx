@@ -1,6 +1,11 @@
-import { type ResponsiveProp, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledSystemProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, type HTMLProps } from "react";
+import { type CSSProperties, type ForwardedRef, type HTMLProps, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { type AccessibleSlotProps, type BaseComponentDOMProps, ClearProviders, cssModule } from "../../utils/index.ts";
@@ -11,11 +16,12 @@ import styles from "./Image.module.css";
 
 export const GlobalImageCssSelector = "hop-Image";
 
-export interface ImageProps extends
-    StyledSystemProps,
-    AccessibleSlotProps,
-    Omit<BaseComponentDOMProps, "children">,
-    Omit<HTMLProps<HTMLImageElement>, "slot" | "color" | "content" | "height" | "width" | "src"> {
+export interface ImageProps
+    extends
+        StyledSystemProps,
+        AccessibleSlotProps,
+        Omit<BaseComponentDOMProps, "children">,
+        Omit<HTMLProps<HTMLImageElement>, "slot" | "color" | "content" | "height" | "width" | "src"> {
     /**
      * The image shape.
      */
@@ -30,17 +36,7 @@ function Image(props: ImageProps, ref: ForwardedRef<HTMLImageElement>) {
     [props, ref] = useContextProps(props, ref, ImageContext);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props as ImageContextValue);
-    const {
-        className,
-        style,
-        shape,
-        src,
-        slot,
-        alt,
-        isHidden,
-        clearContexts,
-        ...otherProps
-    } = ownProps;
+    const { className, style, shape, src, slot, alt, isHidden, clearContexts, ...otherProps } = ownProps;
 
     const srcValue = useResponsiveValue(src);
 
@@ -51,19 +47,15 @@ function Image(props: ImageProps, ref: ForwardedRef<HTMLImageElement>) {
     if (alt === undefined) {
         console.warn(
             "The `alt` prop was not provided to an image. " +
-            "Add `alt` text for screen readers, or set `alt=\"\"` prop to indicate that the image " +
-            "is decorative or redundant with displayed text and should not be announced by screen readers."
+                'Add `alt` text for screen readers, or set `alt=""` prop to indicate that the image ' +
+                "is decorative or redundant with displayed text and should not be announced by screen readers."
         );
     }
 
     const classNames = clsx(
         className,
         GlobalImageCssSelector,
-        cssModule(
-            styles,
-            "hop-Image",
-            shape
-        ),
+        cssModule(styles, "hop-Image", shape),
         stylingProps.className
     );
 

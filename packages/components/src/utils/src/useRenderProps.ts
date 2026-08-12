@@ -1,10 +1,10 @@
-import { useMemo, type CSSProperties, type PropsWithChildren, type ReactNode } from "react";
+import { type CSSProperties, type PropsWithChildren, type ReactNode, useMemo } from "react";
 
 import type { RenderPropsHookOptions, StyleProps } from "./types.ts";
 
 /**
-* Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
-*/
+ * Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
+ */
 export function useRenderProps<T>(props: RenderPropsHookOptions<T>): PropsWithChildren<StyleProps> {
     const {
         className,
@@ -43,9 +43,8 @@ export function useRenderProps<T>(props: RenderPropsHookOptions<T>): PropsWithCh
 
         return {
             className: computedClassName ?? defaultClassName,
-            style: (computedStyle || defaultStyle) ? { ...defaultStyle, ...computedStyle } : undefined,
+            style: computedStyle || defaultStyle ? { ...defaultStyle, ...computedStyle } : undefined,
             children: computedChildren ?? defaultChildren
         };
     }, [className, style, children, defaultClassName, defaultChildren, defaultStyle, values]);
 }
-

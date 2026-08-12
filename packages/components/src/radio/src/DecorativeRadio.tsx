@@ -1,25 +1,19 @@
 import { BulletIcon, IconContext } from "@hopper-ui/icons";
-import {
-    useResponsiveValue,
-    useStyledSystem
-} from "@hopper-ui/styled-system";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
-import {
-    composeRenderProps,
-    useContextProps
-} from "react-aria-components";
+import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
+    type InteractionProps,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    SlotProvider,
-    useRenderProps,
-    type InteractionProps
+    useRenderProps
 } from "../../utils/index.ts";
 
 import type { RadioProps } from "./Radio.tsx";
@@ -61,11 +55,7 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLLabe
     const classNames = composeClassnameRenderProps(
         className,
         GlobalDecorativeRadioCssSelector,
-        cssModule(
-            styles,
-            "hop-DecorativeRadio",
-            size
-        ),
+        cssModule(styles, "hop-DecorativeRadio", size),
         stylingProps.className
     );
 
@@ -80,7 +70,7 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLLabe
         ...props,
         className: classNames,
         style,
-        children: children,
+        children,
         values: {
             isSelected: isSelected || false,
             isPressed: isPressed || false,
@@ -118,18 +108,27 @@ function DecorativeRadio(props: DecorativeRadioProps, ref: ForwardedRef<HTMLLabe
             <ClearContainerSlots>
                 <SlotProvider
                     values={[
-                        [TextContext, {
-                            className: styles["hop-DecorativeRadio__text"],
-                            size: size
-                        }],
-                        [IconListContext, {
-                            className: styles["hop-DecorativeRadio__icon-list"],
-                            size: size
-                        }],
-                        [IconContext, {
-                            className: styles["hop-DecorativeRadio__icon"],
-                            size: size
-                        }]
+                        [
+                            TextContext,
+                            {
+                                className: styles["hop-DecorativeRadio__text"],
+                                size
+                            }
+                        ],
+                        [
+                            IconListContext,
+                            {
+                                className: styles["hop-DecorativeRadio__icon-list"],
+                                size
+                            }
+                        ],
+                        [
+                            IconContext,
+                            {
+                                className: styles["hop-DecorativeRadio__icon"],
+                                size
+                            }
+                        ]
                     ]}
                 >
                     {renderProps.children}

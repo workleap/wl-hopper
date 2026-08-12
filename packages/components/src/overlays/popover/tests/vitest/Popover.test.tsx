@@ -1,5 +1,5 @@
-import { Text, Button } from "@hopper-ui/components";
-import { render, screen, fireEvent } from "@hopper-ui/test-utils";
+import { Button, Text } from "@hopper-ui/components";
+import { fireEvent, render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
 import { Popover, type PopoverProps } from "../../src/Popover.tsx";
@@ -64,7 +64,9 @@ describe("Popover", () => {
         render(
             <PopoverTrigger>
                 <Button>trigger</Button>
-                <Popover ref={ref} data-testid="hopper-popover">{popoverChildren}</Popover>
+                <Popover ref={ref} data-testid="hopper-popover">
+                    {popoverChildren}
+                </Popover>
             </PopoverTrigger>
         );
 

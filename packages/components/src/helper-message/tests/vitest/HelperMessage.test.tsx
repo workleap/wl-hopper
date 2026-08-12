@@ -21,7 +21,11 @@ describe("HelperMessage", () => {
     });
 
     it("should support custom style", () => {
-        render(<HelperMessage marginTop="stack-sm" style={{ marginBottom: "13px" }} >Test</HelperMessage>);
+        render(
+            <HelperMessage marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </HelperMessage>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

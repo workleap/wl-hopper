@@ -34,7 +34,13 @@ export const Default = {
         children: (
             <>
                 <Inline>
-                    <TextField type="email" placeholder="billings@acme.com" isRequired label="Email address" description="Invoices will be sent to this email address." />
+                    <TextField
+                        type="email"
+                        placeholder="billings@acme.com"
+                        isRequired
+                        label="Email address"
+                        description="Invoices will be sent to this email address."
+                    />
                 </Inline>
                 <RadioGroup label="I identify my gender as">
                     <Radio value="man">Man</Radio>
@@ -52,9 +58,7 @@ export const Default = {
                 </Inline>
                 <TextField placeholder="Old El Paso" label="City" />
                 <TextArea placeholder="Leave a comment" label="Comments" />
-                <Checkbox>
-                    Agree to terms and conditions
-                </Checkbox>
+                <Checkbox>Agree to terms and conditions</Checkbox>
                 <Select isRequired label="Choose an animal">
                     <SelectItem id="designer">Designer</SelectItem>
                     <SelectItem id="developer">Developer</SelectItem>
@@ -113,9 +117,7 @@ export const AsteriskNecessityIndicator = {
 export const Validation = {
     args: {
         validationErrors: { username: "Sorry, this username is taken." },
-        children: (
-            <TextField defaultValue="john_doe" name="username" label="Username" />
-        )
+        children: <TextField defaultValue="john_doe" name="username" label="Username" />
     }
 } satisfies Story;
 
@@ -128,7 +130,7 @@ export const ValidationBehaviorAria = {
                     name="username"
                     defaultValue="admin"
                     isRequired
-                    validate={value => value === "admin" ? "Nice try." : null}
+                    validate={value => (value === "admin" ? "Nice try." : null)}
                     label="Username"
                 />
                 <Button type="submit">Submit</Button>
@@ -142,13 +144,7 @@ export const ValidationBehaviorNative = {
         validationBehavior: "native",
         children: (
             <>
-                <TextField
-                    name="email"
-                    type="email"
-                    isRequired
-                    label="Email"
-                    errorMessage="This field is required"
-                />
+                <TextField name="email" type="email" isRequired label="Email" errorMessage="This field is required" />
                 <ButtonGroup>
                     <Button type="submit">Submit</Button>
                     <Button type="reset">Reset</Button>
@@ -172,29 +168,17 @@ export const Styling = {
         return (
             <Stack gap="core_320">
                 <Form UNSAFE_border="1px solid red">
-                    <TextField
-                        name="email"
-                        type="email"
-                        label="Email"
-                    />
+                    <TextField name="email" type="email" label="Email" />
                     <Button type="submit">Submit</Button>
                 </Form>
 
                 <Form className="bg-red">
-                    <TextField
-                        name="password"
-                        type="password"
-                        label="Password"
-                    />
+                    <TextField name="password" type="password" label="Password" />
                     <Button type="submit">Submit</Button>
                 </Form>
 
                 <Form style={{ backgroundColor: "red" }}>
-                    <TextField
-                        name="password"
-                        type="password"
-                        label="Password"
-                    />
+                    <TextField name="password" type="password" label="Password" />
                     <Button type="submit">Submit</Button>
                 </Form>
             </Stack>

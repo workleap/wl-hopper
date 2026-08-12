@@ -1,4 +1,4 @@
-import { SegmentedControl, SegmentedControlItem, type Key } from "@hopper-ui/components";
+import { type Key, SegmentedControl, SegmentedControlItem } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {

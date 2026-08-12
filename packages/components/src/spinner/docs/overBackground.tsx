@@ -1,4 +1,4 @@
-import { Spinner, Div } from "@hopper-ui/components";
+import { Div, Spinner } from "@hopper-ui/components";
 
 export default function Example() {
     return (

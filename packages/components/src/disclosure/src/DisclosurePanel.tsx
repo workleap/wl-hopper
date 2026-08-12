@@ -1,10 +1,16 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef } from "react";
-import { composeRenderProps, DisclosurePanel as RACDisclosurePanel, useContextProps, useSlottedContext, type DisclosurePanelProps as RACDisclosurePanelProps } from "react-aria-components";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
+import { type ForwardedRef, forwardRef } from "react";
+import {
+    DisclosurePanel as RACDisclosurePanel,
+    type DisclosurePanelProps as RACDisclosurePanelProps,
+    composeRenderProps,
+    useContextProps,
+    useSlottedContext
+} from "react-aria-components";
 
 import { FormContext } from "../../form/index.ts";
 import { TextContext } from "../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, composeClassnameRenderProps, cssModule, ensureTextWrapper } from "../../utils/index.ts";
 
 import { DisclosureContext } from "./DisclosureContext.ts";
 import { DisclosurePanelContext } from "./DisclosurePanelContext.ts";
@@ -18,23 +24,13 @@ export interface DisclosurePanelProps extends StyledComponentProps<RACDisclosure
 function DisclosurePanel(props: DisclosurePanelProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, DisclosurePanelContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children,
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, children, style: styleProp, ...otherProps } = ownProps;
 
     const { isDisabled, variant } = useSlottedContext(DisclosureContext)!;
     const classNames = composeClassnameRenderProps(
         className,
         GlobalDisclosurePanelCssSelector,
-        cssModule(
-            styles,
-            "hop-DisclosurePanel",
-            variant,
-            isDisabled && "disabled"
-        ),
+        cssModule(styles, "hop-DisclosurePanel", variant, isDisabled && "disabled"),
         stylingProps.className
     );
 
@@ -46,16 +42,12 @@ function DisclosurePanel(props: DisclosurePanelProps, ref: ForwardedRef<HTMLDivE
     });
 
     return (
-        <RACDisclosurePanel
-            ref={ref}
-            className={classNames}
-            style={style}
-            {...otherProps}
-        >
-            <SlotProvider values={[
-                [TextContext, { size: "sm", className: styles["hop-DisclosurePanel__text"] }],
-                [FormContext, { size: "sm", isDisabled: isDisabled }]
-            ]}
+        <RACDisclosurePanel ref={ref} className={classNames} style={style} {...otherProps}>
+            <SlotProvider
+                values={[
+                    [TextContext, { size: "sm", className: styles["hop-DisclosurePanel__text"] }],
+                    [FormContext, { size: "sm", isDisabled }]
+                ]}
             >
                 {ensureTextWrapper(children, "p")}
             </SlotProvider>

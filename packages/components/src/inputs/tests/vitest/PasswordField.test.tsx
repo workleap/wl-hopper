@@ -7,18 +7,14 @@ import { PasswordFieldContext } from "../../src/PasswordFieldContext.ts";
 
 describe("PasswordField", () => {
     it("should render with default class", () => {
-        render(
-            <PasswordField data-testid="field" label="Label" />
-        );
+        render(<PasswordField data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-PasswordField");
     });
 
     it("should have password type", () => {
-        render(
-            <PasswordField data-testid="field" label="Label" />
-        );
+        render(<PasswordField data-testid="field" label="Label" />);
 
         const element = screen.getByLabelText("Label");
         expect(element).toHaveAttribute("type", "password");
@@ -26,9 +22,7 @@ describe("PasswordField", () => {
 
     it("should have password text when show password is clicked", async () => {
         const user = userEvent.setup();
-        render(
-            <PasswordField data-testid="field" label="Label" />
-        );
+        render(<PasswordField data-testid="field" label="Label" />);
 
         let element = screen.getByLabelText("Label");
         expect(element).toHaveAttribute("type", "password");
@@ -45,9 +39,7 @@ describe("PasswordField", () => {
     });
 
     it("should support custom class", () => {
-        render(
-            <PasswordField className="test" data-testid="field" label="Label" />
-        );
+        render(<PasswordField className="test" data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-PasswordField");
@@ -64,9 +56,7 @@ describe("PasswordField", () => {
     });
 
     it("should support DOM props", () => {
-        render(
-            <PasswordField data-testid="field" data-foo="bar" label="Label" />
-        );
+        render(<PasswordField data-testid="field" data-foo="bar" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -88,9 +78,7 @@ describe("PasswordField", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(
-            <PasswordField ref={ref} data-testid="field" label="Label" />
-        );
+        render(<PasswordField ref={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -98,9 +86,7 @@ describe("PasswordField", () => {
 
     it("should support input refs", () => {
         const ref = createRef<HTMLInputElement>();
-        render(
-            <PasswordField inputRef={ref} data-testid="field" label="Label" />
-        );
+        render(<PasswordField inputRef={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).toBe(screen.getByLabelText("Label"));
         expect(ref.current instanceof HTMLInputElement).toBeTruthy();

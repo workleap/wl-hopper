@@ -60,9 +60,7 @@ export const Default = {
     render: args => (
         <Alert {...args}>
             <Heading>Ribbit Reminder!</Heading>
-            <Content>
-                Your changes have been saved—no need to leap again. Hop along, hero!
-            </Content>
+            <Content>Your changes have been saved—no need to leap again. Hop along, hero!</Content>
         </Alert>
     )
 } satisfies Story;
@@ -109,7 +107,7 @@ export const Mobile = {
     parameters: {
         ...meta.parameters,
         viewport: {
-            viewports: viewports,
+            viewports,
             defaultViewport: "mobile"
         }
     },

@@ -1,4 +1,4 @@
-import { createContext, type Context } from "react";
+import { type Context, createContext } from "react";
 import type { ContextValue } from "react-aria-components";
 
 import type { FooterProps } from "./Footer.tsx";
@@ -6,12 +6,12 @@ import type { FooterProps } from "./Footer.tsx";
 export interface FooterContextValue extends FooterProps {
     /**
      *  Contexts to clear.
-    */
+     */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     clearContexts?: Context<any>[];
     /**
      * Whether the footer is hidden or not.
-    */
+     */
     isHidden?: boolean;
 }
 

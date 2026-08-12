@@ -2,10 +2,7 @@ import { Select, SelectItem, Text } from "@hopper-ui/components";
 
 export default function Example() {
     return (
-        <Select
-            aria-label="list of options with a description"
-            isAutoMenuWidth
-        >
+        <Select aria-label="list of options with a description" isAutoMenuWidth>
             <SelectItem textValue="Designer">
                 <Text>Designer</Text>
                 <Text slot="description">Builds and maintains software.</Text>

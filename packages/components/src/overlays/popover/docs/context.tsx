@@ -15,14 +15,18 @@ const HighlightedTrigger = ({ children }: { children: ReactNode }) => {
     const [isOpen, setOpen] = useState(false);
 
     return (
-        <SlotProvider values={[
-            [PopoverContext, { isOpen, onOpenChange: setOpen }],
-            [ButtonContext, {
-                onPress: () => setOpen(!isOpen),
-                ref: triggerRef,
-                variant: isOpen ? "primary" : "secondary"
-            }]
-        ]}
+        <SlotProvider
+            values={[
+                [PopoverContext, { isOpen, onOpenChange: setOpen }],
+                [
+                    ButtonContext,
+                    {
+                        onPress: () => setOpen(!isOpen),
+                        ref: triggerRef,
+                        variant: isOpen ? "primary" : "secondary"
+                    }
+                ]
+            ]}
         >
             {children}
         </SlotProvider>
@@ -36,9 +40,7 @@ export default function Example() {
                 <Button>Company Profile</Button>
                 <Popover>
                     <Heading>ACME</Heading>
-                    <Content>
-                        A tech company focusing on the development of software and hardware solutions.
-                    </Content>
+                    <Content>A tech company focusing on the development of software and hardware solutions.</Content>
                 </Popover>
             </PopoverTrigger>
         </HighlightedTrigger>

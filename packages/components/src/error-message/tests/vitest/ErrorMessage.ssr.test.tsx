@@ -7,10 +7,7 @@ import { ErrorMessage } from "../../src/ErrorMessage.tsx";
 
 describe("ErrorMessage", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <ErrorMessage>Text</ErrorMessage>
-            );
+        const renderOnServer = () => renderToString(<ErrorMessage>Text</ErrorMessage>);
 
         expect(renderOnServer).not.toThrow();
     });

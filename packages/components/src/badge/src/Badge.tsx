@@ -1,11 +1,19 @@
-import { slot as slotFn, useStyledSystem, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { type StyledSystemProps, slot as slotFn, useStyledSystem } from "@hopper-ui/styled-system";
 import { filterDOMProps } from "@react-aria/utils";
-import { forwardRef, type ForwardedRef } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { OverlineText } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isNil, useRenderProps, type AccessibleSlotProps, type RenderProps } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    ClearContainerSlots,
+    type RenderProps,
+    composeClassnameRenderProps,
+    cssModule,
+    isNil,
+    useRenderProps
+} from "../../utils/index.ts";
 import { mapOrbiterToHopperVariants } from "../utils/Badge.utils.ts";
 
 import { BadgeContext, type BadgeContextValue } from "./BadgeContext.ts";
@@ -22,7 +30,7 @@ interface BadgeRenderProps {
     isDisabled?: boolean;
     /**
      * Whether or not the badge is indeterminate and should just be a dot. This will ignore any children.
-    */
+     */
     isIndeterminate?: boolean;
     /**
      * Whether or not the badge is hovered.
@@ -37,9 +45,9 @@ interface BadgeRenderProps {
      */
     isSelected?: boolean;
     /**
-    * The visual style of the badge.
-    * @default "primary"
-    */
+     * The visual style of the badge.
+     * @default "primary"
+     */
     variant?: BadgeVariant;
 }
 
@@ -55,7 +63,7 @@ export interface BadgeProps extends StyledSystemProps, AccessibleSlotProps, Rend
     isDisabled?: boolean;
     /**
      * Whether or not the badge is indeterminate and should just be a dot. This will ignore any children.
-    */
+     */
     isIndeterminate?: boolean;
 }
 
@@ -64,24 +72,12 @@ function Badge(props: BadgeProps, ref: ForwardedRef<HTMLSpanElement>) {
     const { isHovered, isPressed, isSelected } = props as BadgeContextValue;
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        isDisabled,
-        isIndeterminate,
-        style,
-        slot,
-        variant = "primary",
-        ...otherProps
-    } = ownProps;
+    const { className, isDisabled, isIndeterminate, style, slot, variant = "primary", ...otherProps } = ownProps;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalBadgeCssSelector,
-        cssModule(
-            styles,
-            "hop-Badge",
-            mapOrbiterToHopperVariants(variant)
-        ),
+        cssModule(styles, "hop-Badge", mapOrbiterToHopperVariants(variant)),
         stylingProps.className
     );
 

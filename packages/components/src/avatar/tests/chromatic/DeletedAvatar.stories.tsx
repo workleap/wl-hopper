@@ -33,11 +33,10 @@ export const AccessToDisabledState = {
         <DeletedAvatar
             {...props}
             isDisabled
-            style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
+            style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})}
         />
     ),
     args: {
         "aria-label": "deleted"
     }
 } satisfies Story;
-

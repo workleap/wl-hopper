@@ -22,7 +22,11 @@ describe("Text", () => {
     });
 
     it("should support custom style", () => {
-        render(<Text marginTop="stack-sm" style={{ marginBottom: "13px" }}>Test</Text>);
+        render(
+            <Text marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Text>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -56,7 +60,11 @@ describe("Text", () => {
     });
 
     it("should set size inherit on nested text", () => {
-        render(<Text>Test <Text>Nested</Text></Text>);
+        render(
+            <Text>
+                Test <Text>Nested</Text>
+            </Text>
+        );
 
         const element = screen.getByText("Nested");
         expect(element).toHaveClass("hop-Text--inherit");
@@ -65,7 +73,9 @@ describe("Text", () => {
     it("should stop context propagation on nested text", () => {
         render(
             <ButtonGroupContext.Provider value={{ className: "testClass" }}>
-                <Text>Test <Text>Nested</Text></Text>
+                <Text>
+                    Test <Text>Nested</Text>
+                </Text>
             </ButtonGroupContext.Provider>
         );
 

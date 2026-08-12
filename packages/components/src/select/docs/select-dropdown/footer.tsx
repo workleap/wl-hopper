@@ -5,7 +5,12 @@ export default function Example() {
     return (
         <Select
             aria-label="list of options with a description"
-            footer={<Button variant="ghost-secondary" isFluid><AddIcon /><Text>Add</Text></Button>}
+            footer={
+                <Button variant="ghost-secondary" isFluid>
+                    <AddIcon />
+                    <Text>Add</Text>
+                </Button>
+            }
         >
             <SelectItem textValue="Designer">
                 <Text>Designer</Text>

@@ -22,8 +22,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default = {
-} satisfies Story;
+export const Default = {} satisfies Story;
 
 export const Open = {
     ...Default,
@@ -36,15 +35,20 @@ export const LongText = {
     ...Open,
     args: {
         ...Open.args,
-        children: "This is a contextual help message with a longer text to demonstrate how the component handles larger content. It should properly wrap and display all the information without any issues."
+        children:
+            "This is a contextual help message with a longer text to demonstrate how the component handles larger content. It should properly wrap and display all the information without any issues."
     }
 } satisfies Story;
 
 export const Sizes = {
     render: args => (
         <Inline UNSAFE_gap="200px">
-            <ContextualHelp {...args} size="sm">Small size</ContextualHelp>
-            <ContextualHelp {...args} size="md">Medium size</ContextualHelp>
+            <ContextualHelp {...args} size="sm">
+                Small size
+            </ContextualHelp>
+            <ContextualHelp {...args} size="md">
+                Medium size
+            </ContextualHelp>
         </Inline>
     ),
     args: {
@@ -55,8 +59,12 @@ export const Sizes = {
 export const Variants = {
     render: args => (
         <Inline UNSAFE_gap="200px">
-            <ContextualHelp {...args} variant="help">Help</ContextualHelp>
-            <ContextualHelp {...args} variant="info">Information</ContextualHelp>
+            <ContextualHelp {...args} variant="help">
+                Help
+            </ContextualHelp>
+            <ContextualHelp {...args} variant="info">
+                Information
+            </ContextualHelp>
         </Inline>
     ),
     args: {

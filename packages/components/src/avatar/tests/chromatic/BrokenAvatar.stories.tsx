@@ -33,11 +33,10 @@ export const AccessToDisabledState = {
         <BrokenAvatar
             {...props}
             isDisabled
-            style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
+            style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})}
         />
     ),
     args: {
         "aria-label": "broken"
     }
 } satisfies Story;
-

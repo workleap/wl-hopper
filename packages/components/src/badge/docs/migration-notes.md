@@ -10,4 +10,3 @@ Coming from Orbiter, you should be aware of the following changes:
 - Badge is no longer floating. Use the `FloatingBadge` component to add this feature.
 - `FloatingBadge` has new props such as `placement` and `offset`.
 - `overlap` is used inside `FloatingBadge` and the new values are `circular` and `rectangular`.
- 

@@ -1,4 +1,3 @@
-
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -32,7 +31,12 @@ describe("Alert", () => {
 
     it("should support custom style", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" marginTop="stack-sm" style={{ marginBottom: "13px" }} overlayProps={{ isOpen: true }}>
+            <Alert
+                primaryButtonLabel="Confirm"
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+                overlayProps={{ isOpen: true }}
+            >
                 <Heading>Test</Heading>
             </Alert>
         );
@@ -43,7 +47,12 @@ describe("Alert", () => {
 
     it("should support DOM props", () => {
         render(
-            <Alert primaryButtonLabel="Confirm" aria-label="alert options" data-foo="bar" overlayProps={{ isOpen: true }}>
+            <Alert
+                primaryButtonLabel="Confirm"
+                aria-label="alert options"
+                data-foo="bar"
+                overlayProps={{ isOpen: true }}
+            >
                 <Heading>Test</Heading>
             </Alert>
         );

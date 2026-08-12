@@ -1,4 +1,3 @@
-
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -11,14 +10,22 @@ describe("Checkbox", () => {
     const testId = "checkbox-field";
 
     it("should render with default class", () => {
-        render(<CheckboxField data-testid={testId} description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const element = screen.getByTestId(testId);
         expect(element).toHaveClass("hop-CheckboxField");
     });
 
     it("should support custom class", () => {
-        render(<CheckboxField data-testid={testId} className="test" description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} className="test" description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const element = screen.getByTestId(testId);
         expect(element).toHaveClass("hop-CheckboxField");
@@ -27,7 +34,12 @@ describe("Checkbox", () => {
 
     it("should support custom style", () => {
         render(
-            <CheckboxField data-testid={testId} marginTop="stack-sm" style={{ marginBottom: "13px" }} description="Description">
+            <CheckboxField
+                data-testid={testId}
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+                description="Description"
+            >
                 <Checkbox>option 1</Checkbox>
             </CheckboxField>
         );
@@ -37,7 +49,11 @@ describe("Checkbox", () => {
     });
 
     it("should support DOM props", () => {
-        render(<CheckboxField data-testid={testId} data-foo="bar" description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} data-foo="bar" description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const element = screen.getByTestId(testId);
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -60,14 +76,22 @@ describe("Checkbox", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<CheckboxField ref={ref} description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField ref={ref} description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
     });
 
     it("should set the size class name and pass the size to the checkbox", () => {
-        render(<CheckboxField data-testid={testId} size="sm" description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} size="sm" description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const element = screen.getByTestId(testId);
         const checkbox = screen.getByRole("checkbox").closest("label");
@@ -76,7 +100,11 @@ describe("Checkbox", () => {
     });
 
     it("should set an id on the description and aria-describedby on the checkbox", () => {
-        render(<CheckboxField data-testid={testId} description="Description"><Checkbox>option 1</Checkbox></CheckboxField>);
+        render(
+            <CheckboxField data-testid={testId} description="Description">
+                <Checkbox>option 1</Checkbox>
+            </CheckboxField>
+        );
 
         const checkbox = screen.getByRole("checkbox");
         const descriptionElement = screen.getByText("Description");

@@ -106,7 +106,9 @@ describe("ListBoxItem", () => {
     it("should have a matching aria-labelledby and label ID", () => {
         render(
             <ListBox aria-label="list of options">
-                <ListBoxItem id="earth" data-testid="earth-item">Earth</ListBoxItem>
+                <ListBoxItem id="earth" data-testid="earth-item">
+                    Earth
+                </ListBoxItem>
                 <ListBoxItem id="jupiter">Jupiter</ListBoxItem>
                 <ListBoxItem id="mars">Mars</ListBoxItem>
             </ListBox>
@@ -124,7 +126,8 @@ describe("ListBoxItem", () => {
         render(
             <ListBox aria-label="list of options">
                 <ListBoxItem id="earth" data-testid="earth-item" textValue="Earth">
-                    <Text>Earth</Text><Text slot="description">{descriptionText}</Text>
+                    <Text>Earth</Text>
+                    <Text slot="description">{descriptionText}</Text>
                 </ListBoxItem>
                 <ListBoxItem id="jupiter">Jupiter</ListBoxItem>
                 <ListBoxItem id="mars">Mars</ListBoxItem>
@@ -164,7 +167,9 @@ describe("ListBoxItem", () => {
     it("should support custom style", () => {
         render(
             <ListBox aria-label="list of options">
-                <ListBoxItem marginTop="stack-sm" style={{ marginBottom: "13px" }}>Item 1</ListBoxItem>
+                <ListBoxItem marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                    Item 1
+                </ListBoxItem>
             </ListBox>
         );
 

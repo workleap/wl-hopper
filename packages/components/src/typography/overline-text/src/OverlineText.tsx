@@ -1,7 +1,7 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Text as RACText, useContextProps, type TextProps as RACTextProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { Text as RACText, type TextProps as RACTextProps, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../../utils/index.ts";
 
@@ -11,8 +11,7 @@ import styles from "./OverlineText.module.css";
 
 export const GlobalOverlineTextCssSelector = "hop-OverlineText";
 
-export interface OverlineTextProps extends StyledComponentProps<RACTextProps> {
-}
+export interface OverlineTextProps extends StyledComponentProps<RACTextProps> {}
 
 function OverlineText(props: OverlineTextProps, ref: ForwardedRef<HTMLSpanElement>) {
     [props, ref] = useContextProps(props, ref, OverlineTextContext);
@@ -21,10 +20,7 @@ function OverlineText(props: OverlineTextProps, ref: ForwardedRef<HTMLSpanElemen
 
     const classNames = clsx(
         GlobalOverlineTextCssSelector,
-        cssModule(
-            styles,
-            "hop-OverlineText"
-        ),
+        cssModule(styles, "hop-OverlineText"),
         stylingProps.className,
         className
     );
@@ -35,13 +31,7 @@ function OverlineText(props: OverlineTextProps, ref: ForwardedRef<HTMLSpanElemen
     };
 
     return (
-        <RACText
-            ref={ref}
-            elementType={elementType}
-            className={classNames}
-            style={mergedStyles}
-            {...otherProps}
-        >
+        <RACText ref={ref} elementType={elementType} className={classNames} style={mergedStyles} {...otherProps}>
             <span className={styles["hop-OverlineText__text"]}>{children}</span>
         </RACText>
     );

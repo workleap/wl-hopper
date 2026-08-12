@@ -21,7 +21,11 @@ describe("Label", () => {
     });
 
     it("should support custom style", () => {
-        render(<Label marginTop="stack-sm" style={{ marginBottom: "13px" }} >Test</Label>);
+        render(
+            <Label marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Label>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -59,7 +63,9 @@ describe("Label", () => {
         const id = "new-id";
         render(
             <div>
-                <Label htmlFor={id} ref={ref}>Test</Label>
+                <Label htmlFor={id} ref={ref}>
+                    Test
+                </Label>
                 <input id={id} />
             </div>
         );

@@ -1,4 +1,4 @@
-import { forwardRef, type Ref } from "react";
+import { type Ref, forwardRef } from "react";
 
 import { Flex, type FlexProps } from "./Flex.tsx";
 
@@ -17,17 +17,10 @@ export interface StackProps extends Omit<FlexProps, "direction" | "alignItems" |
      * An alias for the css justify-content property.
      */
     alignY?: FlexProps["justifyContent"];
-
 }
 
 function Stack(props: StackProps, ref: Ref<HTMLDivElement>) {
-    const {
-        reverse,
-        alignX,
-        alignY,
-        gap = "stack-md",
-        ...rest
-    } = props;
+    const { reverse, alignX, alignY, gap = "stack-md", ...rest } = props;
 
     return (
         <Flex

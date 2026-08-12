@@ -1,6 +1,6 @@
-import { Div, useStyledSystem, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { Div, type StyledSystemProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
 import { ButtonContext, ButtonGroupContext } from "../../buttons/index.ts";
@@ -8,7 +8,7 @@ import { IllustrationContext } from "../../illustration/index.ts";
 import { ImageContext, SvgImageContext } from "../../image/index.ts";
 import { ContentContext } from "../../layout/index.ts";
 import { HeadingContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider, type AccessibleSlotProps, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type AccessibleSlotProps, type BaseComponentDOMProps, SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { IllustratedMessageContext } from "./IllustratedMessageContext.ts";
 
@@ -30,23 +30,12 @@ function IllustratedMessage(props: IllustratedMessageProps, ref: ForwardedRef<HT
     [props, ref] = useContextProps(props, ref, IllustratedMessageContext);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        style,
-        slot,
-        children,
-        size = "md",
-        ...otherProps
-    } = ownProps;
+    const { className, style, slot, children, size = "md", ...otherProps } = ownProps;
 
     const classNames = clsx(
         className,
         GlobalIllustratedMessageCssSelector,
-        cssModule(
-            styles,
-            "hop-IllustratedMessage",
-            size
-        ),
+        cssModule(styles, "hop-IllustratedMessage", size),
         stylingProps.className
     );
 
@@ -56,39 +45,54 @@ function IllustratedMessage(props: IllustratedMessageProps, ref: ForwardedRef<HT
     };
 
     return (
-        <Div
-            {...otherProps}
-            className={classNames}
-            style={mergedStyles}
-            ref={ref}
-            slot={slot ?? undefined}
-        >
+        <Div {...otherProps} className={classNames} style={mergedStyles} ref={ref} slot={slot ?? undefined}>
             <SlotProvider
                 values={[
-                    [SvgImageContext, {
-                        className: styles["hop-IllustratedMessage__image"]
-                    }],
-                    [IllustrationContext, {
-                        className: styles["hop-IllustratedMessage__illustration"],
-                        clearContexts: [ImageContext]
-                    }],
-                    [ImageContext, {
-                        className: styles["hop-IllustratedMessage__image"]
-                    }],
-                    [HeadingContext, {
-                        className: styles["hop-IllustratedMessage__heading"],
-                        size: "unset"
-                    }],
-                    [ContentContext, {
-                        className: styles["hop-IllustratedMessage__content"],
-                        color: "neutral-weak"
-                    }],
-                    [ButtonGroupContext, {
-                        className: styles["hop-IllustratedMessage__buttonGroup"]
-                    }],
-                    [ButtonContext, {
-                        className: styles["hop-IllustratedMessage__button"]
-                    }]
+                    [
+                        SvgImageContext,
+                        {
+                            className: styles["hop-IllustratedMessage__image"]
+                        }
+                    ],
+                    [
+                        IllustrationContext,
+                        {
+                            className: styles["hop-IllustratedMessage__illustration"],
+                            clearContexts: [ImageContext]
+                        }
+                    ],
+                    [
+                        ImageContext,
+                        {
+                            className: styles["hop-IllustratedMessage__image"]
+                        }
+                    ],
+                    [
+                        HeadingContext,
+                        {
+                            className: styles["hop-IllustratedMessage__heading"],
+                            size: "unset"
+                        }
+                    ],
+                    [
+                        ContentContext,
+                        {
+                            className: styles["hop-IllustratedMessage__content"],
+                            color: "neutral-weak"
+                        }
+                    ],
+                    [
+                        ButtonGroupContext,
+                        {
+                            className: styles["hop-IllustratedMessage__buttonGroup"]
+                        }
+                    ],
+                    [
+                        ButtonContext,
+                        {
+                            className: styles["hop-IllustratedMessage__button"]
+                        }
+                    ]
                 ]}
             >
                 {children}

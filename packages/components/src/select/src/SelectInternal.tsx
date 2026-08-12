@@ -1,19 +1,24 @@
 import { IconContext } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ForwardedRef, type ReactNode } from "react";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import { type ForwardedRef, type ReactNode, forwardRef } from "react";
 import {
     Autocomplete,
     Button,
-    composeRenderProps,
-    ButtonContext as RACButtonContext,
-    Select as RACSelect,
-    TextContext as RACTextContext,
-    useContextProps,
-    useFilter,
     type AutocompleteProps as RACAutocompleteProps,
+    ButtonContext as RACButtonContext,
     type ButtonProps as RACButtonProps,
+    Select as RACSelect,
     type SelectProps as RACSelectProps,
-    type SelectValueRenderProps
+    TextContext as RACTextContext,
+    type SelectValueRenderProps,
+    composeRenderProps,
+    useContextProps,
+    useFilter
 } from "react-aria-components";
 
 import { BadgeContext } from "../../badge/index.ts";
@@ -27,7 +32,17 @@ import { ListBox, type ListBoxProps, type SelectionIndicator } from "../../list-
 import { Popover, type PopoverProps } from "../../overlays/index.ts";
 import { ToggleArrow } from "../../toggle-arrow/index.ts";
 import { FieldLabel, TextContext } from "../../typography/index.ts";
-import { ClearContainerSlots, ClearProviders, composeClassnameRenderProps, cssModule, ensureTextWrapper, SlotProvider, type FieldProps, type MenuAlignment, type MenuDirection } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    ClearProviders,
+    type FieldProps,
+    type MenuAlignment,
+    type MenuDirection,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    ensureTextWrapper
+} from "../../utils/index.ts";
 
 import { SelectContext } from "./SelectContext.ts";
 import { SelectValue } from "./SelectValue.tsx";
@@ -39,7 +54,8 @@ export const GlobalSelectCssSelector = "hop-Select";
 export type ValueRenderProps<T> = SelectValueRenderProps<T> & { defaultChildren: ReactNode };
 export type SelectTriggerProps = StyledComponentProps<RACButtonProps>;
 export type SelectAutocompleteProps = Omit<RACAutocompleteProps, "children">;
-export interface InternalSelectProps<T extends object, M extends "single" | "multiple" = "single"> extends StyledComponentProps<Omit<RACSelectProps<T, M>, "children">>, FieldProps {
+export interface InternalSelectProps<T extends object, M extends "single" | "multiple" = "single">
+    extends StyledComponentProps<Omit<RACSelectProps<T, M>, "children">>, FieldProps {
     /**
      * The alignment of the menu.
      * @default "start"
@@ -167,22 +183,12 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
         ...otherProps
     } = ownProps;
     const { stylingProps: triggerStylingProps, ...triggerOwnProps } = useStyledSystem(triggerProps ?? {});
-    const {
-        className: triggerClassName,
-        style: triggerStyleProp,
-        ...otherTriggerProps
-    } = triggerOwnProps;
+    const { className: triggerClassName, style: triggerStyleProp, ...otherTriggerProps } = triggerOwnProps;
 
     const { stylingProps: searchFieldStylingProps, ...searchFieldOwnProps } = useStyledSystem(searchFieldProps ?? {});
-    const {
-        className: searchFieldClassName,
-        ...otherSearchFieldProps
-    } = searchFieldOwnProps;
+    const { className: searchFieldClassName, ...otherSearchFieldProps } = searchFieldOwnProps;
 
-    const {
-        className: popoverContainerClassName,
-        ...otherPopoverContainerProps
-    } = popoverProps?.containerProps ?? {};
+    const { className: popoverContainerClassName, ...otherPopoverContainerProps } = popoverProps?.containerProps ?? {};
 
     const size = useResponsiveValue(sizeProp) ?? "md";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
@@ -192,22 +198,13 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
     const classNames = composeClassnameRenderProps(
         className,
         GlobalSelectCssSelector,
-        cssModule(
-            styles,
-            "hop-Select",
-            isFluid && "fluid",
-            size
-        ),
+        cssModule(styles, "hop-Select", isFluid && "fluid", size),
         stylingProps.className
     );
 
     const buttonClassNames = composeClassnameRenderProps(
         triggerClassName,
-        cssModule(
-            styles,
-            "hop-Select__button",
-            size
-        ),
+        cssModule(styles, "hop-Select__button", size),
         triggerStylingProps.className
     );
 
@@ -227,59 +224,50 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
 
     const searchFieldClassNames = composeClassnameRenderProps(
         searchFieldClassName,
-        cssModule(
-            styles,
-            "hop-Select__search-input"
-        ),
+        cssModule(styles, "hop-Select__search-input"),
         searchFieldStylingProps.className
     );
 
-    const popoverContainerClassNames = cssModule(
-        styles,
-        "hop-Select__popover",
-        popoverContainerClassName
-    );
+    const popoverContainerClassNames = cssModule(styles, "hop-Select__popover", popoverContainerClassName);
 
     const prefixMarkup = prefix ? (
-        <SlotProvider values={[
-            [TextContext, { size, className: styles["hop-Select__prefix"] }],
-            [IconContext, { size, className: styles["hop-Select__prefix"] }]
-        ]}
+        <SlotProvider
+            values={[
+                [TextContext, { size, className: styles["hop-Select__prefix"] }],
+                [IconContext, { size, className: styles["hop-Select__prefix"] }]
+            ]}
         >
-            <ClearContainerSlots>
-                {ensureTextWrapper(prefix)}
-            </ClearContainerSlots>
+            <ClearContainerSlots>{ensureTextWrapper(prefix)}</ClearContainerSlots>
         </SlotProvider>
     ) : null;
 
     const footerMarkup = footer ? (
-        <ClearProviders
-            values={[
-                RACTextContext,
-                TextContext,
-                RACButtonContext
-            ]}
-        >
-            <SlotProvider values={[
-                [TextContext, {
-                    size
-                }]
-            ]}
+        <ClearProviders values={[RACTextContext, TextContext, RACButtonContext]}>
+            <SlotProvider
+                values={[
+                    [
+                        TextContext,
+                        {
+                            size
+                        }
+                    ]
+                ]}
             >
-                <Footer>
-                    {ensureTextWrapper(footer)}
-                </Footer>
-
+                <Footer>{ensureTextWrapper(footer)}</Footer>
             </SlotProvider>
         </ClearProviders>
     ) : null;
 
     const listBoxMarkup = (
-        <SlotProvider values={[
-            [BadgeContext, {
-                variant: "secondary"
-            }]
-        ]}
+        <SlotProvider
+            values={[
+                [
+                    BadgeContext,
+                    {
+                        variant: "secondary"
+                    }
+                ]
+            ]}
         >
             <ListBox
                 size={size}
@@ -328,10 +316,7 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                             }}
                         >
                             {isFilterable ? (
-                                <Autocomplete
-                                    filter={contains}
-                                    {...autocompleteProps}
-                                >
+                                <Autocomplete filter={contains} {...autocompleteProps}>
                                     <SearchField
                                         autoFocus
                                         size={size}
@@ -350,26 +335,26 @@ function InternalSelect<T extends object>(props: InternalSelectProps<T>, ref: Fo
                                 </>
                             )}
                         </Popover>
-                        <Button className={buttonClassNames} style={triggerStyle} data-invalid={isInvalid || undefined} {...otherTriggerProps}>
+                        <Button
+                            className={buttonClassNames}
+                            style={triggerStyle}
+                            data-invalid={isInvalid || undefined}
+                            {...otherTriggerProps}
+                        >
                             {prefixMarkup}
                             <SelectValue<T> size={size}>
                                 {valueRenderProps => {
                                     return renderValue?.(valueRenderProps);
                                 }}
                             </SelectValue>
-                            <ToggleArrow
-                                className={styles["hop-Select__button-icon"]}
-                                isExpanded={isOpen}
-                            />
+                            <ToggleArrow className={styles["hop-Select__button-icon"]} isExpanded={isOpen} />
                         </Button>
                         {description && (
                             <HelperMessage className={styles["hop-Select__helper-message"]}>
                                 {description}
                             </HelperMessage>
                         )}
-                        <ErrorMessage className={styles["hop-Select__error-message"]}>
-                            {errorMessage}
-                        </ErrorMessage>
+                        <ErrorMessage className={styles["hop-Select__error-message"]}>{errorMessage}</ErrorMessage>
                     </>
                 );
             }}
