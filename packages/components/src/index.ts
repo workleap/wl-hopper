@@ -1,4 +1,5 @@
 export * from "./accordion/index.ts";
+export * from "./action-bar/index.ts";
 export * from "./alert/index.ts";
 export * from "./avatar/index.ts";
 export * from "./badge/index.ts";

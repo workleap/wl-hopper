@@ -1,0 +1,84 @@
+.hop-ActionBar {
+    /* Default */
+    --hop-ActionBar-padding: var(--hop-space-inset-md);
+    --hop-ActionBar-background-color: var(--hop-comp-action-bar-background-color);
+    --hop-ActionBar-border-color: var(--hop-comp-action-bar-border-color);
+    --hop-ActionBar-border-radius: var(--hop-comp-action-bar-border-radius);
+    --hop-ActionBar-box-shadow: var(--hop-comp-action-bar-box-shadow);
+    --hop-ActionBar-row-gap: var(--hop-space-stack-sm);
+    --hop-ActionBar-column-gap: var(--hop-space-inline-md);
+    --hop-ActionBar-min-inline-size: 20rem;
+
+    /* Selection */
+    --hop-ActionBar-selection-gap: var(--hop-space-inline-md);
+
+    /* The width the selection block keeps before the actions wrap to their own row. */
+    --hop-ActionBar-selection-min-inline-size: 8rem;
+
+    /* Actions */
+    --hop-ActionBar-actions-gap: var(--hop-space-inline-sm);
+
+    /* Typography */
+    --hop-ActionBar-text-color: var(--hop-comp-action-bar-text-color);
+    --hop-ActionBar-text-font-family: var(--hop-body-sm-medium-font-family);
+    --hop-ActionBar-text-font-size: var(--hop-body-sm-medium-font-size);
+    --hop-ActionBar-text-font-weight: var(--hop-body-sm-medium-font-weight);
+    --hop-ActionBar-text-line-height: var(--hop-body-sm-medium-line-height);
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    gap: var(--hop-ActionBar-row-gap) var(--hop-ActionBar-column-gap);
+    min-inline-size: var(--hop-ActionBar-min-inline-size);
+
+    padding: var(--hop-ActionBar-padding);
+
+    background-color: var(--hop-ActionBar-background-color);
+    border: 0.0625rem solid var(--hop-ActionBar-border-color);
+    border-radius: var(--hop-ActionBar-border-radius);
+    box-shadow: var(--hop-ActionBar-box-shadow);
+}
+
+/*
+ * Takes the leftover space so the count text truncates before anything else gives way, but keeps a
+ * floor so the actions wrap to their own row rather than squeezing the text down to an ellipsis.
+ * The min() guards containers narrower than that floor.
+ */
+.hop-ActionBar__selection {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    min-inline-size: min(var(--hop-ActionBar-selection-min-inline-size), 100%);
+    gap: var(--hop-ActionBar-selection-gap);
+}
+
+.hop-ActionBar__close-button {
+    flex: 0 0 auto;
+}
+
+.hop-ActionBar__text {
+    overflow: hidden;
+
+    min-inline-size: 0;
+
+    color: var(--hop-ActionBar-text-color);
+    font-family: var(--hop-ActionBar-text-font-family);
+    font-size: var(--hop-ActionBar-text-font-size);
+    font-weight: var(--hop-ActionBar-text-font-weight);
+    line-height: var(--hop-ActionBar-text-line-height);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/*
+ * Never shrinks, so the buttons stay legible while the text absorbs the loss. The max-inline-size
+ * caps the group at the bar's width, letting the buttons wrap among themselves once even a row of
+ * their own is too narrow.
+ */
+.hop-ActionBar .hop-ActionBar__actions {
+    flex: 0 0 auto;
+    max-inline-size: 100%;
+    gap: var(--hop-ActionBar-actions-gap);
+}

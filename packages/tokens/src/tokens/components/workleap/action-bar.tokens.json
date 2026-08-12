@@ -1,0 +1,24 @@
+{
+    "comp-action-bar": {
+        "background-color": {
+            "$type": "color",
+            "$value": "{neutral.surface-weak}"
+        },
+        "border-color": {
+            "$type": "color",
+            "$value": "{neutral.border}"
+        },
+        "border-radius": {
+            "$type": "borderRadius",
+            "$value": "{shape.rounded-md}"
+        },
+        "box-shadow": {
+            "$type": "shadow",
+            "$value": "{elevation.lifted}"
+        },
+        "text-color": {
+            "$type": "color",
+            "$value": "{neutral.text}"
+        }
+    }
+}
