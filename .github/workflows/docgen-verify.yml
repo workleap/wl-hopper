@@ -30,7 +30,7 @@ jobs:
 
             -   name: Restore the baseline output
                 id: baseline-cache
-                uses: actions/cache@v4
+                uses: actions/cache/restore@v4
                 with:
                     # The baseline only depends on the base commit's sources, so it can be reused
                     # across pushes to this branch instead of costing 3+ minutes every run.
@@ -60,6 +60,16 @@ jobs:
 
                     cp /tmp/candidate-script.ts "$SCRIPT"
                     echo "Baseline took $((END - START))s, $(ls /tmp/baseline | wc -l) files"
+
+            -   name: Save the baseline output
+                # Saved in its own step rather than relying on the cache action's post step, which
+                # is skipped when the job fails — exactly the runs where the next iteration would
+                # benefit most from a warm baseline.
+                if: always() && steps.baseline-cache.outputs.cache-hit != 'true' && hashFiles('/tmp/baseline/**') != ''
+                uses: actions/cache/save@v4
+                with:
+                    key: ${{ steps.baseline-cache.outputs.cache-primary-key }}
+                    path: /tmp/baseline
 
             -   name: Compare every alias mode against the baseline
                 run: |
