@@ -44,7 +44,6 @@
         "list-outdated-deps": "pnpm outdated -r --format list !style-dictionary !react !@types/react !react-dom !@types/react-dom !next !typescript !@types/node !@testing-library/jest-dom",
         "update-outdated-deps": "pnpm update -r --latest !style-dictionary !react !@types/react !react-dom !@types/react-dom !next !typescript !@types/node !@testing-library/jest-dom",
         "update-react-aria-deps": "pnpm update -r react-aria react-aria-components @react-aria/* @react-stately/*",
-        "plop": "plop",
         "find-types": "pnpm --filter=components find-types"
     },
     "devDependencies": {
@@ -78,7 +77,6 @@
         "eslint-plugin-import": "2.32.0",
         "eslint-plugin-storybook": "9.1.13",
         "jsdom": "30.0.1",
-        "plop": "4.0.4",
         "postcss": "8.5.6",
         "postcss-modules": "6.0.1",
         "prettier": "3.6.2",
