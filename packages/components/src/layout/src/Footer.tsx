@@ -1,9 +1,9 @@
-import { slot as slotFn, useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, slot as slotFn, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { ClearProviders, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, ClearProviders } from "../../utils/index.ts";
 
 import { FooterContext, type FooterContextValue } from "./FooterContext.ts";
 
@@ -14,25 +14,13 @@ export interface FooterProps extends StyledComponentProps<BaseComponentDOMProps>
 function Footer(props: FooterProps, ref: ForwardedRef<HTMLElement>) {
     [props, ref] = useContextProps(props, ref, FooterContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props as FooterContextValue);
-    const {
-        className,
-        children,
-        style,
-        slot,
-        isHidden,
-        clearContexts,
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, slot, isHidden, clearContexts, ...otherProps } = ownProps;
 
     if (isHidden) {
         return null;
     }
 
-    const classNames = clsx(
-        GlobalFooterCssSelector,
-        stylingProps.className,
-        className
-    );
+    const classNames = clsx(GlobalFooterCssSelector, stylingProps.className, className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
@@ -41,13 +29,7 @@ function Footer(props: FooterProps, ref: ForwardedRef<HTMLElement>) {
 
     return (
         <ClearProviders values={clearContexts}>
-            <footer
-                ref={ref}
-                className={classNames}
-                style={mergedStyles}
-                slot={slot || undefined}
-                {...otherProps}
-            >
+            <footer ref={ref} className={classNames} style={mergedStyles} slot={slot || undefined} {...otherProps}>
                 {children}
             </footer>
         </ClearProviders>

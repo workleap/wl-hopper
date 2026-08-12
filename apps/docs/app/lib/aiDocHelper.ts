@@ -13,7 +13,5 @@ export function getAiDocAbsolutePath(pageUrlPathParts: string[]) {
     const pageRelativePath = pageUrlPathParts.join("/");
 
     const aiDocRelativeUrl = getAiDocRelativeUrl(pageRelativePath);
-    return aiDocRelativeUrl.startsWith("/")
-        ? aiDocRelativeUrl
-        : `/${aiDocRelativeUrl}`;
+    return aiDocRelativeUrl.startsWith("/") ? aiDocRelativeUrl : `/${aiDocRelativeUrl}`;
 }

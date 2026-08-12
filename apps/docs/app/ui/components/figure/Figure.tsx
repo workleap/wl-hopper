@@ -19,7 +19,9 @@ const Figure = ({ alt, caption, className, width, height, src, priority = false,
     return (
         <figure className={figureClass} {...rest}>
             <Image className="hd-figure__image" src={src} alt={alt} width={width} height={height} priority={priority} />
-            <figcaption className="hd-figure__figcaption"><em>{caption}</em></figcaption>
+            <figcaption className="hd-figure__figcaption">
+                <em>{caption}</em>
+            </figcaption>
         </figure>
     );
 };

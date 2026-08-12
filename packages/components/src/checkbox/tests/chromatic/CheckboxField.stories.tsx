@@ -79,16 +79,12 @@ export const AccessToDisabledState: Story = {
     render: props => (
         <Inline alignY="end">
             <CheckboxField {...props} isDisabled description="Value should be true">
-                {({ isDisabled }) => (
-                    <Checkbox>
-                        Is disabled: {String(isDisabled)}
-                    </Checkbox>
-                )}
+                {({ isDisabled }) => <Checkbox>Is disabled: {String(isDisabled)}</Checkbox>}
             </CheckboxField>
             <CheckboxField
                 {...props}
                 isDisabled
-                style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
+                style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})}
                 description="Border should be red"
             >
                 <Checkbox>Disabled</Checkbox>

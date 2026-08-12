@@ -7,11 +7,7 @@ const TestId = "TestId";
 
 const Inlined = forwardRef<HTMLDivElement, Omit<InlineProps, "children">>((props, ref) => {
     return (
-        <Inline
-            data-testid={TestId}
-            {...props}
-            ref={ref}
-        >
+        <Inline data-testid={TestId} {...props} ref={ref}>
             <div>Alpha</div>
             <div>Bravo</div>
             <div>Charlie</div>

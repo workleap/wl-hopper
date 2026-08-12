@@ -1,10 +1,15 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { Provider, useContextProps } from "react-aria-components";
 
 import { ImageContext } from "../../image/index.ts";
-import { ClearProviders, cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, ClearProviders, cssModule } from "../../utils/index.ts";
 
 import { IllustrationContext, type IllustrationContextValue } from "./IllustrationContext.ts";
 
@@ -48,12 +53,7 @@ function Illustration(props: IllustrationProps, ref: ForwardedRef<HTMLDivElement
 
     const classNames = clsx(
         GlobalIllustrationCssSelector,
-        cssModule(
-            styles,
-            GlobalIllustrationCssSelector,
-            orientation,
-            shape === "rounded" && "rounded"
-        ),
+        cssModule(styles, GlobalIllustrationCssSelector, orientation, shape === "rounded" && "rounded"),
         stylingProps.className,
         className
     );
@@ -65,18 +65,8 @@ function Illustration(props: IllustrationProps, ref: ForwardedRef<HTMLDivElement
 
     return (
         <ClearProviders values={clearContexts}>
-            <div
-                ref={ref}
-                className={classNames}
-                style={mergedStyles}
-                slot={slot ?? undefined}
-                {...otherProps}
-            >
-                <Provider
-                    values={[
-                        [ImageContext, { className: styles["hop-Illustration__image"] }]
-                    ]}
-                >
+            <div ref={ref} className={classNames} style={mergedStyles} slot={slot ?? undefined} {...otherProps}>
+                <Provider values={[[ImageContext, { className: styles["hop-Illustration__image"] }]]}>
                     {children}
                 </Provider>
             </div>

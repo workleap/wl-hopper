@@ -7,10 +7,7 @@ import { Illustration } from "../../src/Illustration.tsx";
 
 describe("Illustration", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <Illustration>Text</Illustration>
-            );
+        const renderOnServer = () => renderToString(<Illustration>Text</Illustration>);
 
         expect(renderOnServer).not.toThrow();
     });

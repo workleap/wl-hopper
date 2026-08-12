@@ -1,10 +1,13 @@
-import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
-import clsx from "clsx";
 import {
-    forwardRef,
-    type CSSProperties, type ForwardedRef
-} from "react";
-import { Heading as RACHeading, useContextProps, type HeadingProps as RACHeadingProps } from "react-aria-components";
+    type ResponsiveProp,
+    type StyledComponentProps,
+    slot as slotFn,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import clsx from "clsx";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { Heading as RACHeading, type HeadingProps as RACHeadingProps, useContextProps } from "react-aria-components";
 
 import { ClearProviders, cssModule } from "../../../utils/index.ts";
 
@@ -37,11 +40,7 @@ function Heading(props: HeadingProps, ref: ForwardedRef<HTMLHeadingElement>) {
 
     const classNames = clsx(
         GlobalHeadingCssSelector,
-        cssModule(
-            styles,
-            "hop-Heading",
-            size
-        ),
+        cssModule(styles, "hop-Heading", size),
         stylingProps.className,
         className
     );
@@ -53,12 +52,7 @@ function Heading(props: HeadingProps, ref: ForwardedRef<HTMLHeadingElement>) {
 
     return (
         <ClearProviders values={clearContexts}>
-            <RACHeading
-                ref={ref}
-                className={classNames}
-                style={mergedStyles}
-                {...otherProps}
-            >
+            <RACHeading ref={ref} className={classNames} style={mergedStyles} {...otherProps}>
                 {children}
             </RACHeading>
         </ClearProviders>
@@ -82,10 +76,13 @@ export { _Heading as Heading };
 function createHeading(as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6") {
     const level = parseInt(as[1]);
 
-    return slotFn("heading", forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
-        // eslint-disable-next-line
-        return <_Heading {...props} ref={ref} level={level}/>;
-    }));
+    return slotFn(
+        "heading",
+        forwardRef<HTMLHeadingElement, HeadingProps>((props, ref) => {
+            // eslint-disable-next-line
+            return <_Heading {...props} ref={ref} level={level} />;
+        })
+    );
 }
 
 /**

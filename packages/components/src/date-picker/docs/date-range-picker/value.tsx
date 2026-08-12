@@ -1,4 +1,4 @@
-import { DateRangePicker, Stack, type DateValue, type RangeValue } from "@hopper-ui/components";
+import { DateRangePicker, type DateValue, type RangeValue, Stack } from "@hopper-ui/components";
 import { parseDate } from "@internationalized/date";
 import { useState } from "react";
 
@@ -17,11 +17,7 @@ export default function Example() {
                     end: parseDate("2020-02-08")
                 }}
             />
-            <DateRangePicker
-                label="Dates (controlled)"
-                value={value}
-                onChange={setValue}
-            />
+            <DateRangePicker label="Dates (controlled)" value={value} onChange={setValue} />
         </Stack>
     );
 }

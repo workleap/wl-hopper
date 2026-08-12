@@ -17,4 +17,3 @@ export * from "./useIsOverflow.ts";
 export * from "./useRenderProps.ts";
 export * from "./useSlot.ts";
 export * from "./useTruncatedText.ts";
-

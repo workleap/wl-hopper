@@ -1,4 +1,4 @@
-import { DatePicker, useLocale, type DateValue } from "@hopper-ui/components";
+import { DatePicker, type DateValue, useLocale } from "@hopper-ui/components";
 import { getLocalTimeZone, isWeekend, today } from "@internationalized/date";
 
 export default function Example() {
@@ -12,8 +12,7 @@ export default function Example() {
     const { locale } = useLocale();
     const isDateUnavailable = (date: DateValue) =>
         isWeekend(date, locale) ||
-        disabledRanges.some(interval => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0
-        );
+        disabledRanges.some(interval => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0);
 
     return (
         <DatePicker

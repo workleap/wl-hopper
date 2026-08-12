@@ -5,12 +5,12 @@ export default function Example() {
     return (
         <ComboBox
             label="Roles"
-            footer={(
+            footer={
                 <Button variant="ghost-secondary" isFluid>
                     <AddIcon />
                     <Text>Add</Text>
                 </Button>
-            )}
+            }
         >
             <ComboBoxItem id="developer">Developer</ComboBoxItem>
             <ComboBoxItem id="designer">Designer</ComboBoxItem>

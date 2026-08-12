@@ -21,7 +21,14 @@ describe("RemainingCharacterCount", () => {
     });
 
     it("should support custom style", () => {
-        render(<RemainingCharacterCount count={3} marginTop="stack-sm" style={{ marginBottom: "13px" }} data-testid="char-count" />);
+        render(
+            <RemainingCharacterCount
+                count={3}
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+                data-testid="char-count"
+            />
+        );
 
         const element = screen.getByTestId("char-count");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

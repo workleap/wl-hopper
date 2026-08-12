@@ -35,7 +35,12 @@ const SubHeader = ({ links }: SubHeaderProps) => {
             <Wrapper>
                 <div className="sub-header-container">
                     {isInSidebar && (
-                        <IconButton type="button" aria-label="Open sidebar" className="hd-sub-header__sidebar-button" onPress={sidebarContext?.toggleSidebar}>
+                        <IconButton
+                            type="button"
+                            aria-label="Open sidebar"
+                            className="hd-sub-header__sidebar-button"
+                            onPress={sidebarContext?.toggleSidebar}
+                        >
                             <SidePanel className="hd-sub-header__button-icon" />
                         </IconButton>
                     )}

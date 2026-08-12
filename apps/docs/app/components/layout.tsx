@@ -31,11 +31,7 @@ function ComponentsLayout({ children }: { children: ReactNode }) {
         pathAccessor: item => path.join("components", item.slug)
     });
 
-    return (
-        <SidebarLayout links={links}>
-            {children}
-        </SidebarLayout>
-    );
+    return <SidebarLayout links={links}>{children}</SidebarLayout>;
 }
 
 export default ComponentsLayout;

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import { FieldErrorContext as RACFieldErrorContext, useContextProps } from "react-aria-components";
 
-import { type TextProps, Text } from "../../typography/index.ts";
+import { Text, type TextProps } from "../../typography/index.ts";
 import { cssModule } from "../../utils/index.ts";
 
 import { HelperMessageContext } from "./HelperMessageContext.ts";
@@ -46,10 +46,7 @@ const HelperMessageInner = forwardRef((props: HelperMessageProps, ref: Forwarded
 
     const classNames = clsx(
         GlobalHelperMessageCssSelector,
-        cssModule(
-            styles,
-            "hop-HelperMessage"
-        ),
+        cssModule(styles, "hop-HelperMessage"),
         stylingProps.className,
         className
     );
@@ -60,14 +57,7 @@ const HelperMessageInner = forwardRef((props: HelperMessageProps, ref: Forwarded
     };
 
     return (
-        <Text
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            size="xs"
-            slot={slot}
-            {...otherProps}
-        >
+        <Text ref={ref} className={classNames} style={mergedStyles} size="xs" slot={slot} {...otherProps}>
             {!hideIcon && <InfoIcon size="sm" className={styles["hop-HelperMessage__icon"]} />}
             {children}
         </Text>

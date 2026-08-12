@@ -2,7 +2,7 @@ import TokenTable from "@/app/ui/tokens/table/TokenTable.ai";
 
 import { DocumentationThemes } from "@/components/themeSwitch/documentation-theme";
 import { Fragment } from "react";
-import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
+import { type AllTokensKeys, type TokenValue, getTokensFromKey } from "../allDataTokens";
 
 interface TableSectionProps {
     categories: string[];

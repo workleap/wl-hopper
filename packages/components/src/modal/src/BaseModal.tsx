@@ -1,6 +1,12 @@
-import { getRootCSSClasses, type StyledComponentProps, useColorSchemeContext, useStyledSystem, useThemeContext } from "@hopper-ui/styled-system";
+import {
+    type StyledComponentProps,
+    getRootCSSClasses,
+    useColorSchemeContext,
+    useStyledSystem,
+    useThemeContext
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type ComponentProps, type CSSProperties, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
+import { type CSSProperties, type ComponentProps, type ForwardedRef, forwardRef, useContext, useEffect } from "react";
 import { ModalOverlay, type ModalOverlayProps, Modal as RACModal, useContextProps } from "react-aria-components";
 
 import { BaseModalContext } from "./BaseModalContext.ts";
@@ -26,15 +32,7 @@ export interface BaseModalProps extends StyledComponentProps<ModalOverlayProps> 
 const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, BaseModalContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        style,
-        slot,
-        children,
-        onOpenChange,
-        modalProps,
-        ...otherProps
-    } = ownProps;
+    const { className, style, slot, children, onOpenChange, modalProps, ...otherProps } = ownProps;
     const { colorScheme } = useColorSchemeContext();
     const { theme } = useThemeContext();
     const internalTriggerContext = useContext(InternalModalTriggerContext);
@@ -42,7 +40,9 @@ const BaseModal = (props: BaseModalProps, ref: ForwardedRef<HTMLDivElement>) => 
     useEffect(() => {
         // Implemented this fix in our codebase: https://github.com/adobe/react-spectrum/issues/6547
         if (internalTriggerContext && onOpenChange) {
-            console.warn("Modal: `onOpenChange` is not supported when using `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead. Refer to https://github.com/adobe/react-spectrum/issues/6547");
+            console.warn(
+                "Modal: `onOpenChange` is not supported when using `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead. Refer to https://github.com/adobe/react-spectrum/issues/6547"
+            );
         }
     }, [internalTriggerContext, onOpenChange]);
 

@@ -93,7 +93,9 @@ export function getDirectComponentChildren(element: TSESTree.JSXElement): string
 /**
  * Gets all direct children (components + text nodes) from a JSX element
  */
-export function getAllDirectChildren(element: TSESTree.JSXElement): Array<{ type: "component" | "text"; name: string }> {
+export function getAllDirectChildren(
+    element: TSESTree.JSXElement
+): Array<{ type: "component" | "text"; name: string }> {
     const children: Array<{ type: "component" | "text"; name: string }> = [];
 
     for (const child of element.children) {

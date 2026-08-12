@@ -42,8 +42,6 @@ export function formatMessage(template: string, params?: Record<string, any> | a
  * errorFormatter({ component: "Button", message: "Invalid props" })
  * // Returns: "Error in Button: Invalid props"
  */
-export function createMessageFormatter<T extends Record<string, any> | any[]>(
-    template: string
-): (params: T) => string {
+export function createMessageFormatter<T extends Record<string, any> | any[]>(template: string): (params: T) => string {
     return (params: T) => formatMessage(template, params);
 }

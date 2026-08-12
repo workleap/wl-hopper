@@ -41,11 +41,19 @@ export const Unchecked: Story = {
             <Inline alignY="end">
                 <Switch {...props} size="sm">
                     <Text>Option 1</Text>
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Switch>
                 <Switch {...props} size="md">
                     <Text>Option 2</Text>
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Switch>
             </Inline>
             <h1>Unlabeled</h1>
@@ -63,10 +71,18 @@ export const Unchecked: Story = {
             </Inline>
             <Inline alignY="end">
                 <Switch {...props} size="sm" aria-label="Option 1">
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Switch>
                 <Switch {...props} size="md" aria-label="Option 2">
-                    <IconList><SparklesIcon /><SparklesIcon /><SparklesIcon /></IconList>
+                    <IconList>
+                        <SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
+                    </IconList>
                 </Switch>
             </Inline>
             <h1>Overflow</h1>
@@ -77,18 +93,22 @@ export const Unchecked: Story = {
                 <Switch {...props}>
                     <Text>PA-99-N2 event and possible exoplanet in galaxy</Text>
                     <IconList>
-                        <SparklesIcon /><SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
                     </IconList>
                 </Switch>
             </Div>
             <Div maxWidth="1/4">
-                <Switch {...props} size="sm">PA-99-N2 event and possible exoplanet in galaxy</Switch>
+                <Switch {...props} size="sm">
+                    PA-99-N2 event and possible exoplanet in galaxy
+                </Switch>
             </Div>
             <Div maxWidth="1/4">
                 <Switch {...props} size="sm">
                     <Text>PA-99-N2 event and possible exoplanet in galaxy</Text>
                     <IconList>
-                        <SparklesIcon /><SparklesIcon />
+                        <SparklesIcon />
+                        <SparklesIcon />
                     </IconList>
                 </Switch>
             </Div>
@@ -119,7 +139,8 @@ export const UncheckedStates: Story = {
         switchLabels.forEach(switchLabel => {
             const switchElem = switchLabel.querySelector("input[type='checkbox']");
 
-            if (switchElem && switchElem.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (switchElem && switchElem.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (switchLabel.getAttribute("data-chromatic-force-press")) {
                     switchLabel.setAttribute("data-pressed", "true");
                     switchLabel.removeAttribute("data-chromatic-force-press");

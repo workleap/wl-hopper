@@ -3,13 +3,13 @@ import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-sy
 import type { GlobalDOMAttributes } from "@react-types/shared";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
 import {
-    type FieldErrorProps as RACFieldErrorProps,
     FieldErrorContext as RACFieldErrorContext,
+    type FieldErrorProps as RACFieldErrorProps,
     composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
-import { type TextProps, Text } from "../../typography/index.ts";
+import { Text, type TextProps } from "../../typography/index.ts";
 import { composeClassnameRenderProps, cssModule, useRenderProps } from "../../utils/index.ts";
 
 import { ErrorMessageContext } from "./ErrorMessageContext.ts";
@@ -18,7 +18,10 @@ import styles from "./ErrorMessage.module.css";
 
 export const GlobalErrorMessageCssSelector = "hop-ErrorMessage";
 
-export interface ErrorMessageProps extends StyledComponentProps<Omit<RACFieldErrorProps, keyof GlobalDOMAttributes<HTMLDivElement>>>, Omit<TextProps, "style" | "className" | "children" | "color" | "content"> {
+export interface ErrorMessageProps
+    extends
+        StyledComponentProps<Omit<RACFieldErrorProps, keyof GlobalDOMAttributes<HTMLDivElement>>>,
+        Omit<TextProps, "style" | "className" | "children" | "color" | "content"> {
     /**
      * Whether or not to hide the error message icon.
      */
@@ -59,10 +62,7 @@ const ErrorMessageInner = forwardRef((props: ErrorMessageProps, ref: ForwardedRe
 
     const classNames = composeClassnameRenderProps(
         GlobalErrorMessageCssSelector,
-        cssModule(
-            styles,
-            "hop-ErrorMessage"
-        ),
+        cssModule(styles, "hop-ErrorMessage"),
         stylingProps.className,
         className
     );
@@ -77,15 +77,24 @@ const ErrorMessageInner = forwardRef((props: ErrorMessageProps, ref: ForwardedRe
     const warningIcon = !hideIcon && <WarningIcon size="sm" className={styles["hop-ErrorMessage__icon"]} />;
 
     const children = composeRenderProps(childrenProp, prev => {
-        return prev ? <>{warningIcon} {prev}</> : null;
+        return prev ? (
+            <>
+                {warningIcon} {prev}
+            </>
+        ) : null;
     });
 
     const renderProps = useRenderProps({
         ...props,
         className: classNames,
         style,
-        children: children,
-        defaultChildren: validation.validationErrors.length === 0 ? undefined : <>{warningIcon} {validation.validationErrors.join(" ")}</>,
+        children,
+        defaultChildren:
+            validation.validationErrors.length === 0 ? undefined : (
+                <>
+                    {warningIcon} {validation.validationErrors.join(" ")}
+                </>
+            ),
         values: validation
     });
 
@@ -94,12 +103,5 @@ const ErrorMessageInner = forwardRef((props: ErrorMessageProps, ref: ForwardedRe
         return null;
     }
 
-    return (
-        <Text
-            slot={slot}
-            ref={ref}
-            {...otherProps}
-            {...renderProps}
-        />
-    );
+    return <Text slot={slot} ref={ref} {...otherProps} {...renderProps} />;
 });

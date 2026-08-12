@@ -1,4 +1,4 @@
-import { Flex, Div, type DivProps } from "@hopper-ui/components";
+import { Div, type DivProps, Flex } from "@hopper-ui/components";
 
 function Square(props: DivProps) {
     return <Div backgroundColor="decorative-option1" height="core_640" width="core_640" {...props} />;

@@ -7,4 +7,3 @@ export * from "./BrokenAvatar.tsx";
 export * from "./DeletedAvatar.tsx";
 export * from "./RichIconAvatarImage.tsx";
 export * from "./RichIconAvatarImageContext.ts";
-

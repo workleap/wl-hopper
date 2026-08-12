@@ -24,7 +24,11 @@ describe("Switch", () => {
     });
 
     it("should support custom style", () => {
-        render(<Switch marginTop="stack-sm" style={{ marginBottom: "13px" }} >option 1</Switch>);
+        render(
+            <Switch marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                option 1
+            </Switch>
+        );
 
         const element = screen.getByRole("switch").closest("label");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -64,10 +68,7 @@ describe("Switch", () => {
         const user = userEvent.setup();
 
         render(
-            <Switch
-                isDisabled
-                onChange={handler}
-            >
+            <Switch isDisabled onChange={handler}>
                 Disabled button
             </Switch>
         );
@@ -83,7 +84,7 @@ describe("Switch", () => {
     it("should be focused on render when the focus api is called", async () => {
         const ref = createRef<HTMLInputElement>();
 
-        render(<Switch inputRef={ref} >option 1</Switch>);
+        render(<Switch inputRef={ref}>option 1</Switch>);
 
         const switchElement = ref.current;
 

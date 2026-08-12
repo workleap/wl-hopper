@@ -1,9 +1,14 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledSystemProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledSystemProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import type { ListBoxItemSize } from "./ListBoxItem.tsx";
 import { ListBoxItemSkeletonContext } from "./ListBoxItemSkeletonContext.ts";
@@ -23,24 +28,14 @@ export interface ListBoxItemSkeletonProps extends StyledSystemProps, BaseCompone
 function ListBoxItemSkeleton(props: ListBoxItemSkeletonProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, ListBoxItemSkeletonContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        size: sizeProp,
-        style: styleProp,
-        slot,
-        ...otherProps
-    } = ownProps;
+    const { className, size: sizeProp, style: styleProp, slot, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "sm";
 
     const classNames = clsx(
         className,
         GlobalListBoxItemSkeletonCssSelector,
-        cssModule(
-            styles,
-            "hop-ListBoxItemSkeleton",
-            size
-        ),
+        cssModule(styles, "hop-ListBoxItemSkeleton", size),
         stylingProps.className
     );
 
@@ -49,15 +44,7 @@ function ListBoxItemSkeleton(props: ListBoxItemSkeletonProps, ref: ForwardedRef<
         ...styleProp
     };
 
-    return (
-        <div
-            ref={ref}
-            className={classNames}
-            style={style}
-            slot={slot ?? undefined}
-            {...otherProps}
-        />
-    );
+    return <div ref={ref} className={classNames} style={style} slot={slot ?? undefined} {...otherProps} />;
 }
 
 /**

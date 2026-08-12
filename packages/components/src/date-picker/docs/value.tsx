@@ -1,4 +1,4 @@
-import { Stack, type DateValue } from "@hopper-ui/components";
+import { type DateValue, Stack } from "@hopper-ui/components";
 import { parseDate } from "@internationalized/date";
 import { useState } from "react";
 
@@ -9,15 +9,8 @@ export default function Example() {
 
     return (
         <Stack>
-            <DatePicker
-                label="Date (uncontrolled)"
-                defaultValue={parseDate("2020-02-03")}
-            />
-            <DatePicker
-                label="Date (controlled)"
-                value={value}
-                onChange={setValue}
-            />
+            <DatePicker label="Date (uncontrolled)" defaultValue={parseDate("2020-02-03")} />
+            <DatePicker label="Date (controlled)" value={value} onChange={setValue} />
         </Stack>
     );
 }

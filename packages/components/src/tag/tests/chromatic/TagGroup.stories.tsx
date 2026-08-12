@@ -27,19 +27,25 @@ export const Default = {
                 <TagGroup {...props} size="sm" label="Small">
                     <Tag id="1">Tag 1</Tag>
                     <Tag id="2">Tag 2</Tag>
-                    <Tag id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="3" style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
 
                 <TagGroup {...props} label="Medium">
                     <Tag id="1">Tag 1</Tag>
                     <Tag id="2">Tag 2</Tag>
-                    <Tag id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="3" style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
 
                 <TagGroup {...props} size="lg" label="Large">
                     <Tag id="1">Tag 1</Tag>
                     <Tag id="2">Tag 2</Tag>
-                    <Tag id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="3" style={{ maxWidth: "6rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
             </Stack>
         );
@@ -70,7 +76,20 @@ export const WithContextualHelp = {
     }
 } satisfies Story;
 
-const variants: TagVariant[] = ["neutral", "subdued", "progress", "positive", "caution", "negative", "option1", "option2", "option3", "option4", "option5", "option6"];
+const variants: TagVariant[] = [
+    "neutral",
+    "subdued",
+    "progress",
+    "positive",
+    "caution",
+    "negative",
+    "option1",
+    "option2",
+    "option3",
+    "option4",
+    "option5",
+    "option6"
+];
 export const AllVariants = {
     render: props => {
         return (
@@ -79,7 +98,9 @@ export const AllVariants = {
                     <TagGroup {...props} size="sm" label={variant} variant={variant} key={variant}>
                         <Tag id="1">Tag 1</Tag>
                         <Tag id="2">Tag 2</Tag>
-                        <Tag id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                        <Tag id="3" style={{ maxWidth: "5rem" }}>
+                            Tag 3 with long text
+                        </Tag>
                     </TagGroup>
                 ))}
             </Stack>
@@ -92,21 +113,39 @@ export const Href = {
         return (
             <Stack>
                 <TagGroup {...props} size="sm" label="Small">
-                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">
+                        Tag 1
+                    </Tag>
+                    <Tag href="https://www.google.com" id="2">
+                        Tag 2
+                    </Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
 
                 <TagGroup {...props} label="Medium">
-                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">
+                        Tag 1
+                    </Tag>
+                    <Tag href="https://www.google.com" id="2">
+                        Tag 2
+                    </Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
 
                 <TagGroup {...props} size="lg" label="Large">
-                    <Tag href="https://www.google.com" id="1">Tag 1</Tag>
-                    <Tag href="https://www.google.com" id="2">Tag 2</Tag>
-                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
+                    <Tag href="https://www.google.com" id="1">
+                        Tag 1
+                    </Tag>
+                    <Tag href="https://www.google.com" id="2">
+                        Tag 2
+                    </Tag>
+                    <Tag href="https://www.google.com" id="3" style={{ maxWidth: "6rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </TagGroup>
             </Stack>
         );
@@ -299,16 +338,28 @@ export const Invalid = {
         return (
             <Stack>
                 <TagGroup {...props} size="sm" label="Small" isInvalid>
-                    <Tag id="1" textValue="Developer">Developer</Tag>
-                    <Tag id="2" textValue="Designer">Designer</Tag>
+                    <Tag id="1" textValue="Developer">
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer">
+                        Designer
+                    </Tag>
                 </TagGroup>
                 <TagGroup {...props} size="md" label="Medium" isInvalid>
-                    <Tag id="1" textValue="Developer">Developer</Tag>
-                    <Tag id="2" textValue="Designer">Designer</Tag>
+                    <Tag id="1" textValue="Developer">
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer">
+                        Designer
+                    </Tag>
                 </TagGroup>
                 <TagGroup {...props} size="lg" label="Large" isInvalid>
-                    <Tag id="1" textValue="Developer">Developer</Tag>
-                    <Tag id="2" textValue="Designer">Designer</Tag>
+                    <Tag id="1" textValue="Developer">
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer">
+                        Designer
+                    </Tag>
                 </TagGroup>
             </Stack>
         );
@@ -319,8 +370,12 @@ export const Removable = {
     render: props => {
         return (
             <TagGroup {...props} label="Removable">
-                <Tag id="1" textValue="Developer">Developer</Tag>
-                <Tag id="2" textValue="Designer">Designer</Tag>
+                <Tag id="1" textValue="Developer">
+                    Developer
+                </Tag>
+                <Tag id="2" textValue="Designer">
+                    Designer
+                </Tag>
             </TagGroup>
         );
     },
@@ -333,8 +388,12 @@ export const Readonly = {
     render: props => {
         return (
             <TagGroup {...props} label="Readonly">
-                <Tag id="1" textValue="Developer">Developer</Tag>
-                <Tag id="2" textValue="Designer">Designer</Tag>
+                <Tag id="1" textValue="Developer">
+                    Developer
+                </Tag>
+                <Tag id="2" textValue="Designer">
+                    Designer
+                </Tag>
             </TagGroup>
         );
     },
@@ -399,7 +458,13 @@ export const MultipleSelection = {
     render: props => {
         return (
             <Stack>
-                <TagGroup {...props} size="sm" label="Small" selectionMode="multiple" defaultSelectedKeys={["designer", "manager"]}>
+                <TagGroup
+                    {...props}
+                    size="sm"
+                    label="Small"
+                    selectionMode="multiple"
+                    defaultSelectedKeys={["designer", "manager"]}
+                >
                     <Tag id="developer" textValue="Developer">
                         <SparklesIcon />
                         <Text>Developer</Text>
@@ -413,7 +478,13 @@ export const MultipleSelection = {
                         <Text>Manager</Text>
                     </Tag>
                 </TagGroup>
-                <TagGroup {...props} size="md" label="Medium" selectionMode="multiple" defaultSelectedKeys={["designer", "manager"]}>
+                <TagGroup
+                    {...props}
+                    size="md"
+                    label="Medium"
+                    selectionMode="multiple"
+                    defaultSelectedKeys={["designer", "manager"]}
+                >
                     <Tag id="developer" textValue="Developer">
                         <SparklesIcon />
                         <Text>Developer</Text>
@@ -427,7 +498,13 @@ export const MultipleSelection = {
                         <Text>Manager</Text>
                     </Tag>
                 </TagGroup>
-                <TagGroup {...props} size="lg" label="Large" selectionMode="multiple" defaultSelectedKeys={["designer", "manager"]}>
+                <TagGroup
+                    {...props}
+                    size="lg"
+                    label="Large"
+                    selectionMode="multiple"
+                    defaultSelectedKeys={["designer", "manager"]}
+                >
                     <Tag id="developer" textValue="Developer">
                         <SparklesIcon />
                         <Text>Developer</Text>
@@ -620,7 +697,10 @@ export const DefaultStates: Story = {
                 <h1>Default</h1>
                 <StateTemplate {...args} />
                 <h1>Disabled</h1>
-                <StateTemplate {...args} disabledKeys={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]} />
+                <StateTemplate
+                    {...args}
+                    disabledKeys={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+                />
                 <h1>Pressed</h1>
                 <StateTemplate {...args} data-chromatic-force-press />
                 <h1>Focus Visible</h1>

@@ -1,4 +1,4 @@
-import { useLocalizedStringFormatter, type LocalizedStringFormatter, type LocalizedStrings } from "react-aria";
+import { type LocalizedStringFormatter, type LocalizedStrings, useLocalizedStringFormatter } from "react-aria";
 
 import resourcesEnUS from "../intl/en-US.json" with { type: "json" };
 import resourcesFrCa from "../intl/fr-CA.json" with { type: "json" };
@@ -15,4 +15,3 @@ const Resources = {
 export function useLocalizedString(): LocalizedStringFormatter {
     return useLocalizedStringFormatter(Resources, "@hopper-ui/components");
 }
-

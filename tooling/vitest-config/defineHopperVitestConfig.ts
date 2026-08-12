@@ -24,11 +24,7 @@ export interface HopperVitestOptions {
  * `src/**`, while icons/styled-system/svg-icons/tokens keep them at the package
  * root under `tests/`.
  */
-export function defineHopperVitestConfig({
-    react = false,
-    setupFiles = [],
-    plugins = []
-}: HopperVitestOptions = {}) {
+export function defineHopperVitestConfig({ react = false, setupFiles = [], plugins = [] }: HopperVitestOptions = {}) {
     return defineConfig({
         plugins,
         // Vite 8 resolves tsconfig `paths` natively (replaces vite-tsconfig-paths).

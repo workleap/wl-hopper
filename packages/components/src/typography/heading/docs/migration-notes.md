@@ -2,7 +2,7 @@ Coming from Orbiter, you should be aware of the following change:
 
 - Headings no longer come with margin by default; you're now responsible for adding the appropriate margin yourself.
 
-In order to migrate to Hopper Heading seamlessly here's a cheatsheet regarding the applied margin-bottom of each heading sizes: 
+In order to migrate to Hopper Heading seamlessly here's a cheatsheet regarding the applied margin-bottom of each heading sizes:
 
 **xs** `calc(1.125rem * .5) | 9px`\
 **sm** `calc(1.375rem * .5) | 11px`\

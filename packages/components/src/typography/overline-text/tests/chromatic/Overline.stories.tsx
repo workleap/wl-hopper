@@ -16,9 +16,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-    render: props => (
-        <OverlineText {...props} />
-    )
+    render: props => <OverlineText {...props} />
 };
 
 export const Styling: Story = {

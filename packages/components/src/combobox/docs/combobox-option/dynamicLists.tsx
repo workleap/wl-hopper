@@ -2,14 +2,16 @@ import { Collection, ComboBox, ComboBoxItem, ComboBoxSection, Header } from "@ho
 
 const OPTIONS_WITH_SECTIONS = [
     {
-        role: "Operations", children: [
+        role: "Operations",
+        children: [
             { id: 2, role: "Project Coordinator" },
             { id: 3, role: "QA Specialist" },
             { id: 4, role: "System Administrator" }
         ]
     },
     {
-        role: "Creative Department", children: [
+        role: "Creative Department",
+        children: [
             { id: 6, role: "Designer" },
             { id: 7, role: "Designer" },
             { id: 8, role: "UX Researcher" }
@@ -19,10 +21,7 @@ const OPTIONS_WITH_SECTIONS = [
 
 export default function Example() {
     return (
-        <ComboBox
-            items={OPTIONS_WITH_SECTIONS}
-            label="Section"
-        >
+        <ComboBox items={OPTIONS_WITH_SECTIONS} label="Section">
             {section => {
                 const { role: sectionName, children } = section;
 

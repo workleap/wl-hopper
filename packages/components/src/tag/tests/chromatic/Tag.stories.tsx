@@ -23,21 +23,35 @@ export const Default = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1"size="sm" {...props}>Tag 1</Tag>
-                    <Tag id="2"size="sm" {...props}>Tag 2</Tag>
-                    <Tag id="3"size="sm" {...props} style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="1" size="sm" {...props}>
+                        Tag 1
+                    </Tag>
+                    <Tag id="2" size="sm" {...props}>
+                        Tag 2
+                    </Tag>
+                    <Tag id="3" size="sm" {...props} style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
 
                 <Inline>
                     <Tag id="1">Tag 1</Tag>
                     <Tag id="2">Tag 2</Tag>
-                    <Tag id="3" style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="3" style={{ maxWidth: "5rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
 
                 <Inline>
-                    <Tag id="1" size="lg">Tag 1</Tag>
-                    <Tag id="2" size="lg">Tag 2</Tag>
-                    <Tag id="3" size="lg" style={{ maxWidth: "6rem" }}>Tag 3 with long text</Tag>
+                    <Tag id="1" size="lg">
+                        Tag 1
+                    </Tag>
+                    <Tag id="2" size="lg">
+                        Tag 2
+                    </Tag>
+                    <Tag id="3" size="lg" style={{ maxWidth: "6rem" }}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
             </Stack>
         );
@@ -49,21 +63,39 @@ export const Href = {
         return (
             <Stack>
                 <Inline>
-                    <Tag size="sm" id="1" {...props}>Tag 1</Tag>
-                    <Tag size="sm" href="https://www.google.com" id="2" {...props}>Tag 2</Tag>
-                    <Tag size="sm" href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }} {...props}>Tag 3 with long text</Tag>
+                    <Tag size="sm" id="1" {...props}>
+                        Tag 1
+                    </Tag>
+                    <Tag size="sm" href="https://www.google.com" id="2" {...props}>
+                        Tag 2
+                    </Tag>
+                    <Tag size="sm" href="https://www.google.com" id="3" style={{ maxWidth: "5rem" }} {...props}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
 
                 <Inline>
-                    <Tag id="1" {...props}>Tag 1</Tag>
-                    <Tag id="2" {...props}>Tag 2</Tag>
-                    <Tag id="3" style={{ maxWidth: "5rem" }} {...props}>Tag 3 with long text</Tag>
+                    <Tag id="1" {...props}>
+                        Tag 1
+                    </Tag>
+                    <Tag id="2" {...props}>
+                        Tag 2
+                    </Tag>
+                    <Tag id="3" style={{ maxWidth: "5rem" }} {...props}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
 
                 <Inline>
-                    <Tag size="lg" id="1" {...props}>Tag 1</Tag>
-                    <Tag size="lg" id="2" {...props}>Tag 2</Tag>
-                    <Tag size="lg" id="3" style={{ maxWidth: "6rem" }} {...props}>Tag 3 with long text</Tag>
+                    <Tag size="lg" id="1" {...props}>
+                        Tag 1
+                    </Tag>
+                    <Tag size="lg" id="2" {...props}>
+                        Tag 2
+                    </Tag>
+                    <Tag size="lg" id="3" style={{ maxWidth: "6rem" }} {...props}>
+                        Tag 3 with long text
+                    </Tag>
                 </Inline>
             </Stack>
         );
@@ -148,7 +180,20 @@ export const Icons = {
     }
 } satisfies Story;
 
-const variants: TagVariant[] = ["neutral", "subdued", "progress", "positive", "caution", "negative", "option1", "option2", "option3", "option4", "option5", "option6"];
+const variants: TagVariant[] = [
+    "neutral",
+    "subdued",
+    "progress",
+    "positive",
+    "caution",
+    "negative",
+    "option1",
+    "option2",
+    "option3",
+    "option4",
+    "option5",
+    "option6"
+];
 export const AllVariants = {
     render: props => {
         return (
@@ -157,9 +202,15 @@ export const AllVariants = {
                     <>
                         <Text>{variant}</Text>
                         <Inline>
-                            <Tag id="1" variant={variant} {...props}>Tag 1</Tag>
-                            <Tag id="2" variant={variant} {...props}>Tag 2</Tag>
-                            <Tag id="3" variant={variant} {...props} style={{ maxWidth: "5rem" }}>Tag 3 with long text</Tag>
+                            <Tag id="1" variant={variant} {...props}>
+                                Tag 1
+                            </Tag>
+                            <Tag id="2" variant={variant} {...props}>
+                                Tag 2
+                            </Tag>
+                            <Tag id="3" variant={variant} {...props} style={{ maxWidth: "5rem" }}>
+                                Tag 3 with long text
+                            </Tag>
                         </Inline>
                     </>
                 ))}
@@ -188,25 +239,25 @@ export const AvatarStory = {
                     </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Frodo Baggin"size="md" {...props}>
+                    <Tag id="1" textValue="Frodo Baggin" size="md" {...props}>
                         <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
                         <Text>Frodo Baggin</Text>
                     </Tag>
-                    <Tag id="2" textValue="Karen Smith"size="md" {...props}>
+                    <Tag id="2" textValue="Karen Smith" size="md" {...props}>
                         <Avatar name="Karen Smith" />
                         <Text>Karen Smith</Text>
                     </Tag>
-                    <Tag id="3" textValue="John Smith" style={{ maxWidth: "6rem" }}size="md" {...props}>
+                    <Tag id="3" textValue="John Smith" style={{ maxWidth: "6rem" }} size="md" {...props}>
                         <Text>John Smith</Text>
                         <Avatar name="John Smith" />
                     </Tag>
                 </Inline>
-                <Inline >
-                    <Tag id="1" textValue="Frodo Baggin"size="lg" {...props}>
+                <Inline>
+                    <Tag id="1" textValue="Frodo Baggin" size="lg" {...props}>
                         <Avatar name="Frodo Baggins" src="https://i.pravatar.cc/96?img=3" />
                         <Text>Frodo Baggin</Text>
                     </Tag>
-                    <Tag id="2" textValue="Karen Smith"size="lg" {...props}>
+                    <Tag id="2" textValue="Karen Smith" size="lg" {...props}>
                         <Avatar name="Karen Smith" />
                         <Text>Karen Smith</Text>
                     </Tag>
@@ -239,15 +290,15 @@ export const Count = {
                     </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Developer"size="md" {...props}>
+                    <Tag id="1" textValue="Developer" size="md" {...props}>
                         <Badge>12</Badge>
                         <Text>Developer</Text>
                     </Tag>
-                    <Tag id="2" textValue="Designer"size="md" {...props}>
+                    <Tag id="2" textValue="Designer" size="md" {...props}>
                         <Text>Designer</Text>
                         <Badge variant="subdued">99+</Badge>
                     </Tag>
-                    <Tag id="3" textValue="Designer" style={{ maxWidth: "6rem" }}size="md" {...props}>
+                    <Tag id="3" textValue="Designer" style={{ maxWidth: "6rem" }} size="md" {...props}>
                         <Text>Executive Officer</Text>
                         <Badge>100</Badge>
                     </Tag>
@@ -276,16 +327,28 @@ export const Invalid = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="sm" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="sm" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="sm" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="md" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="md" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="md" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="md" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="lg" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="lg" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="lg" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="lg" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
             </Stack>
         );
@@ -300,16 +363,28 @@ export const Disabled = {
         return (
             <Stack>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="sm" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="sm" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="sm" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="md" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="md" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="md" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="md" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
                 <Inline>
-                    <Tag id="1" textValue="Developer" size="lg" {...props}>Developer</Tag>
-                    <Tag id="2" textValue="Designer" size="lg" {...props}>Designer</Tag>
+                    <Tag id="1" textValue="Developer" size="lg" {...props}>
+                        Developer
+                    </Tag>
+                    <Tag id="2" textValue="Designer" size="lg" {...props}>
+                        Designer
+                    </Tag>
                 </Inline>
             </Stack>
         );
@@ -392,8 +467,14 @@ export const TagNotTheFirstToOverflow = {
     render: props => {
         return (
             <Inline UNSAFE_width="500px" wrap={false}>
-                <Text> Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!</Text>
-                <Tag id="2" textValue="Designer" size="sm" {...props}>Designer</Tag>
+                <Text>
+                    {" "}
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                </Text>
+                <Tag id="2" textValue="Designer" size="sm" {...props}>
+                    Designer
+                </Tag>
             </Inline>
         );
     }
@@ -408,7 +489,9 @@ export const TagWithTooltip = {
     render: props => {
         return (
             <TooltipTrigger isOpen>
-                <Tag id="1"size="sm" {...props}>Tag 1</Tag>
+                <Tag id="1" size="sm" {...props}>
+                    Tag 1
+                </Tag>
                 <Tooltip>Tooltip content</Tooltip>
             </TooltipTrigger>
         );

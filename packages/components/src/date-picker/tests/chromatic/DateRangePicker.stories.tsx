@@ -37,9 +37,7 @@ export const Default: Story = {
 };
 
 export const WithContextualHelp: Story = {
-    render: args => (
-        <DateRangePicker {...args} />
-    ),
+    render: args => <DateRangePicker {...args} />,
     decorators: [
         Story => (
             // Important for chromatic
@@ -49,7 +47,7 @@ export const WithContextualHelp: Story = {
         )
     ],
     args: {
-        "label": "Label",
+        label: "Label",
         contextualHelp: <ContextualHelp isOpen>Contextual help for the DateRangePicker</ContextualHelp>
     }
 };
@@ -125,4 +123,3 @@ export const Styling: Story = {
         </Inline>
     )
 };
-

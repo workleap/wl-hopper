@@ -1,4 +1,3 @@
-
 interface IconSpecTableProps {
     data: {
         name: string;

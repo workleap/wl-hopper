@@ -6,18 +6,14 @@ import { NumberFieldContext } from "../../src/NumberFieldContext.ts";
 
 describe("NumberField", () => {
     it("should render with default class", () => {
-        render(
-            <NumberField data-testid="field" label="Label" />
-        );
+        render(<NumberField data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-NumberField");
     });
 
     it("should support custom class", () => {
-        render(
-            <NumberField className="test" data-testid="field" label="Label" />
-        );
+        render(<NumberField className="test" data-testid="field" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveClass("hop-NumberField");
@@ -25,18 +21,14 @@ describe("NumberField", () => {
     });
 
     it("should support custom style", () => {
-        render(
-            <NumberField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />
-        );
+        render(<NumberField data-testid="field" marginTop="stack-sm" style={{ marginBottom: "13px" }} label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(
-            <NumberField data-testid="field" data-foo="bar" label="Label" />
-        );
+        render(<NumberField data-testid="field" data-foo="bar" label="Label" />);
 
         const element = screen.getByTestId("field");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -57,9 +49,7 @@ describe("NumberField", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(
-            <NumberField ref={ref} data-testid="field" label="Label" />
-        );
+        render(<NumberField ref={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -67,9 +57,7 @@ describe("NumberField", () => {
 
     it("should support input refs", () => {
         const ref = createRef<HTMLInputElement>();
-        render(
-            <NumberField inputRef={ref} data-testid="field" label="Label" />
-        );
+        render(<NumberField inputRef={ref} data-testid="field" label="Label" />);
 
         expect(ref.current).toBe(screen.getByRole("textbox"));
         expect(ref.current instanceof HTMLInputElement).toBeTruthy();

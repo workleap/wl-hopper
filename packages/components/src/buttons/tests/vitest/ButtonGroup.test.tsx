@@ -7,11 +7,7 @@ import { ButtonGroupContext } from "../../src/ButtonGroupContext.ts";
 
 const ExampleButtonGroup = forwardRef<HTMLDivElement, Omit<ButtonGroupProps, "children">>((props, ref) => {
     return (
-        <ButtonGroup
-            {...props}
-            ref={ref}
-            data-testid="button-group"
-        >
+        <ButtonGroup {...props} ref={ref} data-testid="button-group">
             <Button variant="secondary">1</Button>
             <Button variant="secondary">2</Button>
         </ButtonGroup>

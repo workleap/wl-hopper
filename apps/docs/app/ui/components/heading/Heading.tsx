@@ -22,13 +22,28 @@ export interface HeadingProps {
     sectionPath: string;
 }
 
-const Heading = ({ title, tag, alpha, className, description, links, aiDocAbsolutePath, sectionTitle, sectionPath }: HeadingProps) => {
+const Heading = ({
+    title,
+    tag,
+    alpha,
+    className,
+    description,
+    links,
+    aiDocAbsolutePath,
+    sectionTitle,
+    sectionPath
+}: HeadingProps) => {
     const { colorScheme, theme } = useContext(ThemeContext);
 
     return (
         <div className={clsx("hd-heading", className)}>
             <div className="hd-heading__title">
-                <PageHeader title={title} aiDocAbsolutePath={aiDocAbsolutePath} sectionTitle={sectionTitle} sectionPath={sectionPath} />
+                <PageHeader
+                    title={title}
+                    aiDocAbsolutePath={aiDocAbsolutePath}
+                    sectionTitle={sectionTitle}
+                    sectionPath={sectionPath}
+                />
                 {tag && <Tag>{tag}</Tag>}
             </div>
             {alpha && (

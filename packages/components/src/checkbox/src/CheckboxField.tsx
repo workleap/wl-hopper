@@ -1,17 +1,27 @@
 import {
-    useResponsiveValue,
-    useStyledSystem,
     type ResponsiveProp,
-    type StyledSystemProps
+    type StyledSystemProps,
+    useResponsiveValue,
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import { useSlotId } from "@react-aria/utils";
-import { forwardRef, type ForwardedRef, type ReactNode } from "react";
+import { type ForwardedRef, type ReactNode, forwardRef } from "react";
 import { mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { useFormProps } from "../../form/index.ts";
 import { Text, type TextSize } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, SlotProvider, useRenderProps, type AccessibleSlotProps, type FieldSize, type RenderProps, type SizeAdapter } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    ClearContainerSlots,
+    type FieldSize,
+    type RenderProps,
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import { CheckboxContext } from "./CheckboxContext.ts";
 import { CheckboxFieldContext } from "./CheckboxFieldContext.ts";
@@ -32,7 +42,8 @@ interface CheckboxFieldRenderProps {
     isDisabled?: boolean;
 }
 
-export interface CheckboxFieldProps extends StyledSystemProps, AccessibleSlotProps, RenderProps<CheckboxFieldRenderProps> {
+export interface CheckboxFieldProps
+    extends StyledSystemProps, AccessibleSlotProps, RenderProps<CheckboxFieldRenderProps> {
     /**
      * The description of the checkbox field.
      */
@@ -52,26 +63,14 @@ function CheckboxField(props: CheckboxFieldProps, ref: ForwardedRef<HTMLDivEleme
     [props, ref] = useContextProps(props, ref, CheckboxFieldContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        description,
-        isDisabled,
-        size: sizeProp = "md",
-        style,
-        slot,
-        ...otherProps
-    } = ownProps;
+    const { className, description, isDisabled, size: sizeProp = "md", style, slot, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalCheckboxFieldCssSelector,
-        cssModule(
-            styles,
-            "hop-CheckboxField",
-            size
-        ),
+        cssModule(styles, "hop-CheckboxField", size),
         stylingProps.className
     );
 
@@ -97,12 +96,15 @@ function CheckboxField(props: CheckboxFieldProps, ref: ForwardedRef<HTMLDivEleme
         <ClearContainerSlots>
             <SlotProvider
                 values={[
-                    [CheckboxContext, {
-                        className: styles["hop-CheckboxField__checkbox"],
-                        size: size,
-                        isDisabled: isDisabled,
-                        "aria-describedby": descriptionId
-                    }]
+                    [
+                        CheckboxContext,
+                        {
+                            className: styles["hop-CheckboxField__checkbox"],
+                            size,
+                            isDisabled,
+                            "aria-describedby": descriptionId
+                        }
+                    ]
                 ]}
             >
                 <div

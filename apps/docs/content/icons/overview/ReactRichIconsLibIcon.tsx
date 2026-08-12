@@ -1,4 +1,3 @@
-
 import type { SVGProps } from "react";
 
 const SvgComponent = (props: Partial<SVGProps<SVGSVGElement>>) => (

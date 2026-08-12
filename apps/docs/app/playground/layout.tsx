@@ -30,7 +30,6 @@ export default function PlaygroundLayout({ children }: { children: ReactNode }) 
                 title: "Text flow",
                 path: "playground/text"
             }
-
         ]
     };
 

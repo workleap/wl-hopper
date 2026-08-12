@@ -1,11 +1,6 @@
 "use client";
 
-import {
-    flexRender,
-    getCoreRowModel,
-    useReactTable,
-    type ColumnDef
-} from "@tanstack/react-table";
+import { type ColumnDef, flexRender, getCoreRowModel, useReactTable } from "@tanstack/react-table";
 import clsx from "clsx";
 
 import type { FC, ReactNode } from "react";
@@ -44,7 +39,10 @@ const columns: ColumnDef<Item>[] = [
 
             return (
                 <div className="hd-props-table__description-term">
-                    <div className="hd-props-table__name">{name}{!required && "?"}</div>
+                    <div className="hd-props-table__name">
+                        {name}
+                        {!required && "?"}
+                    </div>
                     <div className="hd-props-table__type">{type}</div>
                 </div>
             );
@@ -61,7 +59,11 @@ const columns: ColumnDef<Item>[] = [
                 <div className="hd-props-table__description-list">
                     <div className="hd-props-table__description">{description}</div>
                     {defaultValue !== "" && (
-                        <div className="hd-props-table__default-value"><em>Defaults to <ColoredDefaultValue defaultValue={defaultValue} />.</em></div>
+                        <div className="hd-props-table__default-value">
+                            <em>
+                                Defaults to <ColoredDefaultValue defaultValue={defaultValue} />.
+                            </em>
+                        </div>
                     )}
                 </div>
             );
@@ -79,7 +81,7 @@ export const PropTableRender = ({ items }: { items: Item[] }) => {
         columns,
         state: {
             columnVisibility: {
-                "default": isColumnAvailable("defaultValue", items)
+                default: isColumnAvailable("defaultValue", items)
             }
         },
         data: items,
@@ -95,13 +97,16 @@ export const PropTableRender = ({ items }: { items: Item[] }) => {
                             return (
                                 <div
                                     key={cell.id}
-                                    className={clsx("hd-table__cell", "hd-props-table__cell", `hd-props-table__col-${cell.column.id}`)}
+                                    className={clsx(
+                                        "hd-table__cell",
+                                        "hd-props-table__cell",
+                                        `hd-props-table__col-${cell.column.id}`
+                                    )}
                                 >
                                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                                 </div>
                             );
-                        }
-                        )}
+                        })}
                     </div>
                 ))}
             </div>

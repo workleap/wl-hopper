@@ -7,11 +7,7 @@ const TestId = "TestId";
 
 const Flexed = forwardRef<HTMLDivElement, Omit<FlexProps, "children">>((props, ref) => {
     return (
-        <Flex
-            data-testid={TestId}
-            {...props}
-            ref={ref}
-        >
+        <Flex data-testid={TestId} {...props} ref={ref}>
             <div>Alpha</div>
             <div>Bravo</div>
             <div>Charlie</div>

@@ -1,5 +1,5 @@
 import { useIsomorphicLayoutEffect } from "@hopper-ui/styled-system";
-import { useCallback, useEffect, useRef, useState, type ReactEventHandler, type SyntheticEvent } from "react";
+import { type ReactEventHandler, type SyntheticEvent, useCallback, useEffect, useRef, useState } from "react";
 
 export interface ImageFallbackProps {
     /**
@@ -32,7 +32,7 @@ export interface ImageFallbackReturnProps {
 }
 
 type Status =
-    "loading" /* When the image is loading. */
+    | "loading" /* When the image is loading. */
     | "failed" /*  The image has failed to load. */
     | "pending" /* There is no src, but it's in a pending state since it could be updated in the future. */
     | "loaded";

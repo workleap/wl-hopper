@@ -94,7 +94,8 @@ export const States: Story = {
         const buttons = canvas.getAllByRole("button");
 
         buttons.forEach(button => {
-            if (button.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (button.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (button.getAttribute("data-chromatic-force-focus")) {
                     button.setAttribute("data-focus-visible", "true");
                     button.removeAttribute("data-chromatic-force-focus");

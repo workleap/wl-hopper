@@ -7,10 +7,7 @@ import { CustomModal } from "../../src/CustomModal.tsx";
 
 describe("CustomModal", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <CustomModal>Text</CustomModal>
-            );
+        const renderOnServer = () => renderToString(<CustomModal>Text</CustomModal>);
 
         expect(renderOnServer).not.toThrow();
     });

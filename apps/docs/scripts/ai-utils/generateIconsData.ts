@@ -15,11 +15,7 @@ function getIconsData() {
     };
 }
 
-export async function generateIconsJson({
-    outputPath
-}: {
-    outputPath: string;
-}) {
+export async function generateIconsJson({ outputPath }: { outputPath: string }) {
     await fs.writeFile(outputPath, JSON.stringify(getIconsData(), null, 2));
 
     console.log(`✅ Successfully generated icons data: ${outputPath}`);

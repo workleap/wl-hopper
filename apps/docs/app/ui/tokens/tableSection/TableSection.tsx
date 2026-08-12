@@ -4,7 +4,7 @@ import TokenTable from "@/app/ui/tokens/table/TokenTable.tsx";
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import "@hopper-ui/tokens/fonts.css";
 import { useContext, useMemo } from "react";
-import { getTokensFromKey, type AllTokensKeys } from "../allDataTokens";
+import { type AllTokensKeys, getTokensFromKey } from "../allDataTokens";
 
 interface TableSectionProps {
     categories: string[];

@@ -1,13 +1,7 @@
 import type { SVGProps } from "react";
 
 const SvgComponent = (props: Partial<SVGProps<SVGSVGElement>>) => (
-    <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={100}
-        height={89}
-        fill="none"
-        {...props}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width={100} height={89} fill="none" {...props}>
         <g fill="#fff" clipPath="url(#a)">
             <path d="M50 53.416c4.922 0 8.913-3.992 8.913-8.916s-3.99-8.916-8.913-8.916c-4.922 0-8.913 3.992-8.913 8.916s3.99 8.916 8.913 8.916Z" />
             <path

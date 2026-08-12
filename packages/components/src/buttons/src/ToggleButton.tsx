@@ -1,15 +1,34 @@
 import { IconContext, type IconSize } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { composeRenderProps, DEFAULT_SLOT, ToggleButton as RACToggleButton, useContextProps, type Key, type ToggleButtonProps as RACToggleButtonProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type ReactNode, forwardRef } from "react";
+import {
+    DEFAULT_SLOT,
+    type Key,
+    ToggleButton as RACToggleButton,
+    type ToggleButtonProps as RACToggleButtonProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import type { ButtonSize, ButtonVariant } from "../../buttons/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Spinner, type SpinnerProps } from "../../spinner/index.ts";
 import { TextContext } from "../../typography/index.ts";
-import { ClearProviders, cssModule, ensureTextWrapper, SlotProvider, useSlot, type SizeAdapter } from "../../utils/index.ts";
+import {
+    ClearProviders,
+    type SizeAdapter,
+    SlotProvider,
+    cssModule,
+    ensureTextWrapper,
+    useSlot
+} from "../../utils/index.ts";
 
 import { ToggleButtonContext, type ToggleButtonContextValue } from "./ToggleButtonContext.ts";
 
@@ -111,7 +130,7 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
         ...stylingProps.style
     };
 
-    if (!hasText && (!props["aria-label"] && !props["aria-labelledby"])) {
+    if (!hasText && !props["aria-label"] && !props["aria-labelledby"]) {
         console.warn("An aria-label or aria-labelledby prop is required on ToggleButton for accessibility.");
     }
 
@@ -127,35 +146,44 @@ function ToggleButton(props: ToggleButtonProps, ref: ForwardedRef<HTMLButtonElem
         <ClearProviders values={clearContexts}>
             <SlotProvider
                 values={[
-                    [IconListContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                size: iconSize,
-                                className: styles["hop-ToggleButton__icon-list"]
-                            },
-                            "end-icon": {
-                                size: iconSize,
-                                className: styles["hop-ToggleButton__end-icon-list"]
+                    [
+                        IconListContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    size: iconSize,
+                                    className: styles["hop-ToggleButton__icon-list"]
+                                },
+                                "end-icon": {
+                                    size: iconSize,
+                                    className: styles["hop-ToggleButton__end-icon-list"]
+                                }
                             }
                         }
-                    }],
-                    [IconContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                size: iconSize,
-                                className: styles["hop-ToggleButton__icon"]
-                            },
-                            "end-icon": {
-                                size: iconSize,
-                                className: styles["hop-ToggleButton__end-icon"]
+                    ],
+                    [
+                        IconContext,
+                        {
+                            slots: {
+                                [DEFAULT_SLOT]: {
+                                    size: iconSize,
+                                    className: styles["hop-ToggleButton__icon"]
+                                },
+                                "end-icon": {
+                                    size: iconSize,
+                                    className: styles["hop-ToggleButton__end-icon"]
+                                }
                             }
                         }
-                    }],
-                    [TextContext, {
-                        className: styles["hop-ToggleButton__text"],
-                        size: size,
-                        ref: textRef
-                    }]
+                    ],
+                    [
+                        TextContext,
+                        {
+                            className: styles["hop-ToggleButton__text"],
+                            size,
+                            ref: textRef
+                        }
+                    ]
                 ]}
             >
                 <RACToggleButton
@@ -196,4 +224,3 @@ const _ToggleButton = forwardRef<HTMLButtonElement, ToggleButtonProps>(ToggleBut
 _ToggleButton.displayName = "ToggleButton";
 
 export { _ToggleButton as ToggleButton };
-

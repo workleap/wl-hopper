@@ -15,9 +15,7 @@ export default function Example() {
         if (debouncedQuery.trim()) {
             // Simulate search - only runs after 400ms of no typing
             const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
-            const filtered = fruits.filter(fruit =>
-                fruit.toLowerCase().includes(debouncedQuery.toLowerCase())
-            );
+            const filtered = fruits.filter(fruit => fruit.toLowerCase().includes(debouncedQuery.toLowerCase()));
             setResults(filtered);
         } else {
             setResults([]);

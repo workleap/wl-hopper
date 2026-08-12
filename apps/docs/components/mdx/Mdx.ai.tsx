@@ -9,4 +9,3 @@ export const Mdx = async ({ children }: MdxProps) => {
 
     return Component;
 };
-

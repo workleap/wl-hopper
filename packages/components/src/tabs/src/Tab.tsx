@@ -1,7 +1,20 @@
 import { IconContext } from "@hopper-ui/icons";
-import { type StyledComponentProps, useIsomorphicLayoutEffect, useMediaQuery, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type StyledComponentProps,
+    useIsomorphicLayoutEffect,
+    useMediaQuery,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, type MutableRefObject, type ReactNode, useContext, useRef } from "react";
+import {
+    type CSSProperties,
+    type ForwardedRef,
+    type MutableRefObject,
+    type ReactNode,
+    forwardRef,
+    useContext,
+    useRef
+} from "react";
 import { Provider, Tab as RACTab, type TabProps as RACTabProps, useContextProps } from "react-aria-components";
 
 import { BadgeContext } from "../../badge/index.ts";
@@ -15,30 +28,19 @@ import styles from "./Tab.module.css";
 
 export const GlobalTabCssSelector = "hop-Tab";
 
-export interface TabProps extends
-    Omit<RACTabProps, "id" | "children" | "className" | "style">,
-    StyledComponentProps<BaseComponentDOMProps> {}
+export interface TabProps
+    extends Omit<RACTabProps, "id" | "children" | "className" | "style">, StyledComponentProps<BaseComponentDOMProps> {}
 
 function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, TabContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
     const { size, isFluid, prevRef, tablistRef } = useContext(InternalTabsContext) ?? {};
 
-    const {
-        className,
-        children,
-        style,
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalTabCssSelector,
-        cssModule(
-            styles,
-            "hop-Tab",
-            size,
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-Tab", size, isFluid && "fluid"),
         stylingProps.className,
         className
     );
@@ -49,39 +51,41 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
     };
 
     return (
-        <RACTab
-            {...otherProps}
-            style={mergedStyles}
-            className={classNames}
-            ref={ref}
-        >
+        <RACTab {...otherProps} style={mergedStyles} className={classNames} ref={ref}>
             {({ isSelected, isDisabled }) => (
                 <Provider
                     values={[
-                        [TextContext, {
-                            className: styles["hop-Tab__text"],
-                            size,
-                            fontWeight: size === "sm" ? "body-sm-medium" : "body-md-medium"
-                        }],
-                        [IconContext, {
-                            className: styles["hop-Tab__icon"],
-                            size
-                        }],
-                        [BadgeContext, {
-                            className: styles["hop-Tab__badge"]
-                        }],
-                        [TagContext, {
-                            className: styles["hop-Tab__tag"],
-                            size
-                        }]
+                        [
+                            TextContext,
+                            {
+                                className: styles["hop-Tab__text"],
+                                size,
+                                fontWeight: size === "sm" ? "body-sm-medium" : "body-md-medium"
+                            }
+                        ],
+                        [
+                            IconContext,
+                            {
+                                className: styles["hop-Tab__icon"],
+                                size
+                            }
+                        ],
+                        [
+                            BadgeContext,
+                            {
+                                className: styles["hop-Tab__badge"]
+                            }
+                        ],
+                        [
+                            TagContext,
+                            {
+                                className: styles["hop-Tab__tag"],
+                                size
+                            }
+                        ]
                     ]}
                 >
-                    <TabInner
-                        isSelected={isSelected}
-                        isDisabled={isDisabled}
-                        prevRef={prevRef}
-                        tablistRef={tablistRef}
-                    >
+                    <TabInner isSelected={isSelected} isDisabled={isDisabled} prevRef={prevRef} tablistRef={tablistRef}>
                         {typeof children === "string" ? <Text>{children}</Text> : children}
                     </TabInner>
                 </Provider>
@@ -90,7 +94,13 @@ function Tab(props: TabProps, ref: ForwardedRef<HTMLDivElement>) {
     );
 }
 
-function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
+function TabInner({
+    isSelected,
+    isDisabled,
+    children,
+    prevRef,
+    tablistRef
+}: {
     isSelected: boolean;
     isDisabled: boolean;
     children: ReactNode;
@@ -123,7 +133,7 @@ function TabInner({ isSelected, isDisabled, children, prevRef, tablistRef }: {
     return (
         <>
             {isSelected && (
-                <div ref={ref} className={cssModule(styles, "hop-Tab__selector", isDisabled && "disabled")} >
+                <div ref={ref} className={cssModule(styles, "hop-Tab__selector", isDisabled && "disabled")}>
                     <div className={styles["hop-Tab__selector--inner"]} />
                 </div>
             )}

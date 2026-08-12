@@ -3,9 +3,12 @@ import { useCallback, useState } from "react";
 
 export default function Example() {
     const [isOpen, setIsOpen] = useState(false);
-    const handleOpenChange = useCallback((newOpen: boolean) => {
-        setIsOpen(newOpen);
-    }, [setIsOpen]);
+    const handleOpenChange = useCallback(
+        (newOpen: boolean) => {
+            setIsOpen(newOpen);
+        },
+        [setIsOpen]
+    );
 
     return (
         <MenuTrigger onOpenChange={handleOpenChange} isOpen={isOpen}>

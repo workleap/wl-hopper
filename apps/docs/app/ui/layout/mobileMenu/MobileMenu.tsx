@@ -62,9 +62,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
     }, [isOpen, onClose]);
 
     const toggleTheme = () => {
-        const theme: ColorScheme = colorScheme === "dark"
-            ? "light"
-            : "dark";
+        const theme: ColorScheme = colorScheme === "dark" ? "light" : "dark";
 
         setColorScheme(theme);
     };
@@ -79,7 +77,11 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
             <li key={label}>
                 <Link
                     href={path}
-                    className={clsx("hd-mobile-menu-nav-list__link", isActive && "hd-mobile-menu-nav-list__link--active", status !== "ready" && "hd-mobile-menu-nav-list__link--disabled")}
+                    className={clsx(
+                        "hd-mobile-menu-nav-list__link",
+                        isActive && "hd-mobile-menu-nav-list__link--active",
+                        status !== "ready" && "hd-mobile-menu-nav-list__link--disabled"
+                    )}
                     onClick={onClose}
                 >
                     {label}
@@ -90,7 +92,11 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
 
     return (
         <div
-            className={clsx("hd-mobile-menu", isAnimating && "hd-mobile-menu--is-animating", `hd-mobile-menu--${animationDirection}`)}
+            className={clsx(
+                "hd-mobile-menu",
+                isAnimating && "hd-mobile-menu--is-animating",
+                `hd-mobile-menu--${animationDirection}`
+            )}
         >
             <div className="hd-mobile-menu__header">
                 <Wrapper className="hd-flex">
@@ -104,9 +110,7 @@ const MobileMenu = ({ onClose, isOpen }: MobileMenuProps) => {
             </div>
             <div className="hd-mobile-menu__container">
                 <div className="hd-mobile-menu-nav">
-                    <ul className="hd-mobile-menu-nav-list">
-                        {navItems}
-                    </ul>
+                    <ul className="hd-mobile-menu-nav-list">{navItems}</ul>
                 </div>
                 <div className="hd-mobile-menu-footer">
                     <nav>

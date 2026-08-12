@@ -5,11 +5,7 @@ export default function Example() {
     const [selected, setSelected] = useState<string>("designer");
 
     return (
-        <RadioGroup
-            aria-label="Roles"
-            value={selected}
-            onChange={setSelected}
-        >
+        <RadioGroup aria-label="Roles" value={selected} onChange={setSelected}>
             <Radio value="developer">Developer</Radio>
             <Radio value="designer">Designer</Radio>
             <RadioField description="Team Manager">

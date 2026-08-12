@@ -10,9 +10,15 @@ const meta = {
     component: ButtonGroup,
     args: {
         children: [
-            <Button key="1" variant="secondary">No, thanks</Button>,
-            <Button key="2" variant="secondary">Remind me later</Button>,
-            <Button key="3" variant="primary">Rate Now</Button>
+            <Button key="1" variant="secondary">
+                No, thanks
+            </Button>,
+            <Button key="2" variant="secondary">
+                Remind me later
+            </Button>,
+            <Button key="3" variant="primary">
+                Rate Now
+            </Button>
         ]
     }
 } satisfies Meta<typeof ButtonGroup>;
@@ -36,9 +42,15 @@ export const ButtonGroupIconButton: Story = {
     args: {
         ...Default.args,
         children: [
-            <Button key="1" variant="secondary" aria-label="Clean"><SparklesIcon /></Button>,
-            <Button key="2" variant="secondary" aria-label="Clean"><SparklesIcon /></Button>,
-            <Button key="3" variant="secondary" aria-label="Clean"><SparklesIcon /></Button>
+            <Button key="1" variant="secondary" aria-label="Clean">
+                <SparklesIcon />
+            </Button>,
+            <Button key="2" variant="secondary" aria-label="Clean">
+                <SparklesIcon />
+            </Button>,
+            <Button key="3" variant="secondary" aria-label="Clean">
+                <SparklesIcon />
+            </Button>
         ]
     }
 };
@@ -62,15 +74,19 @@ export const Disabled: Story = {
 export const Align: Story = {
     args: {
         children: [
-            <Button key="1" variant="secondary">Reset</Button>,
-            <Button key="2" variant="primary">Submit form</Button>
+            <Button key="1" variant="secondary">
+                Reset
+            </Button>,
+            <Button key="2" variant="primary">
+                Submit form
+            </Button>
         ]
     },
     render: args => (
         <Stack>
             <ButtonGroup align="start" {...args} />
             <ButtonGroup align="end" {...args} />
-            <ButtonGroup align="center"{...args} />
+            <ButtonGroup align="center" {...args} />
             <ButtonGroup {...args} />
         </Stack>
     )

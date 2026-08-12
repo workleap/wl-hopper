@@ -21,7 +21,14 @@ describe("DatePicker", () => {
     });
 
     it("should support custom style", () => {
-        render(<DatePicker label="DatePicker" data-testid="DatePicker" marginTop="stack-sm" style={{ marginBottom: "13px" }} />);
+        render(
+            <DatePicker
+                label="DatePicker"
+                data-testid="DatePicker"
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+            />
+        );
 
         const element = screen.getByTestId("DatePicker");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

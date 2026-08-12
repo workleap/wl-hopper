@@ -1,8 +1,13 @@
-import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { chain } from "react-aria";
-import { composeRenderProps, Dialog, type DialogProps, Provider, useContextProps } from "react-aria-components";
+import { Dialog, type DialogProps, Provider, composeRenderProps, useContextProps } from "react-aria-components";
 
 import { Button, ButtonGroup, CloseButton } from "../../buttons/index.ts";
 import { ContentContext } from "../../layout/index.ts";
@@ -59,9 +64,9 @@ export interface AlertProps extends StyledComponentProps<DialogProps>, Pick<Base
      */
     secondaryButtonLabel?: string;
     /**
-    * The visual style of the Alert.
-    * @default "confirmation"
-    */
+     * The visual style of the Alert.
+     * @default "confirmation"
+     */
     variant?: "confirmation" | "destructive";
     /**
      * The size of the Alert.
@@ -115,11 +120,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const classNames = clsx(
         GlobalAlertCssSelector,
-        cssModule(
-            styles,
-            GlobalAlertCssSelector,
-            variant
-        ),
+        cssModule(styles, GlobalAlertCssSelector, variant),
         stylingProps.className,
         className
     );
@@ -143,11 +144,7 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             onOpenChange={onOpenChange}
             modalProps={{
                 ...overlayProps?.modalProps,
-                className: clsx(overlayProps?.modalProps?.className, cssModule(
-                    styles,
-                    "hop-Alert__base-modal",
-                    size
-                ))
+                className: clsx(overlayProps?.modalProps?.className, cssModule(styles, "hop-Alert__base-modal", size))
             }}
             {...overlayProps}
         >
@@ -161,22 +158,23 @@ function Alert(props: AlertProps, ref: ForwardedRef<HTMLDivElement>) {
             >
                 {renderProps => (
                     <>
-                        {isDismissable && (
-                            <CloseButton
-                                isDisabled={isLoading}
-                                className={styles["hop-Alert__close"]}
-                            />
-                        )}
+                        {isDismissable && <CloseButton isDisabled={isLoading} className={styles["hop-Alert__close"]} />}
                         <Provider
                             values={[
-                                [HeadingContext, {
-                                    className: styles["hop-Alert__heading"],
-                                    size: "lg",
-                                    slot: "title"
-                                }],
-                                [ContentContext, {
-                                    className: styles["hop-Alert__content"]
-                                }]
+                                [
+                                    HeadingContext,
+                                    {
+                                        className: styles["hop-Alert__heading"],
+                                        size: "lg",
+                                        slot: "title"
+                                    }
+                                ],
+                                [
+                                    ContentContext,
+                                    {
+                                        className: styles["hop-Alert__content"]
+                                    }
+                                ]
                             ]}
                         >
                             {children(renderProps)}

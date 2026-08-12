@@ -10,12 +10,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion">
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -28,12 +24,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion" className="test">
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -47,12 +39,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -65,12 +53,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion" data-foo="bar">
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -84,12 +68,8 @@ describe("Accordion", () => {
             <AccordionContext.Provider value={{ slots: { test: { children: [], className: "test" } } }}>
                 <Accordion data-testid="accordion" slot="test">
                     <Disclosure data-testid="disclosure">
-                        <DisclosureHeader>
-                            Disclosure Header
-                        </DisclosureHeader>
-                        <DisclosurePanel>
-                            Disclosure Panel
-                        </DisclosurePanel>
+                        <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                        <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                     </Disclosure>
                 </Accordion>
             </AccordionContext.Provider>
@@ -104,12 +84,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion" ref={ref}>
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -122,12 +98,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion">
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );
@@ -140,12 +112,8 @@ describe("Accordion", () => {
         render(
             <Accordion data-testid="accordion" variant="inline">
                 <Disclosure data-testid="disclosure">
-                    <DisclosureHeader>
-                        Disclosure Header
-                    </DisclosureHeader>
-                    <DisclosurePanel>
-                        Disclosure Panel
-                    </DisclosurePanel>
+                    <DisclosureHeader>Disclosure Header</DisclosureHeader>
+                    <DisclosurePanel>Disclosure Panel</DisclosurePanel>
                 </Disclosure>
             </Accordion>
         );

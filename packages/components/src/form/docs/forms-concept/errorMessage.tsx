@@ -7,13 +7,15 @@ export default function Example() {
                 label="Name"
                 name="name"
                 isRequired
-                errorMessage={({ validationDetails }) => (
-                    validationDetails.valueMissing ? "Please enter a name." : ""
-                )}
+                errorMessage={({ validationDetails }) => (validationDetails.valueMissing ? "Please enter a name." : "")}
             />
             <ButtonGroup>
-                <Button type="submit" variant="primary">Submit</Button>
-                <Button type="reset" variant="secondary">Reset</Button>
+                <Button type="submit" variant="primary">
+                    Submit
+                </Button>
+                <Button type="reset" variant="secondary">
+                    Reset
+                </Button>
             </ButtonGroup>
         </Form>
     );

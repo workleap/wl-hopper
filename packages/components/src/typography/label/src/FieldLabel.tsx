@@ -1,15 +1,10 @@
-import {
-    Div,
-    useStyledSystem,
-    type DivProps,
-    type StyledComponentProps
-} from "@hopper-ui/styled-system";
+import { Div, type DivProps, type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import type { CSSProperties, ReactNode } from "react";
 
-import { useFormProps, type FormStyleProps } from "../../../form/index.ts";
+import { type FormStyleProps, useFormProps } from "../../../form/index.ts";
 import { useLocalizedString } from "../../../i18n/index.ts";
-import { cssModule, omitProps, type NecessityIndicator } from "../../../utils/index.ts";
+import { type NecessityIndicator, cssModule, omitProps } from "../../../utils/index.ts";
 
 import { Label, type LabelProps } from "./Label.tsx";
 
@@ -55,10 +50,7 @@ export function FieldLabel(props: FieldLabelProps) {
     const classNames = clsx(
         className,
         GlobalFieldLabelCssSelector,
-        cssModule(
-            styles,
-            GlobalFieldLabelCssSelector
-        ),
+        cssModule(styles, GlobalFieldLabelCssSelector),
         stylingProps.className
     );
 
@@ -71,16 +63,18 @@ export function FieldLabel(props: FieldLabelProps) {
         return null;
     }
 
-    const necessityLabel = isRequired ? stringFormatter.format("FieldLabel.necessityLabel.required") : stringFormatter.format("FieldLabel.necessityLabel.optional");
+    const necessityLabel = isRequired
+        ? stringFormatter.format("FieldLabel.necessityLabel.required")
+        : stringFormatter.format("FieldLabel.necessityLabel.optional");
 
-    const requiredIndicator = <span aria-hidden="true" aria-label={necessityLabel} className={styles["hop-FieldLabel__indicator"]}>*</span>;
+    const requiredIndicator = (
+        <span aria-hidden="true" aria-label={necessityLabel} className={styles["hop-FieldLabel__indicator"]}>
+            *
+        </span>
+    );
 
     const label = (
-        <Label
-            {...otherProps}
-            className={classNames}
-            style={mergedStyles}
-        >
+        <Label {...otherProps} className={classNames} style={mergedStyles}>
             {children}
             {necessityIndicator === "label" && !isRequired && <span> ({necessityLabel})</span>}
             {necessityIndicator === "asterisk" && isRequired && requiredIndicator}

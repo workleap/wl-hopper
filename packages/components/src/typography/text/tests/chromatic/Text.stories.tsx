@@ -52,9 +52,6 @@ export const Styling: Story = {
 export const Nested: Story = {
     args: {
         size: "lg",
-        children: [
-            "Test",
-            <Text>Nested</Text>
-        ]
+        children: ["Test", <Text>Nested</Text>]
     }
 };

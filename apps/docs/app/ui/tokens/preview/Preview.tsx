@@ -51,7 +51,16 @@ const Preview = ({ category, name, value }: PreviewProps) => {
             preview = {
                 style: { lineHeight: value },
                 className: "hd-preview--font hd-preview--line-height",
-                content: <><span className="hd-preview--line-height__text hd-preview--line-height__text-top">{sampleText}</span><span className="hd-preview--line-height__text hd-preview--line-height__text-bottom">{sampleText}</span></>
+                content: (
+                    <>
+                        <span className="hd-preview--line-height__text hd-preview--line-height__text-top">
+                            {sampleText}
+                        </span>
+                        <span className="hd-preview--line-height__text hd-preview--line-height__text-bottom">
+                            {sampleText}
+                        </span>
+                    </>
+                )
             };
             break;
         case "letterSpacing":
@@ -113,7 +122,11 @@ const Preview = ({ category, name, value }: PreviewProps) => {
             break;
     }
 
-    return <div className={`hd-preview ${preview.className}`} style={preview.style}>{preview.content}</div>;
+    return (
+        <div className={`hd-preview ${preview.className}`} style={preview.style}>
+            {preview.content}
+        </div>
+    );
 };
 
 export default Preview;

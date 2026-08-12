@@ -1,4 +1,4 @@
-import { ComboBox, ComboBoxItem, Text, type Key } from "@hopper-ui/components";
+import { ComboBox, ComboBoxItem, type Key, Text } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {

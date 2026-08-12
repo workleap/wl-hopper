@@ -36,9 +36,7 @@ function getRawName(name: string) {
 function getIconFileName(name: string, size: "sm" | "md" | "lg" | "xl", type: "svg" | "react") {
     const formattedName = getRawName(name);
 
-    return type === "react"
-        ? `${name}`
-        : `${toKebabCase(formattedName).toLowerCase()}-${getIconNumericSize(size)}.svg`;
+    return type === "react" ? `${name}` : `${toKebabCase(formattedName).toLowerCase()}-${getIconNumericSize(size)}.svg`;
 }
 
 function getIconFileDescription(name: string, type: "icon" | "richIcon") {
@@ -52,9 +50,10 @@ function getIconFileDescription(name: string, type: "icon" | "richIcon") {
 function getIconFileKeywords(name: string, type: "icon" | "richIcon") {
     const formattedName = getRawName(name);
 
-    const keywords = type === "icon"
-        ? iconsMetadata[formattedName as keyof typeof iconsMetadata]?.keywords || []
-        : richIconsMetadata[formattedName as keyof typeof richIconsMetadata]?.keywords || [];
+    const keywords =
+        type === "icon"
+            ? iconsMetadata[formattedName as keyof typeof iconsMetadata]?.keywords || []
+            : richIconsMetadata[formattedName as keyof typeof richIconsMetadata]?.keywords || [];
 
     return keywords.join(", ");
 }
@@ -65,10 +64,11 @@ const Switcher = ({ type, headLine, iconType = "icon" }: SwitcherProps) => {
     const sizes: AvailableSizes[] = iconType === "richIcon" ? ["md", "lg", "xl"] : ["sm", "md", "lg"];
 
     const iconsData = iconList.map(name => ({
-        name: name,
-        example: type === "react"
-            ? `<${name} size="md" />`
-            : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, "md", type)}";`,
+        name,
+        example:
+            type === "react"
+                ? `<${name} size="md" />`
+                : `import ${name} from "@hopper-ui/svg-icons/${iconTypeFolderMap[iconType]}/${getIconFileName(name, "md", type)}";`,
         description: getIconFileDescription(name, iconType),
         sizes: (
             <span>
@@ -118,7 +118,9 @@ function Icons({ items }: { items: Item[] }) {
                 <tbody>
                     {items.map(item => (
                         <tr key={item.name}>
-                            <td><code>{item.name}</code></td>
+                            <td>
+                                <code>{item.name}</code>
+                            </td>
                             <td>{item.keywords}</td>
                         </tr>
                     ))}

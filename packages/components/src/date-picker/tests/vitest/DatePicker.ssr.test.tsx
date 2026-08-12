@@ -7,10 +7,7 @@ import { DatePicker } from "../../src/DatePicker.tsx";
 
 describe("DatePicker", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <DatePicker />
-            );
+        const renderOnServer = () => renderToString(<DatePicker />);
 
         expect(renderOnServer).not.toThrow();
     });

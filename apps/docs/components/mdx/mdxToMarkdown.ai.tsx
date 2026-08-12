@@ -38,14 +38,18 @@ async function renderToStringAsync(element: ReactElement): Promise<string> {
     });
 }
 
-export async function mdxToReact(mdxSource: string, customComponents: Record<string, ComponentType> = {}): Promise<ReactElement> {
+export async function mdxToReact(
+    mdxSource: string,
+    customComponents: Record<string, ComponentType> = {}
+): Promise<ReactElement> {
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
-            scope: { // we need to set all import data here. otherwise, it will not be available in the mdx.
-                iconData: iconData,
-                tokens: tokens,
-                tokensDark: tokensDark
+            scope: {
+                // we need to set all import data here. otherwise, it will not be available in the mdx.
+                iconData,
+                tokens,
+                tokensDark
             },
             parseFrontmatter: false,
             mdxOptions: { remarkPlugins: [], rehypePlugins: [] }
@@ -56,7 +60,10 @@ export async function mdxToReact(mdxSource: string, customComponents: Record<str
     return compiled.content;
 }
 
-export async function mdxToMarkdown(mdxSource: string, customComponents: Record<string, ComponentType>): Promise<string> {
+export async function mdxToMarkdown(
+    mdxSource: string,
+    customComponents: Record<string, ComponentType>
+): Promise<string> {
     const compiled = await mdxToReact(mdxSource, customComponents);
     const html = await renderToStringAsync(compiled);
 
@@ -76,4 +83,3 @@ export async function htmlToMarkdown(html: string): Promise<string> {
 
     return String(file);
 }
-

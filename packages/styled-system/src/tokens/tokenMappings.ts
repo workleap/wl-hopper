@@ -4,9 +4,7 @@ import type { Breakpoint } from "../responsive/Breakpoints.ts";
 import { type ResponsiveProp, parseResponsiveValue } from "../responsive/useResponsiveValue.tsx";
 import { isNil, isObject } from "../utils/assertion.ts";
 
-import {
-    HopperVariablePrefix
-} from "./generated/styledSystemConstants.ts";
+import { HopperVariablePrefix } from "./generated/styledSystemConstants.ts";
 import {
     BackgroundColors,
     BorderColors,
@@ -29,23 +27,23 @@ import {
     TextColors
 } from "./generated/styledSystemToTokenMappings.ts";
 
-export const ColorExpressionTypes = [
-    "#",
-    "rgb",
-    "rgba",
-    "hsl",
-    "hsla"
-] as const;
+export const ColorExpressionTypes = ["#", "rgb", "rgba", "hsl", "hsla"] as const;
 
 export const DefaultBorderWidthAndStyle = "1px solid";
 export const DefaultOutlineWidthAndStyle = "1px solid";
 
-function createMapping<T extends string>(mappings: Record<T, string>, template: (value: string) => string = createValueTemplate) {
-    return Object.entries<string>(mappings).reduce((acc, [key, value]) => {
-        acc[key as T] = template(value);
+function createMapping<T extends string>(
+    mappings: Record<T, string>,
+    template: (value: string) => string = createValueTemplate
+) {
+    return Object.entries<string>(mappings).reduce(
+        (acc, [key, value]) => {
+            acc[key as T] = template(value);
 
-        return acc;
-    }, {} as Record<T, string>);
+            return acc;
+        },
+        {} as Record<T, string>
+    );
 }
 
 function createValueTemplate(value: string) {
@@ -216,26 +214,32 @@ export type UNSAFE_GridAutoRowsValue = keyof typeof SizingMapping | Property.Gri
 export type GridTemplateAreasValue = Property.GridTemplateAreas | Array<string>;
 
 export type GridTemplateColumnsValue =
-    keyof typeof SizingMapping
+    | keyof typeof SizingMapping
     | 0
     | CssGridTemplate
     | Array<keyof typeof SizingMapping | CssGridTemplate>;
 export type UNSAFE_GridTemplateColumnsValue =
-    keyof typeof SizingMapping
+    | keyof typeof SizingMapping
     | Property.GridTemplateColumns
     | Array<keyof typeof SizingMapping | Property.GridTemplateColumns>;
 
 export type GridTemplateRowsValue =
-    keyof typeof SizingMapping
+    | keyof typeof SizingMapping
     | 0
     | CssGridTemplate
     | Array<keyof typeof SizingMapping | CssGridTemplate>;
 export type UNSAFE_GridTemplateRowsValue =
-    keyof typeof SizingMapping
+    | keyof typeof SizingMapping
     | Property.GridTemplateRows
     | Array<keyof typeof SizingMapping | Property.GridTemplateRows>;
 
-export type HeightValue = keyof typeof SizingMapping | CSSSizing | "-moz-max-content" | "-moz-min-content" | "-webkit-fit-content" | 0;
+export type HeightValue =
+    | keyof typeof SizingMapping
+    | CSSSizing
+    | "-moz-max-content"
+    | "-moz-min-content"
+    | "-webkit-fit-content"
+    | 0;
 export type UNSAFE_HeightValue = keyof typeof SizingMapping | Property.Height;
 
 export type LineHeightValue = keyof typeof LineHeightMapping | Globals | "normal" | 0;
@@ -266,13 +270,27 @@ export type UNSAFE_SizingValue = keyof typeof SizingMapping | Property.Scale;
 export type StrokeValue = keyof typeof IconColorMapping | CssFill;
 export type UNSAFE_StrokeValue = keyof typeof IconColorMapping | Property.Stroke;
 
-export type WidthValue = keyof typeof SizingMapping | CSSSizing | 0 | "-moz-max-content" | "-moz-min-content" | "-webkit-fit-content" | "-moz-fit-content" | "-webkit-max-content" | "intrinsic" | "min-intrinsic";
+export type WidthValue =
+    | keyof typeof SizingMapping
+    | CSSSizing
+    | 0
+    | "-moz-max-content"
+    | "-moz-min-content"
+    | "-webkit-fit-content"
+    | "-moz-fit-content"
+    | "-webkit-max-content"
+    | "intrinsic"
+    | "min-intrinsic";
 export type UNSAFE_WidthValue = keyof typeof SizingMapping | Property.Width;
 
 export type GridColumSpanValue = number;
 export type GridRowSpanValue = number;
 
-export function parseResponsiveSystemValue<TValue extends string | number>(value: TValue | TValue[] | ResponsiveProp<TValue | TValue[]> | undefined, systemValues: Record<TValue, string>, matchedBreakpoints: Breakpoint[]) {
+export function parseResponsiveSystemValue<TValue extends string | number>(
+    value: TValue | TValue[] | ResponsiveProp<TValue | TValue[]> | undefined,
+    systemValues: Record<TValue, string>,
+    matchedBreakpoints: Breakpoint[]
+) {
     if (isNil(value)) {
         return value;
     }

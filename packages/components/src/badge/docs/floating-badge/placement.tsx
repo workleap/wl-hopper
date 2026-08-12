@@ -1,4 +1,4 @@
-import { Inline, Badge, Div, FloatingBadge } from "@hopper-ui/components";
+import { Badge, Div, FloatingBadge, Inline } from "@hopper-ui/components";
 
 export default function Example() {
     return (

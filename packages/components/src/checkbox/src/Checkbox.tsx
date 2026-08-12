@@ -43,24 +43,14 @@ function Checkbox(props: CheckboxProps, ref: ForwardedRef<HTMLLabelElement>) {
     [props, ref] = useContextProps(props, ref, CheckboxContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children: childrenProp,
-        size: sizeProp = "md",
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, children: childrenProp, size: sizeProp = "md", style: styleProp, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalCheckboxCssSelector,
-        cssModule(
-            styles,
-            "hop-Checkbox",
-            size
-        ),
+        cssModule(styles, "hop-Checkbox", size),
         stylingProps.className
     );
 
@@ -76,17 +66,14 @@ function Checkbox(props: CheckboxProps, ref: ForwardedRef<HTMLLabelElement>) {
     });
 
     return (
-        <RACCheckbox
-            ref={ref}
-            className={classNames}
-            style={style}
-            {...otherProps}
-        >
+        <RACCheckbox ref={ref} className={classNames} style={style} {...otherProps}>
             {checkboxProps => {
                 const checkboxIconClassName = styles["hop-Checkbox__check"];
-                const icon = checkboxProps.isIndeterminate ?
-                    <MinusIcon size="sm" className={checkboxIconClassName} /> :
-                    <CheckmarkIcon size="sm" className={checkboxIconClassName} />;
+                const icon = checkboxProps.isIndeterminate ? (
+                    <MinusIcon size="sm" className={checkboxIconClassName} />
+                ) : (
+                    <CheckmarkIcon size="sm" className={checkboxIconClassName} />
+                );
 
                 return (
                     <>
@@ -94,18 +81,27 @@ function Checkbox(props: CheckboxProps, ref: ForwardedRef<HTMLLabelElement>) {
                         <ClearContainerSlots>
                             <SlotProvider
                                 values={[
-                                    [TextContext, {
-                                        className: styles["hop-Checkbox__text"],
-                                        size: size
-                                    }],
-                                    [IconListContext, {
-                                        className: styles["hop-Checkbox__icon-list"],
-                                        size: size
-                                    }],
-                                    [IconContext, {
-                                        className: styles["hop-Checkbox__icon"],
-                                        size: size
-                                    }]
+                                    [
+                                        TextContext,
+                                        {
+                                            className: styles["hop-Checkbox__text"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconListContext,
+                                        {
+                                            className: styles["hop-Checkbox__icon-list"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconContext,
+                                        {
+                                            className: styles["hop-Checkbox__icon"],
+                                            size
+                                        }
+                                    ]
                                 ]}
                             >
                                 {children(checkboxProps)}

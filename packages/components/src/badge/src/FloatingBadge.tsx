@@ -1,9 +1,9 @@
-import { useStyledSystem, type ResponsiveProp, type StyledSystemProps } from "@hopper-ui/styled-system";
+import { type ResponsiveProp, type StyledSystemProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { useContextProps } from "react-aria-components";
 
-import { ClearContainerSlots, cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, ClearContainerSlots, SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { BadgeContext } from "./BadgeContext.ts";
 import { FloatingBadgeContext } from "./FloatingBadgeContext.ts";
@@ -55,10 +55,7 @@ function FloatingBadge(props: FloatingBadgeProps, ref: ForwardedRef<HTMLDivEleme
     const classNames = clsx(
         className,
         GlobalFloatingBadgeCssSelector,
-        cssModule(
-            styles,
-            "hop-FloatingBadge"
-        ),
+        cssModule(styles, "hop-FloatingBadge"),
         stylingProps.className
     );
 
@@ -76,9 +73,12 @@ function FloatingBadge(props: FloatingBadgeProps, ref: ForwardedRef<HTMLDivEleme
         <ClearContainerSlots>
             <SlotProvider
                 values={[
-                    [BadgeContext, {
-                        className: styles["hop-FloatingBadge__badge"]
-                    }]
+                    [
+                        BadgeContext,
+                        {
+                            className: styles["hop-FloatingBadge__badge"]
+                        }
+                    ]
                 ]}
             >
                 <div

@@ -1,6 +1,13 @@
 import path from "path";
 
-import { IconSizes, IconsOptimizedDirectory, IconsSourceDirectory, RichIconSizes, RichIconsOptimizedDirectory, RichIconsSourceDirectory } from "./constants.ts";
+import {
+    IconSizes,
+    IconsOptimizedDirectory,
+    IconsSourceDirectory,
+    RichIconSizes,
+    RichIconsOptimizedDirectory,
+    RichIconsSourceDirectory
+} from "./constants.ts";
 import { optimizeIcon } from "./optimize.ts";
 
 /**
@@ -31,6 +38,8 @@ optimizeIcon(IconsSourceDirectory, IconsOptimizedDirectory, filePath => fileName
 
 console.log("⚙️  Optimizing rich icons...\n");
 
-optimizeIcon(RichIconsSourceDirectory, RichIconsOptimizedDirectory, filePath => fileNameConverter(filePath, RichIconSizes));
+optimizeIcon(RichIconsSourceDirectory, RichIconsOptimizedDirectory, filePath =>
+    fileNameConverter(filePath, RichIconSizes)
+);
 
 console.log("✨ The icons have been optimized!\n");

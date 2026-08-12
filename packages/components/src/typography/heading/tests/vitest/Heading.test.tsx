@@ -1,7 +1,7 @@
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
-import { HeadingContext, Heading } from "../../src/index.ts";
+import { Heading, HeadingContext } from "../../src/index.ts";
 
 describe("Heading", () => {
     it("should render with default class", () => {
@@ -20,7 +20,11 @@ describe("Heading", () => {
     });
 
     it("should support custom style", () => {
-        render(<Heading marginTop="stack-sm" style={{ marginBottom: "13px" }}>Test</Heading>);
+        render(
+            <Heading marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Heading>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

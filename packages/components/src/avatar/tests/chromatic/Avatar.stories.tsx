@@ -156,11 +156,7 @@ export const Initials = {
 
 export const AccessToDisabledState = {
     render: props => (
-        <Avatar
-            {...props}
-            isDisabled
-            style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
-        />
+        <Avatar {...props} isDisabled style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})} />
     ),
     args: {
         name: "Gab Seguin"

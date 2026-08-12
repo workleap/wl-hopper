@@ -21,7 +21,14 @@ describe("Image", () => {
     });
 
     it("should support custom style", () => {
-        render(<Image marginTop="stack-sm" style={{ marginBottom: "13px" }} src="https://i.pravatar.cc/96?img=1" alt="test" />);
+        render(
+            <Image
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+                src="https://i.pravatar.cc/96?img=1"
+                alt="test"
+            />
+        );
 
         const element = screen.getByRole("img");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

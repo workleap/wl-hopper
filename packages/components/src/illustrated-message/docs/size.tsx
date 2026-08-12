@@ -19,6 +19,5 @@ export default function Example() {
                 <Content>It seems like there’s nothing here for now. Hop on and add something new.</Content>
             </IllustratedMessage>
         </Stack>
-
     );
 }

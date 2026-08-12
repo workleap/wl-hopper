@@ -8,8 +8,8 @@ export default function Example() {
             </HtmlHeader>
             <Main color="neutral-weak">
                 <Paragraph>
-                    Walking on the Moon is classic Sting moment, with his band The Police turning out one of
-                    their most groovy reggae-inspired hits to the background of space exploration.
+                    Walking on the Moon is classic Sting moment, with his band The Police turning out one of their most
+                    groovy reggae-inspired hits to the background of space exploration.
                 </Paragraph>
             </Main>
         </>

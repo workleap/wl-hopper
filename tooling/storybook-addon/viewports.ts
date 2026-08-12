@@ -16,7 +16,7 @@ const BreakpointToDeviceType: Record<ViewportKeys, Viewport["type"]> = {
     xl: "desktop"
 };
 
-const viewports = (Object.keys(Breakpoints) as (ViewportKeys)[]).reduce((acc, key) => {
+const viewports = (Object.keys(Breakpoints) as ViewportKeys[]).reduce((acc, key) => {
     acc[key] = {
         name: `Breakpoint ${key}`,
         styles: {

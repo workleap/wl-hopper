@@ -1,4 +1,4 @@
-import { Children, Fragment, isValidElement, type PropsWithChildren, type ReactNode } from "react";
+import { Children, Fragment, type PropsWithChildren, type ReactNode, isValidElement } from "react";
 
 /**
  * Determines whether the provided React children consist only of text content.

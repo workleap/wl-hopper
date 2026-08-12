@@ -20,12 +20,8 @@ const ANIMALS = [
 
 export default function Example() {
     return (
-        <Select
-            label="Select an animal"
-            items={ANIMALS}
-            isFilterable
-        >
-            {(item: typeof ANIMALS[0]) => (
+        <Select label="Select an animal" items={ANIMALS} isFilterable>
+            {(item: (typeof ANIMALS)[0]) => (
                 <SelectItem id={item.id} textValue={item.name}>
                     <Text>{item.name}</Text>
                     <Text slot="description">{item.description}</Text>

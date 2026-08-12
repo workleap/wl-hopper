@@ -17,7 +17,6 @@ const meta = {
             <Square key="3" backgroundColor="decorative-option4" />
         ]
     }
-
 } satisfies Meta<typeof Stack>;
 
 export default meta;
@@ -93,12 +92,8 @@ export const Inline: Story = {
 export const Nested: Story = {
     render: args => (
         <Stack gap="stack-xl">
-            <Stack>
-                {args.children}
-            </Stack>
-            <Stack>
-                {args.children}
-            </Stack>
+            <Stack>{args.children}</Stack>
+            <Stack>{args.children}</Stack>
         </Stack>
     )
 };

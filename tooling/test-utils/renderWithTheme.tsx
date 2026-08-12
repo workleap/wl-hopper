@@ -1,5 +1,5 @@
-import { HopperProvider, type ColorScheme } from "@hopper-ui/components";
-import { render, renderHook, type RenderHookOptions, type RenderOptions } from "@testing-library/react";
+import { type ColorScheme, HopperProvider } from "@hopper-ui/components";
+import { type RenderHookOptions, type RenderOptions, render, renderHook } from "@testing-library/react";
 import type { ReactElement } from "react";
 
 export interface HopperProviderWrapperOptions {
@@ -7,7 +7,10 @@ export interface HopperProviderWrapperOptions {
     locale?: string;
 }
 
-function createHopperProviderWrapper({ colorScheme = "light", locale = "en-US" }: HopperProviderWrapperOptions = {}): RenderOptions["wrapper"] {
+function createHopperProviderWrapper({
+    colorScheme = "light",
+    locale = "en-US"
+}: HopperProviderWrapperOptions = {}): RenderOptions["wrapper"] {
     return ({ children }) => {
         return (
             <HopperProvider colorScheme={colorScheme} locale={locale}>
@@ -29,7 +32,8 @@ function renderWithTheme(
 }
 
 function renderHookWithTheme<TProps, TResult>(
-    callback: (props: TProps) => TResult, renderHookOptions: RenderHookOptions<TProps> = {},
+    callback: (props: TProps) => TResult,
+    renderHookOptions: RenderHookOptions<TProps> = {},
     themeOptions?: HopperProviderWrapperOptions
 ): ReturnType<typeof renderHook<TResult, TProps>> {
     return renderHook(callback, {
@@ -40,4 +44,3 @@ function renderHookWithTheme<TProps, TResult>(
 
 export { act, fireEvent, screen, waitFor } from "@testing-library/react";
 export { renderWithTheme as render, renderHookWithTheme as renderHook };
-

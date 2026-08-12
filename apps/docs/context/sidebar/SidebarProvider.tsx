@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { type ReactNode, createContext, useCallback, useContext, useEffect, useState } from "react";
 
 interface SidebarProps {
     isSidebarOpen: boolean;
@@ -36,9 +36,5 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
         setIsSidebarOpen(prev => !prev);
     }, []);
 
-    return (
-        <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>
-            {children}
-        </SidebarContext.Provider>
-    );
+    return <SidebarContext.Provider value={{ isSidebarOpen, toggleSidebar }}>{children}</SidebarContext.Provider>;
 }

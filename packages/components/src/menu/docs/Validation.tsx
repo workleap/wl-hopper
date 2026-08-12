@@ -7,12 +7,11 @@ export default function Example() {
             <Button variant="secondary" aria-label="Actions for selected resource">
                 <KebabIcon />
             </Button>
-            <Menu
-                selectionMode="single"
-                selectedKeys={["edit"]}
-            >
+            <Menu selectionMode="single" selectedKeys={["edit"]}>
                 <MenuItem id="favorite">Favorite</MenuItem>
-                <MenuItem id="edit" isInvalid>Edit</MenuItem>
+                <MenuItem id="edit" isInvalid>
+                    Edit
+                </MenuItem>
                 <MenuItem id="delete">Delete</MenuItem>
             </Menu>
         </MenuTrigger>

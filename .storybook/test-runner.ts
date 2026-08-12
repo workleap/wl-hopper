@@ -1,6 +1,6 @@
 import { getA11yAddonParameters } from "@hopper-ui/storybook-addon";
-import { getStoryContext, type TestRunnerConfig } from "@storybook/test-runner";
-import { injectAxe, checkA11y, configureAxe } from "axe-playwright";
+import { type TestRunnerConfig, getStoryContext } from "@storybook/test-runner";
+import { checkA11y, configureAxe, injectAxe } from "axe-playwright";
 
 /*
  * Automate accessibility tests with test runner

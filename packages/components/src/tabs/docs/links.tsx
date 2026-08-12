@@ -1,5 +1,5 @@
 import { HopperProvider, Stack, Tab, TabList, Tabs } from "@hopper-ui/components";
-import { createMemoryRouter, RouterProvider, useLocation, useNavigate } from "react-router-dom";
+import { RouterProvider, createMemoryRouter, useLocation, useNavigate } from "react-router-dom";
 
 export default function Exemple() {
     const router = createMemoryRouter([
@@ -29,15 +29,14 @@ export default function Exemple() {
                     Home
                 </Stack>
             )
-        }, {
+        },
+        {
             path: "*",
             element: <Example />
         }
     ]);
 
-    return (
-        <RouterProvider router={router} />
-    );
+    return <RouterProvider router={router} />;
 }
 
 function Example() {
@@ -48,9 +47,15 @@ function Example() {
         <HopperProvider colorScheme="system" navigate={navigate}>
             <Tabs aria-label="Navigation" selectedKey={pathname}>
                 <TabList>
-                    <Tab id="/" href="/">Home</Tab>
-                    <Tab id="/shared" href="/shared">Shared</Tab>
-                    <Tab id="/deleted" href="/deleted">Deleted</Tab>
+                    <Tab id="/" href="/">
+                        Home
+                    </Tab>
+                    <Tab id="/shared" href="/shared">
+                        Shared
+                    </Tab>
+                    <Tab id="/deleted" href="/deleted">
+                        Deleted
+                    </Tab>
                 </TabList>
             </Tabs>
         </HopperProvider>

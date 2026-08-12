@@ -22,7 +22,11 @@ describe("ToggleButton", () => {
     });
 
     it("should support custom style", () => {
-        render(<ToggleButton marginTop="stack-sm" style={{ marginBottom: "13px" }} >Cutoff</ToggleButton>);
+        render(
+            <ToggleButton marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Cutoff
+            </ToggleButton>
+        );
 
         const element = screen.getByRole("button");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
@@ -78,7 +82,10 @@ describe("ToggleButton", () => {
         const handler = vi.fn();
         const user = userEvent.setup();
 
-        render(<ToggleButton isLoading onPress={handler}>Loading Button</ToggleButton>
+        render(
+            <ToggleButton isLoading onPress={handler}>
+                Loading Button
+            </ToggleButton>
         );
 
         const element = screen.getByRole("button");

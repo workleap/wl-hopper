@@ -1,10 +1,20 @@
 import { BrokenImageRichIcon } from "@hopper-ui/icons";
-import { type ResponsiveProp, type StyledSystemProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledSystemProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { type ForwardedRef, forwardRef } from "react";
-import { mergeProps, type PressEvent } from "react-aria";
+import { type PressEvent, mergeProps } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { type AccessibleSlotProps, composeClassnameRenderProps, type RenderProps, useRenderProps } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    type RenderProps,
+    composeClassnameRenderProps,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import type { AvatarSize } from "./Avatar.tsx";
 import { AvatarContext } from "./AvatarContext.ts";
@@ -19,7 +29,8 @@ interface BrokenAvatarRenderProps {
     isDisabled?: boolean;
 }
 
-export interface BrokenAvatarProps extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<BrokenAvatarRenderProps>, "children"> {
+export interface BrokenAvatarProps
+    extends StyledSystemProps, AccessibleSlotProps, Omit<RenderProps<BrokenAvatarRenderProps>, "children"> {
     /**
      * Whether or not the avatar is disabled.
      */
@@ -38,21 +49,11 @@ export interface BrokenAvatarProps extends StyledSystemProps, AccessibleSlotProp
 function BrokenAvatar(props: BrokenAvatarProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AvatarContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        size: sizeValue,
-        style,
-        isDisabled,
-        ...otherProps
-    } = ownProps;
+    const { className, size: sizeValue, style, isDisabled, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeValue) ?? "md";
 
-    const classNames = composeClassnameRenderProps(
-        className,
-        GlobalBrokenAvatarCssSelector,
-        stylingProps.className
-    );
+    const classNames = composeClassnameRenderProps(className, GlobalBrokenAvatarCssSelector, stylingProps.className);
 
     const mergedStyles = composeRenderProps(style, prev => {
         return {
@@ -71,12 +72,7 @@ function BrokenAvatar(props: BrokenAvatarProps, ref: ForwardedRef<HTMLDivElement
     });
 
     return (
-        <RichIconAvatarImage
-            isDisabled={isDisabled}
-            ref={ref}
-            size={size}
-            {...mergeProps(renderProps, otherProps)}
-        >
+        <RichIconAvatarImage isDisabled={isDisabled} ref={ref} size={size} {...mergeProps(renderProps, otherProps)}>
             <BrokenImageRichIcon />
         </RichIconAvatarImage>
     );

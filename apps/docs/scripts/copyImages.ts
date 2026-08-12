@@ -1,8 +1,19 @@
 import fs from "fs";
 import path from "path";
-import glob from "glob";
+import { glob } from "glob";
 
-const INPUT = path.join(process.cwd(), "..", "..", "packages", "components", "src", "**", "docs", "**", "*.{jpg,png,gif,svg}");
+const INPUT = path.join(
+    process.cwd(),
+    "..",
+    "..",
+    "packages",
+    "components",
+    "src",
+    "**",
+    "docs",
+    "**",
+    "*.{jpg,png,gif,svg}"
+);
 const OUTPUT = path.join(process.cwd(), "public");
 
 glob(INPUT, async (err, files) => {

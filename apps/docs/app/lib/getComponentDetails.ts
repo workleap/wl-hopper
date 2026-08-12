@@ -25,7 +25,7 @@ async function parseFrontMatter(fileContent: string) {
             parseFrontmatter: true,
             mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] }
         },
-        components: components
+        components
     });
 
     return { content, frontmatter, raw: fileContent };
@@ -56,4 +56,3 @@ export async function getComponentDetails(filePath: string) {
 
     return getMDXDataFromFile(file);
 }
-

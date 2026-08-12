@@ -1,7 +1,7 @@
 "use client";
 
 import type { ElementType, RefAttributes, SVGProps } from "react";
-import { useContextProps, type SlotProps } from "react-aria-components";
+import { type SlotProps, useContextProps } from "react-aria-components";
 
 import { IconContext } from "./IconContext.ts";
 

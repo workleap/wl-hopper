@@ -94,7 +94,15 @@ export const Sections = {
 
 export const Footer = {
     render: args => (
-        <Select {...args} footer={<Button variant="ghost-secondary" isFluid><AddIcon /><Text>Add</Text></Button>}>
+        <Select
+            {...args}
+            footer={
+                <Button variant="ghost-secondary" isFluid>
+                    <AddIcon />
+                    <Text>Add</Text>
+                </Button>
+            }
+        >
             <SelectSection>
                 <Header>Cats</Header>
                 <SelectItem id="1">Zoomy</SelectItem>
@@ -531,30 +539,18 @@ const StateTemplate = (args: Partial<SelectProps<object>>) => (
                 <SelectItem id="cat">Cat</SelectItem>
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
-            <Select
-                {...args}
-                size="md"
-                label="Medium"
-            >
+            <Select {...args} size="md" label="Medium">
                 <SelectItem id="dog">Dog</SelectItem>
                 <SelectItem id="cat">Cat</SelectItem>
                 <SelectItem id="frog">Frog</SelectItem>
             </Select>
         </Inline>
-        <Select
-            {...args}
-            isDisabled
-            label="Disabled"
-        >
+        <Select {...args} isDisabled label="Disabled">
             <SelectItem id="dog">Dog</SelectItem>
             <SelectItem id="cat">Cat</SelectItem>
             <SelectItem id="frog">Frog</SelectItem>
         </Select>
-        <Select
-            {...args}
-            isInvalid
-            label="Invalid"
-        >
+        <Select {...args} isInvalid label="Invalid">
             <SelectItem id="dog">Dog</SelectItem>
             <SelectItem id="cat">Cat</SelectItem>
             <SelectItem id="frog">Frog</SelectItem>
@@ -640,32 +636,17 @@ export const Zoom = {
 export const Styling = {
     render: args => (
         <Inline>
-            <Select
-                {...args}
-                triggerProps={
-                    { border: "warning" }
-                }
-            >
+            <Select {...args} triggerProps={{ border: "warning" }}>
                 <SelectItem id="1">Zoomy</SelectItem>
                 <SelectItem id="2">Voodoo</SelectItem>
                 <SelectItem id="3">Dusty</SelectItem>
             </Select>
-            <Select
-                {...args}
-                triggerProps={
-                    { className: "border-red" }
-                }
-            >
+            <Select {...args} triggerProps={{ className: "border-red" }}>
                 <SelectItem id="1">Zoomy</SelectItem>
                 <SelectItem id="2">Voodoo</SelectItem>
                 <SelectItem id="3">Dusty</SelectItem>
             </Select>
-            <Select
-                {...args}
-                triggerProps={
-                    { style: { border: "1px solid red" } }
-                }
-            >
+            <Select {...args} triggerProps={{ style: { border: "1px solid red" } }}>
                 <SelectItem id="1">Zoomy</SelectItem>
                 <SelectItem id="2">Voodoo</SelectItem>
                 <SelectItem id="3">Dusty</SelectItem>
@@ -699,13 +680,10 @@ const ANIMALS = [
 export const SearchableSelect = {
     render: args => {
         return (
-            <Select
-                {...args}
-                aria-label="Animals"
-                items={ANIMALS}
-                isFilterable
-            >
-                {item => <SelectItem id={(item as typeof ANIMALS[0]).id}>{(item as typeof ANIMALS[0]).name}</SelectItem>}
+            <Select {...args} aria-label="Animals" items={ANIMALS} isFilterable>
+                {item => (
+                    <SelectItem id={(item as (typeof ANIMALS)[0]).id}>{(item as (typeof ANIMALS)[0]).name}</SelectItem>
+                )}
             </Select>
         );
     },
@@ -715,19 +693,40 @@ export const SearchableSelect = {
 
 const MOCK_POKEMON_DATA = [
     [
-        { name: "bulbasaur" }, { name: "ivysaur" }, { name: "venusaur" }, { name: "charmander" },
-        { name: "charmeleon" }, { name: "charizard" }, { name: "squirtle" }, { name: "wartortle" },
-        { name: "blastoise" }, { name: "caterpie" }
+        { name: "bulbasaur" },
+        { name: "ivysaur" },
+        { name: "venusaur" },
+        { name: "charmander" },
+        { name: "charmeleon" },
+        { name: "charizard" },
+        { name: "squirtle" },
+        { name: "wartortle" },
+        { name: "blastoise" },
+        { name: "caterpie" }
     ],
     [
-        { name: "metapod" }, { name: "butterfree" }, { name: "weedle" }, { name: "kakuna" },
-        { name: "beedrill" }, { name: "pidgey" }, { name: "pidgeotto" }, { name: "pidgeot" },
-        { name: "rattata" }, { name: "raticate" }
+        { name: "metapod" },
+        { name: "butterfree" },
+        { name: "weedle" },
+        { name: "kakuna" },
+        { name: "beedrill" },
+        { name: "pidgey" },
+        { name: "pidgeotto" },
+        { name: "pidgeot" },
+        { name: "rattata" },
+        { name: "raticate" }
     ],
     [
-        { name: "spearow" }, { name: "fearow" }, { name: "ekans" }, { name: "arbok" },
-        { name: "pikachu" }, { name: "raichu" }, { name: "sandshrew" }, { name: "sandslash" },
-        { name: "nidoran" }, { name: "nidorina" }
+        { name: "spearow" },
+        { name: "fearow" },
+        { name: "ekans" },
+        { name: "arbok" },
+        { name: "pikachu" },
+        { name: "raichu" },
+        { name: "sandshrew" },
+        { name: "sandslash" },
+        { name: "nidoran" },
+        { name: "nidorina" }
     ]
 ];
 

@@ -33,23 +33,39 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
-                        <Button size="xs" {...args}>Save</Button>
-                        <Button size="sm" {...args}>Save</Button>
+                        <Button size="xs" {...args}>
+                            Save
+                        </Button>
+                        <Button size="sm" {...args}>
+                            Save
+                        </Button>
                         <Button {...args}>Save</Button>
                     </Inline>
                     <Inline alignY="end">
-                        <Button isLoading size="xs" {...args}>Save</Button>
-                        <Button isLoading size="sm" {...args}>Save</Button>
-                        <Button isLoading {...args}>Save</Button>
+                        <Button isLoading size="xs" {...args}>
+                            Save
+                        </Button>
+                        <Button isLoading size="sm" {...args}>
+                            Save
+                        </Button>
+                        <Button isLoading {...args}>
+                            Save
+                        </Button>
                     </Inline>
                     <Div>
-                        <Button isFluid {...args}>Save</Button>
+                        <Button isFluid {...args}>
+                            Save
+                        </Button>
                     </Div>
                     <Div width="10%">
-                        <Button isFluid {...args}>Save</Button>
+                        <Button isFluid {...args}>
+                            Save
+                        </Button>
                     </Div>
                     <Div>
-                        <Button isLoading isFluid {...args}>Save</Button>
+                        <Button isLoading isFluid {...args}>
+                            Save
+                        </Button>
                     </Div>
                 </Stack>
                 <Stack>
@@ -71,19 +87,25 @@ export const Primary: Story = {
                     <Inline alignY="end">
                         <Button size="xs" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </Button>
                         <Button size="sm" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </Button>
                         <Button {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </Button>
@@ -138,19 +160,25 @@ export const Primary: Story = {
                         <Button size="xs" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </Button>
                         <Button size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </Button>
                         <Button {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </Button>
                     </Inline>
@@ -243,12 +271,22 @@ export const GhostDanger: Story = {
 
 const StateTemplate = (args: Partial<ButtonProps>) => (
     <Inline alignY="end">
-        <Button size="xs" {...args}>Save</Button>
-        <Button size="sm" {...args}>Save</Button>
+        <Button size="xs" {...args}>
+            Save
+        </Button>
+        <Button size="sm" {...args}>
+            Save
+        </Button>
         <Button {...args}>Save</Button>
-        <Button isLoading size="xs" {...args}>Save</Button>
-        <Button isLoading size="sm" {...args}>Save</Button>
-        <Button isLoading {...args}>Save</Button>
+        <Button isLoading size="xs" {...args}>
+            Save
+        </Button>
+        <Button isLoading size="sm" {...args}>
+            Save
+        </Button>
+        <Button isLoading {...args}>
+            Save
+        </Button>
         <Button {...args}>
             <SparklesIcon />
             <Text>Save</Text>
@@ -260,13 +298,17 @@ const StateTemplate = (args: Partial<ButtonProps>) => (
         <Button {...args}>
             <Text>Save</Text>
             <IconList>
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </Button>
         <Button {...args}>
             <Text>Save</Text>
             <IconList slot="end-icon">
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </Button>
     </Inline>
@@ -278,7 +320,8 @@ export const PrimaryStates: Story = {
         const buttons = canvas.getAllByRole("button");
 
         buttons.forEach(button => {
-            if (button.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (button.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (button.getAttribute("data-chromatic-force-focus")) {
                     button.setAttribute("data-focus-visible", "true");
                     button.removeAttribute("data-chromatic-force-focus");

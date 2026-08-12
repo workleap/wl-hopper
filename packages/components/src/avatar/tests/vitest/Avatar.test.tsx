@@ -48,7 +48,7 @@ describe("Avatar", () => {
 
     it("should support slots", () => {
         render(
-            <AvatarContext.Provider value={{ slots: { test: { "aria-label": "test", "name": "test" } } }}>
+            <AvatarContext.Provider value={{ slots: { test: { "aria-label": "test", name: "test" } } }}>
                 <Avatar name="John Doe" slot="test" />
             </AvatarContext.Provider>
         );
@@ -63,17 +63,13 @@ describe("Avatar", () => {
     });
 
     it("should have the provided aria-label if provided", async () => {
-        render(
-            <Avatar name="Elon Musk" aria-label="Maye Musk" />
-        );
+        render(<Avatar name="Elon Musk" aria-label="Maye Musk" />);
 
         expect(await screen.findByLabelText("Maye Musk")).not.toBeNull();
     });
 
     it("should have the name as the aria-label if no aria-label is provided", async () => {
-        render(
-            <Avatar name="Elon Musk" />
-        );
+        render(<Avatar name="Elon Musk" />);
 
         expect(await screen.findByLabelText("Elon Musk")).not.toBeNull();
     });
@@ -108,13 +104,7 @@ describe("Avatar", () => {
     });
 
     it("should support disabled state", () => {
-        render(
-            <Avatar
-                name="John Doe"
-                isDisabled
-                className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
-            />
-        );
+        render(<Avatar name="John Doe" isDisabled className={({ isDisabled }) => (isDisabled ? "disabled" : "")} />);
 
         const element = screen.getByRole("img", { name: "John Doe" });
 
@@ -200,7 +190,14 @@ describe("Avatar - fallback + loading strategy", () => {
         mock.simulate(["error"]);
         const initials = "JD";
         const onErrorFn = vi.fn();
-        render(<Avatar name="John Doe" src="https://example.com/image.jpg" fallbackSrc={null} imageProps={{ onError: onErrorFn }} />);
+        render(
+            <Avatar
+                name="John Doe"
+                src="https://example.com/image.jpg"
+                fallbackSrc={null}
+                imageProps={{ onError: onErrorFn }}
+            />
+        );
         act(() => {
             vi.runAllTimers();
         });

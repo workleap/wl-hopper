@@ -26,9 +26,7 @@ export const Default: Story = {
         </Stack>
     ),
     args: {
-        children: [
-            <Input type="text" placeholder="Placeholder" key="1" />
-        ]
+        children: [<Input type="text" placeholder="Placeholder" key="1" />]
     }
 };
 
@@ -36,10 +34,7 @@ export const PrefixIcon: Story = {
     ...Default,
     args: {
         ...Default.args,
-        children: [
-            <SearchIcon key="1" color="neutral-weak" />,
-            <Input type="text" placeholder="Placeholder" key="2" />
-        ]
+        children: [<SearchIcon key="1" color="neutral-weak" />, <Input type="text" placeholder="Placeholder" key="2" />]
     }
 };
 
@@ -48,7 +43,9 @@ export const PrefixText: Story = {
     args: {
         ...Default.args,
         children: [
-            <Text key="1" color="neutral-weak">$</Text>,
+            <Text key="1" color="neutral-weak">
+                $
+            </Text>,
             <Input type="text" placeholder="Placeholder" key="2" />
         ]
     }
@@ -71,10 +68,7 @@ export const SuffixIconFixedSize: Story = {
     ...Default,
     args: {
         ...Default.args,
-        children: [
-            <Input type="text" placeholder="Placeholder" key="1" />,
-            <AngleDownIcon size="sm" key="2" />
-        ]
+        children: [<Input type="text" placeholder="Placeholder" key="1" />, <AngleDownIcon size="sm" key="2" />]
     }
 };
 
@@ -85,7 +79,9 @@ export const TextAddon: Story = {
         ...Default.args,
         children: [
             <Input type="text" placeholder="Placeholder" key="1" />,
-            <Text color="neutral-weakest" key="2">XX</Text>
+            <Text color="neutral-weakest" key="2">
+                XX
+            </Text>
         ]
     }
 };
@@ -95,10 +91,7 @@ export const ButtonStory: Story = {
     ...Default,
     args: {
         ...Default.args,
-        children: [
-            <Input type="text" placeholder="Placeholder" key="1" />,
-            <ClearButton key="2" size="lg" />
-        ]
+        children: [<Input type="text" placeholder="Placeholder" key="1" />, <ClearButton key="2" size="lg" />]
     }
 };
 
@@ -117,4 +110,3 @@ export const Invalid: Story = {
         isInvalid: true
     }
 };
-

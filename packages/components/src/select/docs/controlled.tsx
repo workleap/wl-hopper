@@ -1,4 +1,4 @@
-import { Header, Select, SelectItem, SelectSection, type Key } from "@hopper-ui/components";
+import { Header, type Key, Select, SelectItem, SelectSection } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {

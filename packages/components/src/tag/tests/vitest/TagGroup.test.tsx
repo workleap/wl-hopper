@@ -5,14 +5,22 @@ import { Tag, TagGroup, TagGroupContext } from "../../src/index.ts";
 
 describe("Tag", () => {
     it("should render with default class", () => {
-        render(<TagGroup aria-label="options" data-testid="tag-group"><Tag id="option1">option 1</Tag></TagGroup>);
+        render(
+            <TagGroup aria-label="options" data-testid="tag-group">
+                <Tag id="option1">option 1</Tag>
+            </TagGroup>
+        );
 
         const element = screen.getByTestId("tag-group");
         expect(element).toHaveClass("hop-TagGroup");
     });
 
     it("should support custom class", () => {
-        render(<TagGroup aria-label="options" data-testid="tag-group" className="test"><Tag id="option1">option 1</Tag></TagGroup>);
+        render(
+            <TagGroup aria-label="options" data-testid="tag-group" className="test">
+                <Tag id="option1">option 1</Tag>
+            </TagGroup>
+        );
 
         const element = screen.getByTestId("tag-group");
         expect(element).toHaveClass("hop-TagGroup");
@@ -20,14 +28,27 @@ describe("Tag", () => {
     });
 
     it("should support custom style", () => {
-        render(<TagGroup aria-label="options" data-testid="tag-group" marginTop="stack-sm" style={{ marginBottom: "13px" }}><Tag id="option1">option 1</Tag></TagGroup>);
+        render(
+            <TagGroup
+                aria-label="options"
+                data-testid="tag-group"
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+            >
+                <Tag id="option1">option 1</Tag>
+            </TagGroup>
+        );
 
         const element = screen.getByTestId("tag-group");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<TagGroup aria-label="options" data-testid="tag-group" data-foo="bar"><Tag id="option1">option 1</Tag></TagGroup>);
+        render(
+            <TagGroup aria-label="options" data-testid="tag-group" data-foo="bar">
+                <Tag id="option1">option 1</Tag>
+            </TagGroup>
+        );
 
         const element = screen.getByTestId("tag-group");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -36,10 +57,7 @@ describe("Tag", () => {
     it("should support slots", () => {
         render(
             <TagGroupContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <TagGroup
-                    slot="test"
-                    data-testid="tag-group"
-                >
+                <TagGroup slot="test" data-testid="tag-group">
                     <Tag id="option1">option 1</Tag>
                 </TagGroup>
             </TagGroupContext.Provider>
@@ -55,11 +73,7 @@ describe("Tag", () => {
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
         render(
-            <TagGroup
-                aria-label="options"
-                data-testid="tag-group"
-                ref={ref}
-            >
+            <TagGroup aria-label="options" data-testid="tag-group" ref={ref}>
                 <Tag id="option1">option 1</Tag>
             </TagGroup>
         );
@@ -72,7 +86,9 @@ describe("Tag", () => {
         const testId = "tag-option";
         render(
             <TagGroup aria-label="options" data-testid="tag-group" size="lg">
-                <Tag id="option1" data-testid={testId}>option 1</Tag>
+                <Tag id="option1" data-testid={testId}>
+                    option 1
+                </Tag>
             </TagGroup>
         );
 

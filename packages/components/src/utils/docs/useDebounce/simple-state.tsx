@@ -19,10 +19,7 @@ export default function Example() {
 
     return (
         <Stack>
-            <TextField
-                onChange={handleInputChange}
-                placeholder="Type something..."
-            />
+            <TextField onChange={handleInputChange} placeholder="Type something..." />
             <Paragraph>Debounced value: {message}</Paragraph>
         </Stack>
     );

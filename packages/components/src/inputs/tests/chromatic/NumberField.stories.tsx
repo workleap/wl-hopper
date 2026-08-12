@@ -38,9 +38,7 @@ export const Default: Story = {
 };
 
 export const WithContextualHelp: Story = {
-    render: args => (
-        <NumberField {...args} />
-    ),
+    render: args => <NumberField {...args} />,
     decorators: [
         Story => (
             // Important for chromatic
@@ -50,7 +48,7 @@ export const WithContextualHelp: Story = {
         )
     ],
     args: {
-        "label": "Label",
+        label: "Label",
         contextualHelp: <ContextualHelp isOpen>Contextual help for the NumberField</ContextualHelp>
     }
 };

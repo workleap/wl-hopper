@@ -1,4 +1,3 @@
-
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -35,7 +34,12 @@ describe("Switch", () => {
 
     it("should support custom style", () => {
         render(
-            <SwitchField data-testid={testId} marginTop="stack-sm" style={{ marginBottom: "13px" }} description="description">
+            <SwitchField
+                data-testid={testId}
+                marginTop="stack-sm"
+                style={{ marginBottom: "13px" }}
+                description="description"
+            >
                 <Switch>option 1</Switch>
             </SwitchField>
         );

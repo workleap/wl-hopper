@@ -20,7 +20,14 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
+import {
+    type BaseComponentDOMProps,
+    type FieldProps,
+    type InputGroupVariant,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule
+} from "../../utils/index.ts";
 
 import { CheckboxGroupContext } from "./CheckboxGroupContext.ts";
 
@@ -76,12 +83,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
         ...otherProps
     } = ownProps;
 
-    const {
-        className: listClassName,
-        slot: listSlot,
-        style: listStyleProp,
-        ...otherListProps
-    } = listProps;
+    const { className: listClassName, slot: listSlot, style: listStyleProp, ...otherListProps } = listProps;
 
     const orientation = useResponsiveValue(orientationProp) ?? "vertical";
     const size = useResponsiveValue(sizeProp) ?? "md";
@@ -90,21 +92,11 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
     const classNames = composeClassnameRenderProps(
         className,
         GlobalCheckboxGroupCssSelector,
-        cssModule(
-            styles,
-            "hop-CheckboxGroup",
-            isFluid && "fluid",
-            size,
-            variant
-        ),
+        cssModule(styles, "hop-CheckboxGroup", isFluid && "fluid", size, variant),
         stylingProps.className
     );
 
-    const listClassNames = clsx(
-        styles["hop-CheckboxGroup__list"],
-        listClassName,
-        listStylingProps.className
-    );
+    const listClassNames = clsx(styles["hop-CheckboxGroup__list"], listClassName, listStylingProps.className);
 
     const style = composeRenderProps(styleProp, prev => {
         return {
@@ -120,12 +112,7 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
 
     const children = composeRenderProps(childrenProp, prev => {
         return (
-            <div
-                className={listClassNames}
-                slot={listSlot ?? undefined}
-                style={listStyle}
-                {...otherListProps}
-            >
+            <div className={listClassNames} slot={listSlot ?? undefined} style={listStyle} {...otherListProps}>
                 {prev}
             </div>
         );
@@ -134,15 +121,21 @@ function CheckboxGroup(props: CheckboxGroupProps, ref: ForwardedRef<HTMLDivEleme
     return (
         <SlotProvider
             values={[
-                [CheckboxContext, {
-                    className: styles["hop-CheckboxGroup__checkbox"],
-                    size: size
-                }],
-                [CheckboxFieldContext, {
-                    className: styles["hop-CheckboxGroup__checkbox"],
-                    size: size,
-                    isDisabled: isDisabled
-                }]
+                [
+                    CheckboxContext,
+                    {
+                        className: styles["hop-CheckboxGroup__checkbox"],
+                        size
+                    }
+                ],
+                [
+                    CheckboxFieldContext,
+                    {
+                        className: styles["hop-CheckboxGroup__checkbox"],
+                        size,
+                        isDisabled
+                    }
+                ]
             ]}
         >
             <RACCheckboxGroup

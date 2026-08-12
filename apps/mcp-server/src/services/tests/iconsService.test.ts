@@ -35,7 +35,9 @@ describe("getIcons", () => {
 
             expect(result).toHaveProperty("all");
             expect(result.all).toHaveLength(9); // 6 standard + 3 rich
-            expect(result.all.every(icon => icon.name && icon.description && icon.type && typeof icon.score === "number")).toBe(true);
+            expect(
+                result.all.every(icon => icon.name && icon.description && icon.type && typeof icon.score === "number")
+            ).toBe(true);
         });
 
         it("should return results for a single query", async () => {
@@ -61,7 +63,9 @@ describe("getIcons", () => {
             // When all queries are empty, return all icons under the type key
             expect(result).toHaveProperty("all");
             expect(result.all).toHaveLength(9); // 6 standard + 3 rich
-            expect(result.all.every(icon => icon.name && icon.description && icon.type && typeof icon.score === "number")).toBe(true);
+            expect(
+                result.all.every(icon => icon.name && icon.description && icon.type && typeof icon.score === "number")
+            ).toBe(true);
         });
 
         it("should filter out empty strings but keep valid queries", async () => {

@@ -34,9 +34,7 @@ export const Default = {
     render: args => (
         <PopoverTrigger>
             <Button>Open</Button>
-            <PopoverBase {...args}>
-                This is a base popover with no Padding
-            </PopoverBase>
+            <PopoverBase {...args}>This is a base popover with no Padding</PopoverBase>
         </PopoverTrigger>
     )
 } satisfies Story;

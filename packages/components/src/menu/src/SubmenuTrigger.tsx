@@ -1,5 +1,8 @@
 import type { ReactNode } from "react";
-import { SubmenuTrigger as RACSubmenuTrigger, type SubmenuTriggerProps as RACSubmenuTriggerProps } from "react-aria-components";
+import {
+    SubmenuTrigger as RACSubmenuTrigger,
+    type SubmenuTriggerProps as RACSubmenuTriggerProps
+} from "react-aria-components";
 
 export interface SubmenuTriggerProps extends Omit<RACSubmenuTriggerProps, "delay"> {}
 

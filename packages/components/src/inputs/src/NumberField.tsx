@@ -1,21 +1,21 @@
 import { AngleDownIcon, AngleUpIcon, IconContext } from "@hopper-ui/icons";
 import {
-    useResponsiveValue,
-    useStyledSystem,
     type ResponsiveProp,
-    type StyledComponentProps
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import { mergeRefs } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { forwardRef, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
+import { type ForwardedRef, type MutableRefObject, type ReactNode, forwardRef } from "react";
 import { useObjectRef } from "react-aria";
 import {
-    composeRenderProps,
     Button as RACButton,
     NumberField as RACNumberField,
-    useContextProps,
-    type NumberFieldProps as RACNumberFieldProps
+    type NumberFieldProps as RACNumberFieldProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
@@ -24,11 +24,11 @@ import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel, TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
+    type FieldProps,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
-    ensureTextWrapper,
-    SlotProvider,
-    type FieldProps
+    ensureTextWrapper
 } from "../../utils/index.ts";
 
 import { Input, type InputProps } from "./Input.tsx";
@@ -73,17 +73,10 @@ interface StepperButtonProps {
 
 const StepperButton = ({ direction }: StepperButtonProps) => {
     const StepperIcon = direction === "increment" ? AngleUpIcon : AngleDownIcon;
-    const stepperClasses = cssModule(
-        styles,
-        "hop-NumberField__stepper-button",
-        direction
-    );
+    const stepperClasses = cssModule(styles, "hop-NumberField__stepper-button", direction);
 
     return (
-        <RACButton
-            className={stepperClasses}
-            slot={direction}
-        >
+        <RACButton className={stepperClasses} slot={direction}>
             <StepperIcon
                 className={styles["hop-NumberField__stepper-button__icon"]}
                 size={{
@@ -97,10 +90,7 @@ const StepperButton = ({ direction }: StepperButtonProps) => {
 
 function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, NumberFieldContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -127,17 +117,15 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
         ...otherProps
     } = ownProps;
 
-    const inputRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null));
+    const inputRef = useObjectRef(
+        mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalNumberFieldCssSelector,
-        cssModule(
-            styles,
-            "hop-NumberField",
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-NumberField", isFluid && "fluid"),
         stylingProps.className
     );
 
@@ -151,10 +139,11 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
     const [value, onChange] = useControlledState<number>(valueProp, defaultValue || 0, onChangeProp);
 
     const prefixMarkup = prefix ? (
-        <SlotProvider values={[
-            [TextContext, { size, className: styles["hop-NumberField__prefix"] }],
-            [IconContext, { size, className: styles["hop-NumberField__prefix"] }]
-        ]}
+        <SlotProvider
+            values={[
+                [TextContext, { size, className: styles["hop-NumberField__prefix"] }],
+                [IconContext, { size, className: styles["hop-NumberField__prefix"] }]
+            ]}
         >
             {ensureTextWrapper(prefix)}
         </SlotProvider>
@@ -193,7 +182,9 @@ function NumberField(props: NumberFieldProps, ref: ForwardedRef<HTMLDivElement>)
                 {label}
             </FieldLabel>
             {inputMarkup}
-            {description && <HelperMessage className={styles["hop-NumberField__HelperMessage"]}>{description}</HelperMessage>}
+            {description && (
+                <HelperMessage className={styles["hop-NumberField__HelperMessage"]}>{description}</HelperMessage>
+            )}
             <ErrorMessage className={styles["hop-NumberField__ErrorMessage"]}>{errorMessage}</ErrorMessage>
         </>
     );

@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import { select, selectAll } from "hast-util-select";
 import path from "path";
 import parse from "rehype-parse";
@@ -21,15 +21,18 @@ const allIconsContent = IconSizes.flatMap(size => {
         });
 });
 
-const dataGroupedBySize = allIconsContent.reduce((acc, icon) => {
-    if (!acc[icon.size]) {
-        acc[icon.size] = [icon.name];
-    } else {
-        acc[icon.size].push(icon.name);
-    }
+const dataGroupedBySize = allIconsContent.reduce(
+    (acc, icon) => {
+        if (!acc[icon.size]) {
+            acc[icon.size] = [icon.name];
+        } else {
+            acc[icon.size].push(icon.name);
+        }
 
-    return acc;
-}, {} as Record<typeof IconSizes[number], string[]>);
+        return acc;
+    },
+    {} as Record<(typeof IconSizes)[number], string[]>
+);
 
 describe("SVGs", () => {
     it("should not have the word icon in it's name", () => {
@@ -98,9 +101,7 @@ allIconsContent.forEach(icon => {
         const iconAst = unified().use(parse, { fragment: true, space: "svg" }).parse(icon.content);
 
         it("should only have the expected root attributes", () => {
-            const properties = Object.keys(
-                select(":root", iconAst)?.properties ?? {}
-            ).sort();
+            const properties = Object.keys(select(":root", iconAst)?.properties ?? {}).sort();
             expect(properties).toStrictEqual(["viewBox", "xmlns", "fill", "width", "height"].sort());
         });
 
@@ -135,9 +136,7 @@ allIconsContent.forEach(icon => {
                 iconAst
             );
 
-            expect(nodeSources(nodesWithUndefinedFill, icon.content)).toStrictEqual(
-                []
-            );
+            expect(nodeSources(nodesWithUndefinedFill, icon.content)).toStrictEqual([]);
         });
 
         const expectedFillColors = [...AllowedIconFillColors, "none"];
@@ -145,24 +144,17 @@ allIconsContent.forEach(icon => {
         const expectedFillsString = expectedFillColors.join(",");
 
         it(`should have no nodes that use fill colors other than [${expectedFillsString}]`, () => {
-            const nodesWithInvalidFill = selectAll("[fill]", iconAst).filter(
-                node => {
-                    return node.properties.fill && !expectedFillColors.includes(node.properties.fill.toString());
-                }
-            );
+            const nodesWithInvalidFill = selectAll("[fill]", iconAst).filter(node => {
+                return node.properties.fill && !expectedFillColors.includes(node.properties.fill.toString());
+            });
 
-            expect(nodeSources(nodesWithInvalidFill, icon.content)).toStrictEqual(
-                []
-            );
+            expect(nodeSources(nodesWithInvalidFill, icon.content)).toStrictEqual([]);
         });
     });
 });
 
 function nodeSources(nodes: ReturnType<typeof selectAll>, iconSource: string) {
     return nodes.map(node =>
-        iconSource.substring(
-            node.position!.start.offset!,
-            node.position!.end.offset! - node.position!.start.offset!
-        )
+        iconSource.substring(node.position!.start.offset!, node.position!.end.offset! - node.position!.start.offset!)
     );
 }

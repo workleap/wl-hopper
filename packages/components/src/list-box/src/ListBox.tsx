@@ -1,13 +1,32 @@
-import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { useLoadMore } from "@react-aria/utils";
 import clsx from "clsx";
-import { type ForwardedRef, forwardRef, type NamedExoticComponent } from "react";
-import { Collection, composeRenderProps, type ListBoxRenderProps, ListBox as RACListBox, type ListBoxProps as RACListBoxProps, useContextProps } from "react-aria-components";
+import { type ForwardedRef, type NamedExoticComponent, forwardRef } from "react";
+import {
+    Collection,
+    type ListBoxRenderProps,
+    ListBox as RACListBox,
+    type ListBoxProps as RACListBoxProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { HeaderContext } from "../../header/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Text, type TextSize } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isFunction, type SizeAdapter, SlotProvider } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    isFunction
+} from "../../utils/index.ts";
 
 import { ListBoxContext } from "./ListBoxContext.ts";
 import { ListBoxItem, type ListBoxItemProps, type ListBoxItemSize, type SelectionIndicator } from "./ListBoxItem.tsx";
@@ -83,28 +102,20 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
 
     const size = useResponsiveValue(sizeProp) ?? "sm";
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
-    const disallowEmptySelection = disallowEmptySelectionProp ?? (selectionIndicator === "input" && selectionMode === "single");
+    const disallowEmptySelection =
+        disallowEmptySelectionProp ?? (selectionIndicator === "input" && selectionMode === "single");
     const stringFormatter = useLocalizedString();
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalListBoxCssSelector,
-        cssModule(
-            styles,
-            "hop-ListBox",
-            size,
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-ListBox", size, isFluid && "fluid"),
         stylingProps.className
     );
 
     const emptyItemClassNames = clsx(
         GlobalListBoxEmptyItemCssSelector,
-        cssModule(
-            styles,
-            "hop-ListBox__empty-item",
-            size
-        )
+        cssModule(styles, "hop-ListBox__empty-item", size)
     );
 
     const style = composeRenderProps(styleProp, prev => {
@@ -142,7 +153,9 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
             if (result) {
                 return (
                     <ClearContainerSlots>
-                        <Text className={emptyItemClassNames} size={ListBoxToTextSizeAdapter[size]}>{result}</Text>
+                        <Text className={emptyItemClassNames} size={ListBoxToTextSizeAdapter[size]}>
+                            {result}
+                        </Text>
                     </ClearContainerSlots>
                 );
             }
@@ -154,18 +167,27 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
     return (
         <SlotProvider
             values={[
-                [HeaderContext, {
-                    className: styles["hop-ListBox__section-header"]
-                }],
-                [ListBoxSectionContext, {
-                    className: styles["hop-ListBox__section"]
-                }],
-                [ListBoxItemContext, {
-                    className: styles["hop-ListBox__item"],
-                    size: size,
-                    selectionIndicator: selectionIndicator,
-                    isInvalid: isInvalid
-                }]
+                [
+                    HeaderContext,
+                    {
+                        className: styles["hop-ListBox__section-header"]
+                    }
+                ],
+                [
+                    ListBoxSectionContext,
+                    {
+                        className: styles["hop-ListBox__section"]
+                    }
+                ],
+                [
+                    ListBoxItemContext,
+                    {
+                        className: styles["hop-ListBox__item"],
+                        size,
+                        selectionIndicator,
+                        isInvalid
+                    }
+                ]
             ]}
         >
             <RACListBox
@@ -180,18 +202,19 @@ function ListBox<T extends object>(props: ListBoxProps<T>, ref: ForwardedRef<HTM
                 {...otherProps}
             >
                 {renderChildren()}
-                {isLoading && Array.from({ length: 5 }).map((_, index) => {
-                    return (
-                        <ListBoxItem
-                            key={`loadingListItem_${index.toString()}`}
-                            id={`loadingListItem_${index.toString()}`}
-                            isLoading={isLoading}
-                            size={size}
-                            textValue={stringFormatter.format("ListBoxItem.loadingTextValue")}
-                            {...loadingListBoxItemProps}
-                        />
-                    );
-                })}
+                {isLoading &&
+                    Array.from({ length: 5 }).map((_, index) => {
+                        return (
+                            <ListBoxItem
+                                key={`loadingListItem_${index.toString()}`}
+                                id={`loadingListItem_${index.toString()}`}
+                                isLoading={isLoading}
+                                size={size}
+                                textValue={stringFormatter.format("ListBoxItem.loadingTextValue")}
+                                {...loadingListBoxItemProps}
+                            />
+                        );
+                    })}
             </RACListBox>
         </SlotProvider>
     );
@@ -208,4 +231,3 @@ const _ListBox = forwardRef(ListBox) as <T>(
 (_ListBox as NamedExoticComponent).displayName = "ListBox";
 
 export { _ListBox as ListBox };
-

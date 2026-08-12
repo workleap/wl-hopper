@@ -5,17 +5,9 @@ interface MyCustomComponentProps extends Omit<DivProps, "children"> {
 }
 
 function MyCustomComponent(props: MyCustomComponentProps) {
-    return (
-        <Div {...props} >
-            My Custom component
-        </Div>
-    );
+    return <Div {...props}>My Custom component</Div>;
 }
 
 export default function Example() {
-    return (
-        <MyCustomComponent
-            paddingY="inset-md"
-        />
-    );
+    return <MyCustomComponent paddingY="inset-md" />;
 }

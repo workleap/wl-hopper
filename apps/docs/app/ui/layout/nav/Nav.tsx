@@ -25,7 +25,11 @@ const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
         return (
             <li
                 key={label}
-                className={clsx("hd-nav__list-item", isActive && "hd-nav__list-item--active", status !== "ready" && "hd-nav__link--disabled")}
+                className={clsx(
+                    "hd-nav__list-item",
+                    isActive && "hd-nav__list-item--active",
+                    status !== "ready" && "hd-nav__link--disabled"
+                )}
             >
                 <Link href={path} className="hd-nav__link">
                     {label}
@@ -36,9 +40,7 @@ const Nav = ({ items }: { items: PropsWithoutRef<NavItem[]> }) => {
 
     return (
         <nav className="hd-nav" aria-label="Main" data-orientation="horizontal" dir="ltr">
-            <ul className="hd-nav__list">
-                {navItems}
-            </ul>
+            <ul className="hd-nav__list">{navItems}</ul>
         </nav>
     );
 };

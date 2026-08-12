@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, type ReactNode } from "react";
+import { type ReactNode, createContext, useContext } from "react";
 import { env } from "./env.ts";
 
 interface Context {
@@ -14,9 +14,7 @@ interface EnvironmentContextProviderProps {
 }
 
 export const EnvironmentContextProvider = ({ children }: EnvironmentContextProviderProps) => (
-    <EnvironmentContext.Provider value={env}>
-        {children}
-    </EnvironmentContext.Provider>
+    <EnvironmentContext.Provider value={env}>{children}</EnvironmentContext.Provider>
 );
 
 export const useEnvironmentContext = () => {

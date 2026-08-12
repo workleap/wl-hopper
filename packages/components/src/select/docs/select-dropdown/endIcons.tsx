@@ -7,7 +7,9 @@ export default function Example() {
             <SelectItem textValue="Designer">
                 <Text>Designer</Text>
                 <IconList slot="end-icon">
-                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
                 </IconList>
             </SelectItem>
             <SelectItem textValue="Developer">

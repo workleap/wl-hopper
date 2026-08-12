@@ -1,7 +1,5 @@
 import { TextField } from "@hopper-ui/components";
 
 export default function Example() {
-    return (
-        <TextField placeholder="Full name (e.g., Jane Smith)" aria-label="Name" />
-    );
+    return <TextField placeholder="Full name (e.g., Jane Smith)" aria-label="Name" />;
 }

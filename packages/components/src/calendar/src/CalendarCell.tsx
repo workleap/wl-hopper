@@ -14,19 +14,10 @@ export const GlobalCalendarCellCssSelector = "hop-CalendarCell";
 interface CalendarCellProps extends Omit<AriaCalendarCellProps, "children">, PropsWithChildren {}
 
 export const CalendarCell = (props: CalendarCellProps) => {
-    const classNames = clsx(
-        GlobalCalendarCellCssSelector,
-        cssModule(
-            styles,
-            GlobalCalendarCellCssSelector
-        )
-    );
+    const classNames = clsx(GlobalCalendarCellCssSelector, cssModule(styles, GlobalCalendarCellCssSelector));
 
     return (
-        <AriaCalendarCell
-            className={classNames}
-            {...props}
-        >
+        <AriaCalendarCell className={classNames} {...props}>
             {({ formattedDate }) => formattedDate}
         </AriaCalendarCell>
     );

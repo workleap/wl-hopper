@@ -6,14 +6,24 @@ import { Tile, TileGroup, TileGroupContext } from "../../src/index.ts";
 
 describe("TileGroup", () => {
     it("should render with default class", () => {
-        render(<TileGroup aria-label="options"><Tile id="day">Day</Tile><Tile id="week">Week</Tile></TileGroup>);
+        render(
+            <TileGroup aria-label="options">
+                <Tile id="day">Day</Tile>
+                <Tile id="week">Week</Tile>
+            </TileGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-TileGroup");
     });
 
     it("should support custom class", () => {
-        render(<TileGroup aria-label="options" className="test"><Tile id="option1">option 1</Tile><Tile id="option2">option 2</Tile></TileGroup>);
+        render(
+            <TileGroup aria-label="options" className="test">
+                <Tile id="option1">option 1</Tile>
+                <Tile id="option2">option 2</Tile>
+            </TileGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-TileGroup");
@@ -33,7 +43,12 @@ describe("TileGroup", () => {
     });
 
     it("should support DOM props", () => {
-        render(<TileGroup aria-label="options" data-foo="bar"><Tile id="option1">option 1</Tile><Tile id="option2">option 2</Tile></TileGroup>);
+        render(
+            <TileGroup aria-label="options" data-foo="bar">
+                <Tile id="option1">option 1</Tile>
+                <Tile id="option2">option 2</Tile>
+            </TileGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -42,7 +57,10 @@ describe("TileGroup", () => {
     it("should support slots", () => {
         render(
             <TileGroupContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <TileGroup slot="test"><Tile id="option1">option 1</Tile><Tile id="option2">option 2</Tile></TileGroup>
+                <TileGroup slot="test">
+                    <Tile id="option1">option 1</Tile>
+                    <Tile id="option2">option 2</Tile>
+                </TileGroup>
             </TileGroupContext.Provider>
         );
 
@@ -54,14 +72,24 @@ describe("TileGroup", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<TileGroup aria-label="options" ref={ref}><Tile id="option1">option 1</Tile><Tile id="option2">option 2</Tile></TileGroup>);
+        render(
+            <TileGroup aria-label="options" ref={ref}>
+                <Tile id="option1">option 1</Tile>
+                <Tile id="option2">option 2</Tile>
+            </TileGroup>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
     });
 
     it("should be disabled and pass it to Tile.", () => {
-        render(<TileGroup aria-label="options" isDisabled><Tile id="option1">option 1</Tile><Tile id="option2">option 2</Tile></TileGroup>);
+        render(
+            <TileGroup aria-label="options" isDisabled>
+                <Tile id="option1">option 1</Tile>
+                <Tile id="option2">option 2</Tile>
+            </TileGroup>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveAttribute("data-disabled", "true");

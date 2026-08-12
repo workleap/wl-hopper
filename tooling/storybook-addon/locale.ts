@@ -3,5 +3,5 @@ export const localesGlobalTypes = [
     { value: "fr-CA", right: "FR", title: "Français" }
 ] as const;
 
-export type LocaleKeys = typeof localesGlobalTypes[number]["value"]; // "en-US" | "fr-CA"
+export type LocaleKeys = (typeof localesGlobalTypes)[number]["value"]; // "en-US" | "fr-CA"
 export const LocaleGlobalKey = "locale";

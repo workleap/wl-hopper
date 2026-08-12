@@ -10,7 +10,7 @@ import Wrapper from "@/app/ui/layout/wrapper/Wrapper";
 import LinkIconButton from "@/components/iconButton/LinkIconButton";
 import ColorSchemeSwitch from "@/components/themeSwitch/ColorSchemeSwitch";
 import { navigation } from "@/configs/navigation";
-import { ThemeContext, type ColorScheme, type Theme } from "@/context/theme/ThemeProvider.tsx";
+import { type ColorScheme, type Theme, ThemeContext } from "@/context/theme/ThemeProvider.tsx";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import LogRocket from "logrocket";
 
@@ -22,7 +22,11 @@ import "./header.css";
 const BackAndBrand = () => {
     return (
         <span className="hd-product">
-            <LinkIconButton className="hd-back-button" aria-label="Workleap's Frontend Platform homepage" href="https://workleap.github.io/wl-idp-docs-hub/">
+            <LinkIconButton
+                className="hd-back-button"
+                aria-label="Workleap's Frontend Platform homepage"
+                href="https://workleap.github.io/wl-idp-docs-hub/"
+            >
                 <BackIcon />
             </LinkIconButton>
             <Link href="/" className="hd-brand" aria-label="Hopper Brand">
@@ -34,8 +38,18 @@ const BackAndBrand = () => {
 };
 
 const BackIcon = () => (
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="30" viewBox="0 0 12 30" fill="currentColor" aria-label="Home" focusable="false" role="img"><path d="M10.6763 23.0822C10.4303 23.328 10.0967 23.4661 9.74885 23.4661C9.40103 23.4661 9.06744 23.328 8.82135 23.0822L1.38384 15.6447C1.13806 15.3986 1 15.065 1 14.7172C1 14.3694 1.13806 14.0358 1.38384 13.7897L8.82135 6.35222C9.0703 6.1205 9.39939 5.99432 9.73945 6.0002C10.0795 6.00607 10.404 6.14354 10.6448 6.38372C10.885 6.62452 11.0225 6.94906 11.0284 7.28912C11.0342 7.62917 10.9081 7.95826 10.6763 8.20722L4.16635 14.7172L10.6763 21.2272C10.9221 21.4733 11.0602 21.8069 11.0602 22.1547C11.0602 22.5025 10.9221 22.8361 10.6763 23.0822Z"></path></svg>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="12"
+        height="30"
+        viewBox="0 0 12 30"
+        fill="currentColor"
+        aria-label="Home"
+        focusable="false"
+        role="img"
+    >
+        <path d="M10.6763 23.0822C10.4303 23.328 10.0967 23.4661 9.74885 23.4661C9.40103 23.4661 9.06744 23.328 8.82135 23.0822L1.38384 15.6447C1.13806 15.3986 1 15.065 1 14.7172C1 14.3694 1.13806 14.0358 1.38384 13.7897L8.82135 6.35222C9.0703 6.1205 9.39939 5.99432 9.73945 6.0002C10.0795 6.00607 10.404 6.14354 10.6448 6.38372C10.885 6.62452 11.0225 6.94906 11.0284 7.28912C11.0342 7.62917 10.9081 7.95826 10.6763 8.20722L4.16635 14.7172L10.6763 21.2272C10.9221 21.4733 11.0602 21.8069 11.0602 22.1547C11.0602 22.5025 10.9221 22.8361 10.6763 23.0822Z"></path>
+    </svg>
 );
 
 const Header = () => {
@@ -59,9 +73,7 @@ const Header = () => {
     }, [isMobileMenuOpen]);
 
     const toggleColorScheme = () => {
-        const cs: ColorScheme = colorScheme === "dark"
-            ? "light"
-            : "dark";
+        const cs: ColorScheme = colorScheme === "dark" ? "light" : "dark";
 
         setColorScheme(cs);
     };
@@ -90,7 +102,11 @@ const Header = () => {
                         {/*<input type="search" placeholder="Search" />*/}
                         <ColorSchemeSwitch onChange={toggleColorScheme} colorScheme={colorScheme!} />
                         <ThemeSwitch onThemeChange={changeTheme} theme={theme} />
-                        <LinkIconButton href="https://github.com/workleap/wl-hopper" target="_blank" aria-label="View source on Github">
+                        <LinkIconButton
+                            href="https://github.com/workleap/wl-hopper"
+                            target="_blank"
+                            aria-label="View source on Github"
+                        >
                             <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 {}
                                 <path

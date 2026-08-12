@@ -7,7 +7,9 @@ export default function Example() {
             <ListBoxItem textValue="Developer">
                 <Text>Developer</Text>
                 <IconList slot="end-icon">
-                    <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
+                    <SparklesIcon />
                 </IconList>
             </ListBoxItem>
             <ListBoxItem textValue="Designer">

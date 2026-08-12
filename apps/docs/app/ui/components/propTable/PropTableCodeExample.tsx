@@ -11,15 +11,11 @@ export function PropTableCodeExample({ children }: { children: ReactNode }) {
     }
 
     return (
-        <>
-            <PopoverTrigger>
-                <Button aria-label="example" variant="secondary" size="sm">
-                    Show example code
-                </Button>
-                <Popover>
-                    {children}
-                </Popover>
-            </PopoverTrigger>
-        </>
+        <PopoverTrigger>
+            <Button aria-label="example" variant="secondary" size="sm">
+                Show example code
+            </Button>
+            <Popover>{children}</Popover>
+        </PopoverTrigger>
     );
 }

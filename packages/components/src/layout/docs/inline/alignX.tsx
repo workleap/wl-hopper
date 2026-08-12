@@ -1,4 +1,4 @@
-import { Inline, Div, type DivProps } from "@hopper-ui/components";
+import { Div, type DivProps, Inline } from "@hopper-ui/components";
 
 function Square(props: DivProps) {
     return <Div backgroundColor="decorative-option1" height="core_640" width="core_640" {...props} />;

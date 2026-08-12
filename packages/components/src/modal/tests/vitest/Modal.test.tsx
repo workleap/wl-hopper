@@ -1,4 +1,3 @@
-
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { userEvent } from "@testing-library/user-event";
@@ -10,14 +9,22 @@ import { Modal, ModalContext, ModalTrigger } from "../../src/index.ts";
 
 describe("Modal", () => {
     it("should render with default class", () => {
-        render(<Modal isOpen><Heading>Test</Heading></Modal>);
+        render(
+            <Modal isOpen>
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         const element = screen.getByRole("dialog");
         expect(element).toHaveClass("hop-Modal");
     });
 
     it("should support custom class", () => {
-        render(<Modal isOpen className="test"><Heading>Test</Heading></Modal>);
+        render(
+            <Modal isOpen className="test">
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         const element = screen.getByRole("dialog");
         expect(element).toHaveClass("hop-Modal");
@@ -25,14 +32,22 @@ describe("Modal", () => {
     });
 
     it("should support custom style", () => {
-        render(<Modal isOpen marginTop="stack-sm" style={{ marginBottom: "13px" }}><Heading>Test</Heading></Modal>);
+        render(
+            <Modal isOpen marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         const element = screen.getByRole("dialog");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<Modal isOpen aria-label="options" data-foo="bar"><Heading>Test</Heading></Modal>);
+        render(
+            <Modal isOpen aria-label="options" data-foo="bar">
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         const element = screen.getByRole("dialog");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -41,7 +56,9 @@ describe("Modal", () => {
     it("should support slots", () => {
         render(
             <ModalContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <Modal isOpen slot="test"><Heading>Test</Heading></Modal>
+                <Modal isOpen slot="test">
+                    <Heading>Test</Heading>
+                </Modal>
             </ModalContext.Provider>
         );
 
@@ -53,7 +70,11 @@ describe("Modal", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<Modal isOpen aria-label="options" ref={ref}><Heading>Test</Heading></Modal>);
+        render(
+            <Modal isOpen aria-label="options" ref={ref}>
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         expect(ref.current).not.toBeNull();
     });
@@ -62,9 +83,11 @@ describe("Modal", () => {
         const user = userEvent.setup();
         const onOpenChange = vi.fn();
 
-        render((
-            <Modal defaultOpen onOpenChange={onOpenChange}><Heading>Test</Heading></Modal>
-        ));
+        render(
+            <Modal defaultOpen onOpenChange={onOpenChange}>
+                <Heading>Test</Heading>
+            </Modal>
+        );
 
         // Ensure modal is open
         expect(screen.getByRole("dialog")).toBeInTheDocument();
@@ -82,12 +105,14 @@ describe("Modal", () => {
         const onOpenChange = vi.fn();
         const modalOnOpenChange = vi.fn();
 
-        render((
+        render(
             <ModalTrigger defaultOpen onOpenChange={onOpenChange}>
                 <Button>Open Modal</Button>
-                <Modal onOpenChange={modalOnOpenChange}><Heading>Test</Heading></Modal>
+                <Modal onOpenChange={modalOnOpenChange}>
+                    <Heading>Test</Heading>
+                </Modal>
             </ModalTrigger>
-        ));
+        );
 
         // Ensure modal is open
         expect(screen.getByRole("dialog")).toBeInTheDocument();
@@ -98,6 +123,8 @@ describe("Modal", () => {
         // Check if handler was called with false
         expect(onOpenChange).toHaveBeenCalledWith(false);
         expect(modalOnOpenChange).not.toHaveBeenCalledWith(false); // The behavior we are expecting is RAC's. When inside a trigger, the modal's onOpenChange is not called.
-        expect(logSpy).toHaveBeenCalledWith("Modal: `onOpenChange` is not supported when using `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead. Refer to https://github.com/adobe/react-spectrum/issues/6547");
+        expect(logSpy).toHaveBeenCalledWith(
+            "Modal: `onOpenChange` is not supported when using `ModalTrigger`. Use the `onOpenChange` prop of `ModalTrigger` instead. Refer to https://github.com/adobe/react-spectrum/issues/6547"
+        );
     });
 });

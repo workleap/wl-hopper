@@ -1,7 +1,17 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { createContext, forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Input as RACInput, useContextProps, type ContextValue, type InputProps as RACInputProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, createContext, forwardRef } from "react";
+import {
+    type ContextValue,
+    Input as RACInput,
+    type InputProps as RACInputProps,
+    useContextProps
+} from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
 
@@ -24,27 +34,12 @@ export const Input = forwardRef(function Input(props: InputProps, ref: Forwarded
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
-    const classNames = clsx(
-        className,
-        cssModule(
-            styles,
-            "hop-Input",
-            size
-        ),
-        stylingProps.className
-    );
+    const classNames = clsx(className, cssModule(styles, "hop-Input", size), stylingProps.className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
         ...style
     };
 
-    return (
-        <RACInput
-            {...otherProps}
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-        />
-    );
+    return <RACInput {...otherProps} ref={ref} className={classNames} style={mergedStyles} />;
 });

@@ -1,16 +1,16 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import type { DOMProps } from "@react-types/shared";
-import { forwardRef, type ForwardedRef } from "react";
+import { type ForwardedRef, forwardRef } from "react";
 import {
-    composeRenderProps,
     DisclosureGroup as RACDisclosureGroup,
-    useContextProps,
     type DisclosureGroupProps as RACDisclosureGroupProps,
-    type SlotProps
+    type SlotProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { DisclosureContext, DisclosureHeaderContext, DisclosurePanelContext } from "../../disclosure/index.ts";
-import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { AccordionContext } from "./AccordionContext.ts";
 
@@ -25,22 +25,12 @@ export interface AccordionProps extends StyledComponentProps<RACDisclosureGroupP
 function Accordion(props: AccordionProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, AccordionContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children: childrenProp,
-        style: styleProp,
-        variant = "standalone",
-        ...otherProps
-    } = ownProps;
+    const { className, children: childrenProp, style: styleProp, variant = "standalone", ...otherProps } = ownProps;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalAccordionCssSelector,
-        cssModule(
-            styles,
-            "hop-Accordion",
-            variant
-        ),
+        cssModule(styles, "hop-Accordion", variant),
         stylingProps.className
     );
 
@@ -56,25 +46,30 @@ function Accordion(props: AccordionProps, ref: ForwardedRef<HTMLDivElement>) {
     });
 
     return (
-        <RACDisclosureGroup
-            ref={ref}
-            className={classNames}
-            style={style}
-            {...otherProps}
-        >
+        <RACDisclosureGroup ref={ref} className={classNames} style={style} {...otherProps}>
             {accordionRenderProps => (
-                <SlotProvider values={[
-                    [DisclosureContext, {
-                        className: styles["hop-Accordion__disclosure"],
-                        variant: "inline"
-                    }],
-                    [DisclosureHeaderContext, {
-                        className: styles["hop-Accordion__disclosure-header"]
-                    }],
-                    [DisclosurePanelContext, {
-                        className: styles["hop-Accordion__disclosure-panel"]
-                    }]
-                ]}
+                <SlotProvider
+                    values={[
+                        [
+                            DisclosureContext,
+                            {
+                                className: styles["hop-Accordion__disclosure"],
+                                variant: "inline"
+                            }
+                        ],
+                        [
+                            DisclosureHeaderContext,
+                            {
+                                className: styles["hop-Accordion__disclosure-header"]
+                            }
+                        ],
+                        [
+                            DisclosurePanelContext,
+                            {
+                                className: styles["hop-Accordion__disclosure-panel"]
+                            }
+                        ]
+                    ]}
                 >
                     {children(accordionRenderProps)}
                 </SlotProvider>

@@ -6,13 +6,14 @@
 ## Adding a new icon
 
 1. Add SVGs to Size-Specific and Metadata Folders
+
 - Get the three versions (16px, 24px, 32px) of the SVG icon you want to add. Having 3 versions of the icon is mandatory.
 - Place each version in the following folders:
   - `packages/svg-icons/src/icons/16px`
   - `packages/svg-icons/src/icons/24px`
   - `packages/svg-icons/src/icons/32px`
 - For each icon, create a JSON metadata file `<YourIconName>.json` in the metadata directory - `packages/svg-icons/src/icons/metadata`. Having a metadata of the icon is mandatory. This is the following structure:
- 
+
 ```
 {
   "name": "YourIconName",
@@ -22,13 +23,17 @@
 ```
 
 2. Test the source SVGs
+
 - Run the following command to test the source SVGs:
+
 ```sh
 pnpm test
 ```
+
 - If one or more of the source SVGs fail the test, you will need to fix the SVGs before proceeding to the next step.
 
 3. Optimization and Generation of icons
+
 - To generate optimized SVGs and React components, run the following command:
 
 ```sh
@@ -45,6 +50,7 @@ pnpm generate-icons
   - One for the `@hopper-ui/icons` package
 
 You can do this by running the following command twice:
+
 ```sh
 pnpm changeset
 ```

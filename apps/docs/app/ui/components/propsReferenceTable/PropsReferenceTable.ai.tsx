@@ -1,8 +1,24 @@
-import { getPropsTableRows, getScaleLinkCategory, hasScaleLink, TokenScales, type PropsTableRow, type StyleGroup, type TokenScale } from "@/app/lib/styleProps";
+import {
+    type PropsTableRow,
+    type StyleGroup,
+    type TokenScale,
+    TokenScales,
+    getPropsTableRows,
+    getScaleLinkCategory,
+    hasScaleLink
+} from "@/app/lib/styleProps";
 import type { ReactNode } from "react";
 
 function toScaleLink(scale: TokenScale) {
-    return hasScaleLink(scale) ? <a href={TokenScales[scale].link} target="_blank" rel="noreferrer" >{`${getScaleLinkCategory(scale)} > ${TokenScales[scale].title}`}</a> : scale;
+    return hasScaleLink(scale) ? (
+        <a
+            href={TokenScales[scale].link}
+            target="_blank"
+            rel="noreferrer"
+        >{`${getScaleLinkCategory(scale)} > ${TokenScales[scale].title}`}</a>
+    ) : (
+        scale
+    );
 }
 
 function toRowValues([propName, cssProperty, scale, supports]: PropsTableRow): Item {
@@ -28,11 +44,7 @@ interface Item {
 export default function PropsReferenceTable({ group }: PropsReferenceTableProps) {
     const rows = getPropsTableRows(group);
 
-    return (
-        <PropsReferenceTableRender
-            items={rows.map(x => toRowValues(x))}
-        />
-    );
+    return <PropsReferenceTableRender items={rows.map(x => toRowValues(x))} />;
 }
 
 function PropsReferenceTableRender({ items }: { items: Item[] }) {
@@ -61,4 +73,3 @@ function PropsReferenceTableRender({ items }: { items: Item[] }) {
         </table>
     );
 }
-

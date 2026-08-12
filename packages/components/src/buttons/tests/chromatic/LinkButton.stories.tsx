@@ -26,15 +26,23 @@ export const Primary: Story = {
                 <Stack>
                     <h1>Default</h1>
                     <Inline alignY="end">
-                        <LinkButton size="xs" {...args}>Help</LinkButton>
-                        <LinkButton size="sm" {...args}>Help</LinkButton>
+                        <LinkButton size="xs" {...args}>
+                            Help
+                        </LinkButton>
+                        <LinkButton size="sm" {...args}>
+                            Help
+                        </LinkButton>
                         <LinkButton {...args}>Help</LinkButton>
                     </Inline>
                     <Div>
-                        <LinkButton isFluid {...args}>Help</LinkButton>
+                        <LinkButton isFluid {...args}>
+                            Help
+                        </LinkButton>
                     </Div>
                     <Div width="10%">
-                        <LinkButton isFluid {...args}>Help</LinkButton>
+                        <LinkButton isFluid {...args}>
+                            Help
+                        </LinkButton>
                     </Div>
                 </Stack>
                 <Stack>
@@ -56,19 +64,25 @@ export const Primary: Story = {
                     <Inline alignY="end">
                         <LinkButton size="xs" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </LinkButton>
                         <LinkButton {...args}>
                             <IconList>
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                             <Text>Save</Text>
                         </LinkButton>
@@ -109,19 +123,25 @@ export const Primary: Story = {
                         <LinkButton size="xs" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </LinkButton>
                         <LinkButton size="sm" {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </LinkButton>
                         <LinkButton {...args}>
                             <Text>Save</Text>
                             <IconList slot="end-icon">
-                                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
+                                <SparklesIcon />
                             </IconList>
                         </LinkButton>
                     </Inline>
@@ -207,8 +227,12 @@ export const GhostDanger: Story = {
 
 const StateTemplate = (args: Partial<LinkButtonProps>) => (
     <Inline alignY="end">
-        <LinkButton size="xs" {...args}>Help</LinkButton>
-        <LinkButton size="sm" {...args}>Help</LinkButton>
+        <LinkButton size="xs" {...args}>
+            Help
+        </LinkButton>
+        <LinkButton size="sm" {...args}>
+            Help
+        </LinkButton>
         <LinkButton {...args}>Help</LinkButton>
         <LinkButton {...args}>
             <SparklesIcon />
@@ -221,13 +245,17 @@ const StateTemplate = (args: Partial<LinkButtonProps>) => (
         <LinkButton {...args}>
             <Text>Save</Text>
             <IconList>
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </LinkButton>
         <LinkButton {...args}>
             <Text>Save</Text>
             <IconList slot="end-icon">
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </LinkButton>
     </Inline>
@@ -239,7 +267,8 @@ export const PrimaryStates: Story = {
         const buttons = canvas.getAllByRole("link");
 
         buttons.forEach(button => {
-            if (button.getAttribute("disabled") !== "") { // don't try and force states on a disabled input
+            if (button.getAttribute("disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (button.getAttribute("data-chromatic-force-focus")) {
                     button.setAttribute("data-focus-visible", "true");
                     button.removeAttribute("data-chromatic-force-focus");

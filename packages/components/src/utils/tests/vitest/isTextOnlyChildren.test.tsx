@@ -8,7 +8,7 @@ describe("is-text-only-children", () => {
     });
 
     it("should return true when children is string array", () => {
-        const result = isTextOnlyChildren(<>test string + {" "} + test2</>);
+        const result = isTextOnlyChildren(<>test string + + test2</>);
 
         expect(result).toBe(true);
     });
@@ -20,7 +20,13 @@ describe("is-text-only-children", () => {
     });
 
     it("should return true when children is nested fragments", () => {
-        const result = isTextOnlyChildren(<><><>test string</></></>);
+        const result = isTextOnlyChildren(
+            <>
+                <>
+                    <>test string</>
+                </>
+            </>
+        );
 
         expect(result).toBe(true);
     });
@@ -32,13 +38,25 @@ describe("is-text-only-children", () => {
     });
 
     it("should return false when children is fragment", () => {
-        const result = isTextOnlyChildren(<><button type="button">test</button></>);
+        const result = isTextOnlyChildren(
+            <>
+                <button type="button">test</button>
+            </>
+        );
 
         expect(result).toBe(false);
     });
 
     it("should return false when children is nested fragments", () => {
-        const result = isTextOnlyChildren(<><><><button type="button">test</button></></></>);
+        const result = isTextOnlyChildren(
+            <>
+                <>
+                    <>
+                        <button type="button">test</button>
+                    </>
+                </>
+            </>
+        );
 
         expect(result).toBe(false);
     });

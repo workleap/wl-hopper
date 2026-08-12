@@ -7,7 +7,7 @@ export default function Example() {
     return (
         <DatePicker
             label="Appointment date"
-            validate={date => date && isWeekend(date, locale) ? "We are closed on weekends." : null}
+            validate={date => (date && isWeekend(date, locale) ? "We are closed on weekends." : null)}
             defaultValue={parseDate("2023-10-28")}
         />
     );

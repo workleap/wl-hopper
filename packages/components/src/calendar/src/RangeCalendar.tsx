@@ -1,12 +1,18 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import type { GlobalDOMAttributes } from "@react-types/shared";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { RangeCalendar as AriaRangeCalendar, FieldErrorContext, useContextProps, type RangeCalendarProps as AriaRangeCalendarProps, type DateValue } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type ReactNode, forwardRef } from "react";
+import {
+    RangeCalendar as AriaRangeCalendar,
+    type RangeCalendarProps as AriaRangeCalendarProps,
+    type DateValue,
+    FieldErrorContext,
+    useContextProps
+} from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { cssModule, SlotProvider, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { CalendarGrid } from "./CalendarGrid.tsx";
 import { CalendarHeader } from "./CalendarHeader.tsx";
@@ -18,21 +24,24 @@ export const GlobalRangeCalendarCssSelector = "hop-RangeCalendar";
 
 type OmittedRangeCalendarProps = "visibleDuration" | "style" | "className" | "children" | keyof GlobalDOMAttributes;
 
-export interface RangeCalendarProps extends Omit<AriaRangeCalendarProps<DateValue>, OmittedRangeCalendarProps>, StyledComponentProps<BaseComponentDOMProps> {
+export interface RangeCalendarProps
+    extends
+        Omit<AriaRangeCalendarProps<DateValue>, OmittedRangeCalendarProps>,
+        StyledComponentProps<BaseComponentDOMProps> {
     /**
-   * The error message to display when the range calendar is invalid.
-   */
+     * The error message to display when the range calendar is invalid.
+     */
     errorMessage?: ReactNode;
     /**
-   * The number of months to display at once.
-   * @default 1
-   */
+     * The number of months to display at once.
+     * @default 1
+     */
     visibleMonths?: number;
 
     /**
-   * Whether the calendar should always display 6 weeks.
-   * @default false
-   */
+     * Whether the calendar should always display 6 weeks.
+     * @default false
+     */
     isFixedWeeks?: boolean;
 }
 
@@ -41,21 +50,11 @@ const RangeCalendar = (props: RangeCalendarProps, ref: ForwardedRef<HTMLDivEleme
 
     const stringFormatter = useLocalizedString();
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        errorMessage,
-        style,
-        visibleMonths = 1,
-        isFixedWeeks = false,
-        ...otherProps
-    } = ownProps;
+    const { className, errorMessage, style, visibleMonths = 1, isFixedWeeks = false, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalRangeCalendarCssSelector,
-        cssModule(
-            styles,
-            GlobalRangeCalendarCssSelector
-        ),
+        cssModule(styles, GlobalRangeCalendarCssSelector),
         stylingProps.className,
         className
     );
@@ -84,11 +83,14 @@ const RangeCalendar = (props: RangeCalendarProps, ref: ForwardedRef<HTMLDivEleme
                     </div>
                     <SlotProvider
                         values={[
-                            [FieldErrorContext, {
-                                isInvalid,
-                                validationErrors: [] as never[],
-                                validationDetails: {} as never
-                            }]
+                            [
+                                FieldErrorContext,
+                                {
+                                    isInvalid,
+                                    validationErrors: [] as never[],
+                                    validationDetails: {} as never
+                                }
+                            ]
                         ]}
                     >
                         <ErrorMessage className={styles["hop-RangeCalendar__error-message"]}>

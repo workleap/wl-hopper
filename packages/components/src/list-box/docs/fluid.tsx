@@ -13,7 +13,9 @@ export default function Example() {
             </ListBoxItem>
             <ListBoxItem textValue="Manager">
                 <Text>Manager</Text>
-                <Text slot="description">Responsible for leading and overseeing a team or department to ensure organizational goals are met.</Text>
+                <Text slot="description">
+                    Responsible for leading and overseeing a team or department to ensure organizational goals are met.
+                </Text>
             </ListBoxItem>
         </ListBox>
     );

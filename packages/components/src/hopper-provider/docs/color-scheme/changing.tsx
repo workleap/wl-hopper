@@ -1,9 +1,4 @@
-import {
-    Button,
-    Div,
-    HopperProvider,
-    useColorSchemeContext
-} from "@hopper-ui/components";
+import { Button, Div, HopperProvider, useColorSchemeContext } from "@hopper-ui/components";
 import { useCallback } from "react";
 
 function ColorSchemeToggle() {

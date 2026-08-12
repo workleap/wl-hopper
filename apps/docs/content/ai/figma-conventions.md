@@ -17,7 +17,7 @@ General rules on how to interpret `data-name` attribute in Figma elements:
 **Example mapping of Figma elements based on the above rules:**
 
 | Figma Element (data-name)    | Hopper Component, Hopper Icon, Product Icon/Logo/Image/Avatar |
-|------------------------------|---------------------------------------------------------------|
+| ---------------------------- | ------------------------------------------------------------- |
 | `Button/submit`              | `Button`                                                      |
 | `Select/filter by group`     | `Select`                                                      |
 | `Tag`                        | `Tag`                                                         |

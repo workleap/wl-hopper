@@ -1,6 +1,4 @@
-import type {
-    ResponsiveProp
-} from "@hopper-ui/styled-system";
+import type { ResponsiveProp } from "@hopper-ui/styled-system";
 import type { AriaLabelingProps, DOMProps as SharedDOMProps, ValidationResult } from "@react-types/shared";
 import type { CSSProperties, ReactNode } from "react";
 import type { SlotProps } from "react-aria-components";

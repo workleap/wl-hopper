@@ -19,4 +19,3 @@ describe("ButtonGroup", () => {
         expect(renderOnServer).not.toThrow();
     });
 });
-

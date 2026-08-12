@@ -1,13 +1,23 @@
 import { AngleRightIcon, CheckmarkIcon, IconContext } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { DEFAULT_SLOT, MenuItem as RACMenuItem, useContextProps, type MenuItemProps as RACMenuItemProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type ReactNode, forwardRef } from "react";
+import {
+    DEFAULT_SLOT,
+    MenuItem as RACMenuItem,
+    type MenuItemProps as RACMenuItemProps,
+    useContextProps
+} from "react-aria-components";
 
 import { AvatarContext } from "../../avatar/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { Text, TextContext } from "../../typography/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { MenuItemContext } from "./MenuItemContext.ts";
 
@@ -32,28 +42,30 @@ export interface MenuItemProps extends StyledComponentProps<RACMenuItemProps> {
      */
     size?: ResponsiveProp<MenuItemSize>;
     /**
-    * Whether the menu should close when the menu item is selected.
-    */
+     * Whether the menu should close when the menu item is selected.
+     */
     shouldCloseOnSelect?: boolean;
-
 }
 
 const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
     [props, ref] = useContextProps(props, ref, MenuItemContext);
     const { style, ...ownProps } = useStyledSystem(props);
-    const { children, stylingProps, className, isInvalid, size: sizeProp, shouldCloseOnSelect, ...otherProps } = ownProps;
+    const {
+        children,
+        stylingProps,
+        className,
+        isInvalid,
+        size: sizeProp,
+        shouldCloseOnSelect,
+        ...otherProps
+    } = ownProps;
     const size = useResponsiveValue(sizeProp) || "sm";
     const textValue = props.textValue || (typeof children === "string" ? children : undefined);
 
     const classNames = clsx(
         className,
         GlobalMenuItemCssSelector,
-        cssModule(
-            styles,
-            GlobalMenuItemCssSelector,
-            isInvalid && "invalid",
-            size
-        ),
+        cssModule(styles, GlobalMenuItemCssSelector, isInvalid && "invalid", size),
         stylingProps.className
     );
 
@@ -79,14 +91,18 @@ const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
                 const { selectionMode, hasSubmenu, isSelected } = renderProps;
 
                 return (
-                    <>
-                        <SlotProvider
-                            values={[
-                                [AvatarContext, {
+                    <SlotProvider
+                        values={[
+                            [
+                                AvatarContext,
+                                {
                                     size: "sm",
                                     className: styles["hop-MenuItem__avatar"]
-                                }],
-                                [IconContext, {
+                                }
+                            ],
+                            [
+                                IconContext,
+                                {
                                     slots: {
                                         [DEFAULT_SLOT]: {
                                             className: styles["hop-MenuItem__icon"]
@@ -95,37 +111,44 @@ const MenuItem = (props: MenuItemProps, ref: ForwardedRef<HTMLDivElement>) => {
                                             className: styles["hop-MenuItem__end-icon"]
                                         }
                                     }
-                                }],
-                                [IconListContext, {
+                                }
+                            ],
+                            [
+                                IconListContext,
+                                {
                                     slots: {
                                         "end-icon": {
                                             className: styles["hop-MenuItem__end-icon"]
                                         }
                                     }
-                                }],
-                                [TextContext, {
+                                }
+                            ],
+                            [
+                                TextContext,
+                                {
                                     slots: {
                                         [DEFAULT_SLOT]: {
                                             slot: "label",
                                             className: styles["hop-MenuItem__text"],
                                             size: size === "lg" ? "md" : "sm"
                                         },
-                                        "description": {
+                                        description: {
                                             className: styles["hop-MenuItem__description"],
                                             size: "xs"
                                         }
                                     }
-                                }]
-                            ]}
-                        >
-                            {selectionMode !== "none" && !hasSubmenu && isSelected &&
-                                <CheckmarkIcon className={styles["hop-MenuItem__checkmark"]} size="sm" />}
-                            {typeof children === "string" ? <Text>{children}</Text> : children}
-                            {renderProps.hasSubmenu && (
-                                <AngleRightIcon size="sm" slot="end-icon" className={styles["hop-MenuItem__arrow"]} />
-                            )}
-                        </SlotProvider>
-                    </>
+                                }
+                            ]
+                        ]}
+                    >
+                        {selectionMode !== "none" && !hasSubmenu && isSelected && (
+                            <CheckmarkIcon className={styles["hop-MenuItem__checkmark"]} size="sm" />
+                        )}
+                        {typeof children === "string" ? <Text>{children}</Text> : children}
+                        {renderProps.hasSubmenu && (
+                            <AngleRightIcon size="sm" slot="end-icon" className={styles["hop-MenuItem__arrow"]} />
+                        )}
+                    </SlotProvider>
                 );
             }}
         </RACMenuItem>

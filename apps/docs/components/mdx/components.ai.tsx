@@ -24,30 +24,30 @@ import type { ReactNode } from "react";
 import Link from "../link/Link.ai";
 
 export const components = {
-    Overview: Overview,
-    Tag: Tag,
-    Callout: Callout,
+    Overview,
+    Tag,
+    Callout,
     CodeOnlyExample: ComponentExample,
     Example: ComponentExample,
-    ComposedComponents: ComposedComponents,
-    DosAndDonts: DosAndDonts,
-    PropTable: PropTable,
-    MigrateGuide: MigrateGuide,
-    PackageInstallation: PackageInstallation,
+    ComposedComponents,
+    DosAndDonts,
+    PropTable,
+    MigrateGuide,
+    PackageInstallation,
     CardLink,
     CardLinkList,
-    Switcher: Switcher,
-    IconSpecTable: IconSpecTable,
-    TokenTable: TokenTable,
-    TypographyTable: TypographyTable,
-    TypographyVariantTable: TypographyVariantTable,
-    TableSection: TableSection,
-    BreakpointTable: BreakpointTable,
-    PropsReferenceTable: PropsReferenceTable,
-    SimpleTable: SimpleTable,
-    Expand: Expand,
-    Link: Link,
-    AI: AI,
+    Switcher,
+    IconSpecTable,
+    TokenTable,
+    TypographyTable,
+    TypographyVariantTable,
+    TableSection,
+    BreakpointTable,
+    PropsReferenceTable,
+    SimpleTable,
+    Expand,
+    Link,
+    AI,
 
     FigmaAuthentication: () => <div />,
     McpConfiguration: () => <div />,
@@ -66,9 +66,7 @@ export const components = {
     SvgIconLibIcon: () => <div />,
     SvgRichIconLibIcon: () => <div />,
 
-    Card: ({ children }: { children: ReactNode }) => (
-        <div>{children}</div>
-    )
+    Card: ({ children }: { children: ReactNode }) => <div>{children}</div>
 } as const;
 
 export function isValidComponentName(name: string): boolean {

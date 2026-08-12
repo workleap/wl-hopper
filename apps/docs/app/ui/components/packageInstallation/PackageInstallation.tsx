@@ -8,7 +8,7 @@ export interface PackageInstallationProps {
     mode: "dev" | "prod";
 }
 
-type MethodIcons = Record<typeof methods[number], ReactElement>;
+type MethodIcons = Record<(typeof methods)[number], ReactElement>;
 
 const methods = ["pnpm", "yarn", "npm"] as const;
 
@@ -65,21 +65,19 @@ ${code.replace(/\s{2,}/g, " ")}
 };
 
 const PackageInstallation = async ({ library, mode = "prod" }: PackageInstallationProps) => {
-    const tabsContent = await Promise.all(methods.map(async method => {
-        const code = await formatCode(method, library, mode);
+    const tabsContent = await Promise.all(
+        methods.map(async method => {
+            const code = await formatCode(method, library, mode);
 
-        return (
-            <div key={method}>
-                <HighlightCode code={code} />
-            </div>
-        );
-    }));
-
-    return (
-        <Tabs tabs={installMethods}>
-            {tabsContent}
-        </Tabs>
+            return (
+                <div key={method}>
+                    <HighlightCode code={code} />
+                </div>
+            );
+        })
     );
+
+    return <Tabs tabs={installMethods}>{tabsContent}</Tabs>;
 };
 
 export default PackageInstallation;

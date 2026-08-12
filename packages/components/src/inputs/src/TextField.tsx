@@ -1,21 +1,21 @@
 import { IconContext } from "@hopper-ui/icons";
 import {
+    type ResponsiveProp,
+    type StyledComponentProps,
     useIsomorphicLayoutEffect,
     useResponsiveValue,
-    useStyledSystem,
-    type ResponsiveProp,
-    type StyledComponentProps
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import { mergeRefs } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { forwardRef, useCallback, useState, type ForwardedRef, type MutableRefObject, type ReactNode } from "react";
+import { type ForwardedRef, type MutableRefObject, type ReactNode, forwardRef, useCallback, useState } from "react";
 import { useObjectRef } from "react-aria";
 import {
-    composeRenderProps,
     TextField as RACTextField,
-    useContextProps,
-    type TextFieldProps as RACTextFieldProps
+    type TextFieldProps as RACTextFieldProps,
+    composeRenderProps,
+    useContextProps
 } from "react-aria-components";
 
 import { ClearButton } from "../../buttons/index.ts";
@@ -25,12 +25,12 @@ import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel, TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
+    type FieldProps,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    SlotProvider,
-    useTruncatedText,
-    type FieldProps
+    useTruncatedText
 } from "../../utils/index.ts";
 
 import { Input, type InputProps } from "./Input.tsx";
@@ -104,10 +104,7 @@ export interface TextFieldProps extends Omit<StyledComponentProps<RACTextFieldPr
 
 function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, TextFieldContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -143,19 +140,16 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
         ...otherProps
     } = ownProps;
 
-    const inputRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null));
+    const inputRef = useObjectRef(
+        mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
     const overMaxLength = !!maxLength && characterCount > maxLength;
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalTextFieldCssSelector,
-        cssModule(
-            styles,
-            "hop-TextField",
-            isClearable && "clearable",
-            isFluid && "fluid"
-        ),
+        cssModule(styles, "hop-TextField", isClearable && "clearable", isFluid && "fluid"),
         stylingProps.className
     );
 
@@ -166,11 +160,14 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
         };
     });
 
-    const handleTextChanged = useCallback((value: string) => {
-        setCharacterCount(value.length);
+    const handleTextChanged = useCallback(
+        (value: string) => {
+            setCharacterCount(value.length);
 
-        onChangeProp?.(value);
-    }, [onChangeProp]);
+            onChangeProp?.(value);
+        },
+        [onChangeProp]
+    );
 
     const truncateText = useTruncatedText();
     const [value, onChange] = useControlledState<string>(valueProp, defaultValue || "", handleTextChanged);
@@ -183,7 +180,9 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     const showClearButton = isClearable && characterCount !== 0;
 
     if (showCharacterCount && !maxLength) {
-        console.warn("If showCharacterCount is true, maxLength must be set to the maximum number of characters allowed in the TextField.");
+        console.warn(
+            "If showCharacterCount is true, maxLength must be set to the maximum number of characters allowed in the TextField."
+        );
     }
 
     if (allowExceedingMaxLength && !showCharacterCount) {
@@ -191,10 +190,11 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
     }
 
     const prefixMarkup = prefix ? (
-        <SlotProvider values={[
-            [TextContext, { size, className: styles["hop-TextField__prefix"] }],
-            [IconContext, { size, className: styles["hop-TextField__prefix"] }]
-        ]}
+        <SlotProvider
+            values={[
+                [TextContext, { size, className: styles["hop-TextField__prefix"] }],
+                [IconContext, { size, className: styles["hop-TextField__prefix"] }]
+            ]}
         >
             {ensureTextWrapper(prefix)}
         </SlotProvider>
@@ -250,7 +250,9 @@ function TextField(props: TextFieldProps, ref: ForwardedRef<HTMLDivElement>) {
                 {label}
             </FieldLabel>
             {inputMarkup}
-            {description && <HelperMessage className={styles["hop-TextField__HelperMessage"]}>{description}</HelperMessage>}
+            {description && (
+                <HelperMessage className={styles["hop-TextField__HelperMessage"]}>{description}</HelperMessage>
+            )}
             <ErrorMessage className={styles["hop-TextField__ErrorMessage"]}>{errorMessage}</ErrorMessage>
         </>
     );

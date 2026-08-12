@@ -6,11 +6,7 @@ import { HopperProvider } from "../../src/index.ts";
 
 describe("HopperProvider", () => {
     it("should render with default class", () => {
-        render(
-            <HopperProvider colorScheme="light">
-                Test
-            </HopperProvider>
-        );
+        render(<HopperProvider colorScheme="light">Test</HopperProvider>);
 
         const element = screen.getByText("Test");
         expect(element).toHaveClass("hop-HopperProvider");

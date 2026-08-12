@@ -1,5 +1,5 @@
 import { Button, ButtonGroup, Div, Form, TextField } from "@hopper-ui/components";
-import { useState, type FormEvent } from "react";
+import { type FormEvent, useState } from "react";
 
 export default function Example() {
     const [name, setName] = useState("");
@@ -16,8 +16,12 @@ export default function Example() {
             <TextField label="Name" value={name} onChange={setName} />
             <Div>You entered: {name}</Div>
             <ButtonGroup>
-                <Button type="submit" variant="primary">Submit</Button>
-                <Button type="reset" variant="secondary">Reset</Button>
+                <Button type="submit" variant="primary">
+                    Submit
+                </Button>
+                <Button type="reset" variant="secondary">
+                    Reset
+                </Button>
             </ButtonGroup>
         </Form>
     );

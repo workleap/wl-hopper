@@ -124,7 +124,9 @@ export const Styling = {
         <Inline>
             <Badge border="warning" {...props} />
             <Badge className="border-red" {...props} />
-            <Badge style={{ border: "1px solid darkRed" }} {...props}>New</Badge>
+            <Badge style={{ border: "1px solid darkRed" }} {...props}>
+                New
+            </Badge>
         </Inline>
     )
 } satisfies Story;
@@ -132,15 +134,9 @@ export const Styling = {
 export const AccessToDisabledState = {
     render: props => (
         <Inline>
-            <Badge
-                {...props}
-                isDisabled
-                style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}}
-            />
+            <Badge {...props} isDisabled style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})} />
             <Badge {...props} isDisabled>
-                {({ isDisabled }) => (
-                    isDisabled ? "Disabled" : ""
-                )}
+                {({ isDisabled }) => (isDisabled ? "Disabled" : "")}
             </Badge>
         </Inline>
     )
@@ -151,13 +147,11 @@ export const AccessToIndeterminateState = {
         <Badge
             {...props}
             isIndeterminate
-            style={({ isIndeterminate }) => isIndeterminate ? { border: "1px solid red" } : {}}
+            style={({ isIndeterminate }) => (isIndeterminate ? { border: "1px solid red" } : {})}
         />
     )
 } satisfies Story;
 
 export const Number = {
-    render: props => (
-        <Badge {...props}>{0}</Badge>
-    )
+    render: props => <Badge {...props}>{0}</Badge>
 } satisfies Story;

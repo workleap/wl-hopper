@@ -1,13 +1,12 @@
-
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 import {
     type FontProperties,
-    groupItemsByProperties,
-    groupItemsByPropertiesAndSizes,
     type Size,
-    type TokenData
+    type TokenData,
+    groupItemsByProperties,
+    groupItemsByPropertiesAndSizes
 } from "@/app/lib/getTypographyTokens";
-import { getTokens, type TokenValue } from "../allDataTokens";
+import { type TokenValue, getTokens } from "../allDataTokens";
 
 // maps the raw token list of a list filtered by property
 function transformDataToTokenData(inputData: Record<string, TokenValue[]>): TokenData {
@@ -36,23 +35,17 @@ const TypographyTable = ({ type, tokenType }: TypographyTableProps) => {
     const tokenData = transformDataToTokenData(data as Record<string, TokenValue[]>);
     const listItems = hasNoSizes ? generateSizelessRows(tokenData, type) : generateSizeRows(tokenData, type);
 
-    return (
-        <TypographyTableRender
-            showSize={!hasNoSizes}
-            items={listItems}
-        />
-    );
+    return <TypographyTableRender showSize={!hasNoSizes} items={listItems} />;
 };
 
 function generateSizeRows(tokenData: TokenData, type: string) {
     const filteredData = groupItemsByPropertiesAndSizes(tokenData, type);
 
-    return Object.keys(filteredData).map(size => {
-        return typographyTableRows(
-            filteredData[size as Size],
-            size as Size
-        );
-    }).flatMap(rows => rows);
+    return Object.keys(filteredData)
+        .map(size => {
+            return typographyTableRows(filteredData[size as Size], size as Size);
+        })
+        .flatMap(rows => rows);
 }
 
 function generateSizelessRows(tokenData: TokenData, type: string) {
@@ -62,16 +55,18 @@ function generateSizelessRows(tokenData: TokenData, type: string) {
 }
 
 function typographyTableRows(properties?: FontProperties, size?: Size) {
-    return Object.entries(properties || {}).filter(([, item]) => {
-        return item !== undefined;
-    }).map(([key, item]) => {
-        return {
-            name: size,
-            propertyName: key,
-            tokenName: item.tokenName,
-            value: item.value
-        };
-    });
+    return Object.entries(properties || {})
+        .filter(([, item]) => {
+            return item !== undefined;
+        })
+        .map(([key, item]) => {
+            return {
+                name: size,
+                propertyName: key,
+                tokenName: item.tokenName,
+                value: item.value
+            };
+        });
 }
 
 interface Item {
@@ -97,7 +92,9 @@ function TypographyTableRender({ items, showSize }: { items: Item[]; showSize: b
                     <tr key={item.name + item.propertyName}>
                         <td>{item.propertyName}</td>
                         {showSize && <td>{formatStyledSystemName(item.tokenName)}</td>}
-                        <td><code>{item.tokenName}</code></td>
+                        <td>
+                            <code>{item.tokenName}</code>
+                        </td>
                         <td>{item.value}</td>
                     </tr>
                 ))}

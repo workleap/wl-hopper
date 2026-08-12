@@ -40,9 +40,13 @@ function PropTableRender({ items }: { items: Item[] }) {
                 {items.map(item => (
                     <tr key={item.name}>
                         <td>{item.name}</td>
-                        <td><code>{item.type}</code></td>
+                        <td>
+                            <code>{item.type}</code>
+                        </td>
                         <td>{item.defaultValue}</td>
-                        <td><Mdx>{item.description}</Mdx></td>
+                        <td>
+                            <Mdx>{item.description}</Mdx>
+                        </td>
                     </tr>
                 ))}
             </tbody>
@@ -61,7 +65,7 @@ export default async function PropTable({ component }: PropTableProps) {
     }
 
     // Process each group
-    return (Object.entries<object>(data.groups)).map(([title, groupProps]) => {
+    return Object.entries<object>(data.groups).map(([title, groupProps]) => {
         const items = Object.entries(groupProps).map<Item>(([name, prop]) => ({
             name,
             type: prop.type.name,
@@ -82,4 +86,3 @@ export default async function PropTable({ component }: PropTableProps) {
         ) : null;
     });
 }
-

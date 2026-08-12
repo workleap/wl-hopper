@@ -11,22 +11,22 @@ export interface Mode {
 }
 
 export const allThemes = {
-    "workleap": {
+    workleap: {
         [ThemeGlobalKey]: "workleap",
         [ColorSchemeGlobalKey]: ColorSchemeDefaultValue
     },
-    "sharegate": {
+    sharegate: {
         [ThemeGlobalKey]: "sharegate",
         [ColorSchemeGlobalKey]: ColorSchemeDefaultValue
     }
 } satisfies Record<string, Mode>;
 
 export const allColorModes = {
-    "light": {
+    light: {
         [ThemeGlobalKey]: ThemeDefaultValue,
         [ColorSchemeGlobalKey]: "light"
     },
-    "dark": {
+    dark: {
         [ThemeGlobalKey]: ThemeDefaultValue,
         [ColorSchemeGlobalKey]: "dark"
     }
@@ -52,10 +52,10 @@ export const allColorModesAndThemes = {
 } satisfies Record<string, Mode>;
 
 export const allLocales = {
-    "en": {
+    en: {
         [LocaleGlobalKey]: "en-US"
     },
-    "fr": {
+    fr: {
         [LocaleGlobalKey]: "fr-CA"
     }
 } satisfies Record<string, Mode>;

@@ -1,14 +1,5 @@
 {
     "name": "Car",
     "description": "Used to represent automobiles, transportation, vehicles, travel, or commuting options.",
-    "keywords": [
-        "car",
-        "automobile",
-        "vehicle",
-        "transportation",
-        "travel",
-        "commute",
-        "driving",
-        "journey"
-    ]
+    "keywords": ["car", "automobile", "vehicle", "transportation", "travel", "commute", "driving", "journey"]
 }

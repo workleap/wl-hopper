@@ -22,17 +22,22 @@ const List = ({ ...iconProps }: ListProps) => {
         });
 
         return (
-            <UL key={variant} display="flex" flexWrap="wrap" alignItems="center" gap="inline-md" margin="core_0" padding="core_0" style={{ listStyle: "none" }}>
+            <UL
+                key={variant}
+                display="flex"
+                flexWrap="wrap"
+                alignItems="center"
+                gap="inline-md"
+                margin="core_0"
+                padding="core_0"
+                style={{ listStyle: "none" }}
+            >
                 {listItems}
             </UL>
         );
     });
 
-    return (
-        <Stack>
-            {allVariantList}
-        </Stack>
-    );
+    return <Stack>{allVariantList}</Stack>;
 };
 
 const meta = {

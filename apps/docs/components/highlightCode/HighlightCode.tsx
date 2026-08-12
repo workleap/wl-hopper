@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { type ReactNode, useEffect, useMemo, useState } from "react";
 import * as prod from "react/jsx-runtime";
 import rehypeParse from "rehype-parse";
 import rehypeReact from "rehype-react";
@@ -19,7 +19,7 @@ export interface HighlightCodeProps {
 const production = { Fragment: prod.Fragment, jsx: prod.jsx, jsxs: prod.jsxs };
 
 function useProcessor(text: string, variant?: Variant) {
-    const [Content, setContent] = useState(<></>);
+    const [Content, setContent] = useState<ReactNode>(null);
 
     useEffect(() => {
         const options = {

@@ -23,30 +23,48 @@ export const Default = {
             <Accordion {...args}>
                 <Disclosure id="officevibe">
                     <DisclosureHeader>Workleap Officevibe</DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>Workleap Pingboard</DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>Workleap Performance</DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <h1>Multiple Expanded</h1>
             <Accordion {...args} defaultExpandedKeys={["officevibe", "performance"]} allowsMultipleExpanded>
                 <Disclosure id="officevibe">
                     <DisclosureHeader>Workleap Officevibe</DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>Workleap Pingboard</DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>Workleap Performance</DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <h1>Description</h1>
@@ -55,28 +73,43 @@ export const Default = {
                     <DisclosureHeader>
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Officevibe</Text>
-                            <Text color="neutral-weak" size="sm">Engagement and Feedback</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Engagement and Feedback
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Pingboard</Text>
-                            <Text color="neutral-weak" size="sm">Org Chart</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Org Chart
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Performance</Text>
-                            <Text color="neutral-weak" size="sm">Performance Management</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Performance Management
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <h1>Icon</h1>
@@ -86,45 +119,69 @@ export const Default = {
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Officevibe</Text>
-                            <Text color="neutral-weak" size="sm">Engagement and Feedback</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Engagement and Feedback
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Pingboard</Text>
-                            <Text color="neutral-weak" size="sm">Org Chart</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Org Chart
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Performance</Text>
-                            <Text color="neutral-weak" size="sm">Performance Management</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Performance Management
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <h1>Style</h1>
             <Accordion {...args} border="decorative-option5">
                 <Disclosure id="officevibe">
                     <DisclosureHeader>Workleap Officevibe</DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>Workleap Pingboard</DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>Workleap Performance</DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <h1>Zoom</h1>
@@ -134,30 +191,45 @@ export const Default = {
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Officevibe</Text>
-                            <Text color="neutral-weak" size="sm">Engagement and Feedback</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Engagement and Feedback
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Pingboard</Text>
-                            <Text color="neutral-weak" size="sm">Org Chart</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Org Chart
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Performance</Text>
-                            <Text color="neutral-weak" size="sm">Performance Management</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Performance Management
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
             <Accordion {...args} className="zoom-out">
@@ -166,30 +238,45 @@ export const Default = {
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Officevibe</Text>
-                            <Text color="neutral-weak" size="sm">Engagement and Feedback</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Engagement and Feedback
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer
+                        feedback to celebrate every win, recognize commitment, and uncover challenges.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="pingboard">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Pingboard</Text>
-                            <Text color="neutral-weak" size="sm">Org Chart</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Org Chart
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Make teamwork work. Use your org chart to create lasting connections across your distributed and
+                        hybrid teams to make collaboration easier.
+                    </DisclosurePanel>
                 </Disclosure>
                 <Disclosure id="performance">
                     <DisclosureHeader>
                         <SparklesIcon />
                         <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                             <Text>Workleap Performance</Text>
-                            <Text color="neutral-weak" size="sm">Performance Management</Text>
+                            <Text color="neutral-weak" size="sm">
+                                Performance Management
+                            </Text>
                         </Inline>
                     </DisclosureHeader>
-                    <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+                    <DisclosurePanel>
+                        Drive impact by simplifying how your leaders and you manage team performance throughout the
+                        year.
+                    </DisclosurePanel>
                 </Disclosure>
             </Accordion>
         </Stack>
@@ -214,30 +301,44 @@ const StateTemplate = (args: Partial<AccordionProps>) => (
                 <SparklesIcon />
                 <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                     <Text>Workleap Officevibe</Text>
-                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">Engagement and Feedback</Text>
+                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">
+                        Engagement and Feedback
+                    </Text>
                 </Inline>
             </DisclosureHeader>
-            <DisclosurePanel>Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback to celebrate every win, recognize commitment, and uncover challenges.</DisclosurePanel>
+            <DisclosurePanel>
+                Help employees speak up and make sure they feel heard. Continuous and real-time surveys offer feedback
+                to celebrate every win, recognize commitment, and uncover challenges.
+            </DisclosurePanel>
         </Disclosure>
         <Disclosure id="pingboard">
             <DisclosureHeader>
                 <SparklesIcon />
                 <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                     <Text>Workleap Pingboard</Text>
-                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">Org Chart</Text>
+                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">
+                        Org Chart
+                    </Text>
                 </Inline>
             </DisclosureHeader>
-            <DisclosurePanel>Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid teams to make collaboration easier.</DisclosurePanel>
+            <DisclosurePanel>
+                Make teamwork work. Use your org chart to create lasting connections across your distributed and hybrid
+                teams to make collaboration easier.
+            </DisclosurePanel>
         </Disclosure>
         <Disclosure id="performance">
             <DisclosureHeader>
                 <SparklesIcon />
                 <Inline columnGap="inline-sm" rowGap="core_0" alignY="baseline">
                     <Text>Workleap Performance</Text>
-                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">Performance Management</Text>
+                    <Text color={args.isDisabled ? "neutral-disabled" : "neutral-weak"} size="sm">
+                        Performance Management
+                    </Text>
                 </Inline>
             </DisclosureHeader>
-            <DisclosurePanel>Drive impact by simplifying how your leaders and you manage team performance throughout the year.</DisclosurePanel>
+            <DisclosurePanel>
+                Drive impact by simplifying how your leaders and you manage team performance throughout the year.
+            </DisclosurePanel>
         </Disclosure>
     </Accordion>
 );

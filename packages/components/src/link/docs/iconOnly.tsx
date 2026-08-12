@@ -1,4 +1,4 @@
-import { Link, Inline } from "@hopper-ui/components";
+import { Inline, Link } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
 
 export default function Example() {

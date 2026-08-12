@@ -9,14 +9,21 @@ import clsx, { type ClassValue } from "clsx";
  * // result = "hop-button--lg hop-button--primary"
  */
 export function cssModule(cssModules: { [key: string]: string }, componentName: string, ...modifiers: ClassValue[]) {
-    const classes = clsx(modifiers).split(" ").filter(x => x && x !== "");
+    const classes = clsx(modifiers)
+        .split(" ")
+        .filter(x => x && x !== "");
 
-    return classes.reduce<string[]>((acc, className) => {
-        const mergedClassName = `${componentName}--${className}`;
-        if (cssModules[mergedClassName]) {
-            acc.push(cssModules[mergedClassName]);
-        }
+    return classes
+        .reduce<string[]>(
+            (acc, className) => {
+                const mergedClassName = `${componentName}--${className}`;
+                if (cssModules[mergedClassName]) {
+                    acc.push(cssModules[mergedClassName]);
+                }
 
-        return acc;
-    }, [cssModules[componentName]]).join(" ");
+                return acc;
+            },
+            [cssModules[componentName]]
+        )
+        .join(" ");
 }

@@ -16,10 +16,12 @@ export const rehypeOptions: Options = {
         // Prevent lines from collapsing in `display: grid` mode, and
         // allow empty lines to be copy/pasted
         if (node.children.length === 0) {
-            node.children = [{
-                type: "text",
-                value: " "
-            }];
+            node.children = [
+                {
+                    type: "text",
+                    value: " "
+                }
+            ];
         }
     },
     onVisitHighlightedLine(node) {
@@ -69,10 +71,7 @@ export const rehypePluginOptions: any[] = [
         visit(tree, node => {
             if (node?.type === "element" && node?.tagName === "figure") {
                 const titleChild = node.children.find((child: any) => {
-                    return (
-                        child.properties &&
-                        "data-rehype-pretty-code-title" in child.properties
-                    );
+                    return child.properties && "data-rehype-pretty-code-title" in child.properties;
                 });
 
                 for (const child of node.children) {

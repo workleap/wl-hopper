@@ -1,13 +1,20 @@
-import { ColorSchemeDefaultValue, ColorSchemeGlobalKey, colorSchemesGlobalTypes, LocaleGlobalKey, localesGlobalTypes, ThemeDefaultValue, ThemeGlobalKey, themesGlobalTypes, viewport, withHopperProvider, type LocaleKeys } from "@hopper-ui/storybook-addon";
+import {
+    ColorSchemeDefaultValue,
+    ColorSchemeGlobalKey,
+    LocaleGlobalKey,
+    type LocaleKeys,
+    ThemeDefaultValue,
+    ThemeGlobalKey,
+    colorSchemesGlobalTypes,
+    localesGlobalTypes,
+    themesGlobalTypes,
+    viewport,
+    withHopperProvider
+} from "@hopper-ui/storybook-addon";
 import "@hopper-ui/styled-system/theme/sharegate.css";
 import "@hopper-ui/styled-system/theme/workleap.css";
 import "@hopper-ui/tokens/fonts.css";
-import {
-    Description,
-    Stories,
-    Subtitle,
-    Title
-} from "@storybook/addon-docs/blocks";
+import { Description, Stories, Subtitle, Title } from "@storybook/addon-docs/blocks";
 import type { Preview } from "@storybook/react-webpack5";
 import "./stories.css";
 
@@ -24,7 +31,8 @@ const preview: Preview = {
             }
         },
         viewport,
-        docs: { // only needed while the documentation is not available
+        docs: {
+            // only needed while the documentation is not available
             page: () => {
                 return (
                     <>
@@ -38,14 +46,7 @@ const preview: Preview = {
         },
         options: {
             storySort: {
-                order: [
-                    "Docs",
-                    "Docs-parts",
-                    "Components",
-                    "Styled System",
-                    "Icons",
-                    "Tokens"
-                ]
+                order: ["Docs", "Docs-parts", "Components", "Styled System", "Icons", "Tokens"]
             }
         }
     },

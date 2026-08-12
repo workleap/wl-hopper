@@ -1,4 +1,4 @@
-import { DateRangePicker, Paragraph, Stack, type DateValue, type RangeValue } from "@hopper-ui/components";
+import { DateRangePicker, type DateValue, Paragraph, type RangeValue, Stack } from "@hopper-ui/components";
 import { getLocalTimeZone, parseDate } from "@internationalized/date";
 import { useState } from "react";
 import { useDateFormatter } from "react-aria";
@@ -14,11 +14,12 @@ export default function Example() {
         <Stack>
             <DateRangePicker label="Trip dates" value={range} onChange={setRange} />
             <Paragraph>
-                Selected date: {range
+                Selected date:{" "}
+                {range
                     ? formatter.formatRange(
-                        range.start.toDate(getLocalTimeZone()),
-                        range.end.toDate(getLocalTimeZone())
-                    )
+                          range.start.toDate(getLocalTimeZone()),
+                          range.end.toDate(getLocalTimeZone())
+                      )
                     : "--"}
             </Paragraph>
         </Stack>

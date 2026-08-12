@@ -1,28 +1,28 @@
 import { IconContext, type IconSize } from "@hopper-ui/icons";
 import {
     type ResponsiveProp,
-    slot as slotFn,
     type StyledComponentProps,
+    slot as slotFn,
     useResponsiveValue,
     useStyledSystem
 } from "@hopper-ui/styled-system";
 import { type ForwardedRef, forwardRef } from "react";
 import {
-    composeRenderProps,
     DEFAULT_SLOT,
     Link as RACLink,
     type LinkProps as RACLinkProps,
+    composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
 import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
+    type SizeAdapter,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    type SizeAdapter,
-    SlotProvider,
     useSlot
 } from "../../utils/index.ts";
 import { type ButtonSize, type ButtonVariant, useButtonProps } from "../utils/index.ts";
@@ -89,14 +89,7 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
     const classNames = composeClassnameRenderProps(
         className,
         GlobalLinkButtonCssSelector,
-        cssModule(
-            styles,
-            "hop-LinkButton",
-            variant,
-            size,
-            isFluid && "fluid",
-            !hasText && "icon-only"
-        ),
+        cssModule(styles, "hop-LinkButton", variant, size, isFluid && "fluid", !hasText && "icon-only"),
         stylingProps.className
     );
 
@@ -116,35 +109,44 @@ function LinkButton(props: LinkButtonProps, ref: ForwardedRef<HTMLAnchorElement>
     return (
         <SlotProvider
             values={[
-                [IconListContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            size: iconSize,
-                            className: styles["hop-LinkButton__icon-list"]
-                        },
-                        "end-icon": {
-                            size: iconSize,
-                            className: styles["hop-LinkButton__end-icon-list"]
+                [
+                    IconListContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                size: iconSize,
+                                className: styles["hop-LinkButton__icon-list"]
+                            },
+                            "end-icon": {
+                                size: iconSize,
+                                className: styles["hop-LinkButton__end-icon-list"]
+                            }
                         }
                     }
-                }],
-                [IconContext, {
-                    slots: {
-                        [DEFAULT_SLOT]: {
-                            size: iconSize,
-                            className: styles["hop-LinkButton__icon"]
-                        },
-                        "end-icon": {
-                            size: iconSize,
-                            className: styles["hop-LinkButton__end-icon"]
+                ],
+                [
+                    IconContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                size: iconSize,
+                                className: styles["hop-LinkButton__icon"]
+                            },
+                            "end-icon": {
+                                size: iconSize,
+                                className: styles["hop-LinkButton__end-icon"]
+                            }
                         }
                     }
-                }],
-                [TextContext, {
-                    className: styles["hop-LinkButton__text"],
-                    size: size,
-                    ref: textRef
-                }]
+                ],
+                [
+                    TextContext,
+                    {
+                        className: styles["hop-LinkButton__text"],
+                        size,
+                        ref: textRef
+                    }
+                ]
             ]}
         >
             <RACLink

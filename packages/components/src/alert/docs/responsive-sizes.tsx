@@ -13,9 +13,7 @@ export default function Example() {
                 }}
             >
                 <Heading>Ribbit Reminder!</Heading>
-                <Content>
-                    Your changes have been saved—no need to leap again. Hop along, hero!
-                </Content>
+                <Content>Your changes have been saved—no need to leap again. Hop along, hero!</Content>
             </Alert>
         </AlertTrigger>
     );

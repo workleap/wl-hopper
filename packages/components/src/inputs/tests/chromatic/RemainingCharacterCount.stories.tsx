@@ -13,18 +13,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default = {
-    render: args => (
-        <RemainingCharacterCount {...args} />
-    ),
+    render: args => <RemainingCharacterCount {...args} />,
     args: {
         count: 3
     }
 } satisfies Story;
 
 export const Disabled = {
-    render: args => (
-        <RemainingCharacterCount {...args} />
-    ),
+    render: args => <RemainingCharacterCount {...args} />,
     args: {
         count: 3,
         isDisabled: true
@@ -32,9 +28,7 @@ export const Disabled = {
 } satisfies Story;
 
 export const Invalid = {
-    render: args => (
-        <RemainingCharacterCount {...args} />
-    ),
+    render: args => <RemainingCharacterCount {...args} />,
     args: {
         count: 3,
         isInvalid: true
@@ -44,8 +38,14 @@ export const Invalid = {
 export const AccessToStates = {
     render: args => (
         <Inline alignY="end">
-            <RemainingCharacterCount {...args} style={({ isDisabled }) => isDisabled ? { border: "1px solid red" } : {}} />
-            <RemainingCharacterCount {...args} style={({ isInvalid }) => isInvalid ? { border: "1px solid red" } : {}} />
+            <RemainingCharacterCount
+                {...args}
+                style={({ isDisabled }) => (isDisabled ? { border: "1px solid red" } : {})}
+            />
+            <RemainingCharacterCount
+                {...args}
+                style={({ isInvalid }) => (isInvalid ? { border: "1px solid red" } : {})}
+            />
         </Inline>
     ),
     args: {
@@ -54,4 +54,3 @@ export const AccessToStates = {
         isInvalid: true
     }
 } satisfies Story;
-

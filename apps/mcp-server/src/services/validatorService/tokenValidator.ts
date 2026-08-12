@@ -1,7 +1,7 @@
 import type { TSESTree } from "@typescript-eslint/types";
 import { formatStyledSystemName } from "../../utils/tokenNameFormatter";
 import { getAllTokens, getTokenSupportedProps } from "./data";
-import { extractAllConstantStrings, type PropInfo } from "./jsxHelpers";
+import { type PropInfo, extractAllConstantStrings } from "./jsxHelpers";
 import type { ValidationResult } from "./types";
 import { mergeResults } from "./types";
 import { validationMessage } from "./validationMessages";
@@ -74,7 +74,7 @@ async function validateTokenFormat(
     loc: TSESTree.SourceLocation | undefined,
     result: ValidationResult
 ): Promise<boolean> {
-    if (!await isTokenSupportedProp(propName) || await isToken(originalValue)) {
+    if (!(await isTokenSupportedProp(propName)) || (await isToken(originalValue))) {
         return true;
     }
 
@@ -108,7 +108,7 @@ async function validateTokenUsageOnUnsupportedProp(
         return true;
     }
 
-    if (await isTokenSupportedProp(propName) || !await isToken(propValue)) {
+    if ((await isTokenSupportedProp(propName)) || !(await isToken(propValue))) {
         return true;
     }
 
@@ -127,20 +127,22 @@ async function validateTokenUsageOnUnsupportedProp(
     return false;
 }
 
-export async function validateDesignSystemTokensUsage({ propValue, propName, loc }: PropInfo, result: ValidationResult) {
+export async function validateDesignSystemTokensUsage(
+    { propValue, propName, loc }: PropInfo,
+    result: ValidationResult
+) {
     const values = extractAllConstantStrings(propValue);
     let invalidValuesCount = 0;
-    const propValuesValidation: ValidationResult =
-        {
-            isValid: true,
-            errors: [],
-            warnings: []
-        };
+    const propValuesValidation: ValidationResult = {
+        isValid: true,
+        errors: [],
+        warnings: []
+    };
 
     for (const value of values) {
-        if (!await validateTokenFormat(value, propName, loc, propValuesValidation)) {
+        if (!(await validateTokenFormat(value, propName, loc, propValuesValidation))) {
             invalidValuesCount++;
-        } else if (!await validateTokenUsageOnUnsupportedProp(value, propName, loc, propValuesValidation)) {
+        } else if (!(await validateTokenUsageOnUnsupportedProp(value, propName, loc, propValuesValidation))) {
             invalidValuesCount++;
         } else if (!validateNoCoreColorToken(value, propName, loc, propValuesValidation)) {
             invalidValuesCount++;

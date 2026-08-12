@@ -26,8 +26,8 @@ export function getIconsSlugs() {
 
 export function getComponentsSlugs() {
     return allComponents.map(({ slug }) => {
-        return ({
+        return {
             slug: [slug]
-        });
+        };
     });
 }

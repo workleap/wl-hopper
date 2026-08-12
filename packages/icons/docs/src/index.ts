@@ -4,4 +4,3 @@ export { Sparkles32 } from "./Sparkles32.tsx";
 export { SparklesRichIcon24 } from "./SparklesRich24.tsx";
 export { SparklesRichIcon32 } from "./SparklesRich32.tsx";
 export { SparklesRichIcon40 } from "./SparklesRich40.tsx";
-

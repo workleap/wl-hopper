@@ -20,7 +20,7 @@ export function optimizeIcon(srcDir: string, outputDir: string, fileNameConverte
         const dstPath = path.resolve(outputDir, fileNameConverter ? fileNameConverter(srcPath) : file.name);
 
         return {
-            srcPath: srcPath,
+            srcPath,
             dstPath
         };
     });

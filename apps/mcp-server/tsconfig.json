@@ -10,9 +10,7 @@
         "moduleResolution": "Bundler",
         "outDir": "./dist",
         "paths": {
-            "@docs/ai": [
-                "./src/tests/mocks/aiFiles.ts",
-            ]
-        },
+            "@docs/ai": ["./src/tests/mocks/aiFiles.ts"]
+        }
     }
 }

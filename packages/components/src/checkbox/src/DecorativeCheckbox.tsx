@@ -1,25 +1,19 @@
 import { CheckmarkIcon, IconContext, MinusIcon } from "@hopper-ui/icons";
-import {
-    useResponsiveValue,
-    useStyledSystem
-} from "@hopper-ui/styled-system";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
+import { useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
 import { mergeProps } from "react-aria";
-import {
-    composeRenderProps,
-    useContextProps
-} from "react-aria-components";
+import { composeRenderProps, useContextProps } from "react-aria-components";
 
 import { IconListContext } from "../../icon-list/index.ts";
 import { TextContext } from "../../typography/index.ts";
 import {
     ClearContainerSlots,
+    type InteractionProps,
+    SlotProvider,
     composeClassnameRenderProps,
     cssModule,
     ensureTextWrapper,
-    SlotProvider,
-    useRenderProps,
-    type InteractionProps
+    useRenderProps
 } from "../../utils/index.ts";
 
 import type { CheckboxProps } from "./Checkbox.tsx";
@@ -62,11 +56,7 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
     const classNames = composeClassnameRenderProps(
         className,
         GlobalDecorativeCheckboxCssSelector,
-        cssModule(
-            styles,
-            "hop-DecorativeCheckbox",
-            size
-        ),
+        cssModule(styles, "hop-DecorativeCheckbox", size),
         stylingProps.className
     );
 
@@ -81,7 +71,7 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
         ...props,
         className: classNames,
         style,
-        children: children,
+        children,
         values: {
             isSelected: isSelected || false,
             isPressed: isPressed || false,
@@ -97,9 +87,11 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
     });
 
     const checkboxIconClassName = styles["hop-DecorativeCheckbox__check"];
-    const icon = isIndeterminate ?
-        <MinusIcon size="sm" className={checkboxIconClassName} /> :
-        <CheckmarkIcon size="sm" className={checkboxIconClassName} />;
+    const icon = isIndeterminate ? (
+        <MinusIcon size="sm" className={checkboxIconClassName} />
+    ) : (
+        <CheckmarkIcon size="sm" className={checkboxIconClassName} />
+    );
 
     return (
         <label
@@ -121,18 +113,27 @@ function DecorativeCheckbox(props: DecorativeCheckboxProps, ref: ForwardedRef<HT
             <ClearContainerSlots>
                 <SlotProvider
                     values={[
-                        [TextContext, {
-                            className: styles["hop-DecorativeCheckbox__text"],
-                            size: size
-                        }],
-                        [IconListContext, {
-                            className: styles["hop-DecorativeCheckbox__icon-list"],
-                            size: size
-                        }],
-                        [IconContext, {
-                            className: styles["hop-DecorativeCheckbox__icon"],
-                            size: size
-                        }]
+                        [
+                            TextContext,
+                            {
+                                className: styles["hop-DecorativeCheckbox__text"],
+                                size
+                            }
+                        ],
+                        [
+                            IconListContext,
+                            {
+                                className: styles["hop-DecorativeCheckbox__icon-list"],
+                                size
+                            }
+                        ],
+                        [
+                            IconContext,
+                            {
+                                className: styles["hop-DecorativeCheckbox__icon"],
+                                size
+                            }
+                        ]
                     ]}
                 >
                     {renderProps.children}

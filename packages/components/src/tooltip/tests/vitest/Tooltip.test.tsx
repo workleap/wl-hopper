@@ -39,7 +39,9 @@ describe("Tooltip", () => {
         render(
             <TooltipTrigger defaultOpen>
                 <Button>{buttonText}</Button>
-                <Tooltip marginTop="stack-sm" style={{ marginBottom: "13px" }}>{tooltipText}</Tooltip>
+                <Tooltip marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                    {tooltipText}
+                </Tooltip>
             </TooltipTrigger>
         );
 

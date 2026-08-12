@@ -23,20 +23,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">Red-Eyed Tree Frog</Tab>
                 <Tab id="poison-dart">Poison Dart Frog</Tab>
                 <Tab id="goliath">Goliath Frog</Tab>
             </TabList>
             <TabPanel id="red-eye-tree" padding="inset-md">
-                The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber with bright green skin, red eyes, and blue-striped sides, using its colors to startle predators before blending into the rainforest.
+                The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber with bright green skin,
+                red eyes, and blue-striped sides, using its colors to startle predators before blending into the
+                rainforest.
             </TabPanel>
             <TabPanel id="poison-dart" padding="inset-md">
-                The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian, flaunting brilliant shades of yellow, blue, or red to warn predators, with some species’ toxins historically used by Indigenous hunters.
+                The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian, flaunting brilliant shades of
+                yellow, blue, or red to warn predators, with some species’ toxins historically used by Indigenous
+                hunters.
             </TabPanel>
             <TabPanel id="goliath" padding="inset-md">
-                The Goliath Frog (Conraua goliath) is the largest frog in the world, reaching up to 12 inches long and 7 pounds, yet it doesn’t croak, relying instead on movement to communicate in the fast-flowing rivers of West Africa.
+                The Goliath Frog (Conraua goliath) is the largest frog in the world, reaching up to 12 inches long and 7
+                pounds, yet it doesn’t croak, relying instead on movement to communicate in the fast-flowing rivers of
+                West Africa.
             </TabPanel>
         </Tabs>
     ),
@@ -55,20 +61,28 @@ export const Disabled = {
 
 export const DisabledItem = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">Red-Eyed Tree Frog</Tab>
-                <Tab isDisabled id="poison-dart">Poison Dart Frog</Tab>
+                <Tab isDisabled id="poison-dart">
+                    Poison Dart Frog
+                </Tab>
                 <Tab id="goliath">Goliath Frog</Tab>
             </TabList>
             <TabPanel id="red-eye-tree" padding="inset-md">
-                The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber with bright green skin, red eyes, and blue-striped sides, using its colors to startle predators before blending into the rainforest.
+                The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber with bright green skin,
+                red eyes, and blue-striped sides, using its colors to startle predators before blending into the
+                rainforest.
             </TabPanel>
             <TabPanel id="poison-dart" padding="inset-md">
-                The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian, flaunting brilliant shades of yellow, blue, or red to warn predators, with some species’ toxins historically used by Indigenous hunters.
+                The Poison Dart Frog (Dendrobatidae) is a tiny but highly toxic amphibian, flaunting brilliant shades of
+                yellow, blue, or red to warn predators, with some species’ toxins historically used by Indigenous
+                hunters.
             </TabPanel>
             <TabPanel id="goliath" padding="inset-md">
-                The Goliath Frog (Conraua goliath) is the largest frog in the world, reaching up to 12 inches long and 7 pounds, yet it doesn’t croak, relying instead on movement to communicate in the fast-flowing rivers of West Africa.
+                The Goliath Frog (Conraua goliath) is the largest frog in the world, reaching up to 12 inches long and 7
+                pounds, yet it doesn’t croak, relying instead on movement to communicate in the fast-flowing rivers of
+                West Africa.
             </TabPanel>
         </Tabs>
     ),
@@ -153,7 +167,7 @@ export const Mobile = {
 
 export const WithIcon = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <SparklesIcon />
@@ -169,7 +183,7 @@ export const WithIcon = {
 
 export const WithBadge = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <Text>Red Eye Frog</Text>
@@ -185,7 +199,7 @@ export const WithBadge = {
 
 export const WithTag = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <Text>Red Eye Frog</Text>
@@ -201,7 +215,7 @@ export const WithTag = {
 
 export const WithAll = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <SparklesIcon />
@@ -219,7 +233,7 @@ export const WithAll = {
 
 export const WithMediumIcon = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <SparklesIcon />
@@ -236,7 +250,7 @@ export const WithMediumIcon = {
 
 export const WithMediumBadge = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <Text>Red Eye Frog</Text>
@@ -253,7 +267,7 @@ export const WithMediumBadge = {
 
 export const WithMediumTag = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <Text>Red Eye Frog</Text>
@@ -270,7 +284,7 @@ export const WithMediumTag = {
 
 export const WithMediumAll = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree">
                     <SparklesIcon />
@@ -289,7 +303,7 @@ export const WithMediumAll = {
 
 export const WithHref = {
     render: args => (
-        <Tabs {...args} >
+        <Tabs {...args}>
             <TabList>
                 <Tab id="red-eye-tree" href="https://www.google.com">
                     Google
@@ -338,7 +352,9 @@ export const States: Story = {
             <h1>Tab Hovered</h1>
             <Tabs {...args}>
                 <TabList>
-                    <Tab id="t1-frog-1" data-chromatic-force-hover>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t1-frog-1" data-chromatic-force-hover>
+                        Red-Eyed Tree Frog
+                    </Tab>
                     <Tab id="t1-frog-2" data-chromatic-force-hover>
                         <SparklesIcon />
                         <Text>Poison Dart Frog</Text>
@@ -348,14 +364,22 @@ export const States: Story = {
                         <Badge>3</Badge>
                     </Tab>
                 </TabList>
-                <TabPanel id="t1-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
-                <TabPanel id="t1-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
-                <TabPanel id="t1-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+                <TabPanel id="t1-frog-1" padding="inset-md">
+                    The Red-Eyed Tree Frog is a vibrant nocturnal climber.
+                </TabPanel>
+                <TabPanel id="t1-frog-2" padding="inset-md">
+                    The Poison Dart Frog is a tiny but highly toxic amphibian.
+                </TabPanel>
+                <TabPanel id="t1-frog-3" padding="inset-md">
+                    The Goliath Frog is the largest frog in the world.
+                </TabPanel>
             </Tabs>
             <h1>Tab Focus Visible</h1>
             <Tabs {...args}>
                 <TabList>
-                    <Tab id="t2-frog-1" data-chromatic-force-focus>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t2-frog-1" data-chromatic-force-focus>
+                        Red-Eyed Tree Frog
+                    </Tab>
                     <Tab id="t2-frog-2" data-chromatic-force-focus>
                         <SparklesIcon />
                         <Text>Poison Dart Frog</Text>
@@ -365,14 +389,22 @@ export const States: Story = {
                         <Badge>3</Badge>
                     </Tab>
                 </TabList>
-                <TabPanel id="t2-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
-                <TabPanel id="t2-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
-                <TabPanel id="t2-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+                <TabPanel id="t2-frog-1" padding="inset-md">
+                    The Red-Eyed Tree Frog is a vibrant nocturnal climber.
+                </TabPanel>
+                <TabPanel id="t2-frog-2" padding="inset-md">
+                    The Poison Dart Frog is a tiny but highly toxic amphibian.
+                </TabPanel>
+                <TabPanel id="t2-frog-3" padding="inset-md">
+                    The Goliath Frog is the largest frog in the world.
+                </TabPanel>
             </Tabs>
             <h1>Tab Focus Visible and Hovered</h1>
             <Tabs {...args}>
                 <TabList>
-                    <Tab id="t3-frog-1" data-chromatic-force-focus data-chromatic-force-hover>Red-Eyed Tree Frog</Tab>
+                    <Tab id="t3-frog-1" data-chromatic-force-focus data-chromatic-force-hover>
+                        Red-Eyed Tree Frog
+                    </Tab>
                     <Tab id="t3-frog-2" data-chromatic-force-focus data-chromatic-force-hover>
                         <SparklesIcon />
                         <Text>Poison Dart Frog</Text>
@@ -382,9 +414,15 @@ export const States: Story = {
                         <Badge>3</Badge>
                     </Tab>
                 </TabList>
-                <TabPanel id="t3-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
-                <TabPanel id="t3-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
-                <TabPanel id="t3-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+                <TabPanel id="t3-frog-1" padding="inset-md">
+                    The Red-Eyed Tree Frog is a vibrant nocturnal climber.
+                </TabPanel>
+                <TabPanel id="t3-frog-2" padding="inset-md">
+                    The Poison Dart Frog is a tiny but highly toxic amphibian.
+                </TabPanel>
+                <TabPanel id="t3-frog-3" padding="inset-md">
+                    The Goliath Frog is the largest frog in the world.
+                </TabPanel>
             </Tabs>
             <h1>Tab Disabled</h1>
             <Tabs {...args}>
@@ -399,9 +437,15 @@ export const States: Story = {
                         <Badge>3</Badge>
                     </Tab>
                 </TabList>
-                <TabPanel id="t4-frog-1" padding="inset-md">The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
-                <TabPanel id="t4-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
-                <TabPanel id="t4-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+                <TabPanel id="t4-frog-1" padding="inset-md">
+                    The Red-Eyed Tree Frog is a vibrant nocturnal climber.
+                </TabPanel>
+                <TabPanel id="t4-frog-2" padding="inset-md">
+                    The Poison Dart Frog is a tiny but highly toxic amphibian.
+                </TabPanel>
+                <TabPanel id="t4-frog-3" padding="inset-md">
+                    The Goliath Frog is the largest frog in the world.
+                </TabPanel>
             </Tabs>
             <h1>Tab Panel Focus Visible</h1>
             <Tabs {...args}>
@@ -410,9 +454,15 @@ export const States: Story = {
                     <Tab id="t5-frog-2">Poison Dart Frog</Tab>
                     <Tab id="t5-frog-3">Goliath Frog</Tab>
                 </TabList>
-                <TabPanel id="t5-frog-1" padding="inset-md" data-chromatic-force-focus>The Red-Eyed Tree Frog is a vibrant nocturnal climber.</TabPanel>
-                <TabPanel id="t5-frog-2" padding="inset-md">The Poison Dart Frog is a tiny but highly toxic amphibian.</TabPanel>
-                <TabPanel id="t5-frog-3" padding="inset-md">The Goliath Frog is the largest frog in the world.</TabPanel>
+                <TabPanel id="t5-frog-1" padding="inset-md" data-chromatic-force-focus>
+                    The Red-Eyed Tree Frog is a vibrant nocturnal climber.
+                </TabPanel>
+                <TabPanel id="t5-frog-2" padding="inset-md">
+                    The Poison Dart Frog is a tiny but highly toxic amphibian.
+                </TabPanel>
+                <TabPanel id="t5-frog-3" padding="inset-md">
+                    The Goliath Frog is the largest frog in the world.
+                </TabPanel>
             </Tabs>
         </Stack>
     ),

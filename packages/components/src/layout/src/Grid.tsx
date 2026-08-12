@@ -1,10 +1,10 @@
 import type { DivProps } from "@hopper-ui/styled-system";
 import { Div } from "@hopper-ui/styled-system";
-import { forwardRef, type Ref } from "react";
+import { type Ref, forwardRef } from "react";
 
-export interface GridProps extends
-    Omit<DivProps,
-    "display"
+export interface GridProps extends Omit<
+    DivProps,
+    | "display"
     | "gridAutoRows"
     | "gridTemplateAreas"
     | "gridTemplateColumns"
@@ -15,7 +15,7 @@ export interface GridProps extends
     | "UNSAFE_gridTemplateColumns"
     | "UNSAFE_gridTemplateRows"
     | "UNSAFE_gridAutoColumns"
-    > {
+> {
     /**
      * Whether or not the element generate line breaks before or after himself.
      */
@@ -116,4 +116,3 @@ const _Grid = forwardRef<HTMLDivElement, GridProps>(Grid);
 _Grid.displayName = "Grid";
 
 export { _Grid as Grid };
-

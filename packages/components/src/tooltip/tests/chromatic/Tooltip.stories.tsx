@@ -60,12 +60,7 @@ export const Default = {
 
 export const Placement = {
     render: args => (
-        <Grid
-            gap="core_480"
-            justifyItems="center"
-            templateColumns={["1fr", "1fr"]}
-            width="100%"
-        >
+        <Grid gap="core_480" justifyItems="center" templateColumns={["1fr", "1fr"]} width="100%">
             <TooltipTrigger isOpen placement="start">
                 <Button>{buttonText}</Button>
                 <Tooltip {...args} />
@@ -182,7 +177,9 @@ export const DisabledTrigger = {
 export const DisabledDOMTrigger = {
     render: args => (
         <TooltipTrigger isOpen>
-            <button type="button" disabled>{buttonText}</button>
+            <button type="button" disabled>
+                {buttonText}
+            </button>
             <Tooltip {...args} />
         </TooltipTrigger>
     )
@@ -220,13 +217,7 @@ export const TooltipEllipsis = {
     render: args => (
         <Div UNSAFE_width="100px">
             <TooltipTrigger isOpen>
-                <Text
-                    display="block"
-                    overflow="hidden"
-                    whiteSpace="nowrap"
-                    textOverflow="ellipsis"
-                    size="sm"
-                >
+                <Text display="block" overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" size="sm">
                     Super long text that is going to be ellipsed
                 </Text>
                 <Tooltip {...args} />
@@ -264,22 +255,17 @@ export const TooltipOnField = {
             />
             <Tooltip {...args} />
         </TooltipTrigger>
-
     )
 } satisfies Story;
 
 export const TooltipOnStandaloneTag = {
     render: args => (
         <TooltipTrigger isOpen>
-            <Tag
-                maxWidth="100%"
-                size="sm"
-            >
+            <Tag maxWidth="100%" size="sm">
                 alexandre.asselin@workleap.com
             </Tag>
             <Tooltip {...args} />
         </TooltipTrigger>
-
     )
 } satisfies Story;
 
@@ -296,7 +282,8 @@ export const TooltipOnSelect = {
 
 export const LongText = {
     args: {
-        children: "This is a tooltip with a very long text that should be displayed properly without any issues. It contains multiple sentences to ensure that the text wrapping and layout are functioning as expected within the tooltip component."
+        children:
+            "This is a tooltip with a very long text that should be displayed properly without any issues. It contains multiple sentences to ensure that the text wrapping and layout are functioning as expected within the tooltip component."
     },
     render: args => (
         <TooltipTrigger isOpen>
@@ -308,7 +295,8 @@ export const LongText = {
 
 export const LongWord = {
     args: {
-        children: "ThisIsAVeryLongWordThatShouldBeDisplayedProperlyWithoutAnyIssuesToEnsureThatTheTextWrappingAndLayoutAreFunctioningAsExpectedWithinTheTooltipComponent"
+        children:
+            "ThisIsAVeryLongWordThatShouldBeDisplayedProperlyWithoutAnyIssuesToEnsureThatTheTextWrappingAndLayoutAreFunctioningAsExpectedWithinTheTooltipComponent"
     },
     render: args => (
         <TooltipTrigger isOpen>

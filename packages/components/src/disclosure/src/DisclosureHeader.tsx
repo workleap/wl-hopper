@@ -2,11 +2,18 @@ import { IconContext } from "@hopper-ui/icons";
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
 import { type CSSProperties, type ForwardedRef, forwardRef, useContext } from "react";
-import { Button, type ButtonProps, composeRenderProps, DisclosureStateContext, useContextProps, useSlottedContext } from "react-aria-components";
+import {
+    Button,
+    type ButtonProps,
+    DisclosureStateContext,
+    composeRenderProps,
+    useContextProps,
+    useSlottedContext
+} from "react-aria-components";
 
 import { ToggleArrow } from "../../toggle-arrow/index.ts";
-import { Heading, TextContext, type HeadingProps } from "../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, SlotProvider } from "../../utils/index.ts";
+import { Heading, type HeadingProps, TextContext } from "../../typography/index.ts";
+import { SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import { DisclosureContext } from "./DisclosureContext.ts";
 import { DisclosureHeaderContext } from "./DisclosureHeaderContext.ts";
@@ -27,25 +34,14 @@ export interface DisclosureHeaderProps extends HeadingProps {
 function DisclosureHeader(props: DisclosureHeaderProps, ref: ForwardedRef<HTMLHeadingElement>) {
     [props, ref] = useContextProps(props, ref, DisclosureHeaderContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        buttonProps,
-        className,
-        children,
-        level = 3,
-        size = "xs",
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { buttonProps, className, children, level = 3, size = "xs", style: styleProp, ...otherProps } = ownProps;
 
     const { isExpanded } = useContext(DisclosureStateContext)!;
     const { variant } = useSlottedContext(DisclosureContext)!;
 
     const classNames = clsx(
         GlobalDisclosureHeaderCssSelector,
-        cssModule(
-            styles,
-            "hop-DisclosureHeader"
-        ),
+        cssModule(styles, "hop-DisclosureHeader"),
         stylingProps.className,
         className
     );
@@ -57,19 +53,11 @@ function DisclosureHeader(props: DisclosureHeaderProps, ref: ForwardedRef<HTMLHe
 
     const { stylingProps: buttonStylingProps, ...buttonOwnProps } = useStyledSystem(buttonProps ?? {});
 
-    const {
-        className: buttonClassName,
-        style: buttonStyleProp,
-        ...buttonOtherProps
-    } = buttonOwnProps;
+    const { className: buttonClassName, style: buttonStyleProp, ...buttonOtherProps } = buttonOwnProps;
 
     const buttonClassNames = composeClassnameRenderProps(
         buttonClassName,
-        cssModule(
-            styles,
-            "hop-DisclosureHeader__button",
-            variant
-        ),
+        cssModule(styles, "hop-DisclosureHeader__button", variant),
         buttonStylingProps.className
     );
 
@@ -81,14 +69,7 @@ function DisclosureHeader(props: DisclosureHeaderProps, ref: ForwardedRef<HTMLHe
     });
 
     return (
-        <Heading
-            ref={ref}
-            className={classNames}
-            style={style}
-            level={level}
-            size={size}
-            {...otherProps}
-        >
+        <Heading ref={ref} className={classNames} style={style} level={level} size={size} {...otherProps}>
             <Button
                 slot="trigger"
                 className={buttonClassNames}
@@ -96,22 +77,27 @@ function DisclosureHeader(props: DisclosureHeaderProps, ref: ForwardedRef<HTMLHe
                 data-expanded={isExpanded || undefined}
                 {...buttonOtherProps}
             >
-                <SlotProvider values={[
-                    [TextContext, {
-                        className: styles["hop-DisclosureHeader__title"],
-                        size: "inherit"
-                    }],
-                    [IconContext, {
-                        className: styles["hop-DisclosureHeader__icon"],
-                        size: "md"
-                    }]
-                ]}
+                <SlotProvider
+                    values={[
+                        [
+                            TextContext,
+                            {
+                                className: styles["hop-DisclosureHeader__title"],
+                                size: "inherit"
+                            }
+                        ],
+                        [
+                            IconContext,
+                            {
+                                className: styles["hop-DisclosureHeader__icon"],
+                                size: "md"
+                            }
+                        ]
+                    ]}
                 >
                     {children}
                 </SlotProvider>
-                <ToggleArrow
-                    className={styles["hop-DisclosureHeader__toggle-arrow"]}
-                />
+                <ToggleArrow className={styles["hop-DisclosureHeader__toggle-arrow"]} />
             </Button>
         </Heading>
     );

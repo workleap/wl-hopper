@@ -12,11 +12,7 @@ const SectionLink: FC<SectionLinkProps> = ({ children, className, href }) => {
 
     /* This has to be an a, not a link: https://github.com/vercel/next.js/issues/49612 */
     return (
-        <a
-            className={className}
-            href={href}
-            onClick={onClick}
-        >
+        <a className={className} href={href} onClick={onClick}>
             {children}
         </a>
     );

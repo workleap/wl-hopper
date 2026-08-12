@@ -1,17 +1,38 @@
-import { useIsomorphicLayoutEffect, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useIsomorphicLayoutEffect,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { useIsSSR } from "@react-aria/ssr";
 import { mergeRefs } from "@react-aria/utils";
 import { useControlledState } from "@react-stately/utils";
 import clsx from "clsx";
-import { forwardRef, useCallback, useMemo, useState, type ForwardedRef, type MutableRefObject } from "react";
+import { type ForwardedRef, type MutableRefObject, forwardRef, useCallback, useMemo, useState } from "react";
 import { useObjectRef } from "react-aria";
-import { composeRenderProps, TextArea as RACTextArea, TextAreaProps as RACTextAreaProps, TextField as RACTextField, useContextProps, type TextFieldProps as RACTextFieldProps } from "react-aria-components";
+import {
+    TextArea as RACTextArea,
+    type TextAreaProps as RACTextAreaProps,
+    TextField as RACTextField,
+    type TextFieldProps as RACTextFieldProps,
+    composeRenderProps,
+    useContextProps
+} from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, isUndefined, useFontFaceReady, useTruncatedText, type FieldProps } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    type FieldProps,
+    composeClassnameRenderProps,
+    cssModule,
+    isUndefined,
+    useFontFaceReady,
+    useTruncatedText
+} from "../../utils/index.ts";
 
 import { InputGroup, type InputGroupProps } from "./InputGroup.tsx";
 import { RemainingCharacterCount, type RemainingCharacterCountProps } from "./RemainingCharacterCount.tsx";
@@ -136,10 +157,7 @@ function useCalculateRowHeight(input: HTMLTextAreaElement | null) {
 
 function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, TextAreaContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -177,7 +195,9 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         ...otherProps
     } = ownProps;
 
-    const mergedTextAreaRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null));
+    const mergedTextAreaRef = useObjectRef(
+        mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
     const resizeMode = useResponsiveValue(resizeModeProp) ?? "none";
     const overMaxLength = !!maxLength && characterCount > maxLength;
@@ -186,12 +206,7 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
     const classNames = composeClassnameRenderProps(
         className,
         GlobalTextAreaCssSelector,
-        cssModule(
-            styles,
-            "hop-TextArea",
-            isFluid && "fluid",
-            !isUndefined(maxRows) && "max-rows"
-        ),
+        cssModule(styles, "hop-TextArea", isFluid && "fluid", !isUndefined(maxRows) && "max-rows"),
         stylingProps.className
     );
 
@@ -202,14 +217,19 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         };
     });
 
-    const handleTextChanged = useCallback((value: string) => {
-        setCharacterCount(value.length);
+    const handleTextChanged = useCallback(
+        (value: string) => {
+            setCharacterCount(value.length);
 
-        onChangeProp?.(value);
-    }, [onChangeProp]);
+            onChangeProp?.(value);
+        },
+        [onChangeProp]
+    );
 
     if (showCharacterCount && !maxLength) {
-        console.warn("If showCharacterCount is true, maxLength must be set to the maximum number of characters allowed in the TextArea.");
+        console.warn(
+            "If showCharacterCount is true, maxLength must be set to the maximum number of characters allowed in the TextArea."
+        );
     }
 
     if (allowExceedingMaxLength && !showCharacterCount) {
@@ -273,8 +293,12 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
         showCharacterCount && maxLength && "with-character-count"
     );
 
-    const { className: remainingCharacterCountClassName, ...otherRemainingCharacterCountProps } = remainingCharacterCountProps ?? {};
-    const remainingCharacterCountClassNames = clsx(styles["hop-TextArea__RemainingCharacterCount"], remainingCharacterCountClassName);
+    const { className: remainingCharacterCountClassName, ...otherRemainingCharacterCountProps } =
+        remainingCharacterCountProps ?? {};
+    const remainingCharacterCountClassNames = clsx(
+        styles["hop-TextArea__RemainingCharacterCount"],
+        remainingCharacterCountClassName
+    );
 
     const inputMarkup = (
         <ClearContainerSlots>
@@ -318,7 +342,9 @@ function TextArea(props: TextAreaProps, ref: ForwardedRef<HTMLDivElement>) {
                 {label}
             </FieldLabel>
             {inputMarkup}
-            {description && <HelperMessage className={styles["hop-TextArea__HelperMessage"]}>{description}</HelperMessage>}
+            {description && (
+                <HelperMessage className={styles["hop-TextArea__HelperMessage"]}>{description}</HelperMessage>
+            )}
             <ErrorMessage className={styles["hop-TextArea__ErrorMessage"]}>{errorMessage}</ErrorMessage>
         </>
     );

@@ -1,17 +1,14 @@
 import {
-    useResponsiveValue,
-    useStyledSystem,
     type ResponsiveProp,
-    type StyledComponentProps
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, useMemo, type CSSProperties, type ForwardedRef } from "react";
-import {
-    Form as RACForm,
-    type FormProps as RACFormProps
-} from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef, useContext, useMemo } from "react";
+import { Form as RACForm, type FormProps as RACFormProps } from "react-aria-components";
 
-import { cssModule, type FieldSize, type NecessityIndicator } from "../../utils/index.ts";
+import { type FieldSize, type NecessityIndicator, cssModule } from "../../utils/index.ts";
 
 import { FormContext } from "./FormContext.ts";
 
@@ -80,15 +77,7 @@ function Form(props: FormProps, ref: ForwardedRef<HTMLFormElement>) {
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
-    const classNames = clsx(
-        GlobalFormCssSelector,
-        cssModule(
-            styles,
-            "hop-Form"
-        ),
-        stylingProps.className,
-        className
-    );
+    const classNames = clsx(GlobalFormCssSelector, cssModule(styles, "hop-Form"), stylingProps.className, className);
 
     const mergedStyles: CSSProperties = {
         ...stylingProps.style,
@@ -97,12 +86,7 @@ function Form(props: FormProps, ref: ForwardedRef<HTMLFormElement>) {
 
     return (
         <FormContext.Provider value={{ isDisabled, isFluid, necessityIndicator, size }}>
-            <RACForm
-                ref={ref}
-                className={classNames}
-                style={mergedStyles}
-                {...otherProps}
-            >
+            <RACForm ref={ref} className={classNames} style={mergedStyles} {...otherProps}>
                 {children}
             </RACForm>
         </FormContext.Provider>

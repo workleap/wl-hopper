@@ -22,7 +22,7 @@ const meta = {
         }
     },
     decorators: [
-        (Story, { parameters }) => (
+        (Story, { parameters }) =>
             parameters.disableWrapper ? (
                 <Story />
             ) : (
@@ -34,7 +34,7 @@ const meta = {
                         <Story />
                     </MenuTrigger>
                 </Div>
-            ))
+            )
     ]
 } satisfies Meta<typeof Menu>;
 
@@ -290,7 +290,9 @@ export const ItemDescriptionAvatar = {
             <MenuItem>
                 <Avatar name="Red-Eyed Tree Frog" />
                 <Text>Red-Eyed Tree Frog</Text>
-                <Text slot="description">The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber</Text>
+                <Text slot="description">
+                    The Red-Eyed Tree Frog (Agalychnis callidryas) is a vibrant nocturnal climber
+                </Text>
             </MenuItem>
             <MenuItem>
                 <Avatar name="Poison Dart Frog" />
@@ -302,9 +304,7 @@ export const ItemDescriptionAvatar = {
             <MenuItem>
                 <Avatar name="Goliath Frog" />
                 <Text>Goliath Frog</Text>
-                <Text slot="description">
-                    The Goliath Frog (Conraua goliath) is the largest frog in the world
-                </Text>
+                <Text slot="description">The Goliath Frog (Conraua goliath) is the largest frog in the world</Text>
             </MenuItem>
         </Menu>
     )
@@ -324,8 +324,12 @@ export const Validation = {
     render: args => (
         <Menu {...args}>
             <MenuItem id="favorite">Favorite</MenuItem>
-            <MenuItem id="edit" isInvalid>Edit</MenuItem>
-            <MenuItem id="delete" isInvalid>Delete</MenuItem>
+            <MenuItem id="edit" isInvalid>
+                Edit
+            </MenuItem>
+            <MenuItem id="delete" isInvalid>
+                Delete
+            </MenuItem>
         </Menu>
     ),
     args: {

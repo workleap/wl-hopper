@@ -6,7 +6,7 @@ import Table from "@/components/table/Table";
 
 import { ThemeContext } from "@/context/theme/ThemeProvider";
 import { useContext } from "react";
-import { getTokens, type TokenValue } from "../allDataTokens";
+import { type TokenValue, getTokens } from "../allDataTokens";
 import "./tokenTable.css";
 
 interface TypographyVariantTableProps {
@@ -19,14 +19,10 @@ const TypographyVariantTable = ({ type, tokenType }: TypographyVariantTableProps
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tokenData = (getTokens(theme)[tokenType] as any)["fontWeight"];
 
-    const filteredDataByType: Array<TokenValue> = tokenData.filter((item: TokenValue) =>
-        item.name.includes(type)
-    );
+    const filteredDataByType: Array<TokenValue> = tokenData.filter((item: TokenValue) => item.name.includes(type));
 
-    const filteredDataByWeightVariation: Array<TokenValue> = filteredDataByType.filter(item =>
-        item.name.includes("bold") ||
-        item.name.includes("semibold") ||
-        item.name.includes("medium")
+    const filteredDataByWeightVariation: Array<TokenValue> = filteredDataByType.filter(
+        item => item.name.includes("bold") || item.name.includes("semibold") || item.name.includes("medium")
     );
 
     const listItems = filteredDataByWeightVariation.map(item => {

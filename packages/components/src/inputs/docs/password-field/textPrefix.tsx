@@ -1,7 +1,5 @@
 import { PasswordField } from "@hopper-ui/components";
 
 export default function Example() {
-    return (
-        <PasswordField placeholder="Enter password" prefix="pwd:" label="Password" />
-    );
+    return <PasswordField placeholder="Enter password" prefix="pwd:" label="Password" />;
 }

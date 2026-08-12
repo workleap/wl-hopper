@@ -4,7 +4,7 @@ import { join } from "path";
 import { env } from "../env";
 import { content, getPaginatedContent } from "./formatter";
 import { trackError } from "./logger";
-import { paginate, type PaginatedResult } from "./pagination";
+import { type PaginatedResult, paginate } from "./pagination";
 
 async function readMarkdownFile(filePath: string, pageSize?: number, cursor?: string): Promise<PaginatedResult> {
     if (!existsSync(filePath)) {
@@ -33,11 +33,11 @@ export async function getLocalMdContent(relativePath: string, pageSize?: number,
         throw new Error(`File not found: ${guidePath}`);
     }
     try {
-        return getPaginatedContent(
-            await readMarkdownFile(guidePath, pageSize, cursor)
-        );
+        return getPaginatedContent(await readMarkdownFile(guidePath, pageSize, cursor));
     } catch (error) {
-        throw new Error(`Error reading file: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
+        throw new Error(`Error reading file: ${error instanceof Error ? error.message : "Unknown error"}`, {
+            cause: error
+        });
     }
 }
 
@@ -53,11 +53,10 @@ export async function getRemoteMdContent(url: string, pageSize?: number, cursor?
 
         const result = await response.text();
 
-        return getPaginatedContent(
-            paginate(result, pageSize, cursor)
-        );
+        return getPaginatedContent(paginate(result, pageSize, cursor));
     } catch (error) {
-        throw new Error(`Error reading remote URL: ${error instanceof Error ? error.message : "Unknown error"}`, { cause: error });
+        throw new Error(`Error reading remote URL: ${error instanceof Error ? error.message : "Unknown error"}`, {
+            cause: error
+        });
     }
 }
-

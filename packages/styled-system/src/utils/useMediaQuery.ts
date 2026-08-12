@@ -6,7 +6,7 @@ export const supportsMatchMedia = typeof window !== "undefined" && typeof window
 
 // Copied from https://github.com/adobe/react-spectrum/blob/main/packages/%40react-spectrum/utils/src/useMediaQuery.ts
 export function useMediaQuery(query: string) {
-    const [matches, setMatches] = useState(() => supportsMatchMedia ? window.matchMedia(query).matches : false);
+    const [matches, setMatches] = useState(() => (supportsMatchMedia ? window.matchMedia(query).matches : false));
 
     useEffect(() => {
         if (!supportsMatchMedia) {

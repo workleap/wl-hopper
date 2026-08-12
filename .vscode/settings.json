@@ -4,41 +4,31 @@
         "**/dist*": true,
         "**/.next*": true,
         "**/.cache*": true,
-        "**/.contentlayer*": true,
+        "**/.contentlayer*": true
     },
-
-    "eslint.probe": [
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json",
-        "jsonc",
-        "mdx"
-    ],
 
     // Formatters settings
-    "editor.codeActionsOnSave": {
-        "source.fixAll": "explicit",
-        "source.sortImports": "explicit"
-    },
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "file",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "never",
+        "source.format.oxc": "always",
+        "source.fixAll.oxc": "always"
+    },
     "[html]": {
         "editor.formatOnSave": false
     },
-    "[typescriptreact]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
 
     // Languages
-    "typescript.format.enable": false, // Disables the default formatter to use ESLint instead
+    "typescript.format.enable": false, // Disables the default formatter to use oxfmt instead
     "typescript.preferences.useAliasesForRenames": false,
     "typescript.tsdk": "node_modules\\typescript\\lib",
 
-    "javascript.format.enable": false, // Disables the default formatter to use ESLint instead
+    "javascript.format.enable": false, // Disables the default formatter to use oxfmt instead
     "javascript.preferences.useAliasesForRenames": false,
 
-    "json.format.enable": false, // Disables the default formatter to use ESLint instead
+    "json.format.enable": false, // Disables the default formatter to use oxfmt instead
 
     "css.validate": false, // Disables the default formatter to use Stylelint instead
 

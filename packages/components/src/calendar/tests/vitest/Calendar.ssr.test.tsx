@@ -7,10 +7,7 @@ import { Calendar } from "../../src/Calendar.tsx";
 
 describe("Calendar", () => {
     it("should render on the server", () => {
-        const renderOnServer = () =>
-            renderToString(
-                <Calendar />
-            );
+        const renderOnServer = () => renderToString(<Calendar />);
 
         expect(renderOnServer).not.toThrow();
     });

@@ -30,11 +30,7 @@ export default function Example() {
 
     return (
         <Stack>
-            <SearchField
-                value={inputValue}
-                onChange={handleInputChange}
-                placeholder="Search..."
-            />
+            <SearchField value={inputValue} onChange={handleInputChange} placeholder="Search..." />
             {isSearching && <Span>Searching...</Span>}
             <Paragraph>Results: {results.join(", ")}</Paragraph>
         </Stack>

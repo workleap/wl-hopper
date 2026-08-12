@@ -40,11 +40,7 @@ export interface PaginatedResult {
     currentPage?: number;
 }
 
-export function paginate(
-    fullContent: string,
-    pageSize?: number,
-    cursor?: string
-): PaginatedResult {
+export function paginate(fullContent: string, pageSize?: number, cursor?: string): PaginatedResult {
     // If no pagination requested, return full content
     if (!pageSize && !cursor) {
         return {
@@ -71,7 +67,9 @@ export function paginate(
 
         // If pageSize is provided with cursor, it should match the original
         if (pageSize && pageSize !== actualPageSize) {
-            throw new Error(`Page size cannot be changed during pagination. Original size was ${actualPageSize}, but ${pageSize} was provided. To change page size, start pagination from the beginning without a cursor.`);
+            throw new Error(
+                `Page size cannot be changed during pagination. Original size was ${actualPageSize}, but ${pageSize} was provided. To change page size, start pagination from the beginning without a cursor.`
+            );
         }
     } else if (pageSize) {
         // Starting new pagination

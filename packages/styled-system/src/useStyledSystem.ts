@@ -2,8 +2,8 @@ import type { CSSProperties } from "react";
 
 import { useBreakpointContext } from "./responsive/BreakpointContext.tsx";
 import type { Breakpoint } from "./responsive/Breakpoints.ts";
-import { parseResponsiveValue, type ResponsiveProp, type ResponsiveValue } from "./responsive/useResponsiveValue.tsx";
-import { UnsafePrefix, type StyledSystemProps, type UnsafeStyledSystemProps } from "./styledSystemProps.ts";
+import { type ResponsiveProp, type ResponsiveValue, parseResponsiveValue } from "./responsive/useResponsiveValue.tsx";
+import { type StyledSystemProps, UnsafePrefix, type UnsafeStyledSystemProps } from "./styledSystemProps.ts";
 import {
     BackgroundColorMapping,
     BorderMapping,
@@ -70,7 +70,11 @@ function createAxisHandler(firstPropName: string, secondPropName: string, system
     };
 }
 
-function createPseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues?: SystemValues): PropHandler {
+function createPseudoHandler(
+    pseudoClassName: string,
+    pseudoVariable: `--${string}`,
+    systemValues?: SystemValues
+): PropHandler {
     const systemValueHandler: PropHandler = (name, value, context) => {
         const parsedValue = parseResponsiveSystemValue(value, systemValues!, context.matchedBreakpoints);
 
@@ -130,7 +134,11 @@ function createOutlineHandler(systemValues: SystemValues): PropHandler {
     };
 }
 
-function createBorderPseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues: SystemValues): PropHandler {
+function createBorderPseudoHandler(
+    pseudoClassName: string,
+    pseudoVariable: `--${string}`,
+    systemValues: SystemValues
+): PropHandler {
     return (name, value, context) => {
         const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
 
@@ -146,7 +154,11 @@ function createBorderPseudoHandler(pseudoClassName: string, pseudoVariable: `--$
     };
 }
 
-function createOutlinePseudoHandler(pseudoClassName: string, pseudoVariable: `--${string}`, systemValues: SystemValues): PropHandler {
+function createOutlinePseudoHandler(
+    pseudoClassName: string,
+    pseudoVariable: `--${string}`,
+    systemValues: SystemValues
+): PropHandler {
     return (name, value, context) => {
         const parsedValue = parseResponsiveSystemValue(value, systemValues, context.matchedBreakpoints);
 
@@ -183,7 +195,9 @@ const gridTemplateDimensionsHandler: PropHandler = (name, value, context) => {
 
     if (!isNil(parsedValue)) {
         if (Array.isArray(parsedValue)) {
-            parsedValue = parsedValue.map(x => parseResponsiveSystemValue(x, SizingMapping, context.matchedBreakpoints)).join(" ");
+            parsedValue = parsedValue
+                .map(x => parseResponsiveSystemValue(x, SizingMapping, context.matchedBreakpoints))
+                .join(" ");
         }
 
         context.addStyleValue(name, parsedValue);
@@ -362,7 +376,7 @@ class StylingContext {
 
     constructor(className: string | undefined, style: CSSProperties | undefined, matchedBreakpoints: Breakpoint[]) {
         this.#classes = !isNil(className) ? [className] : [];
-        this.#style = { ...(style ?? {}) }; // TODO: different than orbit, in order to not modify the original style object https://github.com/workleap/sg-orbit/issues/1211
+        this.#style = { ...style }; // TODO: different than orbit, in order to not modify the original style object https://github.com/workleap/sg-orbit/issues/1211
         this.matchedBreakpoints = matchedBreakpoints;
     }
 
@@ -400,7 +414,11 @@ export interface StylingProps {
     style?: CSSProperties;
 }
 
-function convertStyleProps<T extends StyledSystemProps>(props: T, handlers: Record<string, PropHandler>, matchedBreakpoints: Breakpoint[]) {
+function convertStyleProps<T extends StyledSystemProps>(
+    props: T,
+    handlers: Record<string, PropHandler>,
+    matchedBreakpoints: Breakpoint[]
+) {
     const context = new StylingContext(undefined, undefined, matchedBreakpoints);
 
     (Object.keys(props) as (keyof T)[]).forEach(key => {
@@ -419,17 +437,24 @@ function convertStyleProps<T extends StyledSystemProps>(props: T, handlers: Reco
     return context.computeStyling();
 }
 
-function removeStyledSystemProps<TProps extends StyledSystemProps>(props: TProps): Omit<TProps, keyof StyledSystemProps> {
+function removeStyledSystemProps<TProps extends StyledSystemProps>(
+    props: TProps
+): Omit<TProps, keyof StyledSystemProps> {
     return Object.keys(props as Record<string, unknown>)
         .filter(x => !isStyledSystemProp(x))
-        .reduce((acc, key) => {
-            acc[key] = (props as Record<string, unknown>)[key];
+        .reduce(
+            (acc, key) => {
+                acc[key] = (props as Record<string, unknown>)[key];
 
-            return acc;
-        }, {} as Record<string, unknown>) as Omit<TProps, keyof StyledSystemProps>;
+                return acc;
+            },
+            {} as Record<string, unknown>
+        ) as Omit<TProps, keyof StyledSystemProps>;
 }
 
-export function useStyledSystem<TProps extends StyledSystemProps>(props: TProps): Omit<TProps, keyof StyledSystemProps> & { stylingProps: StylingProps } {
+export function useStyledSystem<TProps extends StyledSystemProps>(
+    props: TProps
+): Omit<TProps, keyof StyledSystemProps> & { stylingProps: StylingProps } {
     const { matchedBreakpoints } = useBreakpointContext();
 
     const stylingProps = convertStyleProps(props, PropsHandlers, matchedBreakpoints);

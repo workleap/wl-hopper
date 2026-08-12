@@ -1,8 +1,6 @@
 import { DismissIcon } from "@hopper-ui/icons";
 import { type ForwardedRef, forwardRef } from "react";
-import {
-    useContextProps
-} from "react-aria-components";
+import { useContextProps } from "react-aria-components";
 
 import { useLocalizedString } from "../../i18n/index.ts";
 
@@ -11,8 +9,7 @@ import { EmbeddedButton, type EmbeddedButtonProps } from "./EmbeddedButton.tsx";
 
 export const GlobalClearButtonCssSelector = "hop-ClearButton";
 
-export interface ClearButtonProps extends EmbeddedButtonProps {
-}
+export interface ClearButtonProps extends EmbeddedButtonProps {}
 
 function ClearButton(props: ClearButtonProps, ref: ForwardedRef<HTMLButtonElement>) {
     [props, ref] = useContextProps(props, ref, ClearButtonContext);
@@ -25,12 +22,7 @@ function ClearButton(props: ClearButtonProps, ref: ForwardedRef<HTMLButtonElemen
     } = props;
 
     return (
-        <EmbeddedButton
-            ref={ref}
-            aria-label={ariaLabel}
-            size={size}
-            {...otherProps}
-        >
+        <EmbeddedButton ref={ref} aria-label={ariaLabel} size={size} {...otherProps}>
             <DismissIcon />
         </EmbeddedButton>
     );

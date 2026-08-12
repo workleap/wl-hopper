@@ -1,4 +1,3 @@
-
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 
 import { Inline } from "../../../layout/index.ts";

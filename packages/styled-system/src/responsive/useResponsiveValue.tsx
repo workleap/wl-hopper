@@ -1,7 +1,7 @@
 import { isNil, isObject } from "../utils/assertion.ts";
 
 import { useBreakpointContext } from "./BreakpointContext.tsx";
-import { Breakpoints, type Breakpoint } from "./Breakpoints.ts";
+import { type Breakpoint, Breakpoints } from "./Breakpoints.ts";
 
 export type ResponsiveValue<T> = Partial<Record<Breakpoint, T>>;
 

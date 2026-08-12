@@ -1,11 +1,17 @@
-import { useStyledSystem, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type ReactNode } from "react";
-import { Calendar as AriaCalendar, FieldErrorContext, useContextProps, type CalendarProps as AriaCalendarProps, type DateValue } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type ReactNode, forwardRef } from "react";
+import {
+    Calendar as AriaCalendar,
+    type CalendarProps as AriaCalendarProps,
+    type DateValue,
+    FieldErrorContext,
+    useContextProps
+} from "react-aria-components";
 
 import { ErrorMessage } from "../../error-message/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
-import { cssModule, SlotProvider } from "../../utils/index.ts";
+import { SlotProvider, cssModule } from "../../utils/index.ts";
 
 import { CalendarContext } from "./CalendarContext.ts";
 import { CalendarGrid } from "./CalendarGrid.tsx";
@@ -19,18 +25,18 @@ type OmittedCalendarProps = "visibleDuration" | "children";
 
 export interface CalendarProps extends StyledComponentProps<Omit<AriaCalendarProps<DateValue>, OmittedCalendarProps>> {
     /**
-   * The error message to display when the calendar is invalid.
-   */
+     * The error message to display when the calendar is invalid.
+     */
     errorMessage?: ReactNode;
     /**
-   * The number of months to display at once.
-   * @default 1
-   */
+     * The number of months to display at once.
+     * @default 1
+     */
     visibleMonths?: number;
     /**
-   * Whether the calendar should always display 6 weeks.
-   * @default false
-   */
+     * Whether the calendar should always display 6 weeks.
+     * @default false
+     */
     isFixedWeeks?: boolean;
 }
 
@@ -39,21 +45,11 @@ const Calendar = (props: CalendarProps, ref: ForwardedRef<HTMLDivElement>) => {
 
     const stringFormatter = useLocalizedString();
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        errorMessage,
-        style,
-        visibleMonths = 1,
-        isFixedWeeks = false,
-        ...otherProps
-    } = ownProps;
+    const { className, errorMessage, style, visibleMonths = 1, isFixedWeeks = false, ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalCalendarCssSelector,
-        cssModule(
-            styles,
-            GlobalCalendarCssSelector
-        ),
+        cssModule(styles, GlobalCalendarCssSelector),
         stylingProps.className,
         className
     );
@@ -82,11 +78,14 @@ const Calendar = (props: CalendarProps, ref: ForwardedRef<HTMLDivElement>) => {
                     </div>
                     <SlotProvider
                         values={[
-                            [FieldErrorContext, {
-                                isInvalid,
-                                validationErrors: [] as never[],
-                                validationDetails: {} as never
-                            }]
+                            [
+                                FieldErrorContext,
+                                {
+                                    isInvalid,
+                                    validationErrors: [] as never[],
+                                    validationDetails: {} as never
+                                }
+                            ]
                         ]}
                     >
                         <ErrorMessage className={styles["hop-Calendar__error-message"]}>

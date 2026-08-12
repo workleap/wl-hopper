@@ -1,21 +1,24 @@
 {
     "name": "wl-hopper",
-    "description": "A React component library that provides accessible, customizable, and production-ready UI components.",
     "version": "0.0.0",
+    "private": true,
+    "description": "A React component library that provides accessible, customizable, and production-ready UI components.",
+    "homepage": "https://github.com/workleap/wl-hopper#readme",
+    "bugs": {
+        "url": "https://github.com/workleap/wl-hopper/issues"
+    },
+    "license": "Apache-2.0",
     "author": {
         "name": "Workleap"
     },
-    "private": true,
-    "license": "Apache-2.0",
-    "type": "module",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git"
     },
+    "type": "module",
     "scripts": {
         "doc:start": "pnpm --filter=docs dev",
         "doc:generate": "pnpm --filter=docs generate",
-        "doc:lint": "pnpm --filter=docs eslint",
         "dev:basic": "pnpm -r --filter=basic dev",
         "dev:mcp": "pnpm -r --filter=mcp-server dev",
         "test": "turbo run test --continue",
@@ -31,8 +34,10 @@
         "ci-release": "pnpm build:pkg && changeset publish",
         "install-react18": "pnpm -r --filter \"{packages/**}\" add -D react@18 react-dom@18 @types/react@18 @types/react-dom@18 && pnpm add -D -w react@18 react-dom@18 @types/react@18 @types/react-dom@18",
         "generate-icons": "pnpm --filter=\"svg-icons\" generate-icons && pnpm --filter=\"@hopper-ui/icons*\" generate-icons",
-        "lint": "turbo run eslint stylelint typecheck syncpack --continue",
-        "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
+        "lint": "oxlint && pnpm format:check && turbo run stylelint typecheck syncpack --continue",
+        "oxlint": "oxlint",
+        "format": "oxfmt . \"!**/*.css\"",
+        "format:check": "oxfmt . \"!**/*.css\" --check",
         "syncpack": "syncpack lint",
         "typecheck": "tsc",
         "clean": "pnpm -r --parallel --include-workspace-root exec pnpm dlx rimraf dist node_modules/.cache",
@@ -49,7 +54,6 @@
     "devDependencies": {
         "@changesets/cli": "2.29.7",
         "@chromatic-com/storybook": "5.3.0",
-        "@eslint/js": "9.38.0",
         "@hopper-ui/tokens": "workspace:*",
         "@internationalized/string-compiler": "3.2.6",
         "@netlify/plugin-nextjs": "5.15.13",
@@ -61,20 +65,17 @@
         "@storybook/test-runner": "0.24.4",
         "@swc/core": "1.13.5",
         "@testing-library/react": "16.3.0",
-        "@types/eslint": "9.6.1",
         "@types/node": "24.5.1",
         "@types/react": "19.2.18",
-        "@workleap/eslint-configs": "0.0.7",
         "@workleap/stylelint-configs": "2.1.6",
         "@workleap/swc-configs": "2.3.0",
         "@workleap/typescript-configs": "3.0.4",
         "axe-playwright": "2.2.2",
         "chromatic": "18.2.0",
         "cross-env": "10.1.0",
-        "eslint": "9.38.0",
-        "eslint-plugin-import": "2.32.0",
-        "eslint-plugin-storybook": "10.5.7",
         "jsdom": "30.0.1",
+        "oxfmt": "0.63.0",
+        "oxlint": "1.78.0",
         "postcss": "8.5.6",
         "postcss-modules": "6.0.1",
         "prettier": "3.6.2",
@@ -96,13 +97,8 @@
         "tsx": "4.20.6",
         "turbo": "2.5.8",
         "typescript": "5.5.4",
-        "typescript-eslint": "8.46.2",
         "vite": "8.2.1",
         "vitest": "4.1.10"
     },
-    "bugs": {
-        "url": "https://github.com/workleap/wl-hopper/issues"
-    },
-    "homepage": "https://github.com/workleap/wl-hopper#readme",
     "packageManager": "pnpm@10.29.2"
 }

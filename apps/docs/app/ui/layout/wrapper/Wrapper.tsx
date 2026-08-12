@@ -11,15 +11,14 @@ interface WrapperProps {
 
 const Wrapper = ({ children, type = "fluid", className }: WrapperProps) => {
     return (
-        <div className={
-            clsx(
+        <div
+            className={clsx(
                 "hd-layout__wrapper",
                 {
                     [`hd-layout__${type}`]: type
                 },
                 className
-            )
-        }
+            )}
         >
             {children}
         </div>

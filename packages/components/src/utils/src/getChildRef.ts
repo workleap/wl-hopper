@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { version, type ReactElement, type RefObject } from "react";
+import { type ReactElement, type RefObject, version } from "react";
 
 export function getChildRef(child: ReactElement<any>): RefObject<any> {
     // @ts-expect-error - Accessing refs is different for React 19

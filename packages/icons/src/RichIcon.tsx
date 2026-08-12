@@ -1,7 +1,12 @@
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ElementType, type RefAttributes, type SVGProps } from "react";
-import { useContextProps, type SlotProps } from "react-aria-components";
+import { type CSSProperties, type ElementType, type RefAttributes, type SVGProps, forwardRef } from "react";
+import { type SlotProps, useContextProps } from "react-aria-components";
 
 import { cssModule } from "../../components/src/utils/src/cssModule.ts";
 
@@ -11,7 +16,15 @@ import styles from "./RichIcon.module.css";
 
 export const GlobalRichIconCssSelector = "hop-RichIcon";
 
-export type RichIconDecorativeVariant = "option1" | "option2" | "option3" | "option4" | "option5" | "option6" | "option7" | "option8";
+export type RichIconDecorativeVariant =
+    | "option1"
+    | "option2"
+    | "option3"
+    | "option4"
+    | "option5"
+    | "option6"
+    | "option7"
+    | "option8";
 export type RichIconStatusVariant = "success" | "warning" | "danger" | "information" | "upsell";
 export type RichIconVariant = RichIconDecorativeVariant | RichIconStatusVariant;
 
@@ -22,9 +35,9 @@ export interface RichIconProps extends SlotProps, Omit<StyledComponentProps<"svg
      */
     variant?: RichIconVariant;
     /**
-    * The size of the icon.
-    * @default "lg"
-    */
+     * The size of the icon.
+     * @default "lg"
+     */
     size?: ResponsiveProp<"md" | "lg" | "xl">;
     /**
      * The source of the icon with a size of 24px.
@@ -70,11 +83,7 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
     const classNames = clsx(
         className,
         GlobalRichIconCssSelector,
-        cssModule(
-            styles,
-            "hop-RichIcon",
-            variant
-        ),
+        cssModule(styles, "hop-RichIcon", variant),
         stylingProps.className
     );
 
@@ -92,7 +101,7 @@ export const RichIcon = forwardRef<SVGSVGElement, RichIconProps>((props, ref) =>
             focusable="false"
             role="img"
             aria-label={ariaLabel}
-            aria-hidden={(ariaLabel ? (ariaHidden || undefined) : true)}
+            aria-hidden={ariaLabel ? ariaHidden || undefined : true}
             className={classNames}
         />
     );

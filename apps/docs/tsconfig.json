@@ -13,24 +13,12 @@
             }
         ],
         "paths": {
-            "@/*": [
-                "./*"
-            ],
-            "@hopper-ui/icons": [
-                "../../packages/icons/src/index.ts"
-            ],
-            "@hopper-ui/styled-system": [
-                "../../packages/styled-system/src/index.ts"
-            ],
-            "@hopper-ui/components": [
-                "../../packages/components/src/index.ts"
-            ],
-            "@hopper-ui/storybook-addon": [
-                "../../tooling/storybook-addon/index.ts"
-            ],
-            "@hopper-ui/test-utils": [
-                "../../tooling/test-utils/index.ts"
-            ]
+            "@/*": ["./*"],
+            "@hopper-ui/icons": ["../../packages/icons/src/index.ts"],
+            "@hopper-ui/styled-system": ["../../packages/styled-system/src/index.ts"],
+            "@hopper-ui/components": ["../../packages/components/src/index.ts"],
+            "@hopper-ui/storybook-addon": ["../../tooling/storybook-addon/index.ts"],
+            "@hopper-ui/test-utils": ["../../tooling/test-utils/index.ts"]
         }
     },
     "include": [
@@ -41,7 +29,5 @@
         ".contentlayer/generated",
         ".storybook/**/*"
     ],
-    "exclude": [
-        "node_modules"
-    ]
+    "exclude": ["node_modules"]
 }

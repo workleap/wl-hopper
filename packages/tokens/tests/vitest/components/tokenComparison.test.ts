@@ -2,11 +2,20 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const componentsDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "src", "tokens", "components");
+const componentsDir = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "..",
+    "..",
+    "src",
+    "tokens",
+    "components"
+);
 
 const isDirectory = (targetPath: string): boolean => fs.statSync(targetPath).isDirectory();
 
-const getThemeFolders = (root: string): string[] => fs.readdirSync(root).filter(entry => isDirectory(path.join(root, entry)));
+const getThemeFolders = (root: string): string[] =>
+    fs.readdirSync(root).filter(entry => isDirectory(path.join(root, entry)));
 
 const getJsonFiles = (themePath: string): string[] => {
     const files: string[] = [];
@@ -44,7 +53,7 @@ const collectKeys = (jsonPath: string): string[] => {
             const currentPath = prefix ? `${prefix}.${key}` : key;
             keys.push(currentPath);
             if (key !== "$value") {
-                visit((node)[key], currentPath);
+                visit(node[key], currentPath);
             }
         });
     };

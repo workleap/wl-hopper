@@ -20,7 +20,14 @@ import { useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { RadioContext, RadioFieldContext } from "../../radio/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { type BaseComponentDOMProps, type FieldProps, type InputGroupVariant, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
+import {
+    type BaseComponentDOMProps,
+    type FieldProps,
+    type InputGroupVariant,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule
+} from "../../utils/index.ts";
 
 import { RadioGroupContext } from "./RadioGroupContext.ts";
 
@@ -76,12 +83,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
         ...otherProps
     } = ownProps;
 
-    const {
-        className: listClassName,
-        slot: listSlot,
-        style: listStyleProp,
-        ...otherListProps
-    } = listProps;
+    const { className: listClassName, slot: listSlot, style: listStyleProp, ...otherListProps } = listProps;
 
     const orientation = useResponsiveValue(orientationProp) ?? "vertical";
     const size = useResponsiveValue(sizeProp) ?? "md";
@@ -90,21 +92,11 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     const classNames = composeClassnameRenderProps(
         className,
         GlobalRadioGroupCssSelector,
-        cssModule(
-            styles,
-            "hop-RadioGroup",
-            isFluid && "fluid",
-            size,
-            variant
-        ),
+        cssModule(styles, "hop-RadioGroup", isFluid && "fluid", size, variant),
         stylingProps.className
     );
 
-    const listClassNames = clsx(
-        styles["hop-RadioGroup__list"],
-        listClassName,
-        listStylingProps.className
-    );
+    const listClassNames = clsx(styles["hop-RadioGroup__list"], listClassName, listStylingProps.className);
 
     const style = composeRenderProps(styleProp, prev => {
         return {
@@ -120,12 +112,7 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
 
     const children = composeRenderProps(childrenProp, prev => {
         return (
-            <div
-                className={listClassNames}
-                slot={listSlot ?? undefined}
-                style={listStyle}
-                {...otherListProps}
-            >
+            <div className={listClassNames} slot={listSlot ?? undefined} style={listStyle} {...otherListProps}>
                 {prev}
             </div>
         );
@@ -134,15 +121,21 @@ function RadioGroup(props: RadioGroupProps, ref: ForwardedRef<HTMLDivElement>) {
     return (
         <SlotProvider
             values={[
-                [RadioContext, {
-                    className: styles["hop-RadioGroup__radio"],
-                    size: size
-                }],
-                [RadioFieldContext, {
-                    className: styles["hop-RadioGroup__radio"],
-                    size: size,
-                    isDisabled: isDisabled
-                }]
+                [
+                    RadioContext,
+                    {
+                        className: styles["hop-RadioGroup__radio"],
+                        size
+                    }
+                ],
+                [
+                    RadioFieldContext,
+                    {
+                        className: styles["hop-RadioGroup__radio"],
+                        size,
+                        isDisabled
+                    }
+                ]
             ]}
         >
             <RACRadioGroup

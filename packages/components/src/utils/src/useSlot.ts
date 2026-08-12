@@ -1,9 +1,9 @@
 import { useIsomorphicLayoutEffect } from "@hopper-ui/styled-system";
-import { useCallback, useRef, useState, type RefCallback } from "react";
+import { type RefCallback, useCallback, useRef, useState } from "react";
 
 /**
-* Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
-*/
+ * Taken from https://github.com/adobe/react-spectrum/blob/main/packages/react-aria-components/src/utils.tsx
+ */
 
 export function useSlot<T extends Element = Element>(): [RefCallback<T>, boolean] {
     // Assume we do have the slot in the initial render.

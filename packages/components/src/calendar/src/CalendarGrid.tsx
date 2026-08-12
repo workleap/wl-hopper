@@ -1,16 +1,16 @@
 import type { CalendarDate } from "@internationalized/date";
 import { filterDOMProps } from "@react-aria/utils";
 import clsx from "clsx";
-import { cloneElement, useCallback, useContext, type PropsWithChildren } from "react";
+import { type PropsWithChildren, cloneElement, useCallback, useContext } from "react";
 import {
     CalendarGrid as AriaCalendarGrid,
     CalendarGridBody as AriaCalendarGridBody,
+    type CalendarGridBodyProps as AriaCalendarGridBodyProps,
+    type CalendarGridProps as AriaCalendarGridProps,
     CalendarHeaderCell as AriaCalendarHeaderCell,
     CalendarGridHeader,
     CalendarStateContext,
-    RangeCalendarStateContext,
-    type CalendarGridBodyProps as AriaCalendarGridBodyProps,
-    type CalendarGridProps as AriaCalendarGridProps
+    RangeCalendarStateContext
 } from "react-aria-components";
 
 import { cssModule } from "../../utils/index.ts";
@@ -24,9 +24,9 @@ export const GlobalCalendarGridCssSelector = "hop-CalendarGrid";
 
 export interface CalendarGridProps extends Omit<AriaCalendarGridProps, "children">, PropsWithChildren {
     /**
-   * Whether the calendar should always display 6 weeks.
-   * @default false
-   */
+     * Whether the calendar should always display 6 weeks.
+     * @default false
+     */
     isFixedWeeks?: boolean;
 }
 
@@ -42,33 +42,25 @@ export const CalendarGrid = (props: CalendarGridProps) => {
 
     const isRangeCalendar = !!rangeCalendarState;
 
-    const classNames = clsx(
-        GlobalCalendarGridCssSelector,
-        cssModule(
-            styles,
-            GlobalCalendarGridCssSelector
-        )
+    const classNames = clsx(GlobalCalendarGridCssSelector, cssModule(styles, GlobalCalendarGridCssSelector));
+
+    const formatMonthName = useCallback(
+        (day: string) => {
+            if (weekdayStyle === "short") {
+                // Removes the last letter of weekday style "short", from 3 letters to 2. E.g. "Mon" -> "Mo"
+                return day.slice(0, -1);
+            }
+
+            return day;
+        },
+        [weekdayStyle]
     );
 
-    const formatMonthName = useCallback((day: string) => {
-        if (weekdayStyle === "short") {
-            // Removes the last letter of weekday style "short", from 3 letters to 2. E.g. "Mon" -> "Mo"
-            return day.slice(0, -1);
-        }
-
-        return day;
-    }, [weekdayStyle]);
-
-    const renderDate = (date: CalendarDate) => (
-        isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />
-    );
+    const renderDate = (date: CalendarDate) =>
+        isRangeCalendar ? <RangeCalendarCell date={date} /> : <CalendarCell date={date} />;
 
     return (
-        <AriaCalendarGrid
-            weekdayStyle={weekdayStyle}
-            className={classNames}
-            {...props}
-        >
+        <AriaCalendarGrid weekdayStyle={weekdayStyle} className={classNames} {...props}>
             <CalendarGridHeader>
                 {day => (
                     <AriaCalendarHeaderCell className={styles["hop-CalendarGrid__header-cell"]}>
@@ -82,11 +74,8 @@ export const CalendarGrid = (props: CalendarGridProps) => {
                     {renderDate}
                 </CalendarGridBody>
             ) : (
-                <AriaCalendarGridBody className={styles["hop-CalendarGrid__body"]}>
-                    {renderDate}
-                </AriaCalendarGridBody>
+                <AriaCalendarGridBody className={styles["hop-CalendarGrid__body"]}>{renderDate}</AriaCalendarGridBody>
             )}
-
         </AriaCalendarGrid>
     );
 };
@@ -121,15 +110,17 @@ function CalendarGridBody(props: CalendarGridBodyProps) {
             style={style}
             className={className}
         >
-            {[...new Array(FIXED_WEEKS_IN_MONTH).keys()].map(weekIndex => (
+            {Array.from({ length: FIXED_WEEKS_IN_MONTH }, (_, i) => i).map(weekIndex => (
                 <tr key={weekIndex}>
-                    {state.getDatesInWeek(weekIndex, startDate).map((date, i) => (
-                        date
+                    {state.getDatesInWeek(weekIndex, startDate).map((date, i) =>
+                        date ? (
                             // eslint-disable-next-line react/no-array-index-key
-                            ? cloneElement(children(date), { key: i })
-                            // eslint-disable-next-line react/no-array-index-key
-                            : <td key={i} />
-                    ))}
+                            cloneElement(children(date), { key: i })
+                        ) : (
+                            // eslint-disable-next-line react/no-array-index-key, jsx-a11y/control-has-associated-label
+                            <td key={i} />
+                        )
+                    )}
                 </tr>
             ))}
         </tbody>

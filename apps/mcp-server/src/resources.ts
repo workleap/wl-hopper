@@ -1,12 +1,18 @@
-
 import { files } from "@docs/ai";
 import { type McpServer, ResourceTemplate } from "@modelcontextprotocol/sdk/server/mcp.js";
 import type { ReadResourceResult } from "@modelcontextprotocol/sdk/types.js";
-import { GuideDescriptions, type GuideSection, GuideSections, TokenCategories, type TokenCategory, TokenCategoryDescriptions } from "./config/constants";
+import {
+    GuideDescriptions,
+    type GuideSection,
+    GuideSections,
+    TokenCategories,
+    type TokenCategory,
+    TokenCategoryDescriptions
+} from "./config/constants";
 import { GuideFiles, TokenGuideFiles } from "./config/fileMappings";
 import { getComponentBriefApi, getComponentFullApi, getComponentUsage } from "./services/componentsService";
 import { getDesignTokenGuide, getGuide } from "./services/guidesService";
-import { getIcons, IconTypes } from "./services/iconsService";
+import { IconTypes, getIcons } from "./services/iconsService";
 import { getDesignTokens } from "./services/tokensService";
 import { getComponentNames } from "./utils/componentUtils";
 import { getLocalMdContent } from "./utils/fileReader";
@@ -32,13 +38,15 @@ function createResourceResult(uri: URL, content: unknown): ReadResourceResult {
  * Helper function to create an error ReadResourceResult
  */
 function createErrorResult(uri: URL, error: unknown, message: string): ReadResourceResult {
-    const errorMessage = `${message} - ${(error instanceof Error ? error.message : "Unknown error")}`;
+    const errorMessage = `${message} - ${error instanceof Error ? error.message : "Unknown error"}`;
 
     return {
-        contents: [{
-            uri: uri.href,
-            ...content(errorMessage)
-        }]
+        contents: [
+            {
+                uri: uri.href,
+                ...content(errorMessage)
+            }
+        ]
     };
 }
 
@@ -50,17 +58,21 @@ export function resources(server: McpServer) {
         "hopper-full-documentation",
         new ResourceTemplate("hopper://llms-full", {
             list: () => ({
-                resources: [{
-                    uri: "hopper://llms-full",
-                    name: "Full Hopper Documentation",
-                    description: "Complete documentation containing all components, their APIs, tokens, styles, icons and examples",
-                    mimeType: "text/markdown"
-                }]
+                resources: [
+                    {
+                        uri: "hopper://llms-full",
+                        name: "Full Hopper Documentation",
+                        description:
+                            "Complete documentation containing all components, their APIs, tokens, styles, icons and examples",
+                        mimeType: "text/markdown"
+                    }
+                ]
             })
         }),
         {
             title: "Full documentation of Hopper Design System",
-            description: "Complete documentation containing all components, their APIs, tokens, styles, icons and examples"
+            description:
+                "Complete documentation containing all components, their APIs, tokens, styles, icons and examples"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             trackEvent("resource:hopper-full-documentation", {}, requestInfo);
@@ -87,7 +99,8 @@ export function resources(server: McpServer) {
         }),
         {
             title: "Component usage documentation",
-            description: "Usage documentation for Hopper components including anatomy, structure, examples, and best practices"
+            description:
+                "Usage documentation for Hopper components including anatomy, structure, examples, and best practices"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
             const componentName = uri.pathname.split("/")[1];
@@ -244,7 +257,7 @@ export function resources(server: McpServer) {
             list: () => ({
                 resources: GuideSections.map(section => {
                     const guideFile = GuideFiles[section];
-                    const estimatedTokens = (guideFile && "estimatedTokens" in guideFile) ? guideFile.estimatedTokens : 0;
+                    const estimatedTokens = guideFile && "estimatedTokens" in guideFile ? guideFile.estimatedTokens : 0;
 
                     return {
                         uri: `hopper://guides/${section}`,
@@ -291,7 +304,7 @@ export function resources(server: McpServer) {
             description: "Icon collections available in the Hopper Design System"
         },
         async (uri, _, { requestInfo }): Promise<ReadResourceResult> => {
-            const type = uri.pathname.split("/")[1] as typeof IconTypes[number];
+            const type = uri.pathname.split("/")[1] as (typeof IconTypes)[number];
             trackEvent("resource:icons", { type }, requestInfo);
 
             try {
@@ -312,12 +325,14 @@ export function resources(server: McpServer) {
         "component-list",
         new ResourceTemplate("hopper://component-list", {
             list: () => ({
-                resources: [{
-                    uri: "hopper://component-list",
-                    name: "Hopper Component List",
-                    description: "A complete list of all available components in the Hopper Design System",
-                    mimeType: "application/json"
-                }]
+                resources: [
+                    {
+                        uri: "hopper://component-list",
+                        name: "Hopper Component List",
+                        description: "A complete list of all available components in the Hopper Design System",
+                        mimeType: "application/json"
+                    }
+                ]
             })
         }),
         {

@@ -1,4 +1,3 @@
-
 import { Div, useResponsiveValue } from "@hopper-ui/components";
 
 export default function Example() {

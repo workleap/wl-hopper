@@ -1,10 +1,10 @@
 import { useIsSSR } from "@react-aria/ssr";
-import { useCallback, useEffect, useState, type ReactNode } from "react";
+import { type ReactNode, useCallback, useEffect, useState } from "react";
 
 import { supportsMatchMedia } from "../utils/useMediaQuery.ts";
 
 import { BreakpointContext } from "./BreakpointContext.tsx";
-import { Breakpoints, type Breakpoint } from "./Breakpoints.ts";
+import { type Breakpoint, Breakpoints } from "./Breakpoints.ts";
 
 export const DefaultUnsupportedMatchMediaBreakpoint: Breakpoint = "lg";
 
@@ -25,18 +25,12 @@ export function BreakpointProvider({
 }: BreakpointProviderProps) {
     const matchedBreakpoints = useMatchedBreakpoints(unsupportedMatchMediaBreakpoint);
 
-    return (
-        <BreakpointContext.Provider value={{ matchedBreakpoints }} >
-            {children}
-        </BreakpointContext.Provider>
-    );
+    return <BreakpointContext.Provider value={{ matchedBreakpoints }}>{children}</BreakpointContext.Provider>;
 }
 
 function useMatchedBreakpoints(unsupportedMatchMediaBreakpoint: Breakpoint = DefaultUnsupportedMatchMediaBreakpoint) {
     const getBreakpointHandler = useCallback(() => {
-        const entries =
-            Object.entries(Breakpoints)
-                .sort(([, valueA], [, valueB]) => valueB - valueA);
+        const entries = Object.entries(Breakpoints).sort(([, valueA], [, valueB]) => valueB - valueA);
         const breakpointQueries = entries.map(([, value]) => `(min-width: ${value}px)`);
 
         const matched: Breakpoint[] = [];
@@ -55,9 +49,8 @@ function useMatchedBreakpoints(unsupportedMatchMediaBreakpoint: Breakpoint = Def
     }, []);
 
     const [matchedBreakpoints, setMatchedBreakpoints] = useState<Breakpoint[]>(
-        supportsMatchMedia
-            ? getBreakpointHandler()
-            : [unsupportedMatchMediaBreakpoint]);
+        supportsMatchMedia ? getBreakpointHandler() : [unsupportedMatchMediaBreakpoint]
+    );
 
     useEffect(() => {
         if (!supportsMatchMedia) {
@@ -68,8 +61,10 @@ function useMatchedBreakpoints(unsupportedMatchMediaBreakpoint: Breakpoint = Def
             const breakpointHandler = getBreakpointHandler();
 
             setMatchedBreakpoints(previousMatchedBreakpoints => {
-                if (previousMatchedBreakpoints.length !== breakpointHandler.length ||
-                    previousMatchedBreakpoints.some((breakpoint, idx) => breakpoint !== breakpointHandler[idx])) {
+                if (
+                    previousMatchedBreakpoints.length !== breakpointHandler.length ||
+                    previousMatchedBreakpoints.some((breakpoint, idx) => breakpoint !== breakpointHandler[idx])
+                ) {
                     return [...breakpointHandler]; // Return a new array to force state change
                 }
 

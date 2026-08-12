@@ -9,13 +9,7 @@
             "cache": false
         },
         "lint": {
-            "dependsOn": ["eslint", "typecheck", "stylelint", "syncpack"]
-        },
-        "//#eslint": {
-            "outputs": ["node_modules/.cache/eslint"]
-        },
-        "eslint": {
-            "outputs": ["node_modules/.cache/eslint", ".next/cache"]
+            "dependsOn": ["typecheck", "stylelint", "syncpack"]
         },
         "stylelint": {
             "outputs": ["node_modules/.cache/stylelint"]

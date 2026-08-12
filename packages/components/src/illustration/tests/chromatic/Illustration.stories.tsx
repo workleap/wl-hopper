@@ -26,7 +26,12 @@ export const Default = {
 export const Horizontal = {
     render: () => (
         <Stack>
-            <Illustration orientation="horizontal" UNSAFE_width="700px" UNSAFE_height="200px" backgroundColor="core_sapphire-200">
+            <Illustration
+                orientation="horizontal"
+                UNSAFE_width="700px"
+                UNSAFE_height="200px"
+                backgroundColor="core_sapphire-200"
+            >
                 <Image src={Frog} alt="Frog" />
             </Illustration>
             <Div UNSAFE_width="700px" UNSAFE_height="200px">
@@ -41,7 +46,12 @@ export const Horizontal = {
 export const Vertical = {
     render: () => (
         <Inline>
-            <Illustration orientation="vertical" UNSAFE_width="200px" UNSAFE_height="500px" backgroundColor="core_sapphire-200">
+            <Illustration
+                orientation="vertical"
+                UNSAFE_width="200px"
+                UNSAFE_height="500px"
+                backgroundColor="core_sapphire-200"
+            >
                 <Image src={Frog} alt="Frog" />
             </Illustration>
             <Div UNSAFE_width="200px" UNSAFE_height="500px">
@@ -81,7 +91,11 @@ export const Color = {
                 </Illustration>
             </Inline>
             <Inline>
-                <Illustration UNSAFE_backgroundColor="hsla(173, 63%, 75%, 1)" UNSAFE_width="700px" UNSAFE_height="200px">
+                <Illustration
+                    UNSAFE_backgroundColor="hsla(173, 63%, 75%, 1)"
+                    UNSAFE_width="700px"
+                    UNSAFE_height="200px"
+                >
                     <Image src={Frog} alt="Frog" />
                 </Illustration>
                 <Illustration UNSAFE_backgroundColor="#97e7de" UNSAFE_width="700px" UNSAFE_height="200px">

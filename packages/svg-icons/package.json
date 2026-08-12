@@ -1,24 +1,20 @@
 {
     "name": "@hopper-ui/svg-icons",
-    "author": "Workleap",
     "version": "2.19.3",
     "description": "A set of icons handcrafted by Workleap",
     "license": "Apache-2.0",
+    "author": "Workleap",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git",
         "directory": "packages/svg-icons"
     },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
-    "type": "module",
-    "sideEffects": false,
     "files": [
         "/dist",
         "CHANGELOG.md"
     ],
+    "type": "module",
+    "sideEffects": false,
     "exports": {
         "./icons/*.svg": "./dist/icons/*.svg",
         "./icons/inline": {
@@ -28,6 +24,10 @@
         },
         "./rich-icons/*.svg": "./dist/rich-icons/*.svg"
     },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
+    },
     "scripts": {
         "build": "pnpm run \"/^build:.*/\"",
         "build:icons": "copyfiles --flat src/optimized-icons/* dist/icons",
@@ -35,25 +35,18 @@
         "build:rich-icons": "copyfiles --flat src/optimized-rich-icons/* dist/rich-icons",
         "build:metadata": "tsx scripts/buildIconsMetadata.ts",
         "generate-icons": "tsx scripts/generate.ts",
-        "eslint": "eslint . --max-warnings=0 --cache --cache-location node_modules/.cache/eslint",
         "typecheck": "tsc",
         "test": "vitest run"
     },
     "devDependencies": {
-        "@eslint/js": "9.38.0",
-        "@types/eslint": "9.6.1",
         "@types/node": "24.5.1",
-        "@workleap/eslint-configs": "0.0.7",
         "@workleap/typescript-configs": "3.0.4",
         "copyfiles": "2.4.1",
-        "eslint": "9.38.0",
-        "eslint-plugin-import": "2.32.0",
         "hast-util-select": "6.0.4",
         "rehype-parse": "9.0.1",
         "svgo": "4.0.0",
         "tsx": "4.20.6",
         "typescript": "5.5.4",
-        "typescript-eslint": "8.46.2",
         "unified": "11.0.5"
     }
 }

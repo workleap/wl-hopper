@@ -1,7 +1,7 @@
 import { formatStyledSystemName } from "@/app/lib/formatStyledSystemName";
 import { DocumentationThemes } from "@/components/themeSwitch/documentation-theme";
 import { type ColorScheme } from "@/context/theme/ThemeProvider";
-import { getTokensFromKey, type AllTokensKeys, type TokenValue } from "../allDataTokens";
+import { type AllTokensKeys, type TokenValue, getTokensFromKey } from "../allDataTokens";
 
 interface TableProps {
     category: string;
@@ -14,9 +14,9 @@ function formatTokenData(tokens: TokenValue[], tokenType?: "core" | "semantic" |
     return tokens.map(token => {
         const { name, value } = token;
         const values: Item = {
-            name: name,
+            name,
             styledSystemValue: tokenType && formatStyledSystemName(name, tokenType),
-            value: value
+            value
         };
 
         if (!tokenType) {
@@ -32,17 +32,15 @@ const TokenTable = ({ data, tokenType, category, colorScheme }: TableProps) => {
         const tokens = data;
         const formattedData = formatTokenData(tokens, tokenType);
 
-        return (
-            <TokenTableRender
-                showStyledSystemValue={!!tokenType}
-                items={formattedData}
-            />
-        );
+        return <TokenTableRender showStyledSystemValue={!!tokenType} items={formattedData} />;
     } else {
         return (
             <>
                 {DocumentationThemes.map(theme => {
-                    const tokens = data === undefined ? getTokensFromKey(`${tokenType}.${category}` as AllTokensKeys, theme, colorScheme) : data;
+                    const tokens =
+                        data === undefined
+                            ? getTokensFromKey(`${tokenType}.${category}` as AllTokensKeys, theme, colorScheme)
+                            : data;
                     const formattedData = formatTokenData(tokens, tokenType);
 
                     return (
@@ -65,7 +63,15 @@ interface Item {
     value: string;
 }
 
-function TokenTableRender({ items, showStyledSystemValue, theme }: { items: Item[]; showStyledSystemValue: boolean; theme?: string }) {
+function TokenTableRender({
+    items,
+    showStyledSystemValue,
+    theme
+}: {
+    items: Item[];
+    showStyledSystemValue: boolean;
+    theme?: string;
+}) {
     return (
         <div>
             {theme && <div>The values of these tokens are only valid if the current theme is {theme}</div>}
@@ -81,15 +87,23 @@ function TokenTableRender({ items, showStyledSystemValue, theme }: { items: Item
                     {items.map(item => (
                         <tr key={item.name}>
                             {showStyledSystemValue && <td>{item.styledSystemValue}</td>}
-                            <td><code>{`--${item.name}`}</code></td>
+                            <td>
+                                <code>{`--${item.name}`}</code>
+                            </td>
                             <td>{item.value}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             <div>
-                <p>⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in your code. </p>
-                <p>If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the related mapping value from the <strong>Component Prop Value</strong> column by searching this table.</p>
+                <p>
+                    ⚠️ IMPORTANT: You MUST use the EXACT values from the <strong>Component Prop Value</strong> column in
+                    your code.{" "}
+                </p>
+                <p>
+                    If you have the Token Name (CSS Variable Name) or direct value from your design, you should find the
+                    related mapping value from the <strong>Component Prop Value</strong> column by searching this table.
+                </p>
             </div>
         </div>
     );

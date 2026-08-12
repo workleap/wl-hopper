@@ -1,4 +1,4 @@
-import { AiDocsConfig } from "./types.ts";
+import type { AiDocsConfig } from "./types.ts";
 
 export const aiDocsConfig: AiDocsConfig = {
     buildRootPath: "dist",
@@ -55,10 +55,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "components/index.md": {
             build: {
                 template: "/ai-pipeline/templates/components.mdx",
-                merge: [
-                    "/components/full/component-list.md",
-                    "/components/full/*.md"
-                ]
+                merge: ["/components/full/component-list.md", "/components/full/*.md"]
             }
         },
 
@@ -76,9 +73,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "components/concepts/index.md": {
             build: {
                 template: "/ai-pipeline/templates/components-concepts.mdx",
-                merge: [
-                    "/components/concepts/*.md"
-                ]
+                merge: ["/components/concepts/*.md"]
             }
         },
 
@@ -96,9 +91,7 @@ export const aiDocsConfig: AiDocsConfig = {
         "components/utilities/index.md": {
             build: {
                 template: "/ai-pipeline/templates/components-utilities.mdx",
-                merge: [
-                    "/components/utilities/*.md"
-                ]
+                merge: ["/components/utilities/*.md"]
             }
         },
 
@@ -148,7 +141,6 @@ export const aiDocsConfig: AiDocsConfig = {
                     "/icons/full/SVG-icons/icon-library.md",
                     "/icons/full/SVG-icons/rich-icon-library.md",
                     "/icons/full/advanced/designing-an-icon.md"
-
                 ]
             }
         },
@@ -156,20 +148,14 @@ export const aiDocsConfig: AiDocsConfig = {
         "icons/full/react-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-react.mdx",
-                merge: [
-                    "/icons/full/react-icons/icon-library.md",
-                    "/icons/full/react-icons/rich-icon-library.md"
-                ]
+                merge: ["/icons/full/react-icons/icon-library.md", "/icons/full/react-icons/rich-icon-library.md"]
             }
         },
 
         "icons/full/SVG-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-svg.mdx",
-                merge: [
-                    "/icons/full/SVG-icons/icon-library.md",
-                    "/icons/full/SVG-icons/rich-icon-library.md"
-                ]
+                merge: ["/icons/full/SVG-icons/icon-library.md", "/icons/full/SVG-icons/rich-icon-library.md"]
             }
         },
 
@@ -203,20 +189,14 @@ export const aiDocsConfig: AiDocsConfig = {
         "icons/brief/react-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-react.mdx",
-                merge: [
-                    "/icons/brief/react-icons/icon-library.md",
-                    "/icons/brief/react-icons/rich-icon-library.md"
-                ]
+                merge: ["/icons/brief/react-icons/icon-library.md", "/icons/brief/react-icons/rich-icon-library.md"]
             }
         },
 
         "icons/brief/SVG-icons/index.md": {
             build: {
                 template: "/ai-pipeline/templates/icons-svg.mdx",
-                merge: [
-                    "/icons/brief/SVG-icons/icon-library.md",
-                    "/icons/brief/SVG-icons/rich-icon-library.md"
-                ]
+                merge: ["/icons/brief/SVG-icons/icon-library.md", "/icons/brief/SVG-icons/rich-icon-library.md"]
             }
         },
 
@@ -228,7 +208,7 @@ export const aiDocsConfig: AiDocsConfig = {
         },
 
         //tokens guides
-        "tokens": {
+        tokens: {
             build: {
                 source: "content/tokens",
                 flatten: false
@@ -355,7 +335,7 @@ export const aiDocsConfig: AiDocsConfig = {
         },
 
         //ai docs
-        "ai": {
+        ai: {
             build: {
                 source: "content/ai"
             }
@@ -396,7 +376,5 @@ export const aiDocsConfig: AiDocsConfig = {
                 ]
             }
         }
-
     }
 };
-

@@ -52,7 +52,8 @@ export const Default = {
             <Heading>Fascinating Frog Facts!</Heading>
             <Content>
                 <Text>
-                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
                 </Text>
             </Content>
         </Modal>
@@ -67,7 +68,8 @@ export const ImageStory = {
             <Heading>Fascinating Frog Facts!</Heading>
             <Content>
                 <Text>
-                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
                 </Text>
             </Content>
         </Modal>
@@ -82,11 +84,19 @@ export const Choice = {
                 <Flex gap="stack-lg">
                     <Card flex={1}>
                         <Image objectFit="cover" alt="Frog" src={Frog} />
-                        <Flex direction="column" gap="stack-sm" padding="inset-md" height="100%" justifyContent="space-between">
+                        <Flex
+                            direction="column"
+                            gap="stack-sm"
+                            padding="inset-md"
+                            height="100%"
+                            justifyContent="space-between"
+                        >
                             <Flex direction="column" gap="stack-sm">
                                 <Heading>Frog</Heading>
                                 <Content>
-                                    Common frogs are found in ponds, marshes, and forests across the world. Unlike some of their flashier cousins, they rely on stealth and speed rather than bright colors to survive.
+                                    Common frogs are found in ponds, marshes, and forests across the world. Unlike some
+                                    of their flashier cousins, they rely on stealth and speed rather than bright colors
+                                    to survive.
                                 </Content>
                                 <Button variant="secondary">Choose</Button>
                             </Flex>
@@ -94,11 +104,18 @@ export const Choice = {
                     </Card>
                     <Card flex={1}>
                         <Image objectFit="cover" alt="Mossy Frog" src={MossyFrog} />
-                        <Flex direction="column" gap="stack-sm" padding="inset-md" height="100%" justifyContent="space-between">
+                        <Flex
+                            direction="column"
+                            gap="stack-sm"
+                            padding="inset-md"
+                            height="100%"
+                            justifyContent="space-between"
+                        >
                             <Flex direction="column" gap="stack-sm">
                                 <Heading>Mossy Frog</Heading>
                                 <Content>
-                                    A mossy tree frog with rough, bark-like skin, blending perfectly into its surroundings for camouflage and protection.
+                                    A mossy tree frog with rough, bark-like skin, blending perfectly into its
+                                    surroundings for camouflage and protection.
                                 </Content>
                             </Flex>
                             <Button variant="secondary">Choose</Button>
@@ -118,7 +135,8 @@ export const HeaderStory = {
             <Header>Nature’s Little Acrobats</Header>
             <Content>
                 <Text>
-                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
                 </Text>
             </Content>
         </Modal>
@@ -132,12 +150,11 @@ export const FooterStory = {
             <Heading>Fascinating Frog Facts!</Heading>
             <Content>
                 <Text>
-                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                    Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs,
+                    some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
                 </Text>
             </Content>
-            <Footer>
-                Copyright 2025
-            </Footer>
+            <Footer>Copyright 2025</Footer>
         </Modal>
     )
 } satisfies Story;
@@ -151,10 +168,14 @@ export const ButtonStory = {
                     <Heading>Fascinating Frog Facts!</Heading>
                     <Content>
                         <Text>
-                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful
+                            legs, some species can jump over 20 times their body length—that’s like a human leaping over
+                            a school bus!
                         </Text>
                     </Content>
-                    <Button variant="primary" onPress={close}>Save</Button>
+                    <Button variant="primary" onPress={close}>
+                        Save
+                    </Button>
                 </>
             )}
         </Modal>
@@ -170,12 +191,18 @@ export const ButtonGroupStory = {
                     <Heading>Fascinating Frog Facts!</Heading>
                     <Content>
                         <Text>
-                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful
+                            legs, some species can jump over 20 times their body length—that’s like a human leaping over
+                            a school bus!
                         </Text>
                     </Content>
                     <ButtonGroup>
-                        <Button variant="secondary" onPress={close}>Cancel</Button>
-                        <Button variant="primary" onPress={close}>Save</Button>
+                        <Button variant="secondary" onPress={close}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onPress={close}>
+                            Save
+                        </Button>
                     </ButtonGroup>
                 </>
             )}
@@ -191,12 +218,18 @@ export const LongTitle = {
                     <Heading>Fascinating Frog Facts so fascinating that this title becomes really long!</Heading>
                     <Content>
                         <Text>
-                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful
+                            legs, some species can jump over 20 times their body length—that’s like a human leaping over
+                            a school bus!
                         </Text>
                     </Content>
                     <ButtonGroup>
-                        <Button variant="secondary" onPress={close}>Cancel</Button>
-                        <Button variant="primary" onPress={close}>Save</Button>
+                        <Button variant="secondary" onPress={close}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onPress={close}>
+                            Save
+                        </Button>
                     </ButtonGroup>
                 </>
             )}
@@ -221,15 +254,19 @@ export const Everything = {
                     <Header>Nature’s Little Acrobats</Header>
                     <Content>
                         <Text>
-                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful legs, some species can jump over 20 times their body length—that’s like a human leaping over a school bus!
+                            Frogs are amphibians, meaning they can live both in water and on land! With their powerful
+                            legs, some species can jump over 20 times their body length—that’s like a human leaping over
+                            a school bus!
                         </Text>
                     </Content>
-                    <Footer>
-                        Copyright 2021
-                    </Footer>
+                    <Footer>Copyright 2021</Footer>
                     <ButtonGroup>
-                        <Button variant="secondary" onPress={close}>Cancel</Button>
-                        <Button variant="primary" onPress={close}>Save</Button>
+                        <Button variant="secondary" onPress={close}>
+                            Cancel
+                        </Button>
+                        <Button variant="primary" onPress={close}>
+                            Save
+                        </Button>
                     </ButtonGroup>
                 </>
             )}
@@ -282,22 +319,42 @@ export const GlassyBackground_WithText = {
                     <Flex direction="column" gap="stack-sm" flex={1}>
                         <InfoIcon size="lg" />
                         <Heading>Information</Heading>
-                        <Text>Important details about your account and recent activity are displayed here. Stay informed about changes, updates, and announcements relevant to your workspace. Regularly reviewing this section ensures you never miss critical information that may affect your workflow or team collaboration.</Text>
+                        <Text>
+                            Important details about your account and recent activity are displayed here. Stay informed
+                            about changes, updates, and announcements relevant to your workspace. Regularly reviewing
+                            this section ensures you never miss critical information that may affect your workflow or
+                            team collaboration.
+                        </Text>
                     </Flex>
                     <Flex direction="column" gap="stack-sm" flex={1}>
                         <CheckmarkIcon size="lg" />
                         <Heading>Completed</Heading>
-                        <Text>All tasks have been reviewed and marked as done. Each completed item represents a step forward in your project's progress. Keeping track of finished work helps the team celebrate milestones, measure velocity, and plan upcoming sprints with greater confidence and accuracy.</Text>
+                        <Text>
+                            All tasks have been reviewed and marked as done. Each completed item represents a step
+                            forward in your project's progress. Keeping track of finished work helps the team celebrate
+                            milestones, measure velocity, and plan upcoming sprints with greater confidence and
+                            accuracy.
+                        </Text>
                     </Flex>
                     <Flex direction="column" gap="stack-sm" flex={1}>
                         <StarIcon size="lg" />
                         <Heading>Favorites</Heading>
-                        <Text>Your starred items and bookmarked content appear here for quick access. Organize the resources, documents, and tools you use most often so you can get back to them without searching. A well-maintained favorites list dramatically reduces the time spent navigating large workspaces.</Text>
+                        <Text>
+                            Your starred items and bookmarked content appear here for quick access. Organize the
+                            resources, documents, and tools you use most often so you can get back to them without
+                            searching. A well-maintained favorites list dramatically reduces the time spent navigating
+                            large workspaces.
+                        </Text>
                     </Flex>
                     <Flex direction="column" gap="stack-sm" flex={1}>
                         <MailIcon size="lg" />
                         <Heading>Messages</Heading>
-                        <Text>Unread notifications and incoming messages from your team are collected in this section. Timely responses keep projects on track and foster a culture of open communication. Make sure to check this regularly to stay aligned with your colleagues and address any pending requests promptly.</Text>
+                        <Text>
+                            Unread notifications and incoming messages from your team are collected in this section.
+                            Timely responses keep projects on track and foster a culture of open communication. Make
+                            sure to check this regularly to stay aligned with your colleagues and address any pending
+                            requests promptly.
+                        </Text>
                     </Flex>
                 </Flex>
             </Flex>
@@ -305,7 +362,8 @@ export const GlassyBackground_WithText = {
                 <Heading>Glassy Modal</Heading>
                 <Content>
                     <Text>
-                        This modal is rendered over a text and icon background to verify the glass/blur overlay effect looks correct.
+                        This modal is rendered over a text and icon background to verify the glass/blur overlay effect
+                        looks correct.
                     </Text>
                 </Content>
                 <ButtonGroup>
@@ -320,7 +378,6 @@ export const GlassyBackground_WithText = {
 export const GlassyBackground_WithImage = {
     render: args => (
         <>
-
             <Flex direction="column" gap="stack-lg" padding="inset-xl">
                 <Heading>Background Content</Heading>
                 <Text>This content sits behind the modal overlay to test the glass effect.</Text>
@@ -345,7 +402,8 @@ export const GlassyBackground_WithImage = {
                 <Heading>Glassy Modal</Heading>
                 <Content>
                     <Text>
-                        This modal is rendered over a colorful gradient background to verify the glass/blur overlay effect looks correct.
+                        This modal is rendered over a colorful gradient background to verify the glass/blur overlay
+                        effect looks correct.
                     </Text>
                 </Content>
                 <ButtonGroup>

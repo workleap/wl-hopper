@@ -17,11 +17,11 @@ export async function getFileContent(filePath: string) {
 }
 
 export function getFormattedCode(code: string) {
-    return (`
+    return `
 \`\`\`tsx showLineNumbers
 ${code}
 \`\`\`
-`);
+`;
 }
 
 export async function getComponentCode(filePath: string) {

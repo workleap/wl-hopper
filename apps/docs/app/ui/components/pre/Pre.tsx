@@ -15,10 +15,22 @@ export type PreProps = DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPre
     theme?: "light" | "dark";
 };
 
-const Pre = ({ children, className, title, "data-language": dataLanguage, raw, theme = "dark", ...props }: PreProps) => {
-    const classes = clsx("hd-pre", {
-        "hd-pre--title": title
-    }, className);
+const Pre = ({
+    children,
+    className,
+    title,
+    "data-language": dataLanguage,
+    raw,
+    theme = "dark",
+    ...props
+}: PreProps) => {
+    const classes = clsx(
+        "hd-pre",
+        {
+            "hd-pre--title": title
+        },
+        className
+    );
 
     const langContent = dataLanguage && (
         <span className="hd-pre-header__lang">
@@ -42,9 +54,7 @@ const Pre = ({ children, className, title, "data-language": dataLanguage, raw, t
                     {copyButton}
                 </div>
             )}
-            <div className="hd-pre__code">
-                {children}
-            </div>
+            <div className="hd-pre__code">{children}</div>
             {!title && <div className="hd-pre__action">{copyButton}</div>}
         </pre>
     );

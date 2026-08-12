@@ -1,11 +1,18 @@
 import { IconContext } from "@hopper-ui/icons";
-import { useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import { type ResponsiveProp, type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, useContext, useLayoutEffect, type CSSProperties, type ForwardedRef, type RefObject } from "react";
-import { DEFAULT_SLOT, Provider, ToggleButton, ToggleGroupStateContext, useContextProps, type Key } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, type RefObject, forwardRef, useContext, useLayoutEffect } from "react";
+import {
+    DEFAULT_SLOT,
+    type Key,
+    Provider,
+    ToggleButton,
+    ToggleGroupStateContext,
+    useContextProps
+} from "react-aria-components";
 
 import { Text, TextContext } from "../../typography/index.ts";
-import { cssModule, type BaseComponentDOMProps } from "../../utils/index.ts";
+import { type BaseComponentDOMProps, cssModule } from "../../utils/index.ts";
 
 import { InternalSegmentedControlContext } from "./SegmentedControlContext.ts";
 import { SegmentedControlItemContext } from "./SegmentedControlItemContext.ts";
@@ -39,23 +46,11 @@ const SegmentedControlItem = (props: SegmentedControlItemProps, ref: ForwardedRe
     const itemSelected = state?.selectedKeys.has(props.id);
 
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children,
-        style,
-        slot,
-        size = "sm",
-        ...otherProps
-    } = ownProps;
+    const { className, children, style, slot, size = "sm", ...otherProps } = ownProps;
 
     const classNames = clsx(
         GlobalSegmentedControlItemCssSelector,
-        cssModule(
-            styles,
-            "hop-SegmentedControlItem",
-            size,
-            isJustified && "justified"
-        ),
+        cssModule(styles, "hop-SegmentedControlItem", size, isJustified && "justified"),
         stylingProps.className,
         className
     );
@@ -94,43 +89,47 @@ const SegmentedControlItem = (props: SegmentedControlItemProps, ref: ForwardedRe
     }, [currentSelectedRef, isReduced, itemSelected, prevRef]);
 
     return (
-        <ToggleButton
-            {...otherProps}
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-            slot={slot ?? undefined}
-        >
+        <ToggleButton {...otherProps} ref={ref} className={classNames} style={mergedStyles} slot={slot ?? undefined}>
             {({ isSelected, isDisabled }) => (
                 <>
-                    {isSelected && !isDisabled && <div className={styles["hop-SegmentedControlItem__slider"]} ref={currentSelectedRef as RefObject<HTMLDivElement>} />}
+                    {isSelected && !isDisabled && (
+                        <div
+                            className={styles["hop-SegmentedControlItem__slider"]}
+                            ref={currentSelectedRef as RefObject<HTMLDivElement>}
+                        />
+                    )}
                     <Provider
                         values={[
-                            [IconContext, {
-                                slots: {
-                                    [DEFAULT_SLOT]: {
-                                        className: styles["hop-SegmentedControlItem__icon"],
-                                        size
-                                    },
-                                    "start-icon": {
-                                        className: styles["hop-SegmentedControlItem__start-icon"],
-                                        size
+                            [
+                                IconContext,
+                                {
+                                    slots: {
+                                        [DEFAULT_SLOT]: {
+                                            className: styles["hop-SegmentedControlItem__icon"],
+                                            size
+                                        },
+                                        "start-icon": {
+                                            className: styles["hop-SegmentedControlItem__start-icon"],
+                                            size
+                                        }
                                     }
                                 }
-                            }],
-                            [TextContext, {
-                                size: "sm",
-                                className: styles["hop-SegmentedControlItem__text"]
-                            }]
+                            ],
+                            [
+                                TextContext,
+                                {
+                                    size: "sm",
+                                    className: styles["hop-SegmentedControlItem__text"]
+                                }
+                            ]
                         ]}
                     >
-                        <div className={styles["hop-SegmentedControlItem__wrapper"]} >
+                        <div className={styles["hop-SegmentedControlItem__wrapper"]}>
                             {typeof children === "string" ? <Text>{children}</Text> : children}
                         </div>
                     </Provider>
                 </>
             )}
-
         </ToggleButton>
     );
 };
@@ -144,4 +143,3 @@ const _SegmentedControlItem = forwardRef<HTMLButtonElement, SegmentedControlItem
 _SegmentedControlItem.displayName = "SegmentedControlItem";
 
 export { _SegmentedControlItem as SegmentedControlItem };
-

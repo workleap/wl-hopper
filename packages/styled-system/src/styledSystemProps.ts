@@ -64,27 +64,27 @@ export const UnsafePrefix = "UNSAFE_";
 
 export interface StyledSystemProps extends UnsafeStyledSystemProps {
     /**
-   * Sets the `align-content` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-content}
-   */
+     * Sets the `align-content` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-content}
+     */
     alignContent?: ResponsiveProp<Property.AlignContent>;
 
     /**
-   * Sets the `align-items` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-items}
-   */
+     * Sets the `align-items` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-items}
+     */
     alignItems?: ResponsiveProp<Property.AlignItems>;
 
     /**
-   * Sets the `align-self` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-self}
-   */
+     * Sets the `align-self` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/align-self}
+     */
     alignSelf?: ResponsiveProp<Property.AlignSelf>;
 
     /**
-   * Sets the `aspect-ratio` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/aspect-ratio}
-   */
+     * Sets the `aspect-ratio` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/aspect-ratio}
+     */
     aspectRatio?: ResponsiveProp<Property.AspectRatio>;
 
     /**
@@ -112,27 +112,27 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     backgroundColorHover?: ResponsiveProp<BackgroundColorValue>;
 
     /**
-   * Sets the `background-image` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-image}
-   */
+     * Sets the `background-image` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-image}
+     */
     backgroundImage?: ResponsiveProp<Property.BackgroundImage>;
 
     /**
-   * Sets the `background-position` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-position}
-   */
+     * Sets the `background-position` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-position}
+     */
     backgroundPosition?: ResponsiveProp<Property.BackgroundPosition>;
 
     /**
-   * Sets the `background-repeat` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-repeat}
-   */
+     * Sets the `background-repeat` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-repeat}
+     */
     backgroundRepeat?: ResponsiveProp<Property.BackgroundRepeat>;
 
     /**
-   * Sets the `background-size` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-size}
-   */
+     * Sets the `background-size` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/background-size}
+     */
     backgroundSize?: ResponsiveProp<Property.BackgroundSize>;
 
     /**
@@ -286,9 +286,9 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     borderTopRightRadius?: ResponsiveProp<BorderRadiusValue>;
 
     /**
-   * Sets the `bottom` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/bottom}
-   */
+     * Sets the `bottom` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/bottom}
+     */
     bottom?: ResponsiveProp<Property.Bottom>;
 
     /**
@@ -346,33 +346,33 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     columnGap?: ResponsiveProp<ColumnGapValue>;
 
     /**
-   * Sets the `content` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/content}
-   */
+     * Sets the `content` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/content}
+     */
     content?: ResponsiveProp<Property.Content>;
 
     /**
-   * Sets the `content-visibility` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/content-visibility}
-   */
+     * Sets the `content-visibility` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/content-visibility}
+     */
     contentVisibility?: ResponsiveProp<Property.ContentVisibility>;
 
     /**
-   * Sets the `cursor` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/cursor}
-   */
+     * Sets the `cursor` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/cursor}
+     */
     cursor?: ResponsiveProp<Property.Cursor>;
 
     /**
-   * Sets the `cursor` property when hovered.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/cursor}
-   */
+     * Sets the `cursor` property when hovered.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/cursor}
+     */
     cursorHover?: ResponsiveProp<Property.Cursor>;
 
     /**
-   * Sets the `display` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/display}
-   */
+     * Sets the `display` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/display}
+     */
     display?: ResponsiveProp<Property.Display>;
 
     /**
@@ -394,51 +394,51 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     fillHover?: ResponsiveProp<FillValue>;
 
     /**
-   * Sets the `filter` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/filter}
-   */
+     * Sets the `filter` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/filter}
+     */
     filter?: ResponsiveProp<Property.Filter>;
 
     /**
-   * Sets the `flex` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex}
-   */
+     * Sets the `flex` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex}
+     */
     flex?: ResponsiveProp<Property.Flex>;
 
     /**
-   * Sets the `flex-basis` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-basis}
-   */
+     * Sets the `flex-basis` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-basis}
+     */
     flexBasis?: ResponsiveProp<Property.FlexBasis>;
 
     /**
-   * Sets the `flex-direction` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-direction}
-   */
+     * Sets the `flex-direction` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-direction}
+     */
     flexDirection?: ResponsiveProp<Property.FlexDirection>;
 
     /**
-   * Sets the `flex-flow` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-flow}
-   */
+     * Sets the `flex-flow` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-flow}
+     */
     flexFlow?: ResponsiveProp<Property.FlexFlow>;
 
     /**
-   * Sets the `flex-grow` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-grow}
-   */
+     * Sets the `flex-grow` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-grow}
+     */
     flexGrow?: ResponsiveProp<Property.FlexGrow>;
 
     /**
-   * Sets the `flex-shrink` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-shrink}
-   */
+     * Sets the `flex-shrink` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-shrink}
+     */
     flexShrink?: ResponsiveProp<Property.FlexShrink>;
 
     /**
-   * Sets the `flex-wrap` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-wrap}
-   */
+     * Sets the `flex-wrap` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/flex-wrap}
+     */
     flexWrap?: ResponsiveProp<Property.FlexWrap>;
 
     /**
@@ -454,9 +454,9 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     fontSize?: ResponsiveProp<FontSizeValue>;
 
     /**
-   * Sets the `font-style` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/font-style}
-   */
+     * Sets the `font-style` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/font-style}
+     */
     fontStyle?: ResponsiveProp<Property.FontStyle>;
 
     /**
@@ -472,15 +472,15 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     gap?: ResponsiveProp<GapValue>;
 
     /**
-   * Sets the `grid` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid}
-   */
+     * Sets the `grid` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid}
+     */
     grid?: ResponsiveProp<Property.Grid>;
 
     /**
-   * Sets the `grid-area` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-area}
-   */
+     * Sets the `grid-area` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-area}
+     */
     gridArea?: ResponsiveProp<Property.GridArea>;
 
     /**
@@ -490,9 +490,9 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     gridAutoColumns?: ResponsiveProp<GridAutoColumnsValue>;
 
     /**
-   * Sets the `grid-auto-flow` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow}
-   */
+     * Sets the `grid-auto-flow` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-auto-flow}
+     */
     gridAutoFlow?: ResponsiveProp<Property.GridAutoFlow>;
 
     /**
@@ -502,15 +502,15 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     gridAutoRows?: ResponsiveProp<GridAutoRowsValue>;
 
     /**
-   * Sets the `grid-column` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column}
-   */
+     * Sets the `grid-column` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column}
+     */
     gridColumn?: ResponsiveProp<Property.GridColumn>;
 
     /**
-   * Sets the `grid-column-end` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column-end}
-   */
+     * Sets the `grid-column-end` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column-end}
+     */
     gridColumnEnd?: ResponsiveProp<Property.GridColumnEnd>;
 
     /**
@@ -520,21 +520,21 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     gridColumnSpan?: ResponsiveProp<GridColumSpanValue>;
 
     /**
-   * Sets the `grid-column-start` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column-start}
-   */
+     * Sets the `grid-column-start` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-column-start}
+     */
     gridColumnStart?: ResponsiveProp<Property.GridColumnStart>;
 
     /**
-   * Sets the `grid-row` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row}
-   */
+     * Sets the `grid-row` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row}
+     */
     gridRow?: ResponsiveProp<Property.GridRow>;
 
     /**
-   * Sets the `grid-row-end` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row-end}
-   */
+     * Sets the `grid-row-end` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row-end}
+     */
     gridRowEnd?: ResponsiveProp<Property.GridRowEnd>;
 
     /**
@@ -544,21 +544,21 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     gridRowSpan?: ResponsiveProp<GridRowSpanValue>;
 
     /**
-   * Sets the `grid-row-start` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row-start}
-   */
+     * Sets the `grid-row-start` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-row-start}
+     */
     gridRowStart?: ResponsiveProp<Property.GridRowStart>;
 
     /**
-   * Sets the `grid-template` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-template}
-   */
+     * Sets the `grid-template` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-template}
+     */
     gridTemplate?: ResponsiveProp<Property.GridTemplate>;
 
     /**
-   * Sets the `grid-template-areas` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-template-areas}
-   */
+     * Sets the `grid-template-areas` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/grid-template-areas}
+     */
     gridTemplateAreas?: ResponsiveProp<GridTemplateAreasValue>;
 
     /**
@@ -580,27 +580,27 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     height?: ResponsiveProp<HeightValue>;
 
     /**
-   * Sets the `justify-content` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-content}
-   */
+     * Sets the `justify-content` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-content}
+     */
     justifyContent?: ResponsiveProp<Property.JustifyContent>;
 
     /**
-   * Sets the `justify-items` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-items}
-   */
+     * Sets the `justify-items` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-items}
+     */
     justifyItems?: ResponsiveProp<Property.JustifyItems>;
 
     /**
-   * Sets the `justify-self` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-self}
-   */
+     * Sets the `justify-self` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/justify-self}
+     */
     justifySelf?: ResponsiveProp<Property.JustifySelf>;
 
     /**
-   * Sets the `left` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/left}
-   */
+     * Sets the `left` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/left}
+     */
     left?: ResponsiveProp<Property.Left>;
 
     /**
@@ -682,75 +682,75 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     minWidth?: ResponsiveProp<WidthValue>;
 
     /**
-   * Sets the `object-fit` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/object-fit}
-   */
+     * Sets the `object-fit` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/object-fit}
+     */
     objectFit?: ResponsiveProp<Property.ObjectFit>;
 
     /**
-   * Sets the `object-position` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/object-position}
-   */
+     * Sets the `object-position` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/object-position}
+     */
     objectPosition?: ResponsiveProp<Property.ObjectPosition>;
 
     /**
-   * Sets the `opacity` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
-   */
+     * Sets the `opacity` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
+     */
     opacity?: ResponsiveProp<Property.Opacity>;
 
     /**
-   * Sets the `opacity` property when active.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
-   */
+     * Sets the `opacity` property when active.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
+     */
     opacityActive?: ResponsiveProp<Property.Opacity>;
 
     /**
-   * Sets the `opacity` property when focused.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
-   */
+     * Sets the `opacity` property when focused.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
+     */
     opacityFocus?: ResponsiveProp<Property.Opacity>;
 
     /**
-   * Sets the `opacity` property when hovered.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
-   */
+     * Sets the `opacity` property when hovered.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/opacity}
+     */
     opacityHover?: ResponsiveProp<Property.Opacity>;
 
     /**
-   * Sets the `order` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/order}
-   */
+     * Sets the `order` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/order}
+     */
     order?: ResponsiveProp<Property.Order>;
 
     /**
-   * Sets the `outline` property.
-   * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outline`** property
-   */
+     * Sets the `outline` property.
+     * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outline`** property
+     */
     outline?: ResponsiveProp<OutlineValue>;
 
     /**
-   * Sets the `outline` property when focused.
-   * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outlineFocus`** property
-   */
+     * Sets the `outline` property when focused.
+     * This property only accept **token values** from the **SCALE**. To specify any other values, use the **`UNSAFE_outlineFocus`** property
+     */
     outlineFocus?: ResponsiveProp<OutlineValue>;
 
     /**
-   * Sets the `overflow` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow}
-   */
+     * Sets the `overflow` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow}
+     */
     overflow?: ResponsiveProp<Property.Overflow>;
 
     /**
-   * Sets the `overflow-x` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow-x}
-   */
+     * Sets the `overflow-x` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow-x}
+     */
     overflowX?: ResponsiveProp<Property.OverflowX>;
 
     /**
-   * Sets the `overflow-y` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow-y}
-   */
+     * Sets the `overflow-y` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/overflow-y}
+     */
     overflowY?: ResponsiveProp<Property.OverflowY>;
 
     /**
@@ -796,27 +796,27 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     paddingY?: ResponsiveProp<SimplePaddingValue>;
 
     /**
-   * Sets the `pointer-events` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/pointer-events}
-   */
+     * Sets the `pointer-events` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/pointer-events}
+     */
     pointerEvents?: ResponsiveProp<Property.PointerEvents>;
 
     /**
-   * Sets the `position` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/position}
-   */
+     * Sets the `position` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/position}
+     */
     position?: ResponsiveProp<Property.Position>;
 
     /**
-   * Sets the `resize` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/resize}
-   */
+     * Sets the `resize` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/resize}
+     */
     resize?: ResponsiveProp<Property.Resize>;
 
     /**
-   * Sets the `right` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/right}
-   */
+     * Sets the `right` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/right}
+     */
     right?: ResponsiveProp<Property.Right>;
 
     /**
@@ -832,75 +832,75 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     stroke?: ResponsiveProp<StrokeValue>;
 
     /**
-   * Sets the `text-align` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-align}
-   */
+     * Sets the `text-align` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-align}
+     */
     textAlign?: ResponsiveProp<Property.TextAlign | "justify-all">;
 
     /**
-   * Sets the `text-decoration` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-decoration}
-   */
+     * Sets the `text-decoration` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-decoration}
+     */
     textDecoration?: ResponsiveProp<Property.TextDecoration>;
 
     /**
-   * Sets the `text-overflow` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-overflow}
-   */
+     * Sets the `text-overflow` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-overflow}
+     */
     textOverflow?: ResponsiveProp<Property.TextOverflow>;
 
     /**
-   * Sets the `text-transform` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-transform}
-   */
+     * Sets the `text-transform` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/text-transform}
+     */
     textTransform?: ResponsiveProp<Property.TextTransform>;
 
     /**
-   * Sets the `top` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/top}
-   */
+     * Sets the `top` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/top}
+     */
     top?: ResponsiveProp<Property.Top>;
 
     /**
-   * Sets the `transform` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform}
-   */
+     * Sets the `transform` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform}
+     */
     transform?: ResponsiveProp<Property.Transform>;
 
     /**
-   * Sets the `transform-origin` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform-origin}
-   */
+     * Sets the `transform-origin` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform-origin}
+     */
     transformOrigin?: ResponsiveProp<Property.TransformOrigin>;
 
     /**
-   * Sets the `transform-style` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform-style}
-   */
+     * Sets the `transform-style` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/transform-style}
+     */
     transformStyle?: ResponsiveProp<Property.TransformStyle>;
 
     /**
-   * Sets the `transition` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/transition}
-   */
+     * Sets the `transition` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/transition}
+     */
     transition?: ResponsiveProp<Property.Transition>;
 
     /**
-   * Sets the `vertical-align` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/vertical-align}
-   */
+     * Sets the `vertical-align` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/vertical-align}
+     */
     verticalAlign?: ResponsiveProp<Property.VerticalAlign>;
 
     /**
-   * Sets the `visibility` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/visibility}
-   */
+     * Sets the `visibility` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/visibility}
+     */
     visibility?: ResponsiveProp<Property.Visibility>;
 
     /**
-   * Sets the `white-space` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/white-space}
-   */
+     * Sets the `white-space` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/white-space}
+     */
     whiteSpace?: ResponsiveProp<Property.WhiteSpace>;
 
     /**
@@ -910,21 +910,21 @@ export interface StyledSystemProps extends UnsafeStyledSystemProps {
     width?: ResponsiveProp<WidthValue>;
 
     /**
-   * Sets the `will-change` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/will-change}
-   */
+     * Sets the `will-change` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/will-change}
+     */
     willChange?: ResponsiveProp<Property.WillChange>;
 
     /**
-   * Sets the `word-break` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/word-break}
-   */
+     * Sets the `word-break` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/word-break}
+     */
     wordBreak?: ResponsiveProp<Property.WordBreak>;
 
     /**
-   * Sets the `z-index` property.
-   * @see {@link https://developer.mozilla.org/docs/Web/CSS/z-index}
-   */
+     * Sets the `z-index` property.
+     * @see {@link https://developer.mozilla.org/docs/Web/CSS/z-index}
+     */
     zIndex?: ResponsiveProp<Property.ZIndex>;
 }
 
@@ -1609,7 +1609,6 @@ export interface UnsafeStyledSystemProps {
     UNSAFE_width?: ResponsiveProp<UNSAFE_WidthValue>;
 }
 
-export type StyledComponentProps<T>
-    = T extends keyof JSX.IntrinsicElements | JSXElementConstructor<unknown> ?
-        Omit<ComponentProps<T>, keyof StyledSystemProps> & StyledSystemProps :
-        Omit<T, keyof StyledSystemProps> & StyledSystemProps;
+export type StyledComponentProps<T> = T extends keyof JSX.IntrinsicElements | JSXElementConstructor<unknown>
+    ? Omit<ComponentProps<T>, keyof StyledSystemProps> & StyledSystemProps
+    : Omit<T, keyof StyledSystemProps> & StyledSystemProps;

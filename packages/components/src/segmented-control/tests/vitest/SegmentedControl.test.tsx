@@ -1,4 +1,3 @@
-
 /* Using closest to get the label is the best way, even react-aria does this. */
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
@@ -8,14 +7,23 @@ import { SegmentedControlContext } from "../../src/SegmentedControlContext.ts";
 
 describe("SegmentedControl", () => {
     it("should render with default class", () => {
-        render(<SegmentedControl aria-label="options"><SegmentedControlItem id="day">Day</SegmentedControlItem><SegmentedControlItem id="week">Week</SegmentedControlItem></SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options">
+                <SegmentedControlItem id="day">Day</SegmentedControlItem>
+                <SegmentedControlItem id="week">Week</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-SegmentedControl");
     });
 
     it("should support custom class", () => {
-        render(<SegmentedControl aria-label="options" className="test"><SegmentedControlItem id="option1">option 1</SegmentedControlItem></SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options" className="test">
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveClass("hop-SegmentedControl");
@@ -34,7 +42,11 @@ describe("SegmentedControl", () => {
     });
 
     it("should support DOM props", () => {
-        render(<SegmentedControl aria-label="options" data-foo="bar"><SegmentedControlItem id="option1">option 1</SegmentedControlItem></SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options" data-foo="bar">
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -43,7 +55,9 @@ describe("SegmentedControl", () => {
     it("should support slots", () => {
         render(
             <SegmentedControlContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <SegmentedControl slot="test"><SegmentedControlItem id="option1">option 1</SegmentedControlItem></SegmentedControl>
+                <SegmentedControl slot="test">
+                    <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+                </SegmentedControl>
             </SegmentedControlContext.Provider>
         );
 
@@ -55,7 +69,11 @@ describe("SegmentedControl", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLDivElement>();
-        render(<SegmentedControl aria-label="options" ref={ref}><SegmentedControlItem id="option1">option 1</SegmentedControlItem></SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options" ref={ref}>
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
@@ -64,9 +82,7 @@ describe("SegmentedControl", () => {
     it("should pass the size to the SegmentedControlItem.", () => {
         render(
             <SegmentedControl aria-label="options" size="sm">
-                <SegmentedControlItem id="option1">
-                    option 1
-                </SegmentedControlItem>
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
             </SegmentedControl>
         );
 
@@ -75,7 +91,11 @@ describe("SegmentedControl", () => {
     });
 
     it("should be disabled and pass it to the SegmentedControlItem.", () => {
-        render(<SegmentedControl aria-label="options" isDisabled><SegmentedControlItem id="option1">option 1</SegmentedControlItem></SegmentedControl>);
+        render(
+            <SegmentedControl aria-label="options" isDisabled>
+                <SegmentedControlItem id="option1">option 1</SegmentedControlItem>
+            </SegmentedControl>
+        );
 
         const element = screen.getByRole("radiogroup");
         expect(element).toHaveAttribute("data-disabled", "true");

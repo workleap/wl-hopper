@@ -13,7 +13,11 @@ describe("Badge", () => {
     });
 
     it("should support custom class", () => {
-        render(<Badge data-testid="badge" className="test">12</Badge>);
+        render(
+            <Badge data-testid="badge" className="test">
+                12
+            </Badge>
+        );
 
         const element = screen.getByTestId("badge");
         expect(element).toHaveClass("hop-Badge");
@@ -21,14 +25,22 @@ describe("Badge", () => {
     });
 
     it("should support custom style", () => {
-        render(<Badge data-testid="badge" marginTop="stack-sm" style={{ marginBottom: "13px" }} >12</Badge>);
+        render(
+            <Badge data-testid="badge" marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                12
+            </Badge>
+        );
 
         const element = screen.getByTestId("badge");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });
     });
 
     it("should support DOM props", () => {
-        render(<Badge data-testid="badge" data-foo="bar">12</Badge>);
+        render(
+            <Badge data-testid="badge" data-foo="bar">
+                12
+            </Badge>
+        );
 
         const element = screen.getByTestId("badge");
         expect(element).toHaveAttribute("data-foo", "bar");
@@ -37,7 +49,9 @@ describe("Badge", () => {
     it("should support slots", () => {
         render(
             <BadgeContext.Provider value={{ slots: { test: { "aria-label": "test" } } }}>
-                <Badge data-testid="badge" slot="test">12</Badge>
+                <Badge data-testid="badge" slot="test">
+                    12
+                </Badge>
             </BadgeContext.Provider>
         );
 
@@ -48,7 +62,11 @@ describe("Badge", () => {
 
     it("should support refs", () => {
         const ref = createRef<HTMLSpanElement>();
-        render(<Badge data-testid="badge" ref={ref}>12</Badge>);
+        render(
+            <Badge data-testid="badge" ref={ref}>
+                12
+            </Badge>
+        );
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLSpanElement).toBeTruthy();
@@ -56,11 +74,8 @@ describe("Badge", () => {
 
     it("should support disabled state", () => {
         render(
-            <Badge
-                data-testid="badge"
-                isDisabled
-                className={({ isDisabled }) => (isDisabled ? "disabled" : "")}
-            >12
+            <Badge data-testid="badge" isDisabled className={({ isDisabled }) => (isDisabled ? "disabled" : "")}>
+                12
             </Badge>
         );
 
@@ -77,7 +92,8 @@ describe("Badge", () => {
                 data-testid="badge"
                 isIndeterminate
                 className={({ isIndeterminate }) => (isIndeterminate ? "indeterminate" : "")}
-            >12
+            >
+                12
             </Badge>
         );
 

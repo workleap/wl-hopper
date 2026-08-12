@@ -1,5 +1,5 @@
 import { slot as slotFn } from "@hopper-ui/styled-system";
-import { forwardRef, type ComponentProps, type ElementType, type RefAttributes, type SVGProps } from "react";
+import { type ComponentProps, type ElementType, type RefAttributes, type SVGProps, forwardRef } from "react";
 
 import { Icon, type IconProps } from "./Icon.tsx";
 
@@ -10,15 +10,8 @@ export function createIcon(
     displayName: string
 ) {
     const iconComponent = forwardRef<SVGSVGElement, Omit<IconProps, "src16" | "src24" | "src32">>((props, ref) => (
-        <Icon
-            {...props}
-            ref={ref}
-            src16={src16}
-            src24={src24}
-            src32={src32}
-        />
-    )
-    );
+        <Icon {...props} ref={ref} src16={src16} src24={src24} src32={src32} />
+    ));
 
     iconComponent.displayName = displayName;
 

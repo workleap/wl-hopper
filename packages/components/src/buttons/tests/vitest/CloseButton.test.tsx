@@ -55,7 +55,11 @@ describe("CloseButton", () => {
     });
 
     it("should support form props", () => {
-        render(<form id="foo"><CloseButton form="foo" formMethod="post" /></form>);
+        render(
+            <form id="foo">
+                <CloseButton form="foo" formMethod="post" />
+            </form>
+        );
 
         const button = screen.getByRole("button");
         expect(button).toHaveAttribute("form", "foo");

@@ -1,10 +1,24 @@
 import { RichIconContext, type RichIconProps } from "@hopper-ui/icons";
-import { slot as slotFn, useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledSystemProps } from "@hopper-ui/styled-system";
-import { forwardRef, type ComponentProps, type ForwardedRef, type HTMLAttributes } from "react";
-import { mergeProps, Pressable, useFocusRing, type PressEvent } from "react-aria";
+import {
+    type ResponsiveProp,
+    type StyledSystemProps,
+    slot as slotFn,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
+import { type ComponentProps, type ForwardedRef, type HTMLAttributes, forwardRef } from "react";
+import { type PressEvent, Pressable, mergeProps, useFocusRing } from "react-aria";
 import { composeRenderProps, useContextProps } from "react-aria-components";
 
-import { composeClassnameRenderProps, cssModule, SlotProvider, useRenderProps, type AccessibleSlotProps, type RenderProps, type SizeAdapter } from "../../utils/index.ts";
+import {
+    type AccessibleSlotProps,
+    type RenderProps,
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import type { AvatarProps, AvatarSize } from "./Avatar.tsx";
 import { RichIconAvatarImageContext } from "./RichIconAvatarImageContext.ts";
@@ -26,7 +40,12 @@ interface RichIconAvatarImageRenderProps {
 
 type OmittedDivProps = "slot" | "content" | "color" | "children" | "className" | "style";
 
-export interface RichIconAvatarImageProps extends StyledSystemProps, AccessibleSlotProps, RenderProps<RichIconAvatarImageRenderProps>, Omit<HTMLAttributes<HTMLDivElement>, OmittedDivProps> {
+export interface RichIconAvatarImageProps
+    extends
+        StyledSystemProps,
+        AccessibleSlotProps,
+        RenderProps<RichIconAvatarImageRenderProps>,
+        Omit<HTMLAttributes<HTMLDivElement>, OmittedDivProps> {
     /**
      * Whether or not the avatar image is disabled.
      */
@@ -54,15 +73,7 @@ export const AvatarToIconSizeAdapter: SizeAdapter<AvatarProps["size"], RichIconP
 function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<HTMLDivElement>) {
     [props, ref] = useContextProps(props, ref, RichIconAvatarImageContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        isDisabled,
-        onPress,
-        style,
-        slot,
-        size: sizeValue,
-        ...otherProps
-    } = ownProps;
+    const { className, isDisabled, onPress, style, slot, size: sizeValue, ...otherProps } = ownProps;
 
     const { focusProps, isFocusVisible } = useFocusRing({ within: true });
     const isClickable = !!onPress;
@@ -111,10 +122,13 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
         >
             <SlotProvider
                 values={[
-                    [RichIconContext, {
-                        className: styles["hop-RichIconAvatarImage__icon"],
-                        size: AvatarToIconSizeAdapter[size]
-                    }]
+                    [
+                        RichIconContext,
+                        {
+                            className: styles["hop-RichIconAvatarImage__icon"],
+                            size: AvatarToIconSizeAdapter[size]
+                        }
+                    ]
                 ]}
             >
                 {renderProps.children}
@@ -123,11 +137,7 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
     );
 
     if (onPress) {
-        return (
-            <Pressable onPress={onPress}>
-                {avatarImage({ role: "button", ...focusProps })}
-            </Pressable>
-        );
+        return <Pressable onPress={onPress}>{avatarImage({ role: "button", ...focusProps })}</Pressable>;
     }
 
     return avatarImage({ role: "img" });
@@ -138,7 +148,10 @@ function RichIconAvatarImage(props: RichIconAvatarImageProps, ref: ForwardedRef<
  *
  * [View Documentation](https://hopper.workleap.design/components/Avatar)
  */
-const _RichIconAvatarImage = slotFn("avatar", forwardRef<HTMLDivElement, RichIconAvatarImageProps>(RichIconAvatarImage));
+const _RichIconAvatarImage = slotFn(
+    "avatar",
+    forwardRef<HTMLDivElement, RichIconAvatarImageProps>(RichIconAvatarImage)
+);
 _RichIconAvatarImage.displayName = "RichIconAvatarImage";
 
 export { _RichIconAvatarImage as RichIconAvatarImage };

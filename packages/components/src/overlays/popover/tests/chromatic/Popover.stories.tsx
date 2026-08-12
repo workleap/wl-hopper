@@ -7,7 +7,8 @@ import { PopoverTrigger } from "../../src/PopoverTrigger.tsx";
 
 const TRIGGER = "Trigger";
 const TITLE = "Engagement score";
-const CONTENT = "The engagement score is the weighted average of the key metric scores below. To calculate these, we take the latest answers from each survey questions within the last 90 days.";
+const CONTENT =
+    "The engagement score is the weighted average of the key metric scores below. To calculate these, we take the latest answers from each survey questions within the last 90 days.";
 const LINK = "Tell me more";
 const PRIMARY_ACTION = "Got it";
 const SECONDARY_ACTION = "Next";
@@ -40,7 +41,7 @@ export const Default = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>{CONTENT}</Content>
             </Popover>
@@ -52,7 +53,7 @@ export const HasLink = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>{CONTENT}</Content>
                 <Footer>
@@ -67,7 +68,7 @@ export const Buttons = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>{CONTENT}</Content>
                 <Button>{PRIMARY_ACTION}</Button>
@@ -80,7 +81,7 @@ export const HasButtonGroup = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>{CONTENT}</Content>
                 <ButtonGroup>
@@ -96,12 +97,10 @@ export const HasFooter = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>{CONTENT}</Content>
-                <Footer>
-                    All right reserved.
-                </Footer>
+                <Footer>All right reserved.</Footer>
                 <Button>{PRIMARY_ACTION}</Button>
             </Popover>
         </PopoverTrigger>
@@ -131,7 +130,7 @@ export const NoHeading = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Content>{CONTENT}</Content>
             </Popover>
         </PopoverTrigger>
@@ -147,7 +146,7 @@ export const LongContent = {
     render: args => (
         <PopoverTrigger>
             <Button>{TRIGGER}</Button>
-            <Popover {...args} >
+            <Popover {...args}>
                 <Heading>{TITLE}</Heading>
                 <Content>
                     {Array.from({ length: 20 }, (_, i) => (

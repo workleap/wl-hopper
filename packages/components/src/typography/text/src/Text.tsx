@@ -1,15 +1,15 @@
 import {
+    type ResponsiveProp,
+    type StyledComponentProps,
     slot as slotFn,
     useResponsiveValue,
-    useStyledSystem,
-    type ResponsiveProp,
-    type StyledComponentProps
+    useStyledSystem
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef } from "react";
-import { Text as RACText, useContextProps, type TextProps as RACTextProps } from "react-aria-components";
+import { type CSSProperties, type ForwardedRef, forwardRef } from "react";
+import { Text as RACText, type TextProps as RACTextProps, useContextProps } from "react-aria-components";
 
-import { ClearContainerSlots, cssModule, SlotProvider } from "../../../utils/index.ts";
+import { ClearContainerSlots, SlotProvider, cssModule } from "../../../utils/index.ts";
 
 import { TextContext } from "./TextContext.ts";
 
@@ -36,11 +36,7 @@ function Text(props: TextProps, ref: ForwardedRef<HTMLSpanElement>) {
 
     const classNames = clsx(
         GlobalTextCssSelector,
-        cssModule(
-            styles,
-            "hop-Text",
-            size
-        ),
+        cssModule(styles, "hop-Text", size),
         stylingProps.className,
         className
     );
@@ -51,19 +47,16 @@ function Text(props: TextProps, ref: ForwardedRef<HTMLSpanElement>) {
     };
 
     return (
-        <RACText
-            ref={ref}
-            elementType={elementType}
-            className={classNames}
-            style={mergedStyles}
-            {...otherProps}
-        >
+        <RACText ref={ref} elementType={elementType} className={classNames} style={mergedStyles} {...otherProps}>
             <ClearContainerSlots>
                 <SlotProvider
                     values={[
-                        [TextContext, {
-                            size: "inherit"
-                        }]
+                        [
+                            TextContext,
+                            {
+                                size: "inherit"
+                            }
+                        ]
                     ]}
                 >
                     {children}

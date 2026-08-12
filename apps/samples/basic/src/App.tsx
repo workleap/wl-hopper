@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import { Layout } from "./Layout.tsx";
 import { MainPage } from "./MainPage.tsx";

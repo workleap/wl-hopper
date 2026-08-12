@@ -21,7 +21,11 @@ describe("Footer", () => {
     });
 
     it("should support custom style", () => {
-        render(<Footer marginTop="stack-sm" style={{ marginBottom: "13px" }}>Test</Footer>);
+        render(
+            <Footer marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Footer>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

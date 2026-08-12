@@ -7,11 +7,7 @@ function Square(props: DivProps) {
 export default function Example() {
     return (
         <Div width="100%" paddingY="core_400">
-            <Grid
-                templateColumns={repeat("auto-fit", "core_640")}
-                autoRows="core_640"
-                gap="stack-sm"
-            >
+            <Grid templateColumns={repeat("auto-fit", "core_640")} autoRows="core_640" gap="stack-sm">
                 <Square backgroundColor="decorative-option1-weak" />
                 <Square backgroundColor="decorative-option2-weak" />
                 <Square backgroundColor="decorative-option3-weak" />

@@ -88,7 +88,10 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 
     // Convert 3-digit hex to 6-digit
     if (hexValue.length === 3) {
-        hexValue = hexValue.split("").map(char => char + char).join("");
+        hexValue = hexValue
+            .split("")
+            .map(char => char + char)
+            .join("");
     }
 
     const r = parseInt(hexValue.substring(0, 2), 16);
@@ -192,11 +195,7 @@ function matchNumberWithUnit(search: string, value: string, config: CssMatchConf
  * @param searchValue - The search value to match
  * @param config - Optional configuration, defaults to DEFAULT_CSS_MATCH_CONFIG
  */
-export function matchesCssValue(
-    cssValue: string,
-    searchValue: string,
-    matchConfig?: PartialCssMatchConfig
-): boolean {
+export function matchesCssValue(cssValue: string, searchValue: string, matchConfig?: PartialCssMatchConfig): boolean {
     const normalized = cssValue.toLowerCase().trim();
     const search = searchValue.toLowerCase().trim();
     const config = {

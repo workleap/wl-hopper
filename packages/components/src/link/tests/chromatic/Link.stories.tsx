@@ -21,27 +21,42 @@ export const Default: Story = {
         return (
             <Stack>
                 <Inline alignY="end">
-                    <Link size="sm" {...args} >Learn more</Link>
-                    <Link {...args} >Learn more</Link>
+                    <Link size="sm" {...args}>
+                        Learn more
+                    </Link>
+                    <Link {...args}>Learn more</Link>
                 </Inline>
                 <Div fontSize="core_180">
-                    <Link size="inherit" {...args}>Learn more</Link>
+                    <Link size="inherit" {...args}>
+                        Learn more
+                    </Link>
                 </Div>
                 <Div UNSAFE_width="400px">
                     <Link {...args}>
-                        Frogs have excellent night vision and are very sensitive to movement.
-                        The bulging eyes of most frogs allow them to see in front, to the sides, and partially behind
-                        them. When a frog swallows food, it pulls its eyes down into the roof of its mouth, to help push
-                        the food down its throat.
+                        Frogs have excellent night vision and are very sensitive to movement. The bulging eyes of most
+                        frogs allow them to see in front, to the sides, and partially behind them. When a frog swallows
+                        food, it pulls its eyes down into the roof of its mouth, to help push the food down its throat.
                     </Link>
                 </Div>
                 <Stack>
-                    <Link size="xs" {...args}>Learn more</Link>
-                    <Link size="sm" {...args}>Learn more</Link>
-                    <Link size="md" {...args}>Learn more</Link>
-                    <Link size="lg" {...args}>Learn more</Link>
-                    <Link size="xl" {...args}>Learn more</Link>
-                    <Link size="2xl" {...args}>Learn more</Link>
+                    <Link size="xs" {...args}>
+                        Learn more
+                    </Link>
+                    <Link size="sm" {...args}>
+                        Learn more
+                    </Link>
+                    <Link size="md" {...args}>
+                        Learn more
+                    </Link>
+                    <Link size="lg" {...args}>
+                        Learn more
+                    </Link>
+                    <Link size="xl" {...args}>
+                        Learn more
+                    </Link>
+                    <Link size="2xl" {...args}>
+                        Learn more
+                    </Link>
                 </Stack>
             </Stack>
         );
@@ -56,11 +71,11 @@ export const StartIcon: Story = {
         return (
             <Stack>
                 <Inline alignY="end">
-                    <Link size="sm" {...args} >
+                    <Link size="sm" {...args}>
                         <SparklesIcon slot="start-icon" />
                         <Text>Learn more</Text>
                     </Link>
-                    <Link {...args} >
+                    <Link {...args}>
                         <SparklesIcon slot="start-icon" />
                         <Text>Learn more</Text>
                     </Link>
@@ -75,10 +90,10 @@ export const StartIcon: Story = {
                     <Link {...args}>
                         <SparklesIcon slot="start-icon" />
                         <Text>
-                            Frogs have excellent night vision and are very sensitive to movement.
-                            The bulging eyes of most frogs allow them to see in front, to the sides, and partially
-                            behind them. When a frog swallows food, it pulls its eyes down into the roof of its mouth,
-                            to help push the food down its throat.
+                            Frogs have excellent night vision and are very sensitive to movement. The bulging eyes of
+                            most frogs allow them to see in front, to the sides, and partially behind them. When a frog
+                            swallows food, it pulls its eyes down into the roof of its mouth, to help push the food down
+                            its throat.
                         </Text>
                     </Link>
                 </Div>
@@ -121,11 +136,11 @@ export const EndIcon: Story = {
         return (
             <Stack>
                 <Inline alignY="end">
-                    <Link size="sm" {...args} >
+                    <Link size="sm" {...args}>
                         <Text>Learn more</Text>
                         <SparklesIcon />
                     </Link>
-                    <Link {...args} >
+                    <Link {...args}>
                         <Text>Learn more</Text>
                         <SparklesIcon />
                     </Link>
@@ -139,10 +154,10 @@ export const EndIcon: Story = {
                 <Div UNSAFE_width="400px">
                     <Link {...args}>
                         <Text>
-                            Frogs have excellent night vision and are very sensitive to movement.
-                            The bulging eyes of most frogs allow them to see in front, to the sides, and partially
-                            behind them. When a frog swallows food, it pulls its eyes down into the roof of its mouth,
-                            to help push the food down its throat.
+                            Frogs have excellent night vision and are very sensitive to movement. The bulging eyes of
+                            most frogs allow them to see in front, to the sides, and partially behind them. When a frog
+                            swallows food, it pulls its eyes down into the roof of its mouth, to help push the food down
+                            its throat.
                         </Text>
                         <SparklesIcon />
                     </Link>
@@ -268,11 +283,8 @@ export const StaticColor: Story = {
     ...Primary,
     decorators: [
         Story => (
-            <Stack
-                backgroundColor="decorative-option4"
-                color="decorative-option4"
-                padding="inset-md"
-            ><Story />
+            <Stack backgroundColor="decorative-option4" color="decorative-option4" padding="inset-md">
+                <Story />
             </Stack>
         )
     ],
@@ -296,12 +308,16 @@ const StateTemplate = (args: Partial<LinkProps>) => (
         <Link {...args}>
             <Text>Save</Text>
             <IconList>
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
         </Link>
         <Link {...args}>
             <IconList slot="start-icon">
-                <SparklesIcon /><SparklesIcon /><SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
+                <SparklesIcon />
             </IconList>
             <Text>Save</Text>
         </Link>
@@ -314,7 +330,8 @@ export const PrimaryStates: Story = {
         const links = canvas.getAllByRole("link");
 
         links.forEach(link => {
-            if (link.getAttribute("aria-disabled") !== "") { // don't try and force states on a disabled input
+            if (link.getAttribute("aria-disabled") !== "") {
+                // don't try and force states on a disabled input
                 if (link.getAttribute("data-chromatic-force-focus")) {
                     link.setAttribute("data-focus-visible", "true");
                     link.removeAttribute("data-chromatic-force-focus");
@@ -363,4 +380,3 @@ export const SecondaryStates: Story = {
         variant: "secondary"
     }
 };
-

@@ -54,10 +54,7 @@ export const TokenGuideFiles: Record<TokenCategory, IndexFile> = {
     all: files.tokens.index
 };
 
-export function getTokenMapFiles(
-    theme: Theme,
-    colorScheme: ColorScheme
-): Record<TokenCategory, IndexFile[]> {
+export function getTokenMapFiles(theme: Theme, colorScheme: ColorScheme): Record<TokenCategory, IndexFile[]> {
     const themeMaps = files.tokens.maps[theme]?.[colorScheme];
 
     if (!themeMaps) {

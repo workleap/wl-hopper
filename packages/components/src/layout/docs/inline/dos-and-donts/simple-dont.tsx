@@ -6,7 +6,9 @@ export function Example() {
         <Flex direction="row" alignItems="center" gap="inline-sm">
             <SparklesIcon />
             <Text>AI Assist</Text>
-            <Button variant="primary" size="sm">Try it</Button>
+            <Button variant="primary" size="sm">
+                Try it
+            </Button>
         </Flex>
     );
 }

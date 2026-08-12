@@ -75,11 +75,9 @@ export const Default: Story = {
 };
 
 export const WithContextualHelp: Story = {
-    render: args => (
-        <TextArea {...args} />
-    ),
+    render: args => <TextArea {...args} />,
     args: {
-        "label": "Label",
+        label: "Label",
         contextualHelp: <ContextualHelp isOpen>Contextual help for the TextArea</ContextualHelp>
     }
 };
@@ -103,7 +101,8 @@ export const Value: Story = {
     ...WithLabel,
     args: {
         ...WithLabel.args,
-        defaultValue: "Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads."
+        defaultValue:
+            "Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads. Hop we go! Over the lily pads."
     }
 };
 

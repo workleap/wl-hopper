@@ -28,9 +28,7 @@ export default function Example() {
             onLoadMore={() => list.loadMore()}
             maxHeight="core_1280"
         >
-            {item => (
-                <ListBoxItem id={item.name}>{item.name}</ListBoxItem>
-            )}
+            {item => <ListBoxItem id={item.name}>{item.name}</ListBoxItem>}
         </ListBox>
     );
 }

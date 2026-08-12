@@ -1,13 +1,18 @@
 import { CalendarIcon } from "@hopper-ui/icons";
-import { useResponsiveValue, useStyledSystem, type ResponsiveProp, type StyledComponentProps } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { mergeRefs, useObjectRef } from "@react-aria/utils";
 import clsx from "clsx";
-import { forwardRef, type CSSProperties, type ForwardedRef, type MutableRefObject } from "react";
+import { type CSSProperties, type ForwardedRef, type MutableRefObject, forwardRef } from "react";
 import {
     DatePicker as AriaDatePicker,
-    useContextProps,
     type DatePickerProps as AriaDatePickerProps,
-    type DateValue
+    type DateValue,
+    useContextProps
 } from "react-aria-components";
 
 import { Button } from "../../buttons/index.ts";
@@ -18,7 +23,7 @@ import { useLocalizedString } from "../../i18n/index.ts";
 import { InputGroup, type InputGroupProps } from "../../inputs/index.ts";
 import { PopoverBase, type PopoverBaseProps } from "../../overlays/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { ClearContainerSlots, cssModule, type FieldProps } from "../../utils/index.ts";
+import { ClearContainerSlots, type FieldProps, cssModule } from "../../utils/index.ts";
 
 import { DateInput } from "./DateInput.tsx";
 import { DatePickerContext } from "./DatePickerContext.ts";
@@ -27,10 +32,13 @@ import styles from "./DatePicker.module.css";
 
 export const GlobalDatePickerCssSelector = "hop-DatePicker";
 
-export interface DatePickerProps extends
-    StyledComponentProps<Omit<AriaDatePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">>,
-    Pick<CalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
-    FieldProps {
+export interface DatePickerProps
+    extends
+        StyledComponentProps<
+            Omit<AriaDatePickerProps<DateValue>, "children" | "hideTimezone" | "granularity" | "hourCycle">
+        >,
+        Pick<CalendarProps, "createCalendar" | "pageBehavior" | "firstDayOfWeek" | "isDateUnavailable">,
+        FieldProps {
     /**
      * If `true`, the DatePicker will take all available width.
      * @default false
@@ -54,9 +62,9 @@ export interface DatePickerProps extends
     maxVisibleMonths?: number;
 
     /**
-   * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
-   * @default true
-   */
+     * Whether the calendar should always display 6 weeks. This ensures that the height of the popover does not change between months, causing layout shifts.
+     * @default true
+     */
     isFixedWeeks?: boolean;
 
     /**
@@ -72,10 +80,7 @@ export interface DatePickerProps extends
 
 const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) => {
     // we extract the inputRef props, since we want to manually merge it with the context props.
-    const {
-        inputRef: userProvidedInputRef = null,
-        ...propsWithoutRef
-    } = props;
+    const { inputRef: userProvidedInputRef = null, ...propsWithoutRef } = props;
     [props, ref] = useContextProps(propsWithoutRef, ref, DatePickerContext);
     const stringFormatter = useLocalizedString();
     const { stylingProps, ...ownProps } = useStyledSystem(props);
@@ -99,7 +104,9 @@ const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) =
         ...otherProps
     } = ownProps;
 
-    const inputRef = useObjectRef(mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null));
+    const inputRef = useObjectRef(
+        mergeRefs(userProvidedInputRef, props.inputRef !== undefined ? props.inputRef : null)
+    );
     const isFluid = useResponsiveValue(isFluidProp) ?? false;
 
     const { className: inputGroupClassName, ...otherInputGroupProps } = inputGroupProps ?? {};
@@ -108,12 +115,7 @@ const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) =
 
     const classNames = clsx(
         GlobalDatePickerCssSelector,
-        cssModule(
-            styles,
-            GlobalDatePickerCssSelector,
-            isFluid && "fluid",
-            size
-        ),
+        cssModule(styles, GlobalDatePickerCssSelector, isFluid && "fluid", size),
         stylingProps.className,
         className
     );
@@ -124,12 +126,7 @@ const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) =
     };
 
     return (
-        <AriaDatePicker
-            {...otherProps}
-            ref={ref}
-            className={classNames}
-            style={mergedStyles}
-        >
+        <AriaDatePicker {...otherProps} ref={ref} className={classNames} style={mergedStyles}>
             {({ isDisabled, isInvalid }) => {
                 const inputMarkup = (
                     <ClearContainerSlots>
@@ -164,9 +161,16 @@ const DatePicker = (props: DatePickerProps, ref: ForwardedRef<HTMLDivElement>) =
                             {label}
                         </FieldLabel>
                         {inputMarkup}
-                        {description && <HelperMessage className={styles["hop-DatePicker__HelperMessage"]}>{description}</HelperMessage>}
+                        {description && (
+                            <HelperMessage className={styles["hop-DatePicker__HelperMessage"]}>
+                                {description}
+                            </HelperMessage>
+                        )}
                         <ErrorMessage className={styles["hop-DatePicker__ErrorMessage"]}>{errorMessage}</ErrorMessage>
-                        <PopoverBase {...popoverProps} className={clsx(styles["hop-DatePicker__Popover"], popoverProps?.className)} >
+                        <PopoverBase
+                            {...popoverProps}
+                            className={clsx(styles["hop-DatePicker__Popover"], popoverProps?.className)}
+                        >
                             <Calendar
                                 visibleMonths={maxVisibleMonths}
                                 createCalendar={createCalendar}

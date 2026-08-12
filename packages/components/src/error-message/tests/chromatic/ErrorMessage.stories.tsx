@@ -19,13 +19,17 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: props => (
-        <SlotProvider values={[
-            [FieldErrorContext, {
-                isInvalid: true,
-                validationErrors: ["This field is required.", "This field is too long."],
-                validationDetails: {} as never
-            }]
-        ]}
+        <SlotProvider
+            values={[
+                [
+                    FieldErrorContext,
+                    {
+                        isInvalid: true,
+                        validationErrors: ["This field is required.", "This field is too long."],
+                        validationDetails: {} as never
+                    }
+                ]
+            ]}
         >
             <ErrorMessage />
             <ErrorMessage hideIcon {...props} />
@@ -38,13 +42,17 @@ export const Styling: Story = {
         ...a11yParameters({ disableContrastCheck: true })
     },
     render: props => (
-        <SlotProvider values={[
-            [FieldErrorContext, {
-                isInvalid: true,
-                validationErrors: [] as never[],
-                validationDetails: {} as never
-            }]
-        ]}
+        <SlotProvider
+            values={[
+                [
+                    FieldErrorContext,
+                    {
+                        isInvalid: true,
+                        validationErrors: [] as never[],
+                        validationDetails: {} as never
+                    }
+                ]
+            ]}
         >
             <ErrorMessage border="primary" {...props} />
             <ErrorMessage className="bg-blue" {...props} />
@@ -52,4 +60,3 @@ export const Styling: Story = {
         </SlotProvider>
     )
 };
-

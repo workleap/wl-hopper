@@ -21,7 +21,11 @@ describe("Paragraph", () => {
     });
 
     it("should support custom style", () => {
-        render(<Paragraph marginTop="stack-sm" style={{ marginBottom: "13px" }}>Test</Paragraph>);
+        render(
+            <Paragraph marginTop="stack-sm" style={{ marginBottom: "13px" }}>
+                Test
+            </Paragraph>
+        );
 
         const element = screen.getByText("Test");
         expect(element).toHaveStyle({ marginTop: "var(--hop-space-stack-sm)", marginBottom: "13px" });

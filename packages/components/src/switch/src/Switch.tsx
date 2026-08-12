@@ -41,24 +41,14 @@ export interface SwitchProps extends StyledComponentProps<RACSwitchProps> {
 function Switch(props: SwitchProps, ref: ForwardedRef<HTMLLabelElement>) {
     [props, ref] = useContextProps(props, ref, SwitchContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        children: childrenProp,
-        size: sizeProp = "md",
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, children: childrenProp, size: sizeProp = "md", style: styleProp, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const classNames = composeClassnameRenderProps(
         className,
         GlobalSwitchCssSelector,
-        cssModule(
-            styles,
-            "hop-Switch",
-            size
-        ),
+        cssModule(styles, "hop-Switch", size),
         stylingProps.className
     );
 
@@ -74,12 +64,7 @@ function Switch(props: SwitchProps, ref: ForwardedRef<HTMLLabelElement>) {
     });
 
     return (
-        <RACSwitch
-            ref={ref}
-            className={classNames}
-            style={style}
-            {...otherProps}
-        >
+        <RACSwitch ref={ref} className={classNames} style={style} {...otherProps}>
             {switchProps => {
                 return (
                     <>
@@ -87,18 +72,27 @@ function Switch(props: SwitchProps, ref: ForwardedRef<HTMLLabelElement>) {
                         <ClearContainerSlots>
                             <SlotProvider
                                 values={[
-                                    [TextContext, {
-                                        className: styles["hop-Switch__text"],
-                                        size: size
-                                    }],
-                                    [IconListContext, {
-                                        className: styles["hop-Switch__icon-list"],
-                                        size: size
-                                    }],
-                                    [IconContext, {
-                                        className: styles["hop-Switch__icon"],
-                                        size: size
-                                    }]
+                                    [
+                                        TextContext,
+                                        {
+                                            className: styles["hop-Switch__text"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconListContext,
+                                        {
+                                            className: styles["hop-Switch__icon-list"],
+                                            size
+                                        }
+                                    ],
+                                    [
+                                        IconContext,
+                                        {
+                                            className: styles["hop-Switch__icon"],
+                                            size
+                                        }
+                                    ]
                                 ]}
                             >
                                 {children(switchProps)}

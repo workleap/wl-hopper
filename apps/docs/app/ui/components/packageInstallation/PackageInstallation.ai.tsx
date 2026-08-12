@@ -12,8 +12,7 @@ const formatCode = (method: string, library: string, mode: string) => {
 
     return (
         <Mdx>
-            ```bash
-            ${code.replace(/\s{2,}/g, " ")}
+            ```bash ${code.replace(/\s{2,}/g, " ")}
             ```
         </Mdx>
     );

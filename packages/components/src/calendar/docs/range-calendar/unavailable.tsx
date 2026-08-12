@@ -13,6 +13,10 @@ export default function Example() {
         disabledRanges.some(interval => date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0);
 
     return (
-        <RangeCalendar aria-label="Trip dates" minValue={today(getLocalTimeZone())} isDateUnavailable={isDateUnavailable} />
+        <RangeCalendar
+            aria-label="Trip dates"
+            minValue={today(getLocalTimeZone())}
+            isDateUnavailable={isDateUnavailable}
+        />
     );
 }

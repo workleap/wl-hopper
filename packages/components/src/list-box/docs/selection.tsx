@@ -1,4 +1,4 @@
-import { ListBox, ListBoxItem, Text, type Selection } from "@hopper-ui/components";
+import { ListBox, ListBoxItem, type Selection, Text } from "@hopper-ui/components";
 import { useState } from "react";
 
 export default function Example() {

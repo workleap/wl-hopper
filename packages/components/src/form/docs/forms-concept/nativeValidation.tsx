@@ -5,8 +5,12 @@ export default function Example() {
         <Form validationBehavior="native">
             <TextField label="Email" name="email" type="email" isRequired />
             <ButtonGroup>
-                <Button type="submit" variant="primary">Submit</Button>
-                <Button type="reset" variant="secondary">Reset</Button>
+                <Button type="submit" variant="primary">
+                    Submit
+                </Button>
+                <Button type="reset" variant="secondary">
+                    Reset
+                </Button>
             </ButtonGroup>
         </Form>
     );

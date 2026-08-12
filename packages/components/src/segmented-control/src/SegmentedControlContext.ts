@@ -1,4 +1,4 @@
-import { createContext, type MutableRefObject, type RefObject } from "react";
+import { type MutableRefObject, type RefObject, createContext } from "react";
 import type { ContextValue } from "react-aria-components";
 
 import type { SegmentedControlProps } from "./SegmentedControl.tsx";

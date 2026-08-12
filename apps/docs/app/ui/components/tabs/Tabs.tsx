@@ -29,7 +29,9 @@ const Tabs = ({ tabs, className, children, ariaLabel }: TabsProps) => {
                     <Tab
                         key={id}
                         id={id}
-                        className={renderProps => clsx("hd-tabs__item-button", { "hd-tabs__item-button--active": renderProps.isSelected })}
+                        className={renderProps =>
+                            clsx("hd-tabs__item-button", { "hd-tabs__item-button--active": renderProps.isSelected })
+                        }
                     >
                         {titleIcon && <span className="hd-tabs__icon">{titleIcon}</span>}
                         {title}

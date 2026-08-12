@@ -10,13 +10,7 @@ export interface LinkButtonProps extends RACLinkProps {
     className?: string;
 }
 
-const LinkButton = ({
-    variant = "primary",
-    size = "md",
-    className,
-    children,
-    ...rest
-}: LinkButtonProps) => {
+const LinkButton = ({ variant = "primary", size = "md", className, children, ...rest }: LinkButtonProps) => {
     const classes = clsx(
         "hd-btn",
         {
@@ -27,20 +21,26 @@ const LinkButton = ({
     );
 
     return (
-        <Provider values={[
-            [IconContext, {
-                slots: {
-                    [DEFAULT_SLOT]: {
-                        className: "hd-btn__icon"
-                    },
-                    "end-icon": {
-                        className: "hd-btn__end-icon"
+        <Provider
+            values={[
+                [
+                    IconContext,
+                    {
+                        slots: {
+                            [DEFAULT_SLOT]: {
+                                className: "hd-btn__icon"
+                            },
+                            "end-icon": {
+                                className: "hd-btn__end-icon"
+                            }
+                        }
                     }
-                }
-            }]
-        ]}
+                ]
+            ]}
         >
-            <RACLink className={classes} {...rest}>{children}</RACLink>
+            <RACLink className={classes} {...rest}>
+                {children}
+            </RACLink>
         </Provider>
     );
 };

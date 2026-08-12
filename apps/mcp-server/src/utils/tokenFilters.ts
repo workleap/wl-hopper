@@ -1,4 +1,5 @@
-import { CssMatchConfig, matchesCssValue } from "../services/validatorService/cssValueMatcher";
+import type { CssMatchConfig } from "../services/validatorService/cssValueMatcher";
+import { matchesCssValue } from "../services/validatorService/cssValueMatcher";
 
 interface TokenNode {
     cssValue: string;
@@ -28,7 +29,10 @@ function filterBySupportedProps(root: TokenFileRootNode, supportedProps: string[
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
     // Iterate through top-level keys (core/semantic)
-    for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileRootNode, Record<string, TokenCategoryNode>][]) {
+    for (const [topLevelKey, categories] of Object.entries(root) as [
+        keyof TokenFileRootNode,
+        Record<string, TokenCategoryNode>
+    ][]) {
         const filteredCategories: Record<string, TokenCategoryNode> = {};
 
         // Iterate through categories
@@ -60,11 +64,18 @@ function filterBySupportedProps(root: TokenFileRootNode, supportedProps: string[
     return result;
 }
 
-function filterByCssValues(root: TokenFileRootNode, cssValues: string[], tolerances?: Partial<CssMatchConfig["tolerances"]>): TokenFileRootNode {
+function filterByCssValues(
+    root: TokenFileRootNode,
+    cssValues: string[],
+    tolerances?: Partial<CssMatchConfig["tolerances"]>
+): TokenFileRootNode {
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
     // Iterate through top-level keys (core/semantic)
-    for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileRootNode, Record<string, TokenCategoryNode>][]) {
+    for (const [topLevelKey, categories] of Object.entries(root) as [
+        keyof TokenFileRootNode,
+        Record<string, TokenCategoryNode>
+    ][]) {
         const filteredCategories: Record<string, TokenCategoryNode> = {};
 
         // Iterate through categories
@@ -103,12 +114,13 @@ function filterByCssValues(root: TokenFileRootNode, cssValues: string[], toleran
 function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): TokenFileRootNode {
     const result: TokenFileRootNode = {} as TokenFileRootNode;
 
-    const sanitizedTokenNames = tokenNames.map(key =>
-        key.replace(/^-+/, "").replace("hop-", "")
-    );
+    const sanitizedTokenNames = tokenNames.map(key => key.replace(/^-+/, "").replace("hop-", ""));
 
     // Iterate through top-level keys (core/semantic)
-    for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileRootNode, Record<string, TokenCategoryNode>][]) {
+    for (const [topLevelKey, categories] of Object.entries(root) as [
+        keyof TokenFileRootNode,
+        Record<string, TokenCategoryNode>
+    ][]) {
         const filteredCategories: Record<string, TokenCategoryNode> = {};
 
         // Iterate through categories
@@ -117,9 +129,7 @@ function filterByTokenNames(root: TokenFileRootNode, tokenNames: string[]): Toke
 
             // Filter tokens at the leaf level
             for (const [tokenKey, tokenValue] of Object.entries(categoryNode.tokens)) {
-                const shouldInclude = sanitizedTokenNames.some(filterKey =>
-                    tokenKey.includes(filterKey)
-                );
+                const shouldInclude = sanitizedTokenNames.some(filterKey => tokenKey.includes(filterKey));
 
                 if (shouldInclude) {
                     filteredTokens[tokenKey] = tokenValue;
@@ -152,12 +162,7 @@ export interface FilterTokensOptions {
 }
 
 export function filterTokens(data: TokenFileRootNode, options?: FilterTokensOptions) {
-    const {
-        tokenNames = [],
-        cssValues = [],
-        supportedProps = [],
-        cssMatchTolerances
-    } = options || {};
+    const { tokenNames = [], cssValues = [], supportedProps = [], cssMatchTolerances } = options || {};
 
     //sanitize inputs
     const sanitizedTokenNames = tokenNames.map(name => name.trim()).filter(name => name !== "");
@@ -191,7 +196,10 @@ export function convertToBriefFormat(root: TokenFileRootNode): TokenFileBriefRoo
     const result: TokenFileBriefRootNode = {} as TokenFileBriefRootNode;
 
     // Iterate through top-level keys (core/semantic)
-    for (const [topLevelKey, categories] of Object.entries(root) as [keyof TokenFileBriefRootNode, Record<string, TokenCategoryNode>][]) {
+    for (const [topLevelKey, categories] of Object.entries(root) as [
+        keyof TokenFileBriefRootNode,
+        Record<string, TokenCategoryNode>
+    ][]) {
         const briefCategories: Record<string, TokenCategoryBriefNode> = {};
 
         // Iterate through categories

@@ -1,4 +1,17 @@
-import { Div, H1, HopperProvider, HtmlHeader, Inline, Link, Main, SegmentedControl, SegmentedControlItem, useColorSchemeContext, useThemeContext, type Key } from "@hopper-ui/components";
+import {
+    Div,
+    H1,
+    HopperProvider,
+    HtmlHeader,
+    Inline,
+    type Key,
+    Link,
+    Main,
+    SegmentedControl,
+    SegmentedControlItem,
+    useColorSchemeContext,
+    useThemeContext
+} from "@hopper-ui/components";
 import { Outlet, useHref, useNavigate } from "react-router-dom";
 
 export function Layout() {
@@ -21,12 +34,7 @@ function InnerLayout() {
                 <H1>React App</H1>
                 <Link href="/">Main Page</Link> &nbsp;
                 <Link href="/store">Store</Link> &nbsp;
-                <Div
-                    position="absolute"
-                    top="10px"
-                    right="10px"
-                    display="fixed"
-                >
+                <Div position="absolute" top="10px" right="10px" display="fixed">
                     <Inline>
                         <SegmentedControl
                             size="sm"

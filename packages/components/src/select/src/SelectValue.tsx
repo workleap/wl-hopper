@@ -1,23 +1,46 @@
 import { IconContext } from "@hopper-ui/icons";
-import { type ResponsiveProp, type StyledComponentProps, useResponsiveValue, useStyledSystem } from "@hopper-ui/styled-system";
+import {
+    type ResponsiveProp,
+    type StyledComponentProps,
+    useResponsiveValue,
+    useStyledSystem
+} from "@hopper-ui/styled-system";
 import { filterDOMProps } from "@react-aria/utils";
-import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent, useContext, useMemo, useRef } from "react";
+import {
+    type CSSProperties,
+    type ForwardedRef,
+    type NamedExoticComponent,
+    forwardRef,
+    useContext,
+    useMemo,
+    useRef
+} from "react";
 import { useListFormatter } from "react-aria";
 import {
-    composeRenderProps,
     DEFAULT_SLOT,
     SelectContext as RACSelectContext,
     SelectValueContext as RACSelectValueContext,
     type SelectValueProps as RACSelectValueProps,
     type SelectState,
     SelectStateContext,
-    useContextProps, useSlottedContext
+    composeRenderProps,
+    useContextProps,
+    useSlottedContext
 } from "react-aria-components";
 
 import { AvatarContext, type AvatarProps } from "../../avatar/index.ts";
 import { useLocalizedString } from "../../i18n/index.ts";
 import { Text, TextContext } from "../../typography/index.ts";
-import { ClearContainerSlots, composeClassnameRenderProps, cssModule, type FieldSize, type SizeAdapter, SlotProvider, useIsOverflow, useRenderProps } from "../../utils/index.ts";
+import {
+    ClearContainerSlots,
+    type FieldSize,
+    type SizeAdapter,
+    SlotProvider,
+    composeClassnameRenderProps,
+    cssModule,
+    useIsOverflow,
+    useRenderProps
+} from "../../utils/index.ts";
 
 import styles from "./SelectValue.module.css";
 
@@ -39,12 +62,7 @@ const SelectValueToAvatarSizeAdapter = {
 function SelectValue<T extends object>(props: SelectValueProps<T>, ref: ForwardedRef<HTMLSpanElement>) {
     [props, ref] = useContextProps(props, ref, RACSelectValueContext);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const {
-        className,
-        size: sizeProp,
-        style: styleProp,
-        ...otherProps
-    } = ownProps;
+    const { className, size: sizeProp, style: styleProp, ...otherProps } = ownProps;
 
     const size = useResponsiveValue(sizeProp) ?? "sm";
 
@@ -55,9 +73,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const isOverflow = useIsOverflow(refForOverflowCheck);
     const state = useContext(SelectStateContext)! as SelectState<T, "single" | "multiple">;
     const { placeholder } = useSlottedContext(RACSelectContext)!;
-    const selectedItem = state.selectedKey != null
-        ? state.collection.getItem(state.selectedKey)
-        : null;
+    const selectedItem = state.selectedKey != null ? state.collection.getItem(state.selectedKey) : null;
 
     const stringFormatter = useLocalizedString();
     const textValue = useMemo(() => state.selectedItems.map(item => item?.textValue), [state.selectedItems]);
@@ -65,10 +81,7 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const classNames = composeClassnameRenderProps(
         className,
         GlobalSelectValueCssSelector,
-        cssModule(
-            styles,
-            "hop-SelectValue"
-        ),
+        cssModule(styles, "hop-SelectValue"),
         stylingProps.className
     );
 
@@ -81,11 +94,10 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
     const selectionMode = state.selectionManager.selectionMode;
 
     const formatter = useListFormatter();
-    const selectedText = useMemo(() => (
-        selectionMode === "single"
-            ? textValue[0] ?? ""
-            : formatter.format(textValue)
-    ), [selectionMode, formatter, textValue]);
+    const selectedText = useMemo(
+        () => (selectionMode === "single" ? (textValue[0] ?? "") : formatter.format(textValue)),
+        [selectionMode, formatter, textValue]
+    );
 
     const renderProps = useRenderProps({
         ...otherProps,
@@ -113,29 +125,39 @@ function SelectValue<T extends object>(props: SelectValueProps<T>, ref: Forwarde
                 title={isOverflow ? selectedText : undefined}
                 data-placeholder={!selectedItem || undefined}
             >
-                <SlotProvider values={[
-                    [AvatarContext, {
-                        className: styles["hop-SelectValue__avatar"],
-                        size: SelectValueToAvatarSizeAdapter[size]
-                    }],
-                    [TextContext, {
-                        slot: "label",
-                        className: styles["hop-SelectValue__text"],
-                        ref: textRef
-                    }],
-                    [IconContext, {
-                        slots: {
-                            [DEFAULT_SLOT]: {
-                                className: styles["hop-SelectValue__icon"],
-                                size: size
-                            },
-                            "end-icon": {
-                                className: styles["hop-SelectValue__end-icon"],
-                                size: size
+                <SlotProvider
+                    values={[
+                        [
+                            AvatarContext,
+                            {
+                                className: styles["hop-SelectValue__avatar"],
+                                size: SelectValueToAvatarSizeAdapter[size]
                             }
-                        }
-                    }]
-                ]}
+                        ],
+                        [
+                            TextContext,
+                            {
+                                slot: "label",
+                                className: styles["hop-SelectValue__text"],
+                                ref: textRef
+                            }
+                        ],
+                        [
+                            IconContext,
+                            {
+                                slots: {
+                                    [DEFAULT_SLOT]: {
+                                        className: styles["hop-SelectValue__icon"],
+                                        size
+                                    },
+                                    "end-icon": {
+                                        className: styles["hop-SelectValue__end-icon"],
+                                        size
+                                    }
+                                }
+                            }
+                        ]
+                    ]}
                 >
                     {renderProps.children}
                 </SlotProvider>
@@ -155,4 +177,3 @@ const _SelectValue = forwardRef(SelectValue) as <T extends object>(
 (_SelectValue as NamedExoticComponent).displayName = "SelectValue";
 
 export { _SelectValue as SelectValue };
-

@@ -1,5 +1,5 @@
 import { getSizingValue } from "@hopper-ui/styled-system";
-import type { UNSAFE_SizingValue, CssGrid } from "@hopper-ui/styled-system";
+import type { CssGrid, UNSAFE_SizingValue } from "@hopper-ui/styled-system";
 
 /**
  * Can be used to make a repeating fragment of the columns or rows list.
@@ -7,7 +7,10 @@ import type { UNSAFE_SizingValue, CssGrid } from "@hopper-ui/styled-system";
  * @param count - The number of times to repeat the fragment.
  * @param repeat - The fragment to repeat.
  */
-export function repeat(count: number | "auto-fill" | "auto-fit", repetition: UNSAFE_SizingValue | UNSAFE_SizingValue[]) {
+export function repeat(
+    count: number | "auto-fill" | "auto-fit",
+    repetition: UNSAFE_SizingValue | UNSAFE_SizingValue[]
+) {
     return `repeat(${count}, ${Array.isArray(repetition) ? interpolateGridTemplateArray(repetition) : getSizingValue(repetition)})` as CssGrid;
 }
 

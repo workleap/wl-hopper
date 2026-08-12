@@ -1,5 +1,10 @@
 import { AST_NODE_TYPES, type TSESTree } from "@typescript-eslint/types";
-import { extractAllConstantStrings, getAllDirectChildren, getComponentName, getDirectComponentChildren } from "./jsxHelpers";
+import {
+    extractAllConstantStrings,
+    getAllDirectChildren,
+    getComponentName,
+    getDirectComponentChildren
+} from "./jsxHelpers";
 import type { ValidationResult } from "./types";
 import { validationMessage } from "./validationMessages";
 
@@ -46,7 +51,11 @@ export function validateComponentSpecificRules(jsxElements: TSESTree.JSXElement[
  * Validates Button component structure
  * Rule: If the component is Button and if it has 2 children, one of them should be Text component.
  */
-function validateButtonComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
+function validateButtonComponent(
+    element: TSESTree.JSXElement,
+    result: ValidationResult,
+    instanceInfo: string = ""
+): void {
     const componentName = getComponentName(element);
 
     if (componentName !== "Button") {
@@ -74,7 +83,11 @@ function validateButtonComponent(element: TSESTree.JSXElement, result: Validatio
     }
 }
 
-function validateModalComponent(element: TSESTree.JSXElement, result: ValidationResult, instanceInfo: string = ""): void {
+function validateModalComponent(
+    element: TSESTree.JSXElement,
+    result: ValidationResult,
+    instanceInfo: string = ""
+): void {
     const componentName = getComponentName(element);
 
     if (componentName !== "Modal") {
@@ -121,9 +134,11 @@ function validateDivComponent(element: TSESTree.JSXElement, result: ValidationRe
     const openingElement = element.openingElement;
     if (openingElement.attributes) {
         for (const attribute of openingElement.attributes) {
-            if (attribute.type === AST_NODE_TYPES.JSXAttribute &&
+            if (
+                attribute.type === AST_NODE_TYPES.JSXAttribute &&
                 attribute.name.type === AST_NODE_TYPES.JSXIdentifier &&
-                attribute.name.name === "display") {
+                attribute.name.name === "display"
+            ) {
                 // Extract all constant string values from the display prop
                 const displayValues = extractAllConstantStrings(attribute.value);
 

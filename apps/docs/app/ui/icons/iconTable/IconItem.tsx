@@ -13,20 +13,16 @@ export interface IconItemProps {
 
 const IconItem: FC<IconItemProps> = ({ children, copyString, name }) => {
     return (
-        <>
-            <div className="hd-icon-item">
-                <div className="hd-icon-item-content">
-                    <span className="hd-icon-item__icon">
-                        <CopyButton className="hd-icon-item-copy" text={copyString} variant="ghost">
-                            {children}
-                        </CopyButton>
-                    </span>
-                    <div className="hd-icon-item__title">
-                        {name}
-                    </div>
-                </div>
+        <div className="hd-icon-item">
+            <div className="hd-icon-item-content">
+                <span className="hd-icon-item__icon">
+                    <CopyButton className="hd-icon-item-copy" text={copyString} variant="ghost">
+                        {children}
+                    </CopyButton>
+                </span>
+                <div className="hd-icon-item__title">{name}</div>
             </div>
-        </>
+        </div>
     );
 };
 

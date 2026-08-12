@@ -5,14 +5,14 @@ import {
     useStyledSystem
 } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, forwardRef, type NamedExoticComponent } from "react";
+import { type CSSProperties, type ForwardedRef, type NamedExoticComponent, forwardRef } from "react";
 import {
-    composeRenderProps,
     FieldErrorContext as RACFieldErrorContext,
     TagGroup as RACTagGroup,
     type TagGroupProps as RACTagGroupProps,
     type TagListProps as RACTagListProps,
     TagList,
+    composeRenderProps,
     useContextProps
 } from "react-aria-components";
 
@@ -20,7 +20,7 @@ import { ErrorMessage } from "../../error-message/index.ts";
 import { type FormStyleProps, useFormProps } from "../../form/index.ts";
 import { HelperMessage } from "../../helper-message/index.ts";
 import { FieldLabel } from "../../typography/index.ts";
-import { composeClassnameRenderProps, cssModule, type FieldProps, SlotProvider } from "../../utils/index.ts";
+import { type FieldProps, SlotProvider, composeClassnameRenderProps, cssModule } from "../../utils/index.ts";
 
 import type { TagSize, TagVariant } from "./Tag.tsx";
 import { TagContext } from "./TagContext.ts";
@@ -33,7 +33,11 @@ export const GlobalTagGroupCssSelector = "hop-TagGroup";
 type ListProps = "items" | "children" | "renderEmptyState";
 export type TagListProps<T> = StyledComponentProps<Omit<RACTagListProps<T>, ListProps>>;
 
-export interface TagGroupProps<T> extends StyledComponentProps<Omit<RACTagGroupProps, "children">>, Pick<RACTagListProps<T>, ListProps>, Omit<FieldProps, "size"> {
+export interface TagGroupProps<T>
+    extends
+        StyledComponentProps<Omit<RACTagGroupProps, "children">>,
+        Pick<RACTagListProps<T>, ListProps>,
+        Omit<FieldProps, "size"> {
     /**
      * Whether the tags are invalid or not.
      */
@@ -85,30 +89,18 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
     const size = useResponsiveValue(sizeProp) ?? "md";
 
     const { stylingProps: tagListStylingProps, ...tagListOwnProps } = useStyledSystem(tagListProps ?? {});
-    const {
-        className: tagListClassName,
-        style: tagListStyleProp,
-        ...otherTagListProps
-    } = tagListOwnProps;
+    const { className: tagListClassName, style: tagListStyleProp, ...otherTagListProps } = tagListOwnProps;
 
     const classNames = clsx(
         className,
         GlobalTagGroupCssSelector,
         stylingProps.className,
-        cssModule(
-            styles,
-            "hop-TagGroup",
-            size
-        )
+        cssModule(styles, "hop-TagGroup", size)
     );
 
     const tagListClassNames = composeClassnameRenderProps(
         tagListClassName,
-        cssModule(
-            styles,
-            "hop-TagGroup__list",
-            size
-        ),
+        cssModule(styles, "hop-TagGroup__list", size),
         tagListStylingProps.className
     );
 
@@ -125,23 +117,30 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
     });
 
     return (
-        <InternalTagGroupContext.Provider value={{
-            isInGroup: true
-        }}
+        <InternalTagGroupContext.Provider
+            value={{
+                isInGroup: true
+            }}
         >
             <SlotProvider
                 values={[
-                    [TagContext, {
-                        className: styles["hop-TagGroup__tag"],
-                        isInvalid,
-                        size: size,
-                        variant: variant
-                    }],
-                    [RACFieldErrorContext, {
-                        isInvalid: isInvalid,
-                        validationErrors: [] as never[],
-                        validationDetails: {} as never
-                    }]
+                    [
+                        TagContext,
+                        {
+                            className: styles["hop-TagGroup__tag"],
+                            isInvalid,
+                            size,
+                            variant
+                        }
+                    ],
+                    [
+                        RACFieldErrorContext,
+                        {
+                            isInvalid,
+                            validationErrors: [] as never[],
+                            validationDetails: {} as never
+                        }
+                    ]
                 ]}
             >
                 <RACTagGroup
@@ -167,8 +166,14 @@ function TagGroup<T extends object>(props: TagGroupProps<T>, ref: ForwardedRef<H
                     >
                         {children}
                     </TagList>
-                    {description && <HelperMessage className={styles["hop-TagGroup__error-message"]} hideIcon>{description}</HelperMessage>}
-                    <ErrorMessage className={styles["hop-TagGroup__helper-message"]} hideIcon>{errorMessage}</ErrorMessage>
+                    {description && (
+                        <HelperMessage className={styles["hop-TagGroup__error-message"]} hideIcon>
+                            {description}
+                        </HelperMessage>
+                    )}
+                    <ErrorMessage className={styles["hop-TagGroup__helper-message"]} hideIcon>
+                        {errorMessage}
+                    </ErrorMessage>
                 </RACTagGroup>
             </SlotProvider>
         </InternalTagGroupContext.Provider>
