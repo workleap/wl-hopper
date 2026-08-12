@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.1.3
+
+### Patch Changes
+
+- b8b5b89: Correct pointerdown event listener name
+
 ## 3.1.2
 
 ### Patch Changes
