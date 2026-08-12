@@ -27,6 +27,7 @@ export default defineConfig({
         "eslint/no-shadow": "off",
         "jsx-a11y/prefer-tag-over-role": "off",
         "eslint/no-underscore-dangle": "off", // wl-hopper uses the _ComponentName internal forwardRef pattern
+        "unicorn/no-array-sort": "off", //Temporarily disabled .sort() on freshly-created arrays is idiomatic and safe here.
 
 
 

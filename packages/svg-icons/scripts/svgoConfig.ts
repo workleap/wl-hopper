@@ -1,24 +1,7 @@
 import type { Config } from "svgo";
 
 import { changeColorPlugin } from "./changeColorPlugin.ts";
-import {
-    DecorativeOption7IconColor,
-    DecorativeOption7SurfaceColor,
-    NeutralIconColor,
-    PrimaryIconColor,
-    WarningWeakIconColor,
-    White,
-    WhiteHexadecimal
-} from "./constants.ts";
-
-export const colors: { [key: string]: string } = {
-    [PrimaryIconColor]: `var(--hop-Icon-placeholder-primary-icon, ${PrimaryIconColor})`,
-    [WarningWeakIconColor]: `var(--hop-Icon-placeholder-warning-icon-weak, ${WarningWeakIconColor})`,
-    [White]: `var(--hop-RichIcon-placeholder-fill, ${WhiteHexadecimal})`,
-    [WhiteHexadecimal]: `var(--hop-RichIcon-placeholder-fill, ${WhiteHexadecimal})`,
-    [DecorativeOption7IconColor]: `var(--hop-RichIcon-placeholder-shadow, ${DecorativeOption7IconColor})`,
-    [DecorativeOption7SurfaceColor]: `var(--hop-RichIcon-placeholder-background, ${DecorativeOption7SurfaceColor})`
-};
+import { NeutralIconColor } from "./constants.ts";
 
 const config: Config = {
     multipass: true,
@@ -39,7 +22,6 @@ const config: Config = {
                     convertColors: {
                         currentColor: NeutralIconColor
                     }
-
                 }
             }
         },

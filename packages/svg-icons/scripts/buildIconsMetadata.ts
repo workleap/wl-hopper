@@ -41,10 +41,7 @@ function ensureDirectoryExists(dirPath: string): void {
  * @param {string} type - The type of icons being processed (for logging)
  * @returns {Promise<MergedMetadata>} - The merged data object
  */
-function mergeMetadataFiles(
-    sourceDir: string,
-    type: string
-): MergedMetadata {
+function mergeMetadataFiles(sourceDir: string, type: string): MergedMetadata {
     try {
         // Get all JSON files in the directory
         const files = fs.readdirSync(sourceDir).filter(file => file.endsWith(".json"));

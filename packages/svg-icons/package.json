@@ -1,24 +1,20 @@
 {
     "name": "@hopper-ui/svg-icons",
-    "author": "Workleap",
     "version": "2.19.3",
     "description": "A set of icons handcrafted by Workleap",
     "license": "Apache-2.0",
+    "author": "Workleap",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/workleap/wl-hopper.git",
         "directory": "packages/svg-icons"
     },
-    "publishConfig": {
-        "access": "public",
-        "provenance": true
-    },
-    "type": "module",
-    "sideEffects": false,
     "files": [
         "/dist",
         "CHANGELOG.md"
     ],
+    "type": "module",
+    "sideEffects": false,
     "exports": {
         "./icons/*.svg": "./dist/icons/*.svg",
         "./icons/inline": {
@@ -27,6 +23,10 @@
             "default": "./dist/icons/inline/index.js"
         },
         "./rich-icons/*.svg": "./dist/rich-icons/*.svg"
+    },
+    "publishConfig": {
+        "access": "public",
+        "provenance": true
     },
     "scripts": {
         "build": "pnpm run \"/^build:.*/\"",
