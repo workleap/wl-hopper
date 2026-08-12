@@ -38,7 +38,7 @@
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run",
-        "find-types": "tsx scripts/findImportedTypes.ts"
+        "find-types": "node scripts/findImportedTypes.ts"
     },
     "dependencies": {
         "@hopper-ui/icons": "*",

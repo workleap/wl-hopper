@@ -31,10 +31,10 @@
     "scripts": {
         "build": "pnpm run \"/^build:.*/\"",
         "build:icons": "copyfiles --flat src/optimized-icons/* dist/icons",
-        "build:inline-icons": "tsx scripts/buildInlineIcons.ts",
+        "build:inline-icons": "node scripts/buildInlineIcons.ts",
         "build:rich-icons": "copyfiles --flat src/optimized-rich-icons/* dist/rich-icons",
-        "build:metadata": "tsx scripts/buildIconsMetadata.ts",
-        "generate-icons": "tsx scripts/generate.ts",
+        "build:metadata": "node scripts/buildIconsMetadata.ts",
+        "generate-icons": "node scripts/generate.ts",
         "typecheck": "tsc",
         "test": "vitest run"
     },
@@ -45,7 +45,6 @@
         "hast-util-select": "6.0.4",
         "rehype-parse": "9.0.1",
         "svgo": "4.0.0",
-        "tsx": "4.20.6",
         "typescript": "5.5.4",
         "unified": "11.0.5"
     }
