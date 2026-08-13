@@ -121,7 +121,9 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
 
     return (
         <FocusScope restoreFocus>
+            {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- the keydown listener only observes Escape bubbling from focusable children to clear the selection; the container itself isn't interactive. */}
             <div
+                role="group"
                 {...otherProps}
                 ref={ref}
                 className={classNames}
