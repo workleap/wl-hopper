@@ -23,8 +23,8 @@ Optional fields: `alpha: "<caveat text>"` — shows a warning banner, use it for
 1. One or two sentences of intro prose.
 2. `<Example src="<kebab-name>/docs/preview" />` — the hero preview.
 3. `## Anatomy`
-   - `### Structure` — a fenced ` ```tsx ` block showing the JSX shape with inline comments marking optional pieces.
-   - `### Composed Components` — `<ComposedComponents components={["Avatar", "Badge", ...]}/>` listing every other Hopper component this one renders internally.
+   - `### Structure` — a fenced ` ```tsx ` block showing the JSX **a consumer actually writes** — i.e. what goes in `children` — with inline comments marking optional pieces. Don't show sub-components the component renders internally and unconditionally around/instead of `children` (e.g. a built-in close button, an internally-rendered `ButtonGroup` wrapper); those are implementation detail, not part of the public composition, and showing them makes the anatomy look like the wrong usage pattern.
+   - `### Composed Components` — `<ComposedComponents components={["Avatar", "Badge", ...]}/>` listing the Hopper components a consumer is expected to place *inside* `children` (mirrors `### Structure`) — not every component used internally by the implementation.
 4. `## Usage` — one `###` subsection per capability/prop, each with its own `<Example src="..." />`. Mirror this order to S2's own docs page structure where it makes sense, but every capability needs its own runnable example, not prose alone.
 5. `## Best Practices` — a short bullet list of do's, written as plain guidance sentences (not code).
 6. `## Props` — `<PropTable component="<PascalName>" />`. This is generated from the component's JSDoc'd props interface by `react-docgen-typescript`; there's nothing to hand-write here beyond making sure the props interface itself is well-documented (see `component-anatomy.md`).

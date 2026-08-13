@@ -128,6 +128,36 @@ const style = composeRenderProps(styleProp, prev => ({
 
 `stylingProps.style` (computed from style-system props) goes first, the caller's own inline `style` (render-prop result `prev`) wins — so an explicit `style={{ marginBottom: "13px" }}` prop always overrides a style-system-derived value.
 
+## Composing handlers the component also needs internally
+
+When the component listens for its own DOM event (e.g. `Escape` via `useKeyboard`) *and* spreads `...otherProps` (which may carry a consumer-supplied handler for that same event), compose both instead of letting one clobber the other — and destructure the consumer's handler out by name first so it isn't silently dropped into `otherProps`:
+
+```tsx
+const {
+    onKeyDown,
+    ...otherProps
+} = ownProps;
+
+const { keyboardProps } = useKeyboard({
+    onKeyDown: event => {
+        if (event.key === "Escape") {
+            onClearSelection?.();
+        } else {
+            event.continuePropagation();
+        }
+    }
+});
+
+const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    onKeyDown?.(event);
+    keyboardProps.onKeyDown?.(event);
+};
+
+return <div {...otherProps} onKeyDown={handleKeyDown} />;
+```
+
+Whichever handler prop is spread or assigned **last wins** — this applies to `style`/`className` too (see above), not just event handlers. Before shipping, check every prop the component destructures out of `ownProps` for a matching one spread back in via `...otherProps`/`...stylingProps`, and verify the later one in JSX source order is the one you actually intend to win.
+
 ## Context file
 
 One per component (and per sub-component), in its own file:
