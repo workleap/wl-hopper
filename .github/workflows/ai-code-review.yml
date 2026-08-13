@@ -2,17 +2,17 @@
 name: "AI Code Review"
 
 on:
-  pull_request:
-    types: [labeled, synchronize, ready_for_review, converted_to_draft]
+    pull_request:
+        types: [ labeled, synchronize, ready_for_review, converted_to_draft ]
 
 permissions:
-  id-token: write
-  contents: read
-  pull-requests: write
-  actions: read
-  issues: write
+    id-token: write
+    contents: read
+    pull-requests: write
+    actions: read
+    issues: write
 
 jobs:
-  review:
-    uses: workleap/wl-github-actions/.github/workflows/ai-code-review.yml@latest
-    secrets: inherit
+    review:
+        uses: workleap/wl-github-actions/.github/workflows/ai-code-review.yml@latest
+        secrets: inherit
