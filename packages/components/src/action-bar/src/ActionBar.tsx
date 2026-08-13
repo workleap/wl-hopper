@@ -1,6 +1,6 @@
 import { type StyledComponentProps, useStyledSystem } from "@hopper-ui/styled-system";
 import clsx from "clsx";
-import { type CSSProperties, type ForwardedRef, type ReactNode, forwardRef } from "react";
+import { type CSSProperties, type ForwardedRef, type KeyboardEvent, type ReactNode, forwardRef } from "react";
 import { FocusScope, useKeyboard } from "react-aria";
 import { useContextProps } from "react-aria-components";
 
@@ -50,6 +50,10 @@ export interface ActionBarProps extends StyledComponentProps<BaseComponentDOMPro
      * Handler called when the ActionBar's close button is pressed, or the Escape key is pressed.
      */
     onClearSelection?: () => void;
+    /**
+     * Handler called when a key is pressed while focus is within the ActionBar.
+     */
+    onKeyDown?: (event: KeyboardEvent<HTMLDivElement>) => void;
 }
 
 function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
@@ -66,6 +70,7 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
         totalItemCount,
         selectionText,
         onClearSelection,
+        onKeyDown,
         ...otherProps
     } = ownProps;
 
@@ -78,6 +83,11 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
             }
         }
     });
+
+    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        onKeyDown?.(event);
+        keyboardProps.onKeyDown?.(event);
+    };
 
     if (selectedItemCount === 0) {
         return null;
@@ -105,19 +115,19 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
     );
 
     const mergedStyles: CSSProperties = {
-        ...style,
-        ...stylingProps.style
+        ...stylingProps.style,
+        ...style
     };
 
     return (
         <FocusScope restoreFocus>
             <div
                 {...otherProps}
-                {...keyboardProps}
                 ref={ref}
                 className={classNames}
                 style={mergedStyles}
                 slot={slot ?? undefined}
+                onKeyDown={handleKeyDown}
             >
                 <div className={cssModule(styles, "hop-ActionBar__selection")}>
                     <CloseButton
