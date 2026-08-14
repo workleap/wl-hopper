@@ -35,10 +35,6 @@ const storybookConfig: StorybookConfig = {
     webpackFinal(config, { configType }) {
         config.resolve = {
             ...config.resolve,
-            // Prefer the `hopper-source` export condition so internal `@hopper-ui/*` packages
-            // (including the `tooling/*` packages) resolve to their TS source (no dist build
-            // needed for HMR). Namespaced so it doesn't redirect third-party deps that ship a
-            // generic `source` condition.
             conditionNames: ["hopper-source", ...(config.resolve?.conditionNames ?? ["..."])]
         };
 

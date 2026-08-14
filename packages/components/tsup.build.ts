@@ -11,7 +11,6 @@ const isNetlify = process.env.NETLIFY === "true";
 
 export default defineBuildConfig({
     entry: isNetlify ? ["./src/index.(ts|tsx)"] : ["./src/index.(ts|tsx)", "./src/**/src/**/*.(ts|tsx)"],
-    // Resolve sibling `@hopper-ui/*` packages from their built `dist` (not `hopper-source` source) during the DTS pass.
     tsconfig: "./tsconfig.build.json",
     target: "es2019", // We set target ES2019 since ES2020 syntax is not supported by older versions of storybook (used in orbiter)
     dts: !isNetlify,

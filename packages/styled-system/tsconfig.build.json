@@ -1,8 +1,4 @@
 {
-    // Used only by `tsup.build.ts`. Clears `customConditions: ["hopper-source"]` so the tsup DTS
-    // pass resolves sibling `@hopper-ui/*` packages to their built `dist` types (external, not
-    // followed) instead of their TS source. rollup-plugin-dts cannot parse the source barrels
-    // (they import `.css`/intl `.json`). Typecheck keeps `hopper-source` via `tsconfig.json`.
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "customConditions": []
