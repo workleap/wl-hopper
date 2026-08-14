@@ -27,8 +27,12 @@ export interface HopperVitestOptions {
 export function defineHopperVitestConfig({ react = false, setupFiles = [], plugins = [] }: HopperVitestOptions = {}) {
     return defineConfig({
         plugins,
-        // Vite 8 resolves tsconfig `paths` natively (replaces vite-tsconfig-paths).
-        resolve: { tsconfigPaths: true },
+        // `conditions: ["hopper-source"]` resolves internal `@hopper-ui/*` packages (including the
+        // `tooling/*` packages) to their TS source via the `hopper-source` export condition on the
+        // libs and the plain source `exports` on the tooling packages (no dist build needed). The
+        // name is namespaced on purpose: a generic `source` condition would also redirect
+        // third-party deps (e.g. `@internationalized/*`) to their untyped source.
+        resolve: { conditions: ["hopper-source"] },
         cacheDir: "./node_modules/.cache/vitest",
         test: {
             globals: true,

@@ -22,6 +22,12 @@ const nextConfig = {
         ]
     },
     webpack(config) {
+        // Prefer the `hopper-source` export condition so internal `@hopper-ui/*` packages resolve
+        // to their TS source (compiled by Next via transpilePackages), matching the previous
+        // tsconfig `paths`→source behavior now that those aliases are gone. Namespaced so it
+        // doesn't redirect third-party deps that ship a generic `source` condition.
+        config.resolve.conditionNames = ["hopper-source", ...(config.resolve.conditionNames ?? ["..."])];
+
         config.module.rules.push(
             {
                 test: /\.svg$/i,

@@ -1,0 +1,19 @@
+{
+    "name": "@hopper-ui/tsup-intl-plugin",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal tsup/esbuild plugin that compiles ICU intl messages. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./index.ts"
+    },
+    "dependencies": {
+        "@internationalized/string-compiler": "^3.2.6"
+    },
+    "devDependencies": {
+        "tsup": "8.5.0",
+        "typescript": "5.5.4"
+    }
+}

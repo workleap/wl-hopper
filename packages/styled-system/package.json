@@ -22,6 +22,7 @@
     "types": "dist/index.d.ts",
     "exports": {
         ".": {
+            "hopper-source": "./src/index.ts",
             "import": "./dist/index.js",
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
@@ -47,6 +48,8 @@
     },
     "devDependencies": {
         "@hopper-ui/tokens": "workspace:*",
+        "@hopper-ui/tsup-css-module-plugin": "workspace:*",
+        "@hopper-ui/vitest-config": "workspace:*",
         "@testing-library/dom": "10.4.1",
         "@testing-library/jest-dom": "6.9.1",
         "@testing-library/react": "16.3.0",

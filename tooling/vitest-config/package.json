@@ -1,0 +1,21 @@
+{
+    "name": "@hopper-ui/vitest-config",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal shared Vitest config factory for Hopper. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./defineHopperVitestConfig.ts"
+    },
+    "devDependencies": {
+        "typescript": "5.5.4",
+        "vite": "8.2.1",
+        "vitest": "4.1.10"
+    },
+    "peerDependencies": {
+        "vite": "^8.2.1",
+        "vitest": "^4.1.10"
+    }
+}

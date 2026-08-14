@@ -1,4 +1,4 @@
-import { defineHopperVitestConfig } from "../../tooling/vitest-config/defineHopperVitestConfig.ts";
+import { defineHopperVitestConfig } from "@hopper-ui/vitest-config";
 
 export default defineHopperVitestConfig({
     react: true,
