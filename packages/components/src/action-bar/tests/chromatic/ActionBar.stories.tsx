@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default = {
     render: props => (
-        <ActionBar selectedItemCount={12} totalItemCount={230} {...props}>
+        <ActionBar selectedItemCount={12} {...props}>
             <Button variant="primary" size="sm">
                 Approve
             </Button>
@@ -74,7 +74,7 @@ export const SelectedItemCount = {
                     Export
                 </Button>
             </ActionBar>
-            <ActionBar selectedItemCount={12} totalItemCount={230} {...props}>
+            <ActionBar selectedItemCount={12} {...props}>
                 <Button variant="secondary" size="sm">
                     Export
                 </Button>
@@ -97,7 +97,7 @@ export const NarrowContainers = {
     render: props => (
         <Stack>
             {["32rem", "24rem", "18rem", "12rem"].map(width => (
-                <ActionBar key={width} UNSAFE_width={width} selectedItemCount={12} totalItemCount={230} {...props}>
+                <ActionBar key={width} UNSAFE_width={width} selectedItemCount={12} {...props}>
                     <Button variant="primary" size="sm">
                         Approve
                     </Button>
