@@ -46,17 +46,11 @@ When every item is selected, pass `"all"` to `selectedItemCount` instead of a nu
 
 <Example src="action-bar/docs/allSelected" />
 
-ActionBar won't infer this from `selectedItemCount === totalItemCount`, because the two mean different things. `"all"` covers every item in the collection, including any that haven't loaded yet. A count matching the total only covers what's loaded right now. In a paginated or virtualized collection those two drift apart, so it's your call which one the user is actually looking at.
-
-### Showing a total
-
-Pass `totalItemCount` to show how many items are selected out of the total available.
-
-<Example src="action-bar/docs/totalItemCount" />
+`"all"` covers the whole collection, including items that haven't loaded yet. In a paginated or virtualized list that's more than what's on screen, so use a number when only the loaded items are selected.
 
 ### Naming the selected items
 
-The default text says "item", which works for most collections. When yours holds something more specific, pass `selectionText` to replace the whole sentence. It takes a node, or a function that receives `selectedItemCount` and `totalItemCount`.
+The default text says "item", which works for most collections. When yours holds something more specific, pass `selectionText` to replace the whole sentence. It takes a node, or a function that receives `selectedItemCount`.
 
 <Example src="action-bar/docs/selectionText" />
 

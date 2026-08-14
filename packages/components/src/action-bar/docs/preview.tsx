@@ -43,7 +43,6 @@ export default function Example() {
                 right="0"
                 bottom="0"
                 selectedItemCount={selectedKeys.size === items.length ? "all" : selectedKeys.size}
-                totalItemCount={items.length}
                 onClearSelection={() => setSelectedKeys(new Set())}
             >
                 <Button variant="secondary" size="sm">

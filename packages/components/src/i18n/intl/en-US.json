@@ -2,7 +2,6 @@
     "ActionBar.clearSelectionAriaLabel": "Clear selection",
     "ActionBar.selected": "{count, plural, one {# item selected} other {# items selected}}",
     "ActionBar.selectedAll": "All items selected",
-    "ActionBar.selectedOfTotal": "{count} of {total} {total, plural, one {item} other {items}} selected",
     "Button.spinnerAriaLabel": "Loading",
     "Tag.spinnerAriaLabel": "Loading",
     "ClearButton.clearAriaLabel": "Clear",

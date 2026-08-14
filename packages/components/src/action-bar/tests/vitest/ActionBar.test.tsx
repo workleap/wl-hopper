@@ -112,26 +112,6 @@ describe("ActionBar", () => {
         expect(screen.getByText("5 items selected")).toBeInTheDocument();
     });
 
-    it("should render the selected item count against the total when totalItemCount is provided", () => {
-        render(
-            <ActionBar selectedItemCount={12} totalItemCount={230}>
-                <Button size="sm">Delete</Button>
-            </ActionBar>
-        );
-
-        expect(screen.getByText("12 of 230 items selected")).toBeInTheDocument();
-    });
-
-    it("should pluralize the total, not the selected count, when totalItemCount is provided", () => {
-        render(
-            <ActionBar selectedItemCount={1} totalItemCount={1}>
-                <Button size="sm">Delete</Button>
-            </ActionBar>
-        );
-
-        expect(screen.getByText("1 of 1 item selected")).toBeInTheDocument();
-    });
-
     it("should render a message when every item is selected", () => {
         render(
             <ActionBar selectedItemCount="all">
@@ -153,18 +133,16 @@ describe("ActionBar", () => {
         expect(screen.queryByText("3 items selected")).not.toBeInTheDocument();
     });
 
-    it("should call selectionText with the counts when given a function", () => {
-        const selectionText = vi.fn(
-            ({ selectedItemCount, totalItemCount }) => `${selectedItemCount}/${totalItemCount} people`
-        );
+    it("should call selectionText with the count when given a function", () => {
+        const selectionText = vi.fn(({ selectedItemCount }) => `${selectedItemCount} people`);
         render(
-            <ActionBar selectedItemCount={3} totalItemCount={12} selectionText={selectionText}>
+            <ActionBar selectedItemCount={3} selectionText={selectionText}>
                 <Button size="sm">Delete</Button>
             </ActionBar>
         );
 
-        expect(selectionText).toHaveBeenCalledWith({ selectedItemCount: 3, totalItemCount: 12 });
-        expect(screen.getByText("3/12 people")).toBeInTheDocument();
+        expect(selectionText).toHaveBeenCalledWith({ selectedItemCount: 3 });
+        expect(screen.getByText("3 people")).toBeInTheDocument();
     });
 
     it("should render selectionText when every item is selected", () => {

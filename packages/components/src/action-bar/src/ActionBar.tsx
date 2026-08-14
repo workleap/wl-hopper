@@ -19,10 +19,6 @@ export interface ActionBarSelectionTextValues {
      * The number of selected items the ActionBar is linked to.
      */
     selectedItemCount: number | "all";
-    /**
-     * The total number of items available for selection.
-     */
-    totalItemCount?: number;
 }
 
 export interface ActionBarProps extends StyledComponentProps<BaseComponentDOMProps> {
@@ -36,13 +32,8 @@ export interface ActionBarProps extends StyledComponentProps<BaseComponentDOMPro
      */
     selectedItemCount?: number | "all";
     /**
-     * The total number of items available for selection. When provided, the selection text reads
-     * "X of Y items selected" instead of just "X items selected".
-     */
-    totalItemCount?: number;
-    /**
      * Replaces the whole selection sentence, for collections whose items aren't generically named
-     * ("3 people selected"). Accepts a node, or a function receiving the counts. The consumer owns
+     * ("3 people selected"). Accepts a node, or a function receiving the count. The consumer owns
      * pluralization and grammatical agreement in each locale they support.
      */
     selectionText?: ReactNode | ((values: ActionBarSelectionTextValues) => ReactNode);
@@ -67,7 +58,6 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
         style,
         slot,
         selectedItemCount = 0,
-        totalItemCount,
         selectionText,
         onClearSelection,
         onKeyDown,
@@ -96,16 +86,11 @@ function ActionBar(props: ActionBarProps, ref: ForwardedRef<HTMLDivElement>) {
     const resolvedSelectionText =
         selectionText !== undefined
             ? typeof selectionText === "function"
-                ? selectionText({ selectedItemCount, totalItemCount })
+                ? selectionText({ selectedItemCount })
                 : selectionText
             : selectedItemCount === "all"
               ? stringFormatter.format("ActionBar.selectedAll")
-              : totalItemCount != null
-                ? stringFormatter.format("ActionBar.selectedOfTotal", {
-                      count: selectedItemCount,
-                      total: totalItemCount
-                  })
-                : stringFormatter.format("ActionBar.selected", { count: selectedItemCount });
+              : stringFormatter.format("ActionBar.selected", { count: selectedItemCount });
 
     const classNames = clsx(
         GlobalActionBarCssSelector,
