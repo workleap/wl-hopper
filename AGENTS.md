@@ -67,7 +67,8 @@ Path patterns: packages/components/src/**/*.tsx
 
 ## Skills
 
-| Skill                 | When to use                                              |
-| --------------------- | -------------------------------------------------------- |
-| `update-tokens`       | Add, update, delete, or deprecate design tokens          |
-| `learn-from-feedback` | Capture a developer correction into a skill or CLAUDE.md |
+| Skill                 | When to use                                                                |
+| --------------------- | -------------------------------------------------------------------------- |
+| `update-tokens`       | Add, update, delete, or deprecate design tokens                            |
+| `learn-from-feedback` | Capture a developer correction into a skill or CLAUDE.md                   |
+| `port-component`      | Port a new component into Hopper from its React Spectrum S2 implementation |

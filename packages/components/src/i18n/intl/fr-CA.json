@@ -1,4 +1,8 @@
 {
+    "ActionBar.clearSelectionAriaLabel": "Effacer la sélection",
+    "ActionBar.selected": "{count, plural, one {# élément sélectionné} other {# éléments sélectionnés}}",
+    "ActionBar.selectedAll": "Tous les éléments sont sélectionnés",
+    "ActionBar.selectedOfTotal": "{count, plural, one {# élément sélectionné sur {total}} other {# éléments sélectionnés sur {total}}}",
     "Button.spinnerAriaLabel": "Chargement en cours",
     "Tag.spinnerAriaLabel": "Chargement en cours",
     "ClearButton.clearAriaLabel": "Effacer",
