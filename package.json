@@ -32,7 +32,7 @@
         "changeset": "changeset",
         "ci-version-packages": "changeset version && pnpm build:tokens",
         "ci-release": "pnpm build:pkg && changeset publish",
-        "install-react18": "pnpm -r --filter \"{packages/**}\" add -D react@18 react-dom@18 @types/react@18 @types/react-dom@18 && pnpm add -D -w react@18 react-dom@18 @types/react@18 @types/react-dom@18",
+        "install-react18": "pnpm -r --filter \"{packages/**}\" --filter \"@hopper-ui/test-utils\" --filter \"@hopper-ui/storybook-addon\" add -D react@18 react-dom@18 @types/react@18 @types/react-dom@18 && pnpm add -D -w react@18 react-dom@18 @types/react@18 @types/react-dom@18",
         "generate-icons": "pnpm --filter=\"svg-icons\" generate-icons && pnpm --filter=\"@hopper-ui/icons*\" generate-icons",
         "lint": "oxlint && pnpm format:check && turbo run stylelint typecheck syncpack --continue",
         "oxlint": "oxlint",

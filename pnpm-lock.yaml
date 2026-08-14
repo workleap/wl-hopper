@@ -760,12 +760,18 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
+      '@types/react-dom':
+        specifier: 19.2.4
+        version: 19.2.4(@types/react@19.2.18)
       '@workleap/typescript-configs':
         specifier: 3.0.4
         version: 3.0.4(typescript@5.5.4)
       react:
         specifier: 19.2.8
         version: 19.2.8
+      react-dom:
+        specifier: 19.2.8
+        version: 19.2.8(react@19.2.8)
       typescript:
         specifier: 5.5.4
         version: 5.5.4
