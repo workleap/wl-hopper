@@ -1,5 +1,12 @@
 # @hopper-ui/styled-system
 
+## 4.0.11
+
+### Patch Changes
+
+- 8b5bc81: feat(ActionBar): add ActionBar component, ported from React Spectrum S2
+  - Add `--hop-comp-action-bar-*` tokens to both brands
+
 ## 4.0.10
 
 ### Patch Changes
