@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 3.2.0
+
+### Minor Changes
+
+- 8b5bc81: feat(ActionBar): add ActionBar component, ported from React Spectrum S2
+  - Add `--hop-comp-action-bar-*` tokens to both brands
+
 ## 3.1.3
 
 ### Patch Changes
