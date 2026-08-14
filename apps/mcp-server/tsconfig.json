@@ -1,7 +1,10 @@
 {
     "extends": "@workleap/typescript-configs/library.json",
     "exclude": ["dist", "node_modules"],
-    "include": ["**/*", "../../types/*"],
+    // mcp-server emits with `tsc` (allowImportingTsExtensions: false), so it can't include the whole
+    // shared `types/*`: `storybook-parameters.d.ts` imports `@hopper-ui/storybook-addon` source (whose
+    // imports use `.ts`/`.tsx` extensions). Pull in only `vitest.d.ts` for the test globals instead.
+    "include": ["**/*", "../../types/vitest.d.ts"],
     "compilerOptions": {
         "incremental": true,
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",

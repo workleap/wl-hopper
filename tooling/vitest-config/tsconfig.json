@@ -1,0 +1,9 @@
+{
+    "extends": "@workleap/typescript-configs/library.json",
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+        "customConditions": ["hopper-source"]
+    }
+}

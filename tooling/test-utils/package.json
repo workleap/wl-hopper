@@ -9,12 +9,16 @@
     "exports": {
         ".": "./index.ts"
     },
+    "scripts": {
+        "typecheck": "tsc"
+    },
     "dependencies": {
         "@hopper-ui/components": "workspace:*",
         "@testing-library/react": "^16.3.0"
     },
     "devDependencies": {
         "@types/react": "19.2.18",
+        "@workleap/typescript-configs": "3.0.4",
         "react": "19.2.8",
         "typescript": "5.5.4"
     },

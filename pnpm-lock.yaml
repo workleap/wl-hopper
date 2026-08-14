@@ -732,6 +732,9 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       axe-playwright:
         specifier: 2.2.2
         version: 2.2.2(playwright@1.56.1)
@@ -757,6 +760,9 @@ importers:
       '@types/react':
         specifier: 19.2.18
         version: 19.2.18
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       react:
         specifier: 19.2.8
         version: 19.2.8
@@ -773,6 +779,12 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(postcss@8.5.6)
     devDependencies:
+      '@types/node':
+        specifier: 24.5.1
+        version: 24.5.1
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       tsup:
         specifier: 8.5.0
         version: 8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.6)(tsx@4.20.6)(typescript@5.5.4)(yaml@2.8.1)
@@ -786,6 +798,12 @@ importers:
         specifier: ^3.2.6
         version: 3.2.6
     devDependencies:
+      '@types/node':
+        specifier: 24.5.1
+        version: 24.5.1
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       tsup:
         specifier: 8.5.0
         version: 8.5.0(@swc/core@1.13.5(@swc/helpers@0.5.17))(jiti@2.6.1)(postcss@8.5.26)(tsx@4.20.6)(typescript@5.5.4)(yaml@2.8.1)
@@ -799,6 +817,12 @@ importers:
         specifier: ^3.2.6
         version: 3.2.6
     devDependencies:
+      '@types/node':
+        specifier: 24.5.1
+        version: 24.5.1
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       typescript:
         specifier: 5.5.4
         version: 5.5.4
@@ -808,6 +832,9 @@ importers:
 
   tooling/vitest-config:
     devDependencies:
+      '@workleap/typescript-configs':
+        specifier: 3.0.4
+        version: 3.0.4(typescript@5.5.4)
       typescript:
         specifier: 5.5.4
         version: 5.5.4

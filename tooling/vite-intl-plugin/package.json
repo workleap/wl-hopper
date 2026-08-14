@@ -9,10 +9,15 @@
     "exports": {
         ".": "./createIntlVitePlugin.ts"
     },
+    "scripts": {
+        "typecheck": "tsc"
+    },
     "dependencies": {
         "@internationalized/string-compiler": "^3.2.6"
     },
     "devDependencies": {
+        "@types/node": "24.5.1",
+        "@workleap/typescript-configs": "3.0.4",
         "typescript": "5.5.4",
         "vite": "8.2.1"
     },

@@ -9,7 +9,11 @@
     "exports": {
         ".": "./defineHopperVitestConfig.ts"
     },
+    "scripts": {
+        "typecheck": "tsc"
+    },
     "devDependencies": {
+        "@workleap/typescript-configs": "3.0.4",
         "typescript": "5.5.4",
         "vite": "8.2.1",
         "vitest": "4.1.10"

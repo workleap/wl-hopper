@@ -1,0 +1,12 @@
+{
+    "extends": "@workleap/typescript-configs/library.json",
+    "exclude": ["node_modules"],
+    // `../../types/css-modules.d.ts` provides the ambient `*.css` module declaration needed because
+    // `@hopper-ui/components` resolves to source (via `hopper-source`), pulling in its `*.module.css` imports.
+    "include": ["**/*", "../../types/css-modules.d.ts"],
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+        "customConditions": ["hopper-source"]
+    }
+}
