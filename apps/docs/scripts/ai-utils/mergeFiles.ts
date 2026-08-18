@@ -21,7 +21,10 @@ export interface MergeFilesOptions {
  * Expands the given glob patterns, concatenates the matching files in order and writes
  * the result to `path/fileName`, optionally prefixed by a heading template.
  */
-export async function mergeFiles(files: string[], { fileName, path, outputFile, headingFile, updateLevels }: MergeFilesOptions) {
+export async function mergeFiles(
+    files: string[],
+    { fileName, path, outputFile, headingFile, updateLevels }: MergeFilesOptions
+) {
     // Expand all patterns and collect matching files
     const allFiles: string[] = [];
 
@@ -51,7 +54,8 @@ export async function mergeFiles(files: string[], { fileName, path, outputFile, 
         const filePath = join(path, file);
         try {
             const fileContent = await readFile(filePath, "utf8");
-            const updateLevel = headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
+            const updateLevel =
+                headingFile && updateLevels ? await updateMarkdownHeadingLevels(fileContent, 1) : fileContent;
 
             contents.push(updateLevel);
         } catch (error) {

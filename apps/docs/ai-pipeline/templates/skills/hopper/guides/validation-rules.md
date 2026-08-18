@@ -43,7 +43,7 @@ so is passing a token to an `UNSAFE_` prop when the safe prop accepts tokens dir
 
 ### Malformed token values
 
-The token *name* and the prop *value* are different strings. `hop-neutral-text` is the token;
+The token _name_ and the prop _value_ are different strings. `hop-neutral-text` is the token;
 `neutral` is the value. The validator reports the correct form when it can derive it. See
 `references/tokens/README.md`.
 

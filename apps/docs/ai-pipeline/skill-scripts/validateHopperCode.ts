@@ -25,10 +25,7 @@ function formatMessages(label: string, messages: ValidationResult["errors"]) {
 }
 
 function report(source: string, result: ValidationResult) {
-    const lines = [
-        ...formatMessages("error  ", result.errors),
-        ...formatMessages("warning", result.warnings)
-    ];
+    const lines = [...formatMessages("error  ", result.errors), ...formatMessages("warning", result.warnings)];
 
     if (lines.length === 0) {
         console.log(`✅ ${source}: no issues`);

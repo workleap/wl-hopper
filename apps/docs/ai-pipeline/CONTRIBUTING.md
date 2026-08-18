@@ -418,15 +418,15 @@ Output lands in `dist/skills` and is copied to `public/agent-skills` (gitignored
 
 ### Files
 
-| File | Role |
-| --- | --- |
-| `skills.config.ts` | What the skill contains. The only file most changes touch. |
-| `skillsTypes.ts` | Entry types and their guards. |
-| `templates/skills/hopper/**` | Hand-authored markdown: `SKILL.header.md`, workflows, and the guides that have no generated equivalent. |
-| `skill-scripts/**` | Sources for the scripts bundled into the skill. |
-| `../scripts/buildSkills.ts` | Orchestrator. |
-| `../scripts/ai-utils/{copySkillFiles,generateSkillIndex,generateSkillManifest,bundleSkillScripts}.ts` | The stages it runs. |
-| `../scripts/checkSkillsConfig.ts` | Runs as `pnpm --filter=docs test`; see below. |
+| File                                                                                                  | Role                                                                                                    |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `skills.config.ts`                                                                                    | What the skill contains. The only file most changes touch.                                              |
+| `skillsTypes.ts`                                                                                      | Entry types and their guards.                                                                           |
+| `templates/skills/hopper/**`                                                                          | Hand-authored markdown: `SKILL.header.md`, workflows, and the guides that have no generated equivalent. |
+| `skill-scripts/**`                                                                                    | Sources for the scripts bundled into the skill.                                                         |
+| `../scripts/buildSkills.ts`                                                                           | Orchestrator.                                                                                           |
+| `../scripts/ai-utils/{copySkillFiles,generateSkillIndex,generateSkillManifest,bundleSkillScripts}.ts` | The stages it runs.                                                                                     |
+| `../scripts/checkSkillsConfig.ts`                                                                     | Runs as `pnpm --filter=docs test`; see below.                                                           |
 
 ### Entry types
 
@@ -455,11 +455,11 @@ components — a bullet per file would triple the size of `SKILL.md`.
 The skill's three scripts are **not** reimplementations. Each bundles a service straight out of
 `apps/mcp-server` with esbuild, so a logic change there reaches both surfaces at the next build:
 
-| Script | MCP tool | Bundled from |
-| --- | --- | --- |
+| Script                             | MCP tool               | Bundled from                    |
+| ---------------------------------- | ---------------------- | ------------------------------- |
 | `scripts/validate-hopper-code.mjs` | `validate_hopper_code` | `src/services/validatorService` |
-| `scripts/search-tokens.mjs` | `get_design_tokens` | `src/services/tokensService` |
-| `scripts/search-icons.mjs` | `get_icons` | `src/services/iconsService` |
+| `scripts/search-tokens.mjs`        | `get_design_tokens`    | `src/services/tokensService`    |
+| `scripts/search-icons.mjs`         | `get_icons`            | `src/services/iconsService`     |
 
 The entry points in `skill-scripts/` are thin CLI wrappers — argument parsing and output
 formatting only. Keep them that way; anything resembling business logic belongs in the service, so
@@ -477,7 +477,7 @@ input and diff them.
 
 ### The skill ships as one archive
 
-`buildSkills.ts` writes both the loose files under `dist/skills/hopper/**` *and* a single
+`buildSkills.ts` writes both the loose files under `dist/skills/hopper/**` _and_ a single
 `dist/skills/hopper.tar.gz`, and `index.json` advertises only the archive, using the 0.2.0
 discovery schema with a sha256 digest.
 

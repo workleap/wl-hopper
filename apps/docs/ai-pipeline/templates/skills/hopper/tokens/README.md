@@ -5,12 +5,12 @@
 **A token name is not a prop value.** Hopper's CSS variables and its component style props use
 different strings for the same thing:
 
-| Token name | CSS variable | Prop value |
-| --- | --- | --- |
-| `hop-neutral-text` | `--hop-neutral-text` | `neutral` |
+| Token name                  | CSS variable                  | Prop value         |
+| --------------------------- | ----------------------------- | ------------------ |
+| `hop-neutral-text`          | `--hop-neutral-text`          | `neutral`          |
 | `hop-information-text-weak` | `--hop-information-text-weak` | `information-weak` |
-| `hop-space-stack-md` | `--hop-space-stack-md` | `stack-md` |
-| `hop-shape-rounded-md` | `--hop-shape-rounded-md` | `rounded-md` |
+| `hop-space-stack-md`        | `--hop-space-stack-md`        | `stack-md`         |
+| `hop-shape-rounded-md`      | `--hop-shape-rounded-md`      | `rounded-md`       |
 
 Do not do that conversion in your head. Look it up.
 
@@ -54,7 +54,7 @@ for colour, where core tokens break dark mode.
 
 ## Guidance by category
 
-The markdown files next to this one explain *when* to use each family, which the JSON maps cannot:
+The markdown files next to this one explain _when_ to use each family, which the JSON maps cannot:
 
 - `references/tokens/semantic/` — colour, elevation, shape, space, typography.
 - `references/tokens/core/` — the raw scales underneath them.

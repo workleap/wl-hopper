@@ -43,20 +43,24 @@ async function main() {
 
     const expectedSourceRoot = `${aiDocsConfig.buildRootPath}/${aiDocsConfig.filesFolder}`;
     if (skillsConfig.sourceRootPath !== expectedSourceRoot) {
-        problems.push(`skills.config.ts reads from "${skillsConfig.sourceRootPath}" but the AI docs are written to "${expectedSourceRoot}".`);
+        problems.push(
+            `skills.config.ts reads from "${skillsConfig.sourceRootPath}" but the AI docs are written to "${expectedSourceRoot}".`
+        );
     }
 
     const skillNames = Object.keys(skillsConfig.skills);
     if (skillNames.length !== 1) {
         problems.push(
             `Expected exactly one skill, found ${skillNames.length}. The \`skills\` CLI requires an explicit ` +
-            "@selector when a host advertises several, which breaks `npx skills add https://hopper.workleap.design`."
+                "@selector when a host advertises several, which breaks `npx skills add https://hopper.workleap.design`."
         );
     }
 
     for (const [name, skill] of Object.entries(skillsConfig.skills)) {
         if (skill.frontmatter.description.length > 1024) {
-            problems.push(`Skill "${name}" description is ${skill.frontmatter.description.length} characters, over the 1024 limit.`);
+            problems.push(
+                `Skill "${name}" description is ${skill.frontmatter.description.length} characters, over the 1024 limit.`
+            );
         }
 
         const templates = [skill.template];
@@ -69,7 +73,7 @@ async function main() {
                 templates.push(entry.template);
                 patterns.push(...entry.merge);
             } else if (isCopyEntry(entry)) {
-                patterns.push(entry.from, ...entry.exclude ?? []);
+                patterns.push(entry.from, ...(entry.exclude ?? []));
             }
         }
 
@@ -91,22 +95,29 @@ async function main() {
 
         for (const pattern of patterns) {
             if (!isCoveredByARoute(pattern, routeKeys)) {
-                problems.push(`Skill "${name}" reads "${pattern}", which no ai-docs.config.tsx route produces. Was a route renamed?`);
+                problems.push(
+                    `Skill "${name}" reads "${pattern}", which no ai-docs.config.tsx route produces. Was a route renamed?`
+                );
             }
         }
 
         for (const section of skill.index.sections) {
-            const covered = skill.files.some(entry => entry.to.startsWith(`${section.path}/`) || entry.to === section.path)
-                || skill.scripts?.some(script => script.to.startsWith(`${section.path}/`));
+            const covered =
+                skill.files.some(entry => entry.to.startsWith(`${section.path}/`) || entry.to === section.path) ||
+                skill.scripts?.some(script => script.to.startsWith(`${section.path}/`));
 
             if (!covered) {
-                problems.push(`Skill "${name}" has an index section for "${section.path}", but nothing is written there.`);
+                problems.push(
+                    `Skill "${name}" has an index section for "${section.path}", but nothing is written there.`
+                );
             }
         }
     }
 
     if (problems.length > 0) {
-        console.error(`❌ skills.config.ts is out of sync with ai-docs.config.tsx:\n${problems.map(problem => `  - ${problem}`).join("\n")}`);
+        console.error(
+            `❌ skills.config.ts is out of sync with ai-docs.config.tsx:\n${problems.map(problem => `  - ${problem}`).join("\n")}`
+        );
         process.exit(1);
     }
 
