@@ -1,5 +1,5 @@
-import { createIntlVitePlugin } from "../../tooling/vite-intl-plugin/createIntlVitePlugin.ts";
-import { defineHopperVitestConfig } from "../../tooling/vitest-config/defineHopperVitestConfig.ts";
+import { createIntlVitePlugin } from "@hopper-ui/vite-intl-plugin";
+import { defineHopperVitestConfig } from "@hopper-ui/vitest-config";
 
 export default defineHopperVitestConfig({
     react: true,

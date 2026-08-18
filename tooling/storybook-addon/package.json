@@ -1,0 +1,32 @@
+{
+    "name": "@hopper-ui/storybook-addon",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal Storybook addon for Hopper. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./index.ts"
+    },
+    "scripts": {
+        "typecheck": "tsc"
+    },
+    "dependencies": {
+        "@hopper-ui/components": "workspace:*",
+        "chromatic": "^18.2.0"
+    },
+    "devDependencies": {
+        "@storybook/react-webpack5": "10.5.7",
+        "@types/react": "19.2.18",
+        "@workleap/typescript-configs": "3.0.4",
+        "axe-playwright": "2.2.2",
+        "react": "19.2.8",
+        "storybook": "10.5.7",
+        "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "react": "^18 || ^19",
+        "storybook": "^10.5.7"
+    }
+}

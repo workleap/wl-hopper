@@ -39,6 +39,7 @@
         "test": "vitest run"
     },
     "devDependencies": {
+        "@hopper-ui/vitest-config": "workspace:*",
         "@types/node": "24.5.1",
         "@workleap/typescript-configs": "3.0.4",
         "copyfiles": "2.4.1",

@@ -4,7 +4,6 @@ import type { Options as SwcOptions } from "@swc/core";
 import { createRequire } from "node:module";
 import path, { dirname, join } from "path";
 import type { Options } from "storybook/internal/types";
-import { TsconfigPathsPlugin } from "tsconfig-paths-webpack-plugin";
 
 import { swcConfig as SwcBuildConfig } from "./swc.build.ts";
 import { swcConfig as SwcDevConfig } from "./swc.dev.ts";
@@ -36,13 +35,7 @@ const storybookConfig: StorybookConfig = {
     webpackFinal(config, { configType }) {
         config.resolve = {
             ...config.resolve,
-            plugins: [
-                ...(config.resolve?.plugins ?? []),
-                new TsconfigPathsPlugin({
-                    configFile: "./tsconfig.json",
-                    extensions: config.resolve?.extensions
-                })
-            ]
+            conditionNames: ["hopper-source", ...(config.resolve?.conditionNames ?? ["..."])]
         };
 
         config.plugins = [

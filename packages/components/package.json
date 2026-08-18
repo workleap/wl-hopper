@@ -22,6 +22,7 @@
     "types": "dist/index.d.ts",
     "exports": {
         ".": {
+            "hopper-source": "./src/index.ts",
             "import": "./dist/index.js",
             "types": "./dist/index.d.ts",
             "default": "./dist/index.js"
@@ -41,7 +42,7 @@
         "find-types": "node scripts/findImportedTypes.ts"
     },
     "dependencies": {
-        "@hopper-ui/icons": "*",
+        "@hopper-ui/icons": "workspace:*",
         "@internationalized/date": "^3.10.0",
         "@react-aria/interactions": "^3.25.6",
         "@react-aria/ssr": "^3.9.10",
@@ -54,6 +55,10 @@
     "devDependencies": {
         "@hopper-ui/icons": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
+        "@hopper-ui/tsup-css-module-plugin": "workspace:*",
+        "@hopper-ui/tsup-intl-plugin": "workspace:*",
+        "@hopper-ui/vite-intl-plugin": "workspace:*",
+        "@hopper-ui/vitest-config": "workspace:*",
         "@testing-library/dom": "10.4.1",
         "@testing-library/jest-dom": "6.9.1",
         "@testing-library/react": "16.3.0",

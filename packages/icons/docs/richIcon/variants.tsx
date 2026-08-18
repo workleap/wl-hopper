@@ -1,4 +1,3 @@
-import { Inline, Stack } from "@hopper-ui/components";
 import { createRichIcon } from "@hopper-ui/icons";
 
 import { SparklesRichIcon24, SparklesRichIcon32, SparklesRichIcon40 } from "../src/index.ts";
@@ -7,8 +6,8 @@ const CustomRichIcon = createRichIcon(SparklesRichIcon24, SparklesRichIcon32, Sp
 
 export default function Example() {
     return (
-        <Inline alignY="flex-start">
-            <Stack>
+        <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <CustomRichIcon variant="option1" />
                 <CustomRichIcon variant="option2" />
                 <CustomRichIcon variant="option3" />
@@ -17,14 +16,14 @@ export default function Example() {
                 <CustomRichIcon variant="option6" />
                 <CustomRichIcon variant="option7" />
                 <CustomRichIcon variant="option8" />
-            </Stack>
-            <Stack>
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                 <CustomRichIcon variant="success" />
                 <CustomRichIcon variant="warning" />
                 <CustomRichIcon variant="danger" />
                 <CustomRichIcon variant="information" />
                 <CustomRichIcon variant="upsell" />
-            </Stack>
-        </Inline>
+            </div>
+        </div>
     );
 }

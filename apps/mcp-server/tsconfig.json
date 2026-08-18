@@ -1,7 +1,7 @@
 {
     "extends": "@workleap/typescript-configs/library.json",
     "exclude": ["dist", "node_modules"],
-    "include": ["**/*", "../../types/*"],
+    "include": ["**/*", "../../types/vitest.d.ts"],
     "compilerOptions": {
         "incremental": true,
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",

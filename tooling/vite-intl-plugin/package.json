@@ -1,0 +1,27 @@
+{
+    "name": "@hopper-ui/vite-intl-plugin",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal Vite/Vitest plugin that compiles ICU intl messages. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./createIntlVitePlugin.ts"
+    },
+    "scripts": {
+        "typecheck": "tsc"
+    },
+    "dependencies": {
+        "@internationalized/string-compiler": "^3.2.6"
+    },
+    "devDependencies": {
+        "@types/node": "24.5.1",
+        "@workleap/typescript-configs": "3.0.4",
+        "typescript": "5.5.4",
+        "vite": "8.2.1"
+    },
+    "peerDependencies": {
+        "vite": "^8.2.1"
+    }
+}

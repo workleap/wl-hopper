@@ -1,0 +1,31 @@
+{
+    "name": "@hopper-ui/test-utils",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal testing utilities for Hopper. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./index.ts"
+    },
+    "scripts": {
+        "typecheck": "tsc"
+    },
+    "dependencies": {
+        "@hopper-ui/components": "workspace:*",
+        "@testing-library/react": "^16.3.0"
+    },
+    "devDependencies": {
+        "@types/react": "19.2.18",
+        "@types/react-dom": "19.2.4",
+        "@workleap/typescript-configs": "3.0.4",
+        "react": "19.2.8",
+        "react-dom": "19.2.8",
+        "typescript": "5.5.4"
+    },
+    "peerDependencies": {
+        "react": "^18 || ^19",
+        "react-dom": "^18 || ^19"
+    }
+}

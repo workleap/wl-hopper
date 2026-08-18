@@ -5,13 +5,6 @@
     "compilerOptions": {
         "incremental": true,
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
-        "paths": {
-            "@hopper-ui/icons": ["../icons/src/index.ts"],
-            "@hopper-ui/components": ["../components/src/index.ts"],
-            "@hopper-ui/styled-system": ["../styled-system/src/index.ts"],
-            "@hopper-ui/test-utils": ["../../tooling/test-utils/index.ts"],
-            "@hopper-ui/tsup-css-module-plugin": ["../../tooling/tsup-css-module-plugin/index.ts"],
-            "@hopper-ui/storybook-addon": ["../../tooling/storybook-addon/index.ts"]
-        }
+        "customConditions": ["hopper-source"]
     }
 }

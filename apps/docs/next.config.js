@@ -22,6 +22,8 @@ const nextConfig = {
         ]
     },
     webpack(config) {
+        config.resolve.conditionNames = ["hopper-source", ...(config.resolve.conditionNames ?? ["..."])];
+
         config.module.rules.push(
             {
                 test: /\.svg$/i,
