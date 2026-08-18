@@ -42,8 +42,8 @@ export const skillsConfig: SkillsConfig = {
                     "targets the Workleap or ShareGate theme in light or dark mode. Also use when picking Hopper",
                     "components (Button, TextField, Select, Modal, Tag, Callout, Tabs, ...) or Hopper icons,",
                     "converting a Figma frame into Workleap design system code, or choosing between semantic and",
-                    "core tokens. Trigger on \"Hopper\", \"hopper-ui\", \"Workleap design system\",",
-                    "\"ShareGate design system\", \"hop- token\", \"HopperProvider\"."
+                    'core tokens. Trigger on "Hopper", "hopper-ui", "Workleap design system",',
+                    '"ShareGate design system", "hop- token", "HopperProvider".'
                 ].join(" "),
                 license: "Apache-2.0",
                 metadata: {
@@ -73,13 +73,28 @@ export const skillsConfig: SkillsConfig = {
 
                 // component APIs — brief props only; the full variant is 7MB and stays online.
                 // _summary.json is generation metadata, not an API.
-                { from: "/components/api/brief/*.json", exclude: ["/components/api/brief/_summary.json"], to: "references/api/" },
+                {
+                    from: "/components/api/brief/*.json",
+                    exclude: ["/components/api/brief/_summary.json"],
+                    to: "references/api/"
+                },
 
                 // guides
-                { from: "/getting-started/*.md", exclude: ["/getting-started/index.md"], to: "references/guides/getting-started/" },
-                { from: "/components/concepts/*.md", exclude: ["/components/concepts/index.md"], to: "references/guides/concepts/" },
+                {
+                    from: "/getting-started/*.md",
+                    exclude: ["/getting-started/index.md"],
+                    to: "references/guides/getting-started/"
+                },
+                {
+                    from: "/components/concepts/*.md",
+                    exclude: ["/components/concepts/index.md"],
+                    to: "references/guides/concepts/"
+                },
                 { from: "/styled-system/concepts/*.md", to: "references/guides/styled-system/" },
-                { from: "/styled-system/overview/introduction.md", to: "references/guides/styled-system/introduction.md" },
+                {
+                    from: "/styled-system/overview/introduction.md",
+                    to: "references/guides/styled-system/introduction.md"
+                },
                 { from: "/components/utilities/useDebounce.md", to: "references/guides/utilities/useDebounce.md" },
                 { from: "/ai/figma-conventions.md", to: "references/guides/figma-conventions.md" },
 
@@ -106,7 +121,11 @@ export const skillsConfig: SkillsConfig = {
                 // tokens — markdown guidance mirrors the ai-docs layout
                 { from: "/tokens/overview/introduction.md", to: "references/tokens/introduction.md" },
                 { from: "/tokens/core/*.md", exclude: ["/tokens/core/index.md"], to: "references/tokens/core/" },
-                { from: "/tokens/semantic/*.md", exclude: ["/tokens/semantic/index.md"], to: "references/tokens/semantic/" },
+                {
+                    from: "/tokens/semantic/*.md",
+                    exclude: ["/tokens/semantic/index.md"],
+                    to: "references/tokens/semantic/"
+                },
                 {
                     copyTemplate: `${templates}/tokens/README.md`,
                     to: "references/tokens/README.md",
@@ -123,10 +142,17 @@ export const skillsConfig: SkillsConfig = {
                 },
 
                 // the UNSAFE_ allow-list, kept at its ai-docs path so the bundled validator finds it
-                { from: "/styled-system/unsafe-props-data.json", to: "references/styled-system/unsafe-props-data.json" },
+                {
+                    from: "/styled-system/unsafe-props-data.json",
+                    to: "references/styled-system/unsafe-props-data.json"
+                },
 
                 // icons
-                { from: "/icons/data.json", to: "references/icons/data.json", description: "Every Hopper icon: name, description and keywords." },
+                {
+                    from: "/icons/data.json",
+                    to: "references/icons/data.json",
+                    description: "Every Hopper icon: name, description and keywords."
+                },
                 { from: "/icons/brief/index.md", to: "references/icons/index.md" },
                 { from: "/icons/brief/advanced/designing-an-icon.md", to: "references/icons/designing-an-icon.md" },
                 {

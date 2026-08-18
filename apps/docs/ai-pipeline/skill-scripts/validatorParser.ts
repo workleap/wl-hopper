@@ -103,8 +103,8 @@ export function parse(code: string) {
 
         throw new Error(
             `${(acornError as Error).message}\n\n` +
-            "The bundled parser handles JavaScript and JSX but not TypeScript syntax. " +
-            "Install \"typescript\" or \"@typescript-eslint/parser\" in this project, or pass a plain JSX snippet.",
+                "The bundled parser handles JavaScript and JSX but not TypeScript syntax. " +
+                'Install "typescript" or "@typescript-eslint/parser" in this project, or pass a plain JSX snippet.',
             { cause: acornError }
         );
     }

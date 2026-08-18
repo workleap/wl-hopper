@@ -1,4 +1,4 @@
-import { isCopyEntry, isMergeEntry, isTemplateEntry, type SkillFileEntry } from "@/ai-pipeline/skillsTypes.ts";
+import { type SkillFileEntry, isCopyEntry, isMergeEntry, isTemplateEntry } from "@/ai-pipeline/skillsTypes.ts";
 import { copyFile, mkdir, stat } from "fs/promises";
 import { glob } from "glob";
 import { basename, dirname, join, relative } from "path";
@@ -63,7 +63,12 @@ async function copyInto(absoluteSource: string, skillPath: string, skillRoot: st
  * in configuration order. Throws when a pattern matches nothing, so a renamed AI docs route
  * fails the build instead of silently shrinking the skill.
  */
-export async function copySkillFiles({ entries, aiDocsRoot, projectRoot, skillRoot }: CopySkillFilesOptions): Promise<SkillFile[]> {
+export async function copySkillFiles({
+    entries,
+    aiDocsRoot,
+    projectRoot,
+    skillRoot
+}: CopySkillFilesOptions): Promise<SkillFile[]> {
     const written: SkillFile[] = [];
     const seen = new Set<string>();
 
@@ -84,31 +89,42 @@ export async function copySkillFiles({ entries, aiDocsRoot, projectRoot, skillRo
             const outputFile = join(skillRoot, entry.to);
             // mergeFiles treats a leading "/" as an absolute path, so resolve against the AI
             // docs root first — the same thing buildAiDocs.ts does with its merge patterns.
-            await mergeFiles(entry.merge.map(pattern => join(aiDocsRoot, pattern)), {
-                fileName: basename(entry.to),
-                path: aiDocsRoot,
-                outputFile,
-                headingFile: join(projectRoot, entry.template),
-                updateLevels: !entry.keepOriginalLeveling
-            });
+            await mergeFiles(
+                entry.merge.map(pattern => join(aiDocsRoot, pattern)),
+                {
+                    fileName: basename(entry.to),
+                    path: aiDocsRoot,
+                    outputFile,
+                    headingFile: join(projectRoot, entry.template),
+                    updateLevels: !entry.keepOriginalLeveling
+                }
+            );
             record({ path: entry.to, size: (await stat(outputFile)).size, description: entry.description });
         } else if (isCopyEntry(entry)) {
-            const matches = (await glob(join(aiDocsRoot, entry.from), {
-                nodir: true,
-                absolute: true,
-                ignore: entry.exclude?.map(pattern => join(aiDocsRoot, pattern))
-            })).sort();
+            const matches = (
+                await glob(join(aiDocsRoot, entry.from), {
+                    nodir: true,
+                    absolute: true,
+                    ignore: entry.exclude?.map(pattern => join(aiDocsRoot, pattern))
+                })
+            ).sort();
 
             if (matches.length === 0) {
-                throw new Error(`No AI docs file matched "${entry.from}". Did an ai-docs.config.tsx route get renamed?`);
+                throw new Error(
+                    `No AI docs file matched "${entry.from}". Did an ai-docs.config.tsx route get renamed?`
+                );
             }
 
             if (entry.expectedCount !== undefined && matches.length !== entry.expectedCount) {
-                throw new Error(`Expected "${entry.from}" to match ${entry.expectedCount} files but it matched ${matches.length}.`);
+                throw new Error(
+                    `Expected "${entry.from}" to match ${entry.expectedCount} files but it matched ${matches.length}.`
+                );
             }
 
             if (matches.length > 1 && !entry.to.endsWith("/")) {
-                throw new Error(`"${entry.from}" matched ${matches.length} files, so its "to" must end with "/". Got "${entry.to}".`);
+                throw new Error(
+                    `"${entry.from}" matched ${matches.length} files, so its "to" must end with "/". Got "${entry.to}".`
+                );
             }
 
             for (const match of matches) {

@@ -14,7 +14,14 @@
  * With no filter it prints the whole category, which is large — pass at least one of
  * --name / --css / --prop unless you actually want the full map.
  */
-import { ColorSchemes, type ColorScheme, type Theme, Themes, TokenCategories, type TokenCategory } from "../../../mcp-server/src/config/constants.ts";
+import {
+    type ColorScheme,
+    ColorSchemes,
+    type Theme,
+    Themes,
+    TokenCategories,
+    type TokenCategory
+} from "../../../mcp-server/src/config/constants.ts";
 import { getDesignTokens } from "../../../mcp-server/src/services/tokensService.ts";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "../../../mcp-server/src/utils/tokenNameFormatter.ts";
 
@@ -87,12 +94,16 @@ function parseArguments(argv: string[]) {
 }
 
 async function main() {
-    const { names, cssValues, props, category, theme, colorScheme, includeCssValues } = parseArguments(process.argv.slice(2));
+    const { names, cssValues, props, category, theme, colorScheme, includeCssValues } = parseArguments(
+        process.argv.slice(2)
+    );
 
     const results = await getDesignTokens(category, names, cssValues, props, includeCssValues, theme, colorScheme);
 
     if (results.length === 0) {
-        console.log("No tokens matched. Remember: --name takes token names, --css takes CSS values — they are not interchangeable.");
+        console.log(
+            "No tokens matched. Remember: --name takes token names, --css takes CSS values — they are not interchangeable."
+        );
         process.exit(1);
     }
 

@@ -12,7 +12,7 @@
  *
  * Each argument is one query, and a query may hold several space-separated keywords.
  */
-import { getIcons, IconTypes, type IconType } from "../../../mcp-server/src/services/iconsService.ts";
+import { type IconType, IconTypes, getIcons } from "../../../mcp-server/src/services/iconsService.ts";
 
 function parseArguments(argv: string[]) {
     const queries: string[] = [];

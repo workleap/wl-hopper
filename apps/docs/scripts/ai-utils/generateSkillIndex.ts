@@ -32,7 +32,13 @@ function firstParagraph(markdown: string) {
         }
 
         // Stop at the next heading, a list, or a blank line closing the paragraph.
-        if (line === "" || line.startsWith("#") || line.startsWith("-") || line.startsWith("|") || line.startsWith("```")) {
+        if (
+            line === "" ||
+            line.startsWith("#") ||
+            line.startsWith("-") ||
+            line.startsWith("|") ||
+            line.startsWith("```")
+        ) {
             break;
         }
 
@@ -101,9 +107,10 @@ async function renderSection(section: SkillIndexSection, files: SkillFile[], ski
 
     for (const file of matching) {
         const description = await describe(file, skillRoot);
-        const hint = section.tokenHintOverBytes !== undefined && file.size > section.tokenHintOverBytes
-            ? ` _(~${estimateTokens(file.size).toLocaleString("en-US")} tokens)_`
-            : "";
+        const hint =
+            section.tokenHintOverBytes !== undefined && file.size > section.tokenHintOverBytes
+                ? ` _(~${estimateTokens(file.size).toLocaleString("en-US")} tokens)_`
+                : "";
 
         lines.push(`- [${file.path}](${file.path})${description ? ` — ${description}` : ""}${hint}`);
     }

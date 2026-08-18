@@ -23,7 +23,7 @@ looks wrong.
    value exists. Core tokens are raw values with no dark-mode or theming behaviour.
 6. **`UNSAFE_` is a last resort.** Only for props on the whitelist in
    `references/guides/validation-rules.md`, and only for custom values no token covers. A prop
-   that is not on that list is used *without* the prefix. Percentages and CSS keywords
+   that is not on that list is used _without_ the prefix. Percentages and CSS keywords
    (`auto`, `inherit`, `fit-content`, …) never need it.
 7. **Layout components need more than one child.** `Stack`, `Inline`, `Flex`, `Grid`, `Div` and
    `Box` wrapping a single child is almost always a mistake.

@@ -1,5 +1,5 @@
 import type { SkillScriptEntry } from "@/ai-pipeline/skillsTypes.ts";
-import { build, type Plugin } from "esbuild";
+import { type Plugin, build } from "esbuild";
 import { mkdir, stat } from "fs/promises";
 import { createRequire } from "module";
 import { dirname, join } from "path";
@@ -21,7 +21,11 @@ export interface BundleSkillScriptsOptions {
  * consuming project — that is how the validator reaches a TypeScript parser without shipping
  * one (see ai-pipeline/skill-scripts/validateHopperCode.ts).
  */
-export async function bundleSkillScripts({ scripts, projectRoot, skillRoot }: BundleSkillScriptsOptions): Promise<SkillFile[]> {
+export async function bundleSkillScripts({
+    scripts,
+    projectRoot,
+    skillRoot
+}: BundleSkillScriptsOptions): Promise<SkillFile[]> {
     const written: SkillFile[] = [];
 
     for (const script of scripts) {

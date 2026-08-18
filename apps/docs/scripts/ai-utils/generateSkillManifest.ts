@@ -44,11 +44,15 @@ export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes 
         const description = frontmatter.description.trim();
 
         if (description.length === 0) {
-            throw new Error(`Skill "${frontmatter.name}" has no description. Agents use it to decide whether to load the skill.`);
+            throw new Error(
+                `Skill "${frontmatter.name}" has no description. Agents use it to decide whether to load the skill.`
+            );
         }
 
         if (description.length > MAX_DESCRIPTION_LENGTH) {
-            throw new Error(`Skill "${frontmatter.name}" description is ${description.length} characters, over the ${MAX_DESCRIPTION_LENGTH} limit.`);
+            throw new Error(
+                `Skill "${frontmatter.name}" description is ${description.length} characters, over the ${MAX_DESCRIPTION_LENGTH} limit.`
+            );
         }
 
         const files = (await collectFiles(skillRoot)).map(file => relative(skillRoot, file).replaceAll("\\", "/"));
@@ -63,7 +67,9 @@ export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes 
 
         const archive = await createSkillArchive(skillRoot, skillsRoot, frontmatter.name);
 
-        console.log(`✅ Packed skill archive: ${archive.fileName} (${files.length} files, ${formatBytes(archive.bytes)} compressed)`);
+        console.log(
+            `✅ Packed skill archive: ${archive.fileName} (${files.length} files, ${formatBytes(archive.bytes)} compressed)`
+        );
 
         manifest.skills.push({
             name: frontmatter.name,
@@ -88,7 +94,7 @@ export async function generateSkillManifest({ skillsRoot, skills, maxTotalBytes 
     if (bytes > maxTotalBytes) {
         throw new Error(
             `Skills payload is ${formatBytes(bytes)}, over the ${formatBytes(maxTotalBytes)} budget. ` +
-            "Drop or trim an entry in skills.config.ts rather than raising the budget without discussion."
+                "Drop or trim an entry in skills.config.ts rather than raising the budget without discussion."
         );
     }
 

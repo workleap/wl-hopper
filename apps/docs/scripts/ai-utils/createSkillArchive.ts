@@ -23,7 +23,9 @@ function octal(value: number, length: number) {
  */
 function header(path: string, size: number, mtime: number) {
     if (Buffer.byteLength(path) > NAME_FIELD) {
-        throw new Error(`Archive path "${path}" is longer than ${NAME_FIELD} bytes, which plain ustar cannot represent.`);
+        throw new Error(
+            `Archive path "${path}" is longer than ${NAME_FIELD} bytes, which plain ustar cannot represent.`
+        );
     }
 
     const block = Buffer.alloc(BLOCK);

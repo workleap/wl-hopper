@@ -144,7 +144,9 @@ export default defineConfig({
             }
         },
         {
-            files: ["**/scripts/**"],
+            // skill-scripts are the CLI entry points bundled into the published agent Skill;
+            // printing to stdout is their whole purpose, same as the build scripts.
+            files: ["**/scripts/**", "**/skill-scripts/**"],
             rules: {
                 "eslint/no-console": "off",
                 "eslint/no-new": "off" // e.g. `new URL(x)` to validate a string in build scripts
@@ -204,6 +206,8 @@ export default defineConfig({
         "apps/docs/build/**",
         "apps/docs/next-env.d.ts",
         "apps/docs/public/ai-docs/**",
+        // Generated agent Skill, served at /.well-known/skills. Contains bundled scripts.
+        "apps/docs/public/agent-skills/**",
         "apps/docs/datas/**",
         // mcp-server mocks / generated docs / reports
         "apps/mcp-server/**/mocks/**",

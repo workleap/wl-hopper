@@ -3,7 +3,7 @@ import type { SkillConfig, SkillFrontmatter } from "@/ai-pipeline/skillsTypes.ts
 import { access, mkdir, readFile, rm, writeFile } from "fs/promises";
 import { join } from "path";
 import { bundleSkillScripts } from "./ai-utils/bundleSkillScripts.ts";
-import { copySkillFiles, type SkillFile } from "./ai-utils/copySkillFiles.ts";
+import { type SkillFile, copySkillFiles } from "./ai-utils/copySkillFiles.ts";
 import { generateSkillIndex } from "./ai-utils/generateSkillIndex.ts";
 import { formatBytes, generateSkillManifest } from "./ai-utils/generateSkillManifest.ts";
 
@@ -71,18 +71,26 @@ async function componentsVersion(projectRoot: string) {
     return version;
 }
 
-async function buildSkill(name: string, config: SkillConfig, { projectRoot, aiDocsRoot, skillsRoot }: {
-    projectRoot: string;
-    aiDocsRoot: string;
-    skillsRoot: string;
-}) {
+async function buildSkill(
+    name: string,
+    config: SkillConfig,
+    {
+        projectRoot,
+        aiDocsRoot,
+        skillsRoot
+    }: {
+        projectRoot: string;
+        aiDocsRoot: string;
+        skillsRoot: string;
+    }
+) {
     const skillRoot = join(skillsRoot, name);
     await mkdir(skillRoot, { recursive: true });
 
     const files: SkillFile[] = await copySkillFiles({ entries: config.files, aiDocsRoot, projectRoot, skillRoot });
 
     if (config.scripts?.length) {
-        files.push(...await bundleSkillScripts({ scripts: config.scripts, projectRoot, skillRoot }));
+        files.push(...(await bundleSkillScripts({ scripts: config.scripts, projectRoot, skillRoot })));
     }
 
     const version = await componentsVersion(projectRoot);
@@ -95,7 +103,11 @@ async function buildSkill(name: string, config: SkillConfig, { projectRoot, aiDo
     const header = await readFile(join(projectRoot, config.template), "utf8");
     const index = await generateSkillIndex(config, files, skillRoot);
 
-    await writeFile(join(skillRoot, "SKILL.md"), `${renderFrontmatter(frontmatter)}\n${header.trimEnd()}\n\n${index}`, "utf8");
+    await writeFile(
+        join(skillRoot, "SKILL.md"),
+        `${renderFrontmatter(frontmatter)}\n${header.trimEnd()}\n\n${index}`,
+        "utf8"
+    );
 
     console.log(`✅ Built skill "${name}": ${files.length + 1} files`);
 
@@ -125,11 +137,15 @@ async function main() {
     if (built.length > 1) {
         throw new Error(
             "Only one skill can be published: the `skills` CLI requires an explicit @selector when a " +
-            "host advertises several, which breaks `npx skills add https://hopper.workleap.design`."
+                "host advertises several, which breaks `npx skills add https://hopper.workleap.design`."
         );
     }
 
-    const manifest = await generateSkillManifest({ skillsRoot, skills: built, maxTotalBytes: skillsConfig.maxTotalBytes });
+    const manifest = await generateSkillManifest({
+        skillsRoot,
+        skills: built,
+        maxTotalBytes: skillsConfig.maxTotalBytes
+    });
 
     for (const skill of manifest.skills) {
         console.log(`   ${skill.name}: ${skill.url}, description ${skill.description.length}/1024 chars`);
