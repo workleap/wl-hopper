@@ -25,6 +25,7 @@
         "test-storybook": "test-storybook",
         "build:doc": "turbo run build --filter=./apps/docs",
         "build:ai-docs": "pnpm --filter=docs build:ai-docs",
+        "build:skills": "pnpm --filter=docs build:skills",
         "build:mcp": "pnpm --filter=./apps/mcp-server build",
         "build:tokens": "turbo run build --filter=./packages/tokens",
         "build:pkg": "turbo run build --filter=./packages/*",

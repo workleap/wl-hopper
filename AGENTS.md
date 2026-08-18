@@ -67,6 +67,12 @@ Path patterns: packages/components/src/**/*.tsx
 
 ## Skills
 
+Hopper also publishes a consumer-facing agent Skill generated from `apps/docs` — see
+`apps/docs/ai-pipeline/CONTRIBUTING.md` and [ADR 0002](docs/adr/0002-hopper-agent-skill.md).
+Component and token content edits now propagate to three surfaces: the documentation site, the MCP
+server, and that published Skill. It is a build artifact and is not checked in, so it does not
+appear in the table below, which lists the skills used when working _in_ this repository.
+
 | Skill                 | When to use                                                                |
 | --------------------- | -------------------------------------------------------------------------- |
 | `update-tokens`       | Add, update, delete, or deprecate design tokens                            |
