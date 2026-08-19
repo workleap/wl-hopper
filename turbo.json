@@ -9,7 +9,12 @@
             "cache": false
         },
         "docs#generate": {
-            "inputs": ["scripts/**", "content/components/**", "../../packages/components/src/**", "../../packages/icons/src/**"],
+            "inputs": [
+                "scripts/**",
+                "content/components/**",
+                "../../packages/components/src/**",
+                "../../packages/icons/src/**"
+            ],
             "outputs": ["datas/components/**", "examples/Preview.ts"]
         },
         "docs#build:ai-docs": {
