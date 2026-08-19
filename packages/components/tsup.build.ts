@@ -2,7 +2,7 @@ import { createCssModuleEsbuildPlugin } from "@hopper-ui/tsup-css-module-plugin"
 import { createIntlEsbuildPlugin } from "@hopper-ui/tsup-intl-plugin";
 import { defineBuildConfig } from "@workleap/tsup-configs";
 
-import packageJson from "./package.json";
+import packageJson from "./package.json" with { type: "json" };
 
 /**
  * We disable treeshaking and dts for netlify builds in order to speed up the process and reduce memory usage
