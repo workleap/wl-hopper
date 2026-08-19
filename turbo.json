@@ -8,9 +8,6 @@
             "outputs": ["dist/**", ".next/**", "**/datas/**"],
             "cache": false
         },
-        // Reads component/icon *sources* only, so it needs no built packages. Its outputs are
-        // scoped to `datas/components` because `datas/{theme}` is written by @hopper-ui/tokens#build
-        // — claiming all of `datas/**` here would let a cache restore clobber that output.
         "docs#generate": {
             "inputs": ["scripts/**", "../../packages/components/src/**", "../../packages/icons/src/**"],
             "outputs": ["datas/components/**", "examples/Preview.ts"]
