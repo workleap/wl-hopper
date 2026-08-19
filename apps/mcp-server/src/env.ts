@@ -33,7 +33,7 @@ function getEnv(): z.infer<typeof configSchema> {
     } else {
         //local Express server
         return {
-            DOCS_PATH: join(import.meta.dirname, "../../docs/dist/ai"),
+            DOCS_PATH: join(import.meta.dirname, "../../docs/dist/ai-docs"),
             PORT: "3300",
             ALLOWED_HOSTS: "",
             ENV: "development"

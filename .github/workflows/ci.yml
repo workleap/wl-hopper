@@ -47,6 +47,9 @@ jobs:
             -   name: Build sample apps
                 run: pnpm build:apps
 
+            -   name: Build AI docs and MCP server
+                run: pnpm build:mcp
+
             -   name: Lint
                 run: pnpm lint
 

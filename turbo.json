@@ -8,6 +8,48 @@
             "outputs": ["dist/**", ".next/**", "**/datas/**"],
             "cache": false
         },
+        // Reads component/icon *sources* only, so it needs no built packages. Its outputs are
+        // scoped to `datas/components` because `datas/{theme}` is written by @hopper-ui/tokens#build
+        // — claiming all of `datas/**` here would let a cache restore clobber that output.
+        "docs#generate": {
+            "inputs": ["scripts/**", "../../packages/components/src/**", "../../packages/icons/src/**"],
+            "outputs": ["datas/components/**", "examples/Preview.ts"]
+        },
+        "docs#build:contentlayer": {
+            "dependsOn": ["^build"],
+            "inputs": ["content/**", "contentlayer.config.ts"],
+            "outputs": [".contentlayer/**"]
+        },
+        "docs#build:ai-docs": {
+            "dependsOn": ["^build", "docs#generate", "docs#build:contentlayer"],
+            "inputs": [
+                "content/**",
+                "datas/**",
+                "ai-pipeline/**",
+                "scripts/**",
+                "components/mdx/**",
+                "app/ui/**",
+                "app/lib/**"
+            ],
+            "outputs": ["dist/ai-docs/**", "public/ai-docs/**"]
+        },
+        "@hopper-ui/mcp-server#sync:ai-docs": {
+            "dependsOn": ["docs#build:ai-docs"],
+            "outputs": ["src/.docs/**"]
+        },
+        "@hopper-ui/mcp-server#build": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["dist/**"],
+            "cache": false
+        },
+        "@hopper-ui/mcp-server#typecheck": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["node_modules/.cache/tsbuildinfo.json"]
+        },
+        "@hopper-ui/mcp-server#test": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["node_modules/.cache/vitest/**"]
+        },
         "lint": {
             "dependsOn": ["typecheck", "stylelint", "syncpack"]
         },

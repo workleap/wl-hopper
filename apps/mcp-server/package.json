@@ -9,7 +9,7 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc -p tsconfig.build.json",
-        "prebuild": "shx rm -rf ./src/.docs && shx cp -r ../docs/dist/ai-docs ./src/.docs",
+        "sync:ai-docs": "shx rm -rf ./src/.docs && shx cp -r ../docs/dist/ai-docs ./src/.docs",
         "postbuild": "shx rm -rf dist/hosts/netlify/docs && shx cp -r ./src/.docs dist/hosts/netlify/docs",
         "start:expressJs": "NODE_ENV=production node dist/hosts/expressJs.js",
         "netlify": "pnpm --package=netlify-cli dlx netlify",
@@ -38,6 +38,7 @@
         "@types/node": "24.5.1",
         "@typescript-eslint/types": "8.46.2",
         "@workleap/typescript-configs": "3.0.4",
+        "docs": "workspace:*",
         "jest-fail-on-console": "3.3.1",
         "nodemon": "3.1.10",
         "shx": "0.4.0",

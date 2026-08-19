@@ -36,7 +36,9 @@ async function mergeFiles(
     const allFiles: string[] = [];
 
     for (const pattern of files) {
-        const globPattern = isAbsolute(pattern) ? pattern : join(path, pattern);
+        // `glob` treats backslashes as escape characters rather than path separators, so patterns
+        // built with `join` have to be normalised to posix separators to work on Windows.
+        const globPattern = (isAbsolute(pattern) ? pattern : join(path, pattern)).replaceAll("\\", "/");
         const matches = await glob(globPattern, {
             nodir: true, // Only match files, not directories
             absolute: false, // Return relative paths
