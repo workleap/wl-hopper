@@ -14,7 +14,6 @@
         "start": "next start",
         "dev": "next dev --webpack",
         "build": "next build --webpack",
-        "build:contentlayer": "node scripts/runContentlayer.mjs",
         "copy:ai-docs-to-public": "shx rm -rf public/ai-docs && shx mkdir -p public && shx cp -r dist/ai-docs public",
         "build:ai-docs": "tsx --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts && pnpm copy:ai-docs-to-public",
         "generate": "pnpm run \"/^generate:.*/\"",

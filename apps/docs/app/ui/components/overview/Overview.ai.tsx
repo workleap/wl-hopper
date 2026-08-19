@@ -1,5 +1,5 @@
 import { capitalize } from "@/app/lib/capitalize";
-import { allComponents, categories } from "./util";
+import { allComponents, categories } from "./util.ai";
 
 const components = allComponents;
 

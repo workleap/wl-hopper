@@ -15,13 +15,8 @@
             "inputs": ["scripts/**", "../../packages/components/src/**", "../../packages/icons/src/**"],
             "outputs": ["datas/components/**", "examples/Preview.ts"]
         },
-        "docs#build:contentlayer": {
-            "dependsOn": ["^build"],
-            "inputs": ["content/**", "contentlayer.config.ts"],
-            "outputs": [".contentlayer/**"]
-        },
         "docs#build:ai-docs": {
-            "dependsOn": ["^build", "docs#generate", "docs#build:contentlayer"],
+            "dependsOn": ["^build", "docs#generate"],
             "inputs": [
                 "content/**",
                 "datas/**",
