@@ -55,7 +55,7 @@
         "@types/react-dom": "19.2.4",
         "@workleap/browserslist-config": "2.1.0",
         "@workleap/postcss-configs": "1.1.0",
-        "@workleap/typescript-configs": "3.0.4",
+        "@workleap/typescript-configs": "5.0.0",
         "glob": "11.0.3",
         "logrocket": "10.1.0",
         "mdast": "3.0.0",
@@ -71,7 +71,7 @@
         "remark-stringify": "11.0.0",
         "shiki": "3.13.0",
         "shx": "0.4.0",
-        "typescript": "5.5.4",
+        "typescript": "6.0.3",
         "vfile": "6.0.3",
         "vfile-matter": "5.0.1"
     }

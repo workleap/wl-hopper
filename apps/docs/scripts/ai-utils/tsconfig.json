@@ -2,11 +2,10 @@
     "extends": "@workleap/typescript-configs/web-application.json",
     "compilerOptions": {
         "jsx": "react-jsx",
-        "baseUrl": "../..",
         "customConditions": ["hopper-source"],
         "paths": {
-            "@/*": ["./*"],
-            "@/.contentlayer/generated": ["./.contentlayer/generated/index.mjs"]
+            "@/*": ["../../*"],
+            "@/.contentlayer/generated": ["../../.contentlayer/generated/index.mjs"]
         }
     },
     "include": [

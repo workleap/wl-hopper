@@ -19,11 +19,11 @@
     "devDependencies": {
         "@storybook/react-webpack5": "10.5.7",
         "@types/react": "19.2.18",
-        "@workleap/typescript-configs": "3.0.4",
+        "@workleap/typescript-configs": "5.0.0",
         "axe-playwright": "2.2.2",
         "react": "19.2.8",
         "storybook": "10.5.7",
-        "typescript": "5.5.4"
+        "typescript": "6.0.3"
     },
     "peerDependencies": {
         "react": "^18 || ^19",

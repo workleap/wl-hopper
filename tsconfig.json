@@ -3,7 +3,6 @@
     "exclude": ["**/dist/**", "node_modules", "packages", "apps"],
     "include": ["**/*", ".storybook/**/*"],
     "compilerOptions": {
-        "baseUrl": ".",
         "incremental": true,
         "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
         "customConditions": ["hopper-source"]
