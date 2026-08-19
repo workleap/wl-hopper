@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm doc:generate && pnpm build:doc && pnpm build:ai-docs && pnpm build:mcp"
+  command = "pnpm exec turbo run build --filter=./apps/mcp-server --filter=./apps/docs"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 

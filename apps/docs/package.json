@@ -14,7 +14,7 @@
         "start": "next start",
         "dev": "next dev --webpack",
         "build": "next build --webpack",
-        "copy:ai-docs-to-public": "shx rm -rf public/ai-docs && mkdir -p public/ai-docs && shx cp -r dist/ai-docs public",
+        "copy:ai-docs-to-public": "shx rm -rf public/ai-docs && shx mkdir -p public && shx cp -r dist/ai-docs public",
         "build:ai-docs": "tsx --tsconfig ./scripts/ai-utils/tsconfig.json scripts/buildAiDocs.ts && pnpm copy:ai-docs-to-public",
         "generate": "pnpm run \"/^generate:.*/\"",
         "generate:componentData": "node scripts/generateComponentData.ts",

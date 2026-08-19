@@ -1,4 +1,4 @@
-import { allComponents } from "@/.contentlayer/generated";
+import { allComponents } from "@/app/lib/componentsFrontmatter.ai";
 
 interface ComposedComponentsProps {
     components: string[];

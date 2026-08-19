@@ -8,6 +8,45 @@
             "outputs": ["dist/**", ".next/**", "**/datas/**"],
             "cache": false
         },
+        "docs#generate": {
+            "inputs": [
+                "scripts/**",
+                "content/components/**",
+                "../../packages/components/src/**",
+                "../../packages/icons/src/**"
+            ],
+            "outputs": ["datas/components/**", "examples/Preview.ts"]
+        },
+        "docs#build:ai-docs": {
+            "dependsOn": ["^build", "docs#generate"],
+            "inputs": [
+                "content/**",
+                "datas/**",
+                "ai-pipeline/**",
+                "scripts/**",
+                "components/mdx/**",
+                "app/ui/**",
+                "app/lib/**"
+            ],
+            "outputs": ["dist/ai-docs/**", "public/ai-docs/**"]
+        },
+        "@hopper-ui/mcp-server#sync:ai-docs": {
+            "dependsOn": ["docs#build:ai-docs"],
+            "outputs": ["src/.docs/**"]
+        },
+        "@hopper-ui/mcp-server#build": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["dist/**"],
+            "cache": false
+        },
+        "@hopper-ui/mcp-server#typecheck": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["node_modules/.cache/tsbuildinfo.json"]
+        },
+        "@hopper-ui/mcp-server#test": {
+            "dependsOn": ["@hopper-ui/mcp-server#sync:ai-docs"],
+            "outputs": ["node_modules/.cache/vitest/**"]
+        },
         "lint": {
             "dependsOn": ["typecheck", "stylelint", "syncpack"]
         },
