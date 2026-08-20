@@ -24,13 +24,13 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@modelcontextprotocol/sdk": "^1.20.0",
-        "@typescript-eslint/parser": "^8.67.0",
-        "emoji-regex": "^10.6.0",
-        "express": "^5.1.0",
-        "fetch-to-node": "^2.1.0",
-        "fuse.js": "^7.1.0",
-        "zod": "^3.25.76"
+        "@modelcontextprotocol/sdk": "1.20.0",
+        "@typescript-eslint/parser": "8.67.0",
+        "emoji-regex": "10.6.0",
+        "express": "5.1.0",
+        "fetch-to-node": "2.1.0",
+        "fuse.js": "7.1.0",
+        "zod": "3.25.76"
     },
     "devDependencies": {
         "@testing-library/jest-dom": "6.9.1",

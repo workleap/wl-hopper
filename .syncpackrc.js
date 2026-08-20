@@ -2,7 +2,6 @@
 
 /** @type {import("syncpack").RcFile} */
 export default {
-    lintFormatting: false,
     semverGroups: [
         {
             packages: ["@hopper-ui/*", "!@hopper-ui/mcp-server"],

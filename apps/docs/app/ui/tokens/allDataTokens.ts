@@ -32,10 +32,9 @@ type KeyPaths<T> = {
         : T[K] extends Array<unknown>
           ? K
           : T[K] extends object
-            ?
-                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                  //@ts-ignore
-                  K | `${K}${DotPrefix<KeyPaths<T[K]>>}`
+            ? // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              //@ts-ignore
+              K | `${K}${DotPrefix<KeyPaths<T[K]>>}`
             : K;
 }[keyof T & string];
 
