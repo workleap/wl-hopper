@@ -12,26 +12,26 @@
     "dependencies": {
         "@hopper-ui/components": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
-        "react": "^19.2.8",
-        "react-aria": "^3.44.0",
-        "react-aria-components": "^1.13.0",
-        "react-dom": "^19.2.8",
-        "react-router-dom": "^7.9.3"
+        "react": "19.2.8",
+        "react-aria": "3.44.0",
+        "react-aria-components": "1.13.0",
+        "react-dom": "19.2.8",
+        "react-router-dom": "7.9.3"
     },
     "devDependencies": {
-        "@swc/core": "1.13.5",
-        "@swc/helpers": "0.5.17",
+        "@swc/core": "1.16.1",
+        "@swc/helpers": "0.5.23",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
-        "@workleap/browserslist-config": "2.1.0",
-        "@workleap/swc-configs": "2.3.0",
+        "@workleap/browserslist-config": "2.1.8",
+        "@workleap/swc-configs": "2.3.13",
         "@workleap/typescript-configs": "5.0.0",
-        "@workleap/webpack-configs": "1.6.0",
-        "browserslist": "4.26.2",
+        "@workleap/webpack-configs": "1.6.15",
+        "browserslist": "4.28.8",
         "shelljs": "0.10.0",
         "typescript": "6.0.3",
-        "webpack": "5.102.0",
-        "webpack-cli": "6.0.1",
-        "webpack-dev-server": "5.2.2"
+        "webpack": "5.109.2",
+        "webpack-cli": "7.2.2",
+        "webpack-dev-server": "5.2.6"
     }
 }
