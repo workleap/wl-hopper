@@ -21,8 +21,6 @@ export const GlobalErrorMessageCssSelector = "hop-ErrorMessage";
 export interface ErrorMessageProps
     extends
         StyledComponentProps<Omit<RACFieldErrorProps, keyof GlobalDOMAttributes<HTMLDivElement>>>,
-        // `render` is omitted from the Text side: react-aria-components 1.20 added it to both
-        // FieldErrorProps and TextProps with different generics, and this is a FieldError wrapper.
         Omit<TextProps, "style" | "className" | "children" | "color" | "content" | "render"> {
     /**
      * Whether or not to hide the error message icon.

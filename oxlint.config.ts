@@ -41,11 +41,6 @@ export default defineConfig({
         "oxc/no-async-endpoint-handlers": "off", // the MCP server intentionally uses async Express handlers
         "import/no-named-as-default": "off", // low-value; false-positives when a valid default also has a same-named named export
 
-        // TODO(SGPD-9133): oxlint 1.79 enabled the React Compiler rule set inside the `react`
-        // plugin's correctness category, surfacing 31 pre-existing violations across
-        // packages/components, apps/docs and apps/samples/basic. Fixing them — set-state-in-effect
-        // especially — is a behavioural refactor, not a dependency bump, so they are parked here
-        // rather than smuggled into the upgrade. Tracked in follow-up-tasks.md.
         "react/set-state-in-effect": "off",
         "react/immutability": "off",
         "react/refs": "off",

@@ -32,8 +32,6 @@ app.post("/mcp", async (req: express.Request, res: express.Response) => {
             onsessioninitialized: sId => {
                 // Store the transport by session ID
                 transports[sId] = transport;
-                // MCP SDK 1.30 added `url?: URL` to RequestInfo, which no longer matches Express's
-                // `Request.url: string`. Only the headers are read, so pass just those.
                 trackEvent("session_initialized", { sessionId: sId }, { headers: req.headers });
             },
             // DNS rebinding protection is disabled by default for backwards compatibility. If you are running this server

@@ -121,8 +121,6 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // No option is focused on open. Since react-aria-components 1.20, Autocomplete only
-        // auto-focuses the first item after a filter is typed, so navigation starts from nothing.
         expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
 
         // Navigate down through options
@@ -179,8 +177,6 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // No option is focused on open. Since react-aria-components 1.20, Autocomplete only
-        // auto-focuses the first item after a filter is typed, so navigation starts from nothing.
         expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
 
         // Navigate down through options

@@ -2,10 +2,6 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
         "customConditions": [],
-        // tsup's bundled dts builder forces `baseUrl: "."` on us (tsup/dist/rollup.js:
-        // `baseUrl: compilerOptions.baseUrl || "."`), and TS 6 makes that deprecation a
-        // hard error. Nothing in this repo sets baseUrl, so there is nothing for us to
-        // remove -- this can go once tsup stops injecting it.
         "ignoreDeprecations": "6.0"
     }
 }

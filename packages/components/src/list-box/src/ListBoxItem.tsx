@@ -299,10 +299,6 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
 
     return (
         <RACListBoxItem
-            /* react-aria-components 1.20 types ListBoxItem's ref as Ref<HTMLDivElement> rather than
-               generically, so the old `ForwardedRef<T>` workaround for
-               https://github.com/adobe/react-spectrum/issues/6799 no longer applies. The cast
-               remains only to narrow our own HTMLElement ref. */
             ref={ref as ForwardedRef<HTMLDivElement>}
             className={classNames}
             style={style}

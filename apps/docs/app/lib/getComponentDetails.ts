@@ -21,7 +21,6 @@ async function parseFrontMatter(fileContent: string) {
     const { content, frontmatter } = await compileMDX<ComponentData>({
         source: fileContent,
         options: {
-            // See utils.ts — first-party MDX, so JS expressions stay enabled under next-mdx-remote 6.
             blockJS: false,
             blockDangerousJS: true,
             scope: data,

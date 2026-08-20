@@ -14,9 +14,6 @@ import { PropTableRender } from "./PropTableRender.tsx";
 
 import "./propTable.css";
 
-// next-mdx-remote 6 strips `{expression}` from MDX by default. Prop descriptions come from
-// react-docgen-typescript and routinely contain braces (object/generic type signatures), which
-// would be silently dropped. This content is generated from our own source, so allow it through.
 const mdxOptions = { blockJS: false, blockDangerousJS: true } as const;
 
 export interface PropTableProps {

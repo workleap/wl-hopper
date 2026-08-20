@@ -8,9 +8,6 @@ async function readFile(src: string) {
     const { content, frontmatter } = await compileMDX<object>({
         source: fileContent,
         options: {
-            // next-mdx-remote 6 blocks JS expressions in MDX by default. All MDX here is
-            // first-party and checked into this repo, so allow expressions but keep the
-            // dangerous-globals guard on.
             blockJS: false,
             blockDangerousJS: true,
             parseFrontmatter: true,
