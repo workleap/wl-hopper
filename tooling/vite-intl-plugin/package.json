@@ -17,8 +17,8 @@
     },
     "devDependencies": {
         "@types/node": "24.5.1",
-        "@workleap/typescript-configs": "3.0.4",
-        "typescript": "5.5.4",
+        "@workleap/typescript-configs": "5.0.0",
+        "typescript": "6.0.3",
         "vite": "8.2.1"
     },
     "peerDependencies": {

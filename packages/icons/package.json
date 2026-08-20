@@ -57,16 +57,16 @@
         "@types/node": "24.5.1",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
-        "@workleap/tsup-configs": "3.1.0",
-        "@workleap/typescript-configs": "3.0.4",
+        "@workleap/tsup-configs": "4.0.2",
+        "@workleap/typescript-configs": "5.0.0",
         "jest-fail-on-console": "3.3.1",
         "react": "19.2.8",
         "react-aria-components": "1.13.0",
         "react-dom": "19.2.8",
         "svgo": "4.0.0",
         "ts-node": "10.9.2",
-        "tsup": "8.5.0",
-        "typescript": "5.5.4"
+        "tsup": "8.5.1",
+        "typescript": "6.0.3"
     },
     "peerDependencies": {
         "@hopper-ui/styled-system": "*",
