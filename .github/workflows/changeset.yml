@@ -24,12 +24,14 @@ jobs:
             -   name: Install dependencies
                 run: pnpm i --frozen-lockfile
 
+            # changesets/action@v2 is required by @changesets/cli 3 (v1 only supports cli 2).
+            # All inputs were renamed to kebab-case in v2, and .npmrc/NPM_TOKEN handling was
+            # removed — which is fine here, publishing goes through OIDC Trusted Publishing.
             -   name: Create release Pull Request or publish to NPM
-                uses: changesets/action@v1
+                uses: changesets/action@v2
                 with:
-                    commit: "ci(changesets): version packages"
-                    title: "Changeset: New Version"
-                    publish: pnpm run ci-release
-                    version: "pnpm run ci-version-packages"
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    commit-message: "ci(changesets): version packages"
+                    pr-title: "Changeset: New Version"
+                    publish-script: pnpm run ci-release
+                    version-script: "pnpm run ci-version-packages"
+                    github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -40,12 +40,12 @@
     },
     "devDependencies": {
         "@hopper-ui/vitest-config": "workspace:*",
-        "@types/node": "24.5.1",
+        "@types/node": "24.13.3",
         "@workleap/typescript-configs": "5.0.0",
         "copyfiles": "2.4.1",
         "hast-util-select": "6.0.4",
         "rehype-parse": "9.0.1",
-        "svgo": "4.0.0",
+        "svgo": "4.0.2",
         "typescript": "6.0.3",
         "unified": "11.0.5"
     }

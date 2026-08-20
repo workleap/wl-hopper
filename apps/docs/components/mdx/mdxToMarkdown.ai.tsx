@@ -45,6 +45,11 @@ export async function mdxToReact(
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
+            // Required: next-mdx-remote 6 strips `{expression}` from MDX by default, which would
+            // silently drop every reference to the scope injected below (e.g. `<IconSpecTable
+            // data={iconData} />`) from the generated AI docs. First-party content only.
+            blockJS: false,
+            blockDangerousJS: true,
             scope: {
                 // we need to set all import data here. otherwise, it will not be available in the mdx.
                 iconData,

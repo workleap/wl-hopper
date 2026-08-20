@@ -14,6 +14,11 @@ import { PropTableRender } from "./PropTableRender.tsx";
 
 import "./propTable.css";
 
+// next-mdx-remote 6 strips `{expression}` from MDX by default. Prop descriptions come from
+// react-docgen-typescript and routinely contain braces (object/generic type signatures), which
+// would be silently dropped. This content is generated from our own source, so allow it through.
+const mdxOptions = { blockJS: false, blockDangerousJS: true } as const;
+
 export interface PropTableProps {
     component: string;
 }
@@ -58,7 +63,7 @@ ${example}
 
     return (
         <>
-            <MDXRemote source={content} />
+            <MDXRemote source={content} options={mdxOptions} />
             <PropTableCodeExample>
                 <HighlightCode code={formatExample} />
             </PropTableCodeExample>
@@ -73,7 +78,7 @@ const formatDescription = async (description: string) => {
     if (linkMatch) {
         const replacedDescription = replaceSeeLinkWithMarkdown(description);
 
-        return <MDXRemote source={replacedDescription} />;
+        return <MDXRemote source={replacedDescription} options={mdxOptions} />;
     }
 
     if (exampleMatch) {
@@ -82,7 +87,7 @@ const formatDescription = async (description: string) => {
         return await renderDescription(replacedDescription);
     }
 
-    return <MDXRemote source={description} />;
+    return <MDXRemote source={description} options={mdxOptions} />;
 };
 
 const formatGroup = async (groups: Groups[]) => {

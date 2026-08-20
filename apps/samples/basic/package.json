@@ -13,10 +13,10 @@
         "@hopper-ui/components": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
         "react": "19.2.8",
-        "react-aria": "3.44.0",
-        "react-aria-components": "1.13.0",
+        "react-aria": "3.51.0",
+        "react-aria-components": "1.20.0",
         "react-dom": "19.2.8",
-        "react-router-dom": "7.9.3"
+        "react-router-dom": "7.18.2"
     },
     "devDependencies": {
         "@swc/core": "1.16.1",

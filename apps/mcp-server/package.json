@@ -24,26 +24,26 @@
         "test": "vitest run"
     },
     "dependencies": {
-        "@modelcontextprotocol/sdk": "1.20.0",
+        "@modelcontextprotocol/sdk": "1.30.0",
         "@typescript-eslint/parser": "8.67.0",
+        "@typescript-eslint/types": "8.67.0",
         "emoji-regex": "10.6.0",
-        "express": "5.1.0",
+        "express": "5.2.1",
         "fetch-to-node": "2.1.0",
-        "fuse.js": "7.1.0",
-        "zod": "3.25.76"
+        "fuse.js": "7.5.0",
+        "zod": "4.4.3"
     },
     "devDependencies": {
-        "@testing-library/jest-dom": "6.9.1",
-        "@types/express": "5.0.3",
-        "@types/node": "24.5.1",
-        "@typescript-eslint/types": "8.67.0",
+        "@testing-library/jest-dom": "7.0.1",
+        "@types/express": "5.0.6",
+        "@types/node": "24.13.3",
         "@workleap/typescript-configs": "5.0.0",
         "docs": "workspace:*",
-        "jest-fail-on-console": "3.3.1",
-        "nodemon": "3.1.10",
+        "nodemon": "3.1.14",
         "shx": "0.4.0",
-        "tsx": "4.20.6",
+        "tsx": "4.23.12",
         "typescript": "6.0.3",
-        "unist-util-visit": "5.0.0"
+        "unist-util-visit": "5.1.0",
+        "vitest-fail-on-console": "0.10.1"
     }
 }

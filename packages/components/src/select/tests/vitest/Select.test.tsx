@@ -121,12 +121,16 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // The searchable combobox auto-focuses the first option on open.
+        // No option is focused on open. Since react-aria-components 1.20, Autocomplete only
+        // auto-focuses the first item after a filter is typed, so navigation starts from nothing.
+        expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
+
+        // Navigate down through options
+        await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
         });
 
-        // Navigate down through options
         await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Dog" })).toHaveAttribute("data-focused", "true");
@@ -175,12 +179,16 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // The searchable combobox auto-focuses the first option on open.
+        // No option is focused on open. Since react-aria-components 1.20, Autocomplete only
+        // auto-focuses the first item after a filter is typed, so navigation starts from nothing.
+        expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
+
+        // Navigate down through options
+        await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
         });
 
-        // Navigate down through options
         await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Dog" })).toHaveAttribute("data-focused", "true");
