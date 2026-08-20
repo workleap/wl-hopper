@@ -21,6 +21,8 @@ async function parseFrontMatter(fileContent: string) {
     const { content, frontmatter } = await compileMDX<ComponentData>({
         source: fileContent,
         options: {
+            blockJS: false,
+            blockDangerousJS: true,
             scope: data,
             parseFrontmatter: true,
             mdxOptions: { remarkPlugins: [], rehypePlugins: rehypePluginOptions as unknown as [] }

@@ -45,6 +45,8 @@ export async function mdxToReact(
     const compiled = await compileMDX({
         source: mdxSource,
         options: {
+            blockJS: false,
+            blockDangerousJS: true,
             scope: {
                 // we need to set all import data here. otherwise, it will not be available in the mdx.
                 iconData,

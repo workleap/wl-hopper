@@ -121,12 +121,14 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // The searchable combobox auto-focuses the first option on open.
+        expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
+
+        // Navigate down through options
+        await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
         });
 
-        // Navigate down through options
         await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Dog" })).toHaveAttribute("data-focused", "true");
@@ -175,12 +177,14 @@ describe("Select", () => {
             expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
-        // The searchable combobox auto-focuses the first option on open.
+        expect(screen.getByRole("option", { name: "Cat" })).not.toHaveAttribute("data-focused");
+
+        // Navigate down through options
+        await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Cat" })).toHaveAttribute("data-focused", "true");
         });
 
-        // Navigate down through options
         await user.keyboard("{ArrowDown}");
         await waitFor(() => {
             expect(screen.getByRole("option", { name: "Dog" })).toHaveAttribute("data-focused", "true");

@@ -41,6 +41,15 @@ export default defineConfig({
         "oxc/no-async-endpoint-handlers": "off", // the MCP server intentionally uses async Express handlers
         "import/no-named-as-default": "off", // low-value; false-positives when a valid default also has a same-named named export
 
+        "react/set-state-in-effect": "off",
+        "react/immutability": "off",
+        "react/refs": "off",
+        "react/exhaustive-effect-dependencies": "off",
+        "react/capitalized-calls": "off",
+        "react/preserve-manual-memoization": "off",
+        "react/memo-dependencies": "off",
+        "react/hooks": "off",
+
         // Extra rules
         "typescript/consistent-type-imports": "warn",
         "eslint/no-var": "warn",

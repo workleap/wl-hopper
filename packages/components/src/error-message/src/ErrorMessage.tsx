@@ -21,7 +21,7 @@ export const GlobalErrorMessageCssSelector = "hop-ErrorMessage";
 export interface ErrorMessageProps
     extends
         StyledComponentProps<Omit<RACFieldErrorProps, keyof GlobalDOMAttributes<HTMLDivElement>>>,
-        Omit<TextProps, "style" | "className" | "children" | "color" | "content"> {
+        Omit<TextProps, "style" | "className" | "children" | "color" | "content" | "render"> {
     /**
      * Whether or not to hide the error message icon.
      */

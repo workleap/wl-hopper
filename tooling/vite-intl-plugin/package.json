@@ -13,15 +13,15 @@
         "typecheck": "tsc"
     },
     "dependencies": {
-        "@internationalized/string-compiler": "^3.2.6"
+        "@internationalized/string-compiler": "^3.4.1"
     },
     "devDependencies": {
-        "@types/node": "24.5.1",
+        "@types/node": "24.13.3",
         "@workleap/typescript-configs": "5.0.0",
         "typescript": "6.0.3",
-        "vite": "8.2.1"
+        "vite": "8.2.2"
     },
     "peerDependencies": {
-        "vite": "^8.2.1"
+        "vite": "^8.2.2"
     }
 }

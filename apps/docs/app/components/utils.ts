@@ -8,6 +8,8 @@ async function readFile(src: string) {
     const { content, frontmatter } = await compileMDX<object>({
         source: fileContent,
         options: {
+            blockJS: false,
+            blockDangerousJS: true,
             parseFrontmatter: true,
             mdxOptions: { remarkPlugins: [] }
         }
