@@ -62,8 +62,7 @@
         "react": "19.2.8",
         "react-dom": "19.2.8",
         "tsup": "8.5.1",
-        "typescript": "6.0.3",
-        "vitest-fail-on-console": "0.10.1"
+        "typescript": "6.0.3"
     },
     "peerDependencies": {
         "react": "^18 || ^19",

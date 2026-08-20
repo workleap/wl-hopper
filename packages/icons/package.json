@@ -65,8 +65,7 @@
         "svgo": "4.0.2",
         "ts-node": "10.9.2",
         "tsup": "8.5.1",
-        "typescript": "6.0.3",
-        "vitest-fail-on-console": "0.10.1"
+        "typescript": "6.0.3"
     },
     "peerDependencies": {
         "@hopper-ui/styled-system": "*",
