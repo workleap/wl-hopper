@@ -68,7 +68,7 @@ jobs:
                     skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') }}
 
 
-            -   name: Write to Github comment
+            -   name: Write to GitHub comment
                 uses: thollander/actions-comment-pull-request@v3
                 with:
                     message: |
