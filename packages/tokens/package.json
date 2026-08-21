@@ -36,7 +36,6 @@
     "devDependencies": {
         "@hopper-ui/vitest-config": "workspace:*",
         "@types/node": "26.2.0",
-        "@workleap/tsup-configs": "4.0.2",
         "@workleap/typescript-configs": "5.0.0",
         "style-dictionary": "5.5.2",
         "style-dictionary-utils": "6.0.1",
