@@ -14,7 +14,7 @@
         "typecheck": "tsc"
     },
     "devDependencies": {
-        "@types/node": "24.13.3",
+        "@types/node": "26.2.0",
         "@workleap/typescript-configs": "5.0.0",
         "typescript": "6.0.3",
         "vite": "8.2.2",

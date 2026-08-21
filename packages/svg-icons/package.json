@@ -40,7 +40,7 @@
     },
     "devDependencies": {
         "@hopper-ui/vitest-config": "workspace:*",
-        "@types/node": "24.13.3",
+        "@types/node": "26.2.0",
         "@workleap/typescript-configs": "5.0.0",
         "copyfiles": "2.4.1",
         "hast-util-select": "6.0.4",

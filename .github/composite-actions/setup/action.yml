@@ -3,14 +3,8 @@ name: Setup Node and PNPM
 runs:
     using: composite
     steps:
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        id: pnpm-install
+      - name: Install pnpm and Node.js
+        uses: pnpm/setup@v2
         with:
-          run_install: false
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: ".nvmrc"
-          cache: "pnpm"
+          install: false
+          cache: true
