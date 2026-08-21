@@ -8,7 +8,7 @@ import clsx from "clsx";
 import { type CSSProperties, type ElementType, type RefAttributes, type SVGProps, forwardRef } from "react";
 import { type SlotProps, useContextProps } from "react-aria-components";
 
-import { cssModule } from "../../components/src/utils/src/cssModule.ts";
+import { cssModule } from "./cssModule.ts";
 
 import { RichIconContext } from "./RichIconContext.ts";
 

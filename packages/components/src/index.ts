@@ -1,3 +1,7 @@
+// Must stay first: CSS is emitted in module-graph order, and the @import rules in
+// index.css are only valid ahead of every other rule in the aggregated stylesheet.
+import "./index.css";
+
 export * from "./accordion/index.ts";
 export * from "./action-bar/index.ts";
 export * from "./alert/index.ts";
@@ -179,5 +183,3 @@ export {
     type ContextValue,
     type DateValue
 } from "react-aria-components";
-
-import "./index.css";

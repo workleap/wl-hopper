@@ -1,9 +1,8 @@
 import { mergeRsbuildConfig } from "@rsbuild/core";
 import { defineStorybookConfig } from "@workleap/rsbuild-configs";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
 
-const thisDir = dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 
 export default defineStorybookConfig({
     transformers: [
@@ -27,7 +26,7 @@ export default defineStorybookConfig({
                                     // `javascript/auto` bypasses Rspack's built-in JSON handling.
                                     test: /(intl).*\.json$/,
                                     type: "javascript/auto",
-                                    loader: resolve(thisDir, "intl-loader.js")
+                                    loader: require.resolve("@hopper-ui/rslib-config/intl-loader")
                                 }
                             ]
                         }
