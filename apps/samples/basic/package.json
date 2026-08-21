@@ -5,8 +5,8 @@
     "description": "Sample app",
     "type": "module",
     "scripts": {
-        "dev": "webpack serve --config webpack.dev.js",
-        "build": "webpack --config webpack.build.js",
+        "dev": "rsbuild dev --config rsbuild.dev.ts",
+        "build": "rsbuild build --config rsbuild.build.ts",
         "typecheck": "tsc"
     },
     "dependencies": {
@@ -19,19 +19,14 @@
         "react-router-dom": "7.18.2"
     },
     "devDependencies": {
-        "@swc/core": "1.16.1",
-        "@swc/helpers": "0.5.23",
+        "@rsbuild/core": "2.1.13",
+        "@rspack/core": "2.1.10",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
         "@workleap/browserslist-config": "2.1.8",
-        "@workleap/swc-configs": "2.3.13",
+        "@workleap/rsbuild-configs": "4.1.1",
         "@workleap/typescript-configs": "5.0.0",
-        "@workleap/webpack-configs": "1.6.15",
         "browserslist": "4.28.8",
-        "shelljs": "0.10.0",
-        "typescript": "6.0.3",
-        "webpack": "5.109.2",
-        "webpack-cli": "7.2.2",
-        "webpack-dev-server": "5.2.6"
+        "typescript": "6.0.3"
     }
 }
