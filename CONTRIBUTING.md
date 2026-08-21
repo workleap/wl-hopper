@@ -29,7 +29,7 @@ To be understand the relationships between the commands, have a look at this rep
 
 ## Installation
 
-This project requires [Node.js](https://nodejs.org) 26 (see [.nvmrc](./.nvmrc)) and uses PNPM, therefore, you must install [PNPM](https://pnpm.io/installation) v11+ first:
+This project requires [Node.js](https://nodejs.org) and [PNPM](https://pnpm.io/installation). The required versions are declared in [.nvmrc](./.nvmrc) and in the `devEngines` / `packageManager` fields of [package.json](./package.json) — `nvm use` picks up the former, and PNPM provisions the matching Node.js itself. Install PNPM first:
 
 ```bash
 npm install -g pnpm
