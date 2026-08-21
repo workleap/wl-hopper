@@ -29,7 +29,7 @@ To be understand the relationships between the commands, have a look at this rep
 
 ## Installation
 
-This project uses PNPM, therefore, you must install [PNPM](https://pnpm.io/installation) v9+ first:
+This project requires [Node.js](https://nodejs.org) 26 (see [.nvmrc](./.nvmrc)) and uses PNPM, therefore, you must install [PNPM](https://pnpm.io/installation) v11+ first:
 
 ```bash
 npm install -g pnpm

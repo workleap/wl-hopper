@@ -2,3 +2,16 @@ packages:
     - "packages/**"
     - "apps/**"
     - "tooling/**"
+
+# pnpm 11 defaults this to "install"; Turborepo shells out to `pnpm run` for every task.
+verifyDepsBeforeRun: false
+
+# pnpm 10 already ignored every one of these; `false` keeps them ignored under strictDepBuilds.
+allowBuilds:
+    "@swc/core": false
+    contentlayer2: false
+    core-js: false
+    es5-ext: false
+    esbuild: false
+    protobufjs: false
+    unrs-resolver: false
