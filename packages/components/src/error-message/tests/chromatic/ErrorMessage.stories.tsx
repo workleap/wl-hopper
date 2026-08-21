@@ -1,6 +1,6 @@
 import { SlotProvider } from "@hopper-ui/components";
 import { a11yParameters } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 import { FieldErrorContext } from "react-aria-components";
 
 import { ErrorMessage } from "../../src/ErrorMessage.tsx";

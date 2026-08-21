@@ -1,5 +1,5 @@
 import { OrderedListIcon, UnorderedListIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Text } from "../../../typography/index.ts";

@@ -13,7 +13,7 @@ type ViewportMap = Record<
 >;
 
 // Module Augmentation of the Parameters object
-declare module "@storybook/react-webpack5" {
+declare module "storybook-react-rsbuild" {
     interface Parameters {
         a11y?: A11yParameters;
         hopper?: HopperStorybookAddonOptions;

@@ -1,5 +1,5 @@
 import { a11yParameters } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Text } from "../../src/Text.tsx";
 

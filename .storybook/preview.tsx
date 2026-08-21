@@ -15,7 +15,7 @@ import "@hopper-ui/styled-system/theme/sharegate.css";
 import "@hopper-ui/styled-system/theme/workleap.css";
 import "@hopper-ui/tokens/fonts.css";
 import { Description, Stories, Subtitle, Title } from "@storybook/addon-docs/blocks";
-import type { Preview } from "@storybook/react-webpack5";
+import type { Preview } from "storybook-react-rsbuild";
 import "./stories.css";
 
 const preview: Preview = {

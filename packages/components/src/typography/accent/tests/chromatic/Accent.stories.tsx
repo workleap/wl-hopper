@@ -1,5 +1,5 @@
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 const meta = {
     title: "Components/Typography/Accent"

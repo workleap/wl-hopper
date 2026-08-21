@@ -14,7 +14,7 @@ import {
 } from "@hopper-ui/components";
 import { CheckmarkIcon, InfoIcon, MailIcon, StarIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Frog, MossyFrog } from "../assets/index.ts";
 

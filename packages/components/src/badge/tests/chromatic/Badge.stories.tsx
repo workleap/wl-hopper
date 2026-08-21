@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Inline, Stack } from "../../../layout/index.ts";
 import { Badge } from "../../src/Badge.tsx";

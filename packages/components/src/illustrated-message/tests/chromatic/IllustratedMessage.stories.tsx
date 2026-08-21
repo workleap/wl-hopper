@@ -9,7 +9,7 @@ import {
     Stack,
     SvgImage
 } from "@hopper-ui/components";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Frog, NoResults } from "../../assets/index.ts";
 import { IllustratedMessage } from "../../index.ts";
