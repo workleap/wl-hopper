@@ -1,6 +1,6 @@
 import { Div, type Selection, type TagVariant } from "@hopper-ui/components";
 import { SparklesIcon } from "@hopper-ui/icons";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 import { within } from "storybook/test";
 
 import { Avatar } from "../../../avatar/index.ts";

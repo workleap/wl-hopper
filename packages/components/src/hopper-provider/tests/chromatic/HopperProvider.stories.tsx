@@ -1,6 +1,6 @@
 import { a11yParameters } from "@hopper-ui/storybook-addon";
 import { Div, useColorSchemeContext } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 import { useEffect } from "react";
 
 import { HopperProvider } from "../../src/HopperProvider.tsx";

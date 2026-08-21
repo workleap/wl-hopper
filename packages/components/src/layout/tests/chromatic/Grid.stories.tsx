@@ -1,7 +1,7 @@
 import { allViewportModes } from "@hopper-ui/storybook-addon";
 import type { DivProps } from "@hopper-ui/styled-system";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { fitContent, minmax, repeat } from "../../src/grid-helpers.ts";
 import { Grid } from "../../src/Grid.tsx";

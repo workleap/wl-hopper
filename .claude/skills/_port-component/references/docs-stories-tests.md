@@ -41,7 +41,7 @@ Every `<Example src="X/docs/Y" />` resolves to a real file at `packages/componen
 Path: `packages/components/src/<kebab-name>/tests/chromatic/<PascalName>.stories.tsx`. Discovered automatically by the glob `packages/**/*.stories.@(ts|tsx)` in `.storybook/main.ts` — no registration needed.
 
 ```tsx
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { X } from "../../src/index.ts";
 

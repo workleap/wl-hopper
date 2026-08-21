@@ -1,6 +1,6 @@
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { type DateValue, isWeekend, parseDate } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 import { userEvent, within } from "storybook/test";
 
 import { RangeCalendar } from "../../src/RangeCalendar.tsx";

@@ -12,7 +12,7 @@ import {
 import { AddIcon, SparklesIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
-import type { Decorator, Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Decorator, Meta, StoryObj } from "storybook-react-rsbuild";
 import { userEvent, within } from "storybook/test";
 
 const meta = {

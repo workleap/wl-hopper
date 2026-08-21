@@ -105,7 +105,7 @@ const Header = () => {
                         <LinkIconButton
                             href="https://github.com/workleap/wl-hopper"
                             target="_blank"
-                            aria-label="View source on Github"
+                            aria-label="View source on GitHub"
                         >
                             <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                 {}

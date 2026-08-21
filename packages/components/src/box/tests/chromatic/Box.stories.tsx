@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Text } from "../../../typography/index.ts";
 import { Box } from "../../src/Box.tsx";

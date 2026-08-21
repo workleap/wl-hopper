@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Inline } from "../../../layout/index.ts";
 import { RemainingCharacterCount } from "../../src/RemainingCharacterCount.tsx";

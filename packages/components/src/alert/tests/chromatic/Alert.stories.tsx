@@ -1,6 +1,6 @@
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 import { within } from "storybook/test";
 
 import { Button } from "../../../buttons/index.ts";

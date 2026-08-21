@@ -5,7 +5,7 @@ import { ExternalLinkIcon, Icon } from "@/components/icon";
 export const GithubButton = () => {
     return (
         <LinkButton href="https://github.com/workleap/wl-hopper" variant="secondary" target="_blank">
-            Github
+            GitHub
             <Icon src={ExternalLinkIcon} slot="end-icon" />
         </LinkButton>
     );

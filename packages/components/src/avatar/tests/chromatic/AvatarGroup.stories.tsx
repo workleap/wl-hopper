@@ -1,5 +1,5 @@
 import { Div } from "@hopper-ui/styled-system";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Stack } from "../../../layout/index.ts";
 import { Tooltip, TooltipTrigger } from "../../../tooltip/index.ts";

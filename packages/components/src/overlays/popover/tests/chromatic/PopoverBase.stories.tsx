@@ -1,6 +1,6 @@
 import { Button, Div, PopoverTrigger } from "@hopper-ui/components";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { PopoverBase } from "../../src/PopoverBase.tsx";
 

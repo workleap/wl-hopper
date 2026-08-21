@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Button } from "../../../buttons/index.ts";
 import { Stack } from "../../../layout/index.ts";

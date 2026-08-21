@@ -1,5 +1,5 @@
 import { Flex } from "@hopper-ui/components";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Card } from "../../src/Card.tsx";
 

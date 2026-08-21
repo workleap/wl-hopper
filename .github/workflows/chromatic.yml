@@ -25,7 +25,7 @@ jobs:
             pull-requests: write
         steps:
             -   name: Checkout Commit
-                uses: actions/checkout@v4
+                uses: actions/checkout@v7
                 with:
                     fetch-depth: 0
 
@@ -37,7 +37,7 @@ jobs:
 
             -   name: Restore Turborepo cache
                 id: cache-turborepo-restore
-                uses: actions/cache/restore@v4
+                uses: actions/cache/restore@v6
                 with:
                     key: ${{ runner.os }}-turborepo-${{ github.sha }}-chromatic
                     restore-keys: |
@@ -50,7 +50,7 @@ jobs:
             -   name: Save Turborepo cache
                 id: cache-turborepo-save
                 if: always() && steps.cache-turborepo-restore.outputs.cache-hit != 'true'
-                uses: actions/cache/save@v4
+                uses: actions/cache/save@v6
                 with:
                     key: ${{ steps.cache-turborepo-restore.outputs.cache-primary-key }}
                     path: .turbo
@@ -63,15 +63,15 @@ jobs:
                     projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
                     traceChanged: true
                     onlyChanged: true # TurboSnap
-                    externals: "packages/tokens/src/tokens/**" # Token JSON files are outside webpack's module graph; when they change the generated CSS changes, affecting all stories
+                    externals: "packages/tokens/src/tokens/**" # Token JSON files are outside the bundler's module graph; when they change the generated CSS changes, affecting all stories
                     exitOnceUploaded: true # The PRs will be marked as success/failure based on the Chromatic build status
                     skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') }}
 
 
-            -   name: Write to Github comment
-                uses: thollander/actions-comment-pull-request@v2
+            -   name: Write to GitHub comment
+                uses: thollander/actions-comment-pull-request@v3
                 with:
                     message: |
                         [View Storybook](${{ steps.chromatic.outputs.storybookUrl }})
-                    comment_tag: storybook_url
+                    comment-tag: storybook_url
                 if: github.event_name == 'pull_request'

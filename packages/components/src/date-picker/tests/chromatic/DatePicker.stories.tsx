@@ -1,6 +1,6 @@
 import { Div } from "@hopper-ui/styled-system";
 import { parseDate } from "@internationalized/date";
-import type { Meta, StoryObj } from "@storybook/react-webpack5";
+import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { ContextualHelp } from "../../../contextual-help/index.ts";
 import { Inline, Stack } from "../../../layout/index.ts";
