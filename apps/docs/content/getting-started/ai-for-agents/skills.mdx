@@ -103,11 +103,12 @@ it locally:
 
 ```bash
 pnpm doc:generate
-pnpm build:doc                    # contentlayer output the AI docs build needs
-pnpm build:ai-docs                # slow; only when content changed
-pnpm --filter=docs build:skills   # fast; re-run freely
+pnpm build:skills                 # Turbo builds the AI docs first, then the skill
 pnpm doc:start
 ```
+
+`build:skills` itself takes about a second; the AI docs build it depends on is slow but cached by
+Turbo, so re-running is cheap unless `apps/docs/content/**` changed.
 
 Then install it from your dev server, from a scratch directory outside the repo:
 

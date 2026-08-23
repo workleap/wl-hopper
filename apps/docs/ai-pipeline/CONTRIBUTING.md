@@ -406,12 +406,15 @@ at `https://hopper.workleap.design/.well-known/skills`, installed with
 `npx skills add https://hopper.workleap.design`.
 
 Skill generation is a **second stage that composes `dist/ai-docs`** — it never renders MDX again.
-It therefore has to run after `build:ai-docs`:
+`docs#build:skills` therefore declares `docs#build:ai-docs` as a Turbo dependency, so one command
+is enough:
 
 ```bash
-pnpm --filter=docs build:ai-docs     # slow; only when content changed
-pnpm --filter=docs build:skills      # ~1s; re-run freely
+pnpm build:skills   # ~1s once the AI docs are cached; re-run freely
 ```
+
+`docs#build` also depends on `docs#build:skills`, which is what makes the single
+`turbo run build --filter=./apps/docs` command in `netlify.toml` publish the skill.
 
 Output lands in `dist/skills` and is copied to `public/agent-skills` (gitignored, like
 `public/ai-docs`).

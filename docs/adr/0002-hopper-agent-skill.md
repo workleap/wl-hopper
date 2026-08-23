@@ -82,7 +82,7 @@ Prompts are different and _are_ ported. Skills have no prompt primitive, so `bui
 
 ### Negative
 
-- A **third** consumer of the ai-docs output. Renaming a route in `ai-docs.config.tsx` now breaks three things instead of two. Mitigated by hard build failures in `buildSkills.ts` and a static consistency test that runs in PR CI.
+- A **third** consumer of the ai-docs output. Renaming a route in `ai-docs.config.tsx` now breaks three things instead of two. Mitigated by hard build failures in `buildSkills.ts`, a static consistency test that runs in PR CI, and a `pnpm build:skills` CI step that builds the skill for real on every PR.
 - The skill is a snapshot. It goes stale until the consumer re-installs, whereas the MCP is always current. Acceptable for component docs and tokens, which change on a release cadence, not hourly.
 - `props-full` stays MCP-only; the skill ships brief props and links the full JSON online.
 - Carrying the token and icon services meant shipping the whole token map tree (1.95 MB, up from the 0.65 MB `all.json` roll-ups) so per-category lookups resolve the way they do on the server. That is most of the growth from ~3.3 MB to ~4.8 MB. The alternative — skill-only category filtering over `all.json` — was rejected precisely because it would be logic the MCP does not have.
@@ -128,7 +128,8 @@ Split by trigger surface so each skill's description competes for a narrower set
 Add `skills/*` routes to the existing config rather than a second stage.
 
 - Considered because one config is simpler to explain than two.
-- Rejected on three counts. `aiDocsConfig` has a single output root that `buildAiDocs.ts` wipes, so skill output cannot live elsewhere without changing a type shared by build and serve. The serve-side reverse lookup (`findMatchedAiFiles`) iterates every route to derive candidate paths, so skill routes would add bogus candidates and make `/txt` resolution non-deterministic for ordinary `/components/*.md` requests. And `generateFilesMapping` would double the `files` object exported to `@docs/ai`, forcing hand-edits to the 2,681-line manual mock in `apps/mcp-server/src/tests/mocks/aiFiles.ts` for files the MCP never reads.
+- Rejected on two counts. `aiDocsConfig` has a single output root that `buildAiDocs.ts` wipes, so skill output cannot live elsewhere without changing a type shared by build and serve. And the serve-side reverse lookup (`findMatchedAiFiles`) iterates every route to derive candidate paths, so skill routes would add bogus candidates and make `/txt` resolution non-deterministic for ordinary `/components/*.md` requests.
+- A third argument applied when this was written and no longer does: `generateFilesMapping` would have doubled the `files` object exported to `@docs/ai`, forcing hand-edits to a 2,681-line manual mock in `apps/mcp-server/src/tests/mocks/aiFiles.ts` for files the MCP never reads. That mock was deleted in #1003, which now syncs real AI docs into `apps/mcp-server/src/.docs` instead. The two remaining reasons stand on their own.
 
 ### Option C — Prose instructions instead of bundled services
 
