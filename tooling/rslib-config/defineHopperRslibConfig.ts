@@ -1,15 +1,9 @@
-import type { Rsbuild, RslibConfig, Syntax } from "@rslib/core";
+import type { Rsbuild, RslibConfig } from "@rslib/core";
 import { type RslibConfigTransformer, defineBuildConfig, defineDevConfig } from "@workleap/rslib-configs";
 import { createRequire } from "node:module";
 import path from "node:path";
 
 const require = createRequire(import.meta.url);
-
-/**
- * ES2019 rather than the preset's esnext: ES2020 syntax is not supported by the older Storybook that
- * Orbiter still runs, and Orbiter consumes the published packages.
- */
-const SYNTAX: Syntax = "es2019";
 
 const TSCONFIG_PATH = "./tsconfig.build.json";
 
@@ -95,7 +89,6 @@ function resolveOptions({ version, intl = false }: HopperRslibOptions) {
         // which is exactly what the published packages have always shipped.
         bundle: true,
         entry: ENTRY,
-        syntax: SYNTAX,
         tsconfigPath: path.resolve(TSCONFIG_PATH),
         react: true as const,
         transformers
