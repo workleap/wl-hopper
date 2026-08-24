@@ -1,4 +1,4 @@
-import type { Rsbuild, RslibConfig } from "@rslib/core";
+import type { RslibConfig } from "@rslib/core";
 import { type RslibConfigTransformer, defineBuildConfig, defineDevConfig } from "@workleap/rslib-configs";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -7,12 +7,7 @@ const require = createRequire(import.meta.url);
 
 const TSCONFIG_PATH = "./tsconfig.build.json";
 
-/**
- * Set explicitly because the preset's bundle-mode default is
- * `["./src/index.ts", "./src/index.js"]`, and bundle mode validates that every entry file exists -
- * so the ".js" half fails outright in a TypeScript-only package.
- */
-const ENTRY = { index: "./src/index.ts" } satisfies Rsbuild.RsbuildEntry;
+type CopyPatterns = NonNullable<NonNullable<RslibConfig["output"]>["copy"]>;
 
 export interface HopperRslibOptions {
     /**
@@ -22,6 +17,8 @@ export interface HopperRslibOptions {
     version: string;
     /** Compile ICU messages in "intl*.json" through @internationalized/string-compiler. */
     intl?: boolean;
+    /** Static files to copy into "dist", as rsbuild "output.copy" patterns. */
+    copy?: CopyPatterns;
 }
 
 /**
@@ -60,6 +57,16 @@ function createIntlTransformer(): RslibConfigTransformer {
     });
 }
 
+function createCopyTransformer(patterns: CopyPatterns): RslibConfigTransformer {
+    return config => ({
+        ...config,
+        output: {
+            ...config.output,
+            copy: patterns
+        }
+    });
+}
+
 /**
  * The JavaScript is bundled but declarations are not, so the emitted ".d.ts" files still reference
  * each other - and tsc leaves the source ".tsx" specifiers intact, since
@@ -73,11 +80,15 @@ function createDtsRedirectTransformer(): RslibConfigTransformer {
     });
 }
 
-function resolveOptions({ version, intl = false }: HopperRslibOptions) {
+function resolveOptions({ version, intl = false, copy }: HopperRslibOptions) {
     const transformers: RslibConfigTransformer[] = [createCssModuleTransformer(version)];
 
     if (intl) {
         transformers.push(createIntlTransformer());
+    }
+
+    if (copy) {
+        transformers.push(createCopyTransformer(copy));
     }
 
     transformers.push(createDtsRedirectTransformer());
@@ -88,7 +99,9 @@ function resolveOptions({ version, intl = false }: HopperRslibOptions) {
         // simple: rsbuild extracts one stylesheet per entry and leaves it out of the JS graph,
         // which is exactly what the published packages have always shipped.
         bundle: true,
-        entry: ENTRY,
+        // Set explicitly: the preset's bundle-mode default is ["./src/index.ts", "./src/index.js"],
+        // and bundle mode validates every entry file exists.
+        entry: { index: "./src/index.ts" },
         tsconfigPath: path.resolve(TSCONFIG_PATH),
         react: true as const,
         transformers

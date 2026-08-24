@@ -1,6 +1,3 @@
-// Must stay first: CSS is emitted in module-graph order, and the sibling stylesheets this
-// pulls in (icons, tokens, styled-system) have to land ahead of the component rules for the
-// cascade to match what these packages have always shipped.
 import "./index.css";
 
 export * from "./accordion/index.ts";

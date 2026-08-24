@@ -626,9 +626,6 @@ importers:
       '@workleap/typescript-configs':
         specifier: 5.0.0
         version: 5.0.0(typescript@6.0.3)
-      copyfiles:
-        specifier: 2.4.1
-        version: 2.4.1
       minimatch:
         specifier: 10.2.6
         version: 10.2.6

@@ -1,7 +1,5 @@
 {
     "extends": "./tsconfig.json",
-    // Only the ambient declarations the library source needs. The storybook and vitest
-    // globals in ../../types pull test-only packages into the declaration program.
     "include": ["src", "../../types/css-modules.d.ts", "../../types/img.d.ts"],
     "exclude": [
         "dist",
