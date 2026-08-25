@@ -7,15 +7,16 @@ paths:
 
 ## Hard Rules
 
-| Rule                                                                                        | Violation                                                        |
-| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Pass only `className` through a context object; put the visual value in the CSS module       | `[HeadingContext, { fontWeight: "heading-xs-medium" }]`          |
-| Read browser globals inside an effect or a guard, never at render or module scope            | `const w = window.innerWidth` in a component body                |
-| Derive ids from React's `useId` so the server and client markup agree                        | `id={Math.random()}`, `Date.now()` at render                     |
-| Export each component in its own statement                                                  | `export { _ComboBox as ComboBox, ListBoxItem as ComboBoxItem }`  |
+| Rule | Violation |
+| ---- | --------- |
+| Pass `className` and semantic props (`size`, `variant`, `color`, `slot`, `isHidden`) through a context object; leave raw styled-system CSS props out | `[HeadingContext, { fontWeight: "…", padding: "…" }]` |
+| Read browser globals inside an effect, a memo, or behind `useIsSSR()` | `window.matchMedia(…)` in a component body, as `SegmentedControlItem.tsx:63` still does |
+| Take `useId` from `react-aria` | `import { useId } from "react"` |
+| Export each component in its own statement | `export { _ComboBox as ComboBox, ListBoxItem as ComboBoxItem }` |
 
-Grouped exports make `react-docgen-typescript` attribute one component's props to another, which
-corrupts the generated documentation. Assign first, then export:
+Grouped exports make `react-docgen-typescript` attribute one component's props to another, corrupting
+the generated documentation — see `contributing/components.md`. All 101 exports are currently clean;
+the rule is a regression guard. Assign first, then export:
 
 ```tsx
 export const ComboBoxItem = ListBoxItem;
@@ -24,16 +25,21 @@ export { _ComboBox as ComboBox };
 
 ## Server rendering
 
-Every component carries a `tests/vitest/<Name>.ssr.test.tsx` proving it renders under Node. Add one
-with each new component:
+71 of 116 components have a `tests/vitest/<Name>.ssr.test.tsx`. Add one with every new component:
 
 ```tsx
 /**
  * @vitest-environment node
  */
+import { renderToString } from "react-dom/server";
+
+import { Button } from "../../src/Button.tsx";
+
 describe("Button", () => {
     it("should render on the server", () => {
-        expect(() => renderToString(<Button>Cutoff</Button>)).not.toThrow();
+        const renderOnServer = () => renderToString(<Button>Cutoff</Button>);
+
+        expect(renderOnServer).not.toThrow();
     });
 });
 ```

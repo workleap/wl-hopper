@@ -15,7 +15,7 @@
 | `packages/icons/**`, `packages/svg-icons/**` | `packages/icons/AGENTS.md`            |
 | `apps/docs/**`                               | `apps/docs/AGENTS.md`                 |
 
-Claude Code attaches the rules below by glob on its own. Every other agent MUST read the one whose path matches.
+Claude Code attaches the rules below itself when it reads a matching file. Every other agent — and any subagent, which does not inherit the attachment — MUST read the one whose path matches.
 
 | Path                                      | Read                             |
 | ----------------------------------------- | -------------------------------- |
@@ -25,43 +25,52 @@ Claude Code attaches the rules below by glob on its own. Every other agent MUST 
 
 ### Trigger-based routing (MUST follow)
 
-| Trigger                                                                                    | Read                                    |
-| ------------------------------------------------------------------------------------------ | --------------------------------------- |
-| A component's public API, props, slots, composition, defaults, or event callbacks          | `docs/agents/component-architecture.md` |
-| An exported name, a CSS class name, or a token custom property consumers already depend on | `docs/agents/versioning.md`             |
-| Naming a new `.ts`/`.tsx` file or a new component directory                                | `docs/agents/typescript.md`             |
+| Trigger                                                                           | Read                                    |
+| --------------------------------------------------------------------------------- | --------------------------------------- |
+| A component's public API, props, slots, composition, defaults, or event callbacks | `docs/agents/component-architecture.md` |
+| Any exported name, CSS class name, or `--hop-*` custom property                   | `docs/agents/versioning.md`             |
+| Naming a new `.ts`/`.tsx` file or a new component directory                       | `docs/agents/typescript.md`             |
 
 ## Hard Rules (Non-Negotiable)
 
-| Rule                                                                                                             | Violation                                                        |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| ALWAYS run commands from the repo root                                                                           | `cd packages/components && npx vitest`                           |
-| NEVER run `tsc`, `oxlint`, `stylelint` or `vitest` directly inside a package                                     | `cd packages/tokens && npx tsc`                                  |
-| NEVER treat root `pnpm typecheck` as a package check — the root `tsconfig.json` excludes `packages` and `apps`   | Reporting types clean after `pnpm typecheck`                     |
-| MUST run `pnpm build:pkg` after installing and after changing a package's public API                             | Debugging an import error in an unbuilt workspace                |
-| MUST scope Turbo checks with `--filter`                                                                          | `turbo run typecheck` across every package for a one-file change |
-| NEVER add a decorative comment divider                                                                           | A row of dashes or box characters used to separate sections      |
-| ALWAYS flag an invented placeholder (URL, threshold, magic number, copy) with a `// TODO` naming what to confirm | A guessed `href="https://…"` presented as final                  |
-| ALWAYS prefer editing an existing file over creating a new one                                                   | A new utility file beside an existing one that fits              |
+| Rule                                                                                                                                                                  | Violation                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| ALWAYS run commands from the repo root                                                                                                                                | `cd packages/components && npx vitest`                      |
+| ALWAYS prefix Turbo with `pnpm exec` — `turbo` is not on `PATH`                                                                                                       | `turbo run test --filter=…` → command not found             |
+| ALWAYS pass `--filter` the package `name`, not its directory                                                                                                          | `--filter=components`, which matches no package             |
+| MUST run `pnpm build:pkg` after `pnpm i` — Storybook, the docs site and `apps/samples/basic` import CSS from `dist/`                                                  | Debugging a missing-stylesheet error in a fresh clone       |
+| Rely on the `hopper-source` condition for TypeScript changes — typecheck, tests, Storybook and the docs site read package source directly                             | Rebuilding all five packages after renaming an export       |
+| NEVER run `tsc`, `oxlint`, `stylelint` or `vitest` directly inside a package; use `pnpm exec turbo run <task> --filter=<name>`                                        | `cd packages/tokens && npx tsc`                             |
+| NEVER treat root `pnpm typecheck` as a package check — the root `tsconfig.json` excludes `packages` and `apps`, so it covers only `.storybook/`, `tooling/`, `types/` | Reporting types clean after `pnpm typecheck`                |
+| ALWAYS add a changeset for a change to a published package                                                                                                            | Editing `packages/components` with no `.changeset/` entry   |
+| NEVER add a decorative comment divider                                                                                                                                | A row of dashes or box characters used to separate sections |
+| ALWAYS flag an invented placeholder (URL, threshold, magic number, copy) with a `// TODO` naming what to confirm                                                      | A guessed `href="https://…"` presented as final             |
+| ALWAYS prefer editing an existing file over creating a new one                                                                                                        | A new utility file beside an existing one that fits         |
 
 ## Build / Test / Lint
 
 - Build: `pnpm build:pkg`
 - Test: `pnpm test`
 
+Turbo filters on the `name` field, not the directory: `@hopper-ui/components`, `@hopper-ui/icons`, `@hopper-ui/styled-system`, `@hopper-ui/svg-icons`, `@hopper-ui/tokens`, `@hopper-ui/mcp-server`, `docs`, `basic`.
+
 After making changes, you MUST ALWAYS validate.
 
-| What you changed      | Run this                                                    | It must pass                                            |
-| --------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
-| A package source file | `pnpm build:pkg`                                            | Build succeeds                                          |
-| Logic or behavior     | `turbo run test --filter=<package>`                         | All unit tests pass                                     |
-| Code or types         | `turbo run typecheck --filter=<package>`                    | No type errors                                          |
-| CSS                   | `turbo run stylelint --filter=<package>`                    | No lint errors                                          |
-| `package.json`        | `pnpm syncpack`                                             | No dependency policy violations                         |
-| Formatting            | `pnpm format`                                               | Auto-fixes; `pnpm format:check` verifies                |
-| Design tokens         | `pnpm build:tokens`                                         | Generated CSS regenerates                               |
-| Docs content          | `pnpm doc:generate && pnpm build:doc && pnpm build:ai-docs` | The site and the AI surfaces both build                 |
-| Multiple categories   | `pnpm lint`                                                 | oxlint, format:check, stylelint, typecheck and syncpack |
+| What you changed         | Run this                                        | It must pass                                            |
+| ------------------------ | ----------------------------------------------- | ------------------------------------------------------- |
+| Anything, after `pnpm i` | `pnpm build:pkg`                                | Build succeeds                                          |
+| Logic or behavior        | `pnpm exec turbo run test --filter=<name>`      | All unit tests pass                                     |
+| Code or types            | `pnpm exec turbo run typecheck --filter=<name>` | No type errors                                          |
+| CSS                      | `pnpm exec turbo run stylelint --filter=<name>` | No lint errors                                          |
+| `package.json`           | `pnpm syncpack`                                 | No dependency policy violations                         |
+| Formatting               | `pnpm format`                                   | Auto-fixes; `pnpm format:check` verifies                |
+| Design tokens            | `pnpm build:tokens && pnpm build:pkg`           | Regenerates, then rebuilds the CSS apps consume         |
+| A published package      | `pnpm changeset`                                | A `.changeset/` entry exists                            |
+| Docs content             | `pnpm build:doc`                                | Chains generate → ai-docs → skills                      |
+| MCP server               | `pnpm build:mcp`                                | Build succeeds                                          |
+| Multiple categories      | `pnpm lint`                                     | oxlint, format:check, stylelint, typecheck and syncpack |
+
+Two of these pass silently where the script is absent, so a green run can mean nothing ran: `apps/docs` has no `typecheck`, and only `@hopper-ui/components`, `@hopper-ui/icons` and `@hopper-ui/styled-system` have `stylelint`. Verify `apps/docs` with `pnpm build:doc` instead. `pnpm lint` and `pnpm test` are intentionally unfiltered.
 
 ## Workflow
 
@@ -77,7 +86,7 @@ Feature first → user confirms "Looks good" → then tests and stories. Never t
 ## Git/GitHub instructions
 
 - Branch name format: `<TICKET>-<kebab-description>`, e.g. `SGPD-9268-remove-tanstack-table`. Tickets are `SGPD-` or `SGPLTD-`.
-- Pull request title format: `[<TICKET>] <Title>`. Use a conventional-commit prefix (`fix:`, `feat(docs):`) only for a change with no ticket.
+- Pull request title format: `<TICKET>: <Title>`. `[<TICKET>] <Title>` is also accepted. Use a conventional-commit prefix (`fix:`, `feat(docs):`) for a change with no ticket.
 
 ## Skills
 
@@ -85,13 +94,13 @@ These three encode the workflows of this repository. The installed third-party s
 
 | Skill                 | When to use                                                                |
 | --------------------- | -------------------------------------------------------------------------- |
-| `update-tokens`       | Add, update, delete, or deprecate design tokens                            |
-| `port-component`      | Port a new component into Hopper from its React Spectrum S2 implementation |
+| `_update-tokens`      | Add, update, delete, or deprecate design tokens                            |
+| `_port-component`     | Port a new component into Hopper from its React Spectrum S2 implementation |
 | `learn-from-feedback` | Capture a developer correction into a skill or an instruction file         |
 
 ## Detailed Documentation
 
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — monorepo setup, installation, and the full command list. Packages must be built before anything runs.
 - **[contributing/](contributing/)** — human-facing guides for [tokens](contributing/tokens.md), [icons](contributing/icons.md) and [components](contributing/components.md).
-- **[docs/adr/](docs/adr/)** — architectural decisions. Consult existing ADRs before proposing a change that contradicts one.
+- **[docs/adr/](docs/adr/)** — architectural decisions. Consult existing ADRs before proposing a change that contradicts one; note ADR 0002 is still `Proposed`.
 - **[apps/docs/ai-pipeline/CONTRIBUTING.md](apps/docs/ai-pipeline/CONTRIBUTING.md)** — how a content edit reaches the documentation site, the MCP server, and the published Hopper agent Skill. See also [ADR 0002](docs/adr/0002-hopper-agent-skill.md).
