@@ -47,6 +47,7 @@
         "@codesandbox/sandpack-react": "2.20.0",
         "@hopper-ui/components": "workspace:*",
         "@hopper-ui/icons": "workspace:*",
+        "@hopper-ui/rslib-config": "workspace:*",
         "@hopper-ui/svg-icons": "workspace:*",
         "@hopper-ui/tokens": "workspace:*",
         "@internationalized/string-compiler": "3.4.1",

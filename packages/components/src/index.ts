@@ -1,3 +1,5 @@
+import "./index.css";
+
 export * from "./accordion/index.ts";
 export * from "./action-bar/index.ts";
 export * from "./alert/index.ts";
@@ -179,5 +181,3 @@ export {
     type ContextValue,
     type DateValue
 } from "react-aria-components";
-
-import "./index.css";

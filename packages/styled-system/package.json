@@ -35,8 +35,8 @@
         "provenance": true
     },
     "scripts": {
-        "dev": "tsup --config ./tsup.dev.ts",
-        "build": "tsup --config ./tsup.build.ts && copyfiles -u 1 src/theme/generated/*.css dist && copyfiles -u 1 src/theme/generated/**/*.css dist",
+        "dev": "rslib build -w -c ./rslib.dev.ts",
+        "build": "rslib build -c ./rslib.build.ts",
         "stylelint": "stylelint \"**/*.css\" --allow-empty-input --config ../../.stylelintrc.js --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
         "test": "vitest run"
@@ -47,21 +47,20 @@
         "csstype": "^3.2.3"
     },
     "devDependencies": {
+        "@hopper-ui/rslib-config": "workspace:*",
         "@hopper-ui/tokens": "workspace:*",
-        "@hopper-ui/tsup-css-module-plugin": "workspace:*",
         "@hopper-ui/vitest-config": "workspace:*",
+        "@rslib/core": "0.23.2",
         "@testing-library/dom": "10.4.1",
         "@testing-library/jest-dom": "7.0.1",
         "@testing-library/react": "16.3.2",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
-        "@workleap/tsup-configs": "4.0.2",
+        "@workleap/rslib-configs": "1.2.1",
         "@workleap/typescript-configs": "5.0.0",
-        "copyfiles": "2.4.1",
         "minimatch": "10.2.6",
         "react": "19.2.8",
         "react-dom": "19.2.8",
-        "tsup": "8.5.1",
         "typescript": "6.0.3"
     },
     "peerDependencies": {

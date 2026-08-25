@@ -34,7 +34,7 @@
         "provenance": true
     },
     "scripts": {
-        "build": "tsup --config ./tsup.build.ts",
+        "build": "rslib build -c ./rslib.build.ts",
         "generate-icons": "node scripts/build.ts",
         "stylelint": "stylelint \"**/*.css\" --config ../../.stylelintrc.js --allow-empty-input --cache --cache-location node_modules/.cache/stylelint --max-warnings=0",
         "typecheck": "tsc",
@@ -45,9 +45,10 @@
         "clsx": "^2.1.1"
     },
     "devDependencies": {
+        "@hopper-ui/rslib-config": "workspace:*",
         "@hopper-ui/styled-system": "workspace:*",
-        "@hopper-ui/tsup-css-module-plugin": "workspace:*",
         "@hopper-ui/vitest-config": "workspace:*",
+        "@rslib/core": "0.23.2",
         "@svgr/core": "8.1.0",
         "@svgr/plugin-jsx": "8.1.0",
         "@svgr/plugin-svgo": "8.1.0",
@@ -57,14 +58,13 @@
         "@types/node": "26.2.0",
         "@types/react": "19.2.18",
         "@types/react-dom": "19.2.4",
-        "@workleap/tsup-configs": "4.0.2",
+        "@workleap/rslib-configs": "1.2.1",
         "@workleap/typescript-configs": "5.0.0",
         "react": "19.2.8",
         "react-aria-components": "1.20.0",
         "react-dom": "19.2.8",
         "svgo": "4.0.2",
         "ts-node": "10.9.2",
-        "tsup": "8.5.1",
         "typescript": "6.0.3"
     },
     "peerDependencies": {
