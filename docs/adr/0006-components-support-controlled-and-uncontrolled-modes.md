@@ -14,23 +14,47 @@ The convention that carries this: uncontrolled initial values are passed through
 
 ## Decision
 
-Stateful components expose both modes.
+Stateful components expose both modes. The controlled prop is owned by the consumer; the `default`-prefixed one seeds state the component then owns. Either way the change callback fires.
 
-- **Controlled:** `value` plus `onChange`, or `open` plus `onOpenChange`. The consumer owns the state.
-- **Uncontrolled:** `defaultValue`, `defaultOpen`, `defaultSelectedKey`. The component owns the state and still fires the change callback.
+Each piece of state has its own trio, inherited from React Aria:
 
-Components we build locally follow the same convention.
+| State            | Controlled                   | Uncontrolled                             | Callback            |
+| ---------------- | ---------------------------- | ---------------------------------------- | ------------------- |
+| Value            | `value`                      | `defaultValue`                           | `onChange`          |
+| Toggle           | `isSelected`                 | `defaultSelected`                        | `onChange`          |
+| Single selection | `selectedKey`                | `defaultSelectedKey`                     | `onSelectionChange` |
+| Multi selection  | `selectedKeys`               | `defaultSelectedKeys`                    | `onSelectionChange` |
+| Overlay open     | `isOpen`                     | `defaultOpen`                            | `onOpenChange`      |
+| Disclosure       | `isExpanded`, `expandedKeys` | `defaultExpanded`, `defaultExpandedKeys` | `onExpandedChange`  |
+| ComboBox text    | `inputValue`                 | `defaultInputValue`                      | `onInputChange`     |
+
+`defaultSelectedKeys` (plural) is the more common of the two selection forms; the singular exists on `Tabs` and `SegmentedControl`, and as a React Aria-deprecated alias on `Select` and `ComboBox`.
+
+The mechanism is React Stately's `useControlledState` from `@react-stately/utils`, a direct dependency. It is used explicitly in `ContextualHelp`, `TextField`, `TextArea`, `NumberField` and `Tabs`, and inherited everywhere else through React Aria's own state hooks. There is deliberately no Hopper-owned wrapper around it — do not add one.
+
+### Known exceptions
+
+- **`Tooltip`** exposes neither mode. It omits `isOpen`, `defaultOpen` and `onOpenChange`; the state lives on `TooltipTrigger`.
+- **`ComboBox`** is notify-only for open state: `onOpenChange` exists, `isOpen` and `defaultOpen` do not.
+- **`ActionBar`** is controlled-only, via `selectedItemCount` and `onClearSelection`.
 
 ## Consequences
 
-### For agents working in this repo
+### For this repository
+
+- A new stateful component exposes `default*` alongside its controlled prop rather than forcing consumers to be controlled. `ActionBar` is the standing exception, not the precedent.
+- Route state through React Stately's `useControlledState`, or through the React Aria state hook that already wraps it. Do not reimplement the controlled/uncontrolled branch by hand.
+- The `docs/*/controlled.tsx` examples are meant to hold a `useState` and a controlled binding — that is what they demonstrate. The advice below about avoiding needless controlled state is about product code, not about these.
+
+### For consuming applications
 
 - Do not add a `useState` and a controlled binding when the uncontrolled mode already does the job. It is noise, and it introduces a source of truth that can drift.
-- Do not mix modes on one prop. Passing both `open` and `defaultOpen` is a bug, and React will warn about the controlled/uncontrolled switch.
-- When passing `open`, always pass the corresponding change handler. A controlled prop without a handler produces a component that cannot be interacted with, which is a common and confusing failure.
-- When writing a new local component with internal state, expose `default*` rather than forcing consumers to be controlled.
+- Do not mix modes on one prop. Passing both `isOpen` and `defaultOpen` is a bug, and a quiet one: the controlled prop wins, `defaultOpen` is silently ignored, and nothing warns. React Stately warns only when a component _switches_ between modes mid-life — when `isOpen` goes from defined to `undefined` or back — and that warning is its own `console.warn`, not React's. React never sees these props, so React's controlled-input warnings do not apply.
+- When passing `isOpen`, always pass `onOpenChange`. A controlled prop without a handler produces a component that cannot be interacted with, which is a common and confusing failure.
+- Put the handler on the component that owns the state. A `Modal` nested inside a `ModalTrigger` does not own its open state — `onOpenChange` passed there is dropped with a `console.warn`, and belongs on the trigger instead.
 
 ## Sources
 
 - [Tech Vision for Hopper](https://workleap.atlassian.net/wiki/spaces/TL/pages/3631808725) (TL, 3631808725)
 - [Customization options for Hopper & Orbiter Components](https://workleap.atlassian.net/wiki/spaces/~848321167/pages/4772757533) (4772757533)
+- `apps/docs/content/components/concepts/controlled-mode.mdx` — the consumer-facing statement of this convention
