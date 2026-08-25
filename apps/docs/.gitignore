@@ -41,3 +41,6 @@ next-env.d.ts
 
 #AI docs
 /public/ai-docs
+
+#Generated agent skills, served at /.well-known/skills
+/public/agent-skills

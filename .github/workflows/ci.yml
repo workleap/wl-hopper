@@ -50,6 +50,9 @@ jobs:
             -   name: Build AI docs and MCP server
                 run: pnpm build:mcp
 
+            -   name: Build the agent Skill
+                run: pnpm build:skills
+
             -   name: Lint
                 run: pnpm lint
 

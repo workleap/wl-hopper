@@ -29,6 +29,16 @@
             ],
             "outputs": ["dist/ai-docs/**", "public/ai-docs/**"]
         },
+        "docs#build:skills": {
+            "dependsOn": ["docs#build:ai-docs"],
+            "inputs": ["ai-pipeline/**", "scripts/**", "../../apps/mcp-server/src/**"],
+            "outputs": ["dist/skills/**", "public/agent-skills/**"]
+        },
+        "docs#build": {
+            "dependsOn": ["^build", "docs#build:skills"],
+            "outputs": ["dist/**", ".next/**", "**/datas/**"],
+            "cache": false
+        },
         "@hopper-ui/mcp-server#sync:ai-docs": {
             "dependsOn": ["docs#build:ai-docs"],
             "outputs": ["src/.docs/**"]

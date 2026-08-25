@@ -1,11 +1,14 @@
 [build]
+  # docs#build depends on docs#build:skills, which depends on docs#build:ai-docs.
   command = "pnpm exec turbo run build --filter=./apps/mcp-server --filter=./apps/docs"
   publish = "apps/docs/.next"
   environment = { NODE_OPTIONS = "--max-old-space-size=8192" }
 
 [functions]
   directory = "apps/mcp-server/dist/hosts/netlify"
-  included_files = ["apps/docs/public/**"]
+  # Only the AI docs are read at runtime. Keep this narrow so public/agent-skills, which is
+  # served from the CDN, does not get bundled into every function.
+  included_files = ["apps/docs/public/ai-docs/**"]
 
 [functions.mcp-server]
   node_bundler = "esbuild"
@@ -13,6 +16,37 @@
     "dist/hosts/netlify/docs/**",                   # For local dev
     "apps/mcp-server/dist/hosts/netlify/docs/**"    # For deployment
 ]
+
+# Agent Skills discovery. The equivalent `beforeFiles` rewrite in next.config.js works in
+# `next dev` but is NOT honoured through @netlify/plugin-nextjs: the request reaches the Next
+# server, where the `/:path*.:ext(txt|md)` rule claims it and the /txt handler answers 400.
+# These rules resolve on the CDN instead, so the ~3MB payload never touches a function.
+# `force` is required — without it the Next catch-all wins.
+[[redirects]]
+  from = "/.well-known/skills/*"
+  to = "/agent-skills/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/.well-known/agent-skills/*"
+  to = "/agent-skills/:splat"
+  status = 200
+  force = true
+
+# Skill clients fetch the manifest and every file cross-origin. next.config.js declares the same
+# headers, but they do not apply to a CDN-resolved rewrite.
+[[headers]]
+  for = "/.well-known/skills/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/.well-known/agent-skills/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"

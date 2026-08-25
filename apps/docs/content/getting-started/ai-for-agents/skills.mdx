@@ -1,0 +1,125 @@
+---
+title: Agent Skill
+description: Install the Hopper design system as an agent Skill with a single command — no MCP client, no configuration.
+order: 1
+isNewUntil: 2026-11-01
+---
+
+Hopper publishes an [agent Skill](https://www.npmjs.com/package/skills): a folder of documentation
+your coding agent loads on demand. It is the lowest-friction way to teach an agent Hopper — one
+command, no MCP client, no per-project configuration, and it keeps working offline afterwards.
+
+## Install
+
+```bash
+npx skills add https://hopper.workleap.design
+```
+
+That is the whole setup. The CLI discovers the skill, downloads it, and wires it into whichever
+agents it finds — Claude Code, Cursor, Codex, Cline, and others.
+
+## What you get
+
+About 5 MB across ~325 files, installed into `.agents/skills/hopper` (and symlinked into your
+agent's own skills directory):
+
+- `SKILL.md` — the rules, the workflow, and an index of everything else.
+- `references/components/` — one file per component, plus the catalog.
+- `references/api/` — props, types and defaults as JSON.
+- `references/guides/` — installation, theming, layout, forms, styling, escape hatches.
+- `references/tokens/` — token guidance and the token-to-prop-value maps for both themes in light and dark.
+- `references/icons/` — every icon, searchable.
+- `references/workflows/` — building a screen, and turning a Figma frame into Hopper JSX.
+- `scripts/` — runnable tools: a linter for Hopper JSX, a design-token lookup, and icon search.
+
+Agents only read the files they need, so the skill costs very little context until it is used.
+
+## Skill, MCP server, or llms.txt?
+
+<SimpleTable
+    aria-label="Comparison of the agent Skill, the MCP server and llms.txt"
+    headers={["", "Agent Skill", "MCP server", "llms.txt"]}
+    data={[
+        { capability: "Setup", skill: "One command", mcp: "Per-agent config file", llms: "Copy and paste" },
+        { capability: "Works offline", skill: "Yes", mcp: "No", llms: "No" },
+        { capability: "Always current", skill: "Snapshot at install", mcp: "Yes", llms: "Yes" },
+        { capability: "Full component API", skill: "Brief props", mcp: "Brief and full", llms: "Full" },
+        { capability: "Icon search", skill: "Fuzzy search (same code)", mcp: "Fuzzy search", llms: "—" },
+        { capability: "Token lookup", skill: "Bundled script (same code)", mcp: "get_design_tokens tool", llms: "—" },
+        { capability: "Code validation", skill: "Bundled script (same code)", mcp: "validate_hopper_code tool", llms: "—" }
+    ]}
+/>
+
+The [MCP server](/getting-started/ai-for-agents/mcp-server) and
+[llms.txt](/getting-started/ai-for-agents/llms) each have their own page.
+
+**Use both the skill and the MCP server.** The skill gives every agent a solid baseline with no
+setup; the MCP server adds always-current data and the full component API on top. When both are
+present, the skill tells the agent to prefer the MCP server.
+
+The skill's three scripts bundle the very same services the matching MCP tools call, so validation,
+token lookup and icon search return identical results either way — and a change to that logic
+reaches both surfaces on the next build.
+
+## Keeping it up to date
+
+The skill is a snapshot taken when you installed it, and it is regenerated on every documentation
+deploy. Re-run the install command to pick up newer components and tokens:
+
+```bash
+npx skills add https://hopper.workleap.design
+```
+
+`SKILL.md` records the `@hopper-ui/components` version it was built from, under `metadata.version`.
+
+## The bundled scripts
+
+Three of the MCP server's tools do real work rather than serving a file, so the skill ships them as
+runnable scripts built from the same source:
+
+Run them from your project root, not from the skill directory — file arguments resolve against the
+working directory, and so does the validator's search for a TypeScript parser.
+
+```bash
+SKILL=.agents/skills/hopper
+
+# lint Hopper JSX — tokens, prop values, UNSAFE_ props, structure, layout
+node $SKILL/scripts/validate-hopper-code.mjs src/MyComponent.tsx
+
+# turn a token name or a raw CSS value into a component prop value
+node $SKILL/scripts/search-tokens.mjs --name hop-neutral-text
+node $SKILL/scripts/search-tokens.mjs --css 16px --with-css-values
+
+# fuzzy-search icons by name, description or keyword
+node $SKILL/scripts/search-icons.mjs --limit 5 delete
+```
+
+The scripts read their data from the skill directory, so they work from any working directory. The
+validator exits non-zero when it finds errors. For TypeScript files it uses `typescript` or
+`@typescript-eslint/parser` resolved from the working directory; for plain JSX it falls back to a
+bundled parser and needs nothing at all. Pass `--help` to the other two for their full options.
+
+## Contributing
+
+The skill is generated from this documentation site by
+`apps/docs/scripts/buildSkills.ts`, driven by `apps/docs/ai-pipeline/skills.config.ts`. To work on
+it locally:
+
+```bash
+pnpm doc:generate
+pnpm build:skills                 # Turbo builds the AI docs first, then the skill
+pnpm doc:start
+```
+
+`build:skills` itself takes about a second; the AI docs build it depends on is slow but cached by
+Turbo, so re-running is cheap unless `apps/docs/content/**` changed.
+
+Then install it from your dev server, from a scratch directory outside the repo:
+
+```bash
+npx skills add http://localhost:3000
+```
+
+See `apps/docs/ai-pipeline/CONTRIBUTING.md` for how to add or change what the skill contains, and
+[ADR 0002](https://github.com/workleap/wl-hopper/blob/main/docs/adr/0002-hopper-agent-skill.md) for
+why it is built this way.
