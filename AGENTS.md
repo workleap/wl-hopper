@@ -65,6 +65,7 @@ Accepted decision records. They own the rationale and the mechanism; the instruc
 
 - Build: `pnpm build:pkg`
 - Test: `pnpm test`
+- Lint: `pnpm lint`
 
 Turbo filters on the `name` field, not the directory: `@hopper-ui/components`, `@hopper-ui/icons`, `@hopper-ui/styled-system`, `@hopper-ui/svg-icons`, `@hopper-ui/tokens`, `@hopper-ui/mcp-server`, `docs`, `basic`.
 
