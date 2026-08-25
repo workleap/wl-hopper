@@ -6,7 +6,7 @@
         },
         "text-color": {
             "$type": "color",
-            "$value": "{neutral.text-weakest}"
+            "$value": "{neutral.text-weak}"
         },
         "text-color-selected": {
             "$type": "color",
