@@ -25,6 +25,15 @@ export interface CopySkillFilesOptions {
 const MAGIC = /[*?[\]{}!+@(]/;
 
 /**
+ * `glob` treats backslashes as escape characters rather than path separators, so patterns built
+ * with `join` have to be normalised to posix separators to work on Windows. Same reason as in
+ * mergeFiles.ts.
+ */
+function toPosix(value: string) {
+    return value.replaceAll("\\", "/");
+}
+
+/**
  * The literal part of a glob, i.e. everything up to the first segment containing a magic
  * character. "/tokens/maps/&#42;/&#42;/all.json" yields "/tokens/maps".
  */
@@ -102,10 +111,10 @@ export async function copySkillFiles({
             record({ path: entry.to, size: (await stat(outputFile)).size, description: entry.description });
         } else if (isCopyEntry(entry)) {
             const matches = (
-                await glob(join(aiDocsRoot, entry.from), {
+                await glob(toPosix(join(aiDocsRoot, entry.from)), {
                     nodir: true,
                     absolute: true,
-                    ignore: entry.exclude?.map(pattern => join(aiDocsRoot, pattern))
+                    ignore: entry.exclude?.map(pattern => toPosix(join(aiDocsRoot, pattern)))
                 })
             ).sort();
 
