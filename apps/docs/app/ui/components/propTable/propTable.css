@@ -44,10 +44,6 @@
     padding: 0;
 }
 
-.hd-props-table__col-default {
-    color: var(--hd-color-neutral-text-weak);
-}
-
 .hd-props-table [data-rehype-pretty-code-figure] {
     margin: 0;
 }
@@ -73,10 +69,6 @@
     font-size: var(--hd-props-table-cell-font-size);
     font-weight: 600;
     line-height: 1.5;
-}
-
-.hd-props-table__cell.hd-props-table__col-default {
-    font-size: var(--hd-props-table-cell-font-size);
 }
 
 .hd-props-table__type [data-rehype-pretty-code-figure] [data-line] {
