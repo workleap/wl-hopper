@@ -46,8 +46,8 @@
         "storybook": "storybook dev -p 6006",
         "storybook-nolazy": "cross-env STORYBOOK_NO_LAZY=true pnpm run storybook",
         "build-storybook": "storybook build",
-        "list-outdated-deps": "pnpm outdated -r --format list !react !react-dom !@types/react !@types/react-dom !@types/node !typescript !stylelint !@tanstack/react-table",
-        "update-outdated-deps": "pnpm update -r --latest !react !react-dom !@types/react !@types/react-dom !@types/node !typescript !stylelint !@tanstack/react-table",
+        "list-outdated-deps": "pnpm outdated -r --format list !react !react-dom !@types/react !@types/react-dom !@types/node !typescript !stylelint",
+        "update-outdated-deps": "pnpm update -r --latest !react !react-dom !@types/react !@types/react-dom !@types/node !typescript !stylelint",
         "update-react-aria-deps": "pnpm update -r react-aria react-aria-components @react-aria/* @react-stately/*",
         "find-types": "pnpm --filter=components find-types"
     },
