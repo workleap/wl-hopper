@@ -10,7 +10,7 @@ const PREFIX = "\0intl:";
 const SUFFIX = ".js";
 
 /**
- * Vite/Vitest equivalent of `tooling/intl-jest-resolver/jestResolver.cjs` and the
+ * Vite/Vitest equivalent of `tooling/intl-jest-resolver/jestResolver.cjs` and
  * the library build's intl loader: compiles `intl*.json` message files through
  * `@internationalized/string-compiler` so `components` can import them in tests.
  * Vitest has no Jest-style `resolver` hook, so this is a `resolveId`/`load` plugin.
