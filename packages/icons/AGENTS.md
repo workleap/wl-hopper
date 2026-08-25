@@ -42,3 +42,13 @@ one word and comes back title-cased:
 | `CSV.svg`         | `csv-16.svg`          | `CsvIcon`         |
 
 Reach for the exported name — `AiIcon`, not `AIIcon`.
+
+## The accessibility invariant
+
+`Icon.tsx` sets `focusable="false"` unconditionally and `aria-hidden` unless an `aria-label` is
+supplied, so a decorative icon cannot be exposed to a screen reader by omission. Preserve that when
+touching `createIcon` / `createRichIcon` or the generator — it is a repo-wide guarantee, and losing it
+is silent. See [ADR 0009](../../docs/adr/0009-accessibility-baseline.md).
+
+The generated rich-icon components hardcode hex fallbacks — `fill="var(--hop-RichIcon-placeholder-background, #E5DED6)"`
+across 49 files. They are generator output and intentional, not violations of the tokens-only rule.

@@ -31,6 +31,20 @@ Claude Code attaches the rules below itself when it reads a matching file. Every
 | Any exported name, CSS class name, or `--hop-*` custom property                   | `docs/agents/versioning.md`             |
 | Naming a new `.ts`/`.tsx` file or a new component directory                       | `docs/agents/typescript.md`             |
 
+### Architecture decisions (MUST follow)
+
+Accepted decision records. They own the rationale and the mechanism; the instruction files above own the imperative.
+
+| Trigger                                                                       | Read                                                                              |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| A new interactive component, or hand-rolling ARIA, focus or keyboard behavior | [ADR 0003](docs/adr/0003-react-aria-is-the-primitive-foundation.md)               |
+| A hardcoded colour or length, or adding a token                               | [ADR 0004](docs/adr/0004-design-tokens-are-the-only-source-of-visual-values.md)   |
+| Style props, `UNSAFE_*`, or reaching for a CSS module                         | [ADR 0005](docs/adr/0005-styling-uses-style-props-and-native-css.md)              |
+| A stateful prop, a `default*` prop, or a controlled/uncontrolled pair         | [ADR 0006](docs/adr/0006-components-support-controlled-and-uncontrolled-modes.md) |
+| Naming a prop, an event handler, or a ref                                     | [ADR 0007](docs/adr/0007-component-api-naming-conventions.md)                     |
+| A class name, a token declaration, or a breaking change                       | [ADR 0008](docs/adr/0008-versioning-for-parallel-releases.md)                     |
+| Keyboard behavior, focus rings, or an accessible name                         | [ADR 0009](docs/adr/0009-accessibility-baseline.md)                               |
+
 ## Hard Rules (Non-Negotiable)
 
 | Rule                                                                                                                                                                  | Violation                                                   |
@@ -102,5 +116,5 @@ These three encode the workflows of this repository. The installed third-party s
 
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — monorepo setup, installation, and the full command list. Packages must be built before anything runs.
 - **[contributing/](contributing/)** — human-facing guides for [tokens](contributing/tokens.md), [icons](contributing/icons.md) and [components](contributing/components.md).
-- **[docs/adr/](docs/adr/)** — architectural decisions. Consult existing ADRs before proposing a change that contradicts one; note ADR 0002 is still `Proposed`.
+- **[docs/adr/](docs/adr/)** — nine architectural decision records; 0003 through 0009 are indexed above. ADR 0002 is the only one still `Proposed`.
 - **[apps/docs/ai-pipeline/CONTRIBUTING.md](apps/docs/ai-pipeline/CONTRIBUTING.md)** — how a content edit reaches the documentation site, the MCP server, and the published Hopper agent Skill. See also [ADR 0002](docs/adr/0002-hopper-agent-skill.md).

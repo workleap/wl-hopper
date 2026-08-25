@@ -64,3 +64,9 @@ Some groups also carry `utils/`, `hooks/` or `assets/` siblings.
 
 The axe runner is local-only. Run `pnpm storybook-nolazy` in one terminal and `pnpm test-storybook`
 in another — the lazy-loading variant is incompatible with the runner. See `contributing/components.md`.
+
+Chromatic is not an accessibility signal — a green build says nothing about keyboard operability or
+screen reader output, so never cite it as evidence. The axe pass also excludes contrast, and
+`test-storybook` is not in CI, so nothing about accessibility gates a PR. The baseline is WCAG 2.2 AA
+with the WAI-ARIA Authoring Practices as the behavior reference; see
+[ADR 0009](../../docs/adr/0009-accessibility-baseline.md).
