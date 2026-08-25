@@ -1,7 +1,6 @@
 {
     "$schema": "https://turbo.build/schema.json",
     "ui": "tui",
-    "globalPassThroughEnv": ["NETLIFY"],
     "tasks": {
         "build": {
             "dependsOn": ["^build"],
