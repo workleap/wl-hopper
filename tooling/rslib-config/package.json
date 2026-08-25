@@ -1,0 +1,30 @@
+{
+    "name": "@hopper-ui/rslib-config",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Internal shared Rslib config factory for Hopper. Consumed as source (JIT) within the monorepo; not published.",
+    "license": "Apache-2.0",
+    "author": "Workleap",
+    "type": "module",
+    "exports": {
+        ".": "./defineHopperRslibConfig.ts",
+        "./intl-loader": "./intl-loader.js"
+    },
+    "scripts": {
+        "typecheck": "tsc"
+    },
+    "dependencies": {
+        "@internationalized/string-compiler": "^3.4.1"
+    },
+    "devDependencies": {
+        "@rslib/core": "0.23.2",
+        "@types/node": "26.2.0",
+        "@workleap/rslib-configs": "1.2.1",
+        "@workleap/typescript-configs": "5.0.0",
+        "typescript": "6.0.3"
+    },
+    "peerDependencies": {
+        "@rslib/core": "^0.23.2",
+        "@workleap/rslib-configs": "^1.2.1"
+    }
+}

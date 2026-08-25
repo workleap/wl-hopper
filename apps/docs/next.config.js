@@ -1,5 +1,7 @@
 import { withContentlayer } from "next-contentlayer2";
-import path from "path";
+import { createRequire } from "node:module";
+
+const require = createRequire(import.meta.url);
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -30,12 +32,12 @@ const nextConfig = {
                 use: ["@svgr/webpack"]
             },
             // The workspace tsconfig aliases "@hopper-ui/components" to source, bypassing the
-            // tsup build that normally compiles ICU plural/select strings in intl/*.json into
+            // library build that normally compiles ICU plural/select strings in intl/*.json into
             // formatter functions. Without this, react-aria's LocalizedStringFormatter.format()
-            // returns those strings verbatim instead of interpolating. Mirrors .storybook/intl-loader.js.
+            // returns those strings verbatim instead of interpolating.
             {
                 test: /(intl).*\.json$/,
-                loader: path.resolve("./intl-loader.js"),
+                loader: require.resolve("@hopper-ui/rslib-config/intl-loader"),
                 type: "javascript/auto"
             }
         );

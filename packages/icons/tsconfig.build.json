@@ -1,7 +1,19 @@
 {
     "extends": "./tsconfig.json",
+    "include": ["src", "../../types/css-modules.d.ts", "../../types/img.d.ts"],
+    "exclude": [
+        "dist",
+        "node_modules",
+        "**/docs/**",
+        "**/tests/**",
+        "**/*.stories.ts",
+        "**/*.stories.tsx",
+        "**/*.test.ts",
+        "**/*.test.tsx"
+    ],
     "compilerOptions": {
         "customConditions": [],
+        "rootDir": "src",
         "ignoreDeprecations": "6.0"
     }
 }
