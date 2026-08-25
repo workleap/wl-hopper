@@ -82,7 +82,18 @@ export const skillsConfig: SkillsConfig = {
                 // guides
                 {
                     from: "/getting-started/*.md",
-                    exclude: ["/getting-started/index.md"],
+                    // index.md is a merge artifact. The ai-for-agents pages document this skill,
+                    // the MCP server and llms.txt — installation instructions for the thing the
+                    // agent has already installed, and SKILL.md already covers the MCP server.
+                    exclude: [
+                        "/getting-started/index.md",
+                        "/getting-started/skills.md",
+                        "/getting-started/mcp-server.md",
+                        "/getting-started/llms.md"
+                    ],
+                    // Pinned so a new getting-started page fails the build instead of silently
+                    // padding the payload.
+                    expectedCount: 6,
                     to: "references/guides/getting-started/"
                 },
                 {
