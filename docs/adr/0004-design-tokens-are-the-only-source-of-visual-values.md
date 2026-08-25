@@ -1,8 +1,10 @@
 # ADR-0004: Design tokens are the only source of visual values
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-06 (tech vision), token layers extended 2025-11
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-06 (tech vision), token layers extended 2025-11
 
 ## Context
 
@@ -11,7 +13,7 @@ Hopper integrates with brand design tokens so designers can change the rules of 
 The token set is layered:
 
 - **Core** tokens: raw values. Shared across every Workleap product.
-- **Semantic** tokens: intent-based aliases (`hop-primary-bg`, `hop-neutral-text`).
+- **Semantic** tokens: intent-based aliases (`hop-primary-surface`, `hop-neutral-text`).
 - **Component** tokens: a layer added later to support per-theme component values.
 
 Because the design system must tolerate multiple versions running in parallel, token CSS custom properties are scopable per remote module or hashed per release. See ADR-0008.

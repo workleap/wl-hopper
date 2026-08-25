@@ -1,8 +1,10 @@
 # ADR-0009: Accessibility baseline
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-06, reaffirmed in the 2026 contribution model
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-06, reaffirmed in the 2026 contribution model
 
 ## Context
 

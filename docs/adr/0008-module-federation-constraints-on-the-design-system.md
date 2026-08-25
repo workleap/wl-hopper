@@ -1,8 +1,10 @@
 # ADR-0008: Module federation constraints on the design system
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-06
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-06
 
 ## Context
 

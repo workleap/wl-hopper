@@ -1,8 +1,10 @@
 # ADR-0005: Styling uses style props and native CSS, not CSS-in-JS
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-05
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-05
 
 ## Context
 

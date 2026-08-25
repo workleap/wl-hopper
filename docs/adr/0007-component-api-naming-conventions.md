@@ -1,8 +1,10 @@
 # ADR-0007: Component API naming conventions
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-06
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-06
 
 ## Context
 

@@ -1,8 +1,10 @@
 # ADR-0003: React Aria Components is the primitive foundation
 
-- **Status:** Accepted (documented retroactively)
-- **Decision date:** 2023-05 (analysis), carried into the Hopper tech vision
-- **Recorded:** 2026-08-25
+## Status
+
+Accepted (2026-08-25, documented retroactively)
+
+Decision date: 2023-05 (analysis), carried into the Hopper tech vision
 
 ## Context
 
