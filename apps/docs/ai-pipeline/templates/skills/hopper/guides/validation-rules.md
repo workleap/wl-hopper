@@ -28,8 +28,8 @@ when you really do need a plain element. If nothing fits, use the `htmlElement` 
 
 ### Emojis
 
-Emojis anywhere in the source are an error. Use `@hopper-ui/icons`; search
-`references/icons/data.json` for the right name.
+Emojis anywhere in the source are an error. Use `@hopper-ui/icons`, and find the name with
+`node scripts/search-icons.mjs <query>` — see `references/icons/README.md`.
 
 ### Layout components with a single child
 
