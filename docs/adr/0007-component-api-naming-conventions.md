@@ -12,14 +12,14 @@ The conventions were set explicitly, and in one case deliberately diverge from t
 
 ## Decision
 
-| Convention | Form | Not |
-|---|---|---|
-| Boolean props | `open`, `disabled`, `required` | `isOpen`, `isDisabled` |
-| Event handlers | `onChange`, `onOpenChange` | `onChanged`, `onOpened` |
-| Uncontrolled initial values | `defaultOpen`, `defaultValue` | `initialOpen` |
-| Underlying element swap | `as` | `component`, `renderAs` |
-| Outer element ref | `ref` | `rootRef`, `containerRef` |
-| Nested element access | `wrapperProps`, `overlayProps` | ad hoc prop names |
+| Convention                  | Form                           | Not                       |
+| --------------------------- | ------------------------------ | ------------------------- |
+| Boolean props               | `open`, `disabled`, `required` | `isOpen`, `isDisabled`    |
+| Event handlers              | `onChange`, `onOpenChange`     | `onChanged`, `onOpened`   |
+| Uncontrolled initial values | `defaultOpen`, `defaultValue`  | `initialOpen`             |
+| Underlying element swap     | `as`                           | `component`, `renderAs`   |
+| Outer element ref           | `ref`                          | `rootRef`, `containerRef` |
+| Nested element access       | `wrapperProps`, `overlayProps` | ad hoc prop names         |
 
 Components pass the original native or React Aria event arguments through to consumer callbacks, and never stop event propagation.
 
