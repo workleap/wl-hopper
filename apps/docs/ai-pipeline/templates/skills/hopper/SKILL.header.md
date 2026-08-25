@@ -28,6 +28,20 @@ looks wrong.
 7. **Layout components need more than one child.** `Stack`, `Inline`, `Flex`, `Grid`, `Div` and
    `Box` wrapping a single child is almost always a mistake.
 
+## Running the scripts
+
+Every `scripts/…` and `references/…` path in this skill is relative to the directory holding this
+file. **Run the scripts from the user's project root, not from that directory** — file arguments
+resolve against the working directory, and so does the validator's search for a TypeScript parser.
+Prefix the script with the skill's path:
+
+```bash
+node <skill-path>/scripts/search-icons.mjs --limit 5 delete
+```
+
+The scripts read their own data from the skill directory, so they work from any working directory.
+The examples below drop the prefix for readability.
+
 ## Workflow
 
 1. Not installed yet? Follow `references/guides/getting-started/installation.md`, then wrap the app

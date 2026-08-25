@@ -46,8 +46,11 @@ looks like a component bug and will send you chasing the wrong problem.
 ## 4. Check your work
 
 ```bash
-node scripts/validate-hopper-code.mjs src/**/*.tsx
+node <skill-path>/scripts/validate-hopper-code.mjs src/**/*.tsx
 ```
+
+Run this from the project root — the file arguments and the TypeScript parser both resolve against
+the working directory.
 
 Run it after each meaningful change, not only at the end. Zero errors is the bar. Then run the
 project's own type check — the validator does not type-check.
