@@ -15,7 +15,7 @@ paths:
 | Declare a local on the module root when the component has no token file | Adding a 22nd token file for a one-off value |
 
 Stylelint already owns the mechanical layer: `px` is outside `unit-allowed-list`, and
-`selector-class-pattern` enforces `hop-<PascalName>__descendent--modifier`. Both fail at lint, so the
+`selector-class-pattern` enforces `hop-ComponentName__element-name--modifier-name`. Both fail at lint, so the
 live decisions are the ones above.
 
 ## Token families are shared, not per-component
