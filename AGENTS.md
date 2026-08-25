@@ -1,80 +1,97 @@
-# Repository Guidelines
+# AGENTS.md
 
-## Project Overview
+> Repo-wide guardrails + routing. Start here, then follow **Instruction routing** to the nearest scoped `AGENTS.md` and any additional instruction file that matches.
 
-- Package manager: `pnpm`
-- Type check: `pnpm tsc --noEmit`
-- Lint: `pnpm lint`
+## Instruction routing (read when relevant)
+
+### Path-based routing (MUST follow)
+
+| Path                                         | Read                                  |
+| -------------------------------------------- | ------------------------------------- |
+| `packages/<pkg>/**`                          | `packages/<pkg>/AGENTS.md` if present |
+| `apps/<app>/**`                              | `apps/<app>/AGENTS.md` if present     |
+| `packages/components/**`                     | `packages/components/AGENTS.md`       |
+| `packages/tokens/**`                         | `packages/tokens/AGENTS.md`           |
+| `packages/icons/**`, `packages/svg-icons/**` | `packages/icons/AGENTS.md`            |
+| `apps/docs/**`                               | `apps/docs/AGENTS.md`                 |
+
+Claude Code attaches the rules below by glob on its own. Every other agent MUST read the one whose path matches.
+
+| Path                                      | Read                             |
+| ----------------------------------------- | -------------------------------- |
+| `packages/components/src/**/*.module.css` | `.claude/rules/component-css.md` |
+| `packages/components/src/**/src/*.tsx`    | `.claude/rules/component-tsx.md` |
+| `packages/**/package.json`                | `.claude/rules/package-json.md`  |
+
+### Trigger-based routing (MUST follow)
+
+| Trigger                                                                                    | Read                                    |
+| ------------------------------------------------------------------------------------------ | --------------------------------------- |
+| A component's public API, props, slots, composition, defaults, or event callbacks          | `docs/agents/component-architecture.md` |
+| An exported name, a CSS class name, or a token custom property consumers already depend on | `docs/agents/versioning.md`             |
+| Naming a new `.ts`/`.tsx` file or a new component directory                                | `docs/agents/typescript.md`             |
+
+## Hard Rules (Non-Negotiable)
+
+| Rule                                                                                                             | Violation                                                        |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| ALWAYS run commands from the repo root                                                                           | `cd packages/components && npx vitest`                           |
+| NEVER run `tsc`, `oxlint`, `stylelint` or `vitest` directly inside a package                                     | `cd packages/tokens && npx tsc`                                  |
+| NEVER treat root `pnpm typecheck` as a package check — the root `tsconfig.json` excludes `packages` and `apps`   | Reporting types clean after `pnpm typecheck`                     |
+| MUST run `pnpm build:pkg` after installing and after changing a package's public API                             | Debugging an import error in an unbuilt workspace                |
+| MUST scope Turbo checks with `--filter`                                                                          | `turbo run typecheck` across every package for a one-file change |
+| NEVER add a decorative comment divider                                                                           | A row of dashes or box characters used to separate sections      |
+| ALWAYS flag an invented placeholder (URL, threshold, magic number, copy) with a `// TODO` naming what to confirm | A guessed `href="https://…"` presented as final                  |
+| ALWAYS prefer editing an existing file over creating a new one                                                   | A new utility file beside an existing one that fits              |
+
+## Build / Test / Lint
+
+- Build: `pnpm build:pkg`
 - Test: `pnpm test`
 
-## Use the token system
+After making changes, you MUST ALWAYS validate.
 
-Title: Use the token system
+| What you changed      | Run this                                                    | It must pass                                            |
+| --------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
+| A package source file | `pnpm build:pkg`                                            | Build succeeds                                          |
+| Logic or behavior     | `turbo run test --filter=<package>`                         | All unit tests pass                                     |
+| Code or types         | `turbo run typecheck --filter=<package>`                    | No type errors                                          |
+| CSS                   | `turbo run stylelint --filter=<package>`                    | No lint errors                                          |
+| `package.json`        | `pnpm syncpack`                                             | No dependency policy violations                         |
+| Formatting            | `pnpm format`                                               | Auto-fixes; `pnpm format:check` verifies                |
+| Design tokens         | `pnpm build:tokens`                                         | Generated CSS regenerates                               |
+| Docs content          | `pnpm doc:generate && pnpm build:doc && pnpm build:ai-docs` | The site and the AI surfaces both build                 |
+| Multiple categories   | `pnpm lint`                                                 | oxlint, format:check, stylelint, typecheck and syncpack |
 
-Description: Always use CSS variables from the token system instead of hardcoded values. The token system is defined in `packages/tokens/src/tokens/` and can be referenced in `packages/styled-system/src/tokens/tokenMappings.ts` and `packages/styled-system/src/tokens/tokens.ts`.
+## Workflow
 
-Tokens follow the pattern `var(--hop-[category]-[property])` such as:
+### Plan Mode
 
-- `var(--hop-neutral-text)`
-- `var(--hop-space-stack-md)`
-- `var(--hop-shape-rounded-md)`
+- Make the plan extremely concise. Sacrifice grammar for the sake of concision.
+- End each plan with the unresolved questions, if any.
 
-Component-specific tokens should reference these global tokens, e.g., `--hop-Button-background: var(--hop-neutral-surface)`.
+### Implementation Order
 
-Path patterns: packages/components/src/**/*.module.css
+Feature first → user confirms "Looks good" → then tests and stories. Never test before confirmation.
 
-## Never use component tokens outside their own component
+## Git/GitHub instructions
 
-Title: Never use component tokens outside their own component
-
-Description: Component tokens (`--hop-comp-<component-name>-*`) must only be used inside the CSS module of the component they belong to. Never reference a component token from a different component's CSS module — this makes token usage untraceable and breaks encapsulation.
-
-If another component needs a similar visual treatment, define a new token in that component's own token file (e.g., `avatar.tokens.json`) rather than borrowing from another component's tokens.
-
-Bad: using `var(--hop-comp-tooltip-color)` inside `AvatarGroup.module.css`
-Good: define `--hop-comp-avatar-description-color` in `avatar.tokens.json` and use it in `AvatarGroup.module.css`
-
-Path patterns: packages/components/src/**/*.module.css
-
-## Don't set style properties in context objects
-
-Title: Don't set style properties in context objects
-
-Description: Do not set style properties like `fontWeight`, `color`, or other visual attributes directly in context objects.
-These properties should be defined in CSS modules instead. For example, instead of `[HeadingContext, { fontWeight: "heading-xs-medium" }]`, define the font weight in the CSS module and only use `className` in the context object.
-
-Path patterns: packages/components/src/**/*.tsx
-
-## File naming conventions
-
-- Use **PascalCase** for files that contain:
-  - React components (e.g., `Button.tsx`, `IconButton.tsx`)
-  - Classes (e.g., `ValidationService.ts`, `TokenMapper.ts`)
-  - A single type/interface that matches the filename (e.g., `ButtonProps.ts`)
-- Use **camelCase** for all other files:
-  - Utility functions (e.g., `formatDate.ts`, `mergeProps.ts`)
-  - Configuration files (e.g., `tokenMappings.ts`, `cssVariables.ts`)
-  - Test files (e.g., `button.test.tsx`, `utils.test.ts`)
-  - Hooks (e.g., `useHover.ts`, `useScrollPosition.ts`)
-  - Constants, enums, and shared types (e.g., `colors.ts`, `breakpoints.ts`, `types.ts`)
-
-## Code style
-
-- Use double quotes for strings.
-- Use camelCase for variable and function names.
-- Use PascalCase for component names.
-- Use consistent indentation (4 spaces).
+- Branch name format: `<TICKET>-<kebab-description>`, e.g. `SGPD-9268-remove-tanstack-table`. Tickets are `SGPD-` or `SGPLTD-`.
+- Pull request title format: `[<TICKET>] <Title>`. Use a conventional-commit prefix (`fix:`, `feat(docs):`) only for a change with no ticket.
 
 ## Skills
 
-Hopper also publishes a consumer-facing agent Skill generated from `apps/docs` — see
-`apps/docs/ai-pipeline/CONTRIBUTING.md` and [ADR 0002](docs/adr/0002-hopper-agent-skill.md).
-Component and token content edits now propagate to three surfaces: the documentation site, the MCP
-server, and that published Skill. It is a build artifact and is not checked in, so it does not
-appear in the table below, which lists the skills used when working _in_ this repository.
+These three encode the workflows of this repository. The installed third-party skills (`accessibility`, `performance`, `pnpm`, `react-aria`, `turborepo`, `vitest`, `workleap-web-configs`) trigger on their own descriptions and need no row here.
 
 | Skill                 | When to use                                                                |
 | --------------------- | -------------------------------------------------------------------------- |
 | `update-tokens`       | Add, update, delete, or deprecate design tokens                            |
-| `learn-from-feedback` | Capture a developer correction into a skill or CLAUDE.md                   |
 | `port-component`      | Port a new component into Hopper from its React Spectrum S2 implementation |
+| `learn-from-feedback` | Capture a developer correction into a skill or an instruction file         |
+
+## Detailed Documentation
+
+- **[CONTRIBUTING.md](CONTRIBUTING.md)** — monorepo setup, installation, and the full command list. Packages must be built before anything runs.
+- **[contributing/](contributing/)** — human-facing guides for [tokens](contributing/tokens.md), [icons](contributing/icons.md) and [components](contributing/components.md).
+- **[docs/adr/](docs/adr/)** — architectural decisions. Consult existing ADRs before proposing a change that contradicts one.
+- **[apps/docs/ai-pipeline/CONTRIBUTING.md](apps/docs/ai-pipeline/CONTRIBUTING.md)** — how a content edit reaches the documentation site, the MCP server, and the published Hopper agent Skill. See also [ADR 0002](docs/adr/0002-hopper-agent-skill.md).
