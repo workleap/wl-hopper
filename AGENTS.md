@@ -64,6 +64,68 @@ Path patterns: packages/components/src/**/*.tsx
 - Use PascalCase for component names.
 - Use consistent indentation (4 spaces).
 
+## Components must never lock consumers in
+
+Title: Components must never lock consumers in
+
+Description: Every component must stay overridable: styling props on the root, wrapper and (when relevant) nested elements, an appendable `className`, `ref` access to those same elements through the existing `wrapperProps` / `overlayProps` / `popoverProps` pattern, and a callback slot for any native or react-aria event.
+Two hard constraints when forwarding events: always pass the original event arguments through to the consumer's handler, and never stop event propagation.
+
+Path patterns: packages/components/src/**/*.tsx
+
+## Favor composition and slots over configuration props
+
+Title: Favor composition and slots over configuration props
+
+Description: Keep a component's structure decoupled from its contents so the contents can be swapped without changing the component. Prefer slot-based children over props that accept rendered content, and reuse the shared placeholder (`Header`, `Content`) and collection (`Section`, `Item`) components instead of component-specific equivalents.
+
+Good: `<Button><BellIcon /><Text>Notify</Text></Button>`
+Bad: `<Button icon={<BellIcon />} label="Notify" />`
+
+Path patterns: packages/components/src/**/*.tsx
+
+## Components come with brand-matching defaults
+
+Title: Components come with brand-matching defaults
+
+Description: Hopper is a design system, not an opinionless library: ship defaults that encode brand decisions so consumers configure as few props as possible.
+In a composition, the parent decides the child's appearance — a `Button` inside a `Card` gets its variant from `Card`, not from the consumer — so a brand update becomes a change of defaults rather than a change in every consumer's code.
+
+Path patterns: packages/components/src/**/*.tsx
+
+## Support running multiple versions in parallel
+
+Title: Support running multiple versions in parallel
+
+Description: Hopper packages are shared dependencies of Module Federation applications, so two versions must be able to coexist while an update rolls out. Releases stay backwards compatible (with a compatibility package when needed), CSS class names are hashed per release, and design token CSS custom properties stay scopable per remote module or hashed per release.
+Treat anything that relies on a single global, unscoped CSS name as a breaking change.
+
+Path patterns: packages/**/*.{ts,tsx,css}
+
+## Prefer a native-based sibling component for mobile
+
+Title: Prefer a native-based sibling component for mobile
+
+Description: Where the native mobile experience differs sharply from the web one, add a sibling component built on the native element (e.g. an `HtmlSelect` next to `Select`) rather than emulating native mobile behavior inside the richer component.
+
+Path patterns: packages/components/src/**/*.tsx
+
+## Components must be SSR-safe
+
+Title: Components must be SSR-safe
+
+Description: Components must render on the server. Never touch `window`, `document` or other browser-only globals during render or module initialization — guard them or move them into effects. Avoid render-time values that diverge between server and client (random ids, `Date.now()`); use React's id primitives instead.
+
+Path patterns: packages/components/src/**/*.tsx
+
+## Keep runtime dependencies minimal
+
+Title: Keep runtime dependencies minimal
+
+Description: Hopper ships into our products' bundles, so every runtime dependency is a cost paid by end users on low-bandwidth connections. Do not add one without a strong reason — prefer the existing stack (React, react-aria, TypeScript, CSS) or a small local utility over a new package.
+
+Path patterns: packages/**/package.json
+
 ## Skills
 
 | Skill | When to use |
