@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.13
+
+### Patch Changes
+
+- 02b6ae1: Update the ShareGate SegmentedControl unselected text color to use the weak neutral text token instead of the weakest.
+
 ## 4.0.12
 
 ### Patch Changes
