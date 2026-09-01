@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 3.4.2
+
+### Patch Changes
+
+- a24e3e5: Update the ShareGate Upsell Button background gradient to end on `limeburst.100` instead of `persimmon.300`.
+- @hopper-ui/icons@3.0.2
+
 ## 3.4.1
 
 ### Patch Changes
