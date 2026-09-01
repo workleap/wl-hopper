@@ -381,14 +381,14 @@
                 "$type": "gradient",
                 "$value": [
                     { "color": "{limeburst.50}", "position": 0 },
-                    { "color": "{persimmon.300}", "position": 1.5156 }
+                    { "color": "{limeburst.100}", "position": 1.5156 }
                 ]
             },
             "background-loading": {
                 "$type": "gradient",
                 "$value": [
                     { "color": "{limeburst.50}", "position": 0 },
-                    { "color": "{persimmon.300}", "position": 1.5156 }
+                    { "color": "{limeburst.100}", "position": 1.5156 }
                 ]
             },
             "color-loading": {
