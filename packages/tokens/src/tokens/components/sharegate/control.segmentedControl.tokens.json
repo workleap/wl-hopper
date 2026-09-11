@@ -10,7 +10,7 @@
         },
         "text-color-selected": {
             "$type": "color",
-            "$value": "{neutral.text}"
+            "$value": "{neutral.text-always-light}"
         },
         "icon-color": {
             "$type": "color",
@@ -18,7 +18,7 @@
         },
         "icon-color-selected": {
             "$type": "color",
-            "$value": "{neutral.icon}"
+            "$value": "{neutral.icon-always-light}"
         },
         "box-shadow": {
             "$type": "shadow",
