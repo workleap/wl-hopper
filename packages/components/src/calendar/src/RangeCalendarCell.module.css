@@ -44,7 +44,7 @@
 }
 
 .hop-RangeCalendarCell[data-selection-start]:not([data-disabled]) span, .hop-RangeCalendarCell[data-selection-end]:not([data-disabled]) span {
-    --hop-RangeCalendarCell-data-edge-selected-color: var(--hop-neutral-text-selected);
+    --hop-RangeCalendarCell-data-edge-selected-color: var(--hop-comp-calendar-cell-color-selected);
 
     z-index: 2;
     color: var(--hop-RangeCalendarCell-data-edge-selected-color);
