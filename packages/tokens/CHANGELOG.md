@@ -1,5 +1,11 @@
 # @hopper-ui/tokens
 
+## 5.3.14
+
+### Patch Changes
+
+- 67e4789: Updated the core `iris-400` color to `#7367d2`.
+
 ## 5.3.13
 
 ### Patch Changes
