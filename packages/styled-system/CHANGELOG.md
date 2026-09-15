@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.15
+
+### Patch Changes
+
+- 67e4789: Updated the core `iris-400` color to `#7367d2`.
+
 ## 4.0.14
 
 ### Patch Changes

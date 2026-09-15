@@ -1,5 +1,12 @@
 # @hopper-ui/components
 
+## 3.4.3
+
+### Patch Changes
+
+- 67e4789: Updated the core `iris-400` color to `#7367d2`.
+- @hopper-ui/icons@3.0.2
+
 ## 3.4.2
 
 ### Patch Changes
