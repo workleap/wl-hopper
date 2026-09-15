@@ -59,7 +59,7 @@
 }
 
 .hop-CalendarCell[data-selected] {
-    --hop-CalendarCell-data-selected-color: var(--hop-neutral-text-selected);
+    --hop-CalendarCell-data-selected-color: var(--hop-comp-calendar-cell-color-selected);
 
     color: var(--hop-CalendarCell-data-selected-color);
     background: var(--hop-comp-calendar-cell-background-selected);

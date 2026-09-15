@@ -8,6 +8,10 @@
             "$type": "color",
             "$value": "{neutral.surface-selected}"
         },
+        "cell-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-selected}"
+        },
         "cell-background-press": {
             "$type": "color",
             "$value": "{neutral.surface-press}"
