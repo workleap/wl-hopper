@@ -844,7 +844,7 @@
         },
         "surface-selected": {
             "$type": "color",
-            "$value": "{iris.300}"
+            "$value": "{iris.400}"
         },
         "surface-disabled": {
             "$type": "color",

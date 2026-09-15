@@ -8,6 +8,10 @@
             "$type": "color",
             "$value": "{primary.surface-selected}"
         },
+        "cell-color-selected": {
+            "$type": "color",
+            "$value": "{neutral.text-always-light}"
+        },
         "cell-background-press": {
             "$type": "color",
             "$value": "{primary.surface-press}"
