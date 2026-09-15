@@ -14,7 +14,7 @@
         },
         "background-color-selected": {
             "$type": "color",
-            "$value": "{neutral.surface}"
+            "$value": "{primary.surface-selected}"
         },
         "background-color-disabled": {
             "$type": "color",
