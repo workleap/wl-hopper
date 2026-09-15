@@ -1,5 +1,16 @@
 # @hopper-ui/tokens
 
+## 5.3.15
+
+### Patch Changes
+
+- 54daa01: Update the ShareGate SegmentedControl selected state:
+  
+  - Selected label and icon now use the always-light neutral colors
+  - The selected item background is now the selected primary purple, matching Switch
+- 94fc734: - Update the ShareGate dark mode `primary.surface-selected` color to `iris.400`.
+  - Add a `comp-calendar.cell-color-selected` token so the selected Calendar date keeps an accessible contrast ratio on each brand's selected surface.
+
 ## 5.3.14
 
 ### Patch Changes
