@@ -225,6 +225,45 @@ export const GettingStarted = defineDocumentType(() => ({
     }
 }));
 
+export const ShadcnExtension = defineDocumentType(() => ({
+    name: "ShadcnExtension",
+    filePathPattern: "shadcn-extension/**/*.mdx",
+    contentType: "mdx",
+    fields: {
+        title: {
+            type: "string",
+            required: true
+        },
+        menuTitle: {
+            type: "string"
+        },
+        isNewUntil: {
+            type: "date"
+        },
+        description: {
+            type: "string"
+        },
+        section: {
+            type: "string"
+        },
+        order: {
+            type: "number"
+        }
+    },
+    computedFields: {
+        slug: {
+            type: "string",
+            resolve: post => post._raw.sourceFileName.replace(/.mdx$/, "")
+        },
+        section: {
+            type: "string",
+            resolve: post => {
+                return post._raw.sourceFileDir.replace("shadcn-extension/", "");
+            }
+        }
+    }
+}));
+
 const Links = defineNestedType(() => ({
     name: "Links",
     fields: {
@@ -287,7 +326,7 @@ export const Components = defineDocumentType(() => ({
 export default makeSource({
     contentDirPath: "./content",
     contentDirExclude: ["ai"],
-    documentTypes: [Page, Tokens, Components, Icons, Guides, GettingStarted, StyledSystem],
+    documentTypes: [Page, Tokens, Components, Icons, Guides, GettingStarted, StyledSystem, ShadcnExtension],
     mdx: {
         remarkPlugins: [],
         rehypePlugins: rehypePluginOptions

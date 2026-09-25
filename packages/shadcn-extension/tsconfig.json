@@ -1,0 +1,10 @@
+{
+    "extends": "@workleap/typescript-configs/library.json",
+    "exclude": ["dist", "node_modules"],
+    "include": ["**/*", "../../types/*"],
+    "compilerOptions": {
+        "incremental": true,
+        "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json",
+        "customConditions": ["hopper-source"]
+    }
+}

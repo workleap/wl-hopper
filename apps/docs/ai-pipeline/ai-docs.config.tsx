@@ -334,6 +334,21 @@ export const aiDocsConfig: AiDocsConfig = {
             }
         },
 
+        //shadcn-extension
+        "shadcn-extension": {
+            build: {
+                source: "content/shadcn-extension",
+                flatten: false
+            }
+        },
+
+        "shadcn-extension/index.md": {
+            build: {
+                template: "/ai-pipeline/templates/shadcn-extension.mdx",
+                merge: ["/shadcn-extension/overview/introduction.md", "/shadcn-extension/components/Slider.md"]
+            }
+        },
+
         //ai docs
         ai: {
             build: {
@@ -358,7 +373,8 @@ export const aiDocsConfig: AiDocsConfig = {
                     "components/index.md",
                     "components/concepts/index.md",
                     "components/utilities/index.md",
-                    "icons/full/index.md"
+                    "icons/full/index.md",
+                    "shadcn-extension/index.md"
                 ]
             }
         },
@@ -372,7 +388,8 @@ export const aiDocsConfig: AiDocsConfig = {
                     "../../../../packages/styled-system/CHANGELOG.md",
                     "../../../../packages/tokens/CHANGELOG.md",
                     "../../../../packages/icons/CHANGELOG.md",
-                    "../../../../packages/svg-icons/CHANGELOG.md"
+                    "../../../../packages/svg-icons/CHANGELOG.md",
+                    "../../../../packages/shadcn-extension/CHANGELOG.md"
                 ]
             }
         }

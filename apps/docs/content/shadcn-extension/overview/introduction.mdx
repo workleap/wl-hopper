@@ -1,0 +1,104 @@
+---
+title: Introduction
+description: Components ported from the shadcn/ui React Aria registry, styled with Hopper design tokens.
+order: 1
+---
+
+`@hopper-ui/shadcn-extension` fills a specific gap: a design calls for a component that
+[shadcn/ui](https://ui.shadcn.com) has and Hopper does not. Rather than wait for a full Hopper port
+or hand-roll it in product code, you get a supported component in the meantime.
+
+It is a first-class package, supported on the same terms as `@hopper-ui/components`. It is not a
+staging area and not a playground.
+
+## How it differs from `@hopper-ui/components`
+
+| | `@hopper-ui/components` | `@hopper-ui/shadcn-extension` |
+| --- | --- | --- |
+| API | Hopper's naming conventions | React Aria's, verbatim |
+| Styling | Style props and `UNSAFE_*` | `className` |
+| Look | Hopper's design language | shadcn's `nova` style, painted with Hopper tokens |
+| Theming | Component tokens | Semantic tokens only |
+
+Both are built on [React Aria Components](https://react-aria.adobe.com), so behaviour, keyboard
+support and accessibility are the same underneath.
+
+## Which one do I use?
+
+**A component name lives in exactly one package.** If it exists in `@hopper-ui/components`, use that
+one — there will never be two. When a component graduates from this package into
+`@hopper-ui/components`, the copy here is deprecated and removed at the next major.
+
+## Installation
+
+<PackageInstallation library="shadcn-extension" mode="prod" />
+
+Import the stylesheet alongside Hopper's:
+
+```css
+@import url("@hopper-ui/components/index.css");
+@import url("@hopper-ui/shadcn-extension/index.css");
+@import url("@hopper-ui/styled-system/theme/workleap.css");
+```
+
+### `HopperProvider` is required
+
+The `--hop-*` custom properties are declared on a version-stamped root class, not on `:root`. A
+component rendered outside a `HopperProvider` subtree gets unresolved `var()`s and no colour.
+
+```tsx
+import { HopperProvider } from "@hopper-ui/components";
+import { Slider } from "@hopper-ui/shadcn-extension";
+
+function App() {
+    return (
+        <HopperProvider colorScheme="light">
+            <Slider aria-label="Volume" defaultValue={50} />
+        </HopperProvider>
+    );
+}
+```
+
+## Styling
+
+`className` is the only styling API. There are no style props and no `UNSAFE_*` props.
+
+Every rule ships inside `@layer hopper-shadcn-extension`, and layered styles always lose to unlayered
+ones — so your class wins regardless of the order stylesheets happen to load in.
+
+Three targeting surfaces are public API, and all three are covered by Hopper's versioning policy:
+
+| Surface | Example |
+| --- | --- |
+| The root `className` prop | `<Slider className="my-slider" />` |
+| Stable Hopper selectors | `.hop-Slider__track` |
+| shadcn's slot attributes | `[data-slot="slider-thumb"]` |
+
+Internal elements are reachable only through the second and third — the components do not take a
+`classNames` object.
+
+<Callout>
+`validate_hopper_code` and the published Hopper agent Skill currently flag `className` as a violation,
+because that rule is written for `@hopper-ui/components`. On a component from this package the
+warning is a false positive and can be ignored. Teaching the validator about this package is tracked
+separately.
+</Callout>
+
+## Tokens
+
+Colours, radii and motion resolve to Hopper **semantic** tokens, so brand and dark mode work exactly
+as they do for the rest of Hopper. This package adds nothing to `@hopper-ui/tokens`: geometry shadcn
+has no Hopper equivalent for is declared as a local custom property on the component's root class,
+for example `--hop-Slider-thumb-size`.
+
+## What we change when porting
+
+We follow the upstream component closely, with three standing exceptions:
+
+1. Tailwind utilities become token-backed CSS. `bg-white` becomes `--hop-neutral-surface`, so the
+   thumb does not stay white in dark mode.
+2. State styling hangs off React Aria's `data-*` attributes rather than CSS pseudo-classes. React Aria
+   moves focus onto a visually hidden input, so a `:focus-visible` rule on the wrapper never matches.
+3. Dead upstream declarations are dropped rather than faithfully copied.
+
+Everything else — prop names, defaults, structure, exports — matches the registry component.

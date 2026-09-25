@@ -2,7 +2,17 @@ import fs from "fs";
 import { glob } from "glob";
 import path from "path";
 
-const CONTENT_FILES = path.join(process.cwd(), "content", "components", "**", "*.mdx").replace(/\\/g, "/");
+// One entry per package whose MDX may carry an `<Example src="…" />`. `prefix` is the leading segment
+// of the `src` value; it is stripped before being appended to `importBase`. The components package is
+// the fallback and therefore has no prefix.
+const EXAMPLE_SOURCES = [
+    { prefix: "icons", importBase: "@/../../packages/icons" },
+    { prefix: "shadcn-extension", importBase: "@/../../packages/shadcn-extension/src" }
+];
+
+const CONTENT_FILES = ["components", "shadcn-extension"].map(section =>
+    path.join(process.cwd(), "content", section, "**", "*.mdx").replace(/\\/g, "/")
+);
 const OUTPUT_FILE = "Preview.ts";
 const OUTPUT_DIR = "examples";
 
@@ -22,7 +32,17 @@ function getExamplePath(filePath: string[]) {
 }
 
 function getMdxFiles() {
-    return glob.sync(CONTENT_FILES);
+    return CONTENT_FILES.flatMap(pattern => glob.sync(pattern));
+}
+
+function getImportPath(examplePath: string) {
+    const source = EXAMPLE_SOURCES.find(({ prefix }) => examplePath.startsWith(`${prefix}/`));
+
+    if (source) {
+        return `${source.importBase}/${examplePath.slice(source.prefix.length + 1)}.tsx`;
+    }
+
+    return `@/../../packages/components/src/${examplePath}.tsx`;
 }
 
 function generateDemoFile(content?: string) {
@@ -43,18 +63,9 @@ function generatePreviewRef() {
 
     let previewEntries = "";
     for (const examplePath of examplePaths) {
-        let importPath;
-
-        if (examplePath.startsWith("icons")) {
-            const modifiedExamplePath = examplePath.replace(/^icons\//, "");
-            importPath = `@/../../packages/icons/${modifiedExamplePath}.tsx`;
-        } else {
-            importPath = `@/../../packages/components/src/${examplePath}.tsx`;
-        }
-
         previewEntries += `
     "${examplePath}": {
-        component: lazy(() => import("${importPath}"))
+        component: lazy(() => import("${getImportPath(examplePath)}"))
     },`;
     }
 

@@ -107,6 +107,14 @@ export const skillsConfig: SkillsConfig = {
                     to: "references/guides/styled-system/introduction.md"
                 },
                 { from: "/components/utilities/useDebounce.md", to: "references/guides/utilities/useDebounce.md" },
+
+                // shadcn extension — a separate package with the opposite styling contract, so the
+                // overview has to travel with the component docs or an agent will apply the wrong rules.
+                {
+                    from: "/shadcn-extension/overview/introduction.md",
+                    to: "references/shadcn-extension/introduction.md"
+                },
+                { from: "/shadcn-extension/components/*.md", to: "references/shadcn-extension/components/" },
                 { from: "/ai/figma-conventions.md", to: "references/guides/figma-conventions.md" },
 
                 // hand-authored guides and workflows

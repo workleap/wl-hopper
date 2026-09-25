@@ -1,0 +1,120 @@
+@layer hopper-shadcn-extension {
+    .hop-Slider {
+        --hop-Slider-track-size: 0.25rem;
+        --hop-Slider-thumb-size: 0.75rem;
+        --hop-Slider-thumb-border-size: 0.0625rem;
+        --hop-Slider-ring-size: 0.1875rem;
+        --hop-Slider-hit-area-inset: -0.5rem;
+        --hop-Slider-vertical-min-size: 10rem;
+        --hop-Slider-track-color: var(--hop-neutral-surface-weak);
+        --hop-Slider-range-color: var(--hop-primary-surface-strong);
+        --hop-Slider-thumb-color: var(--hop-neutral-surface);
+        --hop-Slider-thumb-border-color: var(--hop-neutral-border);
+        --hop-Slider-ring-color: color-mix(in srgb, var(--hop-primary-border-focus) 50%, transparent);
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        inline-size: 100%;
+
+        touch-action: none;
+
+        user-select: none;
+    }
+
+    .hop-Slider[data-orientation="vertical"] {
+        flex-direction: column;
+
+        inline-size: auto;
+        block-size: 100%;
+        min-block-size: var(--hop-Slider-vertical-min-size);
+    }
+
+    .hop-Slider[data-disabled] {
+        opacity: 0.5;
+    }
+
+    /* Track */
+    .hop-Slider__track {
+        position: relative;
+
+        flex-grow: 1;
+
+        overflow: hidden;
+
+        background-color: var(--hop-Slider-track-color);
+        border-radius: var(--hop-shape-pill);
+
+        user-select: none;
+    }
+
+    .hop-Slider[data-orientation="horizontal"] .hop-Slider__track {
+        inline-size: 100%;
+        block-size: var(--hop-Slider-track-size);
+    }
+
+    .hop-Slider[data-orientation="vertical"] .hop-Slider__track {
+        inline-size: var(--hop-Slider-track-size);
+        block-size: 100%;
+    }
+
+    /* Fill. Its position and size are set inline by React Aria, so only the paint belongs here. */
+    .hop-Slider__range {
+        background-color: var(--hop-Slider-range-color);
+
+        user-select: none;
+    }
+
+    /* Thumb. React Aria sets position, offset and transform inline. */
+    .hop-Slider__thumb {
+        --ring-size: 0;
+
+        display: block;
+
+        flex-shrink: 0;
+
+        box-sizing: border-box;
+        inline-size: var(--hop-Slider-thumb-size);
+        block-size: var(--hop-Slider-thumb-size);
+
+        background-color: var(--hop-Slider-thumb-color);
+        border: var(--hop-Slider-thumb-border-size) solid var(--hop-Slider-thumb-border-color);
+        border-radius: var(--hop-shape-circle);
+        outline: none;
+
+        box-shadow: 0 0 0 var(--ring-size) var(--hop-Slider-ring-color);
+
+        transition: box-shadow var(--hop-easing-duration-2);
+
+        user-select: none;
+    }
+
+    /* Enlarges the pointer target beyond the visible thumb. */
+    .hop-Slider__thumb::after {
+        content: "";
+
+        position: absolute;
+        inset: var(--hop-Slider-hit-area-inset);
+    }
+
+    .hop-Slider[data-orientation="horizontal"] .hop-Slider__thumb {
+        inset-block-start: 50%;
+    }
+
+    .hop-Slider[data-orientation="vertical"] .hop-Slider__thumb {
+        inset-inline-start: 50%;
+    }
+
+    /*
+     * React Aria moves focus to a visually hidden input inside the thumb, so the thumb element never
+     * matches :focus-visible. Its data attributes are the working equivalent of shadcn's
+     * hover:/focus-visible:/active: ring.
+     */
+    .hop-Slider__thumb[data-hovered],
+    .hop-Slider__thumb[data-focus-visible],
+    .hop-Slider__thumb[data-dragging] {
+        --ring-size: var(--hop-Slider-ring-size);
+    }
+}
