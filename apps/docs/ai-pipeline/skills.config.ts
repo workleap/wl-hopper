@@ -36,7 +36,8 @@ export const skillsConfig: SkillsConfig = {
                 name: "hopper",
                 description: [
                     "Build, review, and migrate UI with Workleap's Hopper design system (@hopper-ui/components,",
-                    "@hopper-ui/icons, @hopper-ui/styled-system, @hopper-ui/tokens). Use whenever writing or",
+                    "@hopper-ui/icons, @hopper-ui/styled-system, @hopper-ui/tokens, @hopper-ui/shadcn-extension).",
+                    "Use whenever writing or",
                     "reviewing React/JSX that imports from @hopper-ui/*, renders HopperProvider, uses Hopper style",
                     "props or UNSAFE_* escape hatches, references hop- design tokens or --hop-* CSS variables, or",
                     "targets the Workleap or ShareGate theme in light or dark mode. Also use when picking Hopper",
@@ -242,6 +243,14 @@ export const skillsConfig: SkillsConfig = {
                         style: "names",
                         pattern: "references/api/<ComponentName>.json",
                         intro: "Props, types and defaults as JSON. Read only when you need an exact type or default — the component file above already lists the common props."
+                    },
+                    {
+                        title: "Shadcn extension",
+                        path: "references/shadcn-extension",
+                        style: "list",
+                        recursive: true,
+                        intro: "A separate package, `@hopper-ui/shadcn-extension`, holding components Hopper does not have. Its contract is the opposite of everything above: React Aria's API verbatim, and `className` instead of style props. Read the introduction before using anything from it.",
+                        tokenHintOverBytes: 20_000
                     },
                     {
                         title: "Guides",

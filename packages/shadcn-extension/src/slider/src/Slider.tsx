@@ -49,7 +49,10 @@ function Slider<T extends SliderValue = SliderValue>({ className, ...props }: Sl
                             />
                         </SliderTrack>
                         {state.values.map((_, index) => (
+                            // The index is the thumb's identity — React Aria takes it as `index` to
+                            // bind the thumb to its value.
                             <SliderThumb
+                                // eslint-disable-next-line react/no-array-index-key
                                 key={index}
                                 className={clsx(GlobalSliderThumbCssSelector, styles["hop-Slider__thumb"])}
                                 data-slot="slider-thumb"

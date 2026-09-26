@@ -23,12 +23,16 @@ nothing to compose, and `children` is not accepted.
 
 The rendered tree exposes four styling hooks:
 
-| Element | Hopper selector | shadcn slot |
-| --- | --- | --- |
-| Root | `.hop-Slider` | `[data-slot="slider"]` |
-| Track | `.hop-Slider__track` | `[data-slot="slider-track"]` |
-| Fill | `.hop-Slider__range` | `[data-slot="slider-range"]` |
-| Thumb | `.hop-Slider__thumb` | `[data-slot="slider-thumb"]` |
+<SimpleTable
+    aria-label="Styling hooks exposed by each element of the rendered slider"
+    headers={["Element", "Hopper selector", "shadcn slot"]}
+    data={[
+        { element: "Root", selector: ".hop-Slider", slot: '[data-slot="slider"]' },
+        { element: "Track", selector: ".hop-Slider__track", slot: '[data-slot="slider-track"]' },
+        { element: "Fill", selector: ".hop-Slider__range", slot: '[data-slot="slider-range"]' },
+        { element: "Thumb", selector: ".hop-Slider__thumb", slot: '[data-slot="slider-thumb"]' }
+    ]}
+/>
 
 ### Labelling
 
@@ -73,19 +77,23 @@ attributes in the table above.
 
 Several values are exposed as custom properties on the root, which is usually the lighter touch:
 
-| Property | Default |
-| --- | --- |
-| `--hop-Slider-track-size` | `0.25rem` |
-| `--hop-Slider-thumb-size` | `0.75rem` |
-| `--hop-Slider-thumb-border-size` | `0.0625rem` |
-| `--hop-Slider-ring-size` | `0.1875rem` |
-| `--hop-Slider-hit-area-inset` | `-0.5rem` |
-| `--hop-Slider-vertical-min-size` | `10rem` |
-| `--hop-Slider-track-color` | `var(--hop-neutral-surface-weak)` |
-| `--hop-Slider-range-color` | `var(--hop-primary-surface-strong)` |
-| `--hop-Slider-thumb-color` | `var(--hop-neutral-surface)` |
-| `--hop-Slider-thumb-border-color` | `var(--hop-neutral-border)` |
-| `--hop-Slider-ring-color` | 50% `var(--hop-primary-border-focus)` |
+<SimpleTable
+    aria-label="Custom properties declared on the slider root"
+    headers={["Property", "Default"]}
+    data={[
+        { property: "--hop-Slider-track-size", value: "0.25rem" },
+        { property: "--hop-Slider-thumb-size", value: "0.75rem" },
+        { property: "--hop-Slider-thumb-border-size", value: "0.0625rem" },
+        { property: "--hop-Slider-ring-size", value: "0.1875rem" },
+        { property: "--hop-Slider-hit-area-inset", value: "-0.5rem" },
+        { property: "--hop-Slider-vertical-min-size", value: "10rem" },
+        { property: "--hop-Slider-track-color", value: "var(--hop-neutral-surface-weak)" },
+        { property: "--hop-Slider-range-color", value: "var(--hop-primary-surface-strong)" },
+        { property: "--hop-Slider-thumb-color", value: "var(--hop-neutral-surface)" },
+        { property: "--hop-Slider-thumb-border-color", value: "var(--hop-neutral-border)" },
+        { property: "--hop-Slider-ring-color", value: "50% var(--hop-primary-border-focus)" }
+    ]}
+/>
 
 ## Best Practices
 

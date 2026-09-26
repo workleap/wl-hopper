@@ -13,12 +13,20 @@ staging area and not a playground.
 
 ## How it differs from `@hopper-ui/components`
 
-| | `@hopper-ui/components` | `@hopper-ui/shadcn-extension` |
-| --- | --- | --- |
-| API | Hopper's naming conventions | React Aria's, verbatim |
-| Styling | Style props and `UNSAFE_*` | `className` |
-| Look | Hopper's design language | shadcn's `nova` style, painted with Hopper tokens |
-| Theming | Component tokens | Semantic tokens only |
+<SimpleTable
+    aria-label="How the shadcn extension differs from the components package"
+    headers={["", "@hopper-ui/components", "@hopper-ui/shadcn-extension"]}
+    data={[
+        { axis: "API", hopper: "Hopper's naming conventions", extension: "React Aria's, verbatim" },
+        { axis: "Styling", hopper: "Style props and UNSAFE_*", extension: "className" },
+        {
+            axis: "Look",
+            hopper: "Hopper's design language",
+            extension: "shadcn's nova style, painted with Hopper tokens"
+        },
+        { axis: "Theming", hopper: "Component tokens", extension: "Semantic tokens only" }
+    ]}
+/>
 
 Both are built on [React Aria Components](https://react-aria.adobe.com), so behaviour, keyboard
 support and accessibility are the same underneath.
@@ -68,11 +76,15 @@ ones — so your class wins regardless of the order stylesheets happen to load i
 
 Three targeting surfaces are public API, and all three are covered by Hopper's versioning policy:
 
-| Surface | Example |
-| --- | --- |
-| The root `className` prop | `<Slider className="my-slider" />` |
-| Stable Hopper selectors | `.hop-Slider__track` |
-| shadcn's slot attributes | `[data-slot="slider-thumb"]` |
+<SimpleTable
+    aria-label="Public styling surfaces"
+    headers={["Surface", "Example"]}
+    data={[
+        { surface: "The root className prop", example: '<Slider className="my-slider" />' },
+        { surface: "Stable Hopper selectors", example: ".hop-Slider__track" },
+        { surface: "shadcn's slot attributes", example: '[data-slot="slider-thumb"]' }
+    ]}
+/>
 
 Internal elements are reachable only through the second and third — the components do not take a
 `classNames` object.

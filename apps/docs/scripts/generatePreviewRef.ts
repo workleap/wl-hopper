@@ -1,15 +1,10 @@
 import fs from "fs";
 import { glob } from "glob";
 import path from "path";
+import { resolveExampleSource } from "../configs/examplePackages.ts";
 
-// One entry per package whose MDX may carry an `<Example src="…" />`. `prefix` is the leading segment
-// of the `src` value; it is stripped before being appended to `importBase`. The components package is
-// the fallback and therefore has no prefix.
-const EXAMPLE_SOURCES = [
-    { prefix: "icons", importBase: "@/../../packages/icons" },
-    { prefix: "shadcn-extension", importBase: "@/../../packages/shadcn-extension/src" }
-];
-
+// Every docs section whose MDX may carry an `<Example src="…" />`. Which package a given `src`
+// resolves to is decided by `resolveExampleSource`, shared with the two runtime call sites.
 const CONTENT_FILES = ["components", "shadcn-extension"].map(section =>
     path.join(process.cwd(), "content", section, "**", "*.mdx").replace(/\\/g, "/")
 );
@@ -36,13 +31,9 @@ function getMdxFiles() {
 }
 
 function getImportPath(examplePath: string) {
-    const source = EXAMPLE_SOURCES.find(({ prefix }) => examplePath.startsWith(`${prefix}/`));
+    const { packagePath, rest } = resolveExampleSource(examplePath);
 
-    if (source) {
-        return `${source.importBase}/${examplePath.slice(source.prefix.length + 1)}.tsx`;
-    }
-
-    return `@/../../packages/components/src/${examplePath}.tsx`;
+    return `@/../../packages/${packagePath}/${rest}.tsx`;
 }
 
 function generateDemoFile(content?: string) {
