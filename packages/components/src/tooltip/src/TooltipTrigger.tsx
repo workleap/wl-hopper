@@ -95,9 +95,11 @@ function FocusableTrigger(props: TooltipTriggerProps) {
     });
 
     // HACK: a disabled element doesn't fire event, therefore the element is wrapped in a div.
+    // The context is cleared for the child, otherwise a RAC child can sync its own element (e.g. a Checkbox's hidden input)
+    // into the trigger ref after the wrapper, such as inside a Table, and the tooltip anchors to that element instead.
     const trigger = isChildDisabled ? (
         <DisabledTriggerWrapper ref={(context?.ref as Ref<HTMLDivElement>) ?? undefined} {...props}>
-            {child}
+            <FocusableContext.Provider value={null}>{child}</FocusableContext.Provider>
         </DisabledTriggerWrapper>
     ) : (
         cloneElement(child, { ref: mergeRefs(getChildRef(child), context?.ref) })

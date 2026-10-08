@@ -1,10 +1,12 @@
 import { SparklesIcon } from "@hopper-ui/icons";
 import { allColorModesAndThemes } from "@hopper-ui/storybook-addon";
 import { Div } from "@hopper-ui/styled-system";
+import { Cell, Column, Row, Table, TableBody, TableHeader } from "react-aria-components";
 import type { Meta, StoryObj } from "storybook-react-rsbuild";
 
 import { Avatar } from "../../../avatar/index.ts";
 import { Button } from "../../../buttons/index.ts";
+import { Checkbox } from "../../../checkbox/index.ts";
 import { TextField } from "../../../inputs/index.ts";
 import { Flex, Grid, Stack } from "../../../layout/index.ts";
 import { Link } from "../../../link/index.ts";
@@ -182,6 +184,43 @@ export const DisabledDOMTrigger = {
             </button>
             <Tooltip {...args} />
         </TooltipTrigger>
+    )
+} satisfies Story;
+
+export const DisabledCheckboxTrigger = {
+    render: args => (
+        <TooltipTrigger isOpen>
+            <Checkbox isDisabled aria-label="Select row" />
+            <Tooltip {...args} />
+        </TooltipTrigger>
+    )
+} satisfies Story;
+
+export const DisabledCheckboxTriggerInTable = {
+    render: args => (
+        <Table aria-label="Users">
+            <TableHeader>
+                <Column isRowHeader>Name</Column>
+                <Column>Selection</Column>
+            </TableHeader>
+            <TableBody>
+                <Row>
+                    <Cell>Adele Vance</Cell>
+                    <Cell>
+                        <TooltipTrigger isOpen>
+                            <Checkbox isDisabled aria-label="Select Adele Vance" />
+                            <Tooltip {...args} />
+                        </TooltipTrigger>
+                    </Cell>
+                </Row>
+                <Row>
+                    <Cell>Alex Wilber</Cell>
+                    <Cell>
+                        <Checkbox aria-label="Select Alex Wilber" />
+                    </Cell>
+                </Row>
+            </TableBody>
+        </Table>
     )
 } satisfies Story;
 
