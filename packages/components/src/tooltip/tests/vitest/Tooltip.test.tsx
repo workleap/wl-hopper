@@ -1,6 +1,16 @@
-import { Button } from "@hopper-ui/components";
+import { Button, Checkbox } from "@hopper-ui/components";
 import { render, screen } from "@hopper-ui/test-utils";
-import { createRef } from "react";
+import { type RefObject, createRef, useEffect } from "react";
+import {
+    Cell,
+    Column,
+    TooltipContext as RACTooltipContext,
+    Row,
+    Table,
+    TableBody,
+    TableHeader,
+    useSlottedContext
+} from "react-aria-components";
 
 import { Tooltip } from "../../src/Tooltip.tsx";
 import { TooltipContext } from "../../src/TooltipContext.ts";
@@ -86,5 +96,44 @@ describe("Tooltip", () => {
 
         expect(ref.current).not.toBeNull();
         expect(ref.current instanceof HTMLDivElement).toBeTruthy();
+    });
+
+    it("should anchor the tooltip on the wrapper of a disabled RAC trigger inside a table", () => {
+        let triggerRef: RefObject<Element | null> | undefined;
+
+        function TriggerRefProbe() {
+            const context = useSlottedContext(RACTooltipContext);
+
+            useEffect(() => {
+                triggerRef = context?.triggerRef;
+            });
+
+            return null;
+        }
+
+        render(
+            <Table aria-label="Users">
+                <TableHeader>
+                    <Column isRowHeader>Name</Column>
+                    <Column>Selection</Column>
+                </TableHeader>
+                <TableBody>
+                    <Row>
+                        <Cell>Adele Vance</Cell>
+                        <Cell>
+                            <TooltipTrigger>
+                                <Checkbox isDisabled aria-label="Select row" />
+                                <TriggerRefProbe />
+                            </TooltipTrigger>
+                        </Cell>
+                    </Row>
+                </TableBody>
+            </Table>
+        );
+
+        const input = screen.getByRole("checkbox");
+        expect(triggerRef?.current).not.toBe(input);
+        expect(triggerRef?.current).toBeInstanceOf(HTMLDivElement);
+        expect(triggerRef?.current?.contains(input)).toBeTruthy();
     });
 });
