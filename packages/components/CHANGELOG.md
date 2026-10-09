@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.4.5
+
+### Patch Changes
+
+- 65835d4: Fixed `TooltipTrigger` anchoring the tooltip to the wrong element when the trigger is a disabled React Aria component, such as a disabled `Checkbox`. `Focusable` is no longer needed as a workaround.
+
 ## 3.4.4
 
 ### Patch Changes
