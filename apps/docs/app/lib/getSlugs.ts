@@ -1,4 +1,11 @@
-import { allComponents, allGettingStarteds, allIcons, allStyledSystems, allTokens } from "@/.contentlayer/generated";
+import {
+    allComponents,
+    allGettingStarteds,
+    allIcons,
+    allShadcnExtensions,
+    allStyledSystems,
+    allTokens
+} from "@/.contentlayer/generated";
 
 export function getGettingStartedSlugs() {
     return allGettingStarteds.map(({ section, slug }) => ({
@@ -8,6 +15,12 @@ export function getGettingStartedSlugs() {
 
 export function getStyledSystemSlugs() {
     return allStyledSystems.map(({ section, slug }) => ({
+        slug: [section, slug]
+    }));
+}
+
+export function getShadcnExtensionSlugs() {
+    return allShadcnExtensions.map(({ section, slug }) => ({
         slug: [section, slug]
     }));
 }

@@ -14,6 +14,7 @@
 | `packages/tokens/**`                         | `packages/tokens/AGENTS.md`           |
 | `packages/icons/**`, `packages/svg-icons/**` | `packages/icons/AGENTS.md`            |
 | `apps/docs/**`                               | `apps/docs/AGENTS.md`                 |
+| `packages/shadcn-extension/**`               | `packages/shadcn-extension/AGENTS.md` |
 
 Claude Code attaches the rules below itself when it reads a matching file. Every other agent — and any subagent, which does not inherit the attachment — MUST read the one whose path matches.
 
@@ -44,6 +45,7 @@ Accepted decision records. They own the rationale and the mechanism; the instruc
 | Naming a prop, an event handler, or a ref                                     | [ADR 0007](docs/adr/0007-component-api-naming-conventions.md)                     |
 | A class name, a token declaration, or a breaking change                       | [ADR 0008](docs/adr/0008-versioning-for-parallel-releases.md)                     |
 | Keyboard behavior, focus rings, or an accessible name                         | [ADR 0009](docs/adr/0009-accessibility-baseline.md)                               |
+| Anything under `packages/shadcn-extension/`, or porting a shadcn component    | [ADR 0010](docs/adr/0010-shadcn-flavoured-extension-package.md)                   |
 
 ## Hard Rules (Non-Negotiable)
 
@@ -67,7 +69,7 @@ Accepted decision records. They own the rationale and the mechanism; the instruc
 - Test: `pnpm test`
 - Lint: `pnpm lint`
 
-Turbo filters on the `name` field, not the directory: `@hopper-ui/components`, `@hopper-ui/icons`, `@hopper-ui/styled-system`, `@hopper-ui/svg-icons`, `@hopper-ui/tokens`, `@hopper-ui/mcp-server`, `docs`, `basic`.
+Turbo filters on the `name` field, not the directory: `@hopper-ui/components`, `@hopper-ui/icons`, `@hopper-ui/shadcn-extension`, `@hopper-ui/styled-system`, `@hopper-ui/svg-icons`, `@hopper-ui/tokens`, `@hopper-ui/mcp-server`, `docs`, `basic`.
 
 After making changes, you MUST ALWAYS validate.
 
@@ -107,15 +109,16 @@ Feature first → user confirms "Looks good" → then tests and stories. Never t
 
 These three encode the workflows of this repository. The installed third-party skills (`accessibility`, `performance`, `pnpm`, `react-aria`, `turborepo`, `vitest`, `workleap-web-configs`) trigger on their own descriptions and need no row here.
 
-| Skill                 | When to use                                                                |
-| --------------------- | -------------------------------------------------------------------------- |
-| `_update-tokens`      | Add, update, delete, or deprecate design tokens                            |
-| `_port-component`     | Port a new component into Hopper from its React Spectrum S2 implementation |
-| `learn-from-feedback` | Capture a developer correction into a skill or an instruction file         |
+| Skill                    | When to use                                                                             |
+| ------------------------ | --------------------------------------------------------------------------------------- |
+| `_update-tokens`         | Add, update, delete, or deprecate design tokens                                         |
+| `_port-component`        | Port a new component into Hopper from its React Spectrum S2 implementation              |
+| `_port-shadcn-component` | Port a component into `@hopper-ui/shadcn-extension` from the shadcn React Aria registry |
+| `learn-from-feedback`    | Capture a developer correction into a skill or an instruction file                      |
 
 ## Detailed Documentation
 
 - **[CONTRIBUTING.md](CONTRIBUTING.md)** — monorepo setup, installation, and the full command list. Packages must be built before anything runs.
 - **[contributing/](contributing/)** — human-facing guides for [tokens](contributing/tokens.md), [icons](contributing/icons.md) and [components](contributing/components.md).
-- **[docs/adr/](docs/adr/)** — nine architectural decision records; 0003 through 0009 are indexed above. ADR 0002 is the only one still `Proposed`.
+- **[docs/adr/](docs/adr/)** — ten architectural decision records; 0003 through 0010 are indexed above. ADR 0002 is the only one still `Proposed`.
 - **[apps/docs/ai-pipeline/CONTRIBUTING.md](apps/docs/ai-pipeline/CONTRIBUTING.md)** — how a content edit reaches the documentation site, the MCP server, and the published Hopper agent Skill. See also [ADR 0002](docs/adr/0002-hopper-agent-skill.md).
