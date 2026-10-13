@@ -34,7 +34,13 @@ interface ParseTarget {
     parsePath: string;
 }
 
-const PACKAGES = path.join(process.cwd(), "..", "..", "packages", "components", "src");
+// Every package whose `src` tree is scanned for documented components. Output is keyed by the bare
+// component name into a single `datas/components/` folder, so a name may only live in one package —
+// the no-overlap invariant recorded in ADR 0010 is what keeps that unambiguous.
+const PACKAGES = [
+    path.join(process.cwd(), "..", "..", "packages", "components", "src"),
+    path.join(process.cwd(), "..", "..", "packages", "shadcn-extension", "src")
+];
 const ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "Icon.tsx");
 const RICH_ICON_FILE = path.join(process.cwd(), "..", "..", "packages", "icons", "src", "RichIcon.tsx");
 const COMPONENT_DATA = path.join(process.cwd(), "datas", "components");
@@ -475,8 +481,9 @@ async function generateComponentData() {
         ]
     };
 
-    // Generate component list for 'components' directory
-    const componentList = await generateComponentList(PACKAGES, options);
+    // Generate the component list for every scanned package
+    const componentLists = await Promise.all(PACKAGES.map(source => generateComponentList(source, options)));
+    const componentList = componentLists.flat();
 
     // Manually add Icon.tsx to the component list
     const iconComponent: ComponentData = { name: "Icon", filePath: ICON_FILE };

@@ -1,15 +1,12 @@
+import { resolveExampleSource } from "@/configs/examplePackages";
 import { highlightCode } from "@/components/highlightCode";
 import fs from "fs/promises";
 import path from "path";
 
 function formatComponentExamplePath(uri: string) {
-    if (uri.includes("icons/docs/")) {
-        const updatedUri = uri.replace("icons/", "");
+    const { packagePath, rest } = resolveExampleSource(uri);
 
-        return path.join(process.cwd(), "..", "..", "packages", "icons", updatedUri);
-    }
-
-    return path.join(process.cwd(), "..", "..", "packages", "components", "src", uri);
+    return path.join(process.cwd(), "..", "..", "packages", ...packagePath.split("/"), rest);
 }
 
 export async function getFileContent(filePath: string) {

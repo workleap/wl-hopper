@@ -1,0 +1,121 @@
+---
+title: Slider
+description: A slider allows a user to select one or more values within a range.
+order: 1
+---
+
+Slider is a port of the [shadcn/ui React Aria Slider](https://ui.shadcn.com/docs/components/aria/slider)
+in the `nova` style, painted with Hopper semantic tokens. Its props, defaults and structure are
+[React Aria's Slider](https://react-aria.adobe.com/Slider), unchanged.
+
+<Example src="shadcn-extension/slider/docs/slider/preview" isOpen />
+
+## Anatomy
+
+### Structure
+
+`Slider` is a single closed component. The track, fill and thumbs are rendered internally — there is
+nothing to compose, and `children` is not accepted.
+
+```tsx
+<Slider aria-label="Volume" defaultValue={50} />
+```
+
+The rendered tree exposes four styling hooks:
+
+<SimpleTable
+    aria-label="Styling hooks exposed by each element of the rendered slider"
+    headers={["Element", "Hopper selector", "shadcn slot"]}
+    data={[
+        { element: "Root", selector: ".hop-Slider", slot: '[data-slot="slider"]' },
+        { element: "Track", selector: ".hop-Slider__track", slot: '[data-slot="slider-track"]' },
+        { element: "Fill", selector: ".hop-Slider__range", slot: '[data-slot="slider-range"]' },
+        { element: "Thumb", selector: ".hop-Slider__thumb", slot: '[data-slot="slider-thumb"]' }
+    ]}
+/>
+
+### Labelling
+
+The component intentionally has no `label` prop and renders no `Label` — that matches shadcn. Every
+slider therefore needs an `aria-label`, or an `aria-labelledby` pointing at your own visible label.
+The example above uses the second form, which is what you want whenever the label should be visible.
+
+## Usage
+
+### Range
+
+Passing an array of values renders one thumb per entry.
+
+<Example src="shadcn-extension/slider/docs/slider/range" />
+
+### Steps
+
+`minValue`, `maxValue` and `step` are React Aria's, with its defaults of `0`, `100` and `1`.
+
+<Example src="shadcn-extension/slider/docs/slider/step" />
+
+### Disabled
+
+<Example src="shadcn-extension/slider/docs/slider/disabled" />
+
+### Vertical
+
+<Example src="shadcn-extension/slider/docs/slider/vertical" />
+
+## Styling
+
+`className` lands on the root element and always wins over the package's own rules, because those
+ship inside `@layer hopper-shadcn-extension`. Reach inner elements through the selectors or slot
+attributes in the table above.
+
+```css
+.my-slider [data-slot="slider-thumb"] {
+    inline-size: 1rem;
+    block-size: 1rem;
+}
+```
+
+Several values are exposed as custom properties on the root, which is usually the lighter touch:
+
+<SimpleTable
+    aria-label="Custom properties declared on the slider root"
+    headers={["Property", "Default"]}
+    data={[
+        { property: "--hop-Slider-track-size", value: "0.25rem" },
+        { property: "--hop-Slider-thumb-size", value: "0.75rem" },
+        { property: "--hop-Slider-thumb-border-size", value: "0.0625rem" },
+        { property: "--hop-Slider-ring-size", value: "0.1875rem" },
+        { property: "--hop-Slider-hit-area-inset", value: "-0.5rem" },
+        { property: "--hop-Slider-vertical-min-size", value: "10rem" },
+        { property: "--hop-Slider-track-color", value: "var(--hop-neutral-surface-weak)" },
+        { property: "--hop-Slider-range-color", value: "var(--hop-primary-surface-strong)" },
+        { property: "--hop-Slider-thumb-color", value: "var(--hop-neutral-surface)" },
+        { property: "--hop-Slider-thumb-border-color", value: "var(--hop-neutral-border)" },
+        { property: "--hop-Slider-ring-color", value: "50% var(--hop-primary-border-focus)" }
+    ]}
+/>
+
+## Best Practices
+
+Sliders should:
+
+- Be used when the precise value matters less than the relative position — volume, opacity, a price
+  filter. Use a number input when the user needs to type an exact figure.
+- Always carry a label, visible where the purpose is not obvious from context.
+- Keep `step` coarse enough that every value is reachable by keyboard in a reasonable number of presses.
+
+## Accessibility
+
+Keyboard support, touch handling, RTL and the announced value all come from React Aria and are not
+modified here. Arrow keys move by `step`, Page Up and Page Down move by a larger increment, and Home
+and End jump to the bounds.
+
+The focus indicator is a ring on the thumb, driven by React Aria's `data-focus-visible` attribute
+rather than a CSS `:focus-visible` rule — focus lives on a visually hidden input inside the thumb, so
+a pseudo-class on the wrapper would never match.
+
+## Props
+
+### Slider
+
+<PropTable component="Slider" />
