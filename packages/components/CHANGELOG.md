@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.5.0
+
+### Minor Changes
+
+- 5471b5b: Add German (`de-DE`), Spanish (`es-ES`) and Dutch (`nl-NL`) translations for the built-in labels, and localize the loading `ListBoxItem` label.
+
 ## 3.4.5
 
 ### Patch Changes
