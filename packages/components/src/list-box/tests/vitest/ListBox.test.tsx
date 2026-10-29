@@ -210,4 +210,16 @@ describe("ListBoxItem", () => {
         const element = screen.getByRole("option");
         expect(element).toHaveAttribute("data-invalid");
     });
+
+    it("should label a loading item in the active locale", () => {
+        render(
+            <ListBox aria-label="list of options" isLoading>
+                <ListBoxItem>Item 1</ListBoxItem>
+            </ListBox>,
+            undefined,
+            { locale: "de-DE" }
+        );
+
+        expect(screen.getAllByRole("option", { name: "Wird geladen" })).toHaveLength(5);
+    });
 });
