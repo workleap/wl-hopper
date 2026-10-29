@@ -29,6 +29,7 @@ import {
 import { AvatarContext, type AvatarSize } from "../../avatar/index.ts";
 import { BadgeContext } from "../../badge/index.ts";
 import { DecorativeCheckbox, type DecorativeCheckboxProps } from "../../checkbox/index.ts";
+import { useLocalizedString } from "../../i18n/index.ts";
 import { IconListContext } from "../../icon-list/index.ts";
 import { DecorativeRadio, type DecorativeRadioProps } from "../../radio/index.ts";
 import { TextContext, type TextSize } from "../../typography/index.ts";
@@ -276,6 +277,7 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
         ...otherProps
     } = ownProps;
 
+    const stringFormatter = useLocalizedString();
     const size = useResponsiveValue(sizeProp) ?? "sm";
     const textValue = textValueProp ?? (typeof childrenProp === "string" ? childrenProp : undefined);
 
@@ -306,7 +308,7 @@ function ListBoxItem<T extends object>(props: ListBoxItemProps<T>, ref: Forwarde
             isDisabled={isLoading || isDisabled}
             data-invalid={isInvalid || undefined}
             data-loading={isLoading || undefined}
-            aria-label={isLoading ? "Loading" : undefined}
+            aria-label={isLoading ? stringFormatter.format("ListBoxItem.loadingAriaLabel") : undefined}
             aria-live={isLoading ? "polite" : undefined}
             {...otherProps}
         >

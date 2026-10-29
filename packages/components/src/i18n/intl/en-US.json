@@ -11,6 +11,7 @@
     "Tag.removeAriaLabel": "Remove",
     "ListBoxItem.loadingTextValue": "Loading Item",
     "ListBoxItem.indicatorAriaLabel": "List Item Selection Indicator",
+    "ListBoxItem.loadingAriaLabel": "Loading",
     "FieldLabel.necessityLabel.required": "Required",
     "FieldLabel.necessityLabel.optional": "Optional",
     "Select.placeholder": "Select an item",
