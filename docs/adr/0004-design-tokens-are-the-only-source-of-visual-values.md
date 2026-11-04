@@ -24,6 +24,8 @@ Because the design system must tolerate multiple versions running in parallel, t
 
 Visual values come from Hopper tokens. Colors, spacing, typography, radii, shadows and elevation, motion, data-visualization colors, and — at the component layer — gradients, borders and backdrop filters are referenced through tokens rather than written as literals.
 
+> **Scope.** This ADR governs `@hopper-ui/components` and the rest of the packages in this repository. It does not govern `@hopper-ui/shadcn-extension`, which deliberately departs from it — see [ADR-0010](0010-shadcn-flavoured-extension-package.md).
+
 This holds whether the component is a Hopper component, a locally built one, or a one-off layout.
 
 Two categories have no token family, and literals there are expected rather than a defect:

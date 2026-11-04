@@ -47,6 +47,7 @@
         "@hopper-ui/components": "workspace:*",
         "@hopper-ui/icons": "workspace:*",
         "@hopper-ui/rslib-config": "workspace:*",
+        "@hopper-ui/shadcn-extension": "workspace:*",
         "@hopper-ui/svg-icons": "workspace:*",
         "@hopper-ui/tokens": "workspace:*",
         "@internationalized/string-compiler": "3.4.1",

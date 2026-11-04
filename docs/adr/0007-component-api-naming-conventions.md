@@ -14,6 +14,8 @@ The conventions follow from ADR-0003. Hopper's prop types extend React Aria Comp
 
 ## Decision
 
+> **Scope.** This ADR governs `@hopper-ui/components` and the rest of the packages in this repository. It does not govern `@hopper-ui/shadcn-extension`, which deliberately departs from it — see [ADR-0010](0010-shadcn-flavoured-extension-package.md).
+
 | Convention                  | Form                                       | Not                            |
 | --------------------------- | ------------------------------------------ | ------------------------------ |
 | Boolean props               | `isOpen`, `isDisabled`, `isRequired`       | `open`, `disabled`, `required` |
