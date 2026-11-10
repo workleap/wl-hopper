@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.17
+
+### Patch Changes
+
+- e8b6c39: Declare `@types/react` as an optional peer dependency, so the React types in the package declarations resolve under installs that link packages from outside the project, such as pnpm's global virtual store.
+
 ## 4.0.16
 
 ### Patch Changes
