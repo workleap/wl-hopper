@@ -18,11 +18,17 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v7
 
+            # This job holds the npm publishing identity, so it installs from the lockfile only:
+            # the pnpm store is not restored from the setup action and no lifecycle script runs.
             -   name: Setup Node and PNPM
                 uses: ./.github/composite-actions/setup
 
             -   name: Install dependencies
-                run: pnpm i --frozen-lockfile
+                run: pnpm i --frozen-lockfile --ignore-scripts
+                env:
+                    # pnpm/setup restores a lockfile verification log that other jobs can save, whatever its
+                    # inputs. An empty pnpm cache directory makes pnpm ignore it and verify the lockfile again.
+                    pnpm_config_cache_dir: ${{ runner.temp }}/pnpm-publish-cache
 
             -   name: Create release Pull Request or publish to NPM
                 uses: changesets/action@v2
