@@ -1,5 +1,11 @@
 # @hopper-ui/icons
 
+## 3.0.3
+
+### Patch Changes
+
+- e8b6c39: Declare `@types/react` as an optional peer dependency, so the React types in the package declarations resolve under installs that link packages from outside the project, such as pnpm's global virtual store.
+
 ## 3.0.2
 
 ### Patch Changes
