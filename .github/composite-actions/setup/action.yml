@@ -1,5 +1,11 @@
 name: Setup Node and PNPM
 
+inputs:
+    cache:
+        description: Whether to restore and save the pnpm store. Leave it off in a job that publishes or runs an agent.
+        required: false
+        default: "false"
+
 runs:
     using: composite
     steps:
@@ -7,4 +13,4 @@ runs:
         uses: pnpm/setup@v2
         with:
           install: false
-          cache: true
+          cache: ${{ inputs.cache }}

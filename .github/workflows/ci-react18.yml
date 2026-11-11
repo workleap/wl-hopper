@@ -25,6 +25,8 @@ jobs:
 
             -   name: Setup Node and PNPM
                 uses: ./.github/composite-actions/setup
+                with:
+                    cache: true
 
             -   name: Install React 18
                 run: pnpm install-react18
@@ -36,9 +38,9 @@ jobs:
                 id: cache-turborepo-restore
                 uses: actions/cache/restore@v6
                 with:
-                    key: ${{ runner.os }}-turborepo-${{ github.sha }}-ci-react18
+                    key: ${{ runner.os }}-turborepo-react18-${{ github.sha }}
                     restore-keys: |
-                        ${{ runner.os }}-turborepo-
+                        ${{ runner.os }}-turborepo-react18-
                     path: .turbo
 
             -   name: Build packages

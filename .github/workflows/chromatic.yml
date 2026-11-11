@@ -31,29 +31,14 @@ jobs:
 
             -   name: Setup Node and PNPM
                 uses: ./.github/composite-actions/setup
+                with:
+                    cache: true
 
             -   name: Install dependencies
                 run: pnpm i --frozen-lockfile
 
-            -   name: Restore Turborepo cache
-                id: cache-turborepo-restore
-                uses: actions/cache/restore@v6
-                with:
-                    key: ${{ runner.os }}-turborepo-${{ github.sha }}-chromatic
-                    restore-keys: |
-                        ${{ runner.os }}-turborepo-
-                    path: .turbo
-
             -   name: Build Packages
                 run: pnpm build:pkg
-
-            -   name: Save Turborepo cache
-                id: cache-turborepo-save
-                if: always() && steps.cache-turborepo-restore.outputs.cache-hit != 'true'
-                uses: actions/cache/save@v6
-                with:
-                    key: ${{ steps.cache-turborepo-restore.outputs.cache-primary-key }}
-                    path: .turbo
 
             -   name: Publish to Chromatic
                 uses: chromaui/action@v18

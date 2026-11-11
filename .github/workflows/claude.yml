@@ -29,6 +29,7 @@ jobs:
               uses: actions/checkout@v7
               with:
                   fetch-depth: 1
+            # The pnpm store is not restored or saved here: this job runs an agent, and the trusted jobs restore that store.
             - name: Setup Node and PNPM
               uses: ./.github/composite-actions/setup
             - name: Install dependencies
