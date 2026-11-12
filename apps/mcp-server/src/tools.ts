@@ -26,11 +26,11 @@ const MAX_ARRAY_SIZE = 50;
 const MAX_CODE_LENGTH = 200_000;
 const MAX_PATH_LENGTH = 1024;
 
-const shortText = z.string().max(MAX_TEXT_LENGTH);
+const shortString = z.string().max(MAX_TEXT_LENGTH);
 
 const paginationParams = {
     page_size: z.number().min(15000).optional().describe(paginationParamsInfo.page_size),
-    cursor: shortText.optional().describe(paginationParamsInfo.cursor)
+    cursor: shortString.optional().describe(paginationParamsInfo.cursor)
 };
 
 export function tools(server: McpServer) {
@@ -40,7 +40,7 @@ export function tools(server: McpServer) {
             title: toolsInfo.get_component_doc.title,
             description: toolsInfo.get_component_doc.description,
             inputSchema: {
-                component_name: shortText,
+                component_name: shortString,
                 doc_type: z
                     .enum(["usage", "props", "props-full"])
                     .describe(toolsInfo.get_component_doc.parameters.doc_type)
@@ -98,17 +98,17 @@ export function tools(server: McpServer) {
                     .default(DefaultColorScheme)
                     .describe(toolsInfo.get_design_tokens.parameters.color_scheme),
                 search_token_names: z
-                    .array(shortText)
+                    .array(shortString)
                     .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
                 search_css_values: z
-                    .array(shortText)
+                    .array(shortString)
                     .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
                 search_supported_props: z
-                    .array(shortText)
+                    .array(shortString)
                     .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
@@ -223,7 +223,7 @@ export function tools(server: McpServer) {
             description: toolsInfo.get_icons.description,
             inputSchema: {
                 queries: z
-                    .array(shortText)
+                    .array(shortString)
                     .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_icons.parameters.queries),
