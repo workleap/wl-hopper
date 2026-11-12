@@ -20,9 +20,17 @@ import { content, errorContent, toolContent } from "./utils/formatter";
 import { trackError, trackEvent } from "./utils/logger";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/tokenNameFormatter";
 
+// TODO: confirm these input bounds. They reject oversized requests before any processing.
+const MAX_TEXT_LENGTH = 256;
+const MAX_ARRAY_SIZE = 50;
+const MAX_CODE_LENGTH = 200_000;
+const MAX_PATH_LENGTH = 1024;
+
+const shortText = z.string().max(MAX_TEXT_LENGTH);
+
 const paginationParams = {
     page_size: z.number().min(15000).optional().describe(paginationParamsInfo.page_size),
-    cursor: z.string().optional().describe(paginationParamsInfo.cursor)
+    cursor: shortText.optional().describe(paginationParamsInfo.cursor)
 };
 
 export function tools(server: McpServer) {
@@ -32,7 +40,7 @@ export function tools(server: McpServer) {
             title: toolsInfo.get_component_doc.title,
             description: toolsInfo.get_component_doc.description,
             inputSchema: {
-                component_name: z.string(),
+                component_name: shortText,
                 doc_type: z
                     .enum(["usage", "props", "props-full"])
                     .describe(toolsInfo.get_component_doc.parameters.doc_type)
@@ -90,15 +98,18 @@ export function tools(server: McpServer) {
                     .default(DefaultColorScheme)
                     .describe(toolsInfo.get_design_tokens.parameters.color_scheme),
                 search_token_names: z
-                    .array(z.string())
+                    .array(shortText)
+                    .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_token_names.description),
                 search_css_values: z
-                    .array(z.string())
+                    .array(shortText)
+                    .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_css_values.description),
                 search_supported_props: z
-                    .array(z.string())
+                    .array(shortText)
+                    .max(MAX_ARRAY_SIZE)
                     .optional()
                     .describe(toolsInfo.get_design_tokens.parameters.search_supported_props.description),
                 include_css_values: z
@@ -211,7 +222,11 @@ export function tools(server: McpServer) {
             title: toolsInfo.get_icons.title,
             description: toolsInfo.get_icons.description,
             inputSchema: {
-                queries: z.array(z.string()).optional().describe(toolsInfo.get_icons.parameters.queries),
+                queries: z
+                    .array(shortText)
+                    .max(MAX_ARRAY_SIZE)
+                    .optional()
+                    .describe(toolsInfo.get_icons.parameters.queries),
                 type: z.enum(IconTypes).optional().default("all").describe(toolsInfo.get_icons.parameters.type),
                 limit: z.number().optional().describe(toolsInfo.get_icons.parameters.limit)
             },
@@ -244,7 +259,7 @@ export function tools(server: McpServer) {
             title: toolsInfo.validate_hopper_code.title,
             description: toolsInfo.validate_hopper_code.description,
             inputSchema: {
-                code: z.string()
+                code: z.string().max(MAX_CODE_LENGTH)
             },
             annotations: {
                 readOnlyHint: true
@@ -285,7 +300,7 @@ export function tools(server: McpServer) {
         {
             title: toolsInfo.migrate_from_orbiter_to_hopper.title,
             description: toolsInfo.migrate_from_orbiter_to_hopper.description,
-            inputSchema: { file_or_folder_path: z.string() },
+            inputSchema: { file_or_folder_path: z.string().max(MAX_PATH_LENGTH) },
             annotations: {
                 readOnlyHint: true
             }

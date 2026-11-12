@@ -152,7 +152,8 @@ type ToleranceUnit = keyof CssMatchConfig["tolerances"];
  * - s and ms (1s = 1000ms)
  */
 function matchNumberWithUnit(search: string, value: string, config: CssMatchConfig): boolean | null {
-    const unitPattern = /^(-?\d+\.?\d*)(rem|px|ms|s|%)$/;
+    // The dot is not optional between the digit runs, so the regex cannot backtrack quadratically on long digit strings.
+    const unitPattern = /^(-?\d+(?:\.\d*)?)(rem|px|ms|s|%)$/;
     const searchMatch = unitPattern.exec(search);
     const valueMatch = unitPattern.exec(value);
 
