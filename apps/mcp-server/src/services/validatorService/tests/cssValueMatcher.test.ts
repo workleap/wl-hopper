@@ -268,4 +268,17 @@ describe("matchesCssValue", () => {
             expect(DEFAULT_CSS_MATCH_CONFIG.tolerances["%"]).toBe(1);
         });
     });
+
+    describe("Performance", () => {
+        it("should match a long digit string with no unit in linear time", () => {
+            // The old number regex took about 2s here; it grew with the square of the length.
+            const longDigits = "1".repeat(50_000);
+
+            const start = performance.now();
+            expect(matchesCssValue("16px", longDigits, TEST_CONFIG)).toBe(false);
+            expect(matchesCssValue(longDigits, "16px", TEST_CONFIG)).toBe(false);
+
+            expect(performance.now() - start).toBeLessThan(100);
+        });
+    });
 });
