@@ -7,6 +7,8 @@ on:
     push:
         branches:
             - main
+            # UI Tests is required on main, so it must report on renovate/* for Renovate to merge. Chromatic is skipped there (see RENOVATE).
+            - "renovate/**"
     pull_request:
         # Opened, synchronize, or reopened are the default types
         # We added ready_for_review to trigger the workflow is passed from draft to ready_for_review
@@ -20,28 +22,35 @@ jobs:
     chromatic:
         if: github.event.pull_request.draft == false
         runs-on: ubuntu-latest
+        env:
+            # GitHub Actions updates change no story: report UI Tests as passed without building or snapshotting.
+            RENOVATE: ${{ startsWith(github.ref, 'refs/heads/renovate/') }}
         permissions:
-            contents: write
-            pull-requests: write
+            contents: read
+            pull-requests: write # Storybook URL comment
         steps:
             -   name: Checkout Commit
-                uses: actions/checkout@v7
+                uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
                 with:
                     fetch-depth: 0
+                    persist-credentials: false
 
             -   name: Setup Node and PNPM
+                if: env.RENOVATE != 'true'
                 uses: ./.github/composite-actions/setup
                 with:
                     cache: true
 
             -   name: Install dependencies
+                if: env.RENOVATE != 'true'
                 run: pnpm i --frozen-lockfile
 
             -   name: Build Packages
+                if: env.RENOVATE != 'true'
                 run: pnpm build:pkg
 
             -   name: Publish to Chromatic
-                uses: chromaui/action@v18
+                uses: chromaui/action@6efa19d4a40404313897de5a6d516e0333a2a787 # v18.14.5
                 id: chromatic
                 with:
                     autoAcceptChanges: "main"
@@ -50,11 +59,11 @@ jobs:
                     onlyChanged: true # TurboSnap
                     externals: "packages/tokens/src/tokens/**" # Token JSON files are outside the bundler's module graph; when they change the generated CSS changes, affecting all stories
                     exitOnceUploaded: true # The PRs will be marked as success/failure based on the Chromatic build status
-                    skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') }}
+                    skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') || env.RENOVATE == 'true' }}
 
 
             -   name: Write to GitHub comment
-                uses: thollander/actions-comment-pull-request@v3
+                uses: thollander/actions-comment-pull-request@24bffb9b452ba05a4f3f77933840a6a841d1b32b # v3.0.1
                 with:
                     message: |
                         [View Storybook](${{ steps.chromatic.outputs.storybookUrl }})

@@ -12,6 +12,7 @@ The following documentation is only for the maintainers of this repository.
   - [test](#test)
   - [lint](#lint)
 - [Contributing to packages](#contributing-to-packages)
+- [GitHub Actions](#github-actions)
 
 ## Monorepo setup
 
@@ -118,3 +119,20 @@ pnpm lint
 - [Tokens](./contributing/tokens.md)
 - [Icons](./contributing/icons.md)
 - [Hopper components](./contributing/components.md)
+
+## GitHub Actions
+
+Every `uses:` in `.github/` is pinned to a commit hash, with the release it matches in a comment:
+
+```yaml
+uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+```
+
+Never reference an action by a tag (`@v7`) or a branch: a tag runs a new release on the next workflow run, before the 7-day minimum release age of the organization's Renovate preset. Keep the version comment — Renovate ignores a hash that has none.
+
+Renovate (`renovate.json`) only updates GitHub Actions and merges them with branch automerge: it pushes the update to a `renovate/*` branch and, on a later run, fast-forwards `main` to it once the required checks (`build` and `UI Tests`) pass there. This depends on:
+
+- `ci.yml` and `chromatic.yml` running on pushes to `renovate/**`. Never remove those triggers. On those branches `chromatic.yml` skips the build and reports `UI Tests` as passed, so no snapshot runs.
+- The `Workleap Renovate` GitHub App being able to push to `main`. A repository-level branch protection that requires a pull request or an approval stops the auto-merge.
+
+When a check fails on the branch, Renovate opens a regular pull request instead, which needs the usual review.
