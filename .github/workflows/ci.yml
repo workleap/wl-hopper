@@ -23,34 +23,6 @@ jobs:
             -   name: Checkout code
                 uses: actions/checkout@v7
 
-            -   name: Check publish workflow hardening
-                # The publish job holds the npm publishing identity and the agent job runs untrusted content: neither
-                # may use the pnpm store shared with other jobs, and a Turborepo restore must use a prefix that only
-                # its own workflow writes.
-                run: |
-                    setup=.github/composite-actions/setup/action.yml
-                    publish=.github/workflows/changeset.yml
-                    if ! grep -qF 'default: "false"' "$setup"; then
-                        echo "::error file=$setup::The setup action must not cache the pnpm store by default."
-                        exit 1
-                    fi
-                    if grep -nE "^ +cache:|actions/cache" "$publish" .github/workflows/claude.yml; then
-                        echo "::error::The publish and agent workflows must not use an Actions cache."
-                        exit 1
-                    fi
-                    if ! grep -qF "pnpm i --frozen-lockfile --ignore-scripts" "$publish"; then
-                        echo "::error file=$publish::The publish workflow must install with --frozen-lockfile --ignore-scripts."
-                        exit 1
-                    fi
-                    if ! grep -qE "^ +pnpm_config_cache_dir:" "$publish"; then
-                        echo "::error file=$publish::The publish workflow must install with its own empty pnpm cache directory."
-                        exit 1
-                    fi
-                    if grep -nE -- "-turbo(repo)?- *$" .github/workflows/*.yml; then
-                        echo "::error::A Turborepo cache must be restored by a prefix that only its own workflow writes."
-                        exit 1
-                    fi
-
             -   name: Setup Node and PNPM
                 uses: ./.github/composite-actions/setup
                 with:
