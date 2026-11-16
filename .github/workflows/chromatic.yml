@@ -7,7 +7,7 @@ on:
     push:
         branches:
             - main
-            # Renovate merges a renovate/* branch into main only once its required checks pass, UI Tests included.
+            # UI Tests is required on main, so it must report on renovate/* for Renovate to merge. Chromatic is skipped there (see RENOVATE).
             - "renovate/**"
     pull_request:
         # Opened, synchronize, or reopened are the default types
@@ -22,6 +22,9 @@ jobs:
     chromatic:
         if: github.event.pull_request.draft == false
         runs-on: ubuntu-latest
+        env:
+            # GitHub Actions updates change no story: report UI Tests as passed without building or snapshotting.
+            RENOVATE: ${{ startsWith(github.ref, 'refs/heads/renovate/') }}
         permissions:
             contents: read
             pull-requests: write # Storybook URL comment
@@ -33,14 +36,17 @@ jobs:
                     persist-credentials: false
 
             -   name: Setup Node and PNPM
+                if: env.RENOVATE != 'true'
                 uses: ./.github/composite-actions/setup
                 with:
                     cache: true
 
             -   name: Install dependencies
+                if: env.RENOVATE != 'true'
                 run: pnpm i --frozen-lockfile
 
             -   name: Build Packages
+                if: env.RENOVATE != 'true'
                 run: pnpm build:pkg
 
             -   name: Publish to Chromatic
@@ -53,7 +59,7 @@ jobs:
                     onlyChanged: true # TurboSnap
                     externals: "packages/tokens/src/tokens/**" # Token JSON files are outside the bundler's module graph; when they change the generated CSS changes, affecting all stories
                     exitOnceUploaded: true # The PRs will be marked as success/failure based on the Chromatic build status
-                    skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') }}
+                    skip: ${{ github.event.pull_request.draft == true || startsWith(github.ref, 'refs/heads/changeset-release/') || env.RENOVATE == 'true' }}
 
 
             -   name: Write to GitHub comment

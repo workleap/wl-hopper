@@ -132,7 +132,7 @@ Never reference an action by a tag (`@v7`) or a branch: a tag runs a new release
 
 Renovate (`renovate.json`) only updates GitHub Actions and merges them with branch automerge: it pushes the update to a `renovate/*` branch and, on a later run, fast-forwards `main` to it once the required checks (`build` and `UI Tests`) pass there. This depends on:
 
-- `ci.yml` and `chromatic.yml` running on pushes to `renovate/**`. Never remove those triggers.
+- `ci.yml` and `chromatic.yml` running on pushes to `renovate/**`. Never remove those triggers. On those branches `chromatic.yml` skips the build and reports `UI Tests` as passed, so no snapshot runs.
 - The `Workleap Renovate` GitHub App being able to push to `main`. A repository-level branch protection that requires a pull request or an approval stops the auto-merge.
 
 When a check fails on the branch, Renovate opens a regular pull request instead, which needs the usual review.
