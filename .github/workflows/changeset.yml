@@ -16,7 +16,7 @@ jobs:
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v7
+                uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             # This job holds the npm publishing identity, so it installs from the lockfile only:
             # the pnpm store is not restored from the setup action and no lifecycle script runs.
@@ -30,11 +30,17 @@ jobs:
                     # inputs. An empty pnpm cache directory makes pnpm ignore it and verify the lockfile again.
                     pnpm_config_cache_dir: ${{ runner.temp }}/pnpm-publish-cache
 
+            -   name: Build packages
+                run: pnpm build:pkg
+
             -   name: Create release Pull Request or publish to NPM
-                uses: changesets/action@v2
+                # Pinned to a commit hash because this step holds contents: write and the npm
+                # trusted publishing token; changesets/action@v2 is a branch, not a tag.
+                uses: changesets/action@ae32849d5ba541f9ae29e40e22a623bc13562f51 # v2.1.2
                 with:
                     commit-message: "ci(changesets): version packages"
                     pr-title: "Changeset: New Version"
+                    # Packages are already built by the step above; ci-release only runs changeset publish.
                     publish-script: pnpm run ci-release
                     version-script: "pnpm run ci-version-packages"
                     github-token: ${{ secrets.GITHUB_TOKEN }}

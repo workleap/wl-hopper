@@ -1,0 +1,15 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": ["local>workleap/renovate-config", "helpers:pinGitHubActionDigestsToSemver"],
+    "description": "Renovate only updates GitHub Actions, on a schedule, and merges them into main without a PR once the required checks pass on the renovate/* branch. Every action is pinned to a commit hash with its release in a comment.",
+    "enabledManagers": ["github-actions"],
+    "automerge": true,
+    "automergeType": "branch",
+    "packageRules": [
+        {
+            "description": "anthropics/claude-code-action is released almost daily. In the shared group, it would change the branch on most runs, and a branch that changed during a run is not merged by that run: the other updates would wait behind it.",
+            "matchPackageNames": ["anthropics/claude-code-action"],
+            "groupName": "claude-code-action"
+        }
+    ]
+}

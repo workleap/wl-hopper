@@ -21,7 +21,7 @@ jobs:
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v7
+                uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
             -   name: Setup Node and PNPM
                 uses: ./.github/composite-actions/setup
@@ -36,7 +36,7 @@ jobs:
 
             -   name: Restore Turborepo cache
                 id: cache-turborepo-restore
-                uses: actions/cache/restore@v6
+                uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
                 with:
                     key: ${{ runner.os }}-turborepo-react18-${{ github.sha }}
                     restore-keys: |
@@ -55,7 +55,7 @@ jobs:
             -   name: Save Turborepo cache
                 id: cache-turborepo-save
                 if: always() && steps.cache-turborepo-restore.outputs.cache-hit != 'true'
-                uses: actions/cache/save@v6
+                uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
                 with:
                     key: ${{ steps.cache-turborepo-restore.outputs.cache-primary-key }}
                     path: .turbo
