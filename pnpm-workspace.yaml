@@ -3,6 +3,9 @@ packages:
     - "apps/**"
     - "tooling/**"
 
+# Only resolve versions published at least 7 days ago.
+minimumReleaseAge: 10080
+
 # pnpm 10 already ignored every one of these; `false` keeps them ignored under strictDepBuilds.
 allowBuilds:
     "@swc/core": false
