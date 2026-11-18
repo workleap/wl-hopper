@@ -1,8 +1,13 @@
 import fs from "fs";
 import { glob } from "glob";
 import path from "path";
+import { resolveExampleSource } from "../configs/examplePackages.ts";
 
-const CONTENT_FILES = path.join(process.cwd(), "content", "components", "**", "*.mdx").replace(/\\/g, "/");
+// Every docs section whose MDX may carry an `<Example src="…" />`. Which package a given `src`
+// resolves to is decided by `resolveExampleSource`, shared with the two runtime call sites.
+const CONTENT_FILES = ["components", "shadcn-extension"].map(section =>
+    path.join(process.cwd(), "content", section, "**", "*.mdx").replace(/\\/g, "/")
+);
 const OUTPUT_FILE = "Preview.ts";
 const OUTPUT_DIR = "examples";
 
@@ -22,7 +27,13 @@ function getExamplePath(filePath: string[]) {
 }
 
 function getMdxFiles() {
-    return glob.sync(CONTENT_FILES);
+    return CONTENT_FILES.flatMap(pattern => glob.sync(pattern));
+}
+
+function getImportPath(examplePath: string) {
+    const { packagePath, rest } = resolveExampleSource(examplePath);
+
+    return `@/../../packages/${packagePath}/${rest}.tsx`;
 }
 
 function generateDemoFile(content?: string) {
@@ -43,18 +54,9 @@ function generatePreviewRef() {
 
     let previewEntries = "";
     for (const examplePath of examplePaths) {
-        let importPath;
-
-        if (examplePath.startsWith("icons")) {
-            const modifiedExamplePath = examplePath.replace(/^icons\//, "");
-            importPath = `@/../../packages/icons/${modifiedExamplePath}.tsx`;
-        } else {
-            importPath = `@/../../packages/components/src/${examplePath}.tsx`;
-        }
-
         previewEntries += `
     "${examplePath}": {
-        component: lazy(() => import("${importPath}"))
+        component: lazy(() => import("${getImportPath(examplePath)}"))
     },`;
     }
 
