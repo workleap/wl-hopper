@@ -1,5 +1,11 @@
 # @hopper-ui/components
 
+## 3.5.2
+
+### Patch Changes
+
+- 51972e3: Stop `CheckboxField` from forwarding the `isFluid` and `necessityIndicator` props it inherits from a parent `Form` to its DOM element, which made React warn about unknown DOM props.
+
 ## 3.5.1
 
 ### Patch Changes
