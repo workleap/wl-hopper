@@ -1,5 +1,28 @@
-import { Button, TextField } from "@hopper-ui/components";
-import { render, screen } from "@hopper-ui/test-utils";
+import {
+    Button,
+    Checkbox,
+    CheckboxField,
+    CheckboxGroup,
+    ComboBox,
+    ComboBoxItem,
+    MultiSelect,
+    MultiSelectItem,
+    NumberField,
+    PasswordField,
+    Radio,
+    RadioField,
+    RadioGroup,
+    SearchField,
+    Select,
+    SelectItem,
+    Switch,
+    SwitchField,
+    Tag,
+    TagGroup,
+    TextArea,
+    TextField
+} from "@hopper-ui/components";
+import { render, screen, waitFor } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
 import { Form } from "../../src/Form.tsx";
@@ -91,5 +114,60 @@ describe("Form", () => {
 
         expect(input).toHaveAttribute("aria-invalid", "true");
         expect(element).toHaveTextContent("Nice try.");
+    });
+
+    it("should not forward its props to the DOM elements of its fields", async () => {
+        Object.defineProperty(document, "fonts", {
+            configurable: true,
+            value: { ready: Promise.resolve({}) }
+        });
+        const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+        const { container } = render(
+            <Form isFluid necessityIndicator="asterisk" size="sm">
+                <TextField label="TextField" />
+                <TextArea label="TextArea" />
+                <NumberField label="NumberField" />
+                <PasswordField label="PasswordField" />
+                <SearchField label="SearchField" />
+                <Checkbox>Checkbox</Checkbox>
+                <CheckboxField>
+                    <Checkbox>CheckboxField</Checkbox>
+                </CheckboxField>
+                <CheckboxGroup label="CheckboxGroup">
+                    <Checkbox value="1">1</Checkbox>
+                </CheckboxGroup>
+                <RadioGroup label="RadioGroup">
+                    <RadioField>
+                        <Radio value="1">1</Radio>
+                    </RadioField>
+                </RadioGroup>
+                <Switch>Switch</Switch>
+                <SwitchField>
+                    <Switch>SwitchField</Switch>
+                </SwitchField>
+                <ComboBox label="ComboBox">
+                    <ComboBoxItem id="1">1</ComboBoxItem>
+                </ComboBox>
+                <Select label="Select">
+                    <SelectItem id="1">1</SelectItem>
+                </Select>
+                <MultiSelect label="MultiSelect">
+                    <MultiSelectItem id="1">1</MultiSelectItem>
+                </MultiSelect>
+                <TagGroup label="TagGroup">
+                    <Tag id="1">1</Tag>
+                </TagGroup>
+            </Form>
+        );
+
+        await waitFor(() => expect(screen.getByRole("textbox", { name: "TextArea" })).toBeInTheDocument());
+
+        for (const attribute of ["isfluid", "necessityindicator"]) {
+            expect(container.querySelector(`[${attribute}]`)).toBeNull();
+        }
+        expect(consoleError).not.toHaveBeenCalled();
+
+        consoleError.mockRestore();
     });
 });

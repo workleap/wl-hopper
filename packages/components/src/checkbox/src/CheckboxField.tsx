@@ -20,6 +20,7 @@ import {
     SlotProvider,
     composeClassnameRenderProps,
     cssModule,
+    omitProps,
     useRenderProps
 } from "../../utils/index.ts";
 
@@ -63,7 +64,15 @@ function CheckboxField(props: CheckboxFieldProps, ref: ForwardedRef<HTMLDivEleme
     [props, ref] = useContextProps(props, ref, CheckboxFieldContext);
     props = useFormProps(props);
     const { stylingProps, ...ownProps } = useStyledSystem(props);
-    const { className, description, isDisabled, size: sizeProp = "md", style, slot, ...otherProps } = ownProps;
+    const {
+        className,
+        description,
+        isDisabled,
+        size: sizeProp = "md",
+        style,
+        slot,
+        ...otherProps
+    } = omitProps(ownProps, ["isFluid", "necessityIndicator"]);
 
     const size = useResponsiveValue(sizeProp) ?? "md";
 
