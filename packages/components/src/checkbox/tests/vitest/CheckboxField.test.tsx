@@ -2,6 +2,8 @@
 import { render, screen } from "@hopper-ui/test-utils";
 import { createRef } from "react";
 
+import { Form } from "../../../form/index.ts";
+
 import { Checkbox } from "../../src/Checkbox.tsx";
 import { CheckboxField } from "../../src/CheckboxField.tsx";
 import { CheckboxFieldContext } from "../../src/CheckboxFieldContext.ts";
@@ -132,5 +134,26 @@ describe("Checkbox", () => {
         expect(element).toHaveAttribute("data-disabled", "true");
         expect(element).toHaveClass("disabled");
         expect(checkbox).toBeDisabled();
+    });
+
+    it("should not forward Form props to the DOM element", () => {
+        const consoleError = vi.spyOn(console, "error").mockImplementation(() => {});
+
+        render(
+            <Form isFluid necessityIndicator="asterisk">
+                <CheckboxField data-testid={testId}>
+                    <Checkbox>option 1</Checkbox>
+                </CheckboxField>
+            </Form>
+        );
+
+        const element = screen.getByTestId(testId);
+        expect(element).not.toHaveAttribute("isFluid");
+        expect(element).not.toHaveAttribute("isfluid");
+        expect(element).not.toHaveAttribute("necessityIndicator");
+        expect(element).not.toHaveAttribute("necessityindicator");
+        expect(consoleError).not.toHaveBeenCalled();
+
+        consoleError.mockRestore();
     });
 });
