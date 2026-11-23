@@ -136,3 +136,10 @@ Renovate (`renovate.json`) only updates GitHub Actions and merges them with bran
 - The `Workleap Renovate` GitHub App being able to push to `main`. A repository-level branch protection that requires a pull request or an approval stops the auto-merge.
 
 When a check fails on the branch, Renovate opens a regular pull request instead, which needs the usual review.
+
+### Publishing environment <!-- omit in toc -->
+
+The `version` job of the [Changesets](./.github/workflows/changeset.yml) workflow publishes the packages with npm Trusted Publishing. It runs in the `npm-publish` GitHub environment, which only accepts the `main` branch and has no reviewer. The npm trusted publisher of each package requires that environment, so a workflow run from another branch cannot publish. This depends on two settings that are not in the repository:
+
+- The `npm-publish` environment exists in the repository settings, with `main` as its only deployment branch. GitHub creates a missing environment without any protection.
+- On npm, the trusted publisher of every published package names the `changeset.yml` workflow and the `npm-publish` environment. Never rename the workflow file or the environment: the publish stops until npm is updated.

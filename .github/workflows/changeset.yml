@@ -9,6 +9,9 @@ env:
 jobs:
     version:
         runs-on: ubuntu-latest
+        # The npm-publish environment only accepts the main branch, and the npm trusted publisher of each
+        # package requires it: a workflow run from another branch cannot publish.
+        environment: npm-publish
         permissions:
             id-token: write # OIDC for npm Trusted Publishing
             contents: write
