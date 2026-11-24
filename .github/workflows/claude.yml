@@ -11,12 +11,57 @@ on:
         types: [submitted]
 
 jobs:
-    claude:
+    # The claude job holds credentials and runs the package scripts and the tool configuration of the thread's working tree.
+    # It only starts when the person who mentioned @claude and the author of the issue or pull request both have write access,
+    # and a pull request's branch is in this repository. This job holds no secret and checks out nothing.
+    gate:
         if: |
             (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
             (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
             (github.event_name == 'pull_request_review' && contains(github.event.review.body, '@claude')) ||
             (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+        runs-on: ubuntu-latest
+        permissions:
+            pull-requests: read
+        outputs:
+            trusted: ${{ steps.thread.outputs.trusted }}
+        steps:
+            - name: Check who wrote the thread
+              id: thread
+              uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+              with:
+                  script: |
+                      const { owner, repo } = context.repo;
+                      const { sender, issue, pull_request: pullRequest } = context.payload;
+                      const thread = pullRequest ?? issue;
+
+                      async function canWrite(username) {
+                          const { data } = await github.rest.repos.getCollaboratorPermissionLevel({ owner, repo, username });
+
+                          return data.permission === "admin" || data.permission === "write";
+                      }
+
+                      async function isBranchInThisRepository() {
+                          const { data } = await github.rest.pulls.get({ owner, repo, pull_number: thread.number });
+
+                          return data.head.repo?.id === data.base.repo.id;
+                      }
+
+                      const isPullRequest = Boolean(pullRequest ?? issue.pull_request);
+                      const trusted =
+                          (await canWrite(sender.login)) &&
+                          (await canWrite(thread.user.login)) &&
+                          (!isPullRequest || (await isBranchInThisRepository()));
+
+                      if (!trusted) {
+                          core.notice(`Claude does not run on #${thread.number}: @${sender.login} or its author @${thread.user.login} has no write access, or the pull request's branch is in another repository.`);
+                      }
+
+                      core.setOutput("trusted", trusted);
+
+    claude:
+        needs: gate
+        if: needs.gate.outputs.trusted == 'true'
         runs-on: workleap
         permissions:
             contents: read
@@ -24,11 +69,16 @@ jobs:
             issues: write
             id-token: write
             actions: read # Required for Claude to read CI results on PRs
+        env:
+            # Claude Code removes its OAuth token and the variables that request an OIDC token from the environment of the commands and hooks it starts.
+            CLAUDE_CODE_SUBPROCESS_ENV_SCRUB: 1
         steps:
             - name: Checkout repository
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
               with:
                   fetch-depth: 1
+                  # The job token is not kept on disk for the steps that run the working tree's scripts.
+                  persist-credentials: false
             # The pnpm store is not restored or saved here: this job runs an agent, and the trusted jobs restore that store.
             - name: Setup Node and PNPM
               uses: ./.github/composite-actions/setup
