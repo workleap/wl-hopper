@@ -25,16 +25,42 @@ jobs:
               with:
                   fetch-depth: 1
 
+            # The review plugin is pinned to a commit here, in the workflow file, so its content only changes through a reviewed commit.
+            # The marketplace is written outside the checkout, where a pull request cannot change it.
+            - name: Pin the code-review plugin
+              run: |
+                  mkdir -p "$RUNNER_TEMP/claude-plugins/.claude-plugin"
+                  cat > "$RUNNER_TEMP/claude-plugins/.claude-plugin/marketplace.json" <<'EOF'
+                  {
+                      "name": "wl-hopper-ci",
+                      "owner": { "name": "Workleap" },
+                      "plugins": [
+                          {
+                              "name": "code-review",
+                              "source": {
+                                  "source": "git-subdir",
+                                  "url": "https://github.com/anthropics/claude-plugins-official.git",
+                                  "path": "plugins/code-review",
+                                  "sha": "9780cf407f5593727b668bae95a0c4ae2e0de1ae"
+                              }
+                          }
+                      ]
+                  }
+                  EOF
+
             - name: Run Claude Code Review
               id: claude-review
               uses: anthropics/claude-code-action@d1f58ad5e6f4d2b79547e63e37c2116064135896 # v1.0.277
               with:
                   claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-                  plugin_marketplaces: "https://github.com/anthropics/claude-code.git"
-                  plugins: "code-review@claude-code-plugins"
+                  plugin_marketplaces: ${{ runner.temp }}/claude-plugins
+                  plugins: "code-review@wl-hopper-ci"
                   prompt: |
                       /code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}
+                  # --strict-mcp-config: load only the MCP servers of --mcp-config and the action's own, never the ones in .mcp.json.
                   claude_args: |
+                      --strict-mcp-config
+                      --mcp-config '{"mcpServers":{"hopper":{"type":"http","url":"https://hopper.workleap.design/mcp"}}}'
                       --allowedTools "
                         Read,Write,Grep,Glob,Skill,
                         mcp__github_inline_comment__*,

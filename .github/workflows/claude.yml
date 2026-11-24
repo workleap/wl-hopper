@@ -48,7 +48,10 @@ jobs:
                   # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
                   # or https://code.claude.com/docs/en/cli-reference for available options
                   # or https://github.com/anthropics/claude-code-action/blob/main/docs/configuration.md#custom-tools
+                  # --strict-mcp-config: load only the MCP servers of --mcp-config and the action's own, never the ones in .mcp.json.
                   claude_args: |
+                      --strict-mcp-config
+                      --mcp-config '{"mcpServers":{"hopper":{"type":"http","url":"https://hopper.workleap.design/mcp"}}}'
                       --allowedTools "
                         Bash(pnpm lint:*),
                         Bash(pnpm build:*),
