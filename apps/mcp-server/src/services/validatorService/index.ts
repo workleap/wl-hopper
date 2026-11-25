@@ -9,11 +9,15 @@ import {
     validateTagNames
 } from "./basicValidators";
 import { validateComponentSpecificRules } from "./componentValidators";
-import { findJSXElements, getAllProps } from "./jsxHelpers";
+import { extractAllConstantStrings, findJSXElements, getAllProps } from "./jsxHelpers";
 import { isToken, validateDesignSystemTokensUsage } from "./tokenValidator";
-import type { ValidationResult } from "./types";
+import type { ValidationMessage, ValidationResult } from "./types";
 import { validateUnsafePropsUsage } from "./unsafePropsValidator";
 import { validationMessage } from "./validationMessages";
+
+// TODO: confirm these bounds. They keep the work and the output of one call small, whatever the input shape.
+export const MAX_PROP_VALUES = 1000;
+export const MAX_DIAGNOSTICS = 50;
 
 export async function validateHopperCode(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {
@@ -96,11 +100,34 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
         }
     }
 
+    result.errors = limitDiagnostics(result.errors);
+    result.warnings = limitDiagnostics(result.warnings);
+
     return result;
 }
 
+function limitDiagnostics(messages: ValidationMessage[]): ValidationMessage[] {
+    if (messages.length <= MAX_DIAGNOSTICS) {
+        return messages;
+    }
+
+    return [
+        ...messages.slice(0, MAX_DIAGNOSTICS),
+        { message: validationMessage("diagnostics-truncated", { count: messages.length - MAX_DIAGNOSTICS }) }
+    ];
+}
+
 async function validatePropValues(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
+    let valueCount = 0;
+
     for (const prop of getAllProps(jsxElements)) {
+        valueCount += extractAllConstantStrings(prop.propValue).length;
+        if (valueCount > MAX_PROP_VALUES) {
+            result.errors.push({ message: validationMessage("too-many-prop-values", { max: MAX_PROP_VALUES }) });
+
+            return;
+        }
+
         if (prop.propName.startsWith("UNSAFE_")) {
             await validateUnsafePropsUsage(prop, result, isToken);
         } else {

@@ -25,6 +25,7 @@ const MAX_TEXT_LENGTH = 256;
 const MAX_ARRAY_SIZE = 50;
 const MAX_CODE_LENGTH = 200_000;
 const MAX_PATH_LENGTH = 1024;
+const MAX_LOGGED_CODE_LENGTH = 2000;
 
 const shortString = z.string().max(MAX_TEXT_LENGTH);
 
@@ -268,7 +269,11 @@ export function tools(server: McpServer) {
         async ({ code }, e): Promise<CallToolResult> => {
             try {
                 const validationResult = await validateHopperCode(code);
-                trackEvent(toolsInfo.validate_hopper_code.name, { code, validationResult }, e?.requestInfo);
+                trackEvent(
+                    toolsInfo.validate_hopper_code.name,
+                    { code: code.slice(0, MAX_LOGGED_CODE_LENGTH), codeLength: code.length, validationResult },
+                    e?.requestInfo
+                );
 
                 if (validationResult.isValid && validationResult.warnings.length === 0) {
                     return toolContent(content("Component structure validation passed!"));
