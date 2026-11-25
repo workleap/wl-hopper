@@ -4,7 +4,16 @@
         "**/dist*": true,
         "**/.next*": true,
         "**/.cache*": true,
-        "**/.contentlayer*": true
+        "**/.contentlayer*": true,
+        "**/.claude/worktrees": true
+    },
+
+    // Claude Code worktrees hold full checkouts with their own node_modules; keep VS Code from watching and indexing them
+    "files.watcherExclude": {
+        "**/.claude/worktrees/**": true
+    },
+    "files.exclude": {
+        "**/.claude/worktrees": true
     },
 
     // Formatters settings
