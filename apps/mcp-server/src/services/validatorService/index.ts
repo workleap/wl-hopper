@@ -15,7 +15,6 @@ import type { ValidationMessage, ValidationResult } from "./types";
 import { validateUnsafePropsUsage } from "./unsafePropsValidator";
 import { validationMessage } from "./validationMessages";
 
-// TODO: confirm these bounds. They keep the work and the output of one call small, whatever the input shape.
 export const MAX_PROP_VALUES = 1000;
 export const MAX_DIAGNOSTICS = 50;
 export const MAX_MESSAGE_LENGTH = 1000;
