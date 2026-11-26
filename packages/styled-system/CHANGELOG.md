@@ -1,5 +1,11 @@
 # @hopper-ui/styled-system
 
+## 4.0.18
+
+### Patch Changes
+
+- de59ec7: `BreakpointProvider` now reads the matched breakpoints with `useSyncExternalStore`, so a viewport change between the first render and the resize subscription is no longer missed.
+
 ## 4.0.17
 
 ### Patch Changes
