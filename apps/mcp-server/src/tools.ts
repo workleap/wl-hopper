@@ -20,7 +20,6 @@ import { content, errorContent, toolContent } from "./utils/formatter";
 import { trackError, trackEvent } from "./utils/logger";
 import { DESIGN_TOKEN_PREFIXES_AND_SUFFIXES } from "./utils/tokenNameFormatter";
 
-// TODO: confirm these input bounds. They reject oversized requests before any processing.
 const MAX_TEXT_LENGTH = 256;
 const MAX_ARRAY_SIZE = 50;
 const MAX_CODE_LENGTH = 200_000;
