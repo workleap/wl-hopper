@@ -1,4 +1,4 @@
-import { MAX_DIAGNOSTICS, MAX_PROP_VALUES, validateHopperCode } from "..";
+import { MAX_DIAGNOSTICS, MAX_MESSAGE_LENGTH, MAX_PROP_VALUES, validateHopperCode } from "..";
 
 // Mock the fs/promises module to return our mock data.
 // The factory is hoisted above imports, so the mock data and the real `fs` are
@@ -2100,6 +2100,15 @@ describe("validateHopperCode", () => {
             expect(result.errors).toHaveLength(MAX_DIAGNOSTICS + 1);
             expect(result.errors[MAX_DIAGNOSTICS].message).toContain("more messages were omitted");
             expect(JSON.stringify(result).length).toBeLessThan(50_000);
+        });
+
+        it("should truncate a message that embeds a max-size value", async () => {
+            const value = `${"1".repeat(MAX_CODE_LENGTH - 100)}%`;
+            const result = await validateHopperCode(`<Div UNSAFE_width="${value}"><A /><A /></Div>`);
+
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message.length).toBeLessThanOrEqual(MAX_MESSAGE_LENGTH + 20);
+            expect(result.errors[0].message).toMatch(/\(truncated\)$/);
         });
     });
 });

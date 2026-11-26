@@ -18,6 +18,7 @@ import { validationMessage } from "./validationMessages";
 // TODO: confirm these bounds. They keep the work and the output of one call small, whatever the input shape.
 export const MAX_PROP_VALUES = 1000;
 export const MAX_DIAGNOSTICS = 50;
+export const MAX_MESSAGE_LENGTH = 1000;
 
 export async function validateHopperCode(code: string): Promise<ValidationResult> {
     const result: ValidationResult = {
@@ -107,14 +108,22 @@ export async function validateHopperCode(code: string): Promise<ValidationResult
 }
 
 function limitDiagnostics(messages: ValidationMessage[]): ValidationMessage[] {
-    if (messages.length <= MAX_DIAGNOSTICS) {
-        return messages;
+    // Messages can embed user values, so cap each one too.
+    const kept = messages
+        .slice(0, MAX_DIAGNOSTICS)
+        .map(item =>
+            item.message.length <= MAX_MESSAGE_LENGTH
+                ? item
+                : { ...item, message: `${item.message.slice(0, MAX_MESSAGE_LENGTH)}... (truncated)` }
+        );
+
+    if (messages.length > MAX_DIAGNOSTICS) {
+        kept.push({
+            message: validationMessage("diagnostics-truncated", { count: messages.length - MAX_DIAGNOSTICS })
+        });
     }
 
-    return [
-        ...messages.slice(0, MAX_DIAGNOSTICS),
-        { message: validationMessage("diagnostics-truncated", { count: messages.length - MAX_DIAGNOSTICS }) }
-    ];
+    return kept;
 }
 
 async function validatePropValues(jsxElements: TSESTree.JSXElement[], result: ValidationResult) {
