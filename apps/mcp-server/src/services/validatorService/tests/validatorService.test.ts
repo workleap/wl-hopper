@@ -1,4 +1,4 @@
-import { validateHopperCode } from "..";
+import { MAX_DIAGNOSTICS, MAX_MESSAGE_LENGTH, MAX_PROP_VALUES, validateHopperCode } from "..";
 
 // Mock the fs/promises module to return our mock data.
 // The factory is hoisted above imports, so the mock data and the real `fs` are
@@ -2049,6 +2049,66 @@ describe("validateHopperCode", () => {
             expect(result.errors).toHaveLength(2);
             expect(result.errors[0].message).toContain("UNSAFE_backgroundColor");
             expect(result.errors[1].message).toContain("UNSAFE_color");
+        });
+    });
+
+    describe("Input bounds", () => {
+        const MAX_CODE_LENGTH = 200_000;
+
+        function fillToLimit(prefix: string, item: (index: number) => string, suffix: string) {
+            const items: string[] = [];
+            let length = prefix.length + suffix.length;
+            for (let index = 0; ; index++) {
+                const next = item(index);
+                if (length + next.length > MAX_CODE_LENGTH) {
+                    break;
+                }
+                items.push(next);
+                length += next.length;
+            }
+
+            return prefix + items.join("") + suffix;
+        }
+
+        it("should stop checking prop values at the limit for a max-size input", async () => {
+            const code = fillToLimit("<Div UNSAFE_padding={[", index => `"${index}px",`, "]}><A /><A /></Div>");
+
+            const start = performance.now();
+            const result = await validateHopperCode(code);
+            const duration = performance.now() - start;
+
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message).toContain(`stopped after ${MAX_PROP_VALUES} values`);
+            // Loose bound: parsing 200 KB alone takes a few hundred ms on a slow runner.
+            expect(duration).toBeLessThan(2000);
+        });
+
+        it("should check every prop value under the limit", async () => {
+            const values = Array.from({ length: MAX_PROP_VALUES }, (_, index) => `"${index}px"`).join(",");
+            const result = await validateHopperCode(`<Div UNSAFE_padding={[${values}]}><A /><A /></Div>`);
+
+            expect(result.errors.some(error => error.message.includes("stopped after"))).toBe(false);
+        });
+
+        it.each([
+            ["emoji", fillToLimit("<Stack><A /><A /></Stack>;//", () => "\u{1F600}", "")],
+            ["native HTML elements", fillToLimit("<>", () => "<div />", "</>")]
+        ])("should cap the diagnostics for a max-size input full of %s", async (_, code) => {
+            const result = await validateHopperCode(code);
+
+            expect(result.isValid).toBe(false);
+            expect(result.errors).toHaveLength(MAX_DIAGNOSTICS + 1);
+            expect(result.errors[MAX_DIAGNOSTICS].message).toContain("more messages were omitted");
+            expect(JSON.stringify(result).length).toBeLessThan(50_000);
+        });
+
+        it("should truncate a message that embeds a max-size value", async () => {
+            const value = `${"1".repeat(MAX_CODE_LENGTH - 100)}%`;
+            const result = await validateHopperCode(`<Div UNSAFE_width="${value}"><A /><A /></Div>`);
+
+            expect(result.errors).toHaveLength(1);
+            expect(result.errors[0].message.length).toBeLessThanOrEqual(MAX_MESSAGE_LENGTH + 20);
+            expect(result.errors[0].message).toMatch(/\(truncated\)$/);
         });
     });
 });

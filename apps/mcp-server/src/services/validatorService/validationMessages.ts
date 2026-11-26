@@ -10,6 +10,9 @@ const validationMessages = {
         "parse-error-eof": "\n\nThe code appears to be incomplete. Please provide the full component code.",
         "parse-error-unknown":
             "Failed to parse code due to unknown error. Please ensure the code is valid TypeScript/JSX.",
+        "too-many-prop-values":
+            "Prop value validation stopped after {max} values. Validate a smaller code snippet to check the rest.",
+        "diagnostics-truncated": "{count} more messages were omitted. Fix the ones above, then validate again.",
 
         "emoji-detected":
             "Emoji '{emoji}' detected at position {position}. Emojis are not allowed in Hopper components. Consider using Hopper's Icon component or text alternatives for better accessibility and consistency.",

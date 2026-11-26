@@ -1,5 +1,5 @@
 import type { TSESTree } from "@typescript-eslint/types";
-import { type TokenCategoryNode, filterTokens } from "../../utils/tokenFilters";
+import { type TokenCategoryNode, type TokenFileRootNode, filterTokens } from "../../utils/tokenFilters";
 import { PERCENTAGE_SAFE_PROPS, PROHIBITED_PROPS } from "./constants";
 import { EXACT_CSS_MATCH_CONFIG } from "./cssValueMatcher";
 import { getAllTokensData, getUnsafeProps } from "./data";
@@ -42,6 +42,19 @@ function validatePercentageUsageWithUnsafeProp(
     });
 
     return false; // This is invalid and error was reported
+}
+
+// Token data is static, so each prop's token subset is computed once. Keys are allowed UNSAFE_ prop names only.
+const tokensByProp = new Map<string, TokenFileRootNode>();
+
+async function getTokensForProp(propName: string): Promise<TokenFileRootNode> {
+    let tokens = tokensByProp.get(propName);
+    if (!tokens) {
+        tokens = filterTokens(await getAllTokensData(), { supportedProps: [propName] });
+        tokensByProp.set(propName, tokens);
+    }
+
+    return tokens;
 }
 
 async function isValidUnsafeProp(propName: string): Promise<boolean> {
@@ -144,11 +157,8 @@ async function validateUseOfCustomValueWithUnsafeProp(
             return true;
         }
 
-        const allTokensData = await getAllTokensData();
-        const filteredTokens = filterTokens(allTokensData, {
-            tokenNames: [],
+        const filteredTokens = filterTokens(await getTokensForProp(safePropName), {
             cssValues: [propValue],
-            supportedProps: [safePropName],
             cssMatchTolerances: EXACT_CSS_MATCH_CONFIG
         });
         const equivalentTokens = new Set<string>();
