@@ -18,6 +18,8 @@ Runtime CSS-in-JS was rejected. It carries a runtime cost, complicates server-si
 
 No runtime CSS-in-JS library, and no hand-authored inline `style` objects for anything a token can express. (The styled system's own output _is_ an inline style object — that is the mechanism, not a violation.)
 
+> **Scope.** This ADR governs `@hopper-ui/components` and the rest of the packages in this repository. It does not govern `@hopper-ui/shadcn-extension`, which deliberately departs from it — see [ADR-0010](0010-shadcn-flavoured-extension-package.md).
+
 Styling escalates through these options, cheapest first:
 
 1. **Styled system props**, with token values: `backgroundColor`, `padding`, `width`, and the rest of the curated set.

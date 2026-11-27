@@ -29,5 +29,10 @@ export const navigation: NavItem[] = [
         label: "Components",
         path: "/components/component-list",
         status: "ready"
+    },
+    {
+        label: "Shadcn Extension",
+        path: "/shadcn-extension/overview/introduction",
+        status: "ready"
     }
 ];

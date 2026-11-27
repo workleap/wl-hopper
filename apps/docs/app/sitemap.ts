@@ -1,5 +1,11 @@
 import type { MetadataRoute } from "next";
-import { getComponentsSlugs, getGettingStartedSlugs, getIconsSlugs, getTokensSlugs } from "./lib/getSlugs";
+import {
+    getComponentsSlugs,
+    getGettingStartedSlugs,
+    getIconsSlugs,
+    getShadcnExtensionSlugs,
+    getTokensSlugs
+} from "./lib/getSlugs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const siteUrl = "https://hopper.workleap.design";
@@ -25,6 +31,7 @@ function fetchDynamicPaths(): string[] {
     const iconsLinks = getIconsSlugs().map(x => `/icons/${x.slug.join("/")}`);
     const tokensLinks = getTokensSlugs().map(x => `/tokens/${x.slug.join("/")}`);
     const componentsLinks = getComponentsSlugs().map(x => `/components/${x.slug.join("/")}`);
+    const shadcnExtensionLinks = getShadcnExtensionSlugs().map(x => `/shadcn-extension/${x.slug.join("/")}`);
 
-    return [...gettingStartedLinks, ...iconsLinks, ...tokensLinks, ...componentsLinks];
+    return [...gettingStartedLinks, ...iconsLinks, ...tokensLinks, ...componentsLinks, ...shadcnExtensionLinks];
 }

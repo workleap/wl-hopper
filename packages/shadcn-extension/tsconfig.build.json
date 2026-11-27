@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["src", "../../types/css-modules.d.ts"],
+    "exclude": ["dist", "node_modules", "**/docs/**", "**/tests/**"],
+    "compilerOptions": {
+        "customConditions": [],
+        "rootDir": "src",
+        "ignoreDeprecations": "6.0"
+    }
+}
